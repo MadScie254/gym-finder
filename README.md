@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kenya Gym Finder
 
-## Getting Started
+Progressive web app that finds gyms across Kenya using Google Maps Places, then ranks them by distance, rating, and a short client profile (goals, budget, amenities). Install it from the browser, or package a lite Android APK later with [PWABuilder](https://www.pwabuilder.com/).
 
-First, run the development server:
+## Setup
+
+1. Copy `.env.example` to `.env.local`.
+2. Create a Google Cloud project with billing enabled and turn on:
+   - Maps JavaScript API
+   - Places API (New)
+3. Add keys:
+   - `NEXT_PUBLIC_GOOGLE_MAPS_KEY` — browser key, restrict by HTTP referrer
+   - `GOOGLE_MAPS_SERVER_KEY` — server key for Places, restrict by IP  
+     For local demo, one unrestricted key can fill both variables.
+4. Install and run:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). Without keys the UI still runs on a small Kenya demo dataset.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Using the app
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Allow location to see nearby gyms, or search any Kenyan county/city.
+- Complete (or skip) onboarding so suggestions can prefer your goals and budget.
+- Filter by open now, rating, price, and radius.
+- Tap **Search this area** after panning the map.
+- On Android Chrome, use **Install app**. On iPhone Safari: Share → Add to Home Screen.
 
-## Learn More
+## Deploy
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Vercel is the simplest host for this Next.js app. After it is live, you can generate a lite APK from the public URL with PWABuilder. iOS remains Add to Home Screen (no sideloaded IPA from a PWA).
