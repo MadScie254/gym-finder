@@ -27,9 +27,6 @@ const AMENITY_KEYWORDS: Record<Amenity, string[]> = {
 
 const PRICE_MATCH: Record<Exclude<Budget, "any">, string[]> = {
   free: ["PRICE_LEVEL_FREE"],
-  low: ["PRICE_LEVEL_FREE", "PRICE_LEVEL_INEXPENSIVE"],
-  mid: ["PRICE_LEVEL_MODERATE"],
-  high: ["PRICE_LEVEL_EXPENSIVE", "PRICE_LEVEL_VERY_EXPENSIVE"],
 };
 
 function haystack(gym: Gym): string {
@@ -52,7 +49,7 @@ function keywordHits(text: string, keywords: string[]): number {
 
 function budgetMatches(gym: Gym, budget: Budget): boolean {
   if (budget === "any") return true;
-  if (!gym.priceLevel) return true;
+  if (!gym.priceLevel) return false;
   return PRICE_MATCH[budget].includes(gym.priceLevel);
 }
 
@@ -99,7 +96,9 @@ export function scoreGym(gym: Gym, origin: LatLng, profile: ClientProfile): Gym 
 
 export function applyFilters(gyms: Gym[], filters: GymFilters): Gym[] {
   return gyms.filter((gym) => {
-    if (filters.openNow && gym.openNow === false) return false;
+    // OSM opening-hours strings are not fully parsed here. A true value means
+    // the venue explicitly declared 24/7 access; unknown hours are excluded.
+    if (filters.openNow && gym.openNow !== true) return false;
     if (filters.minRating > 0 && (gym.rating ?? 0) < filters.minRating) return false;
     if (!budgetMatches(gym, filters.price)) return false;
     return true;
@@ -127,7 +126,8 @@ export function rankGyms(gyms: Gym[], origin: LatLng, profile: ClientProfile, fi
     labels.set(closest.id, [...(labels.get(closest.id) ?? []), "closest"]);
   }
 
-  const topRated = [...scored].sort((a, b) => {
+  const rated = scored.filter((gym) => gym.rating != null);
+  const topRated = [...rated].sort((a, b) => {
     const ratingDelta = (b.rating ?? 0) - (a.rating ?? 0);
     if (ratingDelta !== 0) return ratingDelta;
     return b.userRatingCount - a.userRatingCount;

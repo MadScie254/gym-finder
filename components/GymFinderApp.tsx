@@ -1,14 +1,15 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
-import CountySearch from "./CountySearch";
+import dynamic from "next/dynamic";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import FilterSheet from "./FilterSheet";
 import GymDetail from "./GymDetail";
 import GymList from "./GymList";
 import InstallPrompt from "./InstallPrompt";
-import MapView from "./MapView";
+import PlaceSearch from "./PlaceSearch";
 import ProfileForm from "./ProfileForm";
 import { findCounty, haversineKm, isInKenya, NAIROBI } from "@/lib/kenya";
+import type { PlaceHit } from "@/lib/osmPlaces";
 import { fetchGymDetails, fetchNearbyGyms, fetchSearchGyms } from "@/lib/placesClient";
 import { rankGyms } from "@/lib/scoreGyms";
 import {
@@ -32,7 +33,10 @@ type SheetMode = "list" | "detail" | "filters" | "profile" | "onboarding";
 type SheetSize = "peek" | "half" | "full";
 type ListTab = "suggested" | "saved";
 
-const MAPS_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY ?? "";
+const MapView = dynamic(() => import("./MapView"), {
+  ssr: false,
+  loading: () => <div className="map-canvas map-canvas--loading" />,
+});
 
 export default function GymFinderApp() {
   const [origin, setOrigin] = useState<LatLng>(NAIROBI);
@@ -45,7 +49,6 @@ export default function GymFinderApp() {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
   const [detailsLoading, setDetailsLoading] = useState(false);
-  const [demo, setDemo] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
   const [sheetMode, setSheetMode] = useState<SheetMode>("list");
   const [sheetSize, setSheetSize] = useState<SheetSize>("half");
@@ -53,28 +56,33 @@ export default function GymFinderApp() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    setProfile(loadProfile());
-    setFavorites(loadFavorites());
-    if (!hasOnboarded()) {
-      setSheetMode("onboarding");
-      setSheetSize("full");
-    }
-    setReady(true);
+    let active = true;
+    queueMicrotask(() => {
+      if (!active) return;
+      setProfile(loadProfile());
+      setFavorites(loadFavorites());
+      if (!hasOnboarded()) {
+        setSheetMode("onboarding");
+        setSheetSize("full");
+      }
+      setReady(true);
+    });
+    return () => {
+      active = false;
+    };
   }, []);
 
   const rankedGyms = useMemo(
     () => rankGyms(rawGyms, origin, profile, filters),
     [rawGyms, origin, profile, filters],
   );
-
   const savedGyms = useMemo(
     () => rankedGyms.filter((gym) => favorites.includes(gym.id)),
     [rankedGyms, favorites],
   );
-
   const selectedGym = rankedGyms.find((gym) => gym.id === selectedId) ?? null;
   const visibleGyms = tab === "saved" ? savedGyms : rankedGyms;
-  const showSearchArea = haversineKm(origin, mapCenter) > 0.45;
+  const showSearchArea = haversineKm(origin, mapCenter) > 0.45 && sheetMode === "list";
 
   const loadNearby = useCallback(async (center: LatLng, radiusMeters: number, label?: string) => {
     setLoading(true);
@@ -82,7 +90,7 @@ export default function GymFinderApp() {
     try {
       const result = await fetchNearbyGyms(center, radiusMeters);
       setRawGyms(result.gyms);
-      setDemo(result.demo);
+      setNotice(result.warning ?? label ?? null);
       setOrigin(center);
       setMapCenter(center);
       setSelectedId(null);
@@ -98,40 +106,22 @@ export default function GymFinderApp() {
 
   useEffect(() => {
     if (!ready) return;
-    const locate = () => {
-      if (!navigator.geolocation) {
-        void loadNearby(NAIROBI, filters.radiusMeters);
-        return;
-      }
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const point = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          };
-          if (!isInKenya(point)) {
-            void loadNearby(
-              NAIROBI,
-              filters.radiusMeters,
-              "Your location is outside Kenya, so Nairobi is shown.",
-            );
-            return;
-          }
-          void loadNearby(point, filters.radiusMeters);
-        },
-        () => {
-          void loadNearby(NAIROBI, filters.radiusMeters, "Using Nairobi until location is allowed.");
-        },
-        { enableHighAccuracy: true, timeout: 8000, maximumAge: 30000 },
-      );
-    };
-    locate();
-    // Initial locate only; radius changes refetch below.
+    // Start with a useful, non-sensitive default. Precise location is requested
+    // only after the visitor activates the Near me control.
+    const timer = window.setTimeout(() => {
+      void loadNearby(NAIROBI, filters.radiusMeters, "Showing Nairobi — use Near me for local results.");
+    }, 0);
+    return () => window.clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready]);
 
+  const radiusReady = useRef(false);
   useEffect(() => {
-    if (!ready || loading) return;
+    if (!ready) return;
+    if (!radiusReady.current) {
+      radiusReady.current = true;
+      return;
+    }
     void loadNearby(origin, filters.radiusMeters);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters.radiusMeters]);
@@ -139,13 +129,16 @@ export default function GymFinderApp() {
   useEffect(() => {
     if (!selectedId || selectedId.startsWith("demo-")) return;
     let cancelled = false;
-    setDetailsLoading(true);
+    queueMicrotask(() => {
+      if (!cancelled) setDetailsLoading(true);
+    });
     fetchGymDetails(selectedId)
       .then((details) => {
-        if (cancelled) return;
-        setRawGyms((current) =>
-          current.map((gym) => (gym.id === details.id ? { ...gym, ...details } : gym)),
-        );
+        if (!cancelled) {
+          setRawGyms((current) =>
+            current.map((gym) => (gym.id === details.id ? { ...gym, ...details } : gym)),
+          );
+        }
       })
       .catch(() => undefined)
       .finally(() => {
@@ -156,9 +149,7 @@ export default function GymFinderApp() {
     };
   }, [selectedId]);
 
-  const onIdleCenter = useCallback((center: LatLng) => {
-    setMapCenter(center);
-  }, []);
+  const onIdleCenter = useCallback((center: LatLng) => setMapCenter(center), []);
 
   const selectGym = (id: string) => {
     setSelectedId(id);
@@ -168,12 +159,19 @@ export default function GymFinderApp() {
 
   const toggleSave = (id: string) => {
     setFavorites((current) => {
-      const next = current.includes(id)
-        ? current.filter((item) => item !== id)
-        : [...current, id];
+      const next = current.includes(id) ? current.filter((item) => item !== id) : [...current, id];
       saveFavorites(next);
       return next;
     });
+  };
+
+  const goToPlace = async (place: PlaceHit) => {
+    setQuery("");
+    await loadNearby(
+      place.location,
+      Math.max(filters.radiusMeters, place.kind === "county" ? 15000 : 10000),
+      `Gyms near ${place.name}`,
+    );
   };
 
   const handleSearch = async (value: string) => {
@@ -193,12 +191,11 @@ export default function GymFinderApp() {
     try {
       const result = await fetchSearchGyms(trimmed, origin);
       setRawGyms(result.gyms);
-      setDemo(result.demo);
       setSelectedId(null);
       setTab("suggested");
       setSheetMode("list");
       setSheetSize("half");
-      setNotice(`Results for “${trimmed}”`);
+      setNotice(result.warning ?? `Results for “${trimmed}”`);
       if (result.gyms[0]) {
         setOrigin(result.gyms[0].location);
         setMapCenter(result.gyms[0].location);
@@ -210,27 +207,138 @@ export default function GymFinderApp() {
     }
   };
 
-  const finishOnboarding = (skip: boolean) => {
-    if (!skip) saveProfile(profile);
-    markOnboarded();
+  const closeToList = () => {
     setSheetMode("list");
     setSheetSize("half");
   };
 
-  const saveProfileAndClose = () => {
-    saveProfile(profile);
-    setSheetMode("list");
-    setSheetSize("half");
+  const locateMe = () => {
+    if (!navigator.geolocation) {
+      setNotice("Location is not supported in this browser.");
+      return;
+    }
+    setNotice("Allow location to find gyms near you. Your coordinates are not saved.");
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const point = { lat: position.coords.latitude, lng: position.coords.longitude };
+        if (isInKenya(point)) void loadNearby(point, filters.radiusMeters);
+        else setNotice("Location is outside Kenya.");
+      },
+      () => setNotice("Location was not shared — still showing Nairobi."),
+      { enableHighAccuracy: false, timeout: 8_000, maximumAge: 60_000 },
+    );
   };
 
-  const sheetHeight =
-    sheetSize === "peek" ? "h-[210px]" : sheetSize === "half" ? "h-[48%]" : "h-[86%]";
+  const panelBody = (
+    <>
+      {sheetMode === "onboarding" && (
+        <ProfileForm
+          kicker="Towns · counties · OpenStreetMap"
+          title="Train anywhere in Kenya."
+          subtitle="Set your brief once. We rank mapped gyms by distance and training fit."
+          profile={profile}
+          primaryLabel="Show my matches"
+          secondaryLabel="Skip for now"
+          onChange={setProfile}
+          onSubmit={() => {
+            saveProfile(profile);
+            markOnboarded();
+            closeToList();
+          }}
+          onSecondary={() => {
+            markOnboarded();
+            closeToList();
+          }}
+        />
+      )}
+
+      {sheetMode === "profile" && (
+        <ProfileForm
+          title="Your training brief"
+          subtitle="Saved on this device only. Matches reshuffle as you edit."
+          profile={profile}
+          primaryLabel="Save brief"
+          secondaryLabel="Cancel"
+          onChange={setProfile}
+          onSubmit={() => {
+            saveProfile(profile);
+            closeToList();
+          }}
+          onSecondary={closeToList}
+        />
+      )}
+
+      {sheetMode === "filters" && (
+        <FilterSheet filters={filters} onChange={setFilters} onClose={closeToList} />
+      )}
+
+      {sheetMode === "detail" && selectedGym && (
+        <GymDetail
+          gym={selectedGym}
+          saved={favorites.includes(selectedGym.id)}
+          loadingDetails={detailsLoading}
+          onClose={closeToList}
+          onToggleSave={() => toggleSave(selectedGym.id)}
+        />
+      )}
+
+      {sheetMode === "list" && (
+        <div className="list-head">
+          <div className="list-head__row">
+            <div className="list-head__titles">
+              <p className="eyebrow">Suggested for you</p>
+              <h1>
+                {loading
+                  ? "Mapping…"
+                  : `${visibleGyms.length} ${tab === "saved" ? "saved" : "nearby"}`}
+              </h1>
+            </div>
+            <div className="seg">
+              <button
+                type="button"
+                className={tab === "suggested" ? "is-on" : ""}
+                aria-pressed={tab === "suggested"}
+                onClick={() => setTab("suggested")}
+              >
+                Nearby
+              </button>
+              <button
+                type="button"
+                className={tab === "saved" ? "is-on" : ""}
+                aria-pressed={tab === "saved"}
+                onClick={() => setTab("saved")}
+              >
+                Saved
+              </button>
+            </div>
+          </div>
+          {loading && <div className="loading-bar" aria-hidden />}
+          {notice && <p className="notice">{notice}</p>}
+          {!loading && visibleGyms.length === 0 && tab === "suggested" && notice && (
+            <p className="notice">No mapped gyms in this spot yet. Try a wider radius or another town.</p>
+          )}
+          <GymList
+            gyms={visibleGyms}
+            selectedId={selectedId}
+            favorites={favorites}
+            emptyMessage={
+              tab === "saved"
+                ? "Save a gym from Nearby and it will live here."
+                : "Search a town, estate, or county — try Webuye or Kilimani."
+            }
+            onSelect={selectGym}
+            onToggleSave={toggleSave}
+          />
+          <p className="osm-credit">Map data © OpenStreetMap · basemap Esri</p>
+        </div>
+      )}
+    </>
+  );
 
   return (
-    <div className="relative h-[100dvh] overflow-hidden bg-[#0b0f14] text-white">
-      <div className="absolute inset-0">
+    <div className={`app-shell ${sheetMode === "onboarding" ? "app-shell--onboarding" : ""}`}>
+      <div className="map-stage">
         <MapView
-          apiKey={MAPS_KEY}
           origin={origin}
           gyms={visibleGyms}
           selectedId={selectedId}
@@ -239,196 +347,78 @@ export default function GymFinderApp() {
         />
       </div>
 
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 px-3 pt-[max(0.75rem,env(safe-area-inset-top))]">
-        <div className="pointer-events-auto mx-auto max-w-lg">
-          <CountySearch
+      <header className="chrome">
+        <div className="chrome__brand">
+          <span className="chrome__mark">KAYA</span>
+          <span className="chrome__tag">Kenya gym map</span>
+        </div>
+        <div className="chrome__search">
+          <PlaceSearch
             query={query}
             onQueryChange={setQuery}
             onSearch={handleSearch}
-            onSelectCounty={(name) => void handleSearch(name)}
+            onSelectPlace={(place) => void goToPlace(place)}
           />
-          <div className="mt-2 flex gap-2">
-            <button
-              type="button"
-              onClick={() => {
-                setSheetMode("filters");
-                setSheetSize("full");
-              }}
-              className="rounded-full bg-black/60 px-3 py-2 text-xs font-medium text-white backdrop-blur"
-            >
-              Filters
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setSheetMode("profile");
-                setSheetSize("full");
-              }}
-              className="rounded-full bg-black/60 px-3 py-2 text-xs font-medium text-white backdrop-blur"
-            >
-              Profile
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                if (!navigator.geolocation) return;
-                navigator.geolocation.getCurrentPosition((position) => {
-                  const point = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude,
-                  };
-                  if (isInKenya(point)) {
-                    void loadNearby(point, filters.radiusMeters);
-                  } else {
-                    setNotice("Location is outside Kenya.");
-                  }
-                });
-              }}
-              className="rounded-full bg-black/60 px-3 py-2 text-xs font-medium text-white backdrop-blur"
-            >
-              Near me
-            </button>
-          </div>
-          <div className="mt-2">
-            <InstallPrompt />
-          </div>
         </div>
-      </div>
-
-      {showSearchArea && sheetMode === "list" && (
-        <div className="absolute inset-x-0 top-28 z-10 flex justify-center">
+        <div className="chrome__actions">
           <button
             type="button"
-            onClick={() => void loadNearby(mapCenter, filters.radiusMeters, "Updated for this area")}
-            className="rounded-full bg-lime-300 px-4 py-2 text-sm font-semibold text-black shadow-lg"
+            className="tool-btn"
+            onClick={() => {
+              setSheetMode("filters");
+              setSheetSize("full");
+            }}
           >
-            Search this area
+            Filters
+          </button>
+          <button
+            type="button"
+            className="tool-btn"
+            onClick={() => {
+              setSheetMode("profile");
+              setSheetSize("full");
+            }}
+          >
+            Brief
+          </button>
+          <button type="button" className="tool-btn tool-btn--accent" onClick={locateMe}>
+            Near me
           </button>
         </div>
-      )}
+        <div className="chrome__install">
+          <InstallPrompt />
+        </div>
+      </header>
 
-      <section
-        className={`absolute inset-x-0 bottom-0 z-30 mx-auto max-w-lg rounded-t-3xl border border-white/10 bg-[#10161ee6] shadow-[0_-12px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-[height] ${sheetHeight}`}
-      >
+      {showSearchArea && (
         <button
           type="button"
-          className="flex w-full justify-center py-3"
-          onClick={() =>
-            setSheetSize((current) =>
-              current === "peek" ? "half" : current === "half" ? "full" : "peek",
-            )
-          }
+          className="area-btn"
+          onClick={() => void loadNearby(mapCenter, filters.radiusMeters, "Updated for this area")}
         >
-          <span className="h-1.5 w-12 rounded-full bg-white/25" />
+          Search this area
         </button>
+      )}
 
-        <div className="h-[calc(100%-2.25rem)] overflow-y-auto px-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
-          {sheetMode === "onboarding" && (
-            <ProfileForm
-              title="Find the right gym"
-              subtitle="Tell us your goals, budget, and amenities. We will rank Google Maps gyms across Kenya for you. You can skip and still browse nearby."
-              profile={profile}
-              primaryLabel="Show suggestions"
-              secondaryLabel="Skip for now"
-              onChange={setProfile}
-              onSubmit={() => finishOnboarding(false)}
-              onSecondary={() => finishOnboarding(true)}
-            />
-          )}
-
-          {sheetMode === "profile" && (
-            <ProfileForm
-              title="Your gym profile"
-              subtitle="Suggestions update instantly from this profile. Nothing is stored on a server."
-              profile={profile}
-              primaryLabel="Save profile"
-              secondaryLabel="Cancel"
-              onChange={setProfile}
-              onSubmit={saveProfileAndClose}
-              onSecondary={() => {
-                setSheetMode("list");
-                setSheetSize("half");
-              }}
-            />
-          )}
-
-          {sheetMode === "filters" && (
-            <FilterSheet
-              filters={filters}
-              onChange={setFilters}
-              onClose={() => {
-                setSheetMode("list");
-                setSheetSize("half");
-              }}
-            />
-          )}
-
-          {sheetMode === "detail" && selectedGym && (
-            <GymDetail
-              gym={selectedGym}
-              saved={favorites.includes(selectedGym.id)}
-              loadingDetails={detailsLoading}
-              onClose={() => {
-                setSheetMode("list");
-                setSheetSize("half");
-              }}
-              onToggleSave={() => toggleSave(selectedGym.id)}
-            />
-          )}
-
-          {sheetMode === "list" && (
-            <div>
-              <div className="flex items-end justify-between gap-3">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-lime-300">Kenya Gym Finder</p>
-                  <h1 className="mt-1 text-xl font-semibold">
-                    {loading
-                      ? "Finding gyms…"
-                      : `${visibleGyms.length} suggested gym${visibleGyms.length === 1 ? "" : "s"}`}
-                  </h1>
-                </div>
-                <div className="flex rounded-full bg-white/10 p-1 text-xs">
-                  <button
-                    type="button"
-                    onClick={() => setTab("suggested")}
-                    className={`rounded-full px-3 py-1 ${tab === "suggested" ? "bg-lime-300 text-black" : "text-slate-300"}`}
-                  >
-                    Suggested
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setTab("saved")}
-                    className={`rounded-full px-3 py-1 ${tab === "saved" ? "bg-lime-300 text-black" : "text-slate-300"}`}
-                  >
-                    Saved
-                  </button>
-                </div>
-              </div>
-              {notice && <p className="mt-2 text-xs text-slate-400">{notice}</p>}
-              {demo && (
-                <p className="mt-2 rounded-xl bg-amber-300/10 px-3 py-2 text-xs text-amber-200">
-                  Demo data is showing. Add Google Maps API keys in `.env.local` for live gyms across
-                  Kenya.
-                </p>
-              )}
-              <div className="mt-4">
-                <GymList
-                  gyms={visibleGyms}
-                  selectedId={selectedId}
-                  favorites={favorites}
-                  emptyMessage={
-                    tab === "saved"
-                      ? "Save gyms you like and they will appear here."
-                      : "No gyms match these filters. Try a wider radius or another county."
-                  }
-                  onSelect={selectGym}
-                  onToggleSave={toggleSave}
-                />
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
+      <aside
+        className={`panel panel--${sheetSize} ${sheetMode === "onboarding" ? "panel--immersive" : ""}`}
+      >
+        {sheetMode !== "onboarding" && (
+          <button
+            type="button"
+            className="panel__handle"
+            aria-label="Resize panel"
+            onClick={() =>
+              setSheetSize((current) =>
+                current === "peek" ? "half" : current === "half" ? "full" : "peek",
+              )
+            }
+          >
+            <span />
+          </button>
+        )}
+        <div className="panel__scroll">{panelBody}</div>
+      </aside>
     </div>
   );
 }

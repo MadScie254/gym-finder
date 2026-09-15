@@ -1,34 +1,40 @@
-# Kenya Gym Finder
+# Kenya Gym Finder (KAYA)
 
-Progressive web app that finds gyms across Kenya using Google Maps Places, then ranks them by distance, rating, and a short client profile (goals, budget, amenities). Install it from the browser, or package a lite Android APK later with [PWABuilder](https://www.pwabuilder.com/).
+Progressive web app that finds mapped gyms across Kenya: MapLibre with an Esri street-map proxy, [Overpass](https://overpass-api.de/) for venues, and a configurable Nominatim-compatible geocoder for manual searches. Suggestions rank primarily by distance and the training brief; availability and price are shown only when mapped data supports them.
 
 ## Setup
-
-1. Copy `.env.example` to `.env.local`.
-2. Create a Google Cloud project with billing enabled and turn on:
-   - Maps JavaScript API
-   - Places API (New)
-3. Add keys:
-   - `NEXT_PUBLIC_GOOGLE_MAPS_KEY` — browser key, restrict by HTTP referrer
-   - `GOOGLE_MAPS_SERVER_KEY` — server key for Places, restrict by IP  
-     For local demo, one unrestricted key can fill both variables.
-4. Install and run:
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). Without keys the UI still runs on a small Kenya demo dataset.
+Open [http://localhost:3000](http://localhost:3000). The app starts in Nairobi until a visitor explicitly asks to use their location. If a provider is unavailable, it shows an honest empty state rather than fabricated gym results.
 
 ## Using the app
 
-- Allow location to see nearby gyms, or search any Kenyan county/city.
-- Complete (or skip) onboarding so suggestions can prefer your goals and budget.
-- Filter by open now, rating, price, and radius.
-- Tap **Search this area** after panning the map.
-- On Android Chrome, use **Install app**. On iPhone Safari: Share → Add to Home Screen.
+- Search any Kenyan county/city, or use **Near me** to share location for that lookup.
+- Set goals, budget, and amenities so matches re-rank.
+- Filter by price and radius; fields based on incomplete OSM tags remain clearly optional.
+- Install from the browser, or wrap the hosted URL with [PWABuilder](https://www.pwabuilder.com/).
 
-## Deploy
+Map data © OpenStreetMap contributors. Basemap © Esri.
 
-Vercel is the simplest host for this Next.js app. After it is live, you can generate a lite APK from the public URL with PWABuilder. iOS remains Add to Home Screen (no sideloaded IPA from a PWA).
+## Production providers
+
+Public Nominatim and Overpass instances are enabled only during local
+development and are not a production backend. Before deploying, configure
+`NOMINATIM_URL`, `OVERPASS_ENDPOINTS`, and a contactable `OSM_USER_AGENT`
+using services you are authorised to operate at your expected traffic level.
+The app fails with an honest empty state when these production providers are
+not configured.
+
+Search suggestions are intentionally local (Kenya's counties). A town, estate,
+or gym lookup reaches the configured geocoder only when the visitor submits the
+search. Same-origin API routes validate, rate-limit, cache, coalesce, and time
+out provider requests; the included in-memory controls should be replaced with
+shared platform storage when running multiple application instances.
+
+Optional `ESRI_TILE_URL` and `ESRI_EXPORT_URL` variables can point the map proxy
+at licensed basemap services. Review the selected provider's attribution,
+usage limits, and SLA before launch.

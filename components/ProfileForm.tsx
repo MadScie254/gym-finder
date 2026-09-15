@@ -8,6 +8,7 @@ import {
 } from "@/lib/types";
 
 type ProfileFormProps = {
+  kicker?: string;
   title: string;
   subtitle: string;
   profile: ClientProfile;
@@ -23,6 +24,7 @@ function toggle<T>(list: T[], value: T): T[] {
 }
 
 export default function ProfileForm({
+  kicker = "Your brief",
   title,
   subtitle,
   profile,
@@ -33,67 +35,64 @@ export default function ProfileForm({
   onSecondary,
 }: ProfileFormProps) {
   return (
-    <div className="flex h-full flex-col">
-      <h2 className="text-2xl font-semibold text-white">{title}</h2>
-      <p className="mt-2 text-sm leading-6 text-slate-400">{subtitle}</p>
+    <div className="sheet-form profile-form">
+      <p className="eyebrow">{kicker}</p>
+      <h2 className="display">{title}</h2>
+      <p className="lede">{subtitle}</p>
 
-      <section className="mt-6">
-        <h3 className="text-sm font-semibold text-slate-300">Goals</h3>
-        <div className="mt-2 grid grid-cols-1 gap-2">
+      <section>
+        <h3>Goals</h3>
+        <div className="choice-grid">
           {GOAL_OPTIONS.map((option) => {
             const active = profile.goals.includes(option.id);
             return (
               <button
                 key={option.id}
                 type="button"
+                className={`choice ${active ? "is-on" : ""}`}
+                aria-pressed={active}
                 onClick={() => onChange({ ...profile, goals: toggle(profile.goals, option.id) })}
-                className={`rounded-2xl border px-4 py-3 text-left ${
-                  active ? "border-lime-300 bg-lime-300/10" : "border-white/10 bg-white/5"
-                }`}
               >
-                <span className="block text-sm font-medium text-white">{option.label}</span>
-                <span className="block text-xs text-slate-400">{option.hint}</span>
+                <strong>{option.label}</strong>
+                <span>{option.hint}</span>
               </button>
             );
           })}
         </div>
       </section>
 
-      <section className="mt-6">
-        <h3 className="text-sm font-semibold text-slate-300">Budget</h3>
-        <div className="mt-2 flex flex-wrap gap-2">
+      <section>
+        <h3>Fee preference</h3>
+        <div className="pill-row">
           {BUDGET_OPTIONS.map((option) => (
             <button
               key={option.id}
               type="button"
+              className={`pill ${profile.budget === option.id ? "is-on" : ""}`}
+              aria-pressed={profile.budget === option.id}
               onClick={() => onChange({ ...profile, budget: option.id })}
-              className={`rounded-full px-3 py-2 text-sm ${
-                profile.budget === option.id
-                  ? "bg-lime-300 text-black"
-                  : "bg-white/10 text-slate-200"
-              }`}
             >
               {option.label}
             </button>
           ))}
         </div>
+        <p className="notice">Only venues explicitly tagged as free can be matched reliably.</p>
       </section>
 
-      <section className="mt-6">
-        <h3 className="text-sm font-semibold text-slate-300">Amenities</h3>
-        <div className="mt-2 flex flex-wrap gap-2">
+      <section>
+        <h3>Amenities</h3>
+        <div className="pill-row">
           {AMENITY_OPTIONS.map((option) => {
             const active = profile.amenities.includes(option.id);
             return (
               <button
                 key={option.id}
                 type="button"
+                className={`pill ${active ? "is-on" : ""}`}
+                aria-pressed={active}
                 onClick={() =>
                   onChange({ ...profile, amenities: toggle(profile.amenities, option.id) })
                 }
-                className={`rounded-full px-3 py-2 text-sm ${
-                  active ? "bg-lime-300 text-black" : "bg-white/10 text-slate-200"
-                }`}
               >
                 {option.label}
               </button>
@@ -102,20 +101,12 @@ export default function ProfileForm({
         </div>
       </section>
 
-      <div className="mt-auto flex flex-col gap-2 pt-6">
-        <button
-          type="button"
-          onClick={onSubmit}
-          className="h-12 rounded-2xl bg-lime-300 text-sm font-semibold text-black"
-        >
+      <div className="form-actions">
+        <button type="button" className="primary-btn" onClick={onSubmit}>
           {primaryLabel}
         </button>
         {secondaryLabel && onSecondary && (
-          <button
-            type="button"
-            onClick={onSecondary}
-            className="h-12 rounded-2xl bg-white/10 text-sm font-medium text-slate-200"
-          >
+          <button type="button" className="ghost-btn wide" onClick={onSecondary}>
             {secondaryLabel}
           </button>
         )}

@@ -19,7 +19,8 @@ export function loadProfile(): ClientProfile {
   const stored = readJson<Partial<ClientProfile>>(PROFILE_KEY, {});
   return {
     goals: stored.goals ?? DEFAULT_PROFILE.goals,
-    budget: stored.budget ?? DEFAULT_PROFILE.budget,
+    // Older builds offered price tiers that OSM data cannot substantiate.
+    budget: stored.budget === "free" ? "free" : DEFAULT_PROFILE.budget,
     amenities: stored.amenities ?? DEFAULT_PROFILE.amenities,
   };
 }

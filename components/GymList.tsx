@@ -21,15 +21,16 @@ export default function GymList({
   onToggleSave,
 }: GymListProps) {
   if (gyms.length === 0) {
-    return <p className="px-1 py-8 text-center text-sm text-slate-400">{emptyMessage}</p>;
+    return <p className="empty-copy">{emptyMessage}</p>;
   }
 
   return (
-    <div className="flex flex-col gap-3">
-      {gyms.map((gym) => (
+    <div className="gym-list">
+      {gyms.map((gym, index) => (
         <GymCard
           key={gym.id}
           gym={gym}
+          index={index}
           selected={gym.id === selectedId}
           saved={favorites.includes(gym.id)}
           onSelect={() => onSelect(gym.id)}

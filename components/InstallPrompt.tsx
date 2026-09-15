@@ -17,7 +17,8 @@ function isStandalone(): boolean {
   if (typeof window === "undefined") return false;
   return (
     window.matchMedia("(display-mode: standalone)").matches ||
-    ("standalone" in window.navigator && Boolean((window.navigator as { standalone?: boolean }).standalone))
+    ("standalone" in window.navigator &&
+      Boolean((window.navigator as { standalone?: boolean }).standalone))
   );
 }
 
@@ -28,19 +29,18 @@ export default function InstallPrompt() {
 
   useEffect(() => {
     if (hasDismissedInstall() || isStandalone()) return;
-
     const onPrompt = (event: Event) => {
       event.preventDefault();
       setDeferred(event as BeforeInstallPromptEvent);
       setVisible(true);
     };
     window.addEventListener("beforeinstallprompt", onPrompt);
-
     if (isIos()) {
-      setIosHint(true);
-      setVisible(true);
+      queueMicrotask(() => {
+        setIosHint(true);
+        setVisible(true);
+      });
     }
-
     return () => window.removeEventListener("beforeinstallprompt", onPrompt);
   }, []);
 
@@ -51,37 +51,34 @@ export default function InstallPrompt() {
     setVisible(false);
   };
 
-  const install = async () => {
-    if (!deferred) return;
-    await deferred.prompt();
-    await deferred.userChoice;
-    hide();
-  };
-
   return (
-    <div className="pointer-events-auto rounded-2xl border border-white/10 bg-[#151b24]/95 p-3 shadow-2xl backdrop-blur">
-      <div className="flex items-start gap-3">
-        <div className="flex-1">
-          <p className="text-sm font-semibold text-white">Install Gym Finder</p>
-          <p className="mt-1 text-xs leading-5 text-slate-400">
-            {iosHint
-              ? "On iPhone, open Share in Safari and tap Add to Home Screen."
-              : "Add this lite app to your phone for a full-screen gym map."}
-          </p>
-        </div>
-        <button type="button" onClick={hide} className="text-xs text-slate-500">
+    <div className="install-card">
+      <div>
+        <p className="install-card__title">Keep it on your home screen</p>
+        <p className="install-card__copy">
+          {iosHint
+            ? "Safari → Share → Add to Home Screen."
+            : "Install the lite app. No store listing required."}
+        </p>
+      </div>
+      <div className="install-card__actions">
+        {deferred && (
+          <button
+            type="button"
+            className="tiny-btn"
+            onClick={async () => {
+              await deferred.prompt();
+              await deferred.userChoice;
+              hide();
+            }}
+          >
+            Install
+          </button>
+        )}
+        <button type="button" className="tiny-btn is-ghost" onClick={hide}>
           Later
         </button>
       </div>
-      {deferred && (
-        <button
-          type="button"
-          onClick={install}
-          className="mt-3 h-10 w-full rounded-xl bg-lime-300 text-sm font-semibold text-black"
-        >
-          Install app
-        </button>
-      )}
     </div>
   );
 }
