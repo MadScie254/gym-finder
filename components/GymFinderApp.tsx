@@ -49,7 +49,6 @@ export default function GymFinderApp() {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
   const [detailsLoading, setDetailsLoading] = useState(false);
-  const [demo, setDemo] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
   const [sheetMode, setSheetMode] = useState<SheetMode>("list");
   const [sheetSize, setSheetSize] = useState<SheetSize>("half");
@@ -57,13 +56,20 @@ export default function GymFinderApp() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    setProfile(loadProfile());
-    setFavorites(loadFavorites());
-    if (!hasOnboarded()) {
-      setSheetMode("onboarding");
-      setSheetSize("full");
-    }
-    setReady(true);
+    let active = true;
+    queueMicrotask(() => {
+      if (!active) return;
+      setProfile(loadProfile());
+      setFavorites(loadFavorites());
+      if (!hasOnboarded()) {
+        setSheetMode("onboarding");
+        setSheetSize("full");
+      }
+      setReady(true);
+    });
+    return () => {
+      active = false;
+    };
   }, []);
 
   const rankedGyms = useMemo(
@@ -84,7 +90,7 @@ export default function GymFinderApp() {
     try {
       const result = await fetchNearbyGyms(center, radiusMeters);
       setRawGyms(result.gyms);
-      setDemo(result.demo);
+      setNotice(result.warning ?? label ?? null);
       setOrigin(center);
       setMapCenter(center);
       setSelectedId(null);
@@ -100,22 +106,12 @@ export default function GymFinderApp() {
 
   useEffect(() => {
     if (!ready) return;
-    if (!navigator.geolocation) {
-      void loadNearby(NAIROBI, filters.radiusMeters);
-      return;
-    }
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const point = { lat: position.coords.latitude, lng: position.coords.longitude };
-        if (!isInKenya(point)) {
-          void loadNearby(NAIROBI, filters.radiusMeters, "Outside Kenya — showing Nairobi.");
-          return;
-        }
-        void loadNearby(point, filters.radiusMeters);
-      },
-      () => void loadNearby(NAIROBI, filters.radiusMeters, "Nairobi until location is allowed."),
-      { enableHighAccuracy: true, timeout: 8000, maximumAge: 30000 },
-    );
+    // Start with a useful, non-sensitive default. Precise location is requested
+    // only after the visitor activates the Near me control.
+    const timer = window.setTimeout(() => {
+      void loadNearby(NAIROBI, filters.radiusMeters, "Showing Nairobi — use Near me for local results.");
+    }, 0);
+    return () => window.clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready]);
 
@@ -133,7 +129,9 @@ export default function GymFinderApp() {
   useEffect(() => {
     if (!selectedId || selectedId.startsWith("demo-")) return;
     let cancelled = false;
-    setDetailsLoading(true);
+    queueMicrotask(() => {
+      if (!cancelled) setDetailsLoading(true);
+    });
     fetchGymDetails(selectedId)
       .then((details) => {
         if (!cancelled) {
@@ -193,12 +191,11 @@ export default function GymFinderApp() {
     try {
       const result = await fetchSearchGyms(trimmed, origin);
       setRawGyms(result.gyms);
-      setDemo(result.demo);
       setSelectedId(null);
       setTab("suggested");
       setSheetMode("list");
       setSheetSize("half");
-      setNotice(`Results for “${trimmed}”`);
+      setNotice(result.warning ?? `Results for “${trimmed}”`);
       if (result.gyms[0]) {
         setOrigin(result.gyms[0].location);
         setMapCenter(result.gyms[0].location);
@@ -216,12 +213,20 @@ export default function GymFinderApp() {
   };
 
   const locateMe = () => {
-    if (!navigator.geolocation) return;
-    navigator.geolocation.getCurrentPosition((position) => {
-      const point = { lat: position.coords.latitude, lng: position.coords.longitude };
-      if (isInKenya(point)) void loadNearby(point, filters.radiusMeters);
-      else setNotice("Location is outside Kenya.");
-    });
+    if (!navigator.geolocation) {
+      setNotice("Location is not supported in this browser.");
+      return;
+    }
+    setNotice("Allow location to find gyms near you. Your coordinates are not saved.");
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const point = { lat: position.coords.latitude, lng: position.coords.longitude };
+        if (isInKenya(point)) void loadNearby(point, filters.radiusMeters);
+        else setNotice("Location is outside Kenya.");
+      },
+      () => setNotice("Location was not shared — still showing Nairobi."),
+      { enableHighAccuracy: false, timeout: 8_000, maximumAge: 60_000 },
+    );
   };
 
   const panelBody = (
@@ -230,7 +235,7 @@ export default function GymFinderApp() {
         <ProfileForm
           kicker="Towns · counties · OpenStreetMap"
           title="Train anywhere in Kenya."
-          subtitle="Set your brief once. We rank gyms by distance, hours, and fit."
+          subtitle="Set your brief once. We rank mapped gyms by distance and training fit."
           profile={profile}
           primaryLabel="Show my matches"
           secondaryLabel="Skip for now"
@@ -292,6 +297,7 @@ export default function GymFinderApp() {
               <button
                 type="button"
                 className={tab === "suggested" ? "is-on" : ""}
+                aria-pressed={tab === "suggested"}
                 onClick={() => setTab("suggested")}
               >
                 Nearby
@@ -299,6 +305,7 @@ export default function GymFinderApp() {
               <button
                 type="button"
                 className={tab === "saved" ? "is-on" : ""}
+                aria-pressed={tab === "saved"}
                 onClick={() => setTab("saved")}
               >
                 Saved
@@ -307,10 +314,7 @@ export default function GymFinderApp() {
           </div>
           {loading && <div className="loading-bar" aria-hidden />}
           {notice && <p className="notice">{notice}</p>}
-          {demo && (
-            <p className="notice">Live map data was quiet here — showing a Kenya sample set.</p>
-          )}
-          {!loading && !demo && visibleGyms.length === 0 && tab === "suggested" && notice && (
+          {!loading && visibleGyms.length === 0 && tab === "suggested" && notice && (
             <p className="notice">No mapped gyms in this spot yet. Try a wider radius or another town.</p>
           )}
           <GymList
@@ -332,7 +336,7 @@ export default function GymFinderApp() {
   );
 
   return (
-    <div className="app-shell">
+    <div className={`app-shell ${sheetMode === "onboarding" ? "app-shell--onboarding" : ""}`}>
       <div className="map-stage">
         <MapView
           origin={origin}

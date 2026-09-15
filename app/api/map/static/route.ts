@@ -1,10 +1,15 @@
 import { NextRequest } from "next/server";
 import { isInKenya } from "@/lib/kenya";
+import { fetchWithTimeout, rateLimit } from "@/lib/requestSafety";
 
 const ESRI_EXPORT =
+  process.env.ESRI_EXPORT_URL ??
   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/export";
 
 export async function GET(request: NextRequest) {
+  const limited = rateLimit(request, "map-static", 24, 60_000);
+  if (limited) return limited;
+
   const lat = Number(request.nextUrl.searchParams.get("lat"));
   const lng = Number(request.nextUrl.searchParams.get("lng"));
   const center = { lat, lng };
@@ -29,18 +34,22 @@ export async function GET(request: NextRequest) {
     transparent: "false",
     f: "image",
   });
-  const upstream = await fetch(`${ESRI_EXPORT}?${params}`, {
-    cache: "force-cache",
-  });
+  try {
+    const upstream = await fetchWithTimeout(`${ESRI_EXPORT}?${params}`, {
+      cache: "force-cache",
+    }, 10_000);
 
-  if (!upstream.ok || !upstream.body) {
+    if (!upstream.ok || !upstream.body) {
+      return new Response("Map unavailable", { status: 502 });
+    }
+
+    return new Response(upstream.body, {
+      headers: {
+        "Content-Type": upstream.headers.get("content-type") ?? "image/jpeg",
+        "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
+      },
+    });
+  } catch {
     return new Response("Map unavailable", { status: 502 });
   }
-
-  return new Response(upstream.body, {
-    headers: {
-      "Content-Type": upstream.headers.get("content-type") ?? "image/jpeg",
-      "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
-    },
-  });
 }

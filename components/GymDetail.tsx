@@ -1,7 +1,7 @@
 "use client";
 
 import { gymCover } from "@/lib/cover";
-import { directionsUrl, formatDistance, formatPrice } from "@/lib/format";
+import { directionsUrl, formatDistance, formatPrice, safeExternalUrl, safeTelephoneUrl } from "@/lib/format";
 import type { Gym } from "@/lib/types";
 
 type GymDetailProps = {
@@ -21,6 +21,8 @@ export default function GymDetail({
 }: GymDetailProps) {
   const cover = gymCover(gym.name);
   const mapsLink = gym.googleMapsUri ?? directionsUrl(gym.location.lat, gym.location.lng, gym.name);
+  const websiteUrl = safeExternalUrl(gym.website);
+  const telephoneUrl = safeTelephoneUrl(gym.phone);
 
   return (
     <div className="detail">
@@ -28,7 +30,12 @@ export default function GymDetail({
         <button type="button" className="ghost-btn" onClick={onClose}>
           Back
         </button>
-        <button type="button" className={`save-btn ${saved ? "is-on" : ""}`} onClick={onToggleSave}>
+        <button
+          type="button"
+          className={`save-btn ${saved ? "is-on" : ""}`}
+          aria-pressed={saved}
+          onClick={onToggleSave}
+        >
           {saved ? "Saved" : "Save"}
         </button>
       </div>
@@ -49,10 +56,10 @@ export default function GymDetail({
       {loadingDetails && <div className="loading-bar" aria-label="Loading details" />}
 
       <div className="meta-row">
-        {gym.openNow != null && (
-          <span className={gym.openNow ? "chip chip--live" : "chip"}>
-            {gym.openNow ? "Open now" : "Hours vary"}
-          </span>
+          {gym.openNow != null && (
+            <span className={gym.openNow ? "chip chip--live" : "chip"}>
+              {gym.openNow ? "Open 24/7" : "Hours unavailable"}
+            </span>
         )}
         {formatPrice(gym.priceLevel) && <span className="chip">{formatPrice(gym.priceLevel)}</span>}
         {gym.types.slice(0, 3).map((type) => (
@@ -66,8 +73,8 @@ export default function GymDetail({
         <a href={mapsLink} target="_blank" rel="noreferrer" className="primary-btn">
           Directions
         </a>
-        {gym.phone ? (
-          <a href={`tel:${gym.phone}`} className="secondary-btn">
+        {telephoneUrl ? (
+          <a href={telephoneUrl} className="secondary-btn">
             Call
           </a>
         ) : (
@@ -75,8 +82,8 @@ export default function GymDetail({
         )}
       </div>
 
-      {gym.website && (
-        <a href={gym.website} target="_blank" rel="noreferrer" className="secondary-btn wide">
+      {websiteUrl && (
+        <a href={websiteUrl} target="_blank" rel="noreferrer" className="secondary-btn wide">
           Website
         </a>
       )}

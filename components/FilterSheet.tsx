@@ -11,10 +11,7 @@ type FilterSheetProps = {
 
 const PRICE_OPTIONS: { id: Budget; label: string }[] = [
   { id: "any", label: "Any" },
-  { id: "free", label: "Free" },
-  { id: "low", label: "Budget" },
-  { id: "mid", label: "Mid" },
-  { id: "high", label: "Premium" },
+  { id: "free", label: "Mapped as free" },
 ];
 
 export default function FilterSheet({ filters, onChange, onClose }: FilterSheetProps) {
@@ -31,7 +28,7 @@ export default function FilterSheet({ filters, onChange, onClose }: FilterSheetP
       </header>
 
       <label className="toggle-row">
-        <span>Open now</span>
+        <span>Open 24/7</span>
         <input
           type="checkbox"
           checked={filters.openNow}
@@ -40,19 +37,21 @@ export default function FilterSheet({ filters, onChange, onClose }: FilterSheetP
       </label>
 
       <section>
-        <h3>Price</h3>
+        <h3>Fee information</h3>
         <div className="pill-row">
           {PRICE_OPTIONS.map((option) => (
             <button
               key={option.id}
               type="button"
               className={`pill ${filters.price === option.id ? "is-on" : ""}`}
+              aria-pressed={filters.price === option.id}
               onClick={() => onChange({ ...filters, price: option.id })}
             >
               {option.label}
             </button>
           ))}
         </div>
+        <p className="notice">Most OpenStreetMap venues do not publish membership prices.</p>
       </section>
 
       <section>
@@ -63,6 +62,7 @@ export default function FilterSheet({ filters, onChange, onClose }: FilterSheetP
               key={option.meters}
               type="button"
               className={`pill ${filters.radiusMeters === option.meters ? "is-on" : ""}`}
+              aria-pressed={filters.radiusMeters === option.meters}
               onClick={() => onChange({ ...filters, radiusMeters: option.meters })}
             >
               {option.label}

@@ -5,7 +5,7 @@ export type LatLng = {
 
 export type Goal = "weight_loss" | "muscle" | "cardio" | "flexibility" | "sports";
 
-export type Budget = "any" | "free" | "low" | "mid" | "high";
+export type Budget = "any" | "free";
 
 export type Amenity = "weights" | "classes" | "pool" | "open_24h";
 
@@ -49,7 +49,6 @@ export type Gym = {
   distanceKm: number | null;
   score: number;
   labels: GymLabel[];
-  isDemo?: boolean;
 };
 
 export type County = {
@@ -80,11 +79,8 @@ export const GOAL_OPTIONS: { id: Goal; label: string; hint: string }[] = [
 ];
 
 export const BUDGET_OPTIONS: { id: Budget; label: string }[] = [
-  { id: "any", label: "Any price" },
-  { id: "free", label: "Free" },
-  { id: "low", label: "Budget" },
-  { id: "mid", label: "Mid-range" },
-  { id: "high", label: "Premium" },
+  { id: "any", label: "No fee preference" },
+  { id: "free", label: "Mapped as free" },
 ];
 
 export const AMENITY_OPTIONS: { id: Amenity; label: string }[] = [

@@ -1,12 +1,26 @@
 import { isInKenya, KENYA_BOUNDS } from "./kenya";
+import { fetchWithTimeout } from "./requestSafety";
+import { withCircuitBreaker, withProviderThrottle, withTtlCache } from "./ttlCache";
 import type { Gym, LatLng } from "./types";
 
-const OVERPASS_ENDPOINTS = [
+const DEFAULT_OVERPASS_ENDPOINTS = [
   "https://overpass-api.de/api/interpreter",
   "https://overpass.kumi.systems/api/interpreter",
 ];
-const NOMINATIM_URL = "https://nominatim.openstreetmap.org/search";
-const USER_AGENT = "KenyaGymFinder/1.0 (https://github.com/MadScie254/gym-finder)";
+const configuredOverpass = process.env.OVERPASS_ENDPOINTS?.split(",");
+const OVERPASS_ENDPOINTS = (
+  configuredOverpass ??
+  (process.env.NODE_ENV === "production" ? [] : DEFAULT_OVERPASS_ENDPOINTS)
+)
+  .map((endpoint) => endpoint.trim())
+  .filter((endpoint) => endpoint.startsWith("https://"));
+const PUBLIC_NOMINATIM_URL = "https://nominatim.openstreetmap.org/search";
+const configuredNominatim = process.env.NOMINATIM_URL?.trim();
+const NOMINATIM_URL =
+  (configuredNominatim?.startsWith("https://") ? configuredNominatim : null) ??
+  (process.env.NODE_ENV === "production" ? null : PUBLIC_NOMINATIM_URL);
+const USER_AGENT =
+  process.env.OSM_USER_AGENT ?? "KenyaGymFinder/1.0 (https://github.com/MadScie254/gym-finder)";
 
 type OsmElement = {
   type: "node" | "way" | "relation";
@@ -73,62 +87,82 @@ function placeLabel(hit: NominatimHit): { name: string; subtitle: string } {
   };
 }
 
+function placeFromHit(hit: NominatimHit): PlaceHit | null {
+  const lat = Number(hit.lat);
+  const lng = Number(hit.lon);
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
+  const location = { lat, lng };
+  if (!isInKenya(location)) return null;
+
+  const kind = placeKind(hit);
+  const cls = `${hit.class ?? ""}`.toLowerCase();
+  const type = `${hit.type ?? ""}`.toLowerCase();
+  const isUseful =
+    cls === "place" ||
+    cls === "boundary" ||
+    /city|town|village|suburb|neighbourhood|neighborhood|county|hamlet|municipality|administrative/.test(
+      type,
+    );
+  if (!isUseful) return null;
+
+  const { name, subtitle } = placeLabel(hit);
+  return {
+    id: hit.osm_id && hit.osm_type ? `${hit.osm_type}/${hit.osm_id}` : `${name}|${lat}|${lng}`,
+    name,
+    subtitle,
+    kind,
+    location,
+  };
+}
+
+async function nominatimSearch(query: string, limit: number): Promise<NominatimHit[]> {
+  if (!NOMINATIM_URL) {
+    throw new Error("Place search is unavailable until a production geocoder is configured");
+  }
+  const normalized = query.trim().toLowerCase();
+  return withTtlCache(`nominatim:${normalized}:${limit}`, 24 * 60 * 60 * 1_000, () =>
+    withCircuitBreaker("nominatim", () =>
+      withProviderThrottle("nominatim", 1_100, async () => {
+        const params = new URLSearchParams({
+          format: "jsonv2",
+          countrycodes: "ke",
+          limit: String(limit),
+          addressdetails: "1",
+          namedetails: "1",
+          extratags: "1",
+          q: `${query.trim()}, Kenya`,
+          viewbox: `${KENYA_BOUNDS.west},${KENYA_BOUNDS.north},${KENYA_BOUNDS.east},${KENYA_BOUNDS.south}`,
+        });
+        const response = await fetchWithTimeout(`${NOMINATIM_URL}?${params.toString()}`, {
+          headers: headers(),
+          cache: "no-store",
+        });
+        if (!response.ok) throw new Error(`Geocode failed (${response.status})`);
+        return (await response.json()) as NominatimHit[];
+      }),
+    ),
+  );
+}
+
 export async function geocodeKenyaPlaces(query: string, limit = 8): Promise<PlaceHit[]> {
+  const key = `geocode:${query.trim().toLowerCase()}:${limit}`;
+  return withTtlCache(key, 24 * 60 * 60 * 1_000, () => geocodeKenyaPlacesUncached(query, limit));
+}
+
+async function geocodeKenyaPlacesUncached(query: string, limit: number): Promise<PlaceHit[]> {
   const trimmed = query.trim();
   if (!trimmed) return [];
-
-  const params = new URLSearchParams({
-    format: "jsonv2",
-    countrycodes: "ke",
-    limit: String(limit),
-    addressdetails: "1",
-    namedetails: "1",
-    q: `${trimmed}, Kenya`,
-    viewbox: `${KENYA_BOUNDS.west},${KENYA_BOUNDS.north},${KENYA_BOUNDS.east},${KENYA_BOUNDS.south}`,
-  });
-
-  const response = await fetch(`${NOMINATIM_URL}?${params.toString()}`, {
-    headers: headers(),
-    cache: "no-store",
-  });
-  if (!response.ok) {
-    throw new Error(`Geocode failed (${response.status})`);
-  }
-
-  const hits = (await response.json()) as NominatimHit[];
+  const hits = await nominatimSearch(trimmed, limit);
   const places: PlaceHit[] = [];
   const seen = new Set<string>();
 
   for (const hit of hits) {
-    const lat = Number(hit.lat);
-    const lng = Number(hit.lon);
-    if (!Number.isFinite(lat) || !Number.isFinite(lng)) continue;
-    const location = { lat, lng };
-    if (!isInKenya(location)) continue;
-
-    const kind = placeKind(hit);
-    const cls = `${hit.class ?? ""}`.toLowerCase();
-    const type = `${hit.type ?? ""}`.toLowerCase();
-    const isUseful =
-      cls === "place" ||
-      cls === "boundary" ||
-      /city|town|village|suburb|neighbourhood|neighborhood|county|hamlet|municipality|administrative/.test(
-        type,
-      );
-    if (!isUseful) continue;
-
-    const { name, subtitle } = placeLabel(hit);
-    const key = `${name.toLowerCase()}|${lat.toFixed(3)}|${lng.toFixed(3)}`;
+    const place = placeFromHit(hit);
+    if (!place) continue;
+    const key = `${place.name.toLowerCase()}|${place.location.lat.toFixed(3)}|${place.location.lng.toFixed(3)}`;
     if (seen.has(key)) continue;
     seen.add(key);
-
-    places.push({
-      id: hit.osm_id && hit.osm_type ? `${hit.osm_type}/${hit.osm_id}` : key,
-      name,
-      subtitle,
-      kind,
-      location,
-    });
+    places.push(place);
   }
 
   return places;
@@ -174,12 +208,11 @@ function addressFrom(tags: Record<string, string> = {}, fallback = ""): string {
 function priceFrom(tags: Record<string, string> = {}): string | null {
   const fee = (tags.fee || tags.charge || "").toLowerCase();
   if (fee === "no" || fee === "free") return "PRICE_LEVEL_FREE";
-  if (fee === "yes") return "PRICE_LEVEL_MODERATE";
   return null;
 }
 
 function typesFrom(tags: Record<string, string> = {}): string[] {
-  return [tags.leisure, tags.amenity, tags.sport, tags.fitness_station, tags.opening_hours]
+  return [tags.leisure, tags.amenity, tags.sport, tags.fitness_station]
     .filter(Boolean)
     .flatMap((value) => value.split(/[;,]/).map((part) => part.trim().toLowerCase()));
 }
@@ -233,36 +266,41 @@ function gymQuery(filter: string): string {
 }
 
 async function overpass(query: string): Promise<OsmElement[]> {
-  const attempts = OVERPASS_ENDPOINTS.map(async (endpoint) => {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 8000);
+  for (const [index, endpoint] of OVERPASS_ENDPOINTS.entries()) {
     try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: { ...headers(), "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-        body: `data=${encodeURIComponent(query)}`,
-        cache: "no-store",
-        signal: controller.signal,
+      return await withCircuitBreaker(`overpass:${endpoint}`, async () => {
+        const response = await fetchWithTimeout(endpoint, {
+          method: "POST",
+          headers: { ...headers(), "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+          body: `data=${encodeURIComponent(query)}`,
+          cache: "no-store",
+        }, 8_000);
+        if (!response.ok) throw new Error(`Overpass failed (${response.status})`);
+        const payload = (await response.json()) as { elements?: OsmElement[] };
+        return payload.elements ?? [];
       });
-      if (!response.ok) {
-        throw new Error(`Overpass ${response.status}`);
+    } catch {
+      // Try the next provider once. Requests are intentionally sequential to
+      // avoid doubling traffic to community-operated Overpass services.
+      if (index < OVERPASS_ENDPOINTS.length - 1) {
+        await new Promise((resolve) => setTimeout(resolve, 250 * 2 ** index));
       }
-      const payload = (await response.json()) as { elements?: OsmElement[] };
-      return payload.elements ?? [];
-    } finally {
-      clearTimeout(timer);
     }
-  });
-
-  try {
-    return await Promise.any(attempts);
-  } catch {
-    throw new Error("Overpass unavailable");
   }
+  throw new Error(
+    OVERPASS_ENDPOINTS.length
+      ? "Gym data provider is temporarily unavailable"
+      : "Gym data is unavailable until a production provider is configured",
+  );
 }
 
 export async function searchNearbyGyms(center: LatLng, radiusMeters: number): Promise<Gym[]> {
-  const radius = Math.min(Math.max(radiusMeters, 400), 40000);
+  const radius = Math.min(Math.max(radiusMeters, 400), 40_000);
+  const key = `nearby:${center.lat.toFixed(4)}:${center.lng.toFixed(4)}:${radius}`;
+  return withTtlCache(key, 5 * 60 * 1_000, () => searchNearbyGymsUncached(center, radius));
+}
+
+async function searchNearbyGymsUncached(center: LatLng, radius: number): Promise<Gym[]> {
   const filter = `(around:${radius},${center.lat},${center.lng})`;
   const query = `[out:json][timeout:8];(${gymQuery(filter)});out center tags 40;`;
   const elements = await overpass(query);
@@ -273,29 +311,13 @@ export async function searchNearbyGyms(center: LatLng, radiusMeters: number): Pr
 }
 
 export async function searchTextGyms(query: string, center?: LatLng): Promise<Gym[]> {
-  // Prefer resolving the place first (Webuye, Kilimani, etc.), then find nearby gyms.
-  const place = await resolveKenyaPlace(query);
+  // One Nominatim request can resolve a town, estate, or mapped fitness venue.
+  // Keeping this to one request avoids bursting a public geocoding provider.
+  const hits = await nominatimSearch(query, 12);
+  const place = hits.map(placeFromHit).find((candidate): candidate is PlaceHit => candidate != null);
   if (place) {
     return searchNearbyGyms(place.location, 15000);
   }
-
-  const params = new URLSearchParams({
-    format: "jsonv2",
-    countrycodes: "ke",
-    limit: "12",
-    addressdetails: "1",
-    extratags: "1",
-    q: `${query} Kenya`,
-    viewbox: `${KENYA_BOUNDS.west},${KENYA_BOUNDS.north},${KENYA_BOUNDS.east},${KENYA_BOUNDS.south}`,
-  });
-  const response = await fetch(`${NOMINATIM_URL}?${params.toString()}`, {
-    headers: headers(),
-    cache: "no-store",
-  });
-  if (!response.ok) {
-    throw new Error(`Search failed (${response.status})`);
-  }
-  const hits = (await response.json()) as NominatimHit[];
   const fitnessHits = hits.filter((hit) => {
     const kind = `${hit.class} ${hit.type}`.toLowerCase();
     return /gym|fitness|sport|leisure/.test(kind) || /gym|fitness|yoga/.test(hit.display_name ?? "");
@@ -333,6 +355,10 @@ export async function searchTextGyms(query: string, center?: LatLng): Promise<Gy
 }
 
 export async function getPlaceDetails(id: string): Promise<Gym | null> {
+  return withTtlCache(`details:${id}`, 60 * 60 * 1_000, () => getPlaceDetailsUncached(id));
+}
+
+async function getPlaceDetailsUncached(id: string): Promise<Gym | null> {
   const parsed = parseId(id);
   if (!parsed) return null;
   const query = `[out:json][timeout:15];${parsed.type}(${parsed.id});out center tags;`;

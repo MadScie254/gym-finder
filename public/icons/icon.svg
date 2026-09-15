@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Kenya Gym Finder">
-  <rect width="512" height="512" rx="112" fill="#0b0f14"/>
-  <circle cx="256" cy="256" r="168" fill="#151b24"/>
-  <rect x="86" y="226" width="340" height="60" rx="30" fill="#38f29b"/>
-  <rect x="118" y="206" width="52" height="100" rx="18" fill="#f4ff57"/>
-  <rect x="342" y="206" width="52" height="100" rx="18" fill="#f4ff57"/>
-  <circle cx="256" cy="256" r="18" fill="#0b0f14"/>
+  <rect width="512" height="512" rx="112" fill="#0c0f0e"/>
+  <circle cx="256" cy="256" r="168" fill="#171c1a"/>
+  <rect x="86" y="226" width="340" height="60" rx="30" fill="#ff2a00"/>
+  <rect x="118" y="206" width="52" height="100" rx="18" fill="#fff8f5"/>
+  <rect x="342" y="206" width="52" height="100" rx="18" fill="#fff8f5"/>
+  <circle cx="256" cy="256" r="18" fill="#0c0f0e"/>
 </svg>

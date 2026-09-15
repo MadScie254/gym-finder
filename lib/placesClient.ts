@@ -1,5 +1,4 @@
 import type { Gym, LatLng } from "./types";
-import type { PlaceHit } from "./osmPlaces";
 
 async function readError(response: Response): Promise<string> {
   try {
@@ -12,7 +11,7 @@ async function readError(response: Response): Promise<string> {
 
 export async function fetchNearbyGyms(center: LatLng, radiusMeters: number): Promise<{
   gyms: Gym[];
-  demo: boolean;
+  warning?: string;
 }> {
   const params = new URLSearchParams({
     lat: String(center.lat),
@@ -20,16 +19,16 @@ export async function fetchNearbyGyms(center: LatLng, radiusMeters: number): Pro
     radius: String(radiusMeters),
   });
   const response = await fetch(`/api/places/nearby?${params.toString()}`);
-  const payload = (await response.json()) as { gyms?: Gym[]; demo?: boolean; error?: string };
+  const payload = (await response.json()) as { gyms?: Gym[]; error?: string; warning?: string };
   if (!response.ok) {
     throw new Error(payload.error || (await readError(response)));
   }
-  return { gyms: payload.gyms ?? [], demo: Boolean(payload.demo) };
+  return { gyms: payload.gyms ?? [], warning: payload.warning };
 }
 
 export async function fetchSearchGyms(query: string, center?: LatLng): Promise<{
   gyms: Gym[];
-  demo: boolean;
+  warning?: string;
 }> {
   const params = new URLSearchParams({ q: query });
   if (center) {
@@ -37,21 +36,11 @@ export async function fetchSearchGyms(query: string, center?: LatLng): Promise<{
     params.set("lng", String(center.lng));
   }
   const response = await fetch(`/api/places/search?${params.toString()}`);
-  const payload = (await response.json()) as { gyms?: Gym[]; demo?: boolean; error?: string };
+  const payload = (await response.json()) as { gyms?: Gym[]; error?: string; warning?: string };
   if (!response.ok) {
     throw new Error(payload.error || (await readError(response)));
   }
-  return { gyms: payload.gyms ?? [], demo: Boolean(payload.demo) };
-}
-
-export async function fetchPlaceSuggestions(query: string): Promise<PlaceHit[]> {
-  const params = new URLSearchParams({ q: query });
-  const response = await fetch(`/api/places/geocode?${params.toString()}`);
-  const payload = (await response.json()) as { places?: PlaceHit[]; error?: string };
-  if (!response.ok) {
-    throw new Error(payload.error || (await readError(response)));
-  }
-  return payload.places ?? [];
+  return { gyms: payload.gyms ?? [], warning: payload.warning };
 }
 
 export async function fetchGymDetails(id: string): Promise<Gym> {

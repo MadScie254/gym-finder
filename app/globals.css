@@ -10,9 +10,9 @@
   --text: #0c0f0e;
   --muted: #5a645e;
   --line: rgba(12, 15, 14, 0.1);
-  --signal: #ff2a00;
+  --signal: #c82f0b;
   --signal-ink: #2a0800;
-  --live: #008f4c;
+  --live: #08733f;
   --font-display: var(--font-bricolage), "Bricolage Grotesque", sans-serif;
   --font-ui: var(--font-figtree), "Figtree", sans-serif;
   --rail: 420px;
@@ -39,6 +39,11 @@ body {
 button,
 input,
 a { font: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--signal);
+  outline-offset: 3px;
+}
 
 @keyframes rise {
   from { opacity: 0; transform: translateY(14px); }
@@ -220,7 +225,7 @@ a { font: inherit; }
 .tool-btn--accent {
   background: var(--signal);
   border-color: transparent;
-  color: #fff8f5;
+  color: var(--signal-ink);
 }
 
 .search-wrap { position: relative; z-index: 8; }
@@ -254,6 +259,10 @@ a { font: inherit; }
 
 .search-field__input::placeholder { color: #8a938b; }
 .search-field__status { color: var(--muted); font-size: 0.85rem; }
+.search-field:focus-within {
+  border-color: var(--signal);
+  box-shadow: 0 0 0 3px rgba(255, 42, 0, 0.22);
+}
 
 .search-menu {
   position: absolute;
@@ -285,6 +294,7 @@ a { font: inherit; }
 
 .search-menu__item:last-child { border-bottom: 0; }
 .search-menu__item:hover { background: rgba(226, 58, 18, 0.06); }
+.search-menu__item.is-active { background: rgba(200, 47, 11, 0.1); }
 
 .search-menu__item span {
   display: grid;
@@ -321,7 +331,7 @@ a { font: inherit; }
 .primary-btn {
   border: 0;
   background: var(--signal);
-  color: #fff8f5;
+  color: var(--signal-ink);
   font-weight: 700;
   cursor: pointer;
   transition: transform 150ms ease, filter 150ms ease;
@@ -366,6 +376,20 @@ a { font: inherit; }
 .panel--half { height: 52%; }
 .panel--full,
 .panel--immersive { height: min(92dvh, 900px); }
+
+.app-shell--onboarding .chrome { display: none; }
+.app-shell--onboarding .panel {
+  inset: 0;
+  width: auto;
+  max-width: none;
+  height: 100dvh;
+  border: 0;
+  border-radius: 0;
+}
+.app-shell--onboarding .panel__scroll {
+  height: 100%;
+  padding-top: max(2rem, env(safe-area-inset-top));
+}
 
 .panel__handle {
   display: flex;
@@ -886,7 +910,7 @@ a { font: inherit; }
   .chrome .tool-btn--accent {
     background: var(--signal);
     border-color: transparent;
-    color: #fff;
+    color: var(--signal-ink);
   }
 
   .search-field {
@@ -942,5 +966,16 @@ a { font: inherit; }
   .chrome__install {
     grid-column: auto;
     justify-self: end;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }

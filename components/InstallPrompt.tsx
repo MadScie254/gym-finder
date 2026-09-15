@@ -36,8 +36,10 @@ export default function InstallPrompt() {
     };
     window.addEventListener("beforeinstallprompt", onPrompt);
     if (isIos()) {
-      setIosHint(true);
-      setVisible(true);
+      queueMicrotask(() => {
+        setIosHint(true);
+        setVisible(true);
+      });
     }
     return () => window.removeEventListener("beforeinstallprompt", onPrompt);
   }, []);

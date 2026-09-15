@@ -39,7 +39,7 @@ export default function GymCard({
                 {labelText(label)}
               </span>
             ))}
-            {gym.openNow ? <span className="chip chip--live">Open now</span> : null}
+            {gym.openNow ? <span className="chip chip--live">Open 24/7</span> : null}
             {formatPrice(gym.priceLevel) ? (
               <span className="chip">{formatPrice(gym.priceLevel)}</span>
             ) : null}
@@ -53,7 +53,12 @@ export default function GymCard({
           )}
         </div>
       </button>
-      <button type="button" className={`save-btn ${saved ? "is-on" : ""}`} onClick={onToggleSave}>
+      <button
+        type="button"
+        className={`save-btn ${saved ? "is-on" : ""}`}
+        aria-pressed={saved}
+        onClick={onToggleSave}
+      >
         {saved ? "Saved" : "Save"}
       </button>
     </article>

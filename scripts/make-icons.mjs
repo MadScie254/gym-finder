@@ -32,11 +32,11 @@ function pixel(x, y, size) {
   const left = y >= 206 * scale && y <= 306 * scale && x >= 118 * scale && x <= 170 * scale;
   const right = y >= 206 * scale && y <= 306 * scale && x >= 342 * scale && x <= 394 * scale;
   const hole = dx * dx + dy * dy < (18 * scale) ** 2;
-  if (hole && inCircle) return [11, 15, 20, 255];
-  if (left || right) return [244, 255, 87, 255];
-  if (bar) return [56, 242, 155, 255];
-  if (inCircle) return [21, 27, 36, 255];
-  return [11, 15, 20, 255];
+  if (hole && inCircle) return [12, 15, 14, 255];
+  if (left || right) return [255, 248, 245, 255];
+  if (bar) return [255, 42, 0, 255];
+  if (inCircle) return [23, 28, 26, 255];
+  return [12, 15, 14, 255];
 }
 
 function createPng(size) {

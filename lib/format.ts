@@ -19,11 +19,8 @@ export function formatPrice(level: string | null): string | null {
 
 export function formatBudget(budget: Budget): string {
   const labels: Record<Budget, string> = {
-    any: "Any price",
-    free: "Free",
-    low: "Budget",
-    mid: "Mid-range",
-    high: "Premium",
+    any: "No fee preference",
+    free: "Mapped as free",
   };
   return labels[budget];
 }
@@ -41,4 +38,20 @@ export function starText(rating: number | null, count: number): string {
 
 export function directionsUrl(lat: number, lng: number, name: string): string {
   return `https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route=${lat}%2C${lng}#map=16/${lat}/${lng}&destination=${encodeURIComponent(name)}`;
+}
+
+export function safeExternalUrl(value: string | null): string | null {
+  if (!value) return null;
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" || url.protocol === "http:" ? url.toString() : null;
+  } catch {
+    return null;
+  }
+}
+
+export function safeTelephoneUrl(value: string | null): string | null {
+  if (!value) return null;
+  const normalized = value.replace(/[\s().-]/g, "");
+  return /^\+?[0-9]{6,20}$/.test(normalized) ? `tel:${normalized}` : null;
 }

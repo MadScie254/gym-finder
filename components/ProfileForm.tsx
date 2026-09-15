@@ -50,6 +50,7 @@ export default function ProfileForm({
                 key={option.id}
                 type="button"
                 className={`choice ${active ? "is-on" : ""}`}
+                aria-pressed={active}
                 onClick={() => onChange({ ...profile, goals: toggle(profile.goals, option.id) })}
               >
                 <strong>{option.label}</strong>
@@ -61,19 +62,21 @@ export default function ProfileForm({
       </section>
 
       <section>
-        <h3>Budget</h3>
+        <h3>Fee preference</h3>
         <div className="pill-row">
           {BUDGET_OPTIONS.map((option) => (
             <button
               key={option.id}
               type="button"
               className={`pill ${profile.budget === option.id ? "is-on" : ""}`}
+              aria-pressed={profile.budget === option.id}
               onClick={() => onChange({ ...profile, budget: option.id })}
             >
               {option.label}
             </button>
           ))}
         </div>
+        <p className="notice">Only venues explicitly tagged as free can be matched reliably.</p>
       </section>
 
       <section>
@@ -86,6 +89,7 @@ export default function ProfileForm({
                 key={option.id}
                 type="button"
                 className={`pill ${active ? "is-on" : ""}`}
+                aria-pressed={active}
                 onClick={() =>
                   onChange({ ...profile, amenities: toggle(profile.amenities, option.id) })
                 }

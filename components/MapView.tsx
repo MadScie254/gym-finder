@@ -20,25 +20,6 @@ const STYLE: StyleSpecification = {
   layers: [{ id: "streets", type: "raster", source: "streets" }],
 };
 
-const FALLBACK_STYLE: StyleSpecification = {
-  version: 8,
-  name: "KAYA HOT",
-  sources: {
-    osm: {
-      type: "raster",
-      tiles: [
-        "https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
-        "https://b.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
-        "https://c.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
-      ],
-      tileSize: 256,
-      attribution: "© OpenStreetMap · HOT",
-      maxzoom: 19,
-    },
-  },
-  layers: [{ id: "osm", type: "raster", source: "osm" }],
-};
-
 const KENYA_BOUNDS: [[number, number], [number, number]] = [
   [33.6, -5.05],
   [42.05, 5.7],
@@ -89,29 +70,47 @@ export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCent
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
-    const map = new MapLibreMap({
-      container: containerRef.current,
-      style: STYLE,
-      center: [origin.lng, origin.lat],
-      zoom: 12.6,
-      attributionControl: { compact: true },
-      maxBounds: KENYA_BOUNDS,
-      minZoom: 5.4,
-      fadeDuration: 0,
-    });
+    let map: MapLibreMap;
+    let mapErrors = 0;
+    const showFallback = () => {
+      setMapState("fallback");
+      map.getCanvasContainer().style.visibility = "hidden";
+    };
+    try {
+      map = new MapLibreMap({
+        container: containerRef.current,
+        style: STYLE,
+        center: [origin.lng, origin.lat],
+        zoom: 12.6,
+        attributionControl: { compact: true },
+        maxBounds: KENYA_BOUNDS,
+        minZoom: 5.4,
+        fadeDuration: 0,
+      });
+    } catch {
+      queueMicrotask(() => setMapState("fallback"));
+      return;
+    }
+    const fallbackTimer = setTimeout(() => {
+      if (!map.areTilesLoaded()) showFallback();
+    }, 7_000);
     map.addControl(new NavigationControl({ showCompass: false }), "bottom-right");
     map.on("load", () => {
       map.setPadding(desktopPadding());
       setReady(true);
     });
     map.on("idle", () => {
-      if (map.areTilesLoaded()) setMapState("live");
+      if (map.areTilesLoaded()) {
+        clearTimeout(fallbackTimer);
+        setMapState("live");
+      }
     });
     map.on("error", () => {
-      if (!usedFallback.current) {
+      mapErrors += 1;
+      if (!usedFallback.current && mapErrors >= 4) {
         usedFallback.current = true;
-        setMapState("fallback");
-        map.setStyle(FALLBACK_STYLE);
+        clearTimeout(fallbackTimer);
+        showFallback();
       }
     });
     map.on("moveend", () => {
@@ -127,6 +126,7 @@ export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCent
 
     mapRef.current = map;
     return () => {
+      clearTimeout(fallbackTimer);
       window.removeEventListener("resize", onResize);
       map.remove();
       mapRef.current = null;
@@ -189,15 +189,11 @@ export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCent
 
   return (
     <div className="map-frame">
-      {/* The image keeps the map visible on browsers where WebGL is disabled or blocked. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        className="map-failsafe"
-        src={fallbackMapUrl(origin)}
-        alt=""
-        aria-hidden
-        onLoad={() => setMapState((state) => (state === "loading" ? "fallback" : state))}
-      />
+      {mapState === "fallback" && (
+        // The image keeps the map visible on browsers where WebGL is disabled or blocked.
+        // eslint-disable-next-line @next/next/no-img-element
+        <img className="map-failsafe" src={fallbackMapUrl(origin)} alt="Map fallback" />
+      )}
       <div ref={containerRef} className="map-canvas" />
       <div className={`map-status map-status--${mapState}`} aria-live="polite">
         <span />
