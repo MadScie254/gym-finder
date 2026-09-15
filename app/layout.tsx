@@ -1,23 +1,30 @@
 import type { Metadata, Viewport } from "next";
-import { Geist } from "next/font/google";
+import { Bricolage_Grotesque, Figtree } from "next/font/google";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const display = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin"],
+  weight: ["600", "700", "800"],
+});
+
+const ui = Figtree({
+  variable: "--font-figtree",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Kenya Gym Finder",
+  title: "KAYA — Kenya Gym Finder",
   description:
-    "Locate gyms across Kenya with Google Maps and get suggestions based on distance, rating, goals, and budget.",
-  applicationName: "Gym Finder",
+    "Find gyms across Kenya on a free OpenStreetMap canvas, then rank them by distance, hours, and your training brief.",
+  applicationName: "KAYA",
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Gym Finder",
+    title: "KAYA",
   },
   icons: {
     icon: [
@@ -30,7 +37,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0f14",
+  themeColor: "#0c0f0e",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -38,8 +45,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${geistSans.variable} h-full antialiased`}>
-      <body className="h-full overflow-hidden bg-[#0b0f14] text-white">
+    <html lang="en" className={`${display.variable} ${ui.variable} h-full antialiased`}>
+      <body className="h-full overflow-hidden bg-[#b8c0bc] text-[#0c0f0e]">
         <ServiceWorkerRegister />
         {children}
       </body>

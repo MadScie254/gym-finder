@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { DEMO_GYMS } from "@/lib/demoGyms";
-import { getPlaceDetails, getServerKey } from "@/lib/googlePlaces";
+import { getPlaceDetails } from "@/lib/osmPlaces";
 
 export async function GET(request: NextRequest) {
   const id = request.nextUrl.searchParams.get("id")?.trim();
@@ -13,10 +13,6 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ gym: demoGym, demo: true });
   }
 
-  if (!getServerKey()) {
-    return NextResponse.json({ error: "Missing Google Maps server key" }, { status: 404 });
-  }
-
   try {
     const gym = await getPlaceDetails(id);
     if (!gym) {
@@ -24,7 +20,7 @@ export async function GET(request: NextRequest) {
     }
     return NextResponse.json({ gym });
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Place details failed";
+    const message = error instanceof Error ? error.message : "Details failed";
     return NextResponse.json({ error: message }, { status: 502 });
   }
 }

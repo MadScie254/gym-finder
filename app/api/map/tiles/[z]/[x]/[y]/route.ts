@@ -1,0 +1,39 @@
+const ESRI_TILE =
+  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile";
+
+export async function GET(
+  _request: Request,
+  { params }: { params: Promise<{ z: string; x: string; y: string }> },
+) {
+  const { z, x, y } = await params;
+  const zoom = Number(z);
+  const column = Number(x);
+  const row = Number(y);
+
+  if (
+    !Number.isInteger(zoom) ||
+    !Number.isInteger(column) ||
+    !Number.isInteger(row) ||
+    zoom < 0 ||
+    zoom > 19 ||
+    column < 0 ||
+    row < 0
+  ) {
+    return new Response("Invalid tile", { status: 400 });
+  }
+
+  const upstream = await fetch(`${ESRI_TILE}/${zoom}/${row}/${column}`, {
+    cache: "force-cache",
+  });
+
+  if (!upstream.ok || !upstream.body) {
+    return new Response("Tile unavailable", { status: 502 });
+  }
+
+  return new Response(upstream.body, {
+    headers: {
+      "Content-Type": upstream.headers.get("content-type") ?? "image/jpeg",
+      "Cache-Control": "public, max-age=86400, stale-while-revalidate=604800",
+    },
+  });
+}

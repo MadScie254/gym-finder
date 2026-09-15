@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { DEMO_GYMS } from "@/lib/demoGyms";
-import { getServerKey, searchTextGyms } from "@/lib/googlePlaces";
 import { findCounty, isInKenya } from "@/lib/kenya";
+import { searchNearbyGyms, searchTextGyms } from "@/lib/osmPlaces";
 
 export async function GET(request: NextRequest) {
   const query = request.nextUrl.searchParams.get("q")?.trim();
@@ -19,26 +19,28 @@ export async function GET(request: NextRequest) {
   }
 
   const county = findCounty(query);
-  const textQuery = /gym|fitness|yoga/i.test(query)
-    ? `${query} Kenya`
-    : `gym in ${query}, Kenya`;
-
-  if (!getServerKey()) {
-    const needle = query.toLowerCase();
-    const gyms = DEMO_GYMS.filter(
-      (gym) =>
-        gym.name.toLowerCase().includes(needle) ||
-        gym.address.toLowerCase().includes(needle) ||
-        (county && gym.address.toLowerCase().includes(county.name.toLowerCase())),
-    );
-    return NextResponse.json({ gyms: gyms.length ? gyms : DEMO_GYMS, demo: true });
-  }
+  const needle = query.toLowerCase();
+  const demoMatches = DEMO_GYMS.filter(
+    (gym) =>
+      gym.name.toLowerCase().includes(needle) ||
+      gym.address.toLowerCase().includes(needle) ||
+      (county && gym.address.toLowerCase().includes(county.name.toLowerCase())),
+  );
+  const demoGyms = demoMatches.length ? demoMatches : DEMO_GYMS;
 
   try {
-    const gyms = await searchTextGyms(textQuery, center ?? (county ? { lat: county.lat, lng: county.lng } : undefined));
-    return NextResponse.json({ gyms, demo: false });
+    if (county) {
+      const gyms = await searchNearbyGyms({ lat: county.lat, lng: county.lng }, 15000);
+      return NextResponse.json({
+        gyms: gyms.length ? gyms : demoGyms,
+        demo: gyms.length === 0,
+        place: { name: county.name, kind: "county", location: { lat: county.lat, lng: county.lng } },
+      });
+    }
+    const gyms = await searchTextGyms(query, center);
+    return NextResponse.json({ gyms: gyms.length ? gyms : demoGyms, demo: gyms.length === 0 });
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Places search failed";
-    return NextResponse.json({ gyms: DEMO_GYMS, demo: true, warning: message });
+    const message = error instanceof Error ? error.message : "Search failed";
+    return NextResponse.json({ gyms: demoGyms, demo: true, warning: message });
   }
 }

@@ -35,11 +35,10 @@ export function labelText(label: GymLabel): string {
 }
 
 export function starText(rating: number | null, count: number): string {
-  if (rating == null) return "No rating yet";
+  if (rating == null) return "OpenStreetMap";
   return `${rating.toFixed(1)} (${count})`;
 }
 
 export function directionsUrl(lat: number, lng: number, name: string): string {
-  const query = encodeURIComponent(`${name} @${lat},${lng}`);
-  return `https://www.google.com/maps/dir/?api=1&destination=${query}`;
+  return `https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route=${lat}%2C${lng}#map=16/${lat}/${lng}&destination=${encodeURIComponent(name)}`;
 }

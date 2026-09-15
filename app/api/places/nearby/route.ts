@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { DEMO_GYMS } from "@/lib/demoGyms";
-import { getServerKey, searchNearbyGyms } from "@/lib/googlePlaces";
 import { haversineKm, isInKenya } from "@/lib/kenya";
+import { searchNearbyGyms } from "@/lib/osmPlaces";
 
 export async function GET(request: NextRequest) {
   const lat = Number(request.nextUrl.searchParams.get("lat"));
@@ -18,28 +18,26 @@ export async function GET(request: NextRequest) {
   }
 
   const nearbyDemo = DEMO_GYMS.filter(
-    (gym) => haversineKm(center, gym.location) * 1000 <= Math.max(radius, 5000),
+    (gym) => haversineKm(center, gym.location) * 1000 <= Math.max(radius, 25000),
   );
-  const demoGyms = nearbyDemo.length > 0 ? nearbyDemo : DEMO_GYMS;
-
-  if (!getServerKey()) {
-    return NextResponse.json({ gyms: demoGyms, demo: true });
-  }
 
   try {
     const gyms = await searchNearbyGyms(center, radius);
     if (gyms.length === 0) {
       return NextResponse.json({
-        gyms: demoGyms,
-        demo: true,
+        gyms: nearbyDemo,
+        demo: nearbyDemo.length > 0,
+        empty: nearbyDemo.length === 0,
       });
     }
     return NextResponse.json({ gyms, demo: false });
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Places lookup failed";
-    return NextResponse.json(
-      { gyms: DEMO_GYMS, demo: true, warning: message },
-      { status: 200 },
-    );
+    const message = error instanceof Error ? error.message : "Map lookup failed";
+    return NextResponse.json({
+      gyms: nearbyDemo,
+      demo: nearbyDemo.length > 0,
+      empty: nearbyDemo.length === 0,
+      warning: message,
+    });
   }
 }

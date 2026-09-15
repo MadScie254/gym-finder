@@ -127,7 +127,8 @@ export function rankGyms(gyms: Gym[], origin: LatLng, profile: ClientProfile, fi
     labels.set(closest.id, [...(labels.get(closest.id) ?? []), "closest"]);
   }
 
-  const topRated = [...scored].sort((a, b) => {
+  const rated = scored.filter((gym) => gym.rating != null);
+  const topRated = [...rated].sort((a, b) => {
     const ratingDelta = (b.rating ?? 0) - (a.rating ?? 0);
     if (ratingDelta !== 0) return ratingDelta;
     return b.userRatingCount - a.userRatingCount;

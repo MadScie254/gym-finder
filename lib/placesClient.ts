@@ -1,4 +1,5 @@
 import type { Gym, LatLng } from "./types";
+import type { PlaceHit } from "./osmPlaces";
 
 async function readError(response: Response): Promise<string> {
   try {
@@ -43,6 +44,16 @@ export async function fetchSearchGyms(query: string, center?: LatLng): Promise<{
   return { gyms: payload.gyms ?? [], demo: Boolean(payload.demo) };
 }
 
+export async function fetchPlaceSuggestions(query: string): Promise<PlaceHit[]> {
+  const params = new URLSearchParams({ q: query });
+  const response = await fetch(`/api/places/geocode?${params.toString()}`);
+  const payload = (await response.json()) as { places?: PlaceHit[]; error?: string };
+  if (!response.ok) {
+    throw new Error(payload.error || (await readError(response)));
+  }
+  return payload.places ?? [];
+}
+
 export async function fetchGymDetails(id: string): Promise<Gym> {
   const response = await fetch(`/api/places/details?id=${encodeURIComponent(id)}`);
   const payload = (await response.json()) as { gym?: Gym; error?: string };
@@ -50,9 +61,4 @@ export async function fetchGymDetails(id: string): Promise<Gym> {
     throw new Error(payload.error || "Could not load gym details");
   }
   return payload.gym;
-}
-
-export function photoUrl(photoName: string | null, maxHeightPx = 640): string | null {
-  if (!photoName) return null;
-  return `/api/places/photo?name=${encodeURIComponent(photoName)}&maxHeightPx=${maxHeightPx}`;
 }
