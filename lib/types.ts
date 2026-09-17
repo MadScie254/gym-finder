@@ -67,7 +67,8 @@ export const DEFAULT_FILTERS: GymFilters = {
   openNow: false,
   minRating: 0,
   price: "any",
-  radiusMeters: 5000,
+  /** 0 = entire Kenya (catalog-wide). */
+  radiusMeters: 0,
 };
 
 export const GOAL_OPTIONS: { id: Goal; label: string; hint: string }[] = [
@@ -90,10 +91,16 @@ export const AMENITY_OPTIONS: { id: Amenity; label: string }[] = [
   { id: "open_24h", label: "Open 24 hours" },
 ];
 
+/** 0 means nationwide (all mapped gyms in Kenya). */
 export const RADIUS_OPTIONS = [
+  { meters: 0, label: "All Kenya" },
   { meters: 2000, label: "2 km" },
   { meters: 5000, label: "5 km" },
   { meters: 10000, label: "10 km" },
   { meters: 20000, label: "20 km" },
   { meters: 40000, label: "40 km" },
 ];
+
+export function isNationwideRadius(meters: number): boolean {
+  return meters === 0;
+}

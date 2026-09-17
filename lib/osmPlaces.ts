@@ -1,4 +1,6 @@
 import { isInKenya, KENYA_BOUNDS } from "./kenya";
+import { catalogAllGyms, catalogGymById, catalogNearbyGyms } from "./kenyaGymCatalog";
+import { googleNearbyGyms, googlePlacesConfigured, googleTextGyms } from "./googlePlaces";
 import { fetchWithTimeout } from "./requestSafety";
 import { withCircuitBreaker, withProviderThrottle, withTtlCache } from "./ttlCache";
 import type { Gym, LatLng } from "./types";
@@ -260,9 +262,22 @@ function gymQuery(filter: string): string {
   return `
     nwr["leisure"="fitness_centre"]${filter};
     nwr["amenity"="gym"]${filter};
-    nwr["leisure"="sports_centre"]["sport"~"fitness|gym|weights",i]${filter};
+    nwr["amenity"="fitness_centre"]${filter};
+    nwr["leisure"="sports_centre"]${filter};
+    nwr["leisure"="fitness_station"]${filter};
     nwr["sport"="fitness"]${filter};
+    nwr["name"~"gym|fitness|crossfit",i]["amenity"]${filter};
   `;
+}
+
+function mergeGyms(...lists: Gym[][]): Gym[] {
+  const unique = new Map<string, Gym>();
+  for (const list of lists) {
+    for (const gym of list) {
+      if (!unique.has(gym.id)) unique.set(gym.id, gym);
+    }
+  }
+  return [...unique.values()];
 }
 
 async function overpass(query: string): Promise<OsmElement[]> {
@@ -274,7 +289,7 @@ async function overpass(query: string): Promise<OsmElement[]> {
           headers: { ...headers(), "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
           body: `data=${encodeURIComponent(query)}`,
           cache: "no-store",
-        }, 8_000);
+        }, 12_000);
         if (!response.ok) throw new Error(`Overpass failed (${response.status})`);
         const payload = (await response.json()) as { elements?: OsmElement[] };
         return payload.elements ?? [];
@@ -295,28 +310,65 @@ async function overpass(query: string): Promise<OsmElement[]> {
 }
 
 export async function searchNearbyGyms(center: LatLng, radiusMeters: number): Promise<Gym[]> {
-  const radius = Math.min(Math.max(radiusMeters, 400), 40_000);
+  // 0 = entire Kenya (full catalog). Otherwise clamp to the supported local radii.
+  const radius = radiusMeters === 0 ? 0 : Math.min(Math.max(radiusMeters, 400), 40_000);
   const key = `nearby:${center.lat.toFixed(4)}:${center.lng.toFixed(4)}:${radius}`;
   return withTtlCache(key, 5 * 60 * 1_000, () => searchNearbyGymsUncached(center, radius));
 }
 
 async function searchNearbyGymsUncached(center: LatLng, radius: number): Promise<Gym[]> {
-  const filter = `(around:${radius},${center.lat},${center.lng})`;
-  const query = `[out:json][timeout:8];(${gymQuery(filter)});out center tags 40;`;
-  const elements = await overpass(query);
-  const gyms = elements.map(mapElement).filter((gym): gym is Gym => gym != null);
-  const unique = new Map<string, Gym>();
-  for (const gym of gyms) unique.set(gym.id, gym);
-  return [...unique.values()];
+  if (radius === 0) {
+    const catalog = catalogAllGyms(center);
+    let google: Gym[] = [];
+    if (googlePlacesConfigured()) {
+      try {
+        google = await googleTextGyms("gym fitness centre", center);
+      } catch {
+        google = [];
+      }
+    }
+    return mergeGyms(catalog, google);
+  }
+
+  // Catalog is the fast, offline source (checked-in Kenya OSM extract).
+  let catalog = catalogNearbyGyms(center, radius);
+  if (catalog.length < 5 && radius < 25_000) {
+    catalog = catalogNearbyGyms(center, Math.min(40_000, Math.max(radius * 3, 15_000)));
+  }
+
+  const live: Gym[] = [];
+  try {
+    const filter = `(around:${radius},${center.lat},${center.lng})`;
+    const query = `[out:json][timeout:12];(${gymQuery(filter)});out center tags 60;`;
+    const elements = await overpass(query);
+    live.push(...elements.map(mapElement).filter((gym): gym is Gym => gym != null));
+  } catch {
+    // Live Overpass is best-effort; catalog already covers Kenya.
+  }
+
+  let google: Gym[] = [];
+  if (googlePlacesConfigured()) {
+    try {
+      google = await googleNearbyGyms(center, radius);
+    } catch {
+      google = [];
+    }
+  }
+
+  return mergeGyms(catalog, live, google);
 }
 
 export async function searchTextGyms(query: string, center?: LatLng): Promise<Gym[]> {
+  const google = googlePlacesConfigured()
+    ? await googleTextGyms(query, center).catch(() => [] as Gym[])
+    : [];
+
   // One Nominatim request can resolve a town, estate, or mapped fitness venue.
   // Keeping this to one request avoids bursting a public geocoding provider.
-  const hits = await nominatimSearch(query, 12);
+  const hits = await nominatimSearch(query, 12).catch(() => [] as NominatimHit[]);
   const place = hits.map(placeFromHit).find((candidate): candidate is PlaceHit => candidate != null);
   if (place) {
-    return searchNearbyGyms(place.location, 15000);
+    return mergeGyms(google, await searchNearbyGyms(place.location, 15000));
   }
   const fitnessHits = hits.filter((hit) => {
     const kind = `${hit.class} ${hit.type}`.toLowerCase();
@@ -347,11 +399,9 @@ export async function searchTextGyms(query: string, center?: LatLng): Promise<Gy
   const searchCenter = center ?? fromNominatim[0]?.location;
   if (searchCenter) {
     const nearby = await searchNearbyGyms(searchCenter, 12000);
-    const unique = new Map<string, Gym>();
-    for (const gym of [...fromNominatim, ...nearby]) unique.set(gym.id, gym);
-    return [...unique.values()];
+    return mergeGyms(google, fromNominatim, nearby);
   }
-  return fromNominatim;
+  return mergeGyms(google, fromNominatim);
 }
 
 export async function getPlaceDetails(id: string): Promise<Gym | null> {
@@ -359,9 +409,17 @@ export async function getPlaceDetails(id: string): Promise<Gym | null> {
 }
 
 async function getPlaceDetailsUncached(id: string): Promise<Gym | null> {
+  if (id.startsWith("google/")) {
+    return null;
+  }
+  const fromCatalog = catalogGymById(id);
   const parsed = parseId(id);
-  if (!parsed) return null;
-  const query = `[out:json][timeout:15];${parsed.type}(${parsed.id});out center tags;`;
-  const elements = await overpass(query);
-  return elements[0] ? mapElement(elements[0]) : null;
+  if (!parsed) return fromCatalog;
+  try {
+    const query = `[out:json][timeout:15];${parsed.type}(${parsed.id});out center tags;`;
+    const elements = await overpass(query);
+    return elements[0] ? mapElement(elements[0]) : fromCatalog;
+  } catch {
+    return fromCatalog;
+  }
 }

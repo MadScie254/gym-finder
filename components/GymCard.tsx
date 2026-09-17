@@ -1,6 +1,5 @@
 "use client";
 
-import { gymCover, padIndex } from "@/lib/cover";
 import { formatDistance, formatPrice, labelText } from "@/lib/format";
 import type { Gym } from "@/lib/types";
 
@@ -21,42 +20,31 @@ export default function GymCard({
   onSelect,
   onToggleSave,
 }: GymCardProps) {
-  const cover = gymCover(gym.name);
+  const fit = gym.labels[0] ? labelText(gym.labels[0]) : null;
+  const price = formatPrice(gym.priceLevel);
+  const meta = [
+    gym.distanceKm != null ? formatDistance(gym.distanceKm) : null,
+    fit,
+    price,
+    gym.openNow ? "Open 24/7" : null,
+  ].filter(Boolean);
 
   return (
     <article className={`gym-card ${selected ? "is-selected" : ""}`}>
       <button type="button" className="gym-card__hit" onClick={onSelect}>
-        <span
-          className="gym-card__index"
-          style={{ background: `linear-gradient(145deg, ${cover.from}, ${cover.to})` }}
-        >
-          {padIndex(index)}
+        <span className="gym-card__rank" aria-hidden>
+          {String(index + 1).padStart(2, "0")}
         </span>
         <div className="gym-card__body">
-          <div className="gym-card__labels">
-            {gym.labels.map((label) => (
-              <span key={label} className="chip chip--gold">
-                {labelText(label)}
-              </span>
-            ))}
-            {gym.openNow ? <span className="chip chip--live">Open 24/7</span> : null}
-            {formatPrice(gym.priceLevel) ? (
-              <span className="chip">{formatPrice(gym.priceLevel)}</span>
-            ) : null}
-          </div>
           <h3 className="gym-card__name">{gym.name}</h3>
-          <p className="gym-card__addr">{gym.address}</p>
-        </div>
-        <div className="gym-card__side">
-          {gym.distanceKm != null && (
-            <span className="gym-card__dist">{formatDistance(gym.distanceKm)}</span>
-          )}
+          {meta.length > 0 && <p className="gym-card__meta">{meta.join(" · ")}</p>}
         </div>
       </button>
       <button
         type="button"
         className={`save-btn ${saved ? "is-on" : ""}`}
         aria-pressed={saved}
+        aria-label={saved ? `Unsave ${gym.name}` : `Save ${gym.name}`}
         onClick={onToggleSave}
       >
         {saved ? "Saved" : "Save"}

@@ -1,15 +1,16 @@
 # Kenya Gym Finder (KAYA)
 
-Progressive web app that finds mapped gyms across Kenya: MapLibre with an Esri street-map proxy, [Overpass](https://overpass-api.de/) for venues, and a configurable Nominatim-compatible geocoder for manual searches. Suggestions rank primarily by distance and the training brief; availability and price are shown only when mapped data supports them.
+Progressive web app that finds mapped gyms across Kenya: MapLibre with an Esri street-map proxy, a checked-in OpenStreetMap Kenya gym catalog (refresh with `npm run fetch-gyms`), live Overpass as a best-effort overlay, and optional Google Places when `GOOGLE_MAPS_API_KEY` is set. Suggestions rank primarily by distance and the training brief; availability and price are shown only when mapped data supports them.
 
 ## Setup
 
 ```bash
 npm install
+npm run fetch-gyms   # optional: refresh data/kenya-gyms.json from Overpass
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). The app starts in Nairobi until a visitor explicitly asks to use their location. If a provider is unavailable, it shows an honest empty state rather than fabricated gym results.
+Open [http://localhost:3000](http://localhost:3000). The app starts in Nairobi until a visitor explicitly asks to use their location. Nearby results come from the local Kenya catalog first (fast), then merge live Overpass and Google Places when available.
 
 ## Using the app
 
@@ -38,3 +39,7 @@ shared platform storage when running multiple application instances.
 Optional `ESRI_TILE_URL` and `ESRI_EXPORT_URL` variables can point the map proxy
 at licensed basemap services. Review the selected provider's attribution,
 usage limits, and SLA before launch.
+
+For denser gym coverage than OpenStreetMap alone, enable **Places API (New)** in
+Google Cloud, set `GOOGLE_MAPS_API_KEY`, and restrict the key to your domains.
+Do not scrape Google Maps — use the official API only.

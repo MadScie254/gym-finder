@@ -23,6 +23,7 @@ import {
 import {
   DEFAULT_FILTERS,
   DEFAULT_PROFILE,
+  isNationwideRadius,
   type ClientProfile,
   type Gym,
   type GymFilters,
@@ -109,7 +110,7 @@ export default function GymFinderApp() {
     // Start with a useful, non-sensitive default. Precise location is requested
     // only after the visitor activates the Near me control.
     const timer = window.setTimeout(() => {
-      void loadNearby(NAIROBI, filters.radiusMeters, "Showing Nairobi — use Near me for local results.");
+      void loadNearby(NAIROBI, filters.radiusMeters, "Mapped gyms across Kenya — narrow with Filters or Near me.");
     }, 0);
     return () => window.clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -221,8 +222,13 @@ export default function GymFinderApp() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const point = { lat: position.coords.latitude, lng: position.coords.longitude };
-        if (isInKenya(point)) void loadNearby(point, filters.radiusMeters);
-        else setNotice("Location is outside Kenya.");
+        if (isInKenya(point)) {
+          void loadNearby(
+            point,
+            isNationwideRadius(filters.radiusMeters) ? 10_000 : filters.radiusMeters,
+            "Gyms near you",
+          );
+        } else setNotice("Location is outside Kenya.");
       },
       () => setNotice("Location was not shared — still showing Nairobi."),
       { enableHighAccuracy: false, timeout: 8_000, maximumAge: 60_000 },
@@ -286,26 +292,34 @@ export default function GymFinderApp() {
         <div className="list-head">
           <div className="list-head__row">
             <div className="list-head__titles">
-              <p className="eyebrow">Suggested for you</p>
+              <p className="eyebrow">KAYA picks</p>
               <h1>
                 {loading
                   ? "Mapping…"
-                  : `${visibleGyms.length} ${tab === "saved" ? "saved" : "nearby"}`}
+                  : `${visibleGyms.length} ${
+                      tab === "saved"
+                        ? "saved"
+                        : isNationwideRadius(filters.radiusMeters)
+                          ? "in Kenya"
+                          : "nearby"
+                    }`}
               </h1>
             </div>
-            <div className="seg">
+            <div className="seg" role="tablist" aria-label="Result lists">
               <button
                 type="button"
+                role="tab"
                 className={tab === "suggested" ? "is-on" : ""}
-                aria-pressed={tab === "suggested"}
+                aria-selected={tab === "suggested"}
                 onClick={() => setTab("suggested")}
               >
                 Nearby
               </button>
               <button
                 type="button"
+                role="tab"
                 className={tab === "saved" ? "is-on" : ""}
-                aria-pressed={tab === "saved"}
+                aria-selected={tab === "saved"}
                 onClick={() => setTab("saved")}
               >
                 Saved
@@ -313,9 +327,12 @@ export default function GymFinderApp() {
             </div>
           </div>
           {loading && <div className="loading-bar" aria-hidden />}
-          {notice && <p className="notice">{notice}</p>}
-          {!loading && visibleGyms.length === 0 && tab === "suggested" && notice && (
-            <p className="notice">No mapped gyms in this spot yet. Try a wider radius or another town.</p>
+          {!loading && visibleGyms.length === 0 && tab === "suggested" && (
+            <p className="notice">
+              {notice
+                ? "No mapped gyms in this spot yet. Try a wider radius or another town."
+                : "Search a town, estate, or county — try Webuye or Kilimani."}
+            </p>
           )}
           <GymList
             gyms={visibleGyms}
@@ -337,7 +354,7 @@ export default function GymFinderApp() {
 
   return (
     <div className={`app-shell ${sheetMode === "onboarding" ? "app-shell--onboarding" : ""}`}>
-      <div className="map-stage">
+      <div className="map-stage" aria-hidden={sheetMode === "onboarding"}>
         <MapView
           origin={origin}
           gyms={visibleGyms}
@@ -345,50 +362,59 @@ export default function GymFinderApp() {
           onSelect={selectGym}
           onIdleCenter={onIdleCenter}
         />
+        <div className="map-vignette" />
       </div>
 
       <header className="chrome">
-        <div className="chrome__brand">
-          <span className="chrome__mark">KAYA</span>
-          <span className="chrome__tag">Kenya gym map</span>
-        </div>
-        <div className="chrome__search">
-          <PlaceSearch
-            query={query}
-            onQueryChange={setQuery}
-            onSearch={handleSearch}
-            onSelectPlace={(place) => void goToPlace(place)}
-          />
-        </div>
-        <div className="chrome__actions">
-          <button
-            type="button"
-            className="tool-btn"
-            onClick={() => {
-              setSheetMode("filters");
-              setSheetSize("full");
-            }}
-          >
-            Filters
-          </button>
-          <button
-            type="button"
-            className="tool-btn"
-            onClick={() => {
-              setSheetMode("profile");
-              setSheetSize("full");
-            }}
-          >
-            Brief
-          </button>
-          <button type="button" className="tool-btn tool-btn--accent" onClick={locateMe}>
-            Near me
-          </button>
+        <div className="chrome__cluster">
+          <div className="chrome__brand">
+            <span className="chrome__mark">KAYA</span>
+            <span className="chrome__tag">Kenya gym map</span>
+          </div>
+          <div className="chrome__search">
+            <PlaceSearch
+              query={query}
+              onQueryChange={setQuery}
+              onSearch={handleSearch}
+              onSelectPlace={(place) => void goToPlace(place)}
+            />
+          </div>
+          <div className="chrome__actions">
+            <button
+              type="button"
+              className="tool-btn"
+              onClick={() => {
+                setSheetMode("filters");
+                setSheetSize("full");
+              }}
+            >
+              Filters
+            </button>
+            <button
+              type="button"
+              className="tool-btn"
+              onClick={() => {
+                setSheetMode("profile");
+                setSheetSize("full");
+              }}
+            >
+              Brief
+            </button>
+            <button type="button" className="tool-btn tool-btn--accent" onClick={locateMe}>
+              Near me
+            </button>
+          </div>
         </div>
         <div className="chrome__install">
           <InstallPrompt />
         </div>
       </header>
+
+      {notice && sheetMode === "list" && (
+        <p className="map-toast" role="status">
+          {notice}
+        </p>
+      )}
 
       {showSearchArea && (
         <button

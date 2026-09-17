@@ -170,14 +170,20 @@ export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCent
     });
 
     if (gyms.length > 0) {
-      const lngs = [origin.lng, ...gyms.map((g) => g.location.lng)];
-      const lats = [origin.lat, ...gyms.map((g) => g.location.lat)];
+      const lngs = gyms.map((g) => g.location.lng);
+      const lats = gyms.map((g) => g.location.lat);
+      const span =
+        Math.max(...lngs) - Math.min(...lngs) + (Math.max(...lats) - Math.min(...lats));
       map.fitBounds(
         [
           [Math.min(...lngs), Math.min(...lats)],
           [Math.max(...lngs), Math.max(...lats)],
         ],
-        { padding: desktopPadding(), maxZoom: 14.2, duration: 850 },
+        {
+          padding: desktopPadding(),
+          maxZoom: span > 4 ? 6.4 : span > 1.5 ? 9.5 : 14.2,
+          duration: 850,
+        },
       );
     }
 

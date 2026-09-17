@@ -4,7 +4,8 @@ import { rateLimit, readBoundedQuery, readRadius } from "./requestSafety";
 
 describe("request boundary validation", () => {
   it("enforces the supported nearby-search radius", () => {
-    expect(readRadius(null)).toBe(5_000);
+    expect(readRadius(null)).toBe(0);
+    expect(readRadius("0")).toBe(0);
     expect(readRadius("400")).toBe(400);
     expect(readRadius("40000")).toBe(40_000);
     expect(readRadius("399")).toBeNull();

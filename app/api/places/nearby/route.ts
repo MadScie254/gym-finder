@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
 
   if (!Number.isFinite(lat) || !Number.isFinite(lng) || radius == null) {
     return NextResponse.json(
-      { error: "lat, lng, and a radius between 400 m and 40 km are required" },
+      { error: "lat, lng, and a radius of 0 (All Kenya) or 400 m–40 km are required" },
       { status: 400 },
     );
   }

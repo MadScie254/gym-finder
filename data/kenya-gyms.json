@@ -1,0 +1,5093 @@
+{
+  "generatedAt": "2026-09-17T19:50:44.603Z",
+  "source": "OpenStreetMap / Overpass",
+  "count": 192,
+  "gyms": [
+    {
+      "id": "node/10997894264",
+      "name": "Ace Gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2269178,
+        "lng": 36.9173927
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/10997894264",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/553283513",
+      "name": "Aga Khan Sports Club",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2604264,
+        "lng": 36.8242228
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/553283513",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/330903781",
+      "name": "AICAD gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.0968688,
+        "lng": 37.0156984
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "gymnastics"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/330903781",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "gymnastics · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/151856450",
+      "name": "AICC Squash Courts",
+      "address": "Kenya",
+      "location": {
+        "lat": -3.3783683,
+        "lng": 36.7026305
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/151856450",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1083136824",
+      "name": "Ammodump @ Kwenia",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.7300757,
+        "lng": 36.4907631
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "shooting",
+        "motocross",
+        "cycling",
+        "quadcross"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1083136824",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "shooting;motocross;cycling;quadcross · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/5370854862",
+      "name": "Annadil Jamaly Sports Complex",
+      "address": "Kiboko Rd, Nairobi City",
+      "location": {
+        "lat": -1.3646958,
+        "lng": 36.7563278
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/5370854862",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/6224837588",
+      "name": "Annadil Jamaly Sports Complex",
+      "address": "Kiboko Road, Nairobi",
+      "location": {
+        "lat": -1.3654219,
+        "lng": 36.7567967
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/6224837588",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/364305149",
+      "name": "AP Football Ground",
+      "address": "Kenya",
+      "location": {
+        "lat": 1.7544954,
+        "lng": 40.0557952
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "soccer"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/364305149",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "soccer · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/13195751528",
+      "name": "Avenidus Fitness Centre",
+      "address": "Kitale",
+      "location": {
+        "lat": 1.0175804,
+        "lng": 35.0146526
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre",
+        "fitness"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/13195751528",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness · fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/14060903402",
+      "name": "Awendo green stadium",
+      "address": "Kenya",
+      "location": {
+        "lat": -0.8953352,
+        "lng": 34.5337957
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/14060903402",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/368464097",
+      "name": "ayiera initiative sports pitch",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2475094,
+        "lng": 36.8942969
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "pitch",
+        "fitness"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/368464097",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness · pitch",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/6247215822",
+      "name": "Barclays Bank Sports Club",
+      "address": "Nairobi",
+      "location": {
+        "lat": -1.2556194,
+        "lng": 36.8604859
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/6247215822",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/11008015607",
+      "name": "Body Fit Gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2181334,
+        "lng": 36.8993284
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/11008015607",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/10867119227",
+      "name": "Brotherhood Fitness Club",
+      "address": "Kenya",
+      "location": {
+        "lat": -3.3676561,
+        "lng": 36.714438
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/10867119227",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/7686965502",
+      "name": "Burn Body",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2406407,
+        "lng": 36.7808876
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/7686965502",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/5903397785",
+      "name": "Butiama Football Ground",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.7641314,
+        "lng": 33.9652988
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/5903397785",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/10579036231",
+      "name": "Careys Fitness",
+      "address": "Kenya",
+      "location": {
+        "lat": -0.0754056,
+        "lng": 34.7812896
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/10579036231",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/13742089695",
+      "name": "Champez gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -4.0073681,
+        "lng": 39.6295404
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/13742089695",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [
+        "Mo-Fr 04:00-22:00"
+      ],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/5840443785",
+      "name": "Climb Blue Sky",
+      "address": "3rd Parklands Avenue",
+      "location": {
+        "lat": -1.2582527,
+        "lng": 36.8185246
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre",
+        "climbing"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/5840443785",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "climbing · fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/6822122485",
+      "name": "Daniel senteu sport center",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.8522896,
+        "lng": 34.6731286
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/6822122485",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/13092029001",
+      "name": "Data Driven Golf",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.3424164,
+        "lng": 36.7143685
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/13092029001",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/12943070550",
+      "name": "Dennison Fitness",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2724344,
+        "lng": 36.9552378
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/12943070550",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1455728179",
+      "name": "Desert Grounds",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2829548,
+        "lng": 36.8496023
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1455728179",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/14180599601",
+      "name": "Diving Team Diani",
+      "address": "Kenya",
+      "location": {
+        "lat": -4.270639,
+        "lng": 39.5979482
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/14180599601",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/10048755617",
+      "name": "DOJO",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.322312,
+        "lng": 36.7036575
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre",
+        "weightlifting",
+        "running",
+        "yoga"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/10048755617",
+      "phone": "+254742834747",
+      "website": "https://dojokenya.com/",
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "weightlifting;running;yoga · fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/5429106185",
+      "name": "EA Fitness",
+      "address": "Riara Road, Nairobi",
+      "location": {
+        "lat": -1.2977774,
+        "lng": 36.7650974
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre",
+        "fitness"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/5429106185",
+      "phone": null,
+      "website": "http://eafitness.co.ke/",
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness · fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/7242652687",
+      "name": "Eddy's fitness center",
+      "address": "National Street",
+      "location": {
+        "lat": -1.840312,
+        "lng": 34.6720992
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/7242652687",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/913644024",
+      "name": "Embu Stadium",
+      "address": "Kenya",
+      "location": {
+        "lat": -0.5387536,
+        "lng": 37.4526105
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/913644024",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/10543072096",
+      "name": "Enashipai Gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -0.7689236,
+        "lng": 36.4242162
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/10543072096",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/12157124485",
+      "name": "Fahari Gym and Sports",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2807203,
+        "lng": 36.8211597
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/12157124485",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/4355628412",
+      "name": "Family Beach",
+      "address": "Off Kayole Spine Road, Nairobi",
+      "location": {
+        "lat": -1.2680126,
+        "lng": 36.9132224
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "swimming"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/4355628412",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "swimming · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/12395863211",
+      "name": "Feel Fitness Gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2344408,
+        "lng": 36.866467
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "gymnastics"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/12395863211",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "gymnastics",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/612009187",
+      "name": "Fitness and Aerobics Center",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.3145834,
+        "lng": 36.7775759
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "hall",
+        "gymnastics"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/612009187",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "gymnastics · hall",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/3258675511",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -3.3486012,
+        "lng": 36.6330185
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/3258675511",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/7200939936",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": 1.0977013,
+        "lng": 36.6989898
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/7200939936",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/10578193441",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -0.2955437,
+        "lng": 36.0791419
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/10578193441",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/10847161314",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2228838,
+        "lng": 36.912454
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/10847161314",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/12083009151",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -0.0022971,
+        "lng": 34.6115925
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/12083009151",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/12117204280",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.3082436,
+        "lng": 36.9089019
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/12117204280",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/12345657774",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.1048628,
+        "lng": 37.012127
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "swimming"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/12345657774",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "swimming · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/12353525366",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.1174061,
+        "lng": 37.0084879
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "swimming"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/12353525366",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "swimming · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/12353564109",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.1169504,
+        "lng": 37.0054514
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "swimming"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/12353564109",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "swimming · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/14063230629",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.235745,
+        "lng": 36.8135586
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/14063230629",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/102148413",
+      "name": "Fitness centre",
+      "address": "Kasarini Road, Kiambu",
+      "location": {
+        "lat": -1.2064109,
+        "lng": 36.8244226
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/102148413",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/130009763",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2725042,
+        "lng": 36.8545851
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/130009763",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/130009765",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2720597,
+        "lng": 36.8542292
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/130009765",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/455682129",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": 0.2843387,
+        "lng": 35.2914313
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/455682129",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/661476476",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": 1.0659122,
+        "lng": 34.1950847
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "swimming"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/661476476",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "swimming · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/895575962",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.3133218,
+        "lng": 36.9029106
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "swimming"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/895575962",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "swimming · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1117639275",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": 0.2871965,
+        "lng": 34.7637372
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1117639275",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1132423047",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -0.1131956,
+        "lng": 34.7566418
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "swimming"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1132423047",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "swimming · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1137803213",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -0.0979904,
+        "lng": 34.7564186
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "swimming"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1137803213",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "swimming · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1144634546",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2567465,
+        "lng": 36.7672692
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "swimming"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1144634546",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "swimming · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1162961915",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2650758,
+        "lng": 36.6648642
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "swimming"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1162961915",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "swimming · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1162962122",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2629971,
+        "lng": 36.6672308
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "swimming"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1162962122",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "swimming · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1207424038",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": 0.7968367,
+        "lng": 34.7055886
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "swimming"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1207424038",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "swimming · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1210929728",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": 3.7477953,
+        "lng": 34.8396352
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "basketball"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1210929728",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "basketball · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1211224239",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2928772,
+        "lng": 36.8580687
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1211224239",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1302874730",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2779546,
+        "lng": 36.8115327
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "swimming"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1302874730",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "swimming · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1334117094",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -0.3822301,
+        "lng": 37.0161239
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "motocross"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1334117094",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "motocross · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1334117101",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -0.3830667,
+        "lng": 37.0141008
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "motocross"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1334117101",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "motocross · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1484280592",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": 0.6486787,
+        "lng": 35.5101338
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1484280592",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1484280594",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": 0.6485461,
+        "lng": 35.4820558
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1484280594",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1492108226",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": 0.6892288,
+        "lng": 35.5073285
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1492108226",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1494548976",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": 0.6248499,
+        "lng": 35.4842202
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "athletics"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1494548976",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "athletics · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1494548979",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": 0.6248016,
+        "lng": 35.4821272
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "multi"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1494548979",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "multi · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1508173227",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": 1.0225916,
+        "lng": 34.9971364
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1508173227",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1512092149",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": 1.0254651,
+        "lng": 35.0239892
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1512092149",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1523797815",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": 5.3396769,
+        "lng": 39.5696298
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1523797815",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1531872584",
+      "name": "Fitness centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.3283835,
+        "lng": 36.7132665
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "karting"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1531872584",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "karting · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/5341017723",
+      "name": "Fitness Mania Gym Parklands",
+      "address": "City Park Drive, Nairobi",
+      "location": {
+        "lat": -1.2579287,
+        "lng": 36.8300458
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/5341017723",
+      "phone": "+254700 464 646",
+      "website": "https://myfitnessmania.com/",
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/259340665",
+      "name": "Footbal Kenya Ltd",
+      "address": "Arena Drive, Nairobi",
+      "location": {
+        "lat": -1.2282233,
+        "lng": 36.8876042
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/259340665",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/478719135",
+      "name": "Friedkin Recreation Centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -3.3484889,
+        "lng": 36.6333581
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/478719135",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/553303605",
+      "name": "Goan Gymkhana",
+      "address": "Ngara Road, Nairobi",
+      "location": {
+        "lat": -1.2724639,
+        "lng": 36.8164484
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "community_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/553303605",
+      "phone": null,
+      "website": "https://goangymkhana.webs.com/",
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": null,
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1483436910",
+      "name": "Great Rift Valley Golf Resort Gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -0.6681789,
+        "lng": 36.3217756
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1483436910",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/1999910118",
+      "name": "Gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.3119702,
+        "lng": 36.8475108
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "community_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/1999910118",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": null,
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/4340429926",
+      "name": "Gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.4398327,
+        "lng": 37.0464337
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/4340429926",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/11609607050",
+      "name": "Gym",
+      "address": "Kenya",
+      "location": {
+        "lat": 0.515873,
+        "lng": 35.28948
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre",
+        "fitness"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/11609607050",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness · fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/438042233",
+      "name": "Gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -3.3689785,
+        "lng": 36.8392054
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "gymnastics"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/438042233",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "gymnastics",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/82488219",
+      "name": "Gymkhana Club",
+      "address": "Arusha",
+      "location": {
+        "lat": -3.3669386,
+        "lng": 36.70177
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/82488219",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/2377016417",
+      "name": "H2Oextreme",
+      "address": "Kenya",
+      "location": {
+        "lat": -4.3511492,
+        "lng": 39.5633876
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "surfing"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/2377016417",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "surfing · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/1038193549",
+      "name": "HomeGround Pool Table",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2644776,
+        "lng": 36.8568069
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "table_tennis"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/1038193549",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "table tennis · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/94890095",
+      "name": "Huruma Stadium",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2588586,
+        "lng": 36.8754245
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "soccer"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/94890095",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "soccer · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1060318319",
+      "name": "ILRI Gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2681714,
+        "lng": 36.7220697
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre",
+        "fitness",
+        "running",
+        "yoga"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1060318319",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness;running;yoga · fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/175841808",
+      "name": "Impala Club",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.3012961,
+        "lng": 36.7687043
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "multi"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/175841808",
+      "phone": null,
+      "website": "https://impalaclub.co.ke/",
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "multi · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1474360417",
+      "name": "Iten Sports Ground",
+      "address": "Kenya",
+      "location": {
+        "lat": 0.6711341,
+        "lng": 35.5064978
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1474360417",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/6149634446",
+      "name": "Jamboni Complex 2010",
+      "address": "Eldoret - Nakuru Road, Eldoret",
+      "location": {
+        "lat": 0.4736329,
+        "lng": 35.3011197
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/6149634446",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/6944504785",
+      "name": "Japeths power fitness",
+      "address": "3rd floor BA, Lower Kabete Lane",
+      "location": {
+        "lat": -1.2504989,
+        "lng": 36.7855522
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/6944504785",
+      "phone": "0742530888",
+      "website": "http://www.japhethpowerfitness.com",
+      "weekdayHours": [
+        "Mo-Su 06:00-21:00"
+      ],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/6763418026",
+      "name": "Jeff's Fitness Centre",
+      "address": "Amoth Owira Road",
+      "location": {
+        "lat": -0.1104454,
+        "lng": 34.7490874
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/6763418026",
+      "phone": null,
+      "website": "https://www.facebook.com/jeffs.fitness.centre/",
+      "weekdayHours": [
+        "Mo-Fr 06:00-21:00; Sa 07:00-19:00"
+      ],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/9899664728",
+      "name": "K.O Fitness Studio",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.3760656,
+        "lng": 36.9466745
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/9899664728",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/626463038",
+      "name": "Karibu Hall",
+      "address": "Kenya",
+      "location": {
+        "lat": -3.3249462,
+        "lng": 37.3196497
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/626463038",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/451326540",
+      "name": "Karume Stadium",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.499157,
+        "lng": 33.8034403
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/451326540",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/259375407",
+      "name": "Kasarani Aquatic Stadium",
+      "address": "Aquatic drive, Nairobi",
+      "location": {
+        "lat": -1.2248084,
+        "lng": 36.8897513
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "swimming"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/259375407",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "swimming · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/25830698",
+      "name": "KCB Sports Club",
+      "address": "Nairobi",
+      "location": {
+        "lat": -1.2564712,
+        "lng": 36.8589298
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/25830698",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/2509935543",
+      "name": "KCB Sports Complex",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2558867,
+        "lng": 36.8578219
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/2509935543",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/13270008494",
+      "name": "Kechei's Camp",
+      "address": "Eldoret-Iten Road",
+      "location": {
+        "lat": 0.6577169,
+        "lng": 35.4960441
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": true,
+      "types": [
+        "sports_centre",
+        "athletics"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/13270008494",
+      "phone": "+ 254 708 002 358",
+      "website": "https://kecheicentre.com/",
+      "weekdayHours": [
+        "24/7"
+      ],
+      "reviews": [],
+      "editorialSummary": "athletics · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/3738823771",
+      "name": "Kenya Motor Sports Club",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.325989,
+        "lng": 36.8325731
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/3738823771",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/627147548",
+      "name": "Kenyatta University Gymnasium",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.1833799,
+        "lng": 36.9295575
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/627147548",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/629986766",
+      "name": "Kenyatta University Gymnasium Parking Lot",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.1832576,
+        "lng": 36.9290773
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "parking"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/629986766",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": null,
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/6578724785",
+      "name": "Kisaka shule",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.5662668,
+        "lng": 34.4877902
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/6578724785",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/6095562310",
+      "name": "Kisii Sports Club",
+      "address": "B3, Kisii",
+      "location": {
+        "lat": -0.6796091,
+        "lng": 34.7716187
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/6095562310",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/501079345",
+      "name": "KPA sports club mbaraki",
+      "address": "Kenya",
+      "location": {
+        "lat": -4.0701218,
+        "lng": 39.6672797
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/501079345",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/12650487814",
+      "name": "La Roca",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2181403,
+        "lng": 36.9110565
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/12650487814",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1344751856",
+      "name": "Lala Galu(GYM)",
+      "address": "Kenya",
+      "location": {
+        "lat": -4.3638843,
+        "lng": 39.5598062
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1344751856",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/14148174874",
+      "name": "Level 24",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2616988,
+        "lng": 36.7897052
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/14148174874",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/425712088",
+      "name": "Library Box Recreation Center",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.3105563,
+        "lng": 36.7787655
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "gymnastics"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/425712088",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [
+        "24hrs"
+      ],
+      "reviews": [],
+      "editorialSummary": "gymnastics · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/253972343",
+      "name": "Ligi Ndogo Soccer club",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.3014509,
+        "lng": 36.7732041
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/253972343",
+      "phone": null,
+      "website": "https://ligindogo.co.ke/",
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/4601232892",
+      "name": "Lornah Kiplagat Sports Academy (HATC Track)",
+      "address": "Kenya",
+      "location": {
+        "lat": 0.6476665,
+        "lng": 35.4824298
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/4601232892",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/2405836262",
+      "name": "Lucky summer play ground",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2393083,
+        "lng": 36.898786
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/2405836262",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/5588098803",
+      "name": "Makueni fitness centre",
+      "address": "Unoa urban",
+      "location": {
+        "lat": -1.8002125,
+        "lng": 37.624685
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": true,
+      "types": [
+        "fitness_station"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/5588098803",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [
+        "24/7"
+      ],
+      "reviews": [],
+      "editorialSummary": "Fitness centre · fitness station",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/4397106792",
+      "name": "Manga Gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.4933311,
+        "lng": 33.8078651
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/4397106792",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [
+        "Mo-Su 15:00-22:00"
+      ],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1460237685",
+      "name": "Mariakani Rifle Club",
+      "address": "Kenya",
+      "location": {
+        "lat": -3.7823463,
+        "lng": 39.4465561
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "shooting"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1460237685",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "shooting · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/1392020278",
+      "name": "Marimanti Rural Training Centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -0.1552776,
+        "lng": 37.9741263
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/1392020278",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/10997765009",
+      "name": "Martianda",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2245967,
+        "lng": 36.9296436
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/10997765009",
+      "phone": "+254 706 174332",
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/1038195570",
+      "name": "Mathare Youth Sports Association",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2586879,
+        "lng": 36.8755575
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/1038195570",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/659379435",
+      "name": "Mathare Youth Sports Association - MYSA Kenya",
+      "address": "Kangundo Road, Nairobi",
+      "location": {
+        "lat": -1.2606584,
+        "lng": 36.9085206
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/659379435",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/4475250602",
+      "name": "Mbale Resort Pool House",
+      "address": "Kenya",
+      "location": {
+        "lat": 1.0721856,
+        "lng": 34.1954425
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "swimming"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/4475250602",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "swimming · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/12854948602",
+      "name": "Meru Camp",
+      "address": "Kenya",
+      "location": {
+        "lat": -3.3203185,
+        "lng": 36.7226124
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "climbing_adventure",
+        "archery"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/12854948602",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "climbing adventure;archery · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/359268077",
+      "name": "Meru Sports Club",
+      "address": "Meru County",
+      "location": {
+        "lat": 0.0446307,
+        "lng": 37.6479736
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/359268077",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/4406112889",
+      "name": "Mlango Mmoja",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.5070573,
+        "lng": 33.8049202
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/4406112889",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/326495545",
+      "name": "Moi International Sports Centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2281621,
+        "lng": 36.8911947
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/326495545",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/6956784785",
+      "name": "Mom3mtum",
+      "address": "Muguga Green",
+      "location": {
+        "lat": -1.2582901,
+        "lng": 36.7887406
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/6956784785",
+      "phone": "0254731758371",
+      "website": "https://mom3ntum.com/",
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/13264716972",
+      "name": "Mti Moja",
+      "address": "Kenya",
+      "location": {
+        "lat": 0.4766697,
+        "lng": 35.3002663
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/13264716972",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/4965196227",
+      "name": "Mugumu gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.8390741,
+        "lng": 34.6732333
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/4965196227",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": null,
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/10600729495",
+      "name": "Muscle Beach Gym Kasarani",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2211549,
+        "lng": 36.9134308
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre",
+        "gymnastics"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/10600729495",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [
+        "Mo-Sa 10:00-16:00"
+      ],
+      "reviews": [],
+      "editorialSummary": "gymnastics · fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/6045701221",
+      "name": "Mvita gym",
+      "address": "Narok road, Mombasa",
+      "location": {
+        "lat": -4.051654,
+        "lng": 39.6601327
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/6045701221",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/553300984",
+      "name": "Nairobi Gymkhana",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2697666,
+        "lng": 36.8271972
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "community_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/553300984",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": null,
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/250272028",
+      "name": "Naivasha Sports Club",
+      "address": "Moi Avenue, Naivasha",
+      "location": {
+        "lat": -0.7128827,
+        "lng": 36.4266735
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/250272028",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/8120519699",
+      "name": "Nameless Fitness Gym",
+      "address": "Nairobi",
+      "location": {
+        "lat": -1.3120925,
+        "lng": 36.8986558
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre",
+        "fitness",
+        "gymnastics"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/8120519699",
+      "phone": "--",
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness;gymnastics · fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/5431210797",
+      "name": "Ngara Sports Club",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.3186132,
+        "lng": 36.8258617
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/5431210797",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/12886221882",
+      "name": "NGWATA Staduium",
+      "address": "Machakos",
+      "location": {
+        "lat": -1.4567756,
+        "lng": 36.979521
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/12886221882",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/12691437691",
+      "name": "Nyali crossfit gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -4.037786,
+        "lng": 39.7061828
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/12691437691",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/6038770497",
+      "name": "Nyali Executive fitness Centre",
+      "address": "Mama Ngina Road, Mombasa",
+      "location": {
+        "lat": -4.055525,
+        "lng": 39.6929502
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/6038770497",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/419115194",
+      "name": "Nyayo Stadium Swimming Pool",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.3023406,
+        "lng": 36.8246585
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "swimming"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/419115194",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "swimming · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/12243205474",
+      "name": "Olympia gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.3090868,
+        "lng": 36.8797166
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/12243205474",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/7611596652",
+      "name": "Olympus Fitness Center",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2772022,
+        "lng": 36.6864459
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "gymnastics"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/7611596652",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "Olympus fitness Center, · gymnastics",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/685633598",
+      "name": "Oshwal Community Sports Centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2609178,
+        "lng": 36.8069857
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/685633598",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/553282428",
+      "name": "Oshwal Sports Complex",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2659874,
+        "lng": 36.8192017
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/553282428",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/25493252",
+      "name": "Parklands Sports Club",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.267372,
+        "lng": 36.8133697
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "multi"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/25493252",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "multi · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/5238938321",
+      "name": "Perfect Gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -3.3742531,
+        "lng": 36.6827602
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/5238938321",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/12112874821",
+      "name": "Physiq & Tone Gym",
+      "address": "Limuru Road",
+      "location": {
+        "lat": -1.2063768,
+        "lng": 36.7844075
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre",
+        "fitness"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/12112874821",
+      "phone": "+254708215032",
+      "website": null,
+      "weekdayHours": [
+        "Mo-Su 09:00-21:00"
+      ],
+      "reviews": [],
+      "editorialSummary": "fitness · fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/59686668",
+      "name": "Player's",
+      "address": "Kenya",
+      "location": {
+        "lat": -3.393686,
+        "lng": 36.709226
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "squash",
+        "tennis",
+        "swimming",
+        "pool",
+        "fitness_studio"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/59686668",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "squash; tennis; swimming; pool; fitness studio · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/5440688256",
+      "name": "Power Vibe Studio Westlands/Power Plate Studio",
+      "address": "Muthangari Drive, Nairobi",
+      "location": {
+        "lat": -1.2601834,
+        "lng": 36.7840611
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/5440688256",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/5334737421",
+      "name": "Priscah Nyawalo home",
+      "address": "Kenya",
+      "location": {
+        "lat": -0.094583,
+        "lng": 34.3840817
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/5334737421",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/14001990301",
+      "name": "Pulse Fitness",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2291199,
+        "lng": 36.7606484
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/14001990301",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/5354298522",
+      "name": "Racing Sport Gym",
+      "address": "14, Woodvale Grove",
+      "location": {
+        "lat": -1.2643318,
+        "lng": 36.80398
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/5354298522",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/3868919121",
+      "name": "Rekebisha primary/Gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.3105797,
+        "lng": 36.8427982
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "school"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/3868919121",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": null,
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/184178103",
+      "name": "Rift Valley Sports Club",
+      "address": "Kenya",
+      "location": {
+        "lat": -0.2871642,
+        "lng": 36.0730048
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/184178103",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/13974623144",
+      "name": "Rollin Total Fitness-Health and Fitness Consultant & Supplements Store Parklands, Nairobi",
+      "address": "City Park Drive, Nairobi",
+      "location": {
+        "lat": -1.2580152,
+        "lng": 36.8300326
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/13974623144",
+      "phone": "0722 905223",
+      "website": "https://rollintotalfitness.com/",
+      "weekdayHours": [
+        "Mo-Fri 09:00-18:00, Sat 09:00 - 14:00, Sun Closed"
+      ],
+      "reviews": [],
+      "editorialSummary": "Rollin Total Fitness is a premier health and fitness consultant and supplements store located in Parklands, Nairobi, committed to helping individuals achieve real, long-lasting fitness and wellness results through expert guidance and personalized support.",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/6063096715",
+      "name": "Rox Park Gym Diani True Fitness",
+      "address": "Ukunda-Ramisi Road, Diani Beach",
+      "location": {
+        "lat": -4.2833492,
+        "lng": 39.5702323
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/6063096715",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/524758013",
+      "name": "Ruaraka Sports Club",
+      "address": "Nairobi",
+      "location": {
+        "lat": -1.2581907,
+        "lng": 36.8575419
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/524758013",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/771469770",
+      "name": "Rudicci Fitness Lots",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2981221,
+        "lng": 36.7926809
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/771469770",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "+254 71 24 73 · fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/6207490931",
+      "name": "Ruiru Sports Club",
+      "address": "Thika Road, Ruiru",
+      "location": {
+        "lat": -1.1307542,
+        "lng": 36.9908636
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/6207490931",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/696339366",
+      "name": "Sadili Oval",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.3205803,
+        "lng": 36.7893489
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/696339366",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/5356824865",
+      "name": "Salmer Fitness Centre Salon and Barber Shop",
+      "address": "Second Floor of Karen Plains Arcade, Karen Plains Rd, Nairobi City",
+      "location": {
+        "lat": -1.329232,
+        "lng": 36.7199119
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/5356824865",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": null,
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/10866803434",
+      "name": "Shinda Gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -3.4009251,
+        "lng": 36.6787468
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/10866803434",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/4233748600",
+      "name": "Sigira fitness experience",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2408436,
+        "lng": 36.795165
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": true,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/4233748600",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [
+        "24/7"
+      ],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/6057695740",
+      "name": "Skydive Diani",
+      "address": "Diani Beach Road",
+      "location": {
+        "lat": -4.3699218,
+        "lng": 39.5574407
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "parachuting"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/6057695740",
+      "phone": null,
+      "website": "http://www.skydivediani.com/",
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "parachuting · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/13188877810",
+      "name": "Skylarking",
+      "address": "Kwavonza-K.U. Kitui Campus Road",
+      "location": {
+        "lat": -1.3822173,
+        "lng": 37.8265058
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/13188877810",
+      "phone": "+254705 389090",
+      "website": null,
+      "weekdayHours": [
+        "Mo-Su 05:00-22:00"
+      ],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/5421225050",
+      "name": "Smartgyms",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2975701,
+        "lng": 36.7618159
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre",
+        "fitness"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/5421225050",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness · fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/604864014",
+      "name": "Sports Centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -4.3072796,
+        "lng": 39.5808722
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/604864014",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1046708988",
+      "name": "Sports Centre",
+      "address": "Kenya",
+      "location": {
+        "lat": -0.2801547,
+        "lng": 35.7636321
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1046708988",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/2371591247",
+      "name": "sports club",
+      "address": "Kenya",
+      "location": {
+        "lat": 1.0682992,
+        "lng": 34.1856804
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/2371591247",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/1418962733",
+      "name": "Squash court",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2795479,
+        "lng": 36.8128487
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "squash"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/1418962733",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "squash · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/12886532100",
+      "name": "Stage on the Turn",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.3233283,
+        "lng": 36.9002911
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_station",
+        "fitness",
+        "sit-up"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/12886532100",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness · fitness station",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/2387236815",
+      "name": "Stima Club",
+      "address": "Nairobi",
+      "location": {
+        "lat": -1.2555354,
+        "lng": 36.8579541
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/2387236815",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [
+        "08:00-20:30"
+      ],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/182419581",
+      "name": "Swahili Spa and Gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -4.2922402,
+        "lng": 39.5882221
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/182419581",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/5333086583",
+      "name": "Swim Africa Limited",
+      "address": "Grevillea Grove, Nairobi",
+      "location": {
+        "lat": -1.255486,
+        "lng": 36.7802624
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "swimming"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/5333086583",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "swimming · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/6210199378",
+      "name": "Switch Fitness Center",
+      "address": "Mombasa Road, Mlolongo",
+      "location": {
+        "lat": -1.3929121,
+        "lng": 36.9377121
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/6210199378",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/421270142",
+      "name": "Talanta Sports Stadium",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.3057699,
+        "lng": 36.7511633
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/421270142",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/2083711099",
+      "name": "Team Excel Training Ground",
+      "address": "Nduruma Road",
+      "location": {
+        "lat": -3.4659282,
+        "lng": 36.7946626
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/2083711099",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/1762036821",
+      "name": "Texas Gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.3005644,
+        "lng": 36.8887909
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/1762036821",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/311764112",
+      "name": "The",
+      "address": "Kenya",
+      "location": {
+        "lat": -3.3663862,
+        "lng": 36.7023317
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/311764112",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/5412286171",
+      "name": "The Colosseum Fitness Centre",
+      "address": "Adams Arcade,, Ngong Road, Nairobi",
+      "location": {
+        "lat": -1.3011619,
+        "lng": 36.7805593
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/5412286171",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/6501067908",
+      "name": "The Fitness Cocoon",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.3665591,
+        "lng": 36.7434599
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/6501067908",
+      "phone": null,
+      "website": "https://www.facebook.com/fitcocoon",
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/419073388",
+      "name": "The Nairobi Club",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2974635,
+        "lng": 36.8099531
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/419073388",
+      "phone": null,
+      "website": "https://nairobiclub.com/",
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/293030960",
+      "name": "Thika Gymkhana",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.0349684,
+        "lng": 37.0690388
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/293030960",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/2511455581",
+      "name": "Trojan Health and Fitness Gym;Big Square - Karen Square",
+      "address": "Karen Shopping Center, Langata Rd, Nairobi City, Langata Road, Nairobi",
+      "location": {
+        "lat": -1.3229326,
+        "lng": 36.707348
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre",
+        "restaurant"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/2511455581",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1254080094",
+      "name": "Two Rivers Sports District",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2099106,
+        "lng": 36.798825
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre",
+        "soccer",
+        "fitness"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1254080094",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [
+        "Mo-Fr 05:00-17:00"
+      ],
+      "reviews": [],
+      "editorialSummary": "soccer;fitness · fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/12886664061",
+      "name": "Uhuru Sports Complex",
+      "address": "Nairobi",
+      "location": {
+        "lat": -1.2846882,
+        "lng": 36.8685307
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/12886664061",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/48161507",
+      "name": "Undugu Playing Ground",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.3178737,
+        "lng": 36.7998983
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": "PRICE_LEVEL_FREE",
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "soccer"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/48161507",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "soccer · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/12559221301",
+      "name": "Unique Sports Gym and Fitness",
+      "address": "Kenya",
+      "location": {
+        "lat": -3.5035106,
+        "lng": 38.374146
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/12559221301",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/1302874712",
+      "name": "University of Nairobi Sports Grounds",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.277089,
+        "lng": 36.811843
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/1302874712",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/160912620",
+      "name": "Vet Labs Sports club",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2597187,
+        "lng": 36.725986
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/160912620",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/12163759213",
+      "name": "Veteran Fitness Center",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2740835,
+        "lng": 36.8217987
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/12163759213",
+      "phone": "+254 113 724182",
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/4406119191",
+      "name": "Vibanda vya nguo",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.5072996,
+        "lng": 33.8045948
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/4406119191",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/10978582607",
+      "name": "Villag 1 UN Habitat for A Better Urban Future",
+      "address": "Kenya",
+      "location": {
+        "lat": 3.7695988,
+        "lng": 34.7292904
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/10978582607",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "way/501395795",
+      "name": "Wadi Degla Club",
+      "address": "Kasarini Road, Kiambu",
+      "location": {
+        "lat": -1.2031408,
+        "lng": 36.8183047
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/way/501395795",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/5334941678",
+      "name": "Westgate Villas & Gym",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2927321,
+        "lng": 36.7670146
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/5334941678",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/11610005133",
+      "name": "World Class Gym",
+      "address": "Kenya",
+      "location": {
+        "lat": 0.6668487,
+        "lng": 35.5058738
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre",
+        "fitness"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/11610005133",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness · fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/1420033878",
+      "name": "YMCA",
+      "address": "Kenya",
+      "location": {
+        "lat": -1.2795409,
+        "lng": 36.8128856
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "sports_centre",
+        "squash"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/1420033878",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "SQUASH · sports centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    },
+    {
+      "id": "node/5429106186",
+      "name": "Zeal Fitness",
+      "address": "Gatura Gardens, Nairobi",
+      "location": {
+        "lat": -1.2978766,
+        "lng": 36.7735651
+      },
+      "rating": null,
+      "userRatingCount": 0,
+      "priceLevel": null,
+      "openNow": null,
+      "types": [
+        "fitness_centre",
+        "fitness"
+      ],
+      "photoName": null,
+      "googleMapsUri": "https://www.openstreetmap.org/node/5429106186",
+      "phone": null,
+      "website": null,
+      "weekdayHours": [],
+      "reviews": [],
+      "editorialSummary": "fitness · fitness centre",
+      "distanceKm": null,
+      "score": 0,
+      "labels": []
+    }
+  ]
+}

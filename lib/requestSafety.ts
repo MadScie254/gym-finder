@@ -60,9 +60,11 @@ export function readBoundedQuery(value: string | null):
   return { query };
 }
 
-export function readRadius(value: string | null, fallback = 5_000): number | null {
+export function readRadius(value: string | null, fallback = 0): number | null {
   if (value == null) return fallback;
   const radius = Number(value);
+  // 0 = entire Kenya (catalog-wide nationwide search).
+  if (radius === 0) return 0;
   if (!Number.isFinite(radius) || radius < 400 || radius > 40_000) return null;
   return Math.round(radius);
 }
