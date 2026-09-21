@@ -49,6 +49,8 @@ export type Gym = {
   distanceKm: number | null;
   score: number;
   labels: GymLabel[];
+  /** True when the listing already includes the tags the detail panel renders. */
+  listingComplete?: boolean;
 };
 
 export type County = {

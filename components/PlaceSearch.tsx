@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useMemo, useState } from "react";
-import { COUNTIES } from "@/lib/kenya";
+import { matchCounties } from "@/lib/kenya";
 import type { PlaceHit } from "@/lib/osmPlaces";
 
 type PlaceSearchProps = {
@@ -21,9 +21,7 @@ export default function PlaceSearch({
   const [activeIndex, setActiveIndex] = useState(-1);
   const menuId = useId();
   const suggestions = useMemo(() => {
-    const trimmed = query.trim().toLowerCase();
-    if (!trimmed) return [];
-    return COUNTIES.filter((county) => county.name.toLowerCase().includes(trimmed))
+    return matchCounties(query)
       .slice(0, 5)
       .map(
         (county): PlaceHit => ({

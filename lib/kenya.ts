@@ -9,6 +9,20 @@ export const KENYA_BOUNDS = {
   east: 41.91,
 };
 
+/** Padded box used as the map maxBounds and the tile-proxy allowlist. */
+export const KENYA_MAP_BOUNDS = {
+  west: 33.6,
+  south: -5.05,
+  east: 42.05,
+  north: 5.7,
+} as const;
+
+export const MAP_MIN_ZOOM = 5;
+export const MAP_MAX_ZOOM = 19;
+
+/** Ignore 1–2 character fragments such as "a", "ma", and "ki". */
+export const MIN_COUNTY_QUERY_LENGTH = 3;
+
 export const COUNTIES: County[] = [
   { name: "Nairobi", lat: -1.286389, lng: 36.817223 },
   { name: "Mombasa", lat: -4.0435, lng: 39.6682 },
@@ -68,13 +82,77 @@ export function isInKenya(point: LatLng): boolean {
   );
 }
 
+function foldCountyName(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/['’]/g, "")
+    .replace(/-/g, " ")
+    .replace(/\s+/g, " ");
+}
+
+/**
+ * Exact match, or a prefix of at least MIN_COUNTY_QUERY_LENGTH.
+ * Ambiguous prefixes stay in the list; a query with extra words keeps the
+ * longest county name that begins it ("nairobi west" → Nairobi).
+ */
+export function matchCounties(query: string): County[] {
+  const needle = foldCountyName(query);
+  if (needle.length < MIN_COUNTY_QUERY_LENGTH) return [];
+
+  const exact = COUNTIES.filter((county) => foldCountyName(county.name) === needle);
+  if (exact.length === 1) return exact;
+
+  const prefixed = COUNTIES.filter((county) => foldCountyName(county.name).startsWith(needle));
+  if (prefixed.length > 0) {
+    return [...prefixed].sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
+  }
+
+  let best: County | undefined;
+  let bestLength = 0;
+  for (const county of COUNTIES) {
+    const name = foldCountyName(county.name);
+    if (needle.startsWith(`${name} `) && name.length > bestLength) {
+      best = county;
+      bestLength = name.length;
+    }
+  }
+  return best ? [best] : [];
+}
+
 export function findCounty(query: string): County | undefined {
-  const needle = query.trim().toLowerCase();
-  if (!needle) return undefined;
-  return COUNTIES.find(
-    (county) =>
-      county.name.toLowerCase() === needle ||
-      county.name.toLowerCase().includes(needle),
+  const matches = matchCounties(query);
+  return matches.length === 1 ? matches[0] : undefined;
+}
+
+function tileLng(x: number, zoom: number): number {
+  return (x / 2 ** zoom) * 360 - 180;
+}
+
+function tileLat(y: number, zoom: number): number {
+  const n = Math.PI - (2 * Math.PI * y) / 2 ** zoom;
+  return (180 / Math.PI) * Math.atan(Math.sinh(n));
+}
+
+export function isMapTileIndex(zoom: number, x: number, y: number): boolean {
+  if (!Number.isInteger(zoom) || !Number.isInteger(x) || !Number.isInteger(y)) return false;
+  if (zoom < MAP_MIN_ZOOM || zoom > MAP_MAX_ZOOM) return false;
+  const size = 2 ** zoom;
+  return x >= 0 && y >= 0 && x < size && y < size;
+}
+
+/** True when the slippy-map tile rectangle overlaps the Kenya map bounds. */
+export function tileIntersectsKenya(zoom: number, x: number, y: number): boolean {
+  if (!isMapTileIndex(zoom, x, y)) return false;
+  const west = tileLng(x, zoom);
+  const east = tileLng(x + 1, zoom);
+  const north = tileLat(y, zoom);
+  const south = tileLat(y + 1, zoom);
+  return (
+    west < KENYA_MAP_BOUNDS.east &&
+    east > KENYA_MAP_BOUNDS.west &&
+    south < KENYA_MAP_BOUNDS.north &&
+    north > KENYA_MAP_BOUNDS.south
   );
 }
 

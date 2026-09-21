@@ -29,12 +29,21 @@ using services you are authorised to operate at your expected traffic level.
 The app fails with an honest empty state when these production providers are
 not configured.
 
-Search suggestions are intentionally local (Kenya's counties). A town, estate,
-or gym lookup reaches the configured geocoder only when the visitor submits the
-search. Same-origin API routes validate, rate-limit, cache, coalesce, and time
-out provider requests; the included in-memory controls should be replaced with
-shared platform storage when running multiple application instances.
+Search suggestions are intentionally local (Kenya's counties). A typed fragment
+must be an exact county name or a prefix of at least three characters, so short
+strings are not treated as a county. A town, estate, or gym lookup reaches the
+configured geocoder only when the visitor submits the search. Same-origin API
+routes validate, rate-limit, cache, coalesce, and time out provider requests.
+Overpass calls use the same minimum spacing as the geocoder. The in-memory
+limiter keys each client by a trusted address (a configured
+`TRUSTED_CLIENT_IP_HEADER`, otherwise the right-most `X-Forwarded-For` hop) and
+does not put unidentified production traffic in one shared bucket. It is still
+process-local: replace it with the platform's durable limiter when more than
+one instance serves traffic.
 
-Optional `ESRI_TILE_URL` and `ESRI_EXPORT_URL` variables can point the map proxy
-at licensed basemap services. Review the selected provider's attribution,
-usage limits, and SLA before launch.
+`ESRI_TILE_URL` and `ESRI_EXPORT_URL` are required in production. The map proxy
+then allows only tiles that intersect the Kenya map bounds and only
+`image/jpeg`, `image/png`, or `image/webp` responses. Local development can use
+Esri's public World Street Map; production does not select that service unless
+you set the URLs yourself. Review the selected provider's attribution, usage
+limits, and SLA before launch.
