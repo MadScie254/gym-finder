@@ -20,6 +20,13 @@ function clearExpired(now: number): void {
   }
 }
 
+/** Remembers a value already loaded by another query so a later lookup skips upstream. */
+export function seedTtlCache<T>(key: string, value: T, ttlMs: number): void {
+  clearExpired(Date.now());
+  values.delete(key);
+  values.set(key, { value, expiresAt: Date.now() + ttlMs });
+}
+
 /**
  * Coalesces duplicate requests and keeps small, short-lived provider responses
  * out of public map services. Use a durable cache when deploying to many instances.

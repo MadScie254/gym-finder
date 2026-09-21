@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Map as MapLibreMap, Marker, NavigationControl, type StyleSpecification } from "maplibre-gl";
+import { KENYA_MAP_BOUNDS } from "@/lib/kenya";
 import type { Gym, LatLng } from "@/lib/types";
 
 /** Crisp street basemap — must stay readable on desktop and mobile. */
@@ -20,9 +21,9 @@ const STYLE: StyleSpecification = {
   layers: [{ id: "streets", type: "raster", source: "streets" }],
 };
 
-const KENYA_BOUNDS: [[number, number], [number, number]] = [
-  [33.6, -5.05],
-  [42.05, 5.7],
+const MAX_BOUNDS: [[number, number], [number, number]] = [
+  [KENYA_MAP_BOUNDS.west, KENYA_MAP_BOUNDS.south],
+  [KENYA_MAP_BOUNDS.east, KENYA_MAP_BOUNDS.north],
 ];
 
 function desktopPadding() {
@@ -83,7 +84,7 @@ export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCent
         center: [origin.lng, origin.lat],
         zoom: 12.6,
         attributionControl: { compact: true },
-        maxBounds: KENYA_BOUNDS,
+        maxBounds: MAX_BOUNDS,
         minZoom: 5.4,
         fadeDuration: 0,
       });

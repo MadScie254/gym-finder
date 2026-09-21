@@ -1,19 +1,22 @@
 import { isInKenya, KENYA_BOUNDS } from "./kenya";
 import { fetchWithTimeout } from "./requestSafety";
-import { withCircuitBreaker, withProviderThrottle, withTtlCache } from "./ttlCache";
+import { seedTtlCache, withCircuitBreaker, withProviderThrottle, withTtlCache } from "./ttlCache";
 import type { Gym, LatLng } from "./types";
 
 const DEFAULT_OVERPASS_ENDPOINTS = [
   "https://overpass-api.de/api/interpreter",
   "https://overpass.kumi.systems/api/interpreter",
 ];
-const configuredOverpass = process.env.OVERPASS_ENDPOINTS?.split(",");
-const OVERPASS_ENDPOINTS = (
-  configuredOverpass ??
-  (process.env.NODE_ENV === "production" ? [] : DEFAULT_OVERPASS_ENDPOINTS)
-)
-  .map((endpoint) => endpoint.trim())
-  .filter((endpoint) => endpoint.startsWith("https://"));
+const OVERPASS_INTERVAL_MS = 1_100;
+const DETAILS_TTL_MS = 60 * 60 * 1_000;
+
+function overpassEndpoints(): string[] {
+  const configured = process.env.OVERPASS_ENDPOINTS?.split(",");
+  const raw =
+    configured ?? (process.env.NODE_ENV === "production" ? [] : DEFAULT_OVERPASS_ENDPOINTS);
+  return raw.map((endpoint) => endpoint.trim()).filter((endpoint) => endpoint.startsWith("https://"));
+}
+
 const PUBLIC_NOMINATIM_URL = "https://nominatim.openstreetmap.org/search";
 const configuredNominatim = process.env.NOMINATIM_URL?.trim();
 const NOMINATIM_URL =
@@ -266,32 +269,42 @@ function gymQuery(filter: string): string {
 }
 
 async function overpass(query: string): Promise<OsmElement[]> {
-  for (const [index, endpoint] of OVERPASS_ENDPOINTS.entries()) {
-    try {
-      return await withCircuitBreaker(`overpass:${endpoint}`, async () => {
-        const response = await fetchWithTimeout(endpoint, {
-          method: "POST",
-          headers: { ...headers(), "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-          body: `data=${encodeURIComponent(query)}`,
-          cache: "no-store",
-        }, 8_000);
-        if (!response.ok) throw new Error(`Overpass failed (${response.status})`);
-        const payload = (await response.json()) as { elements?: OsmElement[] };
-        return payload.elements ?? [];
-      });
-    } catch {
-      // Try the next provider once. Requests are intentionally sequential to
-      // avoid doubling traffic to community-operated Overpass services.
-      if (index < OVERPASS_ENDPOINTS.length - 1) {
-        await new Promise((resolve) => setTimeout(resolve, 250 * 2 ** index));
+  const endpoints = overpassEndpoints();
+  if (endpoints.length === 0) {
+    throw new Error("Gym data is unavailable until a production provider is configured");
+  }
+  // Same minimum spacing as Nominatim. One slot covers the fallback chain so a
+  // failure does not immediately call the next public instance.
+  return withProviderThrottle("overpass", OVERPASS_INTERVAL_MS, async () => {
+    for (const [index, endpoint] of endpoints.entries()) {
+      try {
+        return await withCircuitBreaker(`overpass:${endpoint}`, async () => {
+          const response = await fetchWithTimeout(endpoint, {
+            method: "POST",
+            headers: { ...headers(), "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+            body: `data=${encodeURIComponent(query)}`,
+            cache: "no-store",
+          }, 8_000);
+          if (!response.ok) throw new Error(`Overpass failed (${response.status})`);
+          const payload = (await response.json()) as { elements?: OsmElement[] };
+          return payload.elements ?? [];
+        });
+      } catch {
+        // Try the next provider once. Requests are intentionally sequential to
+        // avoid doubling traffic to community-operated Overpass services.
+        if (index < endpoints.length - 1) {
+          await new Promise((resolve) => setTimeout(resolve, 250 * 2 ** index));
+        }
       }
     }
-  }
-  throw new Error(
-    OVERPASS_ENDPOINTS.length
-      ? "Gym data provider is temporarily unavailable"
-      : "Gym data is unavailable until a production provider is configured",
-  );
+    throw new Error("Gym data provider is temporarily unavailable");
+  });
+}
+
+function rememberDetails(gym: Gym): Gym {
+  const listed = { ...gym, listingComplete: true };
+  seedTtlCache(`details:${gym.id}`, listed, DETAILS_TTL_MS);
+  return listed;
 }
 
 export async function searchNearbyGyms(center: LatLng, radiusMeters: number): Promise<Gym[]> {
@@ -307,7 +320,7 @@ async function searchNearbyGymsUncached(center: LatLng, radius: number): Promise
   const gyms = elements.map(mapElement).filter((gym): gym is Gym => gym != null);
   const unique = new Map<string, Gym>();
   for (const gym of gyms) unique.set(gym.id, gym);
-  return [...unique.values()];
+  return [...unique.values()].map(rememberDetails);
 }
 
 export async function searchTextGyms(query: string, center?: LatLng): Promise<Gym[]> {
@@ -355,7 +368,10 @@ export async function searchTextGyms(query: string, center?: LatLng): Promise<Gy
 }
 
 export async function getPlaceDetails(id: string): Promise<Gym | null> {
-  return withTtlCache(`details:${id}`, 60 * 60 * 1_000, () => getPlaceDetailsUncached(id));
+  return withTtlCache(`details:${id}`, DETAILS_TTL_MS, async () => {
+    const gym = await getPlaceDetailsUncached(id);
+    return gym ? { ...gym, listingComplete: true } : null;
+  });
 }
 
 async function getPlaceDetailsUncached(id: string): Promise<Gym | null> {

@@ -8,21 +8,108 @@ type RateLimit = {
 const rateLimits = new Map<string, RateLimit>();
 const MAX_TRACKED_CLIENTS = 1_000;
 
-function clientKey(request: Request): string {
-  // Hosting providers append this header. A production deployment should replace
-  // this process-local guard with its platform's durable rate limiter.
-  const forwarded = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
-  return forwarded || request.headers.get("x-real-ip") || "anonymous";
+/**
+ * Single-value headers a reverse proxy overwrites with the visitor address.
+ * Used only when X-Forwarded-For is absent. Set TRUSTED_CLIENT_IP_HEADER when
+ * the edge's real client header must win (for example cf-connecting-ip behind
+ * Cloudflare plus another proxy). Direct-to-origin callers can spoof headers;
+ * production should sit behind a proxy that overwrites the chosen header.
+ */
+const PLATFORM_IP_HEADERS = [
+  "cf-connecting-ip",
+  "true-client-ip",
+  "fly-client-ip",
+  "x-vercel-forwarded-for",
+  "x-real-ip",
+] as const;
+
+function normalizeIp(raw: string): string | null {
+  let value = raw.trim().replace(/^"|"$/g, "");
+  const zone = value.indexOf("%");
+  if (zone !== -1) value = value.slice(0, zone);
+  if (value.startsWith("[") && value.includes("]")) {
+    value = value.slice(1, value.indexOf("]"));
+  } else if (/^\d{1,3}(?:\.\d{1,3}){3}:\d+$/.test(value)) {
+    value = value.slice(0, value.lastIndexOf(":"));
+  }
+  if (!value || value.length > 128) return null;
+
+  if (/^\d{1,3}(?:\.\d{1,3}){3}$/.test(value)) {
+    const numbers = value.split(".").map((part) => Number(part));
+    if (numbers.some((part) => !Number.isInteger(part) || part < 0 || part > 255)) return null;
+    return numbers.join(".");
+  }
+
+  if (value.includes(":") && /[0-9a-f]/i.test(value) && /^[0-9a-f:]+$/i.test(value)) {
+    return value.toLowerCase();
+  }
+  return null;
 }
 
-function pruneExpired(now: number): void {
-  if (rateLimits.size < MAX_TRACKED_CLIENTS) return;
+function ipsFrom(header: string | null): string[] {
+  if (!header) return [];
+  return header
+    .split(",")
+    .map((part) => normalizeIp(part))
+    .filter((ip): ip is string => ip != null);
+}
+
+/**
+ * Identity for the in-process limiter.
+ * A configured TRUSTED_CLIENT_IP_HEADER is the only header consulted.
+ * Otherwise the right-most X-Forwarded-For hop is used — the address appended
+ * by the nearest proxy. The left-most value is client-supplied and ignored.
+ * Platform headers apply only when that chain is missing.
+ */
+function clientIdentity(request: Request): string | null {
+  const configured = process.env.TRUSTED_CLIENT_IP_HEADER?.trim().toLowerCase();
+  if (configured) {
+    const ips = ipsFrom(request.headers.get(configured));
+    if (ips.length === 0) return null;
+    return configured === "x-forwarded-for" ? ips[ips.length - 1] : ips[0];
+  }
+
+  const forwarded = ipsFrom(request.headers.get("x-forwarded-for"));
+  if (forwarded.length > 0) return forwarded[forwarded.length - 1];
+
+  for (const header of PLATFORM_IP_HEADERS) {
+    const ips = ipsFrom(request.headers.get(header));
+    if (ips.length > 0) return ips[0];
+  }
+  return null;
+}
+
+function tooMany(retryAfter: number): Response {
+  return Response.json(
+    { error: "Too many requests. Please wait a moment and try again." },
+    { status: 429, headers: { "Retry-After": String(retryAfter) } },
+  );
+}
+
+function ensureCapacity(now: number): void {
   for (const [key, limit] of rateLimits) {
     if (limit.resetAt <= now) rateLimits.delete(key);
   }
-  if (rateLimits.size >= MAX_TRACKED_CLIENTS) rateLimits.clear();
+  // Evict the least-recently-used live bucket. Never clear() the map: wiping
+  // every key resets active quotas and lets a full table unblock itself.
+  while (rateLimits.size >= MAX_TRACKED_CLIENTS) {
+    const oldest = rateLimits.keys().next().value;
+    if (oldest === undefined) break;
+    rateLimits.delete(oldest);
+  }
 }
 
+function remember(key: string, entry: RateLimit): void {
+  rateLimits.delete(key);
+  rateLimits.set(key, entry);
+}
+
+/**
+ * Process-local fixed window. Each serverless isolate keeps its own map, so
+ * this is not a global quota — put a durable platform limiter in front when
+ * more than one instance serves traffic. Unidentified production requests are
+ * rejected instead of sharing one anonymous bucket.
+ */
 export function rateLimit(
   request: Request,
   scope: string,
@@ -30,23 +117,30 @@ export function rateLimit(
   windowMs: number,
 ): Response | null {
   const now = Date.now();
-  pruneExpired(now);
-  const key = `${scope}:${clientKey(request)}`;
+  const identity = clientIdentity(request);
+  if (!identity && process.env.NODE_ENV === "production") {
+    return tooMany(60);
+  }
+  const key = `${scope}:${identity ?? "local-dev"}`;
   const current = rateLimits.get(key);
 
   if (!current || current.resetAt <= now) {
-    rateLimits.set(key, { hits: 1, resetAt: now + windowMs });
+    ensureCapacity(now);
+    remember(key, { hits: 1, resetAt: now + windowMs });
     return null;
   }
 
   current.hits += 1;
+  remember(key, current);
   if (current.hits <= maxRequests) return null;
 
   const retryAfter = Math.max(1, Math.ceil((current.resetAt - now) / 1000));
-  return Response.json(
-    { error: "Too many requests. Please wait a moment and try again." },
-    { status: 429, headers: { "Retry-After": String(retryAfter) } },
-  );
+  return tooMany(retryAfter);
+}
+
+/** Test isolation. Not used by request handlers. */
+export function resetRateLimitsForTests(): void {
+  rateLimits.clear();
 }
 
 export function readBoundedQuery(value: string | null):
