@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Map as MapLibreMap, Marker, NavigationControl, type StyleSpecification } from "maplibre-gl";
 import { KENYA_MAP_BOUNDS } from "@/lib/kenya";
+import { clampPadding, shouldFallbackOnError, type MapPadding } from "@/lib/mapView";
 import type { Gym, LatLng } from "@/lib/types";
 
 /** Crisp street basemap — must stay readable on desktop and mobile. */
@@ -26,7 +27,7 @@ const MAX_BOUNDS: [[number, number], [number, number]] = [
   [KENYA_MAP_BOUNDS.east, KENYA_MAP_BOUNDS.north],
 ];
 
-function desktopPadding() {
+function desktopPadding(): MapPadding {
   if (typeof window === "undefined") return { top: 24, right: 24, bottom: 24, left: 24 };
   if (window.matchMedia("(min-width: 1100px)").matches) {
     return { top: 88, right: 28, bottom: 28, left: 440 };
@@ -35,6 +36,11 @@ function desktopPadding() {
     return { top: 88, right: 24, bottom: 24, left: 380 };
   }
   return { top: 24, right: 16, bottom: 220, left: 16 };
+}
+
+function safePadding(map: MapLibreMap): MapPadding {
+  const container = map.getContainer();
+  return clampPadding(desktopPadding(), container.clientWidth || 0, container.clientHeight || 0);
 }
 
 function fallbackMapUrl(center: LatLng): string {
@@ -60,7 +66,6 @@ export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCent
   const originMarkerRef = useRef<Marker | null>(null);
   const onSelectRef = useRef(onSelect);
   const onIdleRef = useRef(onIdleCenter);
-  const usedFallback = useRef(false);
   const [ready, setReady] = useState(false);
   const [mapState, setMapState] = useState<"loading" | "live" | "fallback">("loading");
 
@@ -72,11 +77,25 @@ export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCent
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
     let map: MapLibreMap;
+    // State is scoped to this map instance (not a ref) so React StrictMode's
+    // dev remount cannot leak a stale "already fell back" flag onto the real map.
     let mapErrors = 0;
+    let hasRendered = false;
+    let usedFallback = false;
+
     const showFallback = () => {
+      // Only ever replace a map that has not yet drawn tiles. Once the basemap
+      // is live, transient tile failures must leave gaps — never blank it out.
+      if (hasRendered || usedFallback) return;
+      usedFallback = true;
       setMapState("fallback");
       map.getCanvasContainer().style.visibility = "hidden";
     };
+
+    const markRendered = () => {
+      hasRendered = true;
+    };
+
     try {
       map = new MapLibreMap({
         container: containerRef.current,
@@ -92,25 +111,27 @@ export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCent
       queueMicrotask(() => setMapState("fallback"));
       return;
     }
+    // Guards in showFallback/markRendered make a late timer fire a no-op, so the
+    // timer only needs clearing on unmount.
     const fallbackTimer = setTimeout(() => {
-      if (!map.areTilesLoaded()) showFallback();
+      if (!hasRendered && !map.areTilesLoaded()) showFallback();
     }, 7_000);
     map.addControl(new NavigationControl({ showCompass: false }), "bottom-right");
     map.on("load", () => {
-      map.setPadding(desktopPadding());
+      map.setPadding(safePadding(map));
       setReady(true);
     });
     map.on("idle", () => {
-      if (map.areTilesLoaded()) {
-        clearTimeout(fallbackTimer);
-        setMapState("live");
-      }
+      if (!map.areTilesLoaded()) return;
+      markRendered();
+      setMapState("live");
     });
     map.on("error", () => {
       mapErrors += 1;
-      if (!usedFallback.current && mapErrors >= 4) {
-        usedFallback.current = true;
-        clearTimeout(fallbackTimer);
+      // Fall back only while the map has never rendered (e.g. tiles never
+      // arrive on first load). After it is live, ignore tile errors so the
+      // basemap cannot appear and then disappear.
+      if (shouldFallbackOnError({ hasRendered, usedFallback, errorCount: mapErrors })) {
         showFallback();
       }
     });
@@ -120,14 +141,14 @@ export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCent
     });
 
     const onResize = () => {
-      map.setPadding(desktopPadding());
+      map.setPadding(safePadding(map));
       map.resize();
     };
     window.addEventListener("resize", onResize);
 
     mapRef.current = map;
     return () => {
-      clearTimeout(fallbackTimer);
+      if (fallbackTimer) clearTimeout(fallbackTimer);
       window.removeEventListener("resize", onResize);
       map.remove();
       mapRef.current = null;
@@ -138,7 +159,7 @@ export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCent
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !ready) return;
-    map.easeTo({ center: [origin.lng, origin.lat], duration: 650, padding: desktopPadding() });
+    map.easeTo({ center: [origin.lng, origin.lat], duration: 650, padding: safePadding(map) });
   }, [origin, ready]);
 
   useEffect(() => {
@@ -178,7 +199,7 @@ export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCent
           [Math.min(...lngs), Math.min(...lats)],
           [Math.max(...lngs), Math.max(...lats)],
         ],
-        { padding: desktopPadding(), maxZoom: 14.2, duration: 850 },
+        { padding: safePadding(map), maxZoom: 14.2, duration: 850 },
       );
     }
 
