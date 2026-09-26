@@ -8,6 +8,7 @@ const scriptSrc = isDev
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  turbopack: { root: process.cwd() },
   async headers() {
     return [
       {
@@ -18,10 +19,10 @@ const nextConfig: NextConfig = {
             value: [
               "default-src 'self'",
               "base-uri 'self'",
-              "connect-src 'self'",
-              "font-src 'self'",
+              "connect-src 'self' https://tiles.openfreemap.org",
+              "font-src 'self' https://tiles.openfreemap.org",
               "frame-ancestors 'none'",
-              "img-src 'self' data: blob:",
+              "img-src 'self' data: blob: https://tiles.openfreemap.org",
               "object-src 'none'",
               scriptSrc,
               "style-src 'self' 'unsafe-inline'",

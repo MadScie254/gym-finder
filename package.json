@@ -9,7 +9,9 @@
     "lint": "eslint",
     "test": "vitest run",
     "check": "npm run lint && npm run test && npm run build",
-    "fetch-gyms": "node scripts/fetch-kenya-gyms.mjs"
+    "fetch-gyms": "node scripts/fetch-kenya-gyms.mjs",
+    "curate-gyms": "node scripts/fetch-kenya-gyms.mjs --curate-existing",
+    "fetch-places": "node scripts/fetch-kenya-places.mjs"
   },
   "dependencies": {
     "maplibre-gl": "^6.9.1",

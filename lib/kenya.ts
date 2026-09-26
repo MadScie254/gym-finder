@@ -1,4 +1,5 @@
 import type { County, LatLng } from "./types";
+import boundary from "@/data/kenya-boundary.json";
 
 export const NAIROBI: LatLng = { lat: -1.286389, lng: 36.817223 };
 
@@ -60,12 +61,29 @@ export const COUNTIES: County[] = [
 ];
 
 export function isInKenya(point: LatLng): boolean {
-  return (
-    point.lat <= KENYA_BOUNDS.north &&
-    point.lat >= KENYA_BOUNDS.south &&
-    point.lng >= KENYA_BOUNDS.west &&
-    point.lng <= KENYA_BOUNDS.east
-  );
+  if (!Number.isFinite(point.lat) || !Number.isFinite(point.lng)) return false;
+  if (
+    point.lat > KENYA_BOUNDS.north ||
+    point.lat < KENYA_BOUNDS.south ||
+    point.lng < KENYA_BOUNDS.west ||
+    point.lng > KENYA_BOUNDS.east
+  ) return false;
+
+  // A bounding box includes large parts of Uganda, Tanzania and Somalia.
+  // Check the simplified gbOpen Kenya multipolygon, including lake islands.
+  return boundary.polygons.some((polygon) => {
+    const inRing = (ring: number[][]) => {
+      let inside = false;
+      for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+        const [xi, yi] = ring[i];
+        const [xj, yj] = ring[j];
+        if ((yi > point.lat) !== (yj > point.lat) &&
+          point.lng < ((xj - xi) * (point.lat - yi)) / (yj - yi) + xi) inside = !inside;
+      }
+      return inside;
+    };
+    return polygon.length > 0 && inRing(polygon[0]) && !polygon.slice(1).some(inRing);
+  });
 }
 
 export function findCounty(query: string): County | undefined {

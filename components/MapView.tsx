@@ -1,24 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Map as MapLibreMap, Marker, NavigationControl, type StyleSpecification } from "maplibre-gl";
+import { Map as MapLibreMap, Marker, NavigationControl } from "maplibre-gl";
 import type { Gym, LatLng } from "@/lib/types";
 
-/** Crisp street basemap — must stay readable on desktop and mobile. */
-const STYLE: StyleSpecification = {
-  version: 8,
-  name: "KAYA Streets",
-  sources: {
-    streets: {
-      type: "raster",
-      tiles: ["/api/map/tiles/{z}/{x}/{y}"],
-      tileSize: 256,
-      attribution: "© Esri © OpenStreetMap",
-      maxzoom: 19,
-    },
-  },
-  layers: [{ id: "streets", type: "raster", source: "streets" }],
-};
+/** OpenFreeMap permits keyless commercial use; its style includes attribution. */
+const STYLE_URL = "https://tiles.openfreemap.org/styles/liberty";
 
 const KENYA_BOUNDS: [[number, number], [number, number]] = [
   [33.6, -5.05],
@@ -59,7 +46,6 @@ export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCent
   const originMarkerRef = useRef<Marker | null>(null);
   const onSelectRef = useRef(onSelect);
   const onIdleRef = useRef(onIdleCenter);
-  const usedFallback = useRef(false);
   const [ready, setReady] = useState(false);
   const [mapState, setMapState] = useState<"loading" | "live" | "fallback">("loading");
 
@@ -74,12 +60,11 @@ export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCent
     let mapErrors = 0;
     const showFallback = () => {
       setMapState("fallback");
-      map.getCanvasContainer().style.visibility = "hidden";
     };
     try {
       map = new MapLibreMap({
         container: containerRef.current,
-        style: STYLE,
+        style: STYLE_URL,
         center: [origin.lng, origin.lat],
         zoom: 12.6,
         attributionControl: { compact: true },
@@ -102,13 +87,13 @@ export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCent
     map.on("idle", () => {
       if (map.areTilesLoaded()) {
         clearTimeout(fallbackTimer);
+        mapErrors = 0;
         setMapState("live");
       }
     });
     map.on("error", () => {
       mapErrors += 1;
-      if (!usedFallback.current && mapErrors >= 4) {
-        usedFallback.current = true;
+      if (mapErrors >= 4) {
         clearTimeout(fallbackTimer);
         showFallback();
       }
@@ -151,50 +136,49 @@ export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCent
       .setLngLat([origin.lng, origin.lat])
       .addTo(map);
 
-    markersRef.current.forEach((marker) => marker.remove());
-    markersRef.current = gyms.map((gym, index) => {
-      const el = document.createElement("button");
-      el.type = "button";
-      el.className = `kaya-pin${gym.id === selectedId ? " is-active" : ""}`;
-      el.setAttribute("aria-label", gym.name);
-      const dot = document.createElement("span");
-      dot.className = "kaya-pin__dot";
-      const label = document.createElement("span");
-      label.className = "kaya-pin__label";
-      label.textContent = String(index + 1).padStart(2, "0");
-      el.append(dot, label);
-      el.addEventListener("click", () => onSelectRef.current(gym.id));
-      return new Marker({ element: el, anchor: "bottom" })
-        .setLngLat([gym.location.lng, gym.location.lat])
-        .addTo(map);
-    });
+    return () => {
+      originMarkerRef.current?.remove();
+      originMarkerRef.current = null;
+    };
+  }, [origin, ready]);
 
-    if (gyms.length > 0) {
-      const lngs = gyms.map((g) => g.location.lng);
-      const lats = gyms.map((g) => g.location.lat);
-      const span =
-        Math.max(...lngs) - Math.min(...lngs) + (Math.max(...lats) - Math.min(...lats));
-      map.fitBounds(
-        [
-          [Math.min(...lngs), Math.min(...lats)],
-          [Math.max(...lngs), Math.max(...lats)],
-        ],
-        {
-          padding: desktopPadding(),
-          maxZoom: span > 4 ? 6.4 : span > 1.5 ? 9.5 : 14.2,
-          duration: 850,
-        },
-      );
-    }
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !ready) return;
+
+    const drawMarkers = () => {
+      markersRef.current.forEach((marker) => marker.remove());
+      const bounds = map.getBounds();
+      markersRef.current = gyms.flatMap((gym, index) => {
+        if (!bounds.contains([gym.location.lng, gym.location.lat])) return [];
+        const el = document.createElement("button");
+        el.type = "button";
+        el.className = `kaya-pin${gym.id === selectedId ? " is-active" : ""}`;
+        el.setAttribute("aria-label", gym.name);
+        const dot = document.createElement("span");
+        dot.className = "kaya-pin__dot";
+        const label = document.createElement("span");
+        label.className = "kaya-pin__label";
+        label.textContent = String(index + 1).padStart(2, "0");
+        el.append(dot, label);
+        el.addEventListener("click", () => onSelectRef.current(gym.id));
+        return [new Marker({ element: el, anchor: "bottom" })
+          .setLngLat([gym.location.lng, gym.location.lat])
+          .addTo(map)];
+      });
+    };
+    drawMarkers();
+    map.on("moveend", drawMarkers);
 
     return () => {
+      map.off("moveend", drawMarkers);
       markersRef.current.forEach((marker) => marker.remove());
       markersRef.current = [];
     };
-  }, [gyms, origin, selectedId, ready]);
+  }, [gyms, selectedId, ready]);
 
   return (
-    <div className="map-frame">
+    <div className={`map-frame map-frame--${mapState}`}>
       {mapState === "fallback" && (
         // The image keeps the map visible on browsers where WebGL is disabled or blocked.
         // eslint-disable-next-line @next/next/no-img-element
@@ -203,7 +187,7 @@ export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCent
       <div ref={containerRef} className="map-canvas" />
       <div className={`map-status map-status--${mapState}`} aria-live="polite">
         <span />
-        {mapState === "live" ? "Live map" : mapState === "fallback" ? "Map ready" : "Loading map"}
+        {mapState === "live" ? "Live map" : mapState === "fallback" ? "Static fallback" : "Loading map"}
       </div>
     </div>
   );

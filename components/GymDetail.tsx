@@ -25,7 +25,8 @@ export default function GymDetail({
   onClose,
   onToggleSave,
 }: GymDetailProps) {
-  const mapsLink = gym.googleMapsUri ?? directionsUrl(gym.location.lat, gym.location.lng, gym.name);
+  const mapsLink = directionsUrl(gym.location.lat, gym.location.lng);
+  const sourceLink = safeExternalUrl(gym.googleMapsUri);
   const websiteUrl = safeExternalUrl(gym.website);
   const telephoneUrl = safeTelephoneUrl(gym.phone);
   const fit = gym.labels[0] ? labelText(gym.labels[0]) : null;
@@ -54,7 +55,7 @@ export default function GymDetail({
       </div>
 
       <header className="detail__head">
-        <p className="eyebrow">Mapped live</p>
+        <p className="eyebrow">Community mapped · not yet verified</p>
         <h2 className="detail__title">{gym.name}</h2>
         {why && <p className="detail__why">{why}</p>}
         <p className="detail__addr">{gym.address}</p>
@@ -79,6 +80,14 @@ export default function GymDetail({
           Website
         </a>
       )}
+
+      {sourceLink && (
+        <a href={sourceLink} target="_blank" rel="noreferrer" className="detail__source">
+          View source map record
+        </a>
+      )}
+
+      <p className="detail__disclaimer">Hours, fees and contacts are shown only when mapped. Check with the venue before travelling.</p>
 
       {(gym.openNow != null || gym.types.length > 0) && (
         <div className="meta-row detail__tags">

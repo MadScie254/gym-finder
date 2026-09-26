@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useMemo, useState } from "react";
-import { COUNTIES } from "@/lib/kenya";
+import { suggestKenyaPlaces } from "@/lib/kenyaPlaces";
 import type { PlaceHit } from "@/lib/osmPlaces";
 
 type PlaceSearchProps = {
@@ -21,19 +21,7 @@ export default function PlaceSearch({
   const [activeIndex, setActiveIndex] = useState(-1);
   const menuId = useId();
   const suggestions = useMemo(() => {
-    const trimmed = query.trim().toLowerCase();
-    if (!trimmed) return [];
-    return COUNTIES.filter((county) => county.name.toLowerCase().includes(trimmed))
-      .slice(0, 5)
-      .map(
-        (county): PlaceHit => ({
-          id: `county/${county.name}`,
-          name: county.name,
-          subtitle: "County · Kenya",
-          kind: "county",
-          location: { lat: county.lat, lng: county.lng },
-        }),
-      );
+    return suggestKenyaPlaces(query, 6);
   }, [query]);
 
   const showMenu = open && query.trim().length >= 1;
@@ -96,14 +84,14 @@ export default function PlaceSearch({
                   event.preventDefault();
                 }
               }}
-              placeholder="Webuye, Kilimani, Mombasa, gym name…"
+              placeholder="Kilimani, Mombasa, gym name…"
               className="search-field__input"
               autoComplete="off"
             />
           </label>
         </form>
       {showMenu && (
-        <div id={menuId} className="search-menu" role="listbox" aria-label="County suggestions">
+        <div id={menuId} className="search-menu" role="listbox" aria-label="Kenya place suggestions">
           {suggestions.map((place, index) => (
             <button
               key={place.id}

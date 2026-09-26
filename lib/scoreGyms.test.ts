@@ -70,4 +70,20 @@ describe("gym filtering and ranking", () => {
     expect(ranked.find((item) => item.id === "near")?.labels).toContain("closest");
     expect(ranked.find((item) => item.id === "open")?.labels).toContain("best_match");
   });
+
+  it("does not rank a distant 24/7 listing ahead of a local gym", () => {
+    const ranked = rankGyms(
+      [
+        gym({ id: "local", location: { lat: -1.25, lng: 36.817 } }),
+        gym({ id: "far", location: { lat: -0.32, lng: 36.817 }, openNow: true }),
+      ],
+      { lat: -1.286, lng: 36.817 },
+      profile,
+      { ...filters, radiusMeters: 0 },
+    );
+    expect(ranked[0].id).toBe("local");
+    expect(ranked.map((item) => item.distanceKm)).toEqual(
+      [...ranked.map((item) => item.distanceKm)].sort((a, b) => (a ?? Infinity) - (b ?? Infinity)),
+    );
+  });
 });

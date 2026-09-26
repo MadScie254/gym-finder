@@ -1,7 +1,8 @@
-import { DEFAULT_PROFILE, type ClientProfile } from "./types";
+import { DEFAULT_PROFILE, type ClientProfile, type Gym } from "./types";
 
 const PROFILE_KEY = "gym-finder-profile";
 const FAVORITES_KEY = "gym-finder-favorites";
+const SAVED_GYMS_KEY = "gym-finder-saved-gyms-v1";
 const ONBOARDED_KEY = "gym-finder-onboarded";
 const INSTALL_DISMISS_KEY = "gym-finder-install-dismissed";
 
@@ -34,7 +35,21 @@ export function loadFavorites(): string[] {
 }
 
 export function saveFavorites(ids: string[]): void {
-  window.localStorage.setItem(FAVORITES_KEY, JSON.stringify(ids));
+  try { window.localStorage.setItem(FAVORITES_KEY, JSON.stringify(ids)); } catch { /* Storage can be unavailable. */ }
+}
+
+export function loadSavedGyms(): Gym[] {
+  const stored = readJson<unknown>(SAVED_GYMS_KEY, []);
+  if (!Array.isArray(stored)) return [];
+  return stored.filter((gym): gym is Gym =>
+    gym != null && typeof gym === "object" &&
+    typeof gym.id === "string" && typeof gym.name === "string" &&
+    Number.isFinite(gym.location?.lat) && Number.isFinite(gym.location?.lng),
+  );
+}
+
+export function saveSavedGyms(gyms: Gym[]): void {
+  try { window.localStorage.setItem(SAVED_GYMS_KEY, JSON.stringify(gyms)); } catch { /* Storage can be unavailable. */ }
 }
 
 export function hasOnboarded(): boolean {

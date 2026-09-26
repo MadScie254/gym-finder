@@ -7,18 +7,21 @@ import GymDetail from "./GymDetail";
 import GymList from "./GymList";
 import InstallPrompt from "./InstallPrompt";
 import PlaceSearch from "./PlaceSearch";
+import Planner from "./Planner";
 import ProfileForm from "./ProfileForm";
 import { findCounty, haversineKm, isInKenya, NAIROBI } from "@/lib/kenya";
 import type { PlaceHit } from "@/lib/osmPlaces";
 import { fetchGymDetails, fetchNearbyGyms, fetchSearchGyms } from "@/lib/placesClient";
-import { rankGyms } from "@/lib/scoreGyms";
+import { rankGyms, scoreGym } from "@/lib/scoreGyms";
 import {
   hasOnboarded,
   loadFavorites,
   loadProfile,
+  loadSavedGyms,
   markOnboarded,
   saveFavorites,
   saveProfile,
+  saveSavedGyms,
 } from "@/lib/storage";
 import {
   DEFAULT_FILTERS,
@@ -30,9 +33,10 @@ import {
   type LatLng,
 } from "@/lib/types";
 
-type SheetMode = "list" | "detail" | "filters" | "profile" | "onboarding";
+type SheetMode = "list" | "detail" | "filters" | "profile" | "plan" | "onboarding";
 type SheetSize = "peek" | "half" | "full";
 type ListTab = "suggested" | "saved";
+type ResultScope = "nationwide" | "nearby" | "search";
 
 const MapView = dynamic(() => import("./MapView"), {
   ssr: false,
@@ -47,6 +51,7 @@ export default function GymFinderApp() {
   const [profile, setProfile] = useState<ClientProfile>(DEFAULT_PROFILE);
   const [filters, setFilters] = useState<GymFilters>(DEFAULT_FILTERS);
   const [favorites, setFavorites] = useState<string[]>([]);
+  const [savedSnapshots, setSavedSnapshots] = useState<Gym[]>([]);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
   const [detailsLoading, setDetailsLoading] = useState(false);
@@ -54,6 +59,7 @@ export default function GymFinderApp() {
   const [sheetMode, setSheetMode] = useState<SheetMode>("list");
   const [sheetSize, setSheetSize] = useState<SheetSize>("half");
   const [tab, setTab] = useState<ListTab>("suggested");
+  const [resultScope, setResultScope] = useState<ResultScope>("nationwide");
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -62,6 +68,7 @@ export default function GymFinderApp() {
       if (!active) return;
       setProfile(loadProfile());
       setFavorites(loadFavorites());
+      setSavedSnapshots(loadSavedGyms());
       if (!hasOnboarded()) {
         setSheetMode("onboarding");
         setSheetSize("full");
@@ -78,12 +85,35 @@ export default function GymFinderApp() {
     [rawGyms, origin, profile, filters],
   );
   const savedGyms = useMemo(
-    () => rankedGyms.filter((gym) => favorites.includes(gym.id)),
-    [rankedGyms, favorites],
+    () => {
+      const current = new Map(rankedGyms.map((gym) => [gym.id, gym]));
+      const snapshots = new Map(savedSnapshots.map((gym) => [gym.id, gym]));
+      return favorites.flatMap((id) => {
+        const gym = current.get(id) ?? snapshots.get(id);
+        return gym ? [scoreGym(gym, origin, profile)] : [];
+      });
+    },
+    [rankedGyms, savedSnapshots, favorites, origin, profile],
   );
-  const selectedGym = rankedGyms.find((gym) => gym.id === selectedId) ?? null;
+  const selectedGym = rankedGyms.find((gym) => gym.id === selectedId) ??
+    savedGyms.find((gym) => gym.id === selectedId) ?? null;
   const visibleGyms = tab === "saved" ? savedGyms : rankedGyms;
   const showSearchArea = haversineKm(origin, mapCenter) > 0.45 && sheetMode === "list";
+
+  // Migrate ID-only favorites from older builds while the nationwide catalog
+  // is loaded, so they remain visible after the visitor changes search area.
+  useEffect(() => {
+    if (!ready || rawGyms.length === 0 || favorites.length === 0) return;
+    const known = new Set(savedSnapshots.map((gym) => gym.id));
+    const missing = rawGyms.filter((gym) => favorites.includes(gym.id) && !known.has(gym.id));
+    if (missing.length === 0) return;
+    queueMicrotask(() => setSavedSnapshots((current) => {
+      const seen = new Set(current.map((gym) => gym.id));
+      const next = [...current, ...missing.filter((gym) => !seen.has(gym.id))];
+      saveSavedGyms(next);
+      return next;
+    }));
+  }, [rawGyms, favorites, savedSnapshots, ready]);
 
   const loadNearby = useCallback(async (center: LatLng, radiusMeters: number, label?: string) => {
     setLoading(true);
@@ -96,6 +126,7 @@ export default function GymFinderApp() {
       setMapCenter(center);
       setSelectedId(null);
       setTab("suggested");
+      setResultScope(isNationwideRadius(radiusMeters) ? "nationwide" : "nearby");
       setSheetMode("list");
       setSheetSize("half");
     } catch (error) {
@@ -159,6 +190,15 @@ export default function GymFinderApp() {
   };
 
   const toggleSave = (id: string) => {
+    const gym = rankedGyms.find((item) => item.id === id) ?? savedGyms.find((item) => item.id === id);
+    const willSave = !favorites.includes(id);
+    if (gym) {
+      setSavedSnapshots((current) => {
+        const next = willSave ? [...current.filter((item) => item.id !== id), gym] : current.filter((item) => item.id !== id);
+        saveSavedGyms(next);
+        return next;
+      });
+    }
     setFavorites((current) => {
       const next = current.includes(id) ? current.filter((item) => item !== id) : [...current, id];
       saveFavorites(next);
@@ -184,16 +224,17 @@ export default function GymFinderApp() {
       await loadNearby(
         { lat: county.lat, lng: county.lng },
         Math.max(filters.radiusMeters, 10000),
-        `Gyms in ${county.name}`,
+        `Gyms near ${county.name}`,
       );
       return;
     }
     setLoading(true);
     try {
-      const result = await fetchSearchGyms(trimmed, origin);
+      const result = await fetchSearchGyms(trimmed);
       setRawGyms(result.gyms);
       setSelectedId(null);
       setTab("suggested");
+      setResultScope("search");
       setSheetMode("list");
       setSheetSize("half");
       setNotice(result.warning ?? `Results for “${trimmed}”`);
@@ -278,6 +319,8 @@ export default function GymFinderApp() {
         <FilterSheet filters={filters} onChange={setFilters} onClose={closeToList} />
       )}
 
+      {sheetMode === "plan" && <Planner profile={profile} onClose={closeToList} />}
+
       {sheetMode === "detail" && selectedGym && (
         <GymDetail
           gym={selectedGym}
@@ -299,9 +342,9 @@ export default function GymFinderApp() {
                   : `${visibleGyms.length} ${
                       tab === "saved"
                         ? "saved"
-                        : isNationwideRadius(filters.radiusMeters)
+                        : resultScope === "nationwide"
                           ? "in Kenya"
-                          : "nearby"
+                          : resultScope === "search" ? "matches" : "nearby"
                     }`}
               </h1>
             </div>
@@ -329,9 +372,9 @@ export default function GymFinderApp() {
           {loading && <div className="loading-bar" aria-hidden />}
           {!loading && visibleGyms.length === 0 && tab === "suggested" && (
             <p className="notice">
-              {notice
-                ? "No mapped gyms in this spot yet. Try a wider radius or another town."
-                : "Search a town, estate, or county — try Webuye or Kilimani."}
+              {resultScope === "search"
+                ? "No mapped gyms match this search. Try another name or a nearby town."
+                : "No mapped gyms in this spot yet. Try a wider radius or another town."}
             </p>
           )}
           <GymList
@@ -341,19 +384,24 @@ export default function GymFinderApp() {
             emptyMessage={
               tab === "saved"
                 ? "Save a gym from Nearby and it will live here."
-                : "Search a town, estate, or county — try Webuye or Kilimani."
+                : "Search a town, estate, or county — try Kilimani or Mombasa."
             }
             onSelect={selectGym}
             onToggleSave={toggleSave}
           />
-          <p className="osm-credit">Map data © OpenStreetMap · basemap Esri</p>
+          <p className="osm-credit">
+            © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap contributors</a>
+            {" · "}<a href="https://openfreemap.org/" target="_blank" rel="noreferrer">OpenFreeMap</a> basemap
+            {" · place names © "}<a href="https://www.geonames.org/" target="_blank" rel="noreferrer">GeoNames</a>
+            {" ("}<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>{"). Listings are not verified."}
+          </p>
         </div>
       )}
     </>
   );
 
   return (
-    <div className={`app-shell ${sheetMode === "onboarding" ? "app-shell--onboarding" : ""}`}>
+    <div className={`app-shell ${sheetMode === "onboarding" ? "app-shell--onboarding" : ""} ${sheetMode === "plan" ? "app-shell--plan" : ""}`}>
       <div className="map-stage" aria-hidden={sheetMode === "onboarding"}>
         <MapView
           origin={origin}
@@ -380,6 +428,16 @@ export default function GymFinderApp() {
             />
           </div>
           <div className="chrome__actions">
+            <button
+              type="button"
+              className="tool-btn"
+              onClick={() => {
+                setSheetMode("plan");
+                setSheetSize("full");
+              }}
+            >
+              My plan
+            </button>
             <button
               type="button"
               className="tool-btn"

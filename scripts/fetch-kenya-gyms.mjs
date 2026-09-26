@@ -3,11 +3,13 @@
  * Run: node scripts/fetch-kenya-gyms.mjs
  */
 import { mkdir, writeFile } from "node:fs/promises";
+import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = path.join(ROOT, "data", "kenya-gyms.json");
+const BOUNDARY = JSON.parse(readFileSync(path.join(ROOT, "data", "kenya-boundary.json"), "utf8"));
 const USER_AGENT = "KenyaGymFinder/1.0 (https://github.com/MadScie254/gym-finder; catalog-build)";
 
 const ENDPOINTS = [
@@ -22,10 +24,9 @@ const QUERY = `
   nwr["leisure"="fitness_centre"](-4.9,33.75,5.57,41.91);
   nwr["amenity"="gym"](-4.9,33.75,5.57,41.91);
   nwr["amenity"="fitness_centre"](-4.9,33.75,5.57,41.91);
-  nwr["leisure"="sports_centre"](-4.9,33.75,5.57,41.91);
+  nwr["leisure"="sports_centre"]["name"~"gym|fitness|crossfit",i](-4.9,33.75,5.57,41.91);
   nwr["leisure"="fitness_station"](-4.9,33.75,5.57,41.91);
   nwr["sport"="fitness"](-4.9,33.75,5.57,41.91);
-  nwr["sport"="gymnastics"](-4.9,33.75,5.57,41.91);
   nwr["name"~"gym|fitness|workout|crossfit|bodybuild",i]["amenity"](-4.9,33.75,5.57,41.91);
   nwr["name"~"gym|fitness|workout|crossfit",i]["shop"](-4.9,33.75,5.57,41.91);
 );
@@ -37,7 +38,26 @@ function locationOf(element) {
   const lon = element.lon ?? element.center?.lon;
   if (lat == null || lon == null) return null;
   if (lat < -4.9 || lat > 5.57 || lon < 33.75 || lon > 41.91) return null;
+  const insideRing = (ring) => {
+    let inside = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const [xi, yi] = ring[i];
+      const [xj, yj] = ring[j];
+      if ((yi > lat) !== (yj > lat) && lon < ((xj - xi) * (lat - yi)) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  };
+  if (!BOUNDARY.polygons.some((polygon) =>
+    insideRing(polygon[0]) && !polygon.slice(1).some(insideRing))) return null;
   return { lat, lng: lon };
+}
+
+function isFitnessVenue(venue) {
+  if (/^(fitness centre|fitness center|gym|fitness station)$/i.test(venue.name.trim())) return false;
+  if (venue.types.some((value) => ["parking", "pitch", "stadium", "track", "shop"].includes(value))) return false;
+  if (/parking lot|sports pitch|\btrack\b|\bhome\b/i.test(venue.name) && !/\b(gym|fitness|crossfit)\b/i.test(venue.name)) return false;
+  if (venue.types.some((value) => ["fitness_centre", "fitness_station", "gym", "fitness"].includes(value))) return true;
+  return /\b(gym|gymnasium|fitness|crossfit|bodybuilding|workout)\b/i.test(venue.name);
 }
 
 function addressFrom(tags = {}) {
@@ -73,7 +93,7 @@ function mapElement(element) {
   const tags = element.tags ?? {};
   const location = locationOf(element);
   if (!location) return null;
-  return {
+  const gym = {
     id: `${element.type}/${element.id}`,
     name: tags.name || tags["name:en"] || "Fitness centre",
     address: addressFrom(tags),
@@ -98,6 +118,7 @@ function mapElement(element) {
     score: 0,
     labels: [],
   };
+  return isFitnessVenue(gym) ? gym : null;
 }
 
 async function fetchOverpass(endpoint) {
@@ -156,7 +177,15 @@ async function main() {
   console.log(`Wrote ${gyms.length} gyms → ${OUT}`);
 }
 
-main().catch((error) => {
+async function curateExisting() {
+  const payload = JSON.parse(readFileSync(OUT, "utf8"));
+  const gyms = payload.gyms.filter((gym) =>
+    locationOf({ lat: gym.location.lat, lon: gym.location.lng }) && isFitnessVenue(gym));
+  await writeFile(OUT, JSON.stringify({ ...payload, curatedAt: new Date().toISOString(), count: gyms.length, gyms }, null, 2));
+  console.log(`Curated ${gyms.length} existing gym listings → ${OUT}`);
+}
+
+(process.argv.includes("--curate-existing") ? curateExisting() : main()).catch((error) => {
   console.error(error);
   process.exit(1);
 });

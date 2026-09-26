@@ -128,6 +128,52 @@ a { font: inherit; }
   background: transparent;
 }
 
+.map-frame--fallback .map-canvas { visibility: hidden; }
+
+.detail__source,
+.planner__source { display: inline-block; margin-top: 0.8rem; color: var(--signal); font-size: 0.78rem; font-weight: 700; }
+.osm-credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.detail__disclaimer { margin: 1.2rem 0; color: var(--muted); font-size: 0.77rem; line-height: 1.5; }
+
+/* ——— Four-week training and Kenyan meal guide ——— */
+.planner { padding-bottom: 1rem; }
+.planner__head .ghost-btn { margin-bottom: 1rem; }
+.planner__head h2 { margin: 0.3rem 0 0.55rem; font-family: var(--font-display); font-size: 2rem; line-height: 1; letter-spacing: -0.045em; }
+.planner__head > p:last-child { margin: 0 0 1.1rem; color: var(--muted); font-size: 0.84rem; line-height: 1.5; }
+.planner__controls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.55rem; margin-bottom: 1rem; }
+.planner__controls label,
+.planner__diet { display: grid; gap: 0.3rem; color: var(--muted); font-size: 0.7rem; font-weight: 750; }
+.planner select { width: 100%; min-width: 0; padding: 0.62rem; border: 1px solid var(--line); border-radius: 0.65rem; background: #fff; color: var(--ink); font-size: 0.78rem; }
+.planner__tabs { margin-bottom: 1rem; }
+.planner__tabs button { flex: 1; }
+.planner__weeks { display: flex; gap: 0.3rem; margin: 0.65rem 0; }
+.planner__weeks button { flex: 1; padding: 0.53rem 0.2rem; border: 1px solid var(--line); border-radius: 0.6rem; background: #fff; color: var(--ink); font-size: 0.7rem; font-weight: 700; cursor: pointer; }
+.planner__weeks button.is-on { background: var(--ink); color: #fff; }
+.planner h3 { margin: 0.8rem 0 0.3rem; font-family: var(--font-display); font-size: 1.3rem; }
+.planner__progress { margin: 0; color: var(--signal); font-size: 0.76rem; font-weight: 750; }
+.planner__guidance,
+.planner__safety { margin: 0.65rem 0 1rem; color: var(--muted); font-size: 0.79rem; line-height: 1.5; }
+.planner__safety { padding: 0.8rem; border-radius: 0.7rem; background: #f5f0e9; }
+.planner__cards { display: grid; gap: 0.65rem; }
+.planner__card { padding: 0.9rem; border: 1px solid var(--line); border-radius: 0.9rem; background: #fff; }
+.planner__card-top { display: flex; align-items: center; justify-content: space-between; gap: 0.4rem; color: var(--signal); font-size: 0.68rem; font-weight: 750; }
+.planner__card-top label { display: flex; align-items: center; gap: 0.2rem; color: var(--ink); cursor: pointer; }
+.planner__card-top input { accent-color: var(--signal); }
+.planner__card h4 { margin: 0.35rem 0; font-family: var(--font-display); font-size: 1.06rem; }
+.planner__card ul { margin: 0.4rem 0 0.65rem; padding-left: 1.15rem; font-size: 0.78rem; line-height: 1.55; }
+.planner__card > p { margin: 0; color: var(--muted); font-size: 0.73rem; line-height: 1.45; }
+.planner__diet { margin: 0 0 0.8rem; }
+.planner__meal dl { display: grid; grid-template-columns: 4.2rem 1fr; gap: 0.3rem 0.5rem; margin: 0.55rem 0 0; font-size: 0.75rem; line-height: 1.4; }
+.planner__meal dt { color: var(--muted); font-weight: 700; }
+.planner__meal dd { margin: 0; }
+
+@media (max-width: 899px) {
+  .app-shell--plan .chrome { display: none; }
+  .app-shell--plan .panel { inset: 0; width: auto; max-width: none; height: 100dvh; border: 0; border-radius: 0; z-index: 55; }
+  .app-shell--plan .panel__handle { display: none; }
+  .app-shell--plan .panel__scroll { height: 100%; padding-top: max(1rem, env(safe-area-inset-top)); }
+}
+
 .maplibregl-map,
 .maplibregl-canvas {
   width: 100% !important;

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { safeExternalUrl, safeTelephoneUrl } from "./format";
+import { directionsUrl, safeExternalUrl, safeTelephoneUrl } from "./format";
 
 describe("external contact helpers", () => {
   it("only permits http and https website URLs", () => {
@@ -16,5 +16,11 @@ describe("external contact helpers", () => {
     expect(safeTelephoneUrl("0700 123 456")).toBe("tel:0700123456");
     expect(safeTelephoneUrl("call reception")).toBeNull();
     expect(safeTelephoneUrl("123")).toBeNull();
+  });
+
+  it("opens an actual directions route to the gym coordinates", () => {
+    expect(directionsUrl(-1.286, 36.817)).toBe(
+      "https://www.google.com/maps/dir/?api=1&destination=-1.286%2C36.817",
+    );
   });
 });

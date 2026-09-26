@@ -1,0 +1,6087 @@
+{
+  "generatedAt": "2026-09-26T14:02:45.493Z",
+  "source": "GeoNames KE country dump, CC BY 4.0",
+  "count": 608,
+  "places": [
+    {
+      "id": "geonames/184745",
+      "name": "Nairobi",
+      "kind": "town",
+      "location": {
+        "lat": -1.28333,
+        "lng": 36.81667
+      },
+      "population": 4397073
+    },
+    {
+      "id": "geonames/195272",
+      "name": "Kakamega",
+      "kind": "town",
+      "location": {
+        "lat": 0.28422,
+        "lng": 34.75229
+      },
+      "population": 1867579
+    },
+    {
+      "id": "geonames/186301",
+      "name": "Mombasa",
+      "kind": "town",
+      "location": {
+        "lat": -4.05466,
+        "lng": 39.66359
+      },
+      "population": 1208333
+    },
+    {
+      "id": "geonames/184622",
+      "name": "Nakuru",
+      "kind": "town",
+      "location": {
+        "lat": -0.30719,
+        "lng": 36.07225
+      },
+      "population": 570674
+    },
+    {
+      "id": "geonames/181032",
+      "name": "Ruiru",
+      "kind": "town",
+      "location": {
+        "lat": -1.14665,
+        "lng": 36.96087
+      },
+      "population": 490120
+    },
+    {
+      "id": "geonames/198629",
+      "name": "Eldoret",
+      "kind": "town",
+      "location": {
+        "lat": 0.52036,
+        "lng": 35.26993
+      },
+      "population": 475716
+    },
+    {
+      "id": "geonames/191245",
+      "name": "Kisumu",
+      "kind": "town",
+      "location": {
+        "lat": -0.10221,
+        "lng": 34.76171
+      },
+      "population": 397957
+    },
+    {
+      "id": "geonames/192126",
+      "name": "Kikuyu",
+      "kind": "town",
+      "location": {
+        "lat": -1.24627,
+        "lng": 36.66291
+      },
+      "population": 323881
+    },
+    {
+      "id": "geonames/179330",
+      "name": "Thika",
+      "kind": "town",
+      "location": {
+        "lat": -1.03326,
+        "lng": 37.06933
+      },
+      "population": 251407
+    },
+    {
+      "id": "geonames/184707",
+      "name": "Naivasha",
+      "kind": "town",
+      "location": {
+        "lat": -0.71383,
+        "lng": 36.43261
+      },
+      "population": 198444
+    },
+    {
+      "id": "geonames/193624",
+      "name": "Karuri",
+      "kind": "town",
+      "location": {
+        "lat": -1.17641,
+        "lng": 36.7564
+      },
+      "population": 194342
+    },
+    {
+      "id": "geonames/193627",
+      "name": "Karuri",
+      "kind": "town",
+      "location": {
+        "lat": -0.7,
+        "lng": 37.18333
+      },
+      "population": 194342
+    },
+    {
+      "id": "geonames/187269",
+      "name": "Matuga",
+      "kind": "town",
+      "location": {
+        "lat": -4.168,
+        "lng": 39.57068
+      },
+      "population": 194252
+    },
+    {
+      "id": "geonames/185131",
+      "name": "Mwala",
+      "kind": "town",
+      "location": {
+        "lat": -1.35255,
+        "lng": 37.45482
+      },
+      "population": 181896
+    },
+    {
+      "id": "geonames/8449763",
+      "name": "Lang'ata",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.3666,
+        "lng": 36.73324
+      },
+      "population": 172569
+    },
+    {
+      "id": "geonames/189723",
+      "name": "Ongata Rongai",
+      "kind": "town",
+      "location": {
+        "lat": -1.3953,
+        "lng": 36.764
+      },
+      "population": 172569
+    },
+    {
+      "id": "geonames/195915",
+      "name": "Jomvu",
+      "kind": "town",
+      "location": {
+        "lat": -3.98623,
+        "lng": 39.6082
+      },
+      "population": 163415
+    },
+    {
+      "id": "geonames/197745",
+      "name": "Garissa",
+      "kind": "town",
+      "location": {
+        "lat": -0.45275,
+        "lng": 39.64601
+      },
+      "population": 163399
+    },
+    {
+      "id": "geonames/191220",
+      "name": "Kitale",
+      "kind": "town",
+      "location": {
+        "lat": 1.01572,
+        "lng": 35.00622
+      },
+      "population": 162174
+    },
+    {
+      "id": "geonames/189386",
+      "name": "Limuru",
+      "kind": "town",
+      "location": {
+        "lat": -1.1136,
+        "lng": 36.64205
+      },
+      "population": 159314
+    },
+    {
+      "id": "geonames/8299780",
+      "name": "Juja",
+      "kind": "town",
+      "location": {
+        "lat": -1.10148,
+        "lng": 37.0132
+      },
+      "population": 156041
+    },
+    {
+      "id": "geonames/7931934",
+      "name": "Kitengela",
+      "kind": "town",
+      "location": {
+        "lat": -1.47612,
+        "lng": 36.96144
+      },
+      "population": 154436
+    },
+    {
+      "id": "geonames/192710",
+      "name": "Kiambu",
+      "kind": "town",
+      "location": {
+        "lat": -1.17139,
+        "lng": 36.83556
+      },
+      "population": 147870
+    },
+    {
+      "id": "geonames/9166066",
+      "name": "Mlolongo",
+      "kind": "town",
+      "location": {
+        "lat": -1.39639,
+        "lng": 36.94028
+      },
+      "population": 136351
+    },
+    {
+      "id": "geonames/187968",
+      "name": "Malindi",
+      "kind": "town",
+      "location": {
+        "lat": -3.21799,
+        "lng": 40.11692
+      },
+      "population": 119859
+    },
+    {
+      "id": "geonames/187896",
+      "name": "Mandera",
+      "kind": "town",
+      "location": {
+        "lat": 3.93726,
+        "lng": 41.85688
+      },
+      "population": 114718
+    },
+    {
+      "id": "geonames/192785",
+      "name": "Khwisero",
+      "kind": "town",
+      "location": {
+        "lat": 0.17124,
+        "lng": 34.59466
+      },
+      "population": 113294
+    },
+    {
+      "id": "geonames/191299",
+      "name": "Kisii",
+      "kind": "town",
+      "location": {
+        "lat": -0.68174,
+        "lng": 34.76666
+      },
+      "population": 112417
+    },
+    {
+      "id": "geonames/183595",
+      "name": "Ngong",
+      "kind": "town",
+      "location": {
+        "lat": -1.3527,
+        "lng": 36.6699
+      },
+      "population": 102323
+    },
+    {
+      "id": "geonames/11002530",
+      "name": "Mtwapa",
+      "kind": "town",
+      "location": {
+        "lat": -3.93938,
+        "lng": 39.74877
+      },
+      "population": 90677
+    },
+    {
+      "id": "geonames/178443",
+      "name": "Wajir",
+      "kind": "town",
+      "location": {
+        "lat": 1.7471,
+        "lng": 40.05732
+      },
+      "population": 90116
+    },
+    {
+      "id": "geonames/189280",
+      "name": "Lodwar",
+      "kind": "town",
+      "location": {
+        "lat": 3.11988,
+        "lng": 35.59642
+      },
+      "population": 82970
+    },
+    {
+      "id": "geonames/200787",
+      "name": "Athi River",
+      "kind": "town",
+      "location": {
+        "lat": -1.4563,
+        "lng": 36.97826
+      },
+      "population": 81302
+    },
+    {
+      "id": "geonames/186827",
+      "name": "Meru",
+      "kind": "town",
+      "location": {
+        "lat": 0.04626,
+        "lng": 37.65587
+      },
+      "population": 80191
+    },
+    {
+      "id": "geonames/182701",
+      "name": "Nyeri",
+      "kind": "town",
+      "location": {
+        "lat": -0.42013,
+        "lng": 36.94759
+      },
+      "population": 80081
+    },
+    {
+      "id": "geonames/196231",
+      "name": "Isiolo",
+      "kind": "town",
+      "location": {
+        "lat": 0.35462,
+        "lng": 37.58218
+      },
+      "population": 78650
+    },
+    {
+      "id": "geonames/178792",
+      "name": "Ukunda",
+      "kind": "town",
+      "location": {
+        "lat": -4.2929,
+        "lng": 39.56404
+      },
+      "population": 77686
+    },
+    {
+      "id": "geonames/191318",
+      "name": "Kiserian",
+      "kind": "town",
+      "location": {
+        "lat": -1.4275,
+        "lng": 36.6865
+      },
+      "population": 76903
+    },
+    {
+      "id": "geonames/192067",
+      "name": "Kilifi",
+      "kind": "town",
+      "location": {
+        "lat": -3.63045,
+        "lng": 39.84992
+      },
+      "population": 74270
+    },
+    {
+      "id": "geonames/184433",
+      "name": "Nanyuki",
+      "kind": "town",
+      "location": {
+        "lat": 0.00624,
+        "lng": 37.07398
+      },
+      "population": 72813
+    },
+    {
+      "id": "geonames/199989",
+      "name": "Busia",
+      "kind": "town",
+      "location": {
+        "lat": 0.46005,
+        "lng": 34.11169
+      },
+      "population": 71886
+    },
+    {
+      "id": "geonames/186731",
+      "name": "Migori",
+      "kind": "town",
+      "location": {
+        "lat": -1.06343,
+        "lng": 34.47313
+      },
+      "population": 71668
+    },
+    {
+      "id": "geonames/200067",
+      "name": "Bungoma",
+      "kind": "town",
+      "location": {
+        "lat": 0.5635,
+        "lng": 34.56055
+      },
+      "population": 68031
+    },
+    {
+      "id": "geonames/184379",
+      "name": "Narok",
+      "kind": "town",
+      "location": {
+        "lat": -1.08083,
+        "lng": 35.87111
+      },
+      "population": 65430
+    },
+    {
+      "id": "geonames/198476",
+      "name": "Embu",
+      "kind": "town",
+      "location": {
+        "lat": -0.53987,
+        "lng": 37.45743
+      },
+      "population": 64979
+    },
+    {
+      "id": "geonames/188492",
+      "name": "Machakos",
+      "kind": "town",
+      "location": {
+        "lat": -1.52233,
+        "lng": 37.26521
+      },
+      "population": 63767
+    },
+    {
+      "id": "geonames/197226",
+      "name": "Githunguri",
+      "kind": "town",
+      "location": {
+        "lat": -1.05754,
+        "lng": 36.77625
+      },
+      "population": 63319
+    },
+    {
+      "id": "geonames/12718630",
+      "name": "Githunguri",
+      "kind": "town",
+      "location": {
+        "lat": -1.29996,
+        "lng": 36.99047
+      },
+      "population": 63319
+    },
+    {
+      "id": "geonames/198547",
+      "name": "El Wak",
+      "kind": "town",
+      "location": {
+        "lat": 2.80922,
+        "lng": 40.92885
+      },
+      "population": 60732
+    },
+    {
+      "id": "geonames/197334",
+      "name": "Gilgil",
+      "kind": "town",
+      "location": {
+        "lat": -0.50397,
+        "lng": 36.31845
+      },
+      "population": 60711
+    },
+    {
+      "id": "geonames/197335",
+      "name": "Upper Gilgil",
+      "kind": "town",
+      "location": {
+        "lat": -0.21209,
+        "lng": 36.27248
+      },
+      "population": 60711
+    },
+    {
+      "id": "geonames/187113",
+      "name": "Mbale",
+      "kind": "town",
+      "location": {
+        "lat": 0.08213,
+        "lng": 34.72139
+      },
+      "population": 60000
+    },
+    {
+      "id": "geonames/191919",
+      "name": "Kimilili",
+      "kind": "town",
+      "location": {
+        "lat": 0.78775,
+        "lng": 34.71562
+      },
+      "population": 56050
+    },
+    {
+      "id": "geonames/194160",
+      "name": "Kapenguria",
+      "kind": "town",
+      "location": {
+        "lat": 1.23889,
+        "lng": 35.11194
+      },
+      "population": 56000
+    },
+    {
+      "id": "geonames/192900",
+      "name": "Kericho",
+      "kind": "town",
+      "location": {
+        "lat": -0.36774,
+        "lng": 35.28314
+      },
+      "population": 53804
+    },
+    {
+      "id": "geonames/178522",
+      "name": "Voi",
+      "kind": "town",
+      "location": {
+        "lat": -3.39605,
+        "lng": 38.55609
+      },
+      "population": 53353
+    },
+    {
+      "id": "geonames/8477754",
+      "name": "Imara Daima Estate",
+      "kind": "town",
+      "location": {
+        "lat": -1.32323,
+        "lng": 36.88021
+      },
+      "population": 52837
+    },
+    {
+      "id": "geonames/178323",
+      "name": "Wanguru",
+      "kind": "town",
+      "location": {
+        "lat": -0.68393,
+        "lng": 37.35701
+      },
+      "population": 51722
+    },
+    {
+      "id": "geonames/196936",
+      "name": "Habaswein",
+      "kind": "town",
+      "location": {
+        "lat": 1.01659,
+        "lng": 39.49122
+      },
+      "population": 49599
+    },
+    {
+      "id": "geonames/186315",
+      "name": "Molo",
+      "kind": "town",
+      "location": {
+        "lat": -0.24849,
+        "lng": 35.73194
+      },
+      "population": 48356
+    },
+    {
+      "id": "geonames/7931933",
+      "name": "Ol Kalou",
+      "kind": "town",
+      "location": {
+        "lat": -0.27088,
+        "lng": 36.37917
+      },
+      "population": 47795
+    },
+    {
+      "id": "geonames/185702",
+      "name": "Mumias",
+      "kind": "town",
+      "location": {
+        "lat": 0.33474,
+        "lng": 34.48796
+      },
+      "population": 45485
+    },
+    {
+      "id": "geonames/196742",
+      "name": "Homa Bay",
+      "kind": "town",
+      "location": {
+        "lat": -0.52731,
+        "lng": 34.45714
+      },
+      "population": 44949
+    },
+    {
+      "id": "geonames/12718626",
+      "name": "Kenol",
+      "kind": "town",
+      "location": {
+        "lat": -0.9373,
+        "lng": 37.12275
+      },
+      "population": 44086
+    },
+    {
+      "id": "geonames/191797",
+      "name": "Kinoi",
+      "kind": "town",
+      "location": {
+        "lat": -1.6558,
+        "lng": 37.37454
+      },
+      "population": 44086
+    },
+    {
+      "id": "geonames/187532",
+      "name": "Masalani",
+      "kind": "town",
+      "location": {
+        "lat": -1.69405,
+        "lng": 40.17015
+      },
+      "population": 43642
+    },
+    {
+      "id": "geonames/185579",
+      "name": "Murang’a",
+      "kind": "town",
+      "location": {
+        "lat": -0.72104,
+        "lng": 37.15259
+      },
+      "population": 43314
+    },
+    {
+      "id": "geonames/178202",
+      "name": "Webuye",
+      "kind": "town",
+      "location": {
+        "lat": 0.6004,
+        "lng": 34.77119
+      },
+      "population": 42642
+    },
+    {
+      "id": "geonames/183334",
+      "name": "Njoro",
+      "kind": "town",
+      "location": {
+        "lat": -0.33024,
+        "lng": 35.94445
+      },
+      "population": 42173
+    },
+    {
+      "id": "geonames/196185",
+      "name": "Iten",
+      "kind": "town",
+      "location": {
+        "lat": 0.67028,
+        "lng": 35.50806
+      },
+      "population": 42000
+    },
+    {
+      "id": "geonames/194038",
+      "name": "Kapsabet",
+      "kind": "town",
+      "location": {
+        "lat": 0.20387,
+        "lng": 35.105
+      },
+      "population": 41997
+    },
+    {
+      "id": "geonames/188657",
+      "name": "Lugulu",
+      "kind": "town",
+      "location": {
+        "lat": 0.39337,
+        "lng": 34.30399
+      },
+      "population": 40894
+    },
+    {
+      "id": "geonames/179438",
+      "name": "Tetu",
+      "kind": "town",
+      "location": {
+        "lat": -0.43419,
+        "lng": 36.91681
+      },
+      "population": 39293
+    },
+    {
+      "id": "geonames/183027",
+      "name": "Nyahururu",
+      "kind": "town",
+      "location": {
+        "lat": 0.03813,
+        "lng": 36.36339
+      },
+      "population": 37650
+    },
+    {
+      "id": "geonames/187585",
+      "name": "Marsabit",
+      "kind": "town",
+      "location": {
+        "lat": 2.33468,
+        "lng": 37.99086
+      },
+      "population": 36289
+    },
+    {
+      "id": "geonames/181374",
+      "name": "Ramu",
+      "kind": "town",
+      "location": {
+        "lat": 3.93147,
+        "lng": 41.22295
+      },
+      "population": 35644
+    },
+    {
+      "id": "geonames/383388",
+      "name": "Siaya",
+      "kind": "town",
+      "location": {
+        "lat": 0.0607,
+        "lng": 34.28806
+      },
+      "population": 33153
+    },
+    {
+      "id": "geonames/187661",
+      "name": "Mariakani",
+      "kind": "town",
+      "location": {
+        "lat": -3.86261,
+        "lng": 39.47458
+      },
+      "population": 31715
+    },
+    {
+      "id": "geonames/187725",
+      "name": "Maralal",
+      "kind": "town",
+      "location": {
+        "lat": 1.09667,
+        "lng": 36.69806
+      },
+      "population": 31350
+    },
+    {
+      "id": "geonames/12687281",
+      "name": "Mairo Inya",
+      "kind": "town",
+      "location": {
+        "lat": 0.02538,
+        "lng": 36.40865
+      },
+      "population": 30527
+    },
+    {
+      "id": "geonames/181135",
+      "name": "Rongai",
+      "kind": "town",
+      "location": {
+        "lat": -0.17344,
+        "lng": 35.86313
+      },
+      "population": 30471
+    },
+    {
+      "id": "geonames/192859",
+      "name": "Kerugoya",
+      "kind": "town",
+      "location": {
+        "lat": -0.49887,
+        "lng": 37.28031
+      },
+      "population": 30045
+    },
+    {
+      "id": "geonames/181501",
+      "name": "Pumwani",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.28316,
+        "lng": 36.84725
+      },
+      "population": 29616
+    },
+    {
+      "id": "geonames/191038",
+      "name": "Kitui",
+      "kind": "town",
+      "location": {
+        "lat": -1.36696,
+        "lng": 38.01055
+      },
+      "population": 29062
+    },
+    {
+      "id": "geonames/188045",
+      "name": "Makutano",
+      "kind": "town",
+      "location": {
+        "lat": 1.25881,
+        "lng": 35.09569
+      },
+      "population": 28469
+    },
+    {
+      "id": "geonames/198644",
+      "name": "Elburgon",
+      "kind": "town",
+      "location": {
+        "lat": -0.30037,
+        "lng": 35.80935
+      },
+      "population": 28359
+    },
+    {
+      "id": "geonames/189741",
+      "name": "Lamu",
+      "kind": "town",
+      "location": {
+        "lat": -2.27169,
+        "lng": 40.90201
+      },
+      "population": 25385
+    },
+    {
+      "id": "geonames/195298",
+      "name": "Kajiado",
+      "kind": "town",
+      "location": {
+        "lat": -1.85238,
+        "lng": 36.77683
+      },
+      "population": 24678
+    },
+    {
+      "id": "geonames/195821",
+      "name": "Kabarnet",
+      "kind": "town",
+      "location": {
+        "lat": 0.49194,
+        "lng": 35.74303
+      },
+      "population": 24661
+    },
+    {
+      "id": "geonames/182880",
+      "name": "Nyamira",
+      "kind": "town",
+      "location": {
+        "lat": -0.56333,
+        "lng": 34.93583
+      },
+      "population": 24483
+    },
+    {
+      "id": "geonames/196251",
+      "name": "Isebania",
+      "kind": "town",
+      "location": {
+        "lat": -1.22511,
+        "lng": 34.46385
+      },
+      "population": 23891
+    },
+    {
+      "id": "geonames/193827",
+      "name": "Karatina",
+      "kind": "town",
+      "location": {
+        "lat": -0.4841,
+        "lng": 37.12662
+      },
+      "population": 23552
+    },
+    {
+      "id": "geonames/195197",
+      "name": "Kakuma",
+      "kind": "town",
+      "location": {
+        "lat": 3.71363,
+        "lng": 34.8572
+      },
+      "population": 22984
+    },
+    {
+      "id": "geonames/9406963",
+      "name": "Lafey",
+      "kind": "town",
+      "location": {
+        "lat": 3.15106,
+        "lng": 41.18577
+      },
+      "population": 22882
+    },
+    {
+      "id": "geonames/200305",
+      "name": "Bondo",
+      "kind": "town",
+      "location": {
+        "lat": -0.0962,
+        "lng": 34.27322
+      },
+      "population": 22712
+    },
+    {
+      "id": "geonames/199284",
+      "name": "Chuka",
+      "kind": "town",
+      "location": {
+        "lat": -0.33316,
+        "lng": 37.64587
+      },
+      "population": 22388
+    },
+    {
+      "id": "geonames/191837",
+      "name": "Kihancha",
+      "kind": "town",
+      "location": {
+        "lat": -1.19347,
+        "lng": 34.61967
+      },
+      "population": 22194
+    },
+    {
+      "id": "geonames/187231",
+      "name": "Maua",
+      "kind": "town",
+      "location": {
+        "lat": 0.2332,
+        "lng": 37.94086
+      },
+      "population": 22121
+    },
+    {
+      "id": "geonames/179525",
+      "name": "Taveta",
+      "kind": "town",
+      "location": {
+        "lat": -3.39879,
+        "lng": 37.68336
+      },
+      "population": 22018
+    },
+    {
+      "id": "geonames/444987",
+      "name": "Takaba",
+      "kind": "town",
+      "location": {
+        "lat": 3.35528,
+        "lng": 40.22278
+      },
+      "population": 21517
+    },
+    {
+      "id": "geonames/198636",
+      "name": "Eldama Ravine",
+      "kind": "town",
+      "location": {
+        "lat": 0.05196,
+        "lng": 35.72734
+      },
+      "population": 21385
+    },
+    {
+      "id": "geonames/196752",
+      "name": "Hola",
+      "kind": "town",
+      "location": {
+        "lat": -1.48256,
+        "lng": 40.03341
+      },
+      "population": 20912
+    },
+    {
+      "id": "geonames/11834214",
+      "name": "Maai Mahiu",
+      "kind": "town",
+      "location": {
+        "lat": -0.98855,
+        "lng": 36.58537
+      },
+      "population": 20823
+    },
+    {
+      "id": "geonames/12718647",
+      "name": "Mai",
+      "kind": "town",
+      "location": {
+        "lat": -0.98169,
+        "lng": 36.58642
+      },
+      "population": 20823
+    },
+    {
+      "id": "geonames/181122",
+      "name": "Rongo",
+      "kind": "town",
+      "location": {
+        "lat": -0.75675,
+        "lng": 34.59833
+      },
+      "population": 20688
+    },
+    {
+      "id": "geonames/188080",
+      "name": "Makueni Boma",
+      "kind": "town",
+      "location": {
+        "lat": -1.80388,
+        "lng": 37.62405
+      },
+      "population": 20681
+    },
+    {
+      "id": "geonames/182498",
+      "name": "Ogembo",
+      "kind": "town",
+      "location": {
+        "lat": -0.80116,
+        "lng": 34.72579
+      },
+      "population": 20000
+    },
+    {
+      "id": "geonames/181702",
+      "name": "Oyugis",
+      "kind": "town",
+      "location": {
+        "lat": -0.50974,
+        "lng": 34.73067
+      },
+      "population": 19947
+    },
+    {
+      "id": "geonames/178077",
+      "name": "Wote",
+      "kind": "town",
+      "location": {
+        "lat": -1.78079,
+        "lng": 37.62882
+      },
+      "population": 19725
+    },
+    {
+      "id": "geonames/198537",
+      "name": "Emali",
+      "kind": "town",
+      "location": {
+        "lat": -2.08033,
+        "lng": 37.47202
+      },
+      "population": 18325
+    },
+    {
+      "id": "geonames/197768",
+      "name": "Garba Tula",
+      "kind": "town",
+      "location": {
+        "lat": 0.53392,
+        "lng": 38.51878
+      },
+      "population": 17443
+    },
+    {
+      "id": "geonames/184921",
+      "name": "Mwingi",
+      "kind": "town",
+      "location": {
+        "lat": -0.93605,
+        "lng": 38.05955
+      },
+      "population": 17025
+    },
+    {
+      "id": "geonames/200755",
+      "name": "Awendo",
+      "kind": "town",
+      "location": {
+        "lat": -0.90711,
+        "lng": 34.52895
+      },
+      "population": 16815
+    },
+    {
+      "id": "geonames/11003038",
+      "name": "Awendo",
+      "kind": "town",
+      "location": {
+        "lat": -0.5,
+        "lng": 34.4
+      },
+      "population": 16815
+    },
+    {
+      "id": "geonames/191908",
+      "name": "Kiminini",
+      "kind": "town",
+      "location": {
+        "lat": 0.89284,
+        "lng": 34.92468
+      },
+      "population": 16560
+    },
+    {
+      "id": "geonames/196761",
+      "name": "Moi‘s Bridge",
+      "kind": "town",
+      "location": {
+        "lat": 0.87178,
+        "lng": 35.12213
+      },
+      "population": 16355
+    },
+    {
+      "id": "geonames/187150",
+      "name": "Mazeras",
+      "kind": "town",
+      "location": {
+        "lat": -3.96426,
+        "lng": 39.5498
+      },
+      "population": 16254
+    },
+    {
+      "id": "geonames/188025",
+      "name": "Malaba",
+      "kind": "town",
+      "location": {
+        "lat": 0.63513,
+        "lng": 34.28165
+      },
+      "population": 15581
+    },
+    {
+      "id": "geonames/185939",
+      "name": "Muhoroni",
+      "kind": "town",
+      "location": {
+        "lat": -0.15816,
+        "lng": 35.19645
+      },
+      "population": 15217
+    },
+    {
+      "id": "geonames/188123",
+      "name": "Makindu",
+      "kind": "town",
+      "location": {
+        "lat": -2.27808,
+        "lng": 37.81867
+      },
+      "population": 15038
+    },
+    {
+      "id": "geonames/10230091",
+      "name": "Banissa",
+      "kind": "town",
+      "location": {
+        "lat": 3.94102,
+        "lng": 40.34248
+      },
+      "population": 14974
+    },
+    {
+      "id": "geonames/186139",
+      "name": "Msambweni",
+      "kind": "town",
+      "location": {
+        "lat": -4.4619,
+        "lng": 39.48265
+      },
+      "population": 14951
+    },
+    {
+      "id": "geonames/187028",
+      "name": "Mbita",
+      "kind": "town",
+      "location": {
+        "lat": -0.42492,
+        "lng": 34.20736
+      },
+      "population": 14916
+    },
+    {
+      "id": "geonames/188408",
+      "name": "Magadi",
+      "kind": "town",
+      "location": {
+        "lat": -1.90122,
+        "lng": 36.287
+      },
+      "population": 14529
+    },
+    {
+      "id": "geonames/196234",
+      "name": "Isinya",
+      "kind": "town",
+      "location": {
+        "lat": -1.6792,
+        "lng": 36.85056
+      },
+      "population": 14429
+    },
+    {
+      "id": "geonames/12718632",
+      "name": "Bute",
+      "kind": "town",
+      "location": {
+        "lat": 3.35875,
+        "lng": 39.41968
+      },
+      "population": 14108
+    },
+    {
+      "id": "geonames/11428093",
+      "name": "Kawaida",
+      "kind": "town",
+      "location": {
+        "lat": -1.14639,
+        "lng": 36.7598
+      },
+      "population": 14038
+    },
+    {
+      "id": "geonames/195539",
+      "name": "Kagio",
+      "kind": "town",
+      "location": {
+        "lat": -0.62482,
+        "lng": 37.25551
+      },
+      "population": 13961
+    },
+    {
+      "id": "geonames/12718628",
+      "name": "Bura Tana",
+      "kind": "town",
+      "location": {
+        "lat": -1.19326,
+        "lng": 39.84049
+      },
+      "population": 13650
+    },
+    {
+      "id": "geonames/182894",
+      "name": "Nyambunwa",
+      "kind": "town",
+      "location": {
+        "lat": -0.67783,
+        "lng": 34.70722
+      },
+      "population": 13405
+    },
+    {
+      "id": "geonames/189367",
+      "name": "Litein",
+      "kind": "town",
+      "location": {
+        "lat": -0.58249,
+        "lng": 35.18969
+      },
+      "population": 13403
+    },
+    {
+      "id": "geonames/186369",
+      "name": "Mogotio",
+      "kind": "town",
+      "location": {
+        "lat": -0.02236,
+        "lng": 35.96124
+      },
+      "population": 13366
+    },
+    {
+      "id": "geonames/188715",
+      "name": "Luanda",
+      "kind": "town",
+      "location": {
+        "lat": 0.02333,
+        "lng": 34.58661
+      },
+      "population": 13319
+    },
+    {
+      "id": "geonames/11829943",
+      "name": "Ol Kalau South Settlement",
+      "kind": "town",
+      "location": {
+        "lat": -0.27444,
+        "lng": 36.33999
+      },
+      "population": 13234
+    },
+    {
+      "id": "geonames/180992",
+      "name": "Rumuruti",
+      "kind": "town",
+      "location": {
+        "lat": 0.2725,
+        "lng": 36.53806
+      },
+      "population": 13056
+    },
+    {
+      "id": "geonames/180868",
+      "name": "Sagana",
+      "kind": "town",
+      "location": {
+        "lat": -0.66806,
+        "lng": 37.20875
+      },
+      "population": 13000
+    },
+    {
+      "id": "geonames/180646",
+      "name": "Sawa Sawa",
+      "kind": "town",
+      "location": {
+        "lat": -4.47166,
+        "lng": 39.48463
+      },
+      "population": 12975
+    },
+    {
+      "id": "geonames/189190",
+      "name": "Lokichar",
+      "kind": "town",
+      "location": {
+        "lat": 2.38116,
+        "lng": 35.65123
+      },
+      "population": 12676
+    },
+    {
+      "id": "geonames/199796",
+      "name": "Chavakali",
+      "kind": "town",
+      "location": {
+        "lat": 0.11768,
+        "lng": 34.73339
+      },
+      "population": 12674
+    },
+    {
+      "id": "geonames/178073",
+      "name": "Wundanyi",
+      "kind": "town",
+      "location": {
+        "lat": -3.39642,
+        "lng": 38.35729
+      },
+      "population": 12501
+    },
+    {
+      "id": "geonames/188047",
+      "name": "Makutano",
+      "kind": "town",
+      "location": {
+        "lat": -1.41187,
+        "lng": 37.47088
+      },
+      "population": 12396
+    },
+    {
+      "id": "geonames/12718631",
+      "name": "Eldas",
+      "kind": "town",
+      "location": {
+        "lat": 2.49184,
+        "lng": 39.56653
+      },
+      "population": 12270
+    },
+    {
+      "id": "geonames/200061",
+      "name": "Port Victoria",
+      "kind": "town",
+      "location": {
+        "lat": 0.09809,
+        "lng": 33.97248
+      },
+      "population": 12194
+    },
+    {
+      "id": "geonames/178543",
+      "name": "Vipingo",
+      "kind": "town",
+      "location": {
+        "lat": -3.81466,
+        "lng": 39.81282
+      },
+      "population": 12183
+    },
+    {
+      "id": "geonames/187238",
+      "name": "Matuu",
+      "kind": "town",
+      "location": {
+        "lat": -1.1454,
+        "lng": 37.54671
+      },
+      "population": 12073
+    },
+    {
+      "id": "geonames/188220",
+      "name": "Majengo",
+      "kind": "town",
+      "location": {
+        "lat": 0.04944,
+        "lng": 34.72476
+      },
+      "population": 11913
+    },
+    {
+      "id": "geonames/188442",
+      "name": "Mado Gashi",
+      "kind": "town",
+      "location": {
+        "lat": 0.73112,
+        "lng": 39.17388
+      },
+      "population": 11814
+    },
+    {
+      "id": "geonames/187221",
+      "name": "Mau Narok",
+      "kind": "town",
+      "location": {
+        "lat": -0.60661,
+        "lng": 36.00836
+      },
+      "population": 11806
+    },
+    {
+      "id": "geonames/201229",
+      "name": "Ahero",
+      "kind": "town",
+      "location": {
+        "lat": -0.17359,
+        "lng": 34.9189
+      },
+      "population": 11801
+    },
+    {
+      "id": "geonames/196612",
+      "name": "Ijara",
+      "kind": "town",
+      "location": {
+        "lat": -1.59517,
+        "lng": 40.51444
+      },
+      "population": 11792
+    },
+    {
+      "id": "geonames/200308",
+      "name": "Bomet",
+      "kind": "town",
+      "location": {
+        "lat": -0.78129,
+        "lng": 35.34156
+      },
+      "population": 11765
+    },
+    {
+      "id": "geonames/189189",
+      "name": "Lokichokio",
+      "kind": "town",
+      "location": {
+        "lat": 4.20771,
+        "lng": 34.35378
+      },
+      "population": 11626
+    },
+    {
+      "id": "geonames/199209",
+      "name": "Dadaab",
+      "kind": "town",
+      "location": {
+        "lat": 0.05244,
+        "lng": 40.30855
+      },
+      "population": 11525
+    },
+    {
+      "id": "geonames/179625",
+      "name": "Tala",
+      "kind": "town",
+      "location": {
+        "lat": -1.26849,
+        "lng": 37.32186
+      },
+      "population": 11446
+    },
+    {
+      "id": "geonames/199971",
+      "name": "Butere",
+      "kind": "town",
+      "location": {
+        "lat": 0.20694,
+        "lng": 34.49006
+      },
+      "population": 11205
+    },
+    {
+      "id": "geonames/191800",
+      "name": "Kinna",
+      "kind": "town",
+      "location": {
+        "lat": 0.31883,
+        "lng": 38.20499
+      },
+      "population": 11175
+    },
+    {
+      "id": "geonames/197083",
+      "name": "Gongoni",
+      "kind": "town",
+      "location": {
+        "lat": -3.03668,
+        "lng": 40.13748
+      },
+      "population": 10993
+    },
+    {
+      "id": "geonames/186831",
+      "name": "Merti",
+      "kind": "town",
+      "location": {
+        "lat": 1.06725,
+        "lng": 38.6662
+      },
+      "population": 10990
+    },
+    {
+      "id": "geonames/192869",
+      "name": "Keroka",
+      "kind": "town",
+      "location": {
+        "lat": -0.77612,
+        "lng": 34.94678
+      },
+      "population": 10881
+    },
+    {
+      "id": "geonames/192079",
+      "name": "Kilgoris",
+      "kind": "town",
+      "location": {
+        "lat": -1.00819,
+        "lng": 34.87809
+      },
+      "population": 10845
+    },
+    {
+      "id": "geonames/187257",
+      "name": "Matunda",
+      "kind": "town",
+      "location": {
+        "lat": 0.84443,
+        "lng": 35.13716
+      },
+      "population": 10807
+    },
+    {
+      "id": "geonames/179634",
+      "name": "Takaungu",
+      "kind": "town",
+      "location": {
+        "lat": -3.6835,
+        "lng": 39.85687
+      },
+      "population": 10760
+    },
+    {
+      "id": "geonames/179204",
+      "name": "Timau",
+      "kind": "town",
+      "location": {
+        "lat": 0.0835,
+        "lng": 37.23925
+      },
+      "population": 10571
+    },
+    {
+      "id": "geonames/182130",
+      "name": "Oloitokitok",
+      "kind": "town",
+      "location": {
+        "lat": -2.92724,
+        "lng": 37.5103
+      },
+      "population": 10568
+    },
+    {
+      "id": "geonames/12718646",
+      "name": "Kainuk",
+      "kind": "town",
+      "location": {
+        "lat": 1.77442,
+        "lng": 35.50641
+      },
+      "population": 10535
+    },
+    {
+      "id": "geonames/179796",
+      "name": "Subukia",
+      "kind": "town",
+      "location": {
+        "lat": -0.01644,
+        "lng": 36.20927
+      },
+      "population": 10344
+    },
+    {
+      "id": "geonames/180165",
+      "name": "Sindo",
+      "kind": "town",
+      "location": {
+        "lat": -0.54061,
+        "lng": 34.16891
+      },
+      "population": 10286
+    },
+    {
+      "id": "geonames/194406",
+      "name": "Kangundo",
+      "kind": "town",
+      "location": {
+        "lat": -1.30342,
+        "lng": 37.34813
+      },
+      "population": 10258
+    },
+    {
+      "id": "geonames/191963",
+      "name": "Kimana",
+      "kind": "town",
+      "location": {
+        "lat": -2.79884,
+        "lng": 37.53708
+      },
+      "population": 10116
+    },
+    {
+      "id": "geonames/190108",
+      "name": "Kwale",
+      "kind": "town",
+      "location": {
+        "lat": -4.17375,
+        "lng": 39.45206
+      },
+      "population": 10063
+    },
+    {
+      "id": "geonames/188714",
+      "name": "Luanda",
+      "kind": "town",
+      "location": {
+        "lat": 0.31354,
+        "lng": 34.07146
+      },
+      "population": 10053
+    },
+    {
+      "id": "geonames/199263",
+      "name": "Chwele",
+      "kind": "town",
+      "location": {
+        "lat": 0.76239,
+        "lng": 34.54852
+      },
+      "population": 9797
+    },
+    {
+      "id": "geonames/185014",
+      "name": "Mwatate",
+      "kind": "town",
+      "location": {
+        "lat": -3.505,
+        "lng": 38.37722
+      },
+      "population": 9572
+    },
+    {
+      "id": "geonames/187641",
+      "name": "Marigat",
+      "kind": "town",
+      "location": {
+        "lat": 0.47119,
+        "lng": 35.98638
+      },
+      "population": 9395
+    },
+    {
+      "id": "geonames/193985",
+      "name": "Kapsowar",
+      "kind": "town",
+      "location": {
+        "lat": 0.9789,
+        "lng": 35.55854
+      },
+      "population": 9152
+    },
+    {
+      "id": "geonames/190179",
+      "name": "Kutus",
+      "kind": "town",
+      "location": {
+        "lat": -0.57534,
+        "lng": 37.3269
+      },
+      "population": 9143
+    },
+    {
+      "id": "geonames/184367",
+      "name": "Naro Moru",
+      "kind": "town",
+      "location": {
+        "lat": -0.16357,
+        "lng": 37.01773
+      },
+      "population": 9018
+    },
+    {
+      "id": "geonames/179750",
+      "name": "Sultan Hamud",
+      "kind": "town",
+      "location": {
+        "lat": -2.02042,
+        "lng": 37.37212
+      },
+      "population": 8718
+    },
+    {
+      "id": "geonames/200304",
+      "name": "Bondo",
+      "kind": "town",
+      "location": {
+        "lat": 0.23522,
+        "lng": 34.28086
+      },
+      "population": 8683
+    },
+    {
+      "id": "geonames/187733",
+      "name": "Maragua",
+      "kind": "town",
+      "location": {
+        "lat": -0.79602,
+        "lng": 37.13292
+      },
+      "population": 8597
+    },
+    {
+      "id": "geonames/192372",
+      "name": "Kibwezi",
+      "kind": "town",
+      "location": {
+        "lat": -2.40935,
+        "lng": 37.96631
+      },
+      "population": 8143
+    },
+    {
+      "id": "geonames/12718635",
+      "name": "Rodi",
+      "kind": "town",
+      "location": {
+        "lat": -0.62457,
+        "lng": 34.503
+      },
+      "population": 8122
+    },
+    {
+      "id": "geonames/191833",
+      "name": "Kinango",
+      "kind": "town",
+      "location": {
+        "lat": -4.13723,
+        "lng": 39.31528
+      },
+      "population": 8070
+    },
+    {
+      "id": "geonames/184471",
+      "name": "Nandi Hills",
+      "kind": "town",
+      "location": {
+        "lat": 0.10366,
+        "lng": 35.18426
+      },
+      "population": 8032
+    },
+    {
+      "id": "geonames/8605149",
+      "name": "Usenge",
+      "kind": "town",
+      "location": {
+        "lat": -0.06731,
+        "lng": 34.0566
+      },
+      "population": 7976
+    },
+    {
+      "id": "geonames/197557",
+      "name": "Gatundu",
+      "kind": "town",
+      "location": {
+        "lat": -1.05,
+        "lng": 36.9
+      },
+      "population": 7947
+    },
+    {
+      "id": "geonames/197311",
+      "name": "Giriftu",
+      "kind": "town",
+      "location": {
+        "lat": 2.00039,
+        "lng": 39.75191
+      },
+      "population": 7935
+    },
+    {
+      "id": "geonames/12718645",
+      "name": "Brooke",
+      "kind": "town",
+      "location": {
+        "lat": -0.33408,
+        "lng": 35.32537
+      },
+      "population": 7896
+    },
+    {
+      "id": "geonames/12718644",
+      "name": "Il",
+      "kind": "town",
+      "location": {
+        "lat": -2.09761,
+        "lng": 36.79224
+      },
+      "population": 7812
+    },
+    {
+      "id": "geonames/179965",
+      "name": "Sololo",
+      "kind": "town",
+      "location": {
+        "lat": 3.56392,
+        "lng": 38.64321
+      },
+      "population": 7683
+    },
+    {
+      "id": "geonames/183296",
+      "name": "Nkubu",
+      "kind": "town",
+      "location": {
+        "lat": -0.06929,
+        "lng": 37.66618
+      },
+      "population": 7675
+    },
+    {
+      "id": "geonames/200575",
+      "name": "Baringo",
+      "kind": "town",
+      "location": {
+        "lat": 0.46667,
+        "lng": 35.96667
+      },
+      "population": 7656
+    },
+    {
+      "id": "geonames/199334",
+      "name": "Chogoria",
+      "kind": "town",
+      "location": {
+        "lat": -0.22954,
+        "lng": 37.62732
+      },
+      "population": 7603
+    },
+    {
+      "id": "geonames/180436",
+      "name": "Shianda",
+      "kind": "town",
+      "location": {
+        "lat": 0.31943,
+        "lng": 34.57352
+      },
+      "population": 7502
+    },
+    {
+      "id": "geonames/197729",
+      "name": "Garsen",
+      "kind": "town",
+      "location": {
+        "lat": -2.26645,
+        "lng": 40.10975
+      },
+      "population": 7176
+    },
+    {
+      "id": "geonames/187671",
+      "name": "Marereni",
+      "kind": "town",
+      "location": {
+        "lat": -2.86041,
+        "lng": 40.15057
+      },
+      "population": 7085
+    },
+    {
+      "id": "geonames/10400164",
+      "name": "Kapsokwony",
+      "kind": "town",
+      "location": {
+        "lat": 0.85222,
+        "lng": 34.70194
+      },
+      "population": 7077
+    },
+    {
+      "id": "geonames/178814",
+      "name": "Ogunja",
+      "kind": "town",
+      "location": {
+        "lat": 0.19019,
+        "lng": 34.29916
+      },
+      "population": 7060
+    },
+    {
+      "id": "geonames/11427417",
+      "name": "Sori",
+      "kind": "town",
+      "location": {
+        "lat": -0.8409,
+        "lng": 34.15978
+      },
+      "population": 7020
+    },
+    {
+      "id": "geonames/194966",
+      "name": "Kaloleni",
+      "kind": "town",
+      "location": {
+        "lat": -3.81413,
+        "lng": 39.63144
+      },
+      "population": 7016
+    },
+    {
+      "id": "geonames/179949",
+      "name": "Sondu",
+      "kind": "town",
+      "location": {
+        "lat": -0.3906,
+        "lng": 35.01266
+      },
+      "population": 6869
+    },
+    {
+      "id": "geonames/191932",
+      "name": "Kimbimbi",
+      "kind": "town",
+      "location": {
+        "lat": -0.62233,
+        "lng": 37.36482
+      },
+      "population": 6826
+    },
+    {
+      "id": "geonames/187506",
+      "name": "Maseno",
+      "kind": "town",
+      "location": {
+        "lat": -0.00661,
+        "lng": 34.60004
+      },
+      "population": 6771
+    },
+    {
+      "id": "geonames/181735",
+      "name": "Othaya",
+      "kind": "town",
+      "location": {
+        "lat": -0.54655,
+        "lng": 36.93178
+      },
+      "population": 6650
+    },
+    {
+      "id": "geonames/7732029",
+      "name": "Mukurwe-ini",
+      "kind": "town",
+      "location": {
+        "lat": -0.56092,
+        "lng": 37.04759
+      },
+      "population": 6508
+    },
+    {
+      "id": "geonames/200049",
+      "name": "Bura",
+      "kind": "town",
+      "location": {
+        "lat": -1.09431,
+        "lng": 39.94185
+      },
+      "population": 6496
+    },
+    {
+      "id": "geonames/194451",
+      "name": "Kangema",
+      "kind": "town",
+      "location": {
+        "lat": -0.68553,
+        "lng": 36.96463
+      },
+      "population": 6424
+    },
+    {
+      "id": "geonames/192967",
+      "name": "Kendu Bay",
+      "kind": "town",
+      "location": {
+        "lat": -0.3618,
+        "lng": 34.65272
+      },
+      "population": 6064
+    },
+    {
+      "id": "geonames/179181",
+      "name": "Tinganga",
+      "kind": "town",
+      "location": {
+        "lat": -1.13033,
+        "lng": 36.81358
+      },
+      "population": 6059
+    },
+    {
+      "id": "geonames/189092",
+      "name": "Lolgorien",
+      "kind": "town",
+      "location": {
+        "lat": -1.22906,
+        "lng": 34.80711
+      },
+      "population": 6053
+    },
+    {
+      "id": "geonames/12718634",
+      "name": "Nyansiongo",
+      "kind": "town",
+      "location": {
+        "lat": -0.7596,
+        "lng": 35.0148
+      },
+      "population": 5993
+    },
+    {
+      "id": "geonames/12718625",
+      "name": "Chaka",
+      "kind": "town",
+      "location": {
+        "lat": -0.35973,
+        "lng": 37.00002
+      },
+      "population": 5970
+    },
+    {
+      "id": "geonames/10340477",
+      "name": "Mpeketoni",
+      "kind": "town",
+      "location": {
+        "lat": -2.38913,
+        "lng": 40.69812
+      },
+      "population": 5957
+    },
+    {
+      "id": "geonames/186101",
+      "name": "Mtito Andei",
+      "kind": "town",
+      "location": {
+        "lat": -2.68987,
+        "lng": 38.16687
+      },
+      "population": 5626
+    },
+    {
+      "id": "geonames/182095",
+      "name": "Olulung’a",
+      "kind": "town",
+      "location": {
+        "lat": -1.00268,
+        "lng": 35.66336
+      },
+      "population": 5609
+    },
+    {
+      "id": "geonames/197264",
+      "name": "Githiga A",
+      "kind": "town",
+      "location": {
+        "lat": -1.08693,
+        "lng": 36.73405
+      },
+      "population": 5565
+    },
+    {
+      "id": "geonames/181197",
+      "name": "Rironi",
+      "kind": "town",
+      "location": {
+        "lat": -1.15116,
+        "lng": 36.63555
+      },
+      "population": 5544
+    },
+    {
+      "id": "geonames/198817",
+      "name": "Dundori",
+      "kind": "town",
+      "location": {
+        "lat": -0.2519,
+        "lng": 36.23641
+      },
+      "population": 5392
+    },
+    {
+      "id": "geonames/178093",
+      "name": "Witu",
+      "kind": "town",
+      "location": {
+        "lat": -2.38892,
+        "lng": 40.43827
+      },
+      "population": 5380
+    },
+    {
+      "id": "geonames/195977",
+      "name": "Jebilat",
+      "kind": "town",
+      "location": {
+        "lat": -0.69356,
+        "lng": 35.07132
+      },
+      "population": 5373
+    },
+    {
+      "id": "geonames/189702",
+      "name": "Lare",
+      "kind": "town",
+      "location": {
+        "lat": 0.33727,
+        "lng": 37.93749
+      },
+      "population": 5358
+    },
+    {
+      "id": "geonames/12718624",
+      "name": "Engineer",
+      "kind": "town",
+      "location": {
+        "lat": -0.60538,
+        "lng": 36.57629
+      },
+      "population": 5324
+    },
+    {
+      "id": "geonames/197514",
+      "name": "Gazi",
+      "kind": "town",
+      "location": {
+        "lat": -4.42402,
+        "lng": 39.50588
+      },
+      "population": 5222
+    },
+    {
+      "id": "geonames/183231",
+      "name": "North Horr",
+      "kind": "town",
+      "location": {
+        "lat": 3.32205,
+        "lng": 37.07032
+      },
+      "population": 5177
+    },
+    {
+      "id": "geonames/7646410",
+      "name": "Maji Mazuri",
+      "kind": "town",
+      "location": {
+        "lat": -0.01966,
+        "lng": 35.69138
+      },
+      "population": 5138
+    },
+    {
+      "id": "geonames/188005",
+      "name": "Malava",
+      "kind": "town",
+      "location": {
+        "lat": 0.44714,
+        "lng": 34.85387
+      },
+      "population": 5131
+    },
+    {
+      "id": "geonames/11964378",
+      "name": "Katito",
+      "kind": "town",
+      "location": {
+        "lat": -0.26934,
+        "lng": 34.97197
+      },
+      "population": 5098
+    },
+    {
+      "id": "geonames/200758",
+      "name": "Awasi",
+      "kind": "town",
+      "location": {
+        "lat": -0.16769,
+        "lng": 35.08239
+      },
+      "population": 5052
+    },
+    {
+      "id": "geonames/189783",
+      "name": "Laisamis",
+      "kind": "town",
+      "location": {
+        "lat": 1.5932,
+        "lng": 37.80595
+      },
+      "population": 5047
+    },
+    {
+      "id": "geonames/184749",
+      "name": "Nairagi Enkare",
+      "kind": "town",
+      "location": {
+        "lat": -1.04444,
+        "lng": 36.16314
+      },
+      "population": 4954
+    },
+    {
+      "id": "geonames/180981",
+      "name": "Runyenjes",
+      "kind": "town",
+      "location": {
+        "lat": -0.42304,
+        "lng": 37.57043
+      },
+      "population": 4943
+    },
+    {
+      "id": "geonames/12718633",
+      "name": "Muhuru",
+      "kind": "town",
+      "location": {
+        "lat": -0.99862,
+        "lng": 34.09614
+      },
+      "population": 4924
+    },
+    {
+      "id": "geonames/186216",
+      "name": "Mosoriot",
+      "kind": "town",
+      "location": {
+        "lat": 0.32059,
+        "lng": 35.17599
+      },
+      "population": 4916
+    },
+    {
+      "id": "geonames/11947712",
+      "name": "Kiambur",
+      "kind": "town",
+      "location": {
+        "lat": 0.40778,
+        "lng": 36.29533
+      },
+      "population": 4890
+    },
+    {
+      "id": "geonames/186445",
+      "name": "Keringet",
+      "kind": "town",
+      "location": {
+        "lat": -0.46758,
+        "lng": 35.68185
+      },
+      "population": 4774
+    },
+    {
+      "id": "geonames/184143",
+      "name": "Ndhiwa",
+      "kind": "town",
+      "location": {
+        "lat": -0.73148,
+        "lng": 34.36785
+      },
+      "population": 4762
+    },
+    {
+      "id": "geonames/188981",
+      "name": "Londiani",
+      "kind": "town",
+      "location": {
+        "lat": -0.16552,
+        "lng": 35.59359
+      },
+      "population": 4758
+    },
+    {
+      "id": "geonames/7729812",
+      "name": "Timboroa",
+      "kind": "town",
+      "location": {
+        "lat": 0.0855,
+        "lng": 35.53021
+      },
+      "population": 4744
+    },
+    {
+      "id": "geonames/200013",
+      "name": "Burnt Forest",
+      "kind": "town",
+      "location": {
+        "lat": 0.21684,
+        "lng": 35.4325
+      },
+      "population": 4739
+    },
+    {
+      "id": "geonames/11886567",
+      "name": "Maungu",
+      "kind": "town",
+      "location": {
+        "lat": -3.55813,
+        "lng": 38.74908
+      },
+      "population": 4713
+    },
+    {
+      "id": "geonames/193056",
+      "name": "Kebirigo",
+      "kind": "town",
+      "location": {
+        "lat": -0.60292,
+        "lng": 34.96124
+      },
+      "population": 4711
+    },
+    {
+      "id": "geonames/192202",
+      "name": "Kijabe",
+      "kind": "town",
+      "location": {
+        "lat": -0.948,
+        "lng": 36.598
+      },
+      "population": 4679
+    },
+    {
+      "id": "geonames/12718643",
+      "name": "Illasit",
+      "kind": "town",
+      "location": {
+        "lat": -2.95887,
+        "lng": 37.57112
+      },
+      "population": 4631
+    },
+    {
+      "id": "geonames/200891",
+      "name": "Archers Post",
+      "kind": "town",
+      "location": {
+        "lat": 0.63967,
+        "lng": 37.66596
+      },
+      "population": 4620
+    },
+    {
+      "id": "geonames/178389",
+      "name": "Wamba",
+      "kind": "town",
+      "location": {
+        "lat": 0.98016,
+        "lng": 37.32349
+      },
+      "population": 4580
+    },
+    {
+      "id": "geonames/12718627",
+      "name": "Samburu",
+      "kind": "town",
+      "location": {
+        "lat": -3.7947,
+        "lng": 39.26368
+      },
+      "population": 4454
+    },
+    {
+      "id": "geonames/12718642",
+      "name": "Isineti",
+      "kind": "town",
+      "location": {
+        "lat": -2.73555,
+        "lng": 37.50673
+      },
+      "population": 4437
+    },
+    {
+      "id": "geonames/199515",
+      "name": "Cheptai",
+      "kind": "town",
+      "location": {
+        "lat": 0.79975,
+        "lng": 34.4778
+      },
+      "population": 4419
+    },
+    {
+      "id": "geonames/191924",
+      "name": "Kimende",
+      "kind": "town",
+      "location": {
+        "lat": -0.98294,
+        "lng": 36.63091
+      },
+      "population": 4356
+    },
+    {
+      "id": "geonames/8605153",
+      "name": "Ndunyu Njeru",
+      "kind": "town",
+      "location": {
+        "lat": -0.54592,
+        "lng": 36.56182
+      },
+      "population": 4354
+    },
+    {
+      "id": "geonames/187977",
+      "name": "Malikisi",
+      "kind": "town",
+      "location": {
+        "lat": 0.67694,
+        "lng": 34.42167
+      },
+      "population": 4319
+    },
+    {
+      "id": "geonames/180337",
+      "name": "Siakago",
+      "kind": "town",
+      "location": {
+        "lat": -0.57728,
+        "lng": 37.63996
+      },
+      "population": 4315
+    },
+    {
+      "id": "geonames/191131",
+      "name": "Kithii",
+      "kind": "town",
+      "location": {
+        "lat": -1.39897,
+        "lng": 37.31378
+      },
+      "population": 4304
+    },
+    {
+      "id": "geonames/200619",
+      "name": "Baragoi",
+      "kind": "town",
+      "location": {
+        "lat": 1.78398,
+        "lng": 36.78597
+      },
+      "population": 4254
+    },
+    {
+      "id": "geonames/179888",
+      "name": "Sotik",
+      "kind": "town",
+      "location": {
+        "lat": -0.69069,
+        "lng": 35.11102
+      },
+      "population": 4194
+    },
+    {
+      "id": "geonames/201044",
+      "name": "Amagoru",
+      "kind": "town",
+      "location": {
+        "lat": 0.63157,
+        "lng": 34.32773
+      },
+      "population": 4182
+    },
+    {
+      "id": "geonames/180635",
+      "name": "Sega",
+      "kind": "town",
+      "location": {
+        "lat": 0.25365,
+        "lng": 34.22784
+      },
+      "population": 4179
+    },
+    {
+      "id": "geonames/191675",
+      "name": "Kipini",
+      "kind": "town",
+      "location": {
+        "lat": -2.52565,
+        "lng": 40.5262
+      },
+      "population": 4114
+    },
+    {
+      "id": "geonames/194464",
+      "name": "Kangare",
+      "kind": "town",
+      "location": {
+        "lat": -0.79569,
+        "lng": 36.8813
+      },
+      "population": 4096
+    },
+    {
+      "id": "geonames/182844",
+      "name": "Nyandiwa",
+      "kind": "town",
+      "location": {
+        "lat": -0.72265,
+        "lng": 34.0591
+      },
+      "population": 4033
+    },
+    {
+      "id": "geonames/192295",
+      "name": "Kiganjo",
+      "kind": "town",
+      "location": {
+        "lat": -0.39626,
+        "lng": 37.00006
+      },
+      "population": 4009
+    },
+    {
+      "id": "geonames/184546",
+      "name": "Nambare",
+      "kind": "town",
+      "location": {
+        "lat": 0.45813,
+        "lng": 34.25353
+      },
+      "population": 3993
+    },
+    {
+      "id": "geonames/180556",
+      "name": "Serem",
+      "kind": "town",
+      "location": {
+        "lat": 0.07717,
+        "lng": 34.85473
+      },
+      "population": 3984
+    },
+    {
+      "id": "geonames/179865",
+      "name": "South Kinangop",
+      "kind": "town",
+      "location": {
+        "lat": -0.7264,
+        "lng": 36.65258
+      },
+      "population": 3929
+    },
+    {
+      "id": "geonames/188469",
+      "name": "Mackinnon Road",
+      "kind": "town",
+      "location": {
+        "lat": -3.72332,
+        "lng": 39.03019
+      },
+      "population": 3901
+    },
+    {
+      "id": "geonames/12718648",
+      "name": "Khayega",
+      "kind": "town",
+      "location": {
+        "lat": 0.20888,
+        "lng": 34.77078
+      },
+      "population": 3892
+    },
+    {
+      "id": "geonames/181142",
+      "name": "Rombo",
+      "kind": "town",
+      "location": {
+        "lat": -3.04631,
+        "lng": 37.69539
+      },
+      "population": 3854
+    },
+    {
+      "id": "geonames/186226",
+      "name": "Mosocho",
+      "kind": "town",
+      "location": {
+        "lat": -0.58864,
+        "lng": 34.73379
+      },
+      "population": 3824
+    },
+    {
+      "id": "geonames/191482",
+      "name": "Kiriaini",
+      "kind": "town",
+      "location": {
+        "lat": -0.87917,
+        "lng": 36.88736
+      },
+      "population": 3779
+    },
+    {
+      "id": "geonames/184041",
+      "name": "Ndori",
+      "kind": "town",
+      "location": {
+        "lat": -0.07892,
+        "lng": 34.36329
+      },
+      "population": 3770
+    },
+    {
+      "id": "geonames/195514",
+      "name": "Kagumo",
+      "kind": "town",
+      "location": {
+        "lat": -0.47335,
+        "lng": 37.23737
+      },
+      "population": 3673
+    },
+    {
+      "id": "geonames/187483",
+      "name": "Masii",
+      "kind": "town",
+      "location": {
+        "lat": -1.46127,
+        "lng": 37.43849
+      },
+      "population": 3653
+    },
+    {
+      "id": "geonames/10377832",
+      "name": "Funyula",
+      "kind": "town",
+      "location": {
+        "lat": 0.27878,
+        "lng": 34.11869
+      },
+      "population": 3645
+    },
+    {
+      "id": "geonames/186367",
+      "name": "Mogonga",
+      "kind": "town",
+      "location": {
+        "lat": -0.86478,
+        "lng": 34.76285
+      },
+      "population": 3628
+    },
+    {
+      "id": "geonames/184983",
+      "name": "Mweiga",
+      "kind": "town",
+      "location": {
+        "lat": -0.31977,
+        "lng": 36.90194
+      },
+      "population": 3609
+    },
+    {
+      "id": "geonames/182791",
+      "name": "Nyangusu",
+      "kind": "town",
+      "location": {
+        "lat": -0.93263,
+        "lng": 34.84421
+      },
+      "population": 3590
+    },
+    {
+      "id": "geonames/193994",
+      "name": "Kapsoit",
+      "kind": "town",
+      "location": {
+        "lat": -0.31984,
+        "lng": 35.21845
+      },
+      "population": 3545
+    },
+    {
+      "id": "geonames/188380",
+      "name": "Magena Marabu",
+      "kind": "town",
+      "location": {
+        "lat": -0.91383,
+        "lng": 34.79623
+      },
+      "population": 3505
+    },
+    {
+      "id": "geonames/184011",
+      "name": "Ntulelei",
+      "kind": "town",
+      "location": {
+        "lat": -1.09573,
+        "lng": 36.08559
+      },
+      "population": 3390
+    },
+    {
+      "id": "geonames/181802",
+      "name": "Ortum",
+      "kind": "town",
+      "location": {
+        "lat": 1.43735,
+        "lng": 35.35629
+      },
+      "population": 3372
+    },
+    {
+      "id": "geonames/12718629",
+      "name": "Ol Donyo",
+      "kind": "town",
+      "location": {
+        "lat": -1.084,
+        "lng": 37.25274
+      },
+      "population": 3353
+    },
+    {
+      "id": "geonames/186520",
+      "name": "Mitunguu",
+      "kind": "town",
+      "location": {
+        "lat": -0.10886,
+        "lng": 37.7826
+      },
+      "population": 3293
+    },
+    {
+      "id": "geonames/192170",
+      "name": "Kikima",
+      "kind": "town",
+      "location": {
+        "lat": -1.66208,
+        "lng": 37.4469
+      },
+      "population": 3269
+    },
+    {
+      "id": "geonames/194184",
+      "name": "Kapcherop",
+      "kind": "town",
+      "location": {
+        "lat": 1.04026,
+        "lng": 35.32121
+      },
+      "population": 3240
+    },
+    {
+      "id": "geonames/178040",
+      "name": "Yala",
+      "kind": "town",
+      "location": {
+        "lat": 0.09438,
+        "lng": 34.53602
+      },
+      "population": 3237
+    },
+    {
+      "id": "geonames/200711",
+      "name": "Bahati",
+      "kind": "town",
+      "location": {
+        "lat": -0.15407,
+        "lng": 36.14634
+      },
+      "population": 3180
+    },
+    {
+      "id": "geonames/185745",
+      "name": "Mulot",
+      "kind": "town",
+      "location": {
+        "lat": -0.93752,
+        "lng": 35.42162
+      },
+      "population": 3149
+    },
+    {
+      "id": "geonames/179543",
+      "name": "Tarbaj",
+      "kind": "town",
+      "location": {
+        "lat": 2.2085,
+        "lng": 40.11812
+      },
+      "population": 3146
+    },
+    {
+      "id": "geonames/192586",
+      "name": "Kianyaga",
+      "kind": "town",
+      "location": {
+        "lat": -0.49546,
+        "lng": 37.35027
+      },
+      "population": 2974
+    },
+    {
+      "id": "geonames/188617",
+      "name": "Kipkelion",
+      "kind": "town",
+      "location": {
+        "lat": -0.19982,
+        "lng": 35.46735
+      },
+      "population": 2952
+    },
+    {
+      "id": "geonames/181463",
+      "name": "Rabuor",
+      "kind": "town",
+      "location": {
+        "lat": -0.14989,
+        "lng": 34.82584
+      },
+      "population": 2942
+    },
+    {
+      "id": "geonames/191129",
+      "name": "Kithimani",
+      "kind": "town",
+      "location": {
+        "lat": -1.18483,
+        "lng": 37.44685
+      },
+      "population": 2923
+    },
+    {
+      "id": "geonames/179659",
+      "name": "Tabaka",
+      "kind": "town",
+      "location": {
+        "lat": -0.74743,
+        "lng": 34.66682
+      },
+      "population": 2910
+    },
+    {
+      "id": "geonames/182298",
+      "name": "Olenguruone",
+      "kind": "town",
+      "location": {
+        "lat": -0.5861,
+        "lng": 35.68769
+      },
+      "population": 2787
+    },
+    {
+      "id": "geonames/11964544",
+      "name": "Kampi Ya Moto",
+      "kind": "town",
+      "location": {
+        "lat": -0.12429,
+        "lng": 35.93957
+      },
+      "population": 2775
+    },
+    {
+      "id": "geonames/10400158",
+      "name": "Marimanti",
+      "kind": "town",
+      "location": {
+        "lat": -0.15457,
+        "lng": 37.97625
+      },
+      "population": 2752
+    },
+    {
+      "id": "geonames/8605151",
+      "name": "Endarasha",
+      "kind": "town",
+      "location": {
+        "lat": -0.3055,
+        "lng": 36.79596
+      },
+      "population": 2743
+    },
+    {
+      "id": "geonames/11886080",
+      "name": "Kiboko",
+      "kind": "town",
+      "location": {
+        "lat": -2.21053,
+        "lng": 37.72026
+      },
+      "population": 2708
+    },
+    {
+      "id": "geonames/192942",
+      "name": "Kenyenya",
+      "kind": "town",
+      "location": {
+        "lat": -0.88754,
+        "lng": 34.73204
+      },
+      "population": 2698
+    },
+    {
+      "id": "geonames/12718641",
+      "name": "Kinungi",
+      "kind": "town",
+      "location": {
+        "lat": -0.80415,
+        "lng": 36.53133
+      },
+      "population": 2573
+    },
+    {
+      "id": "geonames/178922",
+      "name": "Turbo",
+      "kind": "town",
+      "location": {
+        "lat": 0.63367,
+        "lng": 35.04815
+      },
+      "population": 2559
+    },
+    {
+      "id": "geonames/188610",
+      "name": "Lunga-Lunga",
+      "kind": "town",
+      "location": {
+        "lat": -4.55276,
+        "lng": 39.12363
+      },
+      "population": 2536
+    },
+    {
+      "id": "geonames/196582",
+      "name": "Ikinu",
+      "kind": "town",
+      "location": {
+        "lat": -1.10804,
+        "lng": 36.79161
+      },
+      "population": 2532
+    },
+    {
+      "id": "geonames/180210",
+      "name": "Simba",
+      "kind": "town",
+      "location": {
+        "lat": -2.15792,
+        "lng": 37.59166
+      },
+      "population": 2504
+    },
+    {
+      "id": "geonames/194126",
+      "name": "Kapkatet",
+      "kind": "town",
+      "location": {
+        "lat": -0.62966,
+        "lng": 35.19441
+      },
+      "population": 2484
+    },
+    {
+      "id": "geonames/183718",
+      "name": "Ngewa",
+      "kind": "town",
+      "location": {
+        "lat": -1.09196,
+        "lng": 36.8659
+      },
+      "population": 2452
+    },
+    {
+      "id": "geonames/12718640",
+      "name": "Wiyumiririe",
+      "kind": "town",
+      "location": {
+        "lat": -0.07732,
+        "lng": 36.57959
+      },
+      "population": 2449
+    },
+    {
+      "id": "geonames/180914",
+      "name": "Saba Saba",
+      "kind": "town",
+      "location": {
+        "lat": -0.87592,
+        "lng": 37.14324
+      },
+      "population": 2438
+    },
+    {
+      "id": "geonames/195808",
+      "name": "Kavati",
+      "kind": "town",
+      "location": {
+        "lat": -1.23403,
+        "lng": 37.91571
+      },
+      "population": 2420
+    },
+    {
+      "id": "geonames/12718639",
+      "name": "Suguta",
+      "kind": "town",
+      "location": {
+        "lat": 0.82495,
+        "lng": 36.68928
+      },
+      "population": 2328
+    },
+    {
+      "id": "geonames/12718638",
+      "name": "Karuga",
+      "kind": "town",
+      "location": {
+        "lat": 0.03843,
+        "lng": 36.29279
+      },
+      "population": 2301
+    },
+    {
+      "id": "geonames/11593572",
+      "name": "Kesses",
+      "kind": "town",
+      "location": {
+        "lat": 0.30206,
+        "lng": 35.31441
+      },
+      "population": 2293
+    },
+    {
+      "id": "geonames/183119",
+      "name": "Nunguni",
+      "kind": "town",
+      "location": {
+        "lat": -1.79324,
+        "lng": 37.36276
+      },
+      "population": 2266
+    },
+    {
+      "id": "geonames/12718623",
+      "name": "Kasuku",
+      "kind": "town",
+      "location": {
+        "lat": -0.13103,
+        "lng": 36.37886
+      },
+      "population": 2209
+    },
+    {
+      "id": "geonames/178366",
+      "name": "Wamunyu",
+      "kind": "town",
+      "location": {
+        "lat": -1.40983,
+        "lng": 37.56358
+      },
+      "population": 2190
+    },
+    {
+      "id": "geonames/12718637",
+      "name": "Muchorwi",
+      "kind": "town",
+      "location": {
+        "lat": -0.3299,
+        "lng": 35.68751
+      },
+      "population": 2162
+    },
+    {
+      "id": "geonames/192207",
+      "name": "Kiirua",
+      "kind": "town",
+      "location": {
+        "lat": 0.12079,
+        "lng": 37.55953
+      },
+      "population": 2158
+    },
+    {
+      "id": "geonames/12718636",
+      "name": "Ewuaso",
+      "kind": "town",
+      "location": {
+        "lat": -1.14856,
+        "lng": 36.49712
+      },
+      "population": 2144
+    },
+    {
+      "id": "geonames/182250",
+      "name": "Ol Joro Orok",
+      "kind": "town",
+      "location": {
+        "lat": -0.07473,
+        "lng": 36.36288
+      },
+      "population": 2116
+    },
+    {
+      "id": "geonames/180085",
+      "name": "Sirisia",
+      "kind": "town",
+      "location": {
+        "lat": 0.75471,
+        "lng": 34.50351
+      },
+      "population": 2096
+    },
+    {
+      "id": "geonames/200604",
+      "name": "Baraton",
+      "kind": "town",
+      "location": {
+        "lat": 0.25517,
+        "lng": 35.0827
+      },
+      "population": 2043
+    },
+    {
+      "id": "geonames/200666",
+      "name": "Bamba",
+      "kind": "town",
+      "location": {
+        "lat": -3.54099,
+        "lng": 39.52268
+      },
+      "population": 2015
+    },
+    {
+      "id": "geonames/190544",
+      "name": "Konza",
+      "kind": "town",
+      "location": {
+        "lat": -1.73947,
+        "lng": 37.13195
+      },
+      "population": 2004
+    },
+    {
+      "id": "geonames/199604",
+      "name": "Chepareria",
+      "kind": "town",
+      "location": {
+        "lat": 1.30583,
+        "lng": 35.20365
+      },
+      "population": 1073
+    },
+    {
+      "id": "geonames/198002",
+      "name": "Funzi",
+      "kind": "town",
+      "location": {
+        "lat": -4.57887,
+        "lng": 39.43791
+      },
+      "population": 1066
+    },
+    {
+      "id": "geonames/11817265",
+      "name": "Abatton",
+      "kind": "suburb",
+      "location": {
+        "lat": 1.01824,
+        "lng": 34.98133
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477698",
+      "name": "Adams Arcade",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30169,
+        "lng": 36.78129
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477714",
+      "name": "Airport North",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31361,
+        "lng": 36.92554
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477727",
+      "name": "Airport View",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31516,
+        "lng": 36.81246
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477741",
+      "name": "Akiba South ’C’",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32145,
+        "lng": 36.8327
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477743",
+      "name": "Amboseli",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32567,
+        "lng": 36.83929
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465589",
+      "name": "Area Four",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25429,
+        "lng": 36.86458
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465660",
+      "name": "Area One",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.251,
+        "lng": 36.87553
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465590",
+      "name": "Area Three",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25377,
+        "lng": 36.86831
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465659",
+      "name": "Area Two",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25263,
+        "lng": 36.87238
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477757",
+      "name": "Avenue Park",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.3133,
+        "lng": 36.89163
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8463965",
+      "name": "Ayany",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30907,
+        "lng": 36.77528
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/200710",
+      "name": "Bahati",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.28937,
+        "lng": 36.85853
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/11844096",
+      "name": "Banda",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.36687,
+        "lng": 36.76137
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477573",
+      "name": "Barua",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.18082,
+        "lng": 36.83569
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477742",
+      "name": "Belle Vue estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32052,
+        "lng": 36.83808
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477652",
+      "name": "Bernard",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.27641,
+        "lng": 36.76936
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/200474",
+      "name": "Bernard Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.27619,
+        "lng": 36.76699
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/11429065",
+      "name": "Bindii",
+      "kind": "suburb",
+      "location": {
+        "lat": 1.05152,
+        "lng": 35.01643
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477700",
+      "name": "Bista",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30623,
+        "lng": 36.77328
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8629608",
+      "name": "Bungoma",
+      "kind": "town",
+      "location": {
+        "lat": 0.58333,
+        "lng": 34.58333
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477657",
+      "name": "Buru Buru 1",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.27233,
+        "lng": 36.87672
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477677",
+      "name": "Buru Buru 2",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.28038,
+        "lng": 36.87686
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477678",
+      "name": "Buru Buru 3",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.28909,
+        "lng": 36.87886
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477680",
+      "name": "Buru Buru 4",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29102,
+        "lng": 36.88354
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477679",
+      "name": "Buru Buru 5",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29419,
+        "lng": 36.8792
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477574",
+      "name": "Camerondale",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.19055,
+        "lng": 36.84402
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477724",
+      "name": "Carnivore",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32932,
+        "lng": 36.80209
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465656",
+      "name": "Casanova",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25836,
+        "lng": 36.86978
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/199350",
+      "name": "Chiromo",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.27403,
+        "lng": 36.80682
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/199252",
+      "name": "City Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.28742,
+        "lng": 36.77494
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477719",
+      "name": "Civil Servants",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32209,
+        "lng": 36.78926
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477565",
+      "name": "Closeburn",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.20522,
+        "lng": 36.79478
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477712",
+      "name": "Continental",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30059,
+        "lng": 36.89106
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477634",
+      "name": "Cross Road",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.24392,
+        "lng": 36.77502
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/199179",
+      "name": "Dagoretti Corner",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29891,
+        "lng": 36.75786
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/198867",
+      "name": "Doonholm Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29736,
+        "lng": 36.88978
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477646",
+      "name": "Drive-in",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.2502,
+        "lng": 36.876
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477710",
+      "name": "Eastlands",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29426,
+        "lng": 36.86015
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/198766",
+      "name": "Eastleigh",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.27335,
+        "lng": 36.84706
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/11205506",
+      "name": "Eldoret West",
+      "kind": "suburb",
+      "location": {
+        "lat": 0.51772,
+        "lng": 35.25641
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/198442",
+      "name": "Embakasi",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31083,
+        "lng": 36.90565
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/11204765",
+      "name": "Embakasi Village",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30675,
+        "lng": 36.90997
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477640",
+      "name": "Evergreen",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.2228,
+        "lng": 36.83347
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477692",
+      "name": "Faulkner’s Vlei",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32341,
+        "lng": 36.72504
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477758",
+      "name": "Fedha",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31322,
+        "lng": 36.89794
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477731",
+      "name": "Five Star",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32239,
+        "lng": 36.82292
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477702",
+      "name": "Fort Jesus",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30932,
+        "lng": 36.77961
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465584",
+      "name": "Four A",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26059,
+        "lng": 36.86055
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465580",
+      "name": "Four B",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26327,
+        "lng": 36.8569
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477744",
+      "name": "Friends Court",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32642,
+        "lng": 36.83744
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477726",
+      "name": "Funguo",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31323,
+        "lng": 36.81073
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8349465",
+      "name": "Gamalenga",
+      "kind": "suburb",
+      "location": {
+        "lat": 0.3,
+        "lng": 34.93333
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477620",
+      "name": "Garden",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.22265,
+        "lng": 36.86497
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8463972",
+      "name": "Gatwekera",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31556,
+        "lng": 36.78142
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477628",
+      "name": "Getathuru",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.23137,
+        "lng": 36.75314
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/11054419",
+      "name": "Gichagi",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.21861,
+        "lng": 36.76611
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477638",
+      "name": "Gigiri",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.23264,
+        "lng": 36.81534
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477670",
+      "name": "Gikomba",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.28661,
+        "lng": 36.84192
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477745",
+      "name": "Golden Gate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31328,
+        "lng": 36.84034
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477703",
+      "name": "Golf Course Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30523,
+        "lng": 36.80155
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477671",
+      "name": "Gorofani",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.2863,
+        "lng": 36.84276
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477685",
+      "name": "Greenfield",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29386,
+        "lng": 36.89523
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477641",
+      "name": "Halai",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.22032,
+        "lng": 36.84026
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477736",
+      "name": "Halai",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32442,
+        "lng": 36.82718
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/196847",
+      "name": "Harambee Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.2822,
+        "lng": 36.87424
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477767",
+      "name": "Hardy",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.36693,
+        "lng": 36.7403
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477753",
+      "name": "Hazina",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31554,
+        "lng": 36.84999
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/196778",
+      "name": "High Ridge",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25466,
+        "lng": 36.81762
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477748",
+      "name": "Highway",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32654,
+        "lng": 36.84065
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477633",
+      "name": "Hill View",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.24295,
+        "lng": 36.778
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/11287035",
+      "name": "Hurma",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25594,
+        "lng": 36.86244
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465657",
+      "name": "Huruma B",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25795,
+        "lng": 36.87264
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465655",
+      "name": "Huruma Flats",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26102,
+        "lng": 36.87053
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477568",
+      "name": "Ibonia",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.18772,
+        "lng": 36.81055
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477762",
+      "name": "Ideal Farm",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.3537,
+        "lng": 36.73182
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477686",
+      "name": "Jacaranda",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29379,
+        "lng": 36.89625
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477720",
+      "name": "Jambo",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32831,
+        "lng": 36.78747
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477697",
+      "name": "Jamhuri",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30321,
+        "lng": 36.77162
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/196004",
+      "name": "Jamhuri Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30316,
+        "lng": 36.77147
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477665",
+      "name": "Jeevanjee",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.27702,
+        "lng": 36.83224
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477675",
+      "name": "Jericho",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.28902,
+        "lng": 36.87188
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477747",
+      "name": "K.P.A.",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32379,
+        "lng": 36.84066
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/194965",
+      "name": "Kaloleni",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29549,
+        "lng": 36.84472
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8463974",
+      "name": "Kambi Muru",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31211,
+        "lng": 36.78955
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477672",
+      "name": "Kamukunji",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.28714,
+        "lng": 36.83868
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/194449",
+      "name": "Kangemi",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26953,
+        "lng": 36.74355
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477650",
+      "name": "Kangemi",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.27,
+        "lng": 36.74452
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/193884",
+      "name": "Karadolo",
+      "kind": "suburb",
+      "location": {
+        "lat": 0.25,
+        "lng": 34.13333
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8463967",
+      "name": "Karanja",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31054,
+        "lng": 36.78308
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477691",
+      "name": "Karen",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.33308,
+        "lng": 36.71624
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477569",
+      "name": "Karia",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.19673,
+        "lng": 36.81129
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/193717",
+      "name": "Kariobangi",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25367,
+        "lng": 36.88202
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8594749",
+      "name": "Kariobangi North",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25717,
+        "lng": 36.88103
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/193716",
+      "name": "Kariobangi South",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26558,
+        "lng": 36.88478
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477666",
+      "name": "Kariokor",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.27959,
+        "lng": 36.83534
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/7646417",
+      "name": "Kasarani",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.10972,
+        "lng": 37.07692
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8693323",
+      "name": "Kasarani",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.21743,
+        "lng": 36.89759
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/11764747",
+      "name": "Kathwana",
+      "kind": "town",
+      "location": {
+        "lat": -0.33139,
+        "lng": 37.86861
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/193122",
+      "name": "Kawangware",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.28472,
+        "lng": 36.74366
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477751",
+      "name": "Kayaba",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31206,
+        "lng": 36.8463
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477663",
+      "name": "Kayole",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.27616,
+        "lng": 36.91379
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477575",
+      "name": "Kegwa",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.21812,
+        "lng": 36.84671
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477576",
+      "name": "Kegwa Ridge",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.21438,
+        "lng": 36.85303
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/10342747",
+      "name": "Kengeleni",
+      "kind": "suburb",
+      "location": {
+        "lat": -4.03975,
+        "lng": 39.68039
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477759",
+      "name": "Kenya Pipe Line",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31702,
+        "lng": 36.89384
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477756",
+      "name": "Kenya Re",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32543,
+        "lng": 36.88265
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/192921",
+      "name": "Kerarapon",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31448,
+        "lng": 36.65747
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477688",
+      "name": "Kerarapon",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31393,
+        "lng": 36.66556
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465661",
+      "name": "Kiamaiko",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25458,
+        "lng": 36.87575
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8542942",
+      "name": "Kiambu Forest",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.19193,
+        "lng": 36.85689
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8463968",
+      "name": "Kianda",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31165,
+        "lng": 36.77348
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/192495",
+      "name": "Kibera Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30938,
+        "lng": 36.78003
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477625",
+      "name": "Kibichiku",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.2293,
+        "lng": 36.74237
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465592",
+      "name": "Kibichoi",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25921,
+        "lng": 36.86768
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477567",
+      "name": "Kigwaru",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.21514,
+        "lng": 36.79906
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/192093",
+      "name": "Kileleshwa",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.28022,
+        "lng": 36.7852
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477699",
+      "name": "Kilimani",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29797,
+        "lng": 36.78809
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/192042",
+      "name": "Kilimani Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29595,
+        "lng": 36.78045
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/11204626",
+      "name": "Kilindini",
+      "kind": "suburb",
+      "location": {
+        "lat": -4.05966,
+        "lng": 39.65033
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477674",
+      "name": "Kimathi Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.28657,
+        "lng": 36.86371
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/11204945",
+      "name": "Kisumu East",
+      "kind": "suburb",
+      "location": {
+        "lat": -0.0589,
+        "lng": 34.71032
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8463973",
+      "name": "Kisumu Ndogo",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31344,
+        "lng": 36.78757
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477660",
+      "name": "Koma Rock 1",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26457,
+        "lng": 36.91219
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477662",
+      "name": "Koma Rock 2",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26905,
+        "lng": 36.91066
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477661",
+      "name": "Koma Rock 3",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26729,
+        "lng": 36.90714
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/10344571",
+      "name": "Kongowea",
+      "kind": "suburb",
+      "location": {
+        "lat": -4.04005,
+        "lng": 39.69034
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477658",
+      "name": "Korogocho",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26032,
+        "lng": 36.8826
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465578",
+      "name": "Kosovo",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.2633,
+        "lng": 36.8518
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477763",
+      "name": "Kuwinda",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.33326,
+        "lng": 36.74716
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477632",
+      "name": "Kyuna Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25125,
+        "lng": 36.77307
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8463976",
+      "name": "Laini Saba",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31218,
+        "lng": 36.7951
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477630",
+      "name": "Lake View",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.24358,
+        "lng": 36.76952
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/189773",
+      "name": "Lake View Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -0.3,
+        "lng": 36.08333
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/11002900",
+      "name": "Langas Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": 0.47861,
+        "lng": 35.255
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477654",
+      "name": "Lavington Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.27841,
+        "lng": 36.77489
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477693",
+      "name": "Lenana",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30019,
+        "lng": 36.72823
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477622",
+      "name": "Liliana",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.19003,
+        "lng": 36.87266
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8463977",
+      "name": "Lindi",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.3157,
+        "lng": 36.79237
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477566",
+      "name": "Lone Tree",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.21715,
+        "lng": 36.79523
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477627",
+      "name": "Loresho",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.2501,
+        "lng": 36.75117
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/11204664",
+      "name": "Lucky Summer",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.23926,
+        "lng": 36.8924
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477676",
+      "name": "Lumumba Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29244,
+        "lng": 36.87216
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465587",
+      "name": "Mabatini",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26033,
+        "lng": 36.8638
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8542946",
+      "name": "Madaraka",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30614,
+        "lng": 36.8164
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465591",
+      "name": "Madoya",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25722,
+        "lng": 36.86789
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477709",
+      "name": "Maisha",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29875,
+        "lng": 36.85249
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/188184",
+      "name": "Makadara",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29557,
+        "lng": 36.87186
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/188168",
+      "name": "Makandara",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.45,
+        "lng": 36.96667
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8463966",
+      "name": "Makina",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30879,
+        "lng": 36.78625
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477708",
+      "name": "Makongeni",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29729,
+        "lng": 36.84939
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477629",
+      "name": "Manga Gardens",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.22634,
+        "lng": 36.76263
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/11495915",
+      "name": "Manyatta A",
+      "kind": "suburb",
+      "location": {
+        "lat": -0.08535,
+        "lng": 34.76655
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477711",
+      "name": "Maringo",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29464,
+        "lng": 36.86516
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/11250518",
+      "name": "Markupa",
+      "kind": "suburb",
+      "location": {
+        "lat": -4.03886,
+        "lng": 39.64671
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477621",
+      "name": "Marurui",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.21722,
+        "lng": 36.87029
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477723",
+      "name": "Masai",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32613,
+        "lng": 36.79107
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8463975",
+      "name": "Mashimoni",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.3108,
+        "lng": 36.79155
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465585",
+      "name": "Mashimoni",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26155,
+        "lng": 36.86202
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477645",
+      "name": "Mathare North",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25412,
+        "lng": 36.86682
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477656",
+      "name": "Mathare Valley",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26306,
+        "lng": 36.8576
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/186982",
+      "name": "Mbotela",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.2977,
+        "lng": 36.86345
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477735",
+      "name": "Mbugani",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.3231,
+        "lng": 36.82825
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477732",
+      "name": "Memon",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32457,
+        "lng": 36.82501
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477733",
+      "name": "Midland Court",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.3273,
+        "lng": 36.82378
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477619",
+      "name": "Mika",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.21027,
+        "lng": 36.85988
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477570",
+      "name": "Mimosa",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.21448,
+        "lng": 36.8034
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477572",
+      "name": "Misarara",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.19626,
+        "lng": 36.83081
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477631",
+      "name": "Mitini",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.23966,
+        "lng": 36.76684
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/11239653",
+      "name": "Mlango Kubwa",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26568,
+        "lng": 36.84462
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/186353",
+      "name": "Moi",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31654,
+        "lng": 36.78308
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477752",
+      "name": "Mombasa Road",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32153,
+        "lng": 36.84707
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477648",
+      "name": "Mountain View",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26931,
+        "lng": 36.73863
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477737",
+      "name": "Mugoya 1",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31983,
+        "lng": 36.82803
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477738",
+      "name": "Mugoya 2",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32101,
+        "lng": 36.82641
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477729",
+      "name": "Mugoya 3",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31895,
+        "lng": 36.82498
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477739",
+      "name": "Mugoya 4",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32547,
+        "lng": 36.82955
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/11523378",
+      "name": "Mukuru kwa njenga",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30013,
+        "lng": 36.89872
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/185401",
+      "name": "Muthaiga",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25338,
+        "lng": 36.83474
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8542944",
+      "name": "Muthaiga North",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.23092,
+        "lng": 36.80784
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477669",
+      "name": "Muthurwa",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.28809,
+        "lng": 36.83647
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477626",
+      "name": "Mwimuto",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.23381,
+        "lng": 36.74717
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477690",
+      "name": "Mwitu",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.3233,
+        "lng": 36.6861
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8542948",
+      "name": "Nairobi Dam",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32161,
+        "lng": 36.80369
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/184739",
+      "name": "Nairobi Hill",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29524,
+        "lng": 36.81233
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/184738",
+      "name": "Nairobi Industrial Area",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.3,
+        "lng": 36.83333
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/184736",
+      "name": "Nairobi South ’C’",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31575,
+        "lng": 36.8257
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/184735",
+      "name": "Nairobi West",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30824,
+        "lng": 36.8237
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477647",
+      "name": "Ndumbuini",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25876,
+        "lng": 36.71935
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477649",
+      "name": "New Loresho",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25754,
+        "lng": 36.74821
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465662",
+      "name": "New Mathare",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25903,
+        "lng": 36.87669
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8542943",
+      "name": "New Muthaiga",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.23647,
+        "lng": 36.79065
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477639",
+      "name": "New Runda",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.22316,
+        "lng": 36.82511
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477694",
+      "name": "Ngando",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30412,
+        "lng": 36.73978
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477716",
+      "name": "Ngei",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32086,
+        "lng": 36.78299
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477717",
+      "name": "Ngei 2",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32771,
+        "lng": 36.7836
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465658",
+      "name": "Ngei One",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.2558,
+        "lng": 36.87085
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465588",
+      "name": "Ngei Two B",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25948,
+        "lng": 36.86567
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477705",
+      "name": "Ngummo",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30854,
+        "lng": 36.79933
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465583",
+      "name": "Number Ten",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26283,
+        "lng": 36.86086
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/182954",
+      "name": "Nyali",
+      "kind": "suburb",
+      "location": {
+        "lat": -4.05246,
+        "lng": 39.69541
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477635",
+      "name": "Nyari",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.23193,
+        "lng": 36.78608
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477725",
+      "name": "Nyayo Highrise",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31567,
+        "lng": 36.80562
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/182510",
+      "name": "Ofafa",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29167,
+        "lng": 36.86545
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/182361",
+      "name": "Old Mombasa",
+      "kind": "suburb",
+      "location": {
+        "lat": -4.05053,
+        "lng": 39.6649
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477761",
+      "name": "Ololua Ridge",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.34217,
+        "lng": 36.69617
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8463969",
+      "name": "Olympic",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31367,
+        "lng": 36.77854
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8594750",
+      "name": "Ongata Rongai",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.38017,
+        "lng": 36.74631
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477721",
+      "name": "Onyonka",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32678,
+        "lng": 36.7869
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477642",
+      "name": "Orchard",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.22545,
+        "lng": 36.84298
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/181731",
+      "name": "Otiende estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32372,
+        "lng": 36.7787
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/181719",
+      "name": "Outer Ring Road estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.27263,
+        "lng": 36.87861
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/181680",
+      "name": "Pangani",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26637,
+        "lng": 36.83983
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477760",
+      "name": "Park Grange",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.33481,
+        "lng": 36.68978
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477764",
+      "name": "Park Place",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.3562,
+        "lng": 36.75952
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477768",
+      "name": "Park View",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.37693,
+        "lng": 36.74384
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477659",
+      "name": "Pioneer",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.27362,
+        "lng": 36.87934
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477746",
+      "name": "Plains View",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31725,
+        "lng": 36.84278
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477667",
+      "name": "Racecourse",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.27582,
+        "lng": 36.83657
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477695",
+      "name": "Racecouse",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31022,
+        "lng": 36.74446
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8463971",
+      "name": "Raila",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31808,
+        "lng": 36.77876
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477749",
+      "name": "Real",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32609,
+        "lng": 36.84225
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477730",
+      "name": "Realty",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31858,
+        "lng": 36.82685
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477689",
+      "name": "Rhino Park",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30839,
+        "lng": 36.67951
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477644",
+      "name": "Ridgeways",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.23318,
+        "lng": 36.84346
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477643",
+      "name": "Ridgeways Springs",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.22721,
+        "lng": 36.84706
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8542945",
+      "name": "Riruta Satellite",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29237,
+        "lng": 36.74336
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477750",
+      "name": "Riverbank",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31365,
+        "lng": 36.84529
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477655",
+      "name": "Riverside Park",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.27014,
+        "lng": 36.80513
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477636",
+      "name": "Rosslyn",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.22537,
+        "lng": 36.80118
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477715",
+      "name": "Rowallan Park",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31076,
+        "lng": 36.77318
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477623",
+      "name": "Roysambu",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.21411,
+        "lng": 36.88335
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/11049282",
+      "name": "Ruai",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25513,
+        "lng": 36.92748
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/181068",
+      "name": "Ruaraka Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.24383,
+        "lng": 36.8808
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477722",
+      "name": "Rubia",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32468,
+        "lng": 36.78916
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477734",
+      "name": "Ruby",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32551,
+        "lng": 36.82677
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477571",
+      "name": "Runda",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.21276,
+        "lng": 36.80383
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477765",
+      "name": "Saifee Park",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.36337,
+        "lng": 36.75808
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/11844120",
+      "name": "Saint Francis",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31974,
+        "lng": 36.71671
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477696",
+      "name": "Santack",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30205,
+        "lng": 36.74941
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477687",
+      "name": "Sauti",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29513,
+        "lng": 36.90022
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477713",
+      "name": "Savannah",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29783,
+        "lng": 36.89574
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/180451",
+      "name": "Shauri Moyo",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29085,
+        "lng": 36.84742
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/180401",
+      "name": "Shimanzi",
+      "kind": "suburb",
+      "location": {
+        "lat": -4.04373,
+        "lng": 39.64828
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8463979",
+      "name": "Silanga",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31774,
+        "lng": 36.7979
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477706",
+      "name": "Siwaka",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30866,
+        "lng": 36.81117
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477707",
+      "name": "South ’B’",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30995,
+        "lng": 36.83377
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477728",
+      "name": "South ’C’",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31583,
+        "lng": 36.82603
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477740",
+      "name": "Southend",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32192,
+        "lng": 36.83113
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477718",
+      "name": "Southlands Park",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32052,
+        "lng": 36.78724
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8463978",
+      "name": "Soweto East",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31435,
+        "lng": 36.79965
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8463970",
+      "name": "Soweto West",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.31605,
+        "lng": 36.77695
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/179819",
+      "name": "Spring Valley Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25198,
+        "lng": 36.78164
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477653",
+      "name": "St. Austin’s",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26477,
+        "lng": 36.77871
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477673",
+      "name": "Starehe",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.28119,
+        "lng": 36.84165
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477683",
+      "name": "Sunrise",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29552,
+        "lng": 36.89169
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477704",
+      "name": "Sunview",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30475,
+        "lng": 36.80205
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/10344572",
+      "name": "Tayari",
+      "kind": "suburb",
+      "location": {
+        "lat": -4.05845,
+        "lng": 39.6706
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477682",
+      "name": "Tena",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29002,
+        "lng": 36.89103
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465586",
+      "name": "Thayu",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.2626,
+        "lng": 36.86289
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8542939",
+      "name": "Thembigwa",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.19946,
+        "lng": 36.84414
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/179286",
+      "name": "Thompson Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29407,
+        "lng": 36.7678
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477664",
+      "name": "Thomson",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29254,
+        "lng": 36.76152
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465581",
+      "name": "Three A",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26492,
+        "lng": 36.85612
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465579",
+      "name": "Three B",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26516,
+        "lng": 36.85324
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465582",
+      "name": "Three C",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26476,
+        "lng": 36.85883
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/10344570",
+      "name": "Tudor",
+      "kind": "suburb",
+      "location": {
+        "lat": -4.03735,
+        "lng": 39.66412
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/12903097",
+      "name": "Uhuru 2",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.28054,
+        "lng": 36.87295
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/178809",
+      "name": "Uhuru Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.28494,
+        "lng": 36.86683
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8542947",
+      "name": "Uhuru Gardens",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32467,
+        "lng": 36.79146
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477681",
+      "name": "Umoja 1",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.28253,
+        "lng": 36.8902
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477684",
+      "name": "Umoja 2",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.28234,
+        "lng": 36.89929
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/178712",
+      "name": "Upper Hill Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.29528,
+        "lng": 36.78693
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/181656",
+      "name": "Upper Parklands Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.25813,
+        "lng": 36.7978
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477755",
+      "name": "Villa Franca",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.32214,
+        "lng": 36.8712
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465576",
+      "name": "Village One",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26482,
+        "lng": 36.84495
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8465577",
+      "name": "Village Two",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26494,
+        "lng": 36.8494
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/178147",
+      "name": "Westlands",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.26683,
+        "lng": 36.80806
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477637",
+      "name": "Wispers",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.2237,
+        "lng": 36.81278
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477701",
+      "name": "Woodley",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30492,
+        "lng": 36.78116
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/178082",
+      "name": "Woodley Estate",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.30356,
+        "lng": 36.78374
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477624",
+      "name": "Zimmerman",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.20762,
+        "lng": 36.88955
+      },
+      "population": 0
+    },
+    {
+      "id": "geonames/8477668",
+      "name": "Ziwani",
+      "kind": "suburb",
+      "location": {
+        "lat": -1.2794,
+        "lng": 36.83846
+      },
+      "population": 0
+    }
+  ]
+}

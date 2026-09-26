@@ -55,7 +55,9 @@ function budgetMatches(gym: Gym, budget: Budget): boolean {
 
 export function scoreGym(gym: Gym, origin: LatLng, profile: ClientProfile): Gym {
   const distanceKm = haversineKm(origin, gym.location);
-  const distanceScore = (1 / (1 + distanceKm / 2)) * 40;
+  // Distance must dominate sparse OSM metadata. A distant 24/7 listing must
+  // not outrank a venue just around the corner in a nationwide search.
+  const distanceScore = (1 / (1 + distanceKm / 5)) * 85;
   const rating = gym.rating ?? 0;
   const reviews = gym.userRatingCount;
   const ratingScore = (rating / 5) * (1 - 1 / (1 + reviews / 20)) * 30;
@@ -109,21 +111,22 @@ export function rankGyms(gyms: Gym[], origin: LatLng, profile: ClientProfile, fi
   const scored = applyFilters(
     gyms.map((gym) => scoreGym(gym, origin, profile)),
     filters,
-  ).sort((a, b) => b.score - a.score);
+  ).sort((a, b) => filters.radiusMeters === 0
+    ? (a.distanceKm ?? Infinity) - (b.distanceKm ?? Infinity) || b.score - a.score
+    : b.score - a.score);
 
   if (scored.length === 0) return scored;
 
   const labels = new Map<string, GymLabel[]>();
   const best = scored[0];
-  labels.set(best.id, ["best_match"]);
+  labels.set(best.id, filters.radiusMeters === 0 ? ["closest"] : ["best_match"]);
 
   const closest = [...scored].sort(
     (a, b) => (a.distanceKm ?? Infinity) - (b.distanceKm ?? Infinity),
   )[0];
-  if (closest && closest.id !== best.id) {
-    labels.set(closest.id, [...(labels.get(closest.id) ?? []), "closest"]);
-  } else if (closest) {
-    labels.set(closest.id, [...(labels.get(closest.id) ?? []), "closest"]);
+  if (closest) {
+    const current = labels.get(closest.id) ?? [];
+    if (!current.includes("closest")) labels.set(closest.id, [...current, "closest"]);
   }
 
   const rated = scored.filter((gym) => gym.rating != null);

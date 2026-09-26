@@ -18,7 +18,7 @@ const ui = Figtree({
 export const metadata: Metadata = {
   title: "KAYA — Kenya Gym Finder",
   description:
-    "Find gyms across Kenya on a free OpenStreetMap canvas, then rank them by distance, hours, and your training brief.",
+    "Find community-mapped gyms across Kenya, search towns without an API key, and build a four-week training and Kenyan meal guide.",
   applicationName: "KAYA",
   manifest: "/manifest.webmanifest",
   appleWebApp: {

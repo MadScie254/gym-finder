@@ -26,15 +26,11 @@ export async function fetchNearbyGyms(center: LatLng, radiusMeters: number): Pro
   return { gyms: payload.gyms ?? [], warning: payload.warning };
 }
 
-export async function fetchSearchGyms(query: string, center?: LatLng): Promise<{
+export async function fetchSearchGyms(query: string): Promise<{
   gyms: Gym[];
   warning?: string;
 }> {
   const params = new URLSearchParams({ q: query });
-  if (center) {
-    params.set("lat", String(center.lat));
-    params.set("lng", String(center.lng));
-  }
   const response = await fetch(`/api/places/search?${params.toString()}`);
   const payload = (await response.json()) as { gyms?: Gym[]; error?: string; warning?: string };
   if (!response.ok) {

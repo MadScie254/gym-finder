@@ -1,6 +1,6 @@
 import { isInKenya, KENYA_BOUNDS } from "./kenya";
-import { catalogAllGyms, catalogGymById, catalogNearbyGyms } from "./kenyaGymCatalog";
-import { googleNearbyGyms, googlePlacesConfigured, googleTextGyms } from "./googlePlaces";
+import { catalogAllGyms, catalogGymById, catalogNearbyGyms, catalogSearchGyms } from "./kenyaGymCatalog";
+import { isFitnessVenue } from "./fitnessVenue";
 import { fetchWithTimeout } from "./requestSafety";
 import { withCircuitBreaker, withProviderThrottle, withTtlCache } from "./ttlCache";
 import type { Gym, LatLng } from "./types";
@@ -231,7 +231,7 @@ function mapElement(element: OsmElement): Gym | null {
   const location = locationOf(element);
   if (!location) return null;
   const name = tags.name || tags["name:en"] || "Fitness centre";
-  return {
+  const gym: Gym = {
     id: osmId(element),
     name,
     address: addressFrom(tags, "Kenya"),
@@ -256,6 +256,7 @@ function mapElement(element: OsmElement): Gym | null {
     score: 0,
     labels: [],
   };
+  return isFitnessVenue(gym) ? gym : null;
 }
 
 function gymQuery(filter: string): string {
@@ -263,7 +264,7 @@ function gymQuery(filter: string): string {
     nwr["leisure"="fitness_centre"]${filter};
     nwr["amenity"="gym"]${filter};
     nwr["amenity"="fitness_centre"]${filter};
-    nwr["leisure"="sports_centre"]${filter};
+    nwr["leisure"="sports_centre"]["name"~"gym|fitness|crossfit",i]${filter};
     nwr["leisure"="fitness_station"]${filter};
     nwr["sport"="fitness"]${filter};
     nwr["name"~"gym|fitness|crossfit",i]["amenity"]${filter};
@@ -318,23 +319,11 @@ export async function searchNearbyGyms(center: LatLng, radiusMeters: number): Pr
 
 async function searchNearbyGymsUncached(center: LatLng, radius: number): Promise<Gym[]> {
   if (radius === 0) {
-    const catalog = catalogAllGyms(center);
-    let google: Gym[] = [];
-    if (googlePlacesConfigured()) {
-      try {
-        google = await googleTextGyms("gym fitness centre", center);
-      } catch {
-        google = [];
-      }
-    }
-    return mergeGyms(catalog, google);
+    return catalogAllGyms(center);
   }
 
   // Catalog is the fast, offline source (checked-in Kenya OSM extract).
-  let catalog = catalogNearbyGyms(center, radius);
-  if (catalog.length < 5 && radius < 25_000) {
-    catalog = catalogNearbyGyms(center, Math.min(40_000, Math.max(radius * 3, 15_000)));
-  }
+  const catalog = catalogNearbyGyms(center, radius);
 
   const live: Gym[] = [];
   try {
@@ -346,36 +335,25 @@ async function searchNearbyGymsUncached(center: LatLng, radius: number): Promise
     // Live Overpass is best-effort; catalog already covers Kenya.
   }
 
-  let google: Gym[] = [];
-  if (googlePlacesConfigured()) {
-    try {
-      google = await googleNearbyGyms(center, radius);
-    } catch {
-      google = [];
-    }
-  }
-
-  return mergeGyms(catalog, live, google);
+  return mergeGyms(catalog, live);
 }
 
-export async function searchTextGyms(query: string, center?: LatLng): Promise<Gym[]> {
-  const google = googlePlacesConfigured()
-    ? await googleTextGyms(query, center).catch(() => [] as Gym[])
-    : [];
+export async function searchTextGyms(query: string): Promise<Gym[]> {
+  const local = catalogSearchGyms(query);
 
   // One Nominatim request can resolve a town, estate, or mapped fitness venue.
   // Keeping this to one request avoids bursting a public geocoding provider.
   const hits = await nominatimSearch(query, 12).catch(() => [] as NominatimHit[]);
   const place = hits.map(placeFromHit).find((candidate): candidate is PlaceHit => candidate != null);
   if (place) {
-    return mergeGyms(google, await searchNearbyGyms(place.location, 15000));
+    return mergeGyms(local, await searchNearbyGyms(place.location, 15000));
   }
   const fitnessHits = hits.filter((hit) => {
     const kind = `${hit.class} ${hit.type}`.toLowerCase();
     return /gym|fitness|sport|leisure/.test(kind) || /gym|fitness|yoga/.test(hit.display_name ?? "");
   });
 
-  const fromNominatim: Gym[] = (fitnessHits.length ? fitnessHits : hits)
+  const fromNominatim: Gym[] = fitnessHits
     .map((hit) => {
       const lat = Number(hit.lat);
       const lng = Number(hit.lon);
@@ -396,12 +374,7 @@ export async function searchTextGyms(query: string, center?: LatLng): Promise<Gy
     })
     .filter((gym): gym is Gym => gym != null);
 
-  const searchCenter = center ?? fromNominatim[0]?.location;
-  if (searchCenter) {
-    const nearby = await searchNearbyGyms(searchCenter, 12000);
-    return mergeGyms(google, fromNominatim, nearby);
-  }
-  return mergeGyms(google, fromNominatim);
+  return mergeGyms(local, fromNominatim);
 }
 
 export async function getPlaceDetails(id: string): Promise<Gym | null> {
@@ -409,16 +382,13 @@ export async function getPlaceDetails(id: string): Promise<Gym | null> {
 }
 
 async function getPlaceDetailsUncached(id: string): Promise<Gym | null> {
-  if (id.startsWith("google/")) {
-    return null;
-  }
   const fromCatalog = catalogGymById(id);
   const parsed = parseId(id);
   if (!parsed) return fromCatalog;
   try {
     const query = `[out:json][timeout:15];${parsed.type}(${parsed.id});out center tags;`;
     const elements = await overpass(query);
-    return elements[0] ? mapElement(elements[0]) : fromCatalog;
+    return elements[0] ? (mapElement(elements[0]) ?? fromCatalog) : fromCatalog;
   } catch {
     return fromCatalog;
   }

@@ -1,3 +1,5 @@
+import { isIP } from "node:net";
+
 export const MAX_QUERY_LENGTH = 120;
 
 type RateLimit = {
@@ -11,8 +13,10 @@ const MAX_TRACKED_CLIENTS = 1_000;
 function clientKey(request: Request): string {
   // Hosting providers append this header. A production deployment should replace
   // this process-local guard with its platform's durable rate limiter.
+  const real = request.headers.get("x-real-ip")?.trim();
   const forwarded = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
-  return forwarded || request.headers.get("x-real-ip") || "anonymous";
+  const candidate = real || forwarded || "";
+  return isIP(candidate) ? candidate : "anonymous";
 }
 
 function pruneExpired(now: number): void {
@@ -20,7 +24,12 @@ function pruneExpired(now: number): void {
   for (const [key, limit] of rateLimits) {
     if (limit.resetAt <= now) rateLimits.delete(key);
   }
-  if (rateLimits.size >= MAX_TRACKED_CLIENTS) rateLimits.clear();
+  // Clearing the entire map would reset every active client's quota at once.
+  while (rateLimits.size >= MAX_TRACKED_CLIENTS) {
+    const oldest = rateLimits.keys().next().value;
+    if (!oldest) break;
+    rateLimits.delete(oldest);
+  }
 }
 
 export function rateLimit(

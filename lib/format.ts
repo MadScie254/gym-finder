@@ -26,7 +26,7 @@ export function formatBudget(budget: Budget): string {
 }
 
 export function labelText(label: GymLabel): string {
-  if (label === "best_match") return "Best match";
+  if (label === "best_match") return "Suggested match";
   if (label === "closest") return "Closest";
   return "Top rated";
 }
@@ -36,8 +36,9 @@ export function starText(rating: number | null, count: number): string {
   return `${rating.toFixed(1)} (${count})`;
 }
 
-export function directionsUrl(lat: number, lng: number, name: string): string {
-  return `https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route=${lat}%2C${lng}#map=16/${lat}/${lng}&destination=${encodeURIComponent(name)}`;
+export function directionsUrl(lat: number, lng: number): string {
+  // Google Maps URLs open turn-by-turn directions without a Places API key.
+  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${lat},${lng}`)}`;
 }
 
 export function safeExternalUrl(value: string | null): string | null {
