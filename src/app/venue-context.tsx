@@ -81,4 +81,3 @@ export function useVenueContext(): VenueContextValue {
   return value;
 }
 
-void type;
