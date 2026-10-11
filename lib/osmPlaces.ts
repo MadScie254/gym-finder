@@ -2,7 +2,7 @@ import { isInKenya, KENYA_BOUNDS } from "./kenya";
 import { catalogAllGyms, catalogGymById, catalogNearbyGyms, catalogSearchGyms } from "./kenyaGymCatalog";
 import { isFitnessVenue } from "./fitnessVenue";
 import { fetchWithTimeout } from "./requestSafety";
-import { withCircuitBreaker, withProviderThrottle, withTtlCache } from "./ttlCache";
+import { seedTtlCache, withCircuitBreaker, withProviderThrottle, withTtlCache } from "./ttlCache";
 import type { Gym, LatLng } from "./types";
 
 const DEFAULT_OVERPASS_ENDPOINTS = [
@@ -23,6 +23,8 @@ const NOMINATIM_URL =
   (process.env.NODE_ENV === "production" ? null : PUBLIC_NOMINATIM_URL);
 const USER_AGENT =
   process.env.OSM_USER_AGENT ?? "KenyaGymFinder/1.0 (https://github.com/MadScie254/gym-finder)";
+const OVERPASS_INTERVAL_MS = 1_100;
+const DETAILS_TTL_MS = 60 * 60 * 1_000;
 
 type OsmElement = {
   type: "node" | "way" | "relation";
@@ -282,32 +284,41 @@ function mergeGyms(...lists: Gym[][]): Gym[] {
 }
 
 async function overpass(query: string): Promise<OsmElement[]> {
-  for (const [index, endpoint] of OVERPASS_ENDPOINTS.entries()) {
-    try {
-      return await withCircuitBreaker(`overpass:${endpoint}`, async () => {
-        const response = await fetchWithTimeout(endpoint, {
-          method: "POST",
-          headers: { ...headers(), "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-          body: `data=${encodeURIComponent(query)}`,
-          cache: "no-store",
-        }, 12_000);
-        if (!response.ok) throw new Error(`Overpass failed (${response.status})`);
-        const payload = (await response.json()) as { elements?: OsmElement[] };
-        return payload.elements ?? [];
-      });
-    } catch {
-      // Try the next provider once. Requests are intentionally sequential to
-      // avoid doubling traffic to community-operated Overpass services.
-      if (index < OVERPASS_ENDPOINTS.length - 1) {
-        await new Promise((resolve) => setTimeout(resolve, 250 * 2 ** index));
+  if (OVERPASS_ENDPOINTS.length === 0) {
+    throw new Error("Gym data is unavailable until a production provider is configured");
+  }
+  // Same minimum spacing as Nominatim. One slot covers the fallback chain so a
+  // failure does not immediately call the next public instance.
+  return withProviderThrottle("overpass", OVERPASS_INTERVAL_MS, async () => {
+    for (const [index, endpoint] of OVERPASS_ENDPOINTS.entries()) {
+      try {
+        return await withCircuitBreaker(`overpass:${endpoint}`, async () => {
+          const response = await fetchWithTimeout(endpoint, {
+            method: "POST",
+            headers: { ...headers(), "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+            body: `data=${encodeURIComponent(query)}`,
+            cache: "no-store",
+          }, 12_000);
+          if (!response.ok) throw new Error(`Overpass failed (${response.status})`);
+          const payload = (await response.json()) as { elements?: OsmElement[] };
+          return payload.elements ?? [];
+        });
+      } catch {
+        // Try the next provider once. Requests are intentionally sequential to
+        // avoid doubling traffic to community-operated Overpass services.
+        if (index < OVERPASS_ENDPOINTS.length - 1) {
+          await new Promise((resolve) => setTimeout(resolve, 250 * 2 ** index));
+        }
       }
     }
-  }
-  throw new Error(
-    OVERPASS_ENDPOINTS.length
-      ? "Gym data provider is temporarily unavailable"
-      : "Gym data is unavailable until a production provider is configured",
-  );
+    throw new Error("Gym data provider is temporarily unavailable");
+  });
+}
+
+function rememberDetails(gym: Gym): Gym {
+  const listed = { ...gym, listingComplete: true };
+  seedTtlCache(`details:${gym.id}`, listed, DETAILS_TTL_MS);
+  return listed;
 }
 
 export async function searchNearbyGyms(center: LatLng, radiusMeters: number): Promise<Gym[]> {
@@ -330,7 +341,12 @@ async function searchNearbyGymsUncached(center: LatLng, radius: number): Promise
     const filter = `(around:${radius},${center.lat},${center.lng})`;
     const query = `[out:json][timeout:12];(${gymQuery(filter)});out center tags 60;`;
     const elements = await overpass(query);
-    live.push(...elements.map(mapElement).filter((gym): gym is Gym => gym != null));
+    live.push(
+      ...elements
+        .map(mapElement)
+        .filter((gym): gym is Gym => gym != null)
+        .map(rememberDetails),
+    );
   } catch {
     // Live Overpass is best-effort; catalog already covers Kenya.
   }
@@ -378,7 +394,9 @@ export async function searchTextGyms(query: string): Promise<Gym[]> {
 }
 
 export async function getPlaceDetails(id: string): Promise<Gym | null> {
-  return withTtlCache(`details:${id}`, 60 * 60 * 1_000, () => getPlaceDetailsUncached(id));
+  const listed = catalogGymById(id);
+  if (listed) return rememberDetails(listed);
+  return withTtlCache(`details:${id}`, DETAILS_TTL_MS, () => getPlaceDetailsUncached(id));
 }
 
 async function getPlaceDetailsUncached(id: string): Promise<Gym | null> {

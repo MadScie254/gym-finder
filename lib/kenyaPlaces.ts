@@ -1,5 +1,5 @@
 import gazetteer from "@/data/kenya-places.json";
-import { COUNTIES } from "./kenya";
+import { matchCounties } from "./kenya";
 import type { PlaceHit } from "./osmPlaces";
 
 function normalize(value: string): string {
@@ -9,7 +9,7 @@ function normalize(value: string): string {
 }
 
 function countyHits(query: string): PlaceHit[] {
-  return COUNTIES.filter((county) => county.name.toLocaleLowerCase().includes(query))
+  return matchCounties(query)
     .map((county) => ({
       id: `county/${county.name}`,
       name: county.name,

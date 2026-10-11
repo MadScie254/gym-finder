@@ -37,7 +37,7 @@ export function catalogNearbyGyms(center: LatLng, radiusMeters: number, limit = 
     .filter((gym) => (gym.distanceKm ?? Infinity) <= radiusKm)
     .sort((a, b) => (a.distanceKm ?? 0) - (b.distanceKm ?? 0))
     .slice(0, limit)
-    .map((gym) => ({ ...gym, distanceKm: null, score: 0, labels: [] }));
+    .map((gym) => ({ ...gym, distanceKm: null, score: 0, labels: [], listingComplete: true }));
 }
 
 /** Every mapped gym in the Kenya catalog, nearest to `center` first. */
@@ -48,7 +48,7 @@ export function catalogAllGyms(center: LatLng): Gym[] {
       distanceKm: haversineKm(center, gym.location),
     }))
     .sort((a, b) => (a.distanceKm ?? 0) - (b.distanceKm ?? 0))
-    .map((gym) => ({ ...gym, distanceKm: null, score: 0, labels: [] }));
+    .map((gym) => ({ ...gym, distanceKm: null, score: 0, labels: [], listingComplete: true }));
 }
 
 export function catalogGymById(id: string): Gym | null {
@@ -66,7 +66,8 @@ export function catalogSearchGyms(query: string, limit = 60): Gym[] {
       const bName = b.name.toLocaleLowerCase();
       return Number(bName.startsWith(needle)) - Number(aName.startsWith(needle)) || aName.localeCompare(bName);
     })
-    .slice(0, limit);
+    .slice(0, limit)
+    .map((gym) => ({ ...gym, listingComplete: true }));
 }
 
 export function catalogStats(): { count: number } {

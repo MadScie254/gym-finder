@@ -86,14 +86,50 @@ export function isInKenya(point: LatLng): boolean {
   });
 }
 
+/** Ignore 1–2 character fragments such as "a", "ma", and "ki". */
+export const MIN_COUNTY_QUERY_LENGTH = 3;
+
+function foldCountyName(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/['’]/g, "")
+    .replace(/-/g, " ")
+    .replace(/\s+/g, " ");
+}
+
+/**
+ * Exact match, or a prefix of at least MIN_COUNTY_QUERY_LENGTH.
+ * Ambiguous prefixes stay in the list; a query with extra words keeps the
+ * longest county name that begins it ("nairobi west" → Nairobi).
+ */
+export function matchCounties(query: string): County[] {
+  const needle = foldCountyName(query);
+  if (needle.length < MIN_COUNTY_QUERY_LENGTH) return [];
+
+  const exact = COUNTIES.filter((county) => foldCountyName(county.name) === needle);
+  if (exact.length === 1) return exact;
+
+  const prefixed = COUNTIES.filter((county) => foldCountyName(county.name).startsWith(needle));
+  if (prefixed.length > 0) {
+    return [...prefixed].sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
+  }
+
+  let best: County | undefined;
+  let bestLength = 0;
+  for (const county of COUNTIES) {
+    const name = foldCountyName(county.name);
+    if (needle.startsWith(`${name} `) && name.length > bestLength) {
+      best = county;
+      bestLength = name.length;
+    }
+  }
+  return best ? [best] : [];
+}
+
 export function findCounty(query: string): County | undefined {
-  const needle = query.trim().toLowerCase();
-  if (!needle) return undefined;
-  return COUNTIES.find(
-    (county) =>
-      county.name.toLowerCase() === needle ||
-      county.name.toLowerCase().includes(needle),
-  );
+  const matches = matchCounties(query);
+  return matches.length === 1 ? matches[0] : undefined;
 }
 
 export function toRad(degrees: number): number {

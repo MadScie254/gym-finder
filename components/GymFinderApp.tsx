@@ -158,8 +158,13 @@ export default function GymFinderApp() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters.radiusMeters]);
 
+  const selectedIsComplete =
+    rawGyms.find((gym) => gym.id === selectedId)?.listingComplete === true;
+
   useEffect(() => {
     if (!selectedId || selectedId.startsWith("demo-")) return;
+    // Catalog and live Overpass listings already include the detail-panel tags.
+    if (selectedIsComplete) return;
     let cancelled = false;
     queueMicrotask(() => {
       if (!cancelled) setDetailsLoading(true);
@@ -168,7 +173,18 @@ export default function GymFinderApp() {
       .then((details) => {
         if (!cancelled) {
           setRawGyms((current) =>
-            current.map((gym) => (gym.id === details.id ? { ...gym, ...details } : gym)),
+            current.map((gym) =>
+              gym.id === details.id
+                ? {
+                    ...gym,
+                    ...details,
+                    distanceKm: gym.distanceKm,
+                    score: gym.score,
+                    labels: gym.labels,
+                    listingComplete: true,
+                  }
+                : gym,
+            ),
           );
         }
       })
@@ -179,7 +195,7 @@ export default function GymFinderApp() {
     return () => {
       cancelled = true;
     };
-  }, [selectedId]);
+  }, [selectedId, selectedIsComplete]);
 
   const onIdleCenter = useCallback((center: LatLng) => setMapCenter(center), []);
 

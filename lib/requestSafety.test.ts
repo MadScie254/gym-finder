@@ -1,8 +1,13 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
-import { rateLimit, readBoundedQuery, readRadius } from "./requestSafety";
+import { rateLimit, readBoundedQuery, readRadius, resetRateLimitsForTests } from "./requestSafety";
 
 describe("request boundary validation", () => {
+  afterEach(() => {
+    vi.unstubAllEnvs();
+    resetRateLimitsForTests();
+  });
+
   it("enforces the supported nearby-search radius", () => {
     expect(readRadius(null)).toBe(0);
     expect(readRadius("0")).toBe(0);
@@ -31,5 +36,44 @@ describe("request boundary validation", () => {
     const limited = rateLimit(request, scope, 1, 60_000);
     expect(limited?.status).toBe(429);
     expect(limited?.headers.get("Retry-After")).toBeTruthy();
+  });
+
+  it("keys on the right-most forwarded address and ignores a spoofed left-most hop", () => {
+    const scope = "xff";
+    const spoofed = new Request("https://example.test/", {
+      headers: { "x-forwarded-for": "203.0.113.9, 198.51.100.27" },
+    });
+    const direct = new Request("https://example.test/", {
+      headers: { "x-forwarded-for": "198.51.100.27" },
+    });
+
+    expect(rateLimit(spoofed, scope, 1, 60_000)).toBeNull();
+    expect(rateLimit(direct, scope, 1, 60_000)?.status).toBe(429);
+  });
+
+  it("rejects unidentified production traffic instead of sharing an anonymous bucket", () => {
+    vi.stubEnv("NODE_ENV", "production");
+    const scope = "anonymous";
+    expect(rateLimit(new Request("https://example.test/a"), scope, 100, 60_000)?.status).toBe(429);
+    expect(rateLimit(new Request("https://example.test/b"), scope, 100, 60_000)?.status).toBe(429);
+  });
+
+  it("does not reset every live bucket when the tracker is full", () => {
+    const scope = "pressure";
+    const clients: Request[] = [];
+    for (let i = 0; i < 1_000; i += 1) {
+      const request = new Request("https://example.test/", {
+        headers: { "x-forwarded-for": `203.0.${Math.floor(i / 256)}.${i % 256}` },
+      });
+      expect(rateLimit(request, scope, 1, 60_000)).toBeNull();
+      clients.push(request);
+    }
+
+    const extra = new Request("https://example.test/", {
+      headers: { "x-forwarded-for": "192.0.2.50" },
+    });
+    expect(rateLimit(extra, scope, 1, 60_000)).toBeNull();
+    expect(rateLimit(clients[clients.length - 1], scope, 1, 60_000)?.status).toBe(429);
+    expect(rateLimit(clients[0], scope, 1, 60_000)).toBeNull();
   });
 });
