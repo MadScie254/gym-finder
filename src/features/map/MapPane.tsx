@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
-import maplibregl from "maplibre-gl";
+import { Map as MapLibreMap, NavigationControl, type GeoJSONSource, type MapLayerMouseEvent } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { Venue } from "../../data/types";
 
@@ -15,19 +15,18 @@ const TIER_COLOR: Record<string, string> = {
 
 export function MapPane({ venues, selectedId }: { venues: Venue[]; selectedId: string | null }) {
   const ref = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<maplibregl.Map | null>(null);
+    const mapRef = useRef<MapLibreMap | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!ref.current || mapRef.current) return;
-    const map = new maplibregl.Map({
+    const map = new MapLibreMap({
       container: ref.current,
       style: STYLE,
       center: [36.82, -1.29],
       zoom: 11,
-      attributionControl: true,
     });
-    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+    map.addControl(new NavigationControl({ showCompass: false }), "top-right");
     map.on("load", () => {
       map.addSource("venues", {
         type: "geojson",
@@ -62,16 +61,16 @@ export function MapPane({ venues, selectedId }: { venues: Venue[]; selectedId: s
           "circle-stroke-color": "#ffffff",
         },
       });
-      map.on("click", "pins", (event) => {
+      map.on("click", "pins", (event: MapLayerMouseEvent) => {
         const slug = event.features?.[0]?.properties?.slug;
         if (typeof slug === "string") navigate(`/gym/${slug}`);
       });
-      map.on("click", "clusters", (event) => {
+      map.on("click", "clusters", (event: MapLayerMouseEvent) => {
         const feature = event.features?.[0];
-        const source = map.getSource("venues") as maplibregl.GeoJSONSource;
+        const source = map.getSource("venues") as GeoJSONSource;
         const id = feature?.properties?.cluster_id;
         if (id == null) return;
-        source.getClusterExpansionZoom(id).then((zoom) => {
+        source.getClusterExpansionZoom(id).then((zoom: number) => {
           const geometry = feature?.geometry;
           if (geometry?.type === "Point") map.easeTo({ center: geometry.coordinates as [number, number], zoom });
         });
@@ -83,7 +82,7 @@ export function MapPane({ venues, selectedId }: { venues: Venue[]; selectedId: s
 
   useEffect(() => {
     const map = mapRef.current;
-    const source = map?.getSource("venues") as maplibregl.GeoJSONSource | undefined;
+    const source = map?.getSource("venues") as GeoJSONSource | undefined;
     if (!source) return;
     source.setData({
       type: "FeatureCollection",

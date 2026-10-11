@@ -1,18 +1,11 @@
-import { defineConfig, globalIgnores } from "eslint/config";
+import tseslint from "typescript-eslint";
 
-export default defineConfig([
-  globalIgnores([
-    "dist/**",
-    ".next/**",
-    "node_modules/**",
-    "data/**",
-    "public/**",
-    "coverage/**",
-  ]),
+export default tseslint.config(
+  { ignores: ["dist/**", "node_modules/**", "data/**", "public/**", "scripts/**"] },
+  ...tseslint.configs.recommended,
   {
-    files: ["src/**/*.{ts,tsx}"],
     rules: {
-      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
     },
   },
-]);
+);
