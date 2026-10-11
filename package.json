@@ -4,14 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "dev:legacy": "next dev",
-    "build": "vite build",
-    "build:legacy": "next build",
+    "build": "vite build && node scripts/prerender.mjs",
     "preview": "vite preview",
     "lint": "eslint",
     "typecheck": "tsc -p tsconfig.app.json --noEmit",
     "test": "vitest run",
-    "check": "npm run lint && npm run typecheck && npm run test && npm run build && npm run build:legacy",
+    "check": "npm run lint && npm run typecheck && npm run test && npm run build",
     "fetch-gyms": "node scripts/fetch-kenya-gyms.mjs",
     "curate-gyms": "node scripts/fetch-kenya-gyms.mjs --curate-existing",
     "fetch-places": "node scripts/fetch-kenya-places.mjs",
@@ -22,7 +20,6 @@
   "dependencies": {
     "minisearch": "7.2.0",
     "maplibre-gl": "^6.9.1",
-    "next": "16.3.5",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "react-router": "7.18.4"
@@ -37,7 +34,6 @@
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "6.1.2",
     "eslint": "^9",
-    "eslint-config-next": "16.3.5",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vite": "8.3.4",

@@ -79,7 +79,7 @@ export function MapPane({ venues, selectedId }: { venues: Venue[]; selectedId: s
     });
     mapRef.current = map;
     return () => { map.remove(); mapRef.current = null; };
-  }, [navigate, selectedId]);
+  }, [navigate]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -88,12 +88,18 @@ export function MapPane({ venues, selectedId }: { venues: Venue[]; selectedId: s
     source.setData({
       type: "FeatureCollection",
       features: venues.map((venue) => ({
-        type: "Feature",
+        type: "Feature" as const,
         properties: { id: venue.id, slug: venue.slug, name: venue.name, tier: venue.trust.tier },
-        geometry: { type: "Point", coordinates: [venue.lng, venue.lat] },
+        geometry: { type: "Point" as const, coordinates: [venue.lng, venue.lat] },
       })),
     });
   }, [venues]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map?.getLayer("pins")) return;
+    map.setPaintProperty("pins", "circle-radius", ["case", ["==", ["get", "id"], selectedId ?? ""], 10, 6]);
+  }, [selectedId]);
 
   return <div ref={ref} className="map-pane" role="region" aria-label="Map of gyms" />;
 }

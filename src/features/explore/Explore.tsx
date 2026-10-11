@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router";
 import { searchVenues } from "../../data/loadVenues";
 import { useVenueContext } from "../../app/venue-context";
@@ -9,7 +9,6 @@ import { loadSavedVenues, saveSavedVenues } from "../../lib/storage";
 import { SearchBox } from "../search/SearchBox";
 import { ResultCard } from "../results/ResultCard";
 import { Detail } from "../detail/Detail";
-import { useState } from "react";
 import type { Venue } from "../../data/types";
 
 const KINDS = ["gym", "crossfit", "yoga", "pilates", "martial_arts", "boxing"] as const;
