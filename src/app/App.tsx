@@ -1,38 +1,48 @@
 import { BrowserRouter, Route, Routes } from "react-router";
-import { useVenues } from "../data/useVenues";
 import { ErrorBoundary } from "./ErrorBoundary";
+import { Shell } from "./Shell";
+import { VenueProvider } from "./venue-context";
+import { Explore } from "../features/explore/Explore";
+import { SavedPage } from "../features/saved/SavedPage";
+import { PlanPage } from "../features/plan/PlanPage";
+import { MorePage } from "../features/more/MorePage";
+import { AboutPage } from "../features/about/AboutPage";
+import { LegalPage } from "../features/legal/LegalPage";
+import { CommutePage } from "../features/commute/CommutePage";
+import { ComparePage } from "../features/compare/ComparePage";
 
-function Home() {
-  const { index, error, loading } = useVenues();
-  const visible = index?.manifest.counts.defaultVisible;
-  const builtAt = index?.manifest.builtAt?.slice(0, 10);
+function Missing() {
   return (
-    <main className="min-h-dvh bg-bg px-4 py-10 text-ink">
-      <p className="text-sm text-muted">Find My Gym</p>
-      <h1 className="mt-2 max-w-xl text-4xl font-semibold tracking-tight">
-        Find a real gym in Kenya
-      </h1>
-      <p className="mt-4 max-w-xl text-muted">
-        Listings come from OpenStreetMap and Overture Maps. We do not invent
-        hours, prices or ratings.
-      </p>
-      <p className="mt-4 text-sm text-muted">
-        {loading && "Loading catalogue…"}
-        {error && "Catalogue not built yet — run npm run data:extract && npm run data:build."}
-        {index && `${visible} listed gyms · data ${builtAt}`}
-      </p>
-    </main>
+    <section className="rail">
+      <h1>Page not found</h1>
+      <p>That link does not match a Find My Gym page.</p>
+    </section>
   );
 }
 
 export function App() {
   return (
     <ErrorBoundary>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </BrowserRouter>
+      <VenueProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<Shell />}>
+              <Route path="/" element={<Explore />} />
+              <Route path="/search" element={<Explore />} />
+              <Route path="/gym/:slug" element={<Explore />} />
+              <Route path="/in/:place" element={<Explore />} />
+              <Route path="/saved" element={<SavedPage />} />
+              <Route path="/plan" element={<PlanPage />} />
+              <Route path="/more" element={<MorePage />} />
+              <Route path="/about/data" element={<AboutPage />} />
+              <Route path="/legal" element={<LegalPage />} />
+              <Route path="/commute" element={<CommutePage />} />
+              <Route path="/compare" element={<ComparePage />} />
+              <Route path="*" element={<Missing />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </VenueProvider>
     </ErrorBoundary>
   );
 }
