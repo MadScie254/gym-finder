@@ -1,0 +1,32 @@
+name: Data refresh
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 12 * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run data:extract
+      - run: npm run data:build
+      - run: npm run data:validate
+      - run: node scripts/data/diff-report.mjs >> $GITHUB_STEP_SUMMARY
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore(data): monthly catalogue refresh"
+          title: "chore(data): monthly catalogue refresh"
+          body: "Automated Overture + OSM rebuild. Review the diff before merge."
+          branch: chore/data-refresh

@@ -1,0 +1,82 @@
+{
+  "builtAt": "2026-10-11T19:01:40.605Z",
+  "overtureRelease": null,
+  "osmSnapshotAt": "2026-09-17T19:50:44.603Z",
+  "osmStale": true,
+  "counts": {
+    "total": 58,
+    "defaultVisible": 58,
+    "byTier": {
+      "verified": 0,
+      "corroborated": 0,
+      "listed": 58,
+      "unconfirmed": 0
+    },
+    "byCounty": {
+      "Nairobi": 34,
+      "Mombasa": 4,
+      "Kwale": 1,
+      "Kilifi": 0,
+      "Tana River": 0,
+      "Lamu": 0,
+      "Taita-Taveta": 1,
+      "Garissa": 0,
+      "Wajir": 0,
+      "Mandera": 0,
+      "Marsabit": 0,
+      "Isiolo": 0,
+      "Meru": 0,
+      "Tharaka-Nithi": 0,
+      "Embu": 0,
+      "Kitui": 1,
+      "Machakos": 0,
+      "Makueni": 1,
+      "Nyandarua": 1,
+      "Nyeri": 0,
+      "Kirinyaga": 0,
+      "Murang'a": 0,
+      "Kiambu": 10,
+      "Turkana": 0,
+      "West Pokot": 0,
+      "Samburu": 0,
+      "Trans Nzoia": 1,
+      "Uasin Gishu": 0,
+      "Elgeyo-Marakwet": 1,
+      "Nandi": 0,
+      "Baringo": 0,
+      "Laikipia": 0,
+      "Nakuru": 1,
+      "Narok": 0,
+      "Kajiado": 0,
+      "Kericho": 0,
+      "Bomet": 0,
+      "Kakamega": 0,
+      "Vihiga": 0,
+      "Bungoma": 0,
+      "Busia": 0,
+      "Siaya": 0,
+      "Kisumu": 2,
+      "Homa Bay": 0,
+      "Migori": 0,
+      "Kisii": 0,
+      "Nyamira": 0
+    },
+    "byKind": {
+      "gym": 56,
+      "martial_arts": 1,
+      "crossfit": 1
+    },
+    "withContact": 10
+  },
+  "licenses": [
+    "ODbL-1.0 © OpenStreetMap contributors",
+    "CDLA-Permissive-2.0 Overture Maps",
+    "Apache-2.0 Foursquare (via Overture)",
+    "CC BY 4.0 GeoNames"
+  ],
+  "notices": [
+    "Overture Places can contain duplicates and incomplete properties. Confidence measures existence, not that a gym is open.",
+    "Address is omitted when unknown. We never invent hours, prices or ratings."
+  ],
+  "gymsPath": "/data/gyms.54dfd22c73.json"
+}
