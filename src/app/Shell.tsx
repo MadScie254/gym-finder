@@ -16,6 +16,12 @@ export function Shell() {
   return (
     <div className="shell">
       {offline && <p className="banner" role="status">{t(lang, "offline")}{date ? ` ${date}` : ""}</p>}
+      <nav className="top-nav" aria-label="Primary">
+        <NavLink to="/">{t(lang, "explore")}</NavLink>
+        <NavLink to="/saved">{t(lang, "saved")}</NavLink>
+        <NavLink to="/plan">{t(lang, "plan")}</NavLink>
+        <NavLink to="/more">{t(lang, "more")}</NavLink>
+      </nav>
       <div className={showMap ? "shell__body shell__body--map" : "shell__body"}>
         <div className="shell__rail"><Outlet /></div>
         {showMap && (

@@ -99,6 +99,8 @@ body {
   text-decoration: none;
 }
 .bottom-nav a[aria-current="page"] { color: var(--brand); font-weight: 600; }
+.top-nav { display: none; gap: 1rem; padding: 0.5rem 1rem; background: var(--surface); }
+.top-nav a { color: inherit; min-height: 44px; display: inline-flex; align-items: center; text-decoration: none; }
 .search-box { position: relative; }
 .search-box input, .rail input, .rail select {
   width: 100%;
@@ -171,5 +173,6 @@ body {
   .shell__rail { overflow: auto; max-height: calc(100dvh - 56px); }
   .map-pane { min-height: 100%; }
   .bottom-nav { display: none; }
+  .top-nav { display: flex; }
 }
 

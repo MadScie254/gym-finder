@@ -4,11 +4,29 @@ Keep ≤150 lines. Update at the end of every slice. Resume from this file + git
 
 ## Current
 
-- Phase: P0 — Truth & foundations
+- Phase: P1 core shipped on the Vite app. Overture extract still blocked on this machine.
 - Branch: `feat/vite-spa`
-- Tag: `legacy-next` → `e4a2169` (Next.js KAYA + in-app OSRM; OSRM will be deleted at cutover)
-- Last commit: pending (P0 scaffold + pipeline on feat/vite-spa)
-- Product name: **Find My Gym** (owner override; palette unchanged)
+- Last commit: uncommitted UI + cutover in the working tree
+- Product name: **Find My Gym**
+
+## Next 3 steps
+
+1. Run Overture extract where DuckDB bindings exist (GitHub Actions, Node 24) and re-validate D1/D3.
+2. Commit this slice and open a draft PR.
+3. Playwright + Lighthouse once a host is available.
+
+## D1–D8 (measured this session)
+
+| Gate | Status |
+| --- | --- |
+| D1 Coverage | 58 visible, Nairobi 34. Overture not extracted. Gate ≥400 not met. |
+| D2 Findability | Golden tests pass for names present in the OSM snapshot. |
+| D3 Actionability | 10/58 have a contact (17%). Gate ≥75% not met. |
+| D4 Honesty | No Verified tier. Address is null, not "Kenya". Hours/prices not invented. |
+| D5 Zero server | Next.js removed. `dist/` is static. Vite build + prerender of 58 gym pages. |
+| D6 Speed | Initial JS 119 KB gzip. Map chunk lazy, 275 KB gzip. Lighthouse not run. |
+| D7 Offline | Service worker caches shell + same-origin responses. Not tested in airplane mode. |
+| D8 Quality | eslint, tsc, 28 vitest tests passed. Playwright and axe not run. | (owner override; palette unchanged)
 
 ## P0 slice plan
 
