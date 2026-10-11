@@ -1,11 +1,21 @@
+import { existsSync } from "node:fs";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { NextRequest } from "next/server";
 import { GET as getStaticMap } from "../app/api/map/static/route";
+import { isInsideKenyaMapBounds } from "./mapBounds";
 import { resetRateLimitsForTests } from "./requestSafety";
 
 function mapRequest(url: string) {
   return new NextRequest(url, { headers: { "x-forwarded-for": "198.51.100.40" } });
 }
+
+describe("map coverage", () => {
+  it("keeps the interactive map inside Kenya and does not proxy slippy-map tiles", () => {
+    expect(isInsideKenyaMapBounds(-1.286389, 36.817223)).toBe(true);
+    expect(isInsideKenyaMapBounds(51.5074, -0.1278)).toBe(false);
+    expect(existsSync("app/api/map/tiles")).toBe(false);
+  });
+});
 
 describe("static map fallback", () => {
   afterEach(() => {

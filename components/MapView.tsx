@@ -2,15 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Map as MapLibreMap, Marker, NavigationControl } from "maplibre-gl";
+import { KENYA_MAP_MAX_BOUNDS } from "@/lib/mapBounds";
 import type { Gym, LatLng } from "@/lib/types";
 
 /** OpenFreeMap permits keyless commercial use; its style includes attribution. */
 const STYLE_URL = "https://tiles.openfreemap.org/styles/liberty";
-
-const KENYA_BOUNDS: [[number, number], [number, number]] = [
-  [33.6, -5.05],
-  [42.05, 5.7],
-];
 
 function desktopPadding() {
   if (typeof window === "undefined") return { top: 24, right: 24, bottom: 24, left: 24 };
@@ -68,7 +64,7 @@ export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCent
         center: [origin.lng, origin.lat],
         zoom: 12.6,
         attributionControl: { compact: true },
-        maxBounds: KENYA_BOUNDS,
+        maxBounds: KENYA_MAP_MAX_BOUNDS,
         minZoom: 5.4,
         fadeDuration: 0,
       });
