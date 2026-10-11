@@ -9,10 +9,12 @@ import InstallPrompt from "./InstallPrompt";
 import PlaceSearch from "./PlaceSearch";
 import Planner from "./Planner";
 import ProfileForm from "./ProfileForm";
+import RoutePanel from "./RoutePanel";
 import { findCounty, haversineKm, isInKenya, NAIROBI } from "@/lib/kenya";
 import type { PlaceHit } from "@/lib/osmPlaces";
 import { fetchGymDetails, fetchNearbyGyms, fetchSearchGyms } from "@/lib/placesClient";
 import { rankGyms, scoreGym } from "@/lib/scoreGyms";
+import type { GymRoute } from "@/lib/routing";
 import {
   hasOnboarded,
   loadFavorites,
@@ -33,7 +35,7 @@ import {
   type LatLng,
 } from "@/lib/types";
 
-type SheetMode = "list" | "detail" | "filters" | "profile" | "plan" | "onboarding";
+type SheetMode = "list" | "detail" | "route" | "filters" | "profile" | "plan" | "onboarding";
 type SheetSize = "peek" | "half" | "full";
 type ListTab = "suggested" | "saved";
 type ResultScope = "nationwide" | "nearby" | "search";
@@ -61,6 +63,13 @@ export default function GymFinderApp() {
   const [tab, setTab] = useState<ListTab>("suggested");
   const [resultScope, setResultScope] = useState<ResultScope>("nationwide");
   const [ready, setReady] = useState(false);
+  const [routeGym, setRouteGym] = useState<Gym | null>(null);
+  const [routeOrigin, setRouteOrigin] = useState<LatLng | null>(null);
+  const [routeStartLabel, setRouteStartLabel] = useState("Your location");
+  const [route, setRoute] = useState<GymRoute | null>(null);
+  const [routeStatus, setRouteStatus] = useState<"locating" | "routing" | "ready" | "error">("locating");
+  const [routeError, setRouteError] = useState<string | null>(null);
+  const routeRequestRef = useRef(0);
 
   useEffect(() => {
     let active = true;
@@ -116,6 +125,9 @@ export default function GymFinderApp() {
   }, [rawGyms, favorites, savedSnapshots, ready]);
 
   const loadNearby = useCallback(async (center: LatLng, radiusMeters: number, label?: string) => {
+    routeRequestRef.current += 1;
+    setRouteGym(null);
+    setRoute(null);
     setLoading(true);
     setNotice(label ?? null);
     try {
@@ -218,6 +230,9 @@ export default function GymFinderApp() {
   const handleSearch = async (value: string) => {
     const trimmed = value.trim();
     if (!trimmed) return;
+    routeRequestRef.current += 1;
+    setRouteGym(null);
+    setRoute(null);
     const county = findCounty(trimmed);
     setQuery("");
     if (county) {
@@ -250,8 +265,76 @@ export default function GymFinderApp() {
   };
 
   const closeToList = () => {
+    routeRequestRef.current += 1;
+    setRouteGym(null);
+    setRoute(null);
     setSheetMode("list");
     setSheetSize("half");
+  };
+
+  const calculateRoute = async (gym: Gym, start: LatLng, label: string, requestId: number) => {
+    setRouteOrigin(start);
+    setRouteStartLabel(label);
+    setRouteStatus("routing");
+    setRouteError(null);
+    try {
+      const response = await fetch("/api/map/route", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        cache: "no-store",
+        body: JSON.stringify({ origin: start, destination: gym.location }),
+      });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(typeof payload.error === "string" ? payload.error : "Could not calculate directions.");
+      if (routeRequestRef.current !== requestId) return;
+      setRoute(payload.route as GymRoute);
+      setRouteStatus("ready");
+    } catch (error) {
+      if (routeRequestRef.current !== requestId) return;
+      setRouteError(error instanceof Error ? error.message : "Could not calculate directions.");
+      setRouteStatus("error");
+    }
+  };
+
+  const startDirections = (gym: Gym) => {
+    const requestId = ++routeRequestRef.current;
+    setRouteGym(gym);
+    setRoute(null);
+    setRouteOrigin(null);
+    setRouteStatus("locating");
+    setRouteError(null);
+    setSheetMode("route");
+    setSheetSize("half");
+    if (!navigator.geolocation) {
+      setRouteError("This browser cannot share your location. You can start from the map search point instead.");
+      setRouteStatus("error");
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        if (routeRequestRef.current !== requestId) return;
+        const point = { lat: position.coords.latitude, lng: position.coords.longitude };
+        if (!isInKenya(point)) {
+          setRouteError("Your location is outside Kenya. Choose a search point in Kenya to see a route.");
+          setRouteStatus("error");
+          return;
+        }
+        void calculateRoute(gym, point, "Your location", requestId);
+      },
+      () => {
+        if (routeRequestRef.current !== requestId) return;
+        setRouteError("Location was not shared. You can retry or start from the map search point.");
+        setRouteStatus("error");
+      },
+      { enableHighAccuracy: true, timeout: 12_000, maximumAge: 30_000 },
+    );
+  };
+
+  const useSearchPointForRoute = () => {
+    if (!routeGym) return;
+    const requestId = ++routeRequestRef.current;
+    setRoute(null);
+    void calculateRoute(routeGym, origin, "Search point", requestId);
   };
 
   const locateMe = () => {
@@ -328,6 +411,26 @@ export default function GymFinderApp() {
           loadingDetails={detailsLoading}
           onClose={closeToList}
           onToggleSave={() => toggleSave(selectedGym.id)}
+          onDirections={() => startDirections(selectedGym)}
+        />
+      )}
+
+      {sheetMode === "route" && routeGym && (
+        <RoutePanel
+          gym={routeGym}
+          route={route}
+          status={routeStatus}
+          error={routeError}
+          startLabel={routeStartLabel}
+          onBack={() => {
+            routeRequestRef.current += 1;
+            setRoute(null);
+            setRouteGym(null);
+            setSheetMode("detail");
+            setSheetSize("full");
+          }}
+          onRetry={() => startDirections(routeGym)}
+          onUseSearchPoint={useSearchPointForRoute}
         />
       )}
 
@@ -409,6 +512,8 @@ export default function GymFinderApp() {
           selectedId={selectedId}
           onSelect={selectGym}
           onIdleCenter={onIdleCenter}
+          route={sheetMode === "route" ? route : null}
+          routeOrigin={sheetMode === "route" ? routeOrigin : null}
         />
         <div className="map-vignette" />
       </div>

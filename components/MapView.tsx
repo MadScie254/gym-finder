@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Map as MapLibreMap, Marker, NavigationControl } from "maplibre-gl";
+import { Map as MapLibreMap, Marker, NavigationControl, type GeoJSONSource } from "maplibre-gl";
+import type { GymRoute } from "@/lib/routing";
 import type { Gym, LatLng } from "@/lib/types";
 
 /** OpenFreeMap permits keyless commercial use; its style includes attribution. */
@@ -37,9 +38,11 @@ type MapViewProps = {
   selectedId: string | null;
   onSelect: (id: string) => void;
   onIdleCenter: (center: LatLng) => void;
+  route: GymRoute | null;
+  routeOrigin: LatLng | null;
 };
 
-export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCenter }: MapViewProps) {
+export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCenter, route, routeOrigin }: MapViewProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const markersRef = useRef<Marker[]>([]);
@@ -132,15 +135,51 @@ export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCent
     originMarkerRef.current?.remove();
     const you = document.createElement("div");
     you.className = "kaya-you";
+    const start = routeOrigin ?? origin;
     originMarkerRef.current = new Marker({ element: you })
-      .setLngLat([origin.lng, origin.lat])
+      .setLngLat([start.lng, start.lat])
       .addTo(map);
 
     return () => {
       originMarkerRef.current?.remove();
       originMarkerRef.current = null;
     };
-  }, [origin, ready]);
+  }, [origin, routeOrigin, ready]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !ready) return;
+    const sourceId = "kaya-route";
+    const casingId = "kaya-route-casing";
+    const lineId = "kaya-route-line";
+    if (!route) {
+      if (map.getLayer(lineId)) map.removeLayer(lineId);
+      if (map.getLayer(casingId)) map.removeLayer(casingId);
+      if (map.getSource(sourceId)) map.removeSource(sourceId);
+      return;
+    }
+    const data = {
+      type: "Feature" as const,
+      properties: {},
+      geometry: { type: "LineString" as const, coordinates: route.coordinates },
+    };
+    const existing = map.getSource(sourceId) as GeoJSONSource | undefined;
+    if (existing) existing.setData(data);
+    else {
+      map.addSource(sourceId, { type: "geojson", data });
+      map.addLayer({ id: casingId, type: "line", source: sourceId,
+        layout: { "line-cap": "round", "line-join": "round" },
+        paint: { "line-color": "#ffffff", "line-width": 10, "line-opacity": 0.95 } });
+      map.addLayer({ id: lineId, type: "line", source: sourceId,
+        layout: { "line-cap": "round", "line-join": "round" },
+        paint: { "line-color": "#1769e0", "line-width": 6, "line-opacity": 0.95 } });
+    }
+    const lngs = route.coordinates.map((point) => point[0]);
+    const lats = route.coordinates.map((point) => point[1]);
+    map.fitBounds([[Math.min(...lngs), Math.min(...lats)], [Math.max(...lngs), Math.max(...lats)]], {
+      padding: desktopPadding(), maxZoom: 15, duration: 700,
+    });
+  }, [route, ready]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -183,6 +222,9 @@ export default function MapView({ origin, gyms, selectedId, onSelect, onIdleCent
         // The image keeps the map visible on browsers where WebGL is disabled or blocked.
         // eslint-disable-next-line @next/next/no-img-element
         <img className="map-failsafe" src={fallbackMapUrl(origin)} alt="Map fallback" />
+      )}
+      {mapState === "fallback" && route && (
+        <p className="map-route-fallback">Route line needs the interactive map. Follow the written steps below.</p>
       )}
       <div ref={containerRef} className="map-canvas" />
       <div className={`map-status map-status--${mapState}`} aria-live="polite">

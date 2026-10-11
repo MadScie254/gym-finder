@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  directionsUrl,
   formatDistance,
   formatPrice,
   labelText,
@@ -16,6 +15,7 @@ type GymDetailProps = {
   loadingDetails: boolean;
   onClose: () => void;
   onToggleSave: () => void;
+  onDirections: () => void;
 };
 
 export default function GymDetail({
@@ -24,8 +24,8 @@ export default function GymDetail({
   loadingDetails,
   onClose,
   onToggleSave,
+  onDirections,
 }: GymDetailProps) {
-  const mapsLink = directionsUrl(gym.location.lat, gym.location.lng);
   const sourceLink = safeExternalUrl(gym.googleMapsUri);
   const websiteUrl = safeExternalUrl(gym.website);
   const telephoneUrl = safeTelephoneUrl(gym.phone);
@@ -65,9 +65,9 @@ export default function GymDetail({
       {loadingDetails && <div className="loading-bar" aria-label="Loading details" />}
 
       <div className="cta-row">
-        <a href={mapsLink} target="_blank" rel="noreferrer" className="primary-btn">
+        <button type="button" onClick={onDirections} className="primary-btn">
           Directions
-        </a>
+        </button>
         {telephoneUrl ? (
           <a href={telephoneUrl} className="secondary-btn">
             Call
