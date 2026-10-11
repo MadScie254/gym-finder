@@ -1,5 +1,10 @@
 /// <reference types="vite/client" />
 
+interface ImportMetaEnv {
+  readonly VITE_SUPPORT_WHATSAPP?: string;
+  readonly VITE_SUPPORT_EMAIL?: string;
+}
+
 declare module "@data/kenya-boundary.json" {
   const value: { polygons: number[][][][] };
   export default value;
