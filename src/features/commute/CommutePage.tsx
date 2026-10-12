@@ -22,7 +22,7 @@ export function CommutePage() {
   }, [index, home, workPoint]);
 
   return (
-    <section className="rail">
+    <section className="page">
       <h1>Gym on my way</h1>
       <p className="muted">Straight-line distance to the line between two points. This is not a road detour and not a travel time.</p>
       <label>Work or landmark

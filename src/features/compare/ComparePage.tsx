@@ -8,7 +8,7 @@ export function ComparePage() {
   const venues = ids.map((id) => index?.byId.get(id)).filter((venue) => venue != null);
 
   return (
-    <section className="rail">
+    <section className="page">
       <h1>Compare</h1>
       <p className="muted">Up to three gyms. Share this page’s link.</p>
       <label>Add by search, then paste ids

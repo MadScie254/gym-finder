@@ -5,7 +5,7 @@ export function AboutPage() {
   const { index, lang } = useVenueContext();
   const manifest = index?.manifest;
   return (
-    <section className="rail">
+    <section className="page">
       <h1>{t(lang, "about")}</h1>
       {!manifest && <p>Catalogue not loaded.</p>}
       {manifest && (

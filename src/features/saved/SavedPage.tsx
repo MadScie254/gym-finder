@@ -6,7 +6,7 @@ import type { Venue } from "../../data/types";
 export function SavedPage() {
   const [saved, setSaved] = useState<Venue[]>(() => loadSavedVenues());
   return (
-    <section className="rail">
+    <section className="page">
       <h1>Saved gyms</h1>
       <p className="muted">Stored on this device only. A snapshot stays even if the catalogue refreshes.</p>
       {saved.length === 0 && <p>No saved gyms yet.</p>}

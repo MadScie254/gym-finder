@@ -5,7 +5,7 @@ import { t } from "../../lib/i18n";
 export function MorePage() {
   const { lang, setLang } = useVenueContext();
   return (
-    <section className="rail">
+    <section className="page">
       <h1>{t(lang, "more")}</h1>
       <p>
         <button type="button" className="btn" onClick={() => setLang(lang === "en" ? "sw" : "en")}>

@@ -13,7 +13,7 @@ import { ComparePage } from "../features/compare/ComparePage";
 
 function Missing() {
   return (
-    <section className="rail">
+    <section className="page">
       <h1>Page not found</h1>
       <p>That link does not match a Find My Gym page.</p>
     </section>

@@ -14,7 +14,7 @@ export function PlanPage() {
   }
 
   return (
-    <section className="rail">
+    <section className="page">
       <h1>Four-week plan</h1>
       <p className="muted">A conservative starting point. It does not diagnose conditions, count calories, or replace a trainer or clinician.</p>
       <label>Days
