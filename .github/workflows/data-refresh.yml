@@ -1,13 +1,31 @@
 name: Data refresh
 
+# Monthly: extract Overture (DuckDB node bindings, no CLI needed) and OSM, rebuild
+# the static catalogue, validate it, and open a PR. Nothing is pushed to the
+# default branch; a human skims the diff and merges.
+#
+# One-time repo setting: Settings > Actions > General > "Allow GitHub Actions to
+# create and approve pull requests". Pull requests opened with GITHUB_TOKEN do not
+# trigger ci.yml, so this job runs the data gates and tests itself. To have CI run
+# on the PR as well, add a PAT or GitHub App token as the DATA_REFRESH_TOKEN secret.
+
 on:
   workflow_dispatch:
+    inputs:
+      overture_release:
+        description: "Overture release id to pin, e.g. 2026-09-23.1 (empty = latest from STAC)"
+        required: false
+        default: ""
   schedule:
     - cron: "0 6 12 * *"
 
 permissions:
   contents: write
   pull-requests: write
+
+concurrency:
+  group: data-refresh
+  cancel-in-progress: false
 
 jobs:
   refresh:
@@ -20,13 +38,78 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npm run data:extract
-      - run: npm run data:build
-      - run: npm run data:validate
-      - run: node scripts/data/diff-report.mjs >> $GITHUB_STEP_SUMMARY
+
+      - name: Remember the previous published build
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/prev"
+          if [ -f public/data/manifest.json ]; then
+            cp public/data/manifest.json "$RUNNER_TEMP/prev/manifest.json"
+            cp public/data/gyms.*.json "$RUNNER_TEMP/prev/"
+            # validate.mjs fails the run if the new total is >15% below this
+            echo "PREVIOUS_TOTAL=$(jq -r '.counts.total' public/data/manifest.json)" >> "$GITHUB_ENV"
+          fi
+
+      # extract-overture.mjs uses @duckdb/node-api over HTTPS parquet (no s3://, no CLI).
+      # extract-osm.mjs tries Overpass mirrors with timeouts; if all fail it falls back to
+      # the legacy catalogue and marks osmStale (the PR body says so).
+      - name: Extract Overture and OSM
+        env:
+          OVERTURE_RELEASE: ${{ inputs.overture_release }}
+        run: npm run data:extract
+
+      - name: Build catalogue
+        run: npm run data:build
+
+      - name: Validate catalogue
+        run: npm run data:validate
+
+      - name: Golden-set and unit tests on the new data
+        run: npm run test
+
+      - name: Diff report and PR body
+        shell: bash
+        run: |
+          PREV=""
+          TEMP_PREV=""
+          if [ -f "$RUNNER_TEMP/prev/manifest.json" ]; then
+            PREV="$RUNNER_TEMP/prev/manifest.json"
+            PREV_FILE=$(jq -r '.gymsPath | split("/") | last' "$PREV")
+            CUR_FILE=$(jq -r '.gymsPath | split("/") | last' public/data/manifest.json)
+            if [ "$PREV_FILE" != "$CUR_FILE" ]; then
+              # diff-report.mjs resolves the previous gyms file under public/data;
+              # build deleted it, so put it back for the report and remove it after.
+              cp "$RUNNER_TEMP/prev/$PREV_FILE" "public/data/$PREV_FILE"
+              TEMP_PREV="public/data/$PREV_FILE"
+            fi
+          fi
+          node scripts/data/diff-report.mjs $PREV > "$RUNNER_TEMP/diff.md"
+          if [ -n "$TEMP_PREV" ]; then rm -f "$TEMP_PREV"; fi
+          {
+            echo "Automated Overture + OSM rebuild. Review the diff before merge."
+            echo
+            if [ "$(jq -r '.osmStale' public/data/manifest.json)" = "true" ]; then
+              echo "> WARNING: OSM data is stale. $(jq -r '.staleReason // "no reason recorded"' data/source/osm-venues.json)"
+              echo
+            fi
+            jq -r '"- Overture release: \(.overtureRelease)\n- OSM snapshot: \(.osmSnapshotAt) (osmStale: \(.osmStale))\n- Venues: \(.counts.total), default-visible: \(.counts.defaultVisible), with a contact action: \(.counts.withContact)"' public/data/manifest.json
+            echo
+            cat "$RUNNER_TEMP/diff.md"
+            if [ -s data/source/review-candidates.json ] && [ "$(jq 'length' data/source/review-candidates.json)" != "0" ]; then
+              echo
+              echo "## Proximity-only pairs for human review ($(jq 'length' data/source/review-candidates.json))"
+              echo "Never auto-merged. Add confirmed pairs to data/overrides/merge.json."
+              jq -r '.[:50][] | "- \(.aName) / \(.bName) (\(.a), \(.b))"' data/source/review-candidates.json
+            fi
+          } > "$RUNNER_TEMP/pr-body.md"
+          cat "$RUNNER_TEMP/pr-body.md" >> "$GITHUB_STEP_SUMMARY"
+
       - uses: peter-evans/create-pull-request@v7
         with:
+          token: ${{ secrets.DATA_REFRESH_TOKEN || secrets.GITHUB_TOKEN }}
+          add-paths: public/data
           commit-message: "chore(data): monthly catalogue refresh"
           title: "chore(data): monthly catalogue refresh"
-          body: "Automated Overture + OSM rebuild. Review the diff before merge."
+          body-path: ${{ runner.temp }}/pr-body.md
           branch: chore/data-refresh
+          delete-branch: true
