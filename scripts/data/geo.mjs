@@ -96,16 +96,61 @@ export function nearestCounty(point) {
   return best;
 }
 
+const countyKey = (value) => `${value ?? ""}`.toLowerCase().replace(/\b(?:county|city|district)\b/g, "").replace(/[^a-z]/g, "");
+const COUNTY_BY_KEY = new Map(COUNTIES.map((county) => [countyKey(county.name), county]));
+
+/** A COUNTIES entry named by free text ("Nairobi", "Uasin Gishu County", "Taita Taveta"), or null. */
+export function countyFromText(value) {
+  return value ? COUNTY_BY_KEY.get(countyKey(value)) ?? null : null;
+}
+
+/** A county hint is distrusted when its centroid is further than this from the point. */
+const HINT_MAX_KM = 150;
+
+/**
+ * County for a point. The nearest-centroid test misplaces the Nairobi/Kiambu and
+ * Nairobi/Kajiado fringes (county centroids are not borders), so a source-provided
+ * county (Overture `locality`/`region` is usually a county name) wins when it
+ * names a county whose centroid is plausibly near. Otherwise nearest centroid.
+ * @returns {{ name: string, by: "hint" | "centroid" }}
+ */
+export function assignCounty(point, hints = []) {
+  for (const hint of hints) {
+    const county = countyFromText(hint);
+    if (county && haversineKm(point, county) <= HINT_MAX_KM) return { name: county.name, by: "hint" };
+  }
+  return { name: nearestCounty(point).name, by: "centroid" };
+}
+
+const TOWN_MAX_KM = 30;
+const AREA_MAX_KM = 2;
+
+/**
+ * Neighbourhood = nearest `suburb` within ~2 km; town = nearest `town` within 30 km
+ * (further away it would be a guess). Overture `locality` is never used as area.
+ */
 export function reverseLookup(point) {
   let town = null;
   let area = null;
   for (const place of PLACES.places) {
     const km = haversineKm(point, place.location);
     if (place.kind === "town") {
-      if (!town || km < town.km) town = { name: place.name, km };
-    } else if (km <= 2) {
+      if (km <= TOWN_MAX_KM && (!town || km < town.km)) town = { name: place.name, km };
+    } else if (place.kind === "suburb" && km <= AREA_MAX_KM) {
       if (!area || km < area.km) area = { name: place.name, km };
     }
   }
   return { area: area?.name ?? null, town: town?.name ?? null };
 }
+
+/** Centre of a named place (suburb preferred, else town), for approximate web-research locations. */
+export function placeCentre(name, kind) {
+  const key = `${name ?? ""}`.toLowerCase().trim();
+  if (!key) return null;
+  const matches = PLACES.places.filter((place) => place.name.toLowerCase() === key && (!kind || place.kind === kind));
+  if (!matches.length) return null;
+  const best = matches.sort((a, b) => (b.population ?? 0) - (a.population ?? 0) || a.id.localeCompare(b.id))[0];
+  return { lat: best.location.lat, lng: best.location.lng, kind: best.kind, name: best.name };
+}
+
+export { haversineKm };

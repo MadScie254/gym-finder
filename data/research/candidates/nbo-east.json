@@ -1,0 +1,169 @@
+{
+  "groupKey": "nbo-east",
+  "researchedAt": "2026-10-13",
+  "queries": [],
+  "candidates": [
+    {
+      "id": "web:nbo-east-001",
+      "name": "Happy Fitness Kenya (seed: Happy Life)",
+      "kind": "other",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": null,
+      "address": "Kenya Cinema 2nd Floor, Shop 1, Nairobi, Kenya",
+      "phones": ["+254 726 318886"],
+      "website": "https://www.happyfitnesskenya.co.ke/",
+      "social": ["https://www.instagram.com/happy_fitness_kenya"],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "dc440b70-02e1-409d-80dd-0049795322a3",
+      "evidence": [
+        {
+          "url": "https://www.happyfitnesskenya.co.ke/",
+          "fetched": true,
+          "quote": "Your trusted dealer in high-quality gym and fitness equipment.",
+          "supports": ["name", "website"]
+        },
+        {
+          "url": "https://www.happyfitnesskenya.co.ke/",
+          "fetched": true,
+          "quote": "Kenya Cinema 2nd Floor, Shop 1, Nairobi, Kenya",
+          "supports": ["address"]
+        },
+        {
+          "url": "https://www.happyfitnesskenya.co.ke/",
+          "fetched": true,
+          "quote": "+254 726 318886",
+          "supports": ["phone"]
+        },
+        {
+          "url": "https://www.happyfitnesskenya.co.ke/",
+          "fetched": true,
+          "quote": "Happy Fitness Kenya - © All Rights Reserved 2025 - Designed by Btechs.ke",
+          "supports": ["status"]
+        }
+      ],
+      "notes": "The seed lists this website against a 'gym' at about -1.2738, 36.8869 (Buruburu/Jericho side of Nairobi east). The site itself describes an equipment dealer ('Shop for All Gym Accessories, Barbells, cardio, Treadmills...') with one location, in Nairobi CBD (Kenya Cinema), and no membership or classes. It is probably NOT a gym and the seed coordinates may be a different place or a pickup point. Recommend reclassifying the seed row as an equipment shop or dropping it from the gym directory. Phone matches the seed phone. Status left unknown because the page only shows the shop is online (footer 2025)."
+    },
+    {
+      "id": "web:nbo-east-002",
+      "name": "Angels Fitness Gym",
+      "kind": "gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": null,
+      "address": null,
+      "phones": ["+254716004377"],
+      "website": "http://www.angelsfitness.co.ke/",
+      "social": [],
+      "hoursText": "Monday to Friday 5:00 AM - 9:00 PM; Saturday 6:00 AM - 7:00 PM; Sunday not listed",
+      "access": "unknown",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "f5b56e32-5f83-48c2-a3bc-11fab1a68747",
+      "evidence": [
+        {
+          "url": "http://www.angelsfitness.co.ke/",
+          "fetched": true,
+          "quote": "Angels Fitness GYM is a modern fitness facility dedicated to helping individuals achieve their health and wellness goals.",
+          "supports": ["name", "website"]
+        },
+        {
+          "url": "http://www.angelsfitness.co.ke/",
+          "fetched": true,
+          "quote": "Monday 5:00 AM - 9:00 PM",
+          "supports": ["hours"]
+        },
+        {
+          "url": "http://www.angelsfitness.co.ke/",
+          "fetched": true,
+          "quote": "Saturday 6:00 AM - 7:00 PM",
+          "supports": ["hours"]
+        },
+        {
+          "url": "http://www.angelsfitness.co.ke/",
+          "fetched": true,
+          "quote": "Skip to main conte+254716004377nt",
+          "supports": ["phone"]
+        }
+      ],
+      "notes": "Own site, fetched 2026-10-13. Hours are new versus the seed (Tuesday to Thursday carry the same 5:00 AM - 9:00 PM lines as Monday and Friday). The phone appears only inside a garbled skip-link label (matches the seed phone), so treat the phone as weakly evidenced. The page looks like an unfinished template: page title says 'Berlin', menu links point to '#', a 'New text element' placeholder is left, no street address and no copyright year. Email shown on the page: info@angelsfitness.co.ke. Seed coordinates (-1.2825, 37.0649) are in the far east of Nairobi (Ruai/Kamulu direction) but the page names no area, so area is left null. Status unknown: the site is live but is a thin template."
+    },
+    {
+      "id": "web:nbo-east-003",
+      "name": "Henrys Fitness Gym and Training Institute",
+      "kind": "gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": null,
+      "address": null,
+      "phones": [],
+      "website": null,
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "f9f0b3f2-2030-4a8b-a94d-4d40964cfd44",
+      "evidence": [
+        {
+          "url": "http://www.henrysfitness.com/",
+          "fetched": true,
+          "quote": "307 Temporary Redirect to https://forsale.godaddy.com/forsale/www.henrysfitness.com",
+          "supports": ["website"]
+        }
+      ],
+      "notes": "The seed website (http://www.henrysfitness.com/) now redirects to a GoDaddy 'for sale' parked-domain page, so the seed website is stale and should not be shown. The quote is the HTTP redirect target reported by the fetch tool, not page text. I could not open the for-sale page itself (HTTP 403). This says nothing about whether the gym still operates, so status stays unknown; the seed phone +254721235408 was not re-verified."
+    }
+  ],
+  "unverifiedLeads": [
+    {
+      "name": "Kayole Wings Miller boxing club (seed 660a4070-269e-4335-88e7-b59f27b5112c)",
+      "url": "http://www.kayolewingsmiller.co.ke/",
+      "why": "Seed website does not resolve (DNS ENOTFOUND on 2026-10-13, with and without www). Club status unknown; no other evidence page found because web search was unavailable."
+    },
+    {
+      "name": "Babu Chokaa Fitness Centre (seed b5b0e10a-6624-44f2-b1b6-2f8481485ffe)",
+      "url": "http://www.babuchokaafitnesscentre.co.ke/",
+      "why": "Seed website does not resolve (DNS ENOTFOUND on 2026-10-13, with and without www). Gym status unknown."
+    },
+    {
+      "name": "Brimak Hotel, Utawala (seed aa1092ef-f2c7-4db6-910d-89308c8bca5f)",
+      "url": "http://krn.co.ke/",
+      "why": "Seed website does not resolve (DNS ENOTFOUND). Could not confirm the hotel or any gym."
+    },
+    {
+      "name": "Salute Gym (seed 600394cc-d2fa-4914-87c0-a1c8fe1abbe8)",
+      "url": "https://salute-gym.business.site/",
+      "why": "Seed website returns HTTP 404 (the Google business.site builder has been shut down). Gym status unknown."
+    },
+    {
+      "name": "GymHouse & Spa (seed cb855806-841d-4f99-b9d7-1b5d7b3bca79)",
+      "url": "https://gymhouse-spa.business.site/",
+      "why": "Seed website returns HTTP 404 (business.site shut down). Gym status unknown."
+    },
+    {
+      "name": "Flex and Tone Fitness Center Umoja (seed 13173fb9-71db-4f8f-b8ae-7a04e6543c44)",
+      "url": "http://www.flexandtone.com/",
+      "why": "Seed website returned HTTP 503 on three attempts (http, https, no-www). Could not read it."
+    },
+    {
+      "name": "Home_gym Equipments, Utawala (seed 1d8af60b-18ca-462b-9d1a-486c4c389fdb)",
+      "url": "https://homegym254.co.ke/",
+      "why": "Seed website returned HTTP 401. By name it is probably an equipment seller rather than a gym, but this could not be confirmed."
+    },
+    {
+      "name": "Fitlife sports and recreation limited (seed 4e59d033-56cf-4b40-8f2d-7ad3481f8f20), possibly the same as Gym Bravo Fitness Centre (seed b87af2cc-415c-4e94-88f4-bbbe7004f4d8)",
+      "url": "http://www.teambravofitness.com/",
+      "why": "The seed website opens, but it is a 'Team BRAVO' / 'Bravo Zulu Fitness' Squarespace page with no address, phone or hours. It shows Instagram http://instagram.com/teambravo.fitness/ and TikTok https://www.tiktok.com/@fitbz as pointers only. The link between this site and the seed names is not established."
+    },
+    {
+      "name": "Kaizenkenya martial arts (seed cf7915b5-8762-4112-b281-5324175f1d76)",
+      "url": "https://kaizen-kenya-builder.vercel.app/",
+      "why": "Page opens with the title 'Kaizen Martial Arts Club Kenya - Progress with every move' but exposes no address, phone or hours (the contact path returned 404). Nothing new to add to the seed."
+    }
+  ],
+  "coverageNotes": "INCOMPLETE: this run found no new venues. The WebSearch budget for the turn (200 calls, shared across all agents in the workflow) was already used up when this agent started, so all six first-round searches were refused: 'gym in Buruburu Nairobi', 'gym in Donholm Nairobi', 'gym in Umoja Nairobi membership', 'gym in Kayole Nairobi', 'gym in Utawala Nairobi', 'gym in Embakasi Nairobi'. The queries array is therefore empty on purpose. I did not use search engines, directories or reader services through other tools to get around the limit. All I could do was open the own websites of seed venues in this region (84 seed rows fall in or near the area; about 13 have websites worth opening). Result: 3 candidates, all already in the seed (1 equipment shop wrongly listed as a gym, 1 with new opening hours, 1 with a dead website), and 9 unverified leads that are mostly stale or unreachable seed websites. Areas with ZERO new-venue research: Buruburu, Donholm, Umoja, Kayole, Komarock, Njiru, Utawala, Ruai, Pipeline, Embakasi (the seed already holds roughly 25-30 gyms across these, mostly from Overture/OSM with only phone numbers, so web-evidenced addresses and hours are still missing). Re-run this group after the search budget resets (or with CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION raised) with the full query list from the task."
+}
