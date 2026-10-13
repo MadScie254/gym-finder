@@ -1,0 +1,29 @@
+{
+  "groupKey": "central",
+  "researchedAt": "2026-10-13",
+  "queries": [],
+  "candidates": [],
+  "unverifiedLeads": [
+    {
+      "name": "Alpha Cross Body Fitness Center (already in seed 605887ce-80d4-4a29-983a-95e8a2a7530c)",
+      "url": "http://www.alphacrossfitness.com/",
+      "why": "Seed-listed website did not resolve from this sandbox (getaddrinfo ENOTFOUND for www. and bare domain). Status unknown, not evidence of closure. Re-check from a normal network."
+    },
+    {
+      "name": "Mount Kenya Climbing Gym (already in seed 1f24007e-3b6f-4549-a4d9-019b3ae66bbc)",
+      "url": "https://www.mtkenyaclimbinggym.com/",
+      "why": "Seed-listed website did not resolve from this sandbox (ENOTFOUND for www. and bare domain). Status unknown, not evidence of closure. Re-check from a normal network."
+    },
+    {
+      "name": "Biofit rehabilitation clinic (seed 6056cebb-e43e-46a0-b0a5-6b7a4eaa2e1b, labelled Kericho but coordinates -0.4,37.0167 are in Nyeri)",
+      "url": "http://www.biofitphysio.co.ke/",
+      "why": "Seed-listed website did not resolve from this sandbox (ENOTFOUND). Also looks like a physiotherapy clinic rather than a gym and its county label in the seed looks wrong. Needs a manual check."
+    },
+    {
+      "name": "Aberdare Country Club (Mweiga, Nyeri County) health club and spa",
+      "url": "https://aberdarecountryclub.com/",
+      "why": "Home page shows a 'Spa' heading and a link to 'Health Club and Spa Interactive' (a PDF), but the PDF was an image-only file and no page text states a gym, equipment or hours. Not enough to call it a gym venue."
+    }
+  ],
+  "coverageNotes": "INCOMPLETE ROUND, NO NEW VENUES. The web search budget for this turn (200 WebSearch calls, shared by every agent in the workflow) was already used up, so all 6 searches I attempted were refused and none ran: 'gym in Nyeri town Kenya', 'Nyeri gym membership fitness centre', 'crossfit Nyeri Kenya', \"Murang'a town gym fitness centre\", 'Karatina gym fitness', 'Kerugoya Kutus gym Kirinyaga'. The queries array is empty because no query returned results. I did not use curl or third-party search/reader services to get around the limit. Seed check done: the seed already has Alpha Cross Body Fitness Center, Nyeri Gym and Fitness Centre, Planet Gym Nyeri, Mount Kenya Climbing Gym (Nyeri), Mount Kenya sports and Waithakaz base (both around Karatina coordinates), plus two mis-labelled entries: Biofit rehabilitation clinic (county says Kericho, coordinates are Nyeri) and Ruiru Gym & Aerobics (coordinates -0.7,37.1167 are Murang'a town, not Ruiru; its website field is a Google Maps short link). I opened these pages with WebFetch: karu.ac.ke home and /games-and-sports/ (Karatina University: only a Games and Sports department, no gym facility named), mut.ac.ke (Murang'a University of Technology: 'Sports & Games' text only, no gym facility), kyu.ac.ke (Kirinyaga University: no gym mentioned), aberdarecountryclub.com (spa heading and a health-club PDF, no gym stated), and en.wikipedia.org/wiki/Nyeri (no gym). dkut.ac.ke returned HTTP 503 twice. No venue-level evidence was obtained for any area. By area: Nyeri, Karatina, Kerugoya/Kutus (Kirinyaga) and Murang'a all remain unresearched beyond the seed; nothing can be said about their online gym presence. Next step: re-run this group when WebSearch is available, with queries per town (gym, crossfit, yoga, women-only, hotel gym, sports club), and re-check the three seed websites that did not resolve."
+}

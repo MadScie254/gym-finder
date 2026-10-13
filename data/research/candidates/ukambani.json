@@ -1,0 +1,15 @@
+{
+  "groupKey": "ukambani",
+  "researchedAt": "2026-10-13",
+  "queries": [],
+  "queriesAttemptedButBlocked": [
+    "gym in Machakos town",
+    "Machakos gym membership fitness centre",
+    "gym in Wote Makueni",
+    "gym in Kitui town fitness",
+    "Mwingi gym fitness centre"
+  ],
+  "candidates": [],
+  "unverifiedLeads": [],
+  "coverageNotes": "INCOMPLETE - NO RESEARCH DONE. The WebSearch budget for this turn (200 calls, shared by every agent in the workflow) was already used up before this subagent ran its first query: all 5 attempted searches returned 'web search budget is used up' and no results. I did not work around the limit (no curl/wget search, no third-party readers). The only page I could open was the seed website for Thabiti Health and Fitness Center (thfcsite.onlinepfm.net); WebFetch returned HTTP 500 on both https and http, so no new facts were obtained. Seed state for the areas (read from known-venues.json): Machakos has 7 Overture entries (Bliss Park Gym and Spa, Pulse Gym & Fitness - both Machakos town area; Next Level Fitness Gym and Spa, Power House Gym, Sosh Fitness, Switch Fitness Centre, Thabiti Health and Fitness Center - these sit near Athi River/Mlolongo/Syokimau, around lat -1.36 to -1.46, lng 36.91 to 36.97) plus OSM Switch Fitness Center (Mombasa Road, Mlolongo); Makueni has El Shaddai Gym&Spa, JJ Fitness and OSM 'Makueni fitness centre' (all Wote area); Kitui has Pivot Fitness & Gym Centre-MWINGI, Kitui Showground (listed as gym, likely not a gym) and OSM 'Skylarking' (Kwavonza, Kitui Campus Road). No new venues, no closures and no new phone/website/hours were found for any county because no evidence could be gathered. Nothing is claimed for Machakos, Makueni/Wote or Kitui/Mwingi beyond the seed. Re-run this group (Machakos town, Athi River, Kangundo, Tala, Matuu, Wote, Kibwezi, Emali, Sultan Hamud, Kitui town, Mwingi, Kitui University and Machakos University gyms, hotel gyms) once the web search budget is reset or CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION is raised."
+}

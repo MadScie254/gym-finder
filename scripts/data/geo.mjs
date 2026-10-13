@@ -104,22 +104,50 @@ export function countyFromText(value) {
   return value ? COUNTY_BY_KEY.get(countyKey(value)) ?? null : null;
 }
 
-/** A county hint is distrusted when its centroid is further than this from the point. */
-const HINT_MAX_KM = 150;
+/**
+ * A county hint is distrusted when its centroid is more than this much further from the
+ * point than the nearest county's centroid (large counties have far-away centroids, so a
+ * flat cut-off would either reject Kajiado's northern towns or accept Nairobi for Nakuru).
+ */
+const HINT_SLACK_KM = 75;
 
 /**
  * County for a point. The nearest-centroid test misplaces the Nairobi/Kiambu and
  * Nairobi/Kajiado fringes (county centroids are not borders), so a source-provided
  * county (Overture `locality`/`region` is usually a county name) wins when it
- * names a county whose centroid is plausibly near. Otherwise nearest centroid.
+ * names a county whose centroid is plausibly near (see HINT_SLACK_KM). Otherwise nearest centroid.
  * @returns {{ name: string, by: "hint" | "centroid" }}
  */
 export function assignCounty(point, hints = []) {
+  const nearest = nearestCounty(point);
+  const limit = haversineKm(point, nearest) + HINT_SLACK_KM;
   for (const hint of hints) {
     const county = countyFromText(hint);
-    if (county && haversineKm(point, county) <= HINT_MAX_KM) return { name: county.name, by: "hint" };
+    if (county && haversineKm(point, county) <= limit) return { name: county.name, by: "hint" };
   }
-  return { name: nearestCounty(point).name, by: "centroid" };
+  return { name: nearest.name, by: "centroid" };
+}
+
+/**
+ * A record with no county of its own (OSM, which carries no addr:county here) takes the
+ * county of the nearest record that does, when that one is within `radiusM`: Meta's county
+ * names beat centroid distance on the Nairobi/Kiambu/Kajiado fringes. Returns new records.
+ */
+export function inferCounties(records, radiusM = 1500) {
+  const anchors = records.filter((record) => record.countyBy === "hint" && !record.approxRadiusM);
+  return records.map((record) => {
+    if (record.countyBy !== "centroid" || record.approxRadiusM) return record;
+    let best = null;
+    let bestKm = radiusM / 1000;
+    for (const anchor of anchors) {
+      const km = haversineKm(record, anchor);
+      if (km <= bestKm) {
+        best = anchor;
+        bestKm = km;
+      }
+    }
+    return best && best.county !== record.county ? { ...record, county: best.county, countyBy: "neighbour" } : record;
+  });
 }
 
 const TOWN_MAX_KM = 30;

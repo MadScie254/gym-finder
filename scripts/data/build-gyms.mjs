@@ -1,42 +1,38 @@
-import { createHash } from "node:crypto";
+/**
+ * Build the static catalogue: OSM + Overture (+ web research) -> normalise -> deny-list ->
+ * merge -> overrides -> trust tiers -> public/data/{gyms.<hash>.json, manifest.json, landmarks.json}.
+ *
+ * Deterministic: same inputs and the same BUILD_AS_OF date give byte-identical output
+ * (no wall-clock in the files, sorted records, no unordered keys). Rebuilding is a no-op.
+ * Env: BUILD_AS_OF=YYYY-MM-DD pins the trust/staleness reference date.
+ * Side logs for humans (gitignored) go to data/source/: denylist-hits.json,
+ * review-candidates.json, dropped-phones.json, research-log.json.
+ */
 import { existsSync, readFileSync } from "node:fs";
-import { mkdir, readFile, readdir, writeFile, unlink } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { COUNTIES, isInKenya, nearestCounty, reverseLookup } from "./geo.mjs";
-import { denyListed, displayName, isProximityOnlyCandidate, shouldMerge, slugify } from "./merge-rules.mjs";
-import { normalizePhones, whatsappFrom } from "./phones.mjs";
-import { computeTrust } from "./trust.mjs";
+import { assemble } from "./assemble.mjs";
+import { denyMatch, softDenyReason } from "./denylist.mjs";
+import { COUNTIES, inferCounties } from "./geo.mjs";
+import { loadResearch, researchToRecords } from "./import-research.mjs";
+import { buildLandmarks } from "./landmarks.mjs";
+import { sortedObject } from "./merge-records.mjs";
+import { pairKey, slugify } from "./merge-rules.mjs";
+import { normalizeOsm, normalizeOverture } from "./normalize.mjs";
+import { applyOverride, loadOverrides, matchesKnownClosed, overrideFor } from "./overrides.mjs";
+import { carrySlugs, loadPrevious, previousSummary, publishGyms, writeAtomic } from "./publish.mjs";
+import { buildDate, computeTrust } from "./trust.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const SOURCE = path.join(ROOT, "data", "source");
 const PUBLIC_DATA = path.join(ROOT, "public", "data");
 const OVERRIDES = path.join(ROOT, "data", "overrides");
-
-const TAX_KIND = {
-  gym: "gym",
-  yoga_studio: "yoga",
-  pilates_studio: "pilates",
-  martial_arts_club: "martial_arts",
-  boxing_class: "boxing",
-  gymnastics_center: "gymnastics",
-  boot_camp: "boot_camp",
-  fitness_studio: "gym",
-};
-
-const EXTRA_TAX = new Set(["sport_or_fitness_facility", "swimming_pool", "dance_studio", "fitness_trainer"]);
-const NAME_KEEP = /\b(gym|fitness|crossfit|workout|bodybuilding)\b/i;
-const SOCIAL = /(?:^|\.)(facebook|instagram|twitter|x|tiktok|youtube)\.com$/i;
-
-function readJsonMaybe(file, fallback) {
-  if (!existsSync(file)) return fallback;
-  return JSON.parse(readFileSync(file, "utf8"));
-}
+const RESEARCH_FILE = path.join(ROOT, "data", "research", "venues-researched.json");
 
 async function loadJsonRecords(file) {
   if (!existsSync(file)) return [];
-  const raw = await readFile(file, "utf8");
-  const trimmed = raw.trim();
+  const trimmed = (await readFile(file, "utf8")).trim();
   if (!trimmed) return [];
   if (trimmed.startsWith("[")) return JSON.parse(trimmed);
   if (trimmed.startsWith("{") && !trimmed.includes("\n{")) {
@@ -46,351 +42,256 @@ async function loadJsonRecords(file) {
   return trimmed.split("\n").filter(Boolean).map((line) => JSON.parse(line));
 }
 
-function kindOf(name, tax, basic) {
-  if (/\bcrossfit\b/i.test(name)) return "crossfit";
-  if (TAX_KIND[tax]) return TAX_KIND[tax];
-  if (TAX_KIND[basic]) return TAX_KIND[basic];
-  if (/\byoga\b/i.test(name)) return "yoga";
-  if (/\bpilates\b/i.test(name)) return "pilates";
-  if (/\bbox/i.test(name)) return "boxing";
-  if (/martial|dojo|karate|taekwondo|judo/i.test(name)) return "martial_arts";
-  return "gym";
-}
+const readJsonMaybe = (file, fallback) => (existsSync(file) ? JSON.parse(readFileSync(file, "utf8")) : fallback);
+const round6 = (value) => Math.round(value * 1e6) / 1e6;
+const cmp = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
+const pct = (part, whole) => (whole ? Math.round((1000 * part) / whole) / 10 : 0);
 
-function keepOverture(row) {
-  const tax = row.tax ?? "";
-  const basic = row.basic ?? "";
-  if (TAX_KIND[tax] || TAX_KIND[basic]) return true;
-  if (EXTRA_TAX.has(tax) || EXTRA_TAX.has(basic)) return NAME_KEEP.test(row.name ?? "");
-  return NAME_KEEP.test(row.name ?? "");
-}
-
-function cleanAddress(value) {
-  const address = `${value ?? ""}`.trim();
-  if (!address || /^kenya$/i.test(address)) return null;
-  return address;
-}
-
-function websiteOf(urls) {
-  let site = null;
-  let instagram = null;
-  let facebook = null;
-  for (const raw of urls ?? []) {
-    try {
-      const url = new URL(String(raw).startsWith("http") ? raw : `https://${raw}`);
-      if (!/^https?:$/.test(url.protocol)) continue;
-      url.hash = "";
-      ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "fbclid"].forEach((k) => url.searchParams.delete(k));
-      const host = url.hostname.replace(/^www\./, "");
-      if (/instagram\.com$/i.test(host)) instagram ??= url.toString();
-      else if (/facebook\.com$/i.test(host)) facebook ??= url.toString();
-      else if (!SOCIAL.test(host)) site ??= url.toString();
-    } catch {
-      /* skip */
-    }
-  }
-  return { website: site, instagram, facebook };
-}
-
-function newest(dates) {
-  const parsed = (dates ?? []).map((d) => Date.parse(d)).filter(Number.isFinite);
-  if (!parsed.length) return null;
-  return new Date(Math.max(...parsed)).toISOString();
-}
-
-function amenitiesFromOsm(tags = {}) {
-  const amenities = {};
-  if (tags.wheelchair === "yes") amenities.wheelchair = true;
-  if (tags.shower === "yes") amenities.showers = true;
-  if (tags.sauna === "yes") amenities.sauna = true;
-  if (tags.swimming_pool === "yes") amenities.pool = true;
-  if (tags.female === "yes" || tags["female:only"] === "yes") amenities.women_only = true;
-  return amenities;
-}
-
-function normalizeOverture(row) {
-  if (!keepOverture(row)) return null;
-  const lat = Number(row.lat);
-  const lng = Number(row.lng);
-  if (!isInKenya({ lat, lng })) return null;
-  if (row.country && row.country !== "KE") return null;
-  const name = displayName(row.name);
-  if (denyListed(name) && !NAME_KEEP.test(name)) return null;
-  const { phones } = normalizePhones(row.phones ?? []);
-  const { website, instagram, facebook } = websiteOf(row.websites ?? row.socials ?? []);
-  const places = reverseLookup({ lat, lng });
-  const county = nearestCounty({ lat, lng }).name;
+function toPublic(v) {
   return {
-    id: `gers:${row.id}`,
-    name,
-    nameRaw: row.name,
-    kind: kindOf(name, row.tax, row.basic),
-    lat,
-    lng,
-    address: cleanAddress(row.addr),
-    area: places.area,
-    town: places.town ?? row.locality ?? null,
-    county,
-    phones,
-    whatsapp: whatsappFrom(phones, null),
-    website,
-    instagram,
-    facebook,
-    hours: null,
-    fee: null,
-    amenities: {},
-    sources: ["overture"],
-    overtureConfidence: Number(row.confidence ?? 0),
-    lastSeen: newest(row.upd ?? []),
-    provenance: {
-      name: "overture",
-      location: "overture",
-      ...(phones.length ? { phone: "overture" } : {}),
-      ...(website ? { website: "overture" } : {}),
-    },
-    osmUrl: null,
-    aliases: [],
+    id: v.id,
+    slug: v.slug,
+    aliases: v.aliases,
+    name: v.name,
+    ...(v.nameRaw && v.nameRaw !== v.name ? { nameRaw: v.nameRaw } : {}),
+    kind: v.kind,
+    lat: round6(v.lat),
+    lng: round6(v.lng),
+    area: v.area,
+    town: v.town,
+    county: v.county,
+    address: v.address,
+    phones: v.phones,
+    whatsapp: v.whatsapp,
+    website: v.website,
+    instagram: v.instagram,
+    facebook: v.facebook,
+    hours: v.hours,
+    fee: v.fee,
+    amenities: sortedObject(v.amenities ?? {}),
+    trust: v.trust,
+    provenance: sortedObject(v.provenance),
+    osmUrl: v.osmUrl,
   };
 }
 
-function normalizeOsm(row, snapshotAt) {
-  const lat = Number(row.lat);
-  const lng = Number(row.lng);
-  if (!isInKenya({ lat, lng })) return null;
-  const tags = row.tags ?? {};
-  const name = displayName(row.name);
-  if (denyListed(name) && !NAME_KEEP.test(name)) return null;
-  const { phones } = normalizePhones([
-    tags.phone, tags["contact:phone"], tags["contact:mobile"],
-  ].filter(Boolean));
-  const { website, instagram, facebook } = websiteOf([
-    tags.website, tags["contact:website"], tags["contact:instagram"], tags["contact:facebook"],
-  ].filter(Boolean));
-  const places = reverseLookup({ lat, lng });
-  const hoursRaw = tags.opening_hours || null;
-  return {
-    id: row.id,
-    name,
-    nameRaw: row.name,
-    kind: kindOf(name, tags.leisure, tags.sport),
-    lat,
-    lng,
-    address: cleanAddress([
-      tags["addr:full"],
-      [tags["addr:housenumber"], tags["addr:street"], tags["addr:suburb"], tags["addr:city"]]
-        .filter(Boolean).join(", "),
-    ].find(Boolean)),
-    area: places.area ?? tags["addr:suburb"] ?? null,
-    town: places.town ?? tags["addr:city"] ?? null,
-    county: nearestCounty({ lat, lng }).name,
-    phones,
-    whatsapp: whatsappFrom(phones, tags["contact:whatsapp"]),
-    website,
-    instagram,
-    facebook,
-    hours: hoursRaw ? { raw: hoursRaw, source: "osm" } : null,
-    fee: tags.fee === "no" || tags.fee === "free" || tags.charge === "no" ? "free" : null,
-    amenities: amenitiesFromOsm(tags),
-    sources: ["osm"],
-    overtureConfidence: null,
-    lastSeen: newest([tags.check_date, tags["survey:date"], snapshotAt]),
-    provenance: {
-      name: "osm",
-      location: "osm",
-      ...(phones.length ? { phone: "osm" } : {}),
-      ...(hoursRaw ? { hours: "osm" } : {}),
-    },
-    osmUrl: `https://www.openstreetmap.org/${row.osmType}/${row.osmId}`,
-    aliases: [],
-  };
+function licensesFor(venues, hasResearch) {
+  const datasets = new Set(venues.flatMap((v) => v.overtureDatasets ?? []));
+  const sources = new Set(venues.flatMap((v) => v.sources));
+  const licenses = [];
+  if (sources.has("osm") || venues.length) licenses.push("ODbL-1.0: © OpenStreetMap contributors (this merged dataset is published as an ODbL derivative)");
+  licenses.push(`CDLA-Permissive-2.0: Overture Maps Foundation Places${datasets.has("meta") ? " (Meta business data)" : ""}${datasets.has("microsoft") ? " and Microsoft" : ""}`);
+  if (datasets.has("foursquare")) licenses.push("Apache-2.0: Foursquare Open Source Places, transformed to the Overture schema");
+  if (datasets.has("alltheplaces")) licenses.push("CC0-1.0: AllThePlaces (via Overture)");
+  licenses.push("CC BY 4.0: GeoNames gazetteer (neighbourhood and town names)");
+  licenses.push("geoBoundaries gbOpen Kenya boundary (licence to be confirmed with counsel before commercial launch)");
+  if (hasResearch) licenses.push("Web research: facts only (name, phone, address, hours text) from public pages; evidence URLs are kept in each venue's provenance. No page text, photos or ratings are copied.");
+  return licenses;
 }
 
-function mergePair(a, b) {
-  const osmFirst = a.sources.includes("osm") ? a : b.sources.includes("osm") ? b : a;
-  const other = osmFirst === a ? b : a;
-  const phones = [...new Set([...a.phones, ...b.phones])];
-  return {
-    ...osmFirst,
-    aliases: [...new Set([...(a.aliases ?? []), ...(b.aliases ?? []), other.id, other.name])],
-    phones,
-    whatsapp: osmFirst.whatsapp ?? other.whatsapp,
-    website: osmFirst.website ?? other.website,
-    instagram: osmFirst.instagram ?? other.instagram,
-    facebook: osmFirst.facebook ?? other.facebook,
-    hours: osmFirst.hours ?? other.hours,
-    fee: osmFirst.fee ?? other.fee,
-    amenities: { ...other.amenities, ...osmFirst.amenities },
-    address: osmFirst.address ?? other.address,
-    sources: [...new Set([...a.sources, ...b.sources])],
-    overtureConfidence: Math.max(a.overtureConfidence ?? 0, b.overtureConfidence ?? 0) || null,
-    lastSeen: [a.lastSeen, b.lastSeen].filter(Boolean).sort().at(-1) ?? null,
-    provenance: { ...other.provenance, ...osmFirst.provenance },
-    osmUrl: osmFirst.osmUrl ?? other.osmUrl,
-  };
-}
-
-function applyOverride(venue, override) {
-  if (!override) return venue;
-  const set = override.set ?? {};
-  const next = {
-    ...venue,
-    name: set.name ?? venue.name,
-    address: set.address === undefined ? venue.address : set.address,
-    website: set.website ?? venue.website,
-    instagram: set.instagram ?? venue.instagram,
-    phones: set.phone ? [...new Set([...venue.phones, set.phone])] : venue.phones,
-    whatsapp: set.whatsapp ?? venue.whatsapp,
-    hours: set.hours ? { raw: set.hours, source: "override" } : venue.hours,
-    fee: set.fee === "free" ? "free" : venue.fee,
-    amenities: { ...venue.amenities, ...(set.amenities ?? {}) },
-  };
-  if (set.hours) next.provenance = { ...next.provenance, hours: "override" };
-  return next;
-}
-
-async function loadOverrides() {
-  const exclude = readJsonMaybe(path.join(OVERRIDES, "exclude.json"), []);
-  const merge = readJsonMaybe(path.join(OVERRIDES, "merge.json"), []);
-  const venues = {};
-  const dir = path.join(OVERRIDES, "venues");
-  if (existsSync(dir)) {
-    for (const file of await readdir(dir)) {
-      if (!file.endsWith(".json")) continue;
-      const body = JSON.parse(await readFile(path.join(dir, file), "utf8"));
-      venues[body.id] = body;
-    }
-  }
-  return { exclude, merge, venues };
-}
+const NOTICES = [
+  "Overture Places can contain duplicates and incomplete properties. Confidence measures existence, not that a gym is open.",
+  "Address is omitted when unknown. We never invent hours, prices or ratings.",
+  "Verified means a Find My Gym reviewer confirmed the listing within the last 12 months. Listed and Corroborated come from open data and web research and are not confirmations.",
+];
 
 async function main() {
-  const { exclude, merge: forced, venues: overrideById } = await loadOverrides();
-  const excludeIds = new Set((exclude ?? []).map((row) => row.id));
-  const forcedPairs = (forced ?? []).map((pair) => [pair.a, pair.b].sort().join("|"));
+  const asOf = buildDate();
+  const overrides = loadOverrides(OVERRIDES);
+  const excluded = new Map(overrides.exclude.map((row) => [row.id, row.reason]));
+  const allowed = new Set(overrides.allow.map((row) => row.id));
+  const forcedPairs = new Set(overrides.merge.map((pair) => pairKey(pair.a, pair.b)));
+  const previous = loadPrevious(PUBLIC_DATA);
 
   const overtureRows = await loadJsonRecords(path.join(SOURCE, "overture-venues.json"));
-  const osmPayload = existsSync(path.join(SOURCE, "osm-venues.json"))
-    ? JSON.parse(await readFile(path.join(SOURCE, "osm-venues.json"), "utf8"))
-    : { venues: [], osmStale: true };
-  const landmarks = await loadJsonRecords(path.join(SOURCE, "overture-landmarks.json"));
+  const landmarkRows = await loadJsonRecords(path.join(SOURCE, "overture-landmarks.json"));
+  const osmPayload = readJsonMaybe(path.join(SOURCE, "osm-venues.json"), { venues: [], osmStale: true });
   const meta = readJsonMaybe(path.join(SOURCE, "overture-meta.json"), { release: null });
+  const research = loadResearch(RESEARCH_FILE);
 
-  const normalized = [
-    ...overtureRows.map(normalizeOverture),
-    ...(osmPayload.venues ?? []).map((row) => normalizeOsm(row, osmPayload.generatedAt)),
-  ].filter(Boolean).filter((row) => !excludeIds.has(row.id));
-
-  const used = new Set();
-  const merged = [];
-  const review = [];
-  for (let i = 0; i < normalized.length; i += 1) {
-    if (used.has(i)) continue;
-    let current = normalized[i];
-    for (let j = i + 1; j < normalized.length; j += 1) {
-      if (used.has(j)) continue;
-      const decision = shouldMerge(current, normalized[j], forcedPairs);
-      if (decision.merge) {
-        current = mergePair(current, normalized[j]);
-        used.add(j);
-      } else if (isProximityOnlyCandidate(current, normalized[j])) {
-        review.push({ a: current.id, b: normalized[j].id, aName: current.name, bName: normalized[j].name });
+  // 1. Normalise, then the deny-list pass (every removal is logged for a human).
+  const records = [];
+  const ghosts = [];
+  const hits = [];
+  const skipped = { overture: {}, osm: {}, web: {} };
+  const droppedPhones = [];
+  const triage = (result, source) => {
+    if (result.skip) {
+      skipped[source][result.skip] = (skipped[source][result.skip] ?? 0) + 1;
+      return;
+    }
+    if (result.hit) {
+      hits.push({ ...result.hit, source, action: "removed" });
+      return;
+    }
+    const record = result.record;
+    if (record.droppedPhones?.length) droppedPhones.push({ id: record.id, name: record.name, dropped: record.droppedPhones });
+    const base = { id: record.id, name: record.name, source };
+    if (excluded.has(record.id)) {
+      hits.push({ ...base, rule: "exclude.json", reason: excluded.get(record.id), action: "removed" });
+      ghosts.push({ ...record, removedBy: "exclude.json" });
+      return;
+    }
+    const denied = allowed.has(record.id) ? null : denyMatch(record.name);
+    if (denied) {
+      hits.push({ ...base, rule: `denylist:${denied}`, ...(record.overtureConfidence != null ? { confidence: Math.round(record.overtureConfidence * 100) / 100 } : {}), action: "removed" });
+      ghosts.push({ ...record, removedBy: "denylist" });
+      return;
+    }
+    if (source !== "osm") {
+      const soft = softDenyReason(record.name);
+      if (soft) {
+        record.softDeny = soft;
+        hits.push({ ...base, rule: `non-fitness-name:${soft}`, action: "unconfirmed" });
       }
     }
-    merged.push(current);
+    records.push(record);
+  };
+  for (const row of overtureRows) triage(normalizeOverture(row), "overture");
+  for (const row of osmPayload.venues ?? []) triage(normalizeOsm(row), "osm");
+  const researchInfo = research ? researchToRecords(research, { asOf }) : null;
+  for (const record of researchInfo?.records ?? []) {
+    if (record.web.closed) records.push(record);
+    else triage({ record }, "web");
   }
+  const placed = inferCounties(records);
+  const intake = placed.filter((record) => !record.web?.closed);
 
-  const closed = new Set();
-  const venues = merged.map((venue) => {
-    const override = overrideById[venue.id] ?? Object.values(overrideById).find((item) => item.id === venue.id);
+  // 2. Merge duplicates (never on proximity alone) and apply web-research closures.
+  const assembled = assemble(placed, { forcedPairs, ghosts, tombstones: ghosts });
+
+  // 3. Overrides, owner-reported closures, trust tiers.
+  const venues = [];
+  const removed = { overrideClosed: [], knownClosed: [] };
+  const warnings = [];
+  const usedOverrides = new Set();
+  for (const merged of assembled.venues) {
+    const override = overrideFor(overrides.venues, merged);
+    if (override) usedOverrides.add(override.id);
     if (override?.closed) {
-      closed.add(venue.id);
-      return null;
+      removed.overrideClosed.push({ id: merged.id, name: merged.name });
+      continue;
     }
-    const next = applyOverride(venue, override);
-    const trust = computeTrust(next, override);
-    const slug = slugify(next.name, next.id);
-    return {
-      id: next.id,
-      slug,
-      aliases: next.aliases ?? [],
-      name: next.name,
-      kind: next.kind,
-      lat: next.lat,
-      lng: next.lng,
-      area: next.area,
-      town: next.town,
-      county: next.county,
-      address: next.address,
-      phones: next.phones,
-      whatsapp: next.whatsapp,
-      website: next.website,
-      instagram: next.instagram,
-      facebook: next.facebook,
-      hours: next.hours,
-      fee: next.fee,
-      amenities: next.amenities,
-      trust,
-      provenance: next.provenance,
-      osmUrl: next.osmUrl,
-    };
-  }).filter(Boolean);
-
-  await mkdir(PUBLIC_DATA, { recursive: true });
-  await mkdir(SOURCE, { recursive: true });
-  const body = JSON.stringify({ gyms: venues });
-  const hash = createHash("sha256").update(body).digest("hex").slice(0, 10);
-  const gymsName = `gyms.${hash}.json`;
-  for (const file of existsSync(PUBLIC_DATA) ? await readdir(PUBLIC_DATA) : []) {
-    if (/^gyms\.[a-f0-9]+\.json$/.test(file)) await unlink(path.join(PUBLIC_DATA, file));
+    const closedEntry = overrides.knownClosed.find((entry) => matchesKnownClosed(merged, entry));
+    if (closedEntry) {
+      removed.knownClosed.push({ id: merged.id, name: merged.name });
+      continue;
+    }
+    const applied = applyOverride(merged, override);
+    warnings.push(...applied.warnings);
+    venues.push({ ...applied.venue, trust: computeTrust(applied.venue, override, { asOf }) });
   }
-  await writeFile(path.join(PUBLIC_DATA, gymsName), body);
+  for (const id of overrides.venues.keys()) {
+    if (!usedOverrides.has(id)) warnings.push(`override ${id}: no catalogue venue has this id or alias (closed, merged away, or typo)`);
+  }
 
-  const byTier = { verified: 0, corroborated: 0, listed: 0, unconfirmed: 0 };
-  const byCounty = Object.fromEntries(COUNTIES.map((c) => [c.name, 0]));
-  const byKind = {};
-  let withContact = 0;
+  // 4. Stable slugs (hash collisions lengthen the hash), old slugs kept as aliases.
+  venues.sort((a, b) => cmp(a.id, b.id));
+  const taken = new Set();
   for (const venue of venues) {
+    let extra = 0;
+    let slug = slugify(venue.name, venue.id);
+    while (taken.has(slug)) slug = slugify(venue.name, venue.id, (extra += 1));
+    taken.add(slug);
+    venue.slug = slug;
+  }
+  const carried = carrySlugs(previous, venues);
+  for (const venue of venues) venue.aliases = [...new Set([...venue.aliases, ...(carried.get(venue.id) ?? [])])];
+
+  const gyms = venues.map(toPublic);
+  const body = JSON.stringify({ gyms });
+  const gymsName = await publishGyms(PUBLIC_DATA, body);
+
+  // 5. Manifest (no wall-clock: builtAt is the build day, so identical inputs give identical files).
+  const byTier = { verified: 0, corroborated: 0, listed: 0, unconfirmed: 0 };
+  const byCounty = Object.fromEntries(COUNTIES.map((county) => [county.name, 0]));
+  const visibleByCounty = { ...byCounty };
+  const byKind = {};
+  const bySource = {};
+  let visible = 0;
+  let withContact = 0;
+  let withPhone = 0;
+  for (const venue of gyms) {
+    const shown = venue.trust.tier !== "unconfirmed";
     byTier[venue.trust.tier] += 1;
     byCounty[venue.county] = (byCounty[venue.county] ?? 0) + 1;
     byKind[venue.kind] = (byKind[venue.kind] ?? 0) + 1;
-    if (venue.trust.tier !== "unconfirmed" && (venue.phones.length || venue.whatsapp || venue.website)) {
-      withContact += 1;
-    }
+    const combo = venue.trust.sources.join("+");
+    bySource[combo] = (bySource[combo] ?? 0) + 1;
+    if (!shown) continue;
+    visible += 1;
+    visibleByCounty[venue.county] = (visibleByCounty[venue.county] ?? 0) + 1;
+    if (venue.phones.length) withPhone += 1;
+    if (venue.phones.length || venue.website || venue.whatsapp) withContact += 1;
   }
-  const defaultVisible = venues.filter((v) => v.trust.tier !== "unconfirmed").length;
+  const landmarks = buildLandmarks(landmarkRows);
+  const gymsPath = `/data/${gymsName}`;
   const manifest = {
-    builtAt: new Date().toISOString(),
+    builtAt: `${asOf}T00:00:00.000Z`,
     overtureRelease: meta.release ?? null,
     osmSnapshotAt: osmPayload.generatedAt ?? null,
     osmStale: Boolean(osmPayload.osmStale),
-    counts: { total: venues.length, defaultVisible, byTier, byCounty, byKind, withContact },
-    licenses: [
-      "ODbL-1.0 © OpenStreetMap contributors",
-      "CDLA-Permissive-2.0 Overture Maps",
-      "Apache-2.0 Foursquare (via Overture)",
-      "CC BY 4.0 GeoNames",
-    ],
-    notices: [
-      "Overture Places can contain duplicates and incomplete properties. Confidence measures existence, not that a gym is open.",
-      "Address is omitted when unknown. We never invent hours, prices or ratings.",
-    ],
-    gymsPath: `/data/${gymsName}`,
+    ...(osmPayload.osmStale && osmPayload.staleReason ? { osmStaleReason: osmPayload.staleReason } : {}),
+    researchAt: researchInfo?.researchAt ?? null,
+    counts: {
+      total: gyms.length,
+      defaultVisible: visible,
+      withContact,
+      withPhone,
+      byTier,
+      byCounty,
+      visibleByCounty,
+      byKind: sortedObject(byKind),
+      bySource: sortedObject(bySource),
+      landmarks: landmarks.counts,
+    },
+    previous: previousSummary(previous, gymsPath),
+    licenses: licensesFor(venues, Boolean(researchInfo)),
+    notices: NOTICES,
+    gymsPath,
   };
-  await writeFile(path.join(PUBLIC_DATA, "manifest.json"), JSON.stringify(manifest, null, 2));
+  await writeAtomic(path.join(PUBLIC_DATA, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);
+  await writeAtomic(path.join(PUBLIC_DATA, "landmarks.json"), JSON.stringify({ landmarks: landmarks.landmarks }));
 
-  const landmarkRows = landmarks.filter((row) => Number(row.confidence ?? 0) >= 0.6 && isInKenya({
-    lat: Number(row.lat), lng: Number(row.lng),
-  })).map((row) => ({
-    id: row.id,
-    name: displayName(row.name),
-    kind: row.tax ?? row.basic ?? "landmark",
-    lat: Number(row.lat),
-    lng: Number(row.lng),
-  }));
-  await writeFile(path.join(PUBLIC_DATA, "landmarks.json"), JSON.stringify({ landmarks: landmarkRows }));
-  await writeFile(path.join(SOURCE, "review-candidates.json"), JSON.stringify(review, null, 2));
+  // 6. Logs for humans.
+  const hitOrder = (a, b) => cmp(a.rule, b.rule) || cmp(a.name, b.name) || cmp(a.id, b.id);
+  await writeAtomic(path.join(SOURCE, "denylist-hits.json"), `${JSON.stringify(hits.sort(hitOrder), null, 2)}\n`);
+  await writeAtomic(path.join(SOURCE, "review-candidates.json"), `${JSON.stringify(assembled.review, null, 2)}\n`);
+  await writeAtomic(path.join(SOURCE, "dropped-phones.json"), `${JSON.stringify(droppedPhones, null, 2)}\n`);
+  if (researchInfo) {
+    await writeAtomic(path.join(SOURCE, "research-log.json"), `${JSON.stringify({
+      researchAt: researchInfo.researchAt,
+      counts: researchInfo.counts,
+      skipped: researchInfo.skipped,
+      removedByClosedFinding: assembled.researchClosed,
+      blockedByRemovedRecord: assembled.researchBlocked,
+    }, null, 2)}\n`);
+  }
 
-  console.log(`venues=${venues.length} visible=${defaultVisible} contact=${withContact} hash=${hash} review=${review.length}`);
+  summarize({ meta, osmPayload, overtureRows, intake, assembled, hits, skipped, droppedPhones, removed, warnings, researchInfo, manifest, gyms, visible, withContact, withPhone, landmarks, gymsName });
+}
+
+function summarize(s) {
+  const { manifest, gyms, visible, withContact, withPhone, assembled, hits } = s;
+  const reasons = {};
+  for (const merge of assembled.merges) reasons[merge.reason] = (reasons[merge.reason] ?? 0) + 1;
+  const hitCount = (prefix) => hits.filter((hit) => hit.rule.startsWith(prefix)).length;
+  const nairobi = manifest.counts.visibleByCounty.Nairobi ?? 0;
+  const oneLine = (object) => Object.entries(object).map(([k, v]) => `${k} ${v}`).join(", ") || "none";
+  const lines = [
+    `sources: overture ${s.overtureRows.length} rows (release ${s.meta.release ?? "none"}), osm ${s.osmPayload.venues?.length ?? 0} (${s.osmPayload.osmStale ? "stale" : "live"}), web ${s.researchInfo ? `${s.researchInfo.counts.total} researched` : "no research file"}`,
+    `skipped: overture [${oneLine(s.skipped.overture)}], osm [${oneLine(s.skipped.osm)}]`,
+    `removed: category ${hitCount("category:")}, denylist ${hitCount("denylist:")}, exclude.json ${hitCount("exclude.json")}; demoted to unconfirmed by name ${hitCount("non-fitness-name:")}; known-closed ${s.removed.knownClosed.length}, override-closed ${s.removed.overrideClosed.length}; research-closed ${assembled.researchClosed.length}`,
+    `merge: ${s.intake.length} records -> ${gyms.length} venues; links by [${oneLine(reasons)}]; proximity-only review pairs ${assembled.review.length}`,
+    `phones dropped (invalid or non-Kenyan): ${s.droppedPhones.reduce((n, row) => n + row.dropped.length, 0)} on ${s.droppedPhones.length} records`,
+    `tiers: ${oneLine(manifest.counts.byTier)}; sources: ${oneLine(manifest.counts.bySource)}`,
+    `catalogue: total ${gyms.length}, visible ${visible}, Nairobi visible ${nairobi}, with contact action ${withContact} (${pct(withContact, visible)}%), with phone ${withPhone} (${pct(withPhone, visible)}%)`,
+    `landmarks: ${oneLine(s.landmarks.counts)} (${(s.landmarks.gzipBytes / 1024).toFixed(1)} KB gzip)`,
+    `targets: visible>=400 ${visible >= 400 ? "met" : "NOT met"}, Nairobi>=150 ${nairobi >= 150 ? "met" : "NOT met"}, contact>=75% ${pct(withContact, visible) >= 75 ? "met" : "NOT met"}`,
+    `output: ${s.gymsName}`,
+    ...s.warnings.map((warning) => `warning: ${warning}`),
+  ];
+  console.log(lines.join("\n"));
 }
 
 main().catch((error) => {

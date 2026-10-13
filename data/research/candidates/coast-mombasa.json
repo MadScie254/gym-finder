@@ -1,0 +1,156 @@
+{
+  "groupKey": "coast-mombasa",
+  "researchedAt": "2026-10-13",
+  "queries": [],
+  "queriesAttemptedNotPerformed": [
+    "gym in Nyali Mombasa",
+    "Mombasa gym membership fitness centre contact phone",
+    "crossfit Mombasa Nyali",
+    "yoga studio Mombasa Nyali Bamburi",
+    "best gyms in Mombasa Kenya",
+    "Mtwapa gym fitness centre"
+  ],
+  "searchBudgetNote": "All six WebSearch calls returned 'Web search was not performed: this turn's web search budget is used up (limit: 200 WebSearch calls per turn, shared by every agent in it)'. No search results were obtained, so no new venues could be discovered. The only research done was WebFetch of the websites listed in the seed entries for this region.",
+  "candidates": [
+    {
+      "id": "web:coast-mombasa-001",
+      "name": "InShape Fitness",
+      "kind": "gym",
+      "county": "Mombasa",
+      "town": "Mombasa",
+      "area": "Mombasa island (CBD, Meru Road behind Posta)",
+      "address": "Meru road, Behind Posta, Mombasa",
+      "phones": ["0717 077 775", "011 310 3088", "0739 077 777"],
+      "website": "https://inshape.co.ke/",
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "operating",
+      "inSeed": true,
+      "seedId": "cd6d51c5-65dc-4ab4-a7a5-871f60703453",
+      "evidence": [
+        {
+          "url": "https://inshape.co.ke/",
+          "fetched": true,
+          "quote": "Meru road, Behind Posta, Mombasa",
+          "supports": ["name", "address", "website"]
+        },
+        {
+          "url": "https://inshape.co.ke/",
+          "fetched": true,
+          "quote": "Men's 011 310 3088",
+          "supports": ["phone"]
+        },
+        {
+          "url": "https://inshape.co.ke/",
+          "fetched": true,
+          "quote": "Women's 0739 077 777",
+          "supports": ["phone"]
+        },
+        {
+          "url": "https://inshape.co.ke/faq/",
+          "fetched": true,
+          "quote": "0717 077 775",
+          "supports": ["phone"]
+        },
+        {
+          "url": "https://inshape.co.ke/about-us/",
+          "fetched": true,
+          "quote": "Copyright © 2026",
+          "supports": ["status"]
+        }
+      ],
+      "notes": "Seed entry points to https://inshape.co.ke/schedule/, which returns HTTP 404; the working site root is https://inshape.co.ke/. NEW vs seed: street-level address (site header reads 'Meru Poad, Mombasa CBD', apparently a typo for Meru Road; footer reads 'Meru road, Behind Posta, Mombasa'), website, and three phone numbers. 0717 077 775 is the main/header number and matches the seed phone +254717077775; 011 310 3088 is labelled 'Men's' and 0739 077 777 is labelled 'Women's' in the footer. The site says the ladies' and gents' training centres are 'on different floors and entry' and mentions 'Ladies Only areas at our gym'. Class names listed without times: Katabox, Circuit, Aero-Sticks, Aero-Toning, Spin, Mobility, Zumba; also personal training and nutrition counselling. Opening hours are not published on any page opened (FAQ only says visit 'any time during open hours'). A free-trial pass and memberships are offered; whether day passes exist is not stated, so access is left unknown. Footer copyright 2026 suggests the site is current, but that is not independent proof of current operation. Social icons on the site link only to '#', so no social pointers recorded. Email shown: info@inshape.co.ke."
+    },
+    {
+      "id": "web:coast-mombasa-002",
+      "name": "Flex Fitness Gym Services",
+      "kind": "gym",
+      "county": "Mombasa",
+      "town": "Mombasa",
+      "area": "Nyali/Bamburi side (seed coordinates -4.00284, 39.70999)",
+      "address": null,
+      "phones": [],
+      "website": null,
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "acdda761-8ee1-42bb-b8ca-98482c67e0d7",
+      "evidence": [
+        {
+          "url": "https://flexfitness.co.ke/",
+          "fetched": true,
+          "quote": "143 Mkoma Rd, South B Nairobi, Kenya",
+          "supports": ["address", "website"]
+        },
+        {
+          "url": "https://flexfitness.co.ke/",
+          "fetched": true,
+          "quote": "© 2026 All right reserved by Flex fitness services",
+          "supports": ["name", "status"]
+        }
+      ],
+      "notes": "SEED CORRECTION, not a new venue. The seed lists https://flexfitness.co.ke/ against a Mombasa gym at -4.00284, 39.70999. The website itself shows a Nairobi business ('143 Mkoma Rd, South B Nairobi, Kenya', phone 0723821865, info@flexfitness.co.ke) and the only Mombasa reference is a trainer listing reading 'Mombasa, 70401 Bamburi'. The page does not describe a Mombasa gym or branch, so the seed website value is very likely a mis-association and should not be shown for the Mombasa venue. The website field is therefore null here. The Nairobi phone is deliberately not attached to the Mombasa venue. Whether a Mombasa gym of this name exists and is open could not be confirmed from any page opened."
+    }
+  ],
+  "unverifiedLeads": [
+    {
+      "name": "The Gym (Mombasa, seed e72d4d03-cb8...)",
+      "url": "http://www.thegym.co.ke",
+      "why": "Seed website does not resolve (DNS ENOTFOUND for www.thegym.co.ke and thegym.co.ke on 2026-10-13). Venue status not checked; a dead domain alone is not evidence of closure."
+    },
+    {
+      "name": "Times Health & Fitness Centre (Mombasa, seed fd1fe3a3-6de...)",
+      "url": "http://www.thfc.co.ke/",
+      "why": "Seed website does not resolve (DNS ENOTFOUND for www.thfc.co.ke and thfc.co.ke). Venue status not checked."
+    },
+    {
+      "name": "Yogue Body & Mind (Mombasa, seed f5fcb558-cca...)",
+      "url": "http://www.getyogue.com/",
+      "why": "Seed website does not resolve (DNS ENOTFOUND for www.getyogue.com and getyogue.com). Venue status not checked."
+    },
+    {
+      "name": "Bodyworx Health Club and Spa (Mombasa, seed dd430b71-72b...)",
+      "url": "http://www.hwslimited.co.uk/",
+      "why": "Seed website does not resolve (DNS ENOTFOUND for www.hwslimited.co.uk and hwslimited.co.uk). Venue status not checked."
+    },
+    {
+      "name": "Step 'n' Step Gym (Shanzu/Kilifi side, seed 3633958f-93a...)",
+      "url": "https://stepin-gym.co.ke/",
+      "why": "Seed website does not resolve (DNS ENOTFOUND for stepin-gym.co.ke and www.stepin-gym.co.ke). Venue status not checked."
+    },
+    {
+      "name": "Legacy Fitness Club (Mombasa, seed e667ec25-b79...)",
+      "url": "http://www.legacyfitnessclub.com/",
+      "why": "Seed website now redirects (HTTP 302) to a HugeDomains domain-for-sale page for legacyfitnessclub.com, so the website is no longer the gym's. The venue itself was not confirmed open or closed."
+    },
+    {
+      "name": "Shotokan Academy (Mombasa, seed 7dcf6877-897...)",
+      "url": "http://www.shotokanacademy.co.ke/",
+      "why": "Site returned HTTP 521 (origin server down) on http and https, two attempts each. Could not read address, phone or class times. Venue status not checked."
+    },
+    {
+      "name": "Bulldog Fitness Factory (Mombasa, seed dddc4835-853...)",
+      "url": "http://thegapmission.com/",
+      "why": "Seed website returned HTTP 503 Service Unavailable. Could not confirm the page relates to the gym."
+    },
+    {
+      "name": "Rash Classic Gym (Mombasa, seed 6aff7dad-3a8...)",
+      "url": "http://rashclassicgymweb.business.site/",
+      "why": "Seed website (a business.site page) returned HTTP 404. No replacement page found."
+    },
+    {
+      "name": "Tiger Fitness Gym (Mombasa, seed 7e0b2ea2-704...)",
+      "url": "http://www.kenyabodybuilding.com/",
+      "why": "Seed website opens but is an online supplement shop ('KenyaBodybuilding', phone +254 720 660 447, 'Copyright © 2018 Kenya Bodybuilding') with no mention of Tiger Fitness Gym or Mombasa. Likely a mis-association; the gym itself is unverified."
+    },
+    {
+      "name": "The Yoga House Mombasa (seed 4b49f46e-108...)",
+      "url": "http://www.nourafchan.com/yoga",
+      "why": "Seed website opens but is the page of The Nourafchan Foundation, a US nonprofit, with no class, address or Mombasa details. Likely a mis-association; the studio itself is unverified."
+    }
+  ],
+  "coverageNotes": "Mombasa county (Mombasa island, Nyali, Bamburi, Kisauni, Shanzu, Likoni, Tudor, Changamwe, Mtwapa): NO new venues were found, because no web search could be run. All six WebSearch attempts were refused with 'this turn's web search budget is used up (limit: 200 WebSearch calls per turn, shared by every agent in it)', and I did not work around that limit. The only work possible was WebFetch of the seed entries' own websites (about 20 page fetches). Results: InShape Fitness (Meru Road, behind Posta, Mombasa CBD) was confirmed with address, three phone numbers and a 2026 copyright, and is reported as new information on a seed venue. The Flex Fitness seed website was shown to be a Nairobi business, so that seed website looks wrong. Five seed websites do not resolve (The Gym, Times Health & Fitness Centre, Yogue Body & Mind, Bodyworx, Step 'n' Step), one seed domain is for sale (Legacy Fitness Club), two are down (Shotokan Academy 521, Bulldog Fitness Factory 503), one is a dead business.site page (Rash Classic Gym), and two point to unrelated organisations (Tiger Fitness Gym, The Yoga House). None of these is proof of closure and none was recorded as closed. Nothing was learned about Kisauni, Likoni, Changamwe, Mtwapa, Tudor or Shanzu beyond the seed list. Not searched at all: CrossFit boxes, women-only gyms, hotel gyms (Nyali, Bamburi, Shanzu resorts), university gyms, sports clubs, martial arts and boxing gyms, Pilates studios. These need a follow-up run once the web-search budget is available again. Hotel and club websites were not opened by guessing URLs, because that would have meant introducing venues from memory."
+}

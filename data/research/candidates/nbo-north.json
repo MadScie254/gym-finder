@@ -1,0 +1,304 @@
+{
+  "groupKey": "nbo-north",
+  "researchedAt": "2026-10-13",
+  "queries": [],
+  "candidates": [
+    {
+      "id": "web:nbo-north-001",
+      "name": "Pamoja Arts & Multisports International Academy (PAMIA)",
+      "kind": "other",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Kiamumbi (Kasarani)",
+      "address": "Idyllic Mistley house, Kamiti Rd, Kiamumbi",
+      "phones": [
+        "+254 725 444 942"
+      ],
+      "website": "https://www.pamia.co.ke/",
+      "social": [],
+      "hoursText": "Office Hours: 8AM - 5PM",
+      "access": "unknown",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "2507885b-6cdb-4a58-9e01-f2c707de3a88",
+      "evidence": [
+        {
+          "url": "https://www.pamia.co.ke/contact",
+          "fetched": true,
+          "quote": "Idyllic Mistley house, Kamiti Rd, Kiamumbi",
+          "supports": [
+            "address"
+          ]
+        },
+        {
+          "url": "https://www.pamia.co.ke/contact",
+          "fetched": true,
+          "quote": "+254 725 444 942",
+          "supports": [
+            "phone"
+          ]
+        },
+        {
+          "url": "https://www.pamia.co.ke/contact",
+          "fetched": true,
+          "quote": "Office Hours: 8AM - 5PM",
+          "supports": [
+            "hours"
+          ]
+        },
+        {
+          "url": "https://www.pamia.co.ke/",
+          "fetched": true,
+          "quote": "Skating, Tae Kwon Do, Football, Swimming, Athletics, Arts, and Multisports training.",
+          "supports": [
+            "name",
+            "website"
+          ]
+        }
+      ],
+      "notes": "Seed lists this as a gym (Pamia, phone +254740527885). The venue's own site describes a multisports and arts academy (skating, taekwondo, football, swimming, athletics, arts) and does not mention a gym or fitness programme, so it should probably not be listed as a gym. The site shows a different phone from the seed. The home page has no copyright line, so whether the academy is still active is not established. Office hours are office hours, not facility opening hours. Details were read from the page by WebFetch; the address and hours came from the /contact page."
+    },
+    {
+      "id": "web:nbo-north-002",
+      "name": "MDA Studios Africa",
+      "kind": "other",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Two Rivers (per seed coordinates only)",
+      "address": null,
+      "phones": [
+        "+254722 104 645",
+        "+254 720 868 361"
+      ],
+      "website": "http://www.mda-africa.com/",
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "0fee087e-97ee-42a8-b2b7-f36086dc5fa8",
+      "evidence": [
+        {
+          "url": "http://www.mda-africa.com/",
+          "fetched": true,
+          "quote": "Call us: +254722 104 645/+254 720 868 361",
+          "supports": [
+            "phone"
+          ]
+        },
+        {
+          "url": "http://www.mda-africa.com/",
+          "fetched": true,
+          "quote": "Copyright 2026 MDA Studios | All Rights Reserved.",
+          "supports": [
+            "name",
+            "website"
+          ]
+        },
+        {
+          "url": "http://www.mda-africa.com/",
+          "fetched": true,
+          "quote": "a global creative agency specializing in the expression of dance, art, and events.",
+          "supports": [
+            "name"
+          ]
+        }
+      ],
+      "notes": "The site describes a dance, art and events creative agency, not a gym. It shows no street address, studio location (Two Rivers is not mentioned) or opening hours. Seed has two entries for the same organisation: 0fee087e-97ee-42a8-b2b7-f36086dc5fa8 (mda_studios_tworivers, Two Rivers coordinates) and 360300f4-8e3d-4aec-b8ab-22974f1c23db (MDA Studios, Lavington coordinates), both with this phone and website. Probably a dance studio rather than a fitness venue. The 2026 footer shows the website is maintained but does not show that any studio is open. The seed phone matches the first number; the second number is new."
+    },
+    {
+      "id": "web:nbo-north-003",
+      "name": "Deliberate Fitness (seed: Deliberate Human Performance)",
+      "kind": "gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Thigiri Lane (per blog), not Kasarani",
+      "address": null,
+      "phones": [
+        "0733 333 216"
+      ],
+      "website": "http://deliberatefitness.blogspot.com/",
+      "social": [],
+      "hoursText": "daily throughout the day 6am-7pm",
+      "access": "unknown",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "6262abce-8273-4b8b-bbe0-f82333a873bd",
+      "evidence": [
+        {
+          "url": "http://deliberatefitness.blogspot.com/",
+          "fetched": true,
+          "quote": "We are on Thigiri lane.",
+          "supports": [
+            "address"
+          ]
+        },
+        {
+          "url": "http://deliberatefitness.blogspot.com/",
+          "fetched": true,
+          "quote": "daily throughout the day 6am-7pm",
+          "supports": [
+            "hours"
+          ]
+        },
+        {
+          "url": "http://deliberatefitness.blogspot.com/",
+          "fetched": true,
+          "quote": "0733 333 216",
+          "supports": [
+            "phone"
+          ]
+        }
+      ],
+      "notes": "Blog (Blogger) read via the .com address; the seed website is the .blogspot.co.ke form, which returned HTTP 503 on the one attempt. The most recent post is dated Friday, 1 September 2017, so the hours and phone are about nine years old and may be out of date. Older posts mention Karura Forest, Sigiria Gate and Thigiri Ridge. The seed coordinates (-1.18446, 36.89952) are in Kasarani, which does not match 'Thigiri lane' (Gigiri/Westlands side), so the seed location looks wrong or the gym moved. The phone matches the seed. The older number 0720 88 44 99 appeared in a 2016 post and is not recorded. Status left unknown; do not publish hours or location without confirmation."
+    },
+    {
+      "id": "web:nbo-north-004",
+      "name": "Link2Fitness Kenya (seed: Link 2 Fitness)",
+      "kind": "other",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Kasarani (per seed coordinates only)",
+      "address": null,
+      "phones": [],
+      "website": "https://link2fitness.co.ke/",
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "b8e2078c-52cb-4b29-a5b9-57ec5116f8a9",
+      "evidence": [
+        {
+          "url": "https://link2fitness.co.ke/",
+          "fetched": true,
+          "quote": "Link2Fitness Kenya | Expert Online Fitness Coaching, Strength Training & Fat Loss Programs",
+          "supports": [
+            "name",
+            "website"
+          ]
+        }
+      ],
+      "notes": "Only the page title came back from the fetch (no body text), and it describes online fitness coaching. No physical address, phone or hours were visible, and /contact on the www host returned HTTP 404. This suggests the seed 'gym' may be an online coaching business, or may have a physical site that was not visible. Check before listing as a physical gym. The seed phone +254725970570 is not confirmed by the site."
+    },
+    {
+      "id": "web:nbo-north-005",
+      "name": "Kenyatta University Gymnasium",
+      "kind": "university_gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Kahawa / Kenyatta University Main Campus",
+      "address": null,
+      "phones": [],
+      "website": "https://sports.ku.ac.ke/facilities",
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "way/627147548",
+      "evidence": [
+        {
+          "url": "https://sports.ku.ac.ke/",
+          "fetched": true,
+          "quote": "The Directorate of Sports and Games is housed next to the Sports fields in the heart of the Main Campus.",
+          "supports": [
+            "website"
+          ]
+        },
+        {
+          "url": "https://sports.ku.ac.ke/facilities",
+          "fetched": true,
+          "quote": "/images/2024/gym.jpg",
+          "supports": [
+            "website"
+          ]
+        }
+      ],
+      "notes": "Low-confidence addition. The university's Directorate of Sports and Games site (sports.ku.ac.ke) has a Facilities page, but its text does not name or describe a gymnasium, give a location, or show opening hours; the only gym reference is an image file called gym.jpg. The Body Building team page gives a contact, Mr. K. Opuch 0722-900030, but does not mention a gym. The directorate phone shown is the incomplete '+254 20 870'. The university's general lines (+254 20 8703000, +254 20 8704000, +254 20 8710901) are not gym numbers and are not recorded in phones. Access (students only or open to staff or the public) is not stated. The pages show copyright 2024. Kept only to give a pointer for later follow-up with the directorate."
+    }
+  ],
+  "unverifiedLeads": [
+    {
+      "name": "Warriors Playground Fitness Centre (seed venue)",
+      "url": "http://warriorsplayground.co.ke/",
+      "why": "Seed website: WebFetch failed with getaddrinfo ENOTFOUND (domain did not resolve; the sandbox DNS lookup also returned no address). Domain may have lapsed, but that does not prove the venue is closed."
+    },
+    {
+      "name": "Jacaranda Drill Fitness Studio and Gym (seed venue)",
+      "url": "http://www.jacarandadrill.co.ke/",
+      "why": "Seed website: WebFetch failed with getaddrinfo ENOTFOUND (the sandbox DNS lookup also returned no address). Venue status unknown."
+    },
+    {
+      "name": "Blaklite Fitness Center (seed venue)",
+      "url": "http://www.blaklitefitness.com/",
+      "why": "Seed website: WebFetch failed with getaddrinfo ENOTFOUND (the sandbox DNS lookup also returned no address). Venue status unknown."
+    },
+    {
+      "name": "Kelco Pro Gym, Ruiru (seed venue)",
+      "url": "http://www.kelcoprogym.com/",
+      "why": "Seed website: WebFetch failed with getaddrinfo ENOTFOUND (the sandbox DNS lookup also returned no address). Venue status unknown."
+    },
+    {
+      "name": "CrossFit Boveda (seed venue)",
+      "url": "https://crossfitboveda.co.ke/",
+      "why": "Seed website: WebFetch failed with getaddrinfo ENOTFOUND (the sandbox DNS lookup also returned no address). Venue status unknown."
+    },
+    {
+      "name": "Ruaka Gym & Aerobics, Spa (seed venue)",
+      "url": "http://www.ruakagym.com/",
+      "why": "Seed website: WebFetch failed with getaddrinfo ENOTFOUND. Venue status unknown."
+    },
+    {
+      "name": "Thika Health and Fitness Centre (seed venue)",
+      "url": "http://thikafitness.com/",
+      "why": "Seed website: WebFetch failed with getaddrinfo ENOTFOUND. Venue status unknown."
+    },
+    {
+      "name": "Fit n Fine Gym, Kikuyu area (seed venue)",
+      "url": "http://www.fitnfine.co.ke/",
+      "why": "Seed website: WebFetch failed with getaddrinfo ENOTFOUND. Venue status unknown."
+    },
+    {
+      "name": "EasyGym Kenya (seed venue)",
+      "url": "http://www.easygym.ke/",
+      "why": "Seed website: WebFetch failed with getaddrinfo ENOTFOUND. Venue status unknown."
+    },
+    {
+      "name": "Seven11Gym (seed venue)",
+      "url": "http://www.seven11gyms.com/",
+      "why": "Seed website: WebFetch failed with getaddrinfo ENOTFOUND. Venue status unknown."
+    },
+    {
+      "name": "Gitaru Taekwondo Club (seed venue)",
+      "url": "http://www.gitarutaekwondoclub.co.ke/",
+      "why": "Seed website: WebFetch failed with getaddrinfo ENOTFOUND. Venue status unknown."
+    },
+    {
+      "name": "Sweat Hot Yoga & Pilates Studio, Two Rivers area (seed venue)",
+      "url": "http://www.hotyoganairobi.com/",
+      "why": "Seed website: WebFetch failed with getaddrinfo ENOTFOUND. Venue status unknown."
+    },
+    {
+      "name": "Millennium Gyms and Studios (seed venue)",
+      "url": "https://www.millenniumgyms.co.ke/",
+      "why": "Domain resolves, but WebFetch returned HTTP 500 on four attempts (https and http, home page and /contact-us). Worth retrying later for address, phone and hours."
+    },
+    {
+      "name": "G2 Fitness / Image Lift Gym, Kinoo (seed venue)",
+      "url": "http://imageliftgymkinoo.kbo.co.ke/",
+      "why": "Seed website: WebFetch returned HTTP 503 on three attempts. Worth retrying."
+    },
+    {
+      "name": "Yorena, yoga studio (seed venue)",
+      "url": "http://www.yorena.weebly.com/",
+      "why": "Seed website: WebFetch returned HTTP 503 on one attempt. Worth retrying."
+    },
+    {
+      "name": "Cloisters Fitness Centre, Kikuyu (seed venue)",
+      "url": "http://www.cloistersfitnesscentre.co.ke/",
+      "why": "Seed website: WebFetch returned HTTP 404 for the home page on both http and https. The domain exists but the page was not found, so status is unknown."
+    }
+  ],
+  "coverageNotes": "INCOMPLETE ROUND: no search-based discovery was done, and no new (non-seed) venues were found. The shared WebSearch budget for the turn (200 calls across all agents) was already used up when this agent started. All six first-round searches were refused with 'web search not performed': 'gym in Kasarani Nairobi', 'gym in Roysambu Nairobi membership', 'gym Zimmerman Nairobi fitness centre', 'gym in Ruaka Kiambu county', 'gym in Thika town contact phone', 'gym in Ruiru Kenya'. The queries array is empty on purpose because none of them ran. I did not retry, and I did not use curl, third-party readers, archives, directories or search-engine pages to get round the limit. I also did not add any venue from memory, because that breaks the hard rules. What I did: read the seed entries for the area (roughly 100 seed venues, some on the edges of the area across Kasarani, Roysambu, Zimmerman, Githurai, Ruaka, Runda, Kiambu, Ruiru, Juja, Thika, Kikuyu), then opened the own websites listed in the seed for those venues with WebFetch. Results: 4 sites gave usable new facts (PAMIA, MDA Studios, Deliberate Fitness blog, Link2Fitness) and 1 low-confidence lead (Kenyatta University sports directorate). All five are inSeed=true. Two of them (PAMIA and MDA Studios) turned out not to be gyms, and Link2Fitness may be online-only. 12 seed websites do not resolve at all (ENOTFOUND), 4 gave HTTP 500, 503 or 404 and are listed in unverifiedLeads so they can be retried. A dead domain is not evidence that a venue is closed, so none of them is marked status=closed. Many of the seed's Kasarani, Githurai, Zimmerman, Ruaka, Thika and Ruiru gyms have only a phone number and no website at all, and I could not check them without search. Nothing could be checked for Runda, Muthaiga, Juja, Limuru, Kiambu town or Thika beyond the seed. Out-of-area observations from pages I opened (not added as candidates): F45 Training Lavington's own page shows 'Naushad Merali Dr' and phone +254 758 583 067 (seed has +254704600845), and Nairobi Jiu-Jitsu Academy's site shows +254 (0) 798 566 294 and nairobijiujitsu@gmail.com, with no street address. Recommended follow-up: re-run this group (and the other groups) once the WebSearch budget is raised or reset, with the estate-by-estate query list from the task, plus hotel, university and club gym queries (Thika Road, Kiambu Road, Ruiru, Juja, Thika, Kikuyu, Limuru)."
+}

@@ -7,7 +7,8 @@
  *   (a) same normalised phone      } only when the records are also close: a shared number
  *   (b) same own-domain website    } or site far apart means branches of one chain, not one venue
  * Proximity alone NEVER merges. Pairs within 60 m with no name/phone/website agreement
- * are returned as review candidates for a human (data/source/review-candidates.json).
+ * are returned as review candidates for a human (data/source/review-candidates.json),
+ * together with two other kinds of near-miss (see reviewReason).
  */
 import { createHash } from "node:crypto";
 import { hostOf, isSocialOrAggregatorHost, sameWebsiteHost } from "./urls.mjs";
@@ -101,8 +102,8 @@ function sharedSite(left, right) {
   return Boolean(left.website && right.website && sameWebsiteHost(left.website, right.website));
 }
 
-/** Records the build can place precisely (OSM, Overture); web-research ones carry approxRadiusM instead. */
-const isPrecise = (record) => !record.approxRadiusM;
+/** Records the build can place precisely (OSM, Overture); web-research ones carry approxRadiusM or no location. */
+const isPrecise = (record) => !record.approxRadiusM && Number.isFinite(record.lat) && Number.isFinite(record.lng);
 
 /** @returns {{ merge: boolean, reason?: string, metres?: number, similarity?: number }} */
 export function shouldMerge(left, right, forcedPairs = []) {
@@ -132,13 +133,15 @@ export function approxMatch(left, right) {
   for (const [web, other] of [[left, right], [right, left]]) {
     if (web.seedId && seedKey(web.seedId) === seedKey(other.id)) return { merge: true, reason: "seed-id" };
   }
-  const radius = Math.max(left.approxRadiusM ?? 0, right.approxRadiusM ?? 0);
-  const metres = haversineM(left, right);
-  if (metres > radius + SHARED_CONTACT_MAX_M / 2) return { merge: false, metres };
   const similarity = tokenJaccard(left.name, right.name);
+  // A record with no location at all (an unplaceable "closed" finding) can only match on contact details.
+  const located = Number.isFinite(left.lat) && Number.isFinite(left.lng) && Number.isFinite(right.lat) && Number.isFinite(right.lng);
+  const radius = Math.max(left.approxRadiusM ?? 0, right.approxRadiusM ?? 0);
+  const metres = located ? haversineM(left, right) : null;
+  if (located && metres > radius + SHARED_CONTACT_MAX_M / 2) return { merge: false, metres };
   if (sharedPhone(left, right)) return { merge: true, reason: "phone", metres, similarity };
   if (sharedSite(left, right)) return { merge: true, reason: "website", metres, similarity };
-  if (metres <= radius && similarity >= NAME_MATCH_JACCARD) return { merge: true, reason: "name+area", metres, similarity };
+  if (located && metres <= radius && similarity >= NAME_MATCH_JACCARD) return { merge: true, reason: "name+area", metres, similarity };
   return { merge: false, metres, similarity };
 }
 
@@ -148,6 +151,25 @@ export function isProximityOnlyCandidate(left, right) {
   if (haversineM(left, right) > REVIEW_METRES) return false;
   if (sharedPhone(left, right) || sharedSite(left, right)) return false;
   return tokenJaccard(left.name, right.name) < NAME_MATCH_JACCARD;
+}
+
+/** Same name just outside the strict 150 m window: likely a duplicate, but only a person may merge it. */
+const NAME_NEAR_METRES = 500;
+
+/**
+ * Why two records that were NOT merged still deserve a human look, or null:
+ *   proximity-only          within 60 m, nothing else agrees (brief 5.4)
+ *   name-near               150-500 m apart with agreeing names
+ *   shared-contact-distant  same phone or own-domain site but too far apart to be one premises
+ * A reviewed pair is settled by adding it to data/overrides/merge.json (or leaving it apart).
+ */
+export function reviewReason(left, right) {
+  if (!isPrecise(left) || !isPrecise(right)) return null;
+  if (isProximityOnlyCandidate(left, right)) return "proximity-only";
+  if (sharedPhone(left, right) || sharedSite(left, right)) return "shared-contact-distant";
+  const metres = haversineM(left, right);
+  if (metres > NAME_MATCH_METRES && metres <= NAME_NEAR_METRES && tokenJaccard(left.name, right.name) >= NAME_MATCH_JACCARD) return "name-near";
+  return null;
 }
 
 /**
@@ -191,8 +213,11 @@ export function clusterRecords(records, { forcedPairs = [], ghosts = [] } = {}) 
       const [x, y] = [everyone[i], everyone[j]];
       if (x.root !== null && x.root === y.root) continue;
       if (x.ghost && y.ghost) continue;
-      if (forced.has(pairKey(x.record.id, y.record.id)) || !isProximityOnlyCandidate(x.record, y.record)) continue;
+      if (forced.has(pairKey(x.record.id, y.record.id))) continue;
+      const reason = reviewReason(x.record, y.record);
+      if (!reason || (reason !== "proximity-only" && (x.ghost || y.ghost))) continue;
       review.push({
+        reason,
         a: x.record.id,
         b: y.record.id,
         aName: x.record.name,
@@ -204,8 +229,9 @@ export function clusterRecords(records, { forcedPairs = [], ghosts = [] } = {}) 
       });
     }
   }
-  const rank = (pair) => (pair.aSources.includes("osm") || pair.bSources.includes("osm") ? 0 : 1);
-  review.sort((p, q) => rank(p) - rank(q) || p.metres - q.metres || p.a.localeCompare(q.a) || p.b.localeCompare(q.b));
+  const order = ["proximity-only", "name-near", "shared-contact-distant"];
+  const rank = (pair) => order.indexOf(pair.reason) * 2 + (pair.aSources.includes("osm") || pair.bSources.includes("osm") ? 0 : 1);
+  review.sort((p, q) => rank(p) - rank(q) || p.metres - q.metres || (p.a < q.a ? -1 : p.a > q.a ? 1 : 0) || (p.b < q.b ? -1 : p.b > q.b ? 1 : 0));
   return { clusters: [...groups.values()], review, merges };
 }
 

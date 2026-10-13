@@ -1,0 +1,109 @@
+{
+  "groupKey": "rift-west",
+  "researchedAt": "2026-10-13",
+  "queries": [],
+  "candidates": [
+    {
+      "id": "web:rift-west-001",
+      "name": "CrossFit 254",
+      "kind": "crossfit",
+      "county": "Uasin Gishu",
+      "town": "Eldoret",
+      "area": "Uganda Road",
+      "address": "Rupaz Fun & Fitness Center, Uganda Road, Eldoret, Uasin Gishu County, P.O. Box 1892 Eldoret",
+      "phones": ["254111888222"],
+      "website": null,
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "362f53c6-b4ac-4beb-b665-02ae670892f7",
+      "evidence": [
+        {
+          "url": "https://www.crossfit.com/gym/29071/crossfit-254",
+          "fetched": true,
+          "quote": "Rupaz Fun & Fitness Center, Uganda Road, Eldoret, Uasin Gishu County, P.O.Box 1892 Eldoret",
+          "supports": ["name", "address", "phone"]
+        }
+      ],
+      "notes": "Seed has coordinates only (no address, no phone, website = the same CrossFit affiliate page). The CrossFit affiliate page adds a street address (inside Rupaz Fun & Fitness Center), a phone number (written 254111888222, no plus sign) and a contact email (wilfaya@yahoo.com, not copied to phones). The page says '5 Years Affiliated' with no year, so it does not prove the box is currently open; status left unknown. No opening hours on the page. The affiliate page lists no website of its own."
+    },
+    {
+      "id": "web:rift-west-002",
+      "name": "Zoezi Health Club at Boma Inn Eldoret",
+      "kind": "hotel_gym",
+      "county": "Uasin Gishu",
+      "town": "Eldoret",
+      "area": "Elgon View Drive, off Ramogi Drive",
+      "address": "Elgon View Drive, Off Ramogi Drive",
+      "phones": ["+254 719 025 500", "+254 719 025 501"],
+      "website": "https://www.theboma.co.ke/inn-eldoret/health-club-and-spa.html",
+      "social": [],
+      "hoursText": "6:00 a.m. - 9:30 p.m.",
+      "access": "hotel_guests",
+      "status": "operating",
+      "inSeed": true,
+      "seedId": "59f51063-7eb1-45e9-aed5-236e6ce126cf",
+      "evidence": [
+        {
+          "url": "https://www.theboma.co.ke/inn-eldoret/health-club-and-spa/gym.html",
+          "fetched": true,
+          "quote": "6:00 a.m. - 9:30 p.m.",
+          "supports": ["hours", "phone", "name"]
+        },
+        {
+          "url": "https://www.theboma.co.ke/inn-eldoret/health-club-and-spa.html",
+          "fetched": true,
+          "quote": "Achieve your fitness goals at Zoezi Health Club.",
+          "supports": ["name", "website"]
+        },
+        {
+          "url": "https://www.theboma.co.ke/inn-eldoret/contact-us/contact-us.html",
+          "fetched": true,
+          "quote": "Elgon View Drive, Off Ramogi Drive",
+          "supports": ["address", "phone"]
+        }
+      ],
+      "notes": "Seed phone is +254719025531 (Overture); the hotel's own pages list +254 719 025 500 and +254 719 025 501 for Boma Inn Eldoret and for the gym, so the seed number could not be confirmed. The gym page says access is complimentary and open seven days a week, and does not say whether non-guests may use it or whether memberships are sold, so access is recorded as hotel_guests tentatively (verify). Facilities per the page: gym, steam room, sauna, Jacuzzi, group classes (aerobics, Taebo, Step, Yoga/Zumba, circuit). The hotel pages carry no copyright year, so recency was judged only from the pages being live and listing current hotel contact details; status 'operating' is moderate confidence. The group's Nairobi address (Red Cross Road, South C) on the home page is not the Eldoret address."
+    },
+    {
+      "id": "web:rift-west-003",
+      "name": "High Altitude Training Centre (HATC)",
+      "kind": "other",
+      "county": "Elgeyo-Marakwet",
+      "town": "Iten",
+      "area": null,
+      "address": "High Altitude Training Centre (HATC), Iten, Elgeyo-Marakwet County, Kenya. P.O. Box 6943, Eldoret, Kenya",
+      "phones": [],
+      "website": "https://hatc-iten.com/",
+      "social": [
+        "https://www.facebook.com/HighAltitudeTrainingCentrehatc",
+        "https://twitter.com/hatciten",
+        "https://www.instagram.com/lornah_sports/"
+      ],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "0a64be67-a9b3-4e2e-8fe0-f51db5dc4848",
+      "evidence": [
+        {
+          "url": "https://hatc-iten.com/facilities/",
+          "fetched": true,
+          "quote": "We run 3 strength and conditioning sessions a week for both guests and local athletes.",
+          "supports": ["name"]
+        },
+        {
+          "url": "https://hatc-iten.com/contact/",
+          "fetched": true,
+          "quote": "High Altitude Training Centre (HATC), Iten, Elgeyo-Marakwet County, Kenya. P.O. Box 6943, Eldoret, Kenya",
+          "supports": ["address", "website"]
+        }
+      ],
+      "notes": "Athletes' residential training camp founded by Lornah Kiplagat. Seed phone +254772700701 (Overture) is not shown on the venue's own pages, which list only email (info@lornah.com, info@hatc-iten.com) and a PO box. New facts: fully equipped gym (cardio and weight machines, free weights), saunas in both changing rooms, 400 m tartan track, 25 m pool, and three weekly strength-and-conditioning sessions open to guests and local athletes. The page does not say whether the gym is open to the public. Opening hours: only 'open all year', no times. Activity is uncertain: the news page's newest post is dated September 2020 (Covid Update), the footer reads '(c) Copyright -' with no year, though a banner says 'WE ARE OPEN FOR BOOKINGS'. Treat as camp/training facility rather than a general public gym unless confirmed."
+    }
+  ],
+  "unverifiedLeads": [],
+  "coverageNotes": "SEARCH BUDGET EXHAUSTED: the shared WebSearch budget for this run was already used up before this agent's first call, so all 4 attempted searches (gym in Eldoret; Eldoret gym membership fitness centre contact; gym in Kitale Trans Nzoia; gym in Kericho fitness centre) returned nothing and no search was performed. The queries array is therefore empty. No new venues were discovered, because venue discovery depends on search and I did not recall venues from memory or query search engines another way. What was done: read the seed for the region (about 15 relevant entries: Eldoret 8, Iten 4, Kitale 1, Kericho 1 apparently misplaced Biofit entry at lng 37.02) and opened seed-linked and venue-linked pages with WebFetch. Results: CrossFit 254 (Eldoret) gained a street address and phone from the CrossFit affiliate page; Zoezi at Boma Inn Eldoret gained address, phones and hours from the hotel's own pages; HATC Iten gained address, email and facility detail but no phone and uncertain activity. Seed websites that did not resolve (DNS ENOTFOUND, not proof of closure): fitnessforlifecenter.com (Fitness For Life Center, Eldoret), alpha-supplement.com (Alpha Supplements, Eldoret), biofitphysio.co.ke (Biofit rehabilitation clinic, listed under Kericho). Not checked at all for lack of search: Billy's Fitness Depot, Heralds lifestyle and wellness centre, raukafitness, Gym Eagle Fitness Center (Eldoret area); Avenidus Fitness Centre (Kitale, OSM); Kapsait Nike Athletics Camp, Lorna Kiplagat stadium and World Class Gym (Elgeyo-Marakwet). Counties with zero coverage this round: Trans Nzoia (beyond the Kitale seed entry), Nandi/Kapsabet, Kericho, Bomet, West Pokot/Kapenguria, Turkana/Lodwar, Samburu/Maralal. Whether these have gyms with an online presence is unknown, not established as none. Recommendation: rerun this group with a fresh search budget (or a raised CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION) using the planned query set, in extended mode for Kitale, Kericho, Kapsabet, Lodwar and Maralal."
+}

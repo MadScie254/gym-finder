@@ -7,20 +7,32 @@ OpenStreetMap
   https://www.openstreetmap.org/copyright
 
 Overture Maps Places
-  © Overture Maps Foundation
-  Licence: Community Data License Agreement – Permissive 2.0
+  © Overture Maps Foundation. Includes Meta and Microsoft business data.
+  Licence: Community Data License Agreement – Permissive 2.0 (CDLA-Permissive-2.0)
   https://cdla.dev/permissive-2-0/
 
-Foursquare (via Overture)
-  Portions of Overture Places include Foursquare data transformed to the Overture schema.
+Foursquare Open Source Places (via Overture)
+  Portions of the Overture Places data in this dataset come from Foursquare Open
+  Source Places (Foursquare Labs, Inc.) and have been transformed to the Overture schema.
   Licence: Apache License 2.0
   https://www.apache.org/licenses/LICENSE-2.0
+  Counsel to confirm this wording against Foursquare's upstream NOTICE text before launch.
+
+AllThePlaces (via Overture)
+  A handful of records come from AllThePlaces through Overture.
+  Licence: Creative Commons Zero 1.0 (CC0-1.0); no attribution required.
+  https://creativecommons.org/publicdomain/zero/1.0/
 
 GeoNames
   © GeoNames
-  Licence: Creative Commons Attribution 4.0
+  Licence: Creative Commons Attribution 4.0 (CC BY 4.0)
   https://www.geonames.org/
 
 geoBoundaries Kenya ADM0
   Source: geoBoundaries gbOpen / RCMRD GeoPortal
   Confirm the exact licence with counsel before commercial launch.
+
+Web research
+  Facts (names, phone numbers, addresses, opening-hours text) found on public web pages
+  by the web-research workflow. Evidence URLs are recorded per venue in `provenance.evidence`.
+  No page text, photographs, ratings or reviews are copied.

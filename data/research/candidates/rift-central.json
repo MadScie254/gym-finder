@@ -1,0 +1,14 @@
+{
+  "groupKey": "rift-central",
+  "researchedAt": "2026-10-13",
+  "queries": [],
+  "candidates": [],
+  "unverifiedLeads": [
+    {
+      "name": "Milimani Fitness and Health Club (seed id cbed2d3c-6b2, Nakuru)",
+      "url": "http://www.milimanifitness.co.ke/",
+      "why": "Seed venue's own website. WebFetch failed with 'getaddrinfo ENOTFOUND' for both www.milimanifitness.co.ke and milimanifitness.co.ke on 2026-10-13, so the domain did not resolve from the fetch environment. This is weak evidence (could be a sandbox DNS issue) and is NOT proof the club is closed; status left unchanged. Worth a manual re-check or a phone call to the seed number +254726179742."
+    }
+  ],
+  "coverageNotes": "INCOMPLETE: this run found no new venues. The WebSearch budget for the turn (200 calls, shared across all agents in the workflow) was already used up when this agent started, so every discovery search was refused: 'gym in Nakuru town Kenya', 'Naivasha gym fitness centre', 'Nanyuki gym membership fitness' (and no further queries were attempted). The queries array is empty on purpose because no search was actually performed. I did not use curl/wget search engines, directories or third-party reader/archive services to get around the limit. What I did instead: read the seed for the area (Nakuru 14 rows incl. Kizigenza, Milimani, Legacy, Almico, Waridi, Kabarak spa/fitness; Laikipia/Nanyuki 3 rows: Achievers, Olympia, Nanyuki MMA Wing Tsun; Narok 4 rows: Lions Fitness, Narok Fitness & Kids, Red Rock Gym, Karen Blixen Camp; Morendat/Naivasha-side 1 row: Play With Fitness; no seed rows at all for Naivasha town, Gilgil, Molo, Nyahururu, Ol Kalou, Baringo/Kabarnet) and opened the three seed websites for the area with WebFetch. Results: kizigenzafitness.com returned an empty page (JS-rendered, no text extractable); playwithfitness.com returned only the title 'PlayWithFitness - Get Strong, Get Healthy, Get Happy' with no address/phone/hours (also JS-rendered; /contact gave the same); milimanifitness.co.ke did not resolve (DNS ENOTFOUND), logged as an unverified lead above. None of this produced new evidenced facts, so no seed venue is re-listed as a candidate. County by county: Nakuru town, Naivasha, Gilgil, Molo, Laikipia (Nanyuki, Nyahururu), Nyandarua (Ol Kalou), Baringo (Kabarnet) and Narok were NOT researched beyond the seed; the absence of candidates says nothing about whether more gyms exist there. Naivasha, Nyahururu, Gilgil, Molo, Ol Kalou and Kabarnet have zero seed coverage and are the highest-value targets for a rerun, along with hotel/resort gyms (Naivasha lakeside, Nanyuki/Laikipia lodges, Mara camps) and Kabarak/Egerton/Laikipia university gyms. Re-run this group with a fresh search budget."
+}

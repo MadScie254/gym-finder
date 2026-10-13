@@ -1,0 +1,41 @@
+{
+  "groupKey": "western",
+  "researchedAt": "2026-10-13",
+  "queries": [],
+  "candidates": [
+    {
+      "id": "web:western-001",
+      "name": "Kenspagym Exercise studio",
+      "kind": "gym",
+      "county": "Bungoma",
+      "town": "Webuye",
+      "area": null,
+      "address": null,
+      "phones": [],
+      "website": null,
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "c02161ea-6f1f-4433-9ed1-74ab847a1918",
+      "evidence": [
+        {
+          "url": "http://www.loretoconventmsongari.com/",
+          "fetched": true,
+          "quote": "an all-girls school in Nairobi's Lavington area",
+          "supports": []
+        }
+      ],
+      "notes": "DATA-QUALITY CORRECTION, not a confirmation. The seed record gives this venue's website as loretoconventmsongari.com. Opened on 2026-10-13: it is the site of Loreto Convent Msongari, an all-girls school in Nairobi (footer 'NAIROBI KENYA', copyright 2026). It does not mention Kenspagym, any gym or exercise studio, or Webuye. The seed website value is therefore almost certainly a wrong association and should be dropped (website=null here). The venue itself (name, Webuye location, phone) is NOT verified by this research; no independent page for it was found because web search was unavailable. Quote above was returned by the page-fetch tool's extraction, not copied by hand."
+    }
+  ],
+  "unverifiedLeads": [
+    {
+      "name": "Flora Health & Fitness Centre (Kakamega, seed 91a084e9-cd09-4dbb-9140-af5339dd33b8)",
+      "url": "http://florahealthandfitnessclub.com/",
+      "why": "Website listed in the seed. Both http://florahealthandfitnessclub.com/ and https://www.florahealthandfitnessclub.com/ failed on 2026-10-13 with getaddrinfo ENOTFOUND (domain does not resolve from the research environment). This is a weak signal that the site is dead or the domain lapsed; it does NOT prove the gym is closed. Could not open any page, so no phone, address or hours were gathered. Needs a search or a manual check."
+    }
+  ],
+  "coverageNotes": "INCOMPLETE - this group is essentially NOT researched. The shared WebSearch budget for the turn (200 calls, shared by all agents) was already used up when this agent started; my first three queries (gym in Kakamega town / gym in Bungoma town fitness centre / gym in Busia Kenya) all returned 'web search budget used up' and no results, so the queries array is empty. I did not work around the limit via curl or search-engine fetches. What I did instead: (1) read the seed for Western Kenya: Kakamega has Flora Health & Fitness Centre, Max Fitness Health Center and Buffet De TORRA Gymnastics; Bungoma has Hot Sports Gym, Mayanja (website is just m.youtube.com) and Sirisia flips (gymnastics, YouTube channel as website); Busia has ROYS GYM; Webuye has Kenspagym Exercise studio; the seed has NO entries for Vihiga or Mumias. (2) Opened the seed websites: Flora's domain does not resolve (see unverifiedLeads); Kenspagym's website is an unrelated Nairobi school (see candidate web:western-001). (3) Opened mmust.ac.ke and studentlife.mmust.ac.ke (Masinde Muliro University, Kakamega): neither mentions a gym or fitness facility; kibu.ac.ke (Kibabii University, Bungoma) returned HTTP 503 so was not checked. County by county: Kakamega, Bungoma, Busia, Vihiga, Mumias, Webuye - no NEW venue found or evidenced; absence of results here reflects the blocked search, not a verified lack of online presence. Recommended follow-up: rerun this group once search budget is available (or CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION is raised), with queries per town (Kakamega, Bungoma, Kimilili, Webuye, Mumias, Busia, Malaba, Vihiga/Mbale/Luanda/Maseno, Butere), plus crossfit/yoga/boxing and hotel gym day pass variants."
+}

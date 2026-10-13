@@ -1,0 +1,19 @@
+{
+  "groupKey": "northeast",
+  "researchedAt": "2026-10-13",
+  "queries": [],
+  "candidates": [],
+  "unverifiedLeads": [
+    {
+      "name": "PowerZone GYM & Fitness / Boost Wellness (Garissa; seed ids 668e1c9a-103e-45a5-83da-1090b6914c53 and c9ab04b6-2184-4788-8e3b-918aa70fe306)",
+      "url": "http://www.powerzonegym254.com/",
+      "why": "Seed website for both records. Opening http://www.powerzonegym254.com/ and https://powerzonegym254.com/ with WebFetch on 2026-10-13 failed with 'getaddrinfo ENOTFOUND' (the domain did not resolve from this environment; a control fetch of example.com worked). This is not proof the gym is closed, only that the seed website could not be opened. The two seed records share identical coordinates, phone (+254719785564) and website, so they are probably one venue duplicated under two names. Not verified by any page."
+    },
+    {
+      "name": "Oxygen Fitness Gym (Garissa; seed id 35d2934f-b219-44dc-a1af-7115a74bd887)",
+      "url": "",
+      "why": "In seed with phone +254725588855 and no website. No page was opened for it in this run because web search was unavailable, so it is neither confirmed nor refuted."
+    }
+  ],
+  "coverageNotes": "NO RESEARCH COULD BE DONE for this group. WebSearch refused all three attempted queries (gym in Garissa / Wajir / Mandera Kenya) with 'this turn's web search budget is used up (limit: 200 WebSearch calls per turn, shared by every agent in it)'. No search was performed, so the queries array is empty. I did not work around the limit (no search engines via curl, no third-party readers or archives, no guessed directory URLs). Seed state: Garissa has 3 seed records (PowerZone GYM & Fitness and Boost Wellness, apparently one venue duplicated, plus Oxygen Fitness Gym); Wajir has 0 seed records; Mandera has 0 seed records. Only direct fetches made: powerzonegym254.com (both www/http and bare/https), which failed DNS resolution, and example.com as a connectivity control. Wajir and Mandera: nothing found, and this does NOT show that those counties have no gyms or no online presence, only that they were not searched. Garissa: no new venue, phone, website, hours or closure evidence obtained. Recommended: rerun this group with a fresh WebSearch budget (or a raised CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION), including extended-mode searches for Wajir and Mandera, plus Garissa-area queries such as Garissa University gym, hotel gyms in Garissa town, and martial arts or boxing clubs."
+}

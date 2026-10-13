@@ -1,0 +1,138 @@
+{
+  "groupKey": "coast-rest",
+  "researchedAt": "2026-10-13",
+  "queries": [
+    "[NOT RUN - WebSearch budget exhausted, tool refused] gym in Malindi Kenya",
+    "[NOT RUN - WebSearch budget exhausted, tool refused] Malindi gym membership fitness centre",
+    "[NOT RUN - WebSearch budget exhausted, tool refused] gym in Diani Beach Kenya",
+    "[NOT RUN - WebSearch budget exhausted, tool refused] Watamu gym fitness yoga",
+    "[NOT RUN - WebSearch budget exhausted, tool refused] Kilifi town gym fitness",
+    "[NOT RUN - WebSearch budget exhausted, tool refused] Lamu gym fitness Shela Manda yoga",
+    "[NOT RUN - WebSearch budget exhausted, tool refused] Diani Beach gym Ukunda fitness centre"
+  ],
+  "candidates": [
+    {
+      "id": "web:coast-rest-001",
+      "name": "Combat Kenya (Combat Gym at Vacani Resort)",
+      "kind": "martial_arts",
+      "county": "Taita-Taveta",
+      "town": "Voi",
+      "area": "Mombasa-Nairobi Highway (A109)",
+      "address": "Mombasa-Nairobi Highway, Voi, Taita Taveta",
+      "phones": ["+254 746 620 099", "+254 769 248 249"],
+      "website": "https://vacaniresort.com/combatkenya/",
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "7e929e2d-a95b-40fe-8003-16c2179620ed",
+      "evidence": [
+        {
+          "url": "https://vacaniresort.com/",
+          "fetched": true,
+          "quote": "Stay fit and active in our modern combat gym, suitable for children and adults interested in self-defence.",
+          "supports": ["name"]
+        },
+        {
+          "url": "https://vacaniresort.com/contactus/",
+          "fetched": true,
+          "quote": "Mombasa-Nairobi Highway, Voi, Taita Taveta",
+          "supports": ["address"]
+        },
+        {
+          "url": "https://vacaniresort.com/contactus/",
+          "fetched": true,
+          "quote": "+254 746 620 099",
+          "supports": ["phone"]
+        },
+        {
+          "url": "https://vacaniresort.com/combatkenya/",
+          "fetched": true,
+          "quote": "Join a welcoming community of martial artists.",
+          "supports": ["name", "website"]
+        },
+        {
+          "url": "https://vacaniresort.com/combatkenya/",
+          "fetched": true,
+          "quote": "+254 769 248 249",
+          "supports": ["phone"]
+        },
+        {
+          "url": "https://vacaniresort.com/combatkenya/",
+          "fetched": true,
+          "quote": "© 2024 Vacani Resort. All rights reserved.",
+          "supports": ["status"]
+        }
+      ],
+      "notes": "Seed entry had no phone. NEW: resort phone +254 746 620 099 (shown on resort contact page and footer); +254 769 248 249 is a WhatsApp link on the Combat Kenya page for enquiries and classes (no number is printed as text on that page). Page lists MMA and Brazilian Jiu-Jitsu with adult and kids daily and monthly rates; no opening or class times listed (visitors are told to contact the gym to schedule). The page does not say whether non-guests may attend, so access is left unknown. Footer copyright is 2024 only, so currently-operating status could not be confirmed; left as unknown. Resort address given elsewhere on the site as 'Mombasa-Nairobi Highway (A109), Voi Town, Taita-Taveta County, Kenya'. Quotes were taken from WebFetch's extracted answers, not from raw HTML."
+    },
+    {
+      "id": "web:coast-rest-002",
+      "name": "Banana House & Wellness Centre",
+      "kind": "yoga",
+      "county": "Lamu",
+      "town": "Lamu",
+      "area": "Lamu Island (Shela is named on the site only in a blog title and the owner's story)",
+      "address": null,
+      "phones": ["0721275538", "+254721275538"],
+      "website": "http://www.bananahouse-lamu.com/",
+      "social": ["https://instagram.com/bananahouselamu"],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "operating",
+      "inSeed": true,
+      "seedId": "42cac902-04ba-4c68-b645-0a69b20835e3",
+      "evidence": [
+        {
+          "url": "http://www.bananahouse-lamu.com/",
+          "fetched": true,
+          "quote": "© 2026 Banana House | All Rights Reserved",
+          "supports": ["status", "website"]
+        },
+        {
+          "url": "http://www.bananahouse-lamu.com/",
+          "fetched": true,
+          "quote": "BOOK YOUR PERFECT ESCAPE IN LAMU ISLAND, KENYA.",
+          "supports": ["name"]
+        },
+        {
+          "url": "http://www.bananahouse-lamu.com/",
+          "fetched": true,
+          "quote": "0721275538",
+          "supports": ["phone"]
+        },
+        {
+          "url": "http://www.bananahouse-lamu.com/",
+          "fetched": true,
+          "quote": "Yoga Teacher Training by Shri Gaia Institute 10th -24th November 2026",
+          "supports": ["status"]
+        }
+      ],
+      "notes": "Boutique hotel (page title 'Boutique Hotel in Lamu, Kenya') with a wellness and yoga offering; it is a hotel first, so public drop-in access to yoga is not confirmed (access left unknown). The seed holds TWO entries for this place at different coordinates (this seedId and 0b9dc1e8-b789-426e-9116-8e478eb58321): treat as duplicates. NEW: site is live with copyright 2026 and an upcoming yoga teacher training dated 10th-24th November 2026, so status=operating. No street address, class schedule or opening hours on the site; the nav item labelled Wellness links to /book-now. Instagram and a WhatsApp link (+254721275538) appear in the page. The site's Facebook link has no page name and is not recorded."
+    }
+  ],
+  "unverifiedLeads": [
+    {
+      "name": "Bold Gym International (Kwale/Diani, seed 370ffdd2-5367-4799-90f8-5ecdb6607bf2)",
+      "url": "http://www.boldgyminternational.com/",
+      "why": "Website recorded in seed did not resolve on 2026-10-13 (getaddrinfo ENOTFOUND for both www and bare domain). Seed website may be stale; status could not be checked. This is not evidence that the gym is closed."
+    },
+    {
+      "name": "Step 'n' Step Gym (Kilifi, gymnastics centre, seed 3633958f-93a3-4edd-a233-bfdc6dc9ebb2)",
+      "url": "https://stepin-gym.co.ke/",
+      "why": "Website recorded in seed did not resolve on 2026-10-13 (ENOTFOUND for both www and bare domain). Status could not be checked. This is not evidence that the venue is closed."
+    },
+    {
+      "name": "Eagle Camp Mida Creek (Watamu, seed 0faf45c9-6b71-4cd2-890b-ca665d7a07c5)",
+      "url": "http://www.eaglecampmidacreek.com/",
+      "why": "Website recorded in seed did not resolve on 2026-10-13 (ENOTFOUND for both www and bare domain). Also a camp or lodge rather than a confirmed gym. Status could not be checked."
+    },
+    {
+      "name": "Diani Beach Life Fitness Kenya (Kwale, seed 76299d62-7dd5-4526-abe8-a6b65dd5dd20)",
+      "url": "https://beachlifefitness.co.ke/",
+      "why": "Page opens but WebFetch returned only the title 'Beach Life Fitness Kenya | Diani Beach Gym & Adventure Tours' (no body text, probably script-rendered). No address, hours or phone could be confirmed from it, so no new facts beyond the seed."
+    }
+  ],
+  "coverageNotes": "LIMITED ROUND. The shared WebSearch budget (200 per turn) was already used up when this run started, so all 7 attempted queries were refused and NO search-based discovery was done. Per the rules I did not guess URLs, search through other services or add venues from memory. Work was limited to opening the websites already recorded in the seed for this region (16 seed entries across Kilifi, Kwale, Lamu, Taita-Taveta and Watamu, plus Voi's OSM-only 'Unique Sports Gym and Fitness'). Results: Combat Kenya (Voi) gained phone numbers and an address; Banana House (Lamu) confirmed active in 2026. Three seed websites (Bold Gym International, Step 'n' Step Gym, Eagle Camp Mida Creek) do not resolve from this environment; Beach Life Fitness returned only a page title. No seed website exists for Rox Park Gym Diani True Fitness, Diani Swimming and Fitness, Uzuri Spa Fitness Forest, Moto fitness studio, Happy's Animation and gym, Mariakani Gym or Unique Sports Gym and Fitness, so those could not be enriched without search. County by county: Kilifi (Kilifi town, Malindi, Watamu, Mtwapa, Mariakani), Kwale (Diani, Ukunda, Kwale town) and Tana River (Hola) were NOT researched for new venues; Lamu and Taita-Taveta (Voi, Wundanyi) were covered only via seed websites. Zero new (non-seed) venues found; absence here means 'not searched', not 'no gyms exist'. Re-run this group with a fresh search budget (or a higher CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION) to complete it."
+}

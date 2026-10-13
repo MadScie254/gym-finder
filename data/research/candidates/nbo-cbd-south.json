@@ -1,0 +1,601 @@
+{
+  "groupKey": "nbo-cbd-south",
+  "researchedAt": "2026-10-13",
+  "queries": [
+    "gym in South C Nairobi",
+    "gym South B Nairobi membership",
+    "Nairobi CBD gym fitness centre contact phone",
+    "Lang'ata Nairobi gym fitness centre",
+    "Mombasa Road Nairobi gym fitness centre",
+    "Industrial Area Nairobi gym fitness",
+    "Nairobi West gym Lang'ata Road fitness club \"Nairobi West\""
+  ],
+  "candidates": [
+    {
+      "id": "web:nbo-cbd-south-001",
+      "name": "The Boma Nairobi Health Club (gym, pool, Kweya Spa)",
+      "kind": "hotel_gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "South C (Bellevue)",
+      "address": "South C (Bellevue), Red Cross Road, Off Mombasa Road P.O. Box 26601 - 00100 Nairobi, Kenya",
+      "phones": [
+        "+254 719 050 000",
+        "+254 719 050 500",
+        "+254 719 050 648"
+      ],
+      "website": "https://www.theboma.co.ke/the-boma-nairobi/health-club.html",
+      "social": [
+        "https://www.facebook.com/thebomahotels/",
+        "https://www.instagram.com/thebomahotels/"
+      ],
+      "hoursText": "The Health Club operates daily from 06:30 AM to 7:00 PM, while the pool welcomes you from 09:00 AM to 6:00 PM.",
+      "access": "unknown",
+      "status": "operating",
+      "inSeed": true,
+      "seedId": "81bdb231-1c0e-4b25-868e-d97e132ec8a9",
+      "evidence": [
+        {
+          "url": "https://www.theboma.co.ke/contact.html",
+          "fetched": true,
+          "quote": "South C (Bellevue), Red Cross Road, Off Mombasa Road P.O. Box 26601 - 00100 Nairobi, Kenya",
+          "supports": [
+            "name",
+            "address"
+          ]
+        },
+        {
+          "url": "https://www.theboma.co.ke/the-boma-nairobi/health-club.html",
+          "fetched": true,
+          "quote": "The Health Club operates daily from 06:30 AM to 7:00 PM, while the pool welcomes you from 09:00 AM to 6:00 PM.",
+          "supports": [
+            "hours"
+          ]
+        },
+        {
+          "url": "https://www.theboma.co.ke/the-boma-nairobi/health-club.html",
+          "fetched": true,
+          "quote": "contact us to become a Club member",
+          "supports": [
+            "website"
+          ]
+        },
+        {
+          "url": "https://www.theboma.co.ke/",
+          "fetched": true,
+          "quote": "+254 719 050 000, +254 719 050 500, +254 719 050 648",
+          "supports": [
+            "phone"
+          ]
+        }
+      ],
+      "notes": "Already in seed as 'Zoezi Gym and Spa' (phone +254719050000, theboma.co.ke); this entry adds the address, hours and the official health-club page. The health club is on the 2nd floor with cardio and weight machines and personal trainers; access is complimentary for hotel guests and the page invites others to 'contact us to become a Club member' (no fees or day-pass terms shown, so access is left as unknown). The phone numbers are the hotel's general lines, not a dedicated gym line. The sister hotel Boma Inn Nairobi (Red Cross, +254 719 050 500) offers its guests 'complimentary access to a fully equipped gym' at The Boma Nairobi, so it is the same gym and not a separate venue. The site gave no copyright year; liveness rests on the working site with current room, event and booking pages."
+    },
+    {
+      "id": "web:nbo-cbd-south-002",
+      "name": "NextGen Gym",
+      "kind": "gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "South C / Mombasa Road",
+      "address": "NextGen Mall Mombasa Road, 6th Floor, South C, Nairobi Kenya.",
+      "phones": [
+        "+254746390390"
+      ],
+      "website": "http://nextgengym.fitness/",
+      "social": [],
+      "hoursText": "Class times weekdays from 6:00-7:00 AM to 8:00-9:00 PM; Saturday mornings and afternoons; Sunday afternoons. General opening hours not stated (page says 'extended hours to match your schedule').",
+      "access": "public",
+      "status": "operating",
+      "inSeed": true,
+      "seedId": "82470e38-3672-43d7-8ab2-600f70278ea4",
+      "evidence": [
+        {
+          "url": "http://nextgengym.fitness/",
+          "fetched": true,
+          "quote": "NextGen Mall Mombasa Road, 6th Floor, South C, Nairobi Kenya.",
+          "supports": [
+            "name",
+            "address",
+            "website"
+          ]
+        },
+        {
+          "url": "http://nextgengym.fitness/",
+          "fetched": true,
+          "quote": "+254746390390",
+          "supports": [
+            "phone"
+          ]
+        },
+        {
+          "url": "http://nextgengym.fitness/",
+          "fetched": true,
+          "quote": "6:00–7:00 AM",
+          "supports": [
+            "hours"
+          ]
+        },
+        {
+          "url": "http://nextgengym.fitness/",
+          "fetched": true,
+          "quote": "© Copyright NextGen Gym 2026. All Right Reserved.",
+          "supports": [
+            "status"
+          ]
+        }
+      ],
+      "notes": "Already in seed (phone and website match). New information: the street address on the venue's own site (NextGen Mall, Mombasa Road, 6th floor, South C), the class-time pattern, and a 2026 footer that indicates it is active. The 'hours' quote is the first weekday class slot; a full opening-hours line is not published. A contact e-mail (info@nextgengym.co.ke) is shown but not recorded here."
+    },
+    {
+      "id": "web:nbo-cbd-south-003",
+      "name": "Weston Hotel Gym & Spa (health club wing)",
+      "kind": "hotel_gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Lang'ata Road, opposite Wilson Airport",
+      "address": "Langata Road, Opposite Wilson Airport, Nairobi",
+      "phones": [
+        "(+254) 709 995 000/2/3",
+        "(+254) 730 500 000"
+      ],
+      "website": "https://westonhotel.com/",
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "operating",
+      "inSeed": true,
+      "seedId": "e07e15e6-a375-4985-b18f-e901593bd555",
+      "evidence": [
+        {
+          "url": "https://www.westonhotel.com/",
+          "fetched": true,
+          "quote": "Langata Road, Opposite Wilson Airport, Nairobi",
+          "supports": [
+            "name",
+            "address"
+          ]
+        },
+        {
+          "url": "https://www.westonhotel.com/",
+          "fetched": true,
+          "quote": "Health club wing (gym, spa, aerobics studio, spacious steam and sauna with relaxation rooms.)",
+          "supports": [
+            "name"
+          ]
+        },
+        {
+          "url": "https://www.westonhotel.com/",
+          "fetched": true,
+          "quote": "(+254) 709 995 000/2/3 | (+254) 730 500 000",
+          "supports": [
+            "phone"
+          ]
+        },
+        {
+          "url": "https://www.westonhotel.com/",
+          "fetched": true,
+          "quote": "© 2026 Weston Hotel. All Rights Reserved.",
+          "supports": [
+            "status"
+          ]
+        }
+      ],
+      "notes": "Already in seed as 'Weston GYM & SPA' (+254709995043, westonhotel.com). New information: street address (Langata Road opposite Wilson Airport), the two general hotel phone lines, a description of the gym as 'fully equipped with modern exercise machines and personal training services', and a 2026 footer. No gym opening hours or non-resident/membership terms are published on the home or Amenities pages (the Amenities page lists only a Spa & Wellness Center); confirm with the hotel. The numbers are the hotel switchboard, not a gym line. The seed phone differs from the hotel numbers on the page."
+    },
+    {
+      "id": "web:nbo-cbd-south-004",
+      "name": "Platinum Fitness Kenya",
+      "kind": "gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Nairobi CBD (Moi Avenue)",
+      "address": "Kenya Cinema Plaza Moi Avenue Nairobi 2nd Floor Shop No 2-1",
+      "phones": [
+        "0742483185"
+      ],
+      "website": "https://www.platinumfitness.co.ke/",
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "operating",
+      "inSeed": true,
+      "seedId": "cc77d114-cc80-4ca3-a4ca-7f9e16d9f718",
+      "evidence": [
+        {
+          "url": "https://www.platinumfitness.co.ke/",
+          "fetched": true,
+          "quote": "Kenya Cinema Plaza Moi Avenue Nairobi 2nd Floor Shop No 2-1",
+          "supports": [
+            "name",
+            "address",
+            "website"
+          ]
+        },
+        {
+          "url": "https://www.platinumfitness.co.ke/",
+          "fetched": true,
+          "quote": "0742483185",
+          "supports": [
+            "phone"
+          ]
+        },
+        {
+          "url": "https://www.platinumfitness.co.ke/",
+          "fetched": true,
+          "quote": "Copyright © 2026 Platinum Fitness. All Rights Reserved",
+          "supports": [
+            "status"
+          ]
+        }
+      ],
+      "notes": "Already in seed (phone +254742483185, same website). New information: the street address (Kenya Cinema Plaza, Moi Avenue, 2nd floor) and a 2026 footer. Opening hours are not shown on the home page. The page text is ambiguous about whether this is a training gym or an equipment business; the address and name match a CBD gym listing, but confirm the venue type before publishing."
+    },
+    {
+      "id": "web:nbo-cbd-south-005",
+      "name": "Fitness & Gym Kenya Limited",
+      "kind": "gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Nairobi CBD (Kimathi Street)",
+      "address": "Jamia Mall, 1st Floor - Shop 156, Kimathi Street, 2178 - 00100 Nairobi",
+      "phones": [
+        "+254 718 872 681",
+        "+254 713 830 892",
+        "+254 726 427 550"
+      ],
+      "website": "http://www.fitnessgym.co.ke/index.php",
+      "social": [],
+      "hoursText": "Mon - Fri 8 am - 6 pm; The Weekend 8 am - 4 pm",
+      "access": "unknown",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "62a47f48-7c41-423f-9374-779679217dd2",
+      "evidence": [
+        {
+          "url": "http://www.fitnessgym.co.ke/index.php",
+          "fetched": true,
+          "quote": "Jamia Mall, 1st Floor - Shop 156",
+          "supports": [
+            "name",
+            "address",
+            "website"
+          ]
+        },
+        {
+          "url": "http://www.fitnessgym.co.ke/index.php",
+          "fetched": true,
+          "quote": "+254 718 872 681 | +254 713 830 892",
+          "supports": [
+            "phone"
+          ]
+        },
+        {
+          "url": "http://www.fitnessgym.co.ke/index.php",
+          "fetched": true,
+          "quote": "Mon - Fri 8 am - 6 pm",
+          "supports": [
+            "hours"
+          ]
+        },
+        {
+          "url": "http://www.fitnessgym.co.ke/index.php",
+          "fetched": true,
+          "quote": "© 2019 All Rights Reserved",
+          "supports": [
+            "status"
+          ]
+        }
+      ],
+      "notes": "Already in seed (+254718872681, same site). New information: address (Jamia Mall, Kimathi Street), a second phone and weekday and weekend hours. The footer says 2019, so the site may be stale; status is left unknown. The page header also shows +254 726 427 550, which is the number the seed gives for the equipment shop 'Fitness Express' (see web:nbo-cbd-south-009); the two seed entries may be related. The 'gym' wording on the page may refer to equipment retail rather than a training floor, so confirm the venue type."
+    },
+    {
+      "id": "web:nbo-cbd-south-006",
+      "name": "Nairobi Kenpo Karate, Gym & Fitness Center",
+      "kind": "martial_arts",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Nairobi CBD (Mfangano Street)",
+      "address": "Terry House, 1st Flr, Mfangano Str.",
+      "phones": [
+        "+254 723 732 387"
+      ],
+      "website": "https://nairobikenpokarate.com/",
+      "social": [],
+      "hoursText": "Gym & Fitness Sessions Mon-Fri 6.00 AM - 8.30 PM; Saturday and public holidays 9.00 AM - 5.00 PM; Sundays closed. Karate classes run on a separate timetable.",
+      "access": "public",
+      "status": "operating",
+      "inSeed": true,
+      "seedId": "7d3b0bb2-3578-49c4-bab1-9623bfa47534",
+      "evidence": [
+        {
+          "url": "https://nairobikenpokarate.com/",
+          "fetched": true,
+          "quote": "Terry House, 1st Flr, Mfangano Str.",
+          "supports": [
+            "name",
+            "address",
+            "website"
+          ]
+        },
+        {
+          "url": "https://nairobikenpokarate.com/",
+          "fetched": true,
+          "quote": "+254 723 732 387",
+          "supports": [
+            "phone"
+          ]
+        },
+        {
+          "url": "https://nairobikenpokarate.com/",
+          "fetched": true,
+          "quote": "Gym & Fitness Sessions, Monday to Friday: 6.00 AM – 8.30 PM",
+          "supports": [
+            "hours"
+          ]
+        },
+        {
+          "url": "https://nairobikenpokarate.com/",
+          "fetched": true,
+          "quote": "Copyright © 2026 Nairobi Kenpo Karate.",
+          "supports": [
+            "status"
+          ]
+        }
+      ],
+      "notes": "Already in seed (phone and website match). New information: street address on the venue's own site (Terry House, Mfangano Street), the gym-session and class hours, and a 2026 footer. The page header reads 'Martial Arts | Self Defense Classes | Fitness Gym | Boxing'. The quoted hours line is the page's own wording for the gym sessions. Hours were read from a summarised page and should be re-checked before display."
+    },
+    {
+      "id": "web:nbo-cbd-south-007",
+      "name": "Muscle Health and Fitness",
+      "kind": "gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "unknown (address: 4th floor, Vision Plaza)",
+      "address": "4th floor, Vision Plaza, P.O. Box 26349-00504 Nairobi,Kenya",
+      "phones": [
+        "Tel: +254 (20) 2337303/4/5",
+        "0722 616530",
+        "0733 138555"
+      ],
+      "website": "http://www.musclehealth.co.ke/",
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "3c2c32b3-5c35-477a-927f-e87f644fca28",
+      "evidence": [
+        {
+          "url": "http://www.musclehealth.co.ke/",
+          "fetched": true,
+          "quote": "4th floor, Vision Plaza, P.O. Box 26349-00504 Nairobi,Kenya",
+          "supports": [
+            "name",
+            "address",
+            "website"
+          ]
+        },
+        {
+          "url": "http://www.musclehealth.co.ke/",
+          "fetched": true,
+          "quote": "Tel: +254 (20) 2337303/4/5",
+          "supports": [
+            "phone"
+          ]
+        }
+      ],
+      "notes": "Already in seed (+254733138555, same website). The site lists one address, 4th floor Vision Plaza, and landlines. The page does not say which road or estate Vision Plaza is on, so the area is left unknown. The seed pin is in the CBD, which may not match this address; verify. The copyright text is inside footer images, so freshness could not be judged; the page loaded on 2026-10-13. A second seed entry (Muscle Health and Fitness, +254206828434, musclehealthkenya.com) uses a domain that no longer resolves."
+    },
+    {
+      "id": "web:nbo-cbd-south-008",
+      "name": "Urban Fitness Gym",
+      "kind": "gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "unknown",
+      "address": null,
+      "phones": [
+        "0719170244",
+        "0780170244"
+      ],
+      "website": "http://urban-fitness.biz/",
+      "social": [],
+      "hoursText": "We are open 7 days a week including Holidays.",
+      "access": "unknown",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "eb75ebb4-fde6-408e-ba28-35c6dd6c22ad",
+      "evidence": [
+        {
+          "url": "http://urban-fitness.biz/",
+          "fetched": true,
+          "quote": "0719170244 - 0780170244",
+          "supports": [
+            "name",
+            "phone",
+            "website"
+          ]
+        },
+        {
+          "url": "http://urban-fitness.biz/",
+          "fetched": true,
+          "quote": "We are open 7 days a week including Holidays.",
+          "supports": [
+            "hours"
+          ]
+        },
+        {
+          "url": "http://urban-fitness.biz/",
+          "fetched": true,
+          "quote": "Copyright 2021 - Urban fitness gym.",
+          "supports": [
+            "status"
+          ]
+        }
+      ],
+      "notes": "Already in seed (+254719170244, same website). New information: a second phone (0780170244) and a one-line hours statement (no times). The site shows no street address and the footer year is 2021, so status is unknown. Seed pin is near Lang'ata/Nairobi West but nothing on the page confirms the area."
+    },
+    {
+      "id": "web:nbo-cbd-south-009",
+      "name": "Fitness Express (gym equipment shop)",
+      "kind": "other",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Hurlingham (per website)",
+      "address": "Scripture Union Center, Ground floor, Shop 3, Behind Shell D.O.D, Hurlingham",
+      "phones": [
+        "0726 427 550"
+      ],
+      "website": "https://fitnessexpress.co.ke/",
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "operating",
+      "inSeed": true,
+      "seedId": "960c46a3-8017-4d03-8a2f-68f28e5b8a47",
+      "evidence": [
+        {
+          "url": "https://fitnessexpress.co.ke/",
+          "fetched": true,
+          "quote": "Scripture Union Center, Ground floor, Shop 3, Behind Shell D.O.D, Hurlingham",
+          "supports": [
+            "name",
+            "address",
+            "website"
+          ]
+        },
+        {
+          "url": "https://fitnessexpress.co.ke/",
+          "fetched": true,
+          "quote": "your one-stop shop for top-quality gym and fitness equipment",
+          "supports": [
+            "name"
+          ]
+        },
+        {
+          "url": "https://fitnessexpress.co.ke/",
+          "fetched": true,
+          "quote": "Call: 0726 427 550",
+          "supports": [
+            "phone"
+          ]
+        }
+      ],
+      "notes": "Data-quality flag: the seed lists this as a gym at a CBD pin, but the venue's own site presents an online shop selling gym and fitness equipment, with a shop in Hurlingham and 'Free Delivery, Nairobi CBD'. No gym floor, classes or memberships are described. Recommend excluding it from gym listings. The footer shows 2026."
+    },
+    {
+      "id": "web:nbo-cbd-south-010",
+      "name": "South Fitness (website shows a Westlands address)",
+      "kind": "gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Westlands (per website)",
+      "address": "Raval Court, Ring Road, Westlands, House No. 4, Nairobi, Kenya",
+      "phones": [
+        "+254 705 498 589"
+      ],
+      "website": "http://southfitness.co.ke",
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "c89bac18-7365-45bb-b120-27dfd9f9d206",
+      "evidence": [
+        {
+          "url": "http://southfitness.co.ke",
+          "fetched": true,
+          "quote": "Raval Court, Ring Road",
+          "supports": [
+            "name",
+            "address",
+            "website"
+          ]
+        },
+        {
+          "url": "http://southfitness.co.ke",
+          "fetched": true,
+          "quote": "+254 705 498 589",
+          "supports": [
+            "phone"
+          ]
+        },
+        {
+          "url": "http://southfitness.co.ke",
+          "fetched": true,
+          "quote": "© 2026 South Fitness. All rights reserved.",
+          "supports": [
+            "status"
+          ]
+        }
+      ],
+      "notes": "Location conflict: the seed has 'The South Fitness Centre' at a pin in the South B/South C area with this website, but the website gives a Westlands address (Raval Court, Ring Road). Either the seed website is attached to the wrong venue, or the business is not in this region. Not evidence of a gym in South B/C. The page text did not describe the facility type, so confirm it is a gym before relying on this entry."
+    },
+    {
+      "id": "web:nbo-cbd-south-011",
+      "name": "YogaLink Jamii Kenya (YogaLink CBO)",
+      "kind": "yoga",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Kariobangi North (per website)",
+      "address": null,
+      "phones": [],
+      "website": "https://yogalink.co.ke/",
+      "social": [],
+      "hoursText": null,
+      "access": "public",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "6deef630-b348-415f-9fce-efc5721a5112",
+      "evidence": [
+        {
+          "url": "https://yogalink.co.ke/",
+          "fetched": true,
+          "quote": "Kariobangi North, Nairobi, Kenya",
+          "supports": [
+            "name",
+            "address"
+          ]
+        },
+        {
+          "url": "https://yogalink.co.ke/",
+          "fetched": true,
+          "quote": "Free weekly yoga classes providing safe spaces for healing and inner strength.",
+          "supports": [
+            "name"
+          ]
+        }
+      ],
+      "notes": "Location conflict: the seed pin is near Nairobi West/Wilson Airport, but the organisation's own page gives its location as Kariobangi North. It is a community organisation running free weekly yoga classes, not a commercial studio. No street address, phone, class times or copyright year are shown (e-mail only), so the seed pin should not be trusted."
+    }
+  ],
+  "unverifiedLeads": [
+    {
+      "name": "CBD Gym (4th Floor, International House, Moi Avenue)",
+      "url": "https://achisystems.co.ke/directory/fitness-centers-gyms-10-providers-in-nairobi/",
+      "why": "Only a single directory page; no phone given; the 10 entries all follow one template (e-mail only, generic 'Wellness Centre' names), which looks auto-generated. Not treated as evidence. Could not find the venue's own site."
+    },
+    {
+      "name": "Fit Kenya (2nd Floor, Parkside Wellness, Mombasa Road)",
+      "url": "https://achisystems.co.ke/directory/fitness-centers-gyms-10-providers-in-nairobi/",
+      "why": "Same templated directory page as above; one source only, no phone, no own website found. Not treated as evidence."
+    },
+    {
+      "name": "The Headquarters Inn (Nairobi West) - hotel with fitness centre",
+      "url": "https://lookup.hotels.com/de1712697-am2/gym-hotels-nairobi-west-kenya",
+      "why": "Named only in a search-result summary of a travel-aggregator list; the aggregator pages returned HTTP 503 or timed out and the hotel's own site was not found, so no gym facts were verified."
+    },
+    {
+      "name": "Reform Cycling and Strength Studio (Western Heights, Karuna Road, Westlands) - outside this region",
+      "url": "https://jambonairobi.co.ke/directory/health-fitness/sports-clubs/",
+      "why": "Outside Nairobi CBD-south (Westlands). One directory page shows +254 774334578; no own site opened. Passing on for the Westlands group."
+    },
+    {
+      "name": "Potters Gym Aerobics and Fitness Centre (Bahati) - outside this region",
+      "url": "https://www.businessdailyafrica.com/bd/lifestyle/health-fitness/inside-sh50-a-day-gym-3813448",
+      "why": "Outside this region (Bahati, Eastlands). The only source is a May 2022 Business Daily article that mentions it as a Sh50-a-day gym; no address, phone or current status. Passing on for an Eastlands group."
+    }
+  ],
+  "coverageNotes": "INCOMPLETE ROUND: coverage is thin and the main limit was tooling, not the absence of gyms. Only 7 WebSearch queries returned results; the search budget for the turn (200 calls shared by all agents) ran out, and 5 planned queries were refused and never run: 'Madaraka estate Nairobi gym fitness'; 'crossfit box Nairobi Lang'ata Wilson Airport South C'; 'Nairobi CBD gym Moi Avenue Kimathi Street Koinange Street fitness'; 'Mombasa Road hotel gym fitness centre day pass non-residents Nairobi airport'; 'Strathmore University sports gym Madaraka Nairobi'. No yoga, pilates, women-only, boxing, university or club queries could be run. Per the rules I did not recall venues from memory or use other search routes, so no new venue outside the seed could be confirmed. The 7 searches that ran returned mostly travel-aggregator hotel lists, auto-generated pages and a templated directory, and named no verifiable standalone gyms in South B, South C, Nairobi West, Madaraka, Industrial Area or Lang'ata. Work done instead: opened the websites of seed venues in the area to add facts, and followed links on the official Boma and Weston hotel sites. This produced 11 seed-venue updates and 0 new venues. Area findings. South C / Mombasa Road: NextGen Gym (NextGen Mall, 6th floor) and The Boma Nairobi Health Club (Red Cross Road) are verified and active. Lang'ata: Weston Hotel gym (opposite Wilson Airport) is verified with a 2026 footer; no hours or access terms published. CBD: Platinum Fitness (Moi Avenue), Fitness & Gym Kenya (Kimathi Street, site footer 2019) and Nairobi Kenpo Karate (Mfangano Street, with gym sessions) have addresses on their own sites. South B, Nairobi West, Madaraka, Industrial Area: nothing verified; one lead only (The Headquarters Inn, Nairobi West). Seed data-quality problems found: Fitness Express is an equipment shop in Hurlingham, not a gym; South Fitness's site shows a Westlands address, not South B/C; YogaLink's site shows Kariobangi North, not Nairobi West; Muscle Health's address (Vision Plaza) does not match the CBD pin. Seed websites that did not resolve (DNS not found on 2026-10-13): fit360.co.ke, vevafitnesscenter.com, annisaafitnessandspa.co.ke, musclehealthkenya.com, outdoorfitness.co.ke, thenairobigym.co.ke, penthousegym.org, fitnessempirekenya.com, karatebylucaswanyama.com, kenyataekwondo.co.ke, fitfam.co.ke, malongofitness.com, holisticfitnessenterprise.co.ke. This is not proof of closure; the venues may still operate without a site. Not loaded or inconclusive: firstpowerfitness.com and tongilmoodo.com (503); kenyaboxingclub.com (page returned only its title); heroeztaekwondo.org (an unrelated tournament-software page); Swiss-Belinn Nairobi (Kileleshwa, outside region). Recommended follow-up with a fresh search budget: Madaraka, Nairobi West, South B and Industrial Area estate-by-estate searches; CrossFit, yoga, pilates and boxing queries; university and club gyms (Madaraka, CBD); and hotel gyms along Mombasa Road and in the CBD."
+}

@@ -29,10 +29,10 @@ export function denyListed(name) {
   return denyMatch(name) !== null;
 }
 
-/** Why a name does not read as a gym ("hotel"), or null. */
+/** The non-fitness word a name leads with ("hotel") when nothing in it reads as a gym, or null. */
 export function softDenyReason(name) {
   const text = `${name ?? ""}`;
   if (FITNESS_WORD.test(text)) return null;
   const hit = NON_FITNESS_WORD.exec(text);
-  return hit ? `name suggests a ${hit[0].toLowerCase()}, not a gym` : null;
+  return hit ? hit[0].toLowerCase() : null;
 }

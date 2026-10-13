@@ -1,0 +1,167 @@
+{
+  "groupKey": "nyanza",
+  "researchedAt": "2026-10-13",
+  "queries": [],
+  "candidates": [
+    {
+      "id": "web:nyanza-001",
+      "name": "H2O - Health Hub Oasis",
+      "kind": "gym",
+      "county": "Kisumu",
+      "town": "Kisumu",
+      "area": "Amoth Owira Road, opposite State Lodge",
+      "address": "First Floor, Cosmopolitana Club, Amoth Owira Road, opposite State Lodge, Kisumu",
+      "phones": ["wa.me/2540709746442 (WhatsApp link only; no number printed as text)"],
+      "website": "https://h2o.co.ke/",
+      "social": [
+        "https://www.facebook.com/Health.Hub.Oasis/",
+        "https://instagram.com/health.hub.oasis/"
+      ],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "operating",
+      "inSeed": true,
+      "seedId": "85a9090d-acc0-42fd-a50b-1c8a777ca41c",
+      "evidence": [
+        {
+          "url": "http://www.h2o.co.ke/",
+          "fetched": true,
+          "quote": "Health Hub Oasis (H2O), prior to 2023, was formerly known as Jeff's Fitness.",
+          "supports": ["name", "website"]
+        },
+        {
+          "url": "http://www.h2o.co.ke/",
+          "fetched": true,
+          "quote": "First Floor, Cosmopolitana Club. Amoth Owira Road, Opposite State Lodge in Kisumu.",
+          "supports": ["address"]
+        },
+        {
+          "url": "http://www.h2o.co.ke/",
+          "fetched": true,
+          "quote": "https://wa.me/2540709746442",
+          "supports": ["phone"]
+        },
+        {
+          "url": "http://www.h2o.co.ke/",
+          "fetched": true,
+          "quote": "Copyright © 2026 H2O - Health Hub Oasis",
+          "supports": ["status"]
+        }
+      ],
+      "notes": "Already in seed as Overture 'Health Hub Oasis' (85a9090d-...). NEW info: street address (Cosmopolitana Club first floor, Amoth Owira Road), former name Jeff's Fitness (before 2023), WhatsApp number, site footer shows 2026 so the venue looks active. The seed's OSM entry node/6763418026 'Jeff's Fitness Centre' (Amoth Owira Road, lat -0.11045 lng 34.74909) is almost certainly the SAME venue under its old name and should be merged/deduplicated with the Overture record. The site shows no opening hours on the home page or on /social/. Home page links to Facebook, Instagram and a Google Maps short link; the social links are pointers only."
+    },
+    {
+      "id": "web:nyanza-002",
+      "name": "Acacia Premier Hotel - Fitness Centre & Spa",
+      "kind": "hotel_gym",
+      "county": "Kisumu",
+      "town": "Kisumu",
+      "area": "Achieng' Oneko Road",
+      "address": "Achieng' Oneko Road, Kisumu",
+      "phones": ["+254 709 850 000"],
+      "website": "https://acaciapremier.com/",
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://acaciapremier.com/gym-spa/",
+          "fetched": true,
+          "quote": "The hotel’s fitness center is well-equipped with state-of-the-art gym equipment.",
+          "supports": ["name"]
+        },
+        {
+          "url": "https://acaciapremier.com/contact-us/",
+          "fetched": true,
+          "quote": "Achieng' Oneko Road, Kisumu",
+          "supports": ["address"]
+        },
+        {
+          "url": "https://acaciapremier.com/contact-us/",
+          "fetched": true,
+          "quote": "+254 709 850 000",
+          "supports": ["phone"]
+        },
+        {
+          "url": "https://acaciapremier.com/contact-us/",
+          "fetched": true,
+          "quote": "Copyright © 2026 Acacia Premier",
+          "supports": ["status"]
+        }
+      ],
+      "notes": "Hotel gym on the hotel's own website (gym-spa page also mentions trainers for tailored coaching, a separate wellness spa and an outdoor pool). The page does not say whether non-guests can use the gym, and gives no opening hours, so access is left as unknown. Phone and address are the hotel's general contact details from its contact page, not gym-specific. Footer shows 2026."
+    },
+    {
+      "id": "web:nyanza-003",
+      "name": "Ciala Resort - The Oak Gym (Health Club)",
+      "kind": "hotel_gym",
+      "county": "Kisumu",
+      "town": "Kisumu",
+      "area": "12 km from Kisumu International Airport (per the resort's contact page)",
+      "address": null,
+      "phones": ["+254 705 333 555", "0710644444", "0715666669", "0777555999"],
+      "website": "https://www.cialaresort.com/health-club/",
+      "social": [],
+      "hoursText": null,
+      "access": "public",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://www.cialaresort.com/",
+          "fetched": true,
+          "quote": "Enjoy our pre heated rooftop pool, fitness club, spacious steam room, sauna and spa.",
+          "supports": ["name"]
+        },
+        {
+          "url": "https://www.cialaresort.com/",
+          "fetched": true,
+          "quote": "Free Access to All Residents",
+          "supports": ["name"]
+        },
+        {
+          "url": "https://www.cialaresort.com/health-club/",
+          "fetched": true,
+          "quote": "Our team of experienced trainers and masseuses will ensure you feel at ease with personalized wellness routines tailored to your needs.",
+          "supports": ["name"]
+        },
+        {
+          "url": "https://www.cialaresort.com/contact-us/",
+          "fetched": true,
+          "quote": "Kisumu, 12kms from the Kisumu International Airport, Kenya.",
+          "supports": ["address"]
+        },
+        {
+          "url": "https://www.cialaresort.com/contact-us/",
+          "fetched": true,
+          "quote": "0705333555",
+          "supports": ["phone"]
+        },
+        {
+          "url": "https://www.cialaresort.com/",
+          "fetched": true,
+          "quote": "Ciala Resort – Kisumu © 2026 All Rights Reserved.",
+          "supports": ["status"]
+        }
+      ],
+      "notes": "Health Club with 'The Oak Gym' and 'The Oak Spa' sections on the resort's own site (/health-club/). access=public is inferred: the home page says residents get free access and lists a daily and a monthly membership for others (prices deliberately not recorded). No street address, GPS point or opening hours are given on the site, so address is null; the phone numbers are the resort's general contacts. The /health-club/ page itself does not say who may use the gym and gives no hours, so a human should confirm day-visitor access before publishing it as public."
+    }
+  ],
+  "unverifiedLeads": [
+    {
+      "name": "The Bulls Gym Kisii (seed fb717a6c-b4af-430d-8cdd-dacb56db19e0)",
+      "url": "https://the-bulls-gym-kisii.business.site/",
+      "why": "Website listed in the seed returns HTTP 404. That is not evidence of closure (the business.site free site hosting has been discontinued), so status stays unknown and no new facts were gained."
+    },
+    {
+      "name": "Said Fitness (seed efa1f2ed-8bc9-4752-ac39-7f8a763c6f1e)",
+      "url": "http://kurukadancecentre.wix.com/zumbawithsaid",
+      "why": "Website listed in the seed returns HTTP 404, so nothing could be verified. Venue left as unknown."
+    }
+  ],
+  "coverageNotes": "INCOMPLETE ROUND. The WebSearch budget for this turn (200 calls, shared by every agent in the workflow) was already used up. All nine searches I attempted at the start were refused and not performed: 'gym in Kisumu Kenya', 'Kisumu gym membership fitness centre contact phone', 'crossfit Kisumu', 'yoga studio Kisumu', 'gym in Kisii town Kenya', 'gym in Migori Kenya', 'gym in Homa Bay Kenya', 'gym in Siaya Bondo Kenya fitness', 'gym in Nyamira Keroka Kenya'. So the queries array is empty and no area was searched. I did not work around the limit with third-party search tools. What I did instead was open individual pages directly with WebFetch: the seed's own website links (h2o.co.ke worked; two others returned 404), and a few official hotel/university/hospital sites I tried by guessing the domain. Those guesses are a small, unsystematic sample, not research coverage. Results by site: acaciapremier.com and cialaresort.com each have a gym/health club (recorded as candidates); maseno.ac.ke has no gym mention on its home page; kisiiuniversity.ac.ke, jooust.ac.ke, gluk.ac.ke and rongovarsity.ac.ke returned HTTP 503 (possibly down or blocked, not checked further); agakhanhospitals.org/kisumu returned 404; imperialhotels.co.ke, royalseasonshotel.com, kisumuclub.co.ke and sunsetkisumu.com failed DNS lookup (my guessed domains were probably wrong, which says nothing about whether those venues exist). Seed in this region: Kisumu 8 Overture entries plus 2 OSM ones, Kisii 4, and nothing for Siaya, Homa Bay, Migori or Nyamira. Siaya, Homa Bay, Migori and Nyamira are completely unresearched, as are Kisumu estates, CrossFit, yoga and martial arts, and Kisii beyond the seed. The seed's OSM 'Jeff's Fitness Centre' appears to be the old name of H2O - Health Hub Oasis (duplicate). Page text came through WebFetch's summarising model, so quotes may differ slightly from the live page and should be spot-checked before publishing. This region needs a follow-up round once search budget is available."
+}

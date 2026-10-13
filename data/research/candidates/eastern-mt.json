@@ -1,0 +1,39 @@
+{
+  "groupKey": "eastern-mt",
+  "researchedAt": "2026-10-13",
+  "queries": [
+    "gym in Meru town Kenya [NOT PERFORMED: web search budget exhausted, tool returned no results]",
+    "gym in Embu town Kenya [NOT PERFORMED: web search budget exhausted, tool returned no results]",
+    "gym in Chuka Tharaka-Nithi [NOT PERFORMED: web search budget exhausted, tool returned no results]"
+  ],
+  "candidates": [
+    {
+      "id": "web:eastern-mt-001",
+      "name": "Curlture_fitness",
+      "kind": "gym",
+      "county": "Meru",
+      "town": "Meru",
+      "area": null,
+      "address": null,
+      "phones": [],
+      "website": null,
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "f8e1471a-e4ad-41bb-8f3b-4e447df13a65",
+      "evidence": [
+        {
+          "url": "http://curlturefitness.com/",
+          "fetched": false,
+          "quote": "",
+          "supports": []
+        }
+      ],
+      "notes": "DATA-QUALITY FLAG, not a confirmation. The seed record lists website http://curlturefitness.com/ (and a phone, which this research did not verify). On 2026-10-13 WebFetch failed for both http://curlturefitness.com/ and https://www.curlturefitness.com/ with 'getaddrinfo ENOTFOUND', and 'getent hosts curlturefitness.com' from the shell also returned no address, while a control fetch of example.com worked. So the seed website domain does not currently resolve in DNS. This may mean the domain has lapsed (the venue may have stopped operating or moved online-only elsewhere), but that is NOT proven; status stays 'unknown'. Recommend treating the seed website value as unreliable (website=null) until a working page is found. No page for this venue was opened, so no quote is available."
+    }
+  ],
+  "unverifiedLeads": [],
+  "coverageNotes": "INCOMPLETE ROUND: no real research could be done for this group. The shared WebSearch budget for the turn (200 calls, shared by every agent in the run) was already used up before this agent ran; the three queries attempted (Meru, Embu, Chuka) returned 'Web search was not performed'. I did not work around the limit (no search engines, readers, proxies or archives via curl/WebFetch) and I did not guess venue URLs or recall venues from memory. The only fetch possible was the one website in the seed for this region (curlturefitness.com, Meru), which does not resolve in DNS. Seed already holds 4 venues in this region: Blue Towers Gym (Meru), Curlture_fitness (Meru), Double Gee Gym (Embu), Ilhan Gym and Fitness Center (Isiolo); none of them gained evidenced new facts. By area: Meru - only the 2 seed venues, no new venues found; Embu - only Double Gee Gym (seed), nothing new; Tharaka-Nithi (Chuka) - nothing in seed and nothing searched successfully, absence of results here means NOT SEARCHED, not 'no gyms exist'; Isiolo - only Ilhan Gym (seed, phone only in seed); Marsabit - nothing in seed, not searched. Other likely places (Maua, Nkubu, Runyenjes, Siakago, Mwea, Moyale) were not covered. To finish this group, re-run after the web search limit resets (or CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION is raised) with queries such as 'gym in Meru', 'Meru gym contact phone', 'Embu gym membership', 'Chuka gym', 'Isiolo gym', 'Marsabit gym', 'Meru university gym', 'Embu hotel gym day pass', 'Meru crossfit', 'Meru yoga'."
+}
