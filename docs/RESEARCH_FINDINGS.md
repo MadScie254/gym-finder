@@ -1,6 +1,6 @@
 # KAYA — Research findings (2026-10-11)
 
-Evidence behind `docs/KASA_PROMPT.md`. Everything marked **measured** was run against the real repo or the real Overture release on 2026-10-11. Everything marked **unverified** is stated as such and must be re-checked before it is relied on.
+Evidence behind `docs/KASA_BRIEF_FULL.md` (the full build brief; `docs/KASA_PROMPT.md` is its condensed copy). Everything marked **measured** was run against the real repo or the real Overture release on 2026-10-11. Everything marked **unverified** is stated as such and must be re-checked before it is relied on.
 
 ---
 

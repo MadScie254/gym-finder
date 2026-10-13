@@ -3,31 +3,41 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "vite",
+    "build": "vite build && node scripts/prerender.mjs",
+    "preview": "vite preview",
     "lint": "eslint",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit",
     "test": "vitest run",
-    "check": "npm run lint && npm run test && npm run build",
+    "check": "npm run lint && npm run typecheck && npm run test && npm run build",
     "fetch-gyms": "node scripts/fetch-kenya-gyms.mjs",
     "curate-gyms": "node scripts/fetch-kenya-gyms.mjs --curate-existing",
-    "fetch-places": "node scripts/fetch-kenya-places.mjs"
+    "fetch-places": "node scripts/fetch-kenya-places.mjs",
+    "data:extract": "node scripts/data/extract-overture.mjs && node scripts/data/extract-osm.mjs",
+    "data:build": "node scripts/data/build-gyms.mjs",
+    "data:validate": "node scripts/data/validate.mjs"
   },
   "dependencies": {
     "maplibre-gl": "^6.9.1",
-    "next": "16.3.5",
+    "minisearch": "7.2.0",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "react-router": "7.18.4"
   },
   "devDependencies": {
+    "@duckdb/node-api": "1.5.6-r.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "6.1.2",
     "eslint": "^9",
-    "eslint-config-next": "16.3.5",
+    "libphonenumber-js": "1.13.15",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vitest": "^4.1.11"
+    "typescript-eslint": "^8.71.1",
+    "vite": "8.3.4",
+    "vitest": "^4.1.11",
+    "zod": "4.6.6"
   }
 }

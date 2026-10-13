@@ -1,0 +1,68 @@
+export type Lang = "en" | "sw";
+
+export const copy = {
+  en: {
+    brand: "Find My Gym",
+    headline: "Find a real gym in Kenya",
+    honest: "We do not invent hours, prices or ratings.",
+    explore: "Explore",
+    saved: "Saved",
+    plan: "Plan",
+    more: "More",
+    search: "Search gyms, areas, counties",
+    addressMissing: "Address not listed.",
+    hoursMissing: "Hours not listed — call to confirm.",
+    noContact: "No contact listed — report or suggest.",
+    call: "Call",
+    whatsapp: "Message on WhatsApp",
+    directions: "Directions",
+    website: "Website",
+    offline: "Offline — showing saved data.",
+    nearMe: "Near me",
+    filters: "Filters",
+    compare: "Compare",
+    commute: "On my way",
+    about: "About our data",
+    legal: "Legal",
+    report: "Is something wrong?",
+    listed: "Listed · call to confirm",
+    corroborated: "Corroborated · 2 sources",
+    verified: "Verified by Find My Gym",
+    unconfirmed: "Unconfirmed",
+  },
+  sw: {
+    brand: "Find My Gym",
+    headline: "Tafuta gym halisi Kenya",
+    honest: "Hatuvumbui saa, bei wala makadirio.",
+    explore: "Gundua",
+    saved: "Zilizohifadhiwa",
+    plan: "Mpango",
+    more: "Zaidi",
+    search: "Tafuta gym, maeneo, kaunti",
+    addressMissing: "Anwani haijaorodheshwa.",
+    hoursMissing: "Saa hazijaorodheshwa — piga simu kuthibitisha.",
+    noContact: "Hakuna mawasiliano — ripoti au pendekeza.",
+    call: "Piga simu",
+    whatsapp: "Tuma ujumbe WhatsApp",
+    directions: "Maelekezo",
+    website: "Tovuti",
+    offline: "Nje ya mtandao — tunaonyesha data iliyohifadhiwa.",
+    nearMe: "Karibu nami",
+    filters: "Vichujio",
+    compare: "Linganisha",
+    commute: "Njiani",
+    about: "Kuhusu data yetu",
+    legal: "Sheria",
+    report: "Kuna kosa?",
+    listed: "Imeorodheshwa · piga simu kuthibitisha",
+    corroborated: "Imethibitishwa na vyanzo 2",
+    verified: "Imethibitishwa na Find My Gym",
+    unconfirmed: "Haijathibitishwa",
+  },
+} as const;
+
+export type CopyKey = keyof typeof copy.en;
+
+export function t(lang: Lang, key: CopyKey): string {
+  return copy[lang][key];
+}

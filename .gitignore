@@ -17,8 +17,18 @@
 /.next/
 /out/
 
+# vite
+/dist
+/dev-dist
+
 # production
 /build
+
+# data pipeline raw snapshots
+/data/source/
+
+# local DuckDB CLI
+/tools/
 
 # misc
 .DS_Store
