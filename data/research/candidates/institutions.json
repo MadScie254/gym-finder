@@ -1,8 +1,117 @@
 {
   "groupKey": "institutions",
   "researchedAt": "2026-10-13",
-  "searchBudgetNote": "The shared WebSearch budget (200 calls per turn across all agents) was already used up when this agent started. Seven search attempts returned 'web search was not performed'. No search query actually ran, so the queries array is empty. All discovery below was done by opening well-known institutional websites directly with WebFetch, which biases coverage towards a handful of large Nairobi institutions.",
-  "queries": [],
+  "searchBudgetNote": "Earlier pass in this run had no WebSearch (shared budget exhausted) and only six candidates were found by opening institutional sites directly. This continuation, after the usage limit reset, had WebSearch available; the queries list covers this continuation only.",
+  "queries": [
+    "Nairobi hotel gym day pass",
+    "Kenya sports club gym membership fitness centre",
+    "Muthaiga Country Club gym fitness centre",
+    "Nyali Golf and Country Club gym",
+    "Mombasa Sports Club gym membership",
+    "Nakuru Athletic Club gym",
+    "Rift Valley Sports Club Nakuru gym squash",
+    "Strathmore University sports complex gym",
+    "University of Nairobi gym fitness centre students",
+    "JKUAT gym fitness centre Juja",
+    "Moi University gym fitness centre Eldoret",
+    "Egerton University gymnasium Njoro fitness",
+    "hotel health club membership Mombasa gym non-residents",
+    "Sarova Whitesands gym health club Mombasa",
+    "Radisson Blu Nairobi Upper Hill fitness centre membership",
+    "Sarova Panafric health club gym membership Nairobi",
+    "Fairmont The Norfolk Nairobi fitness centre gym",
+    "Sarova health club gym membership [site:sarovahotels.com]",
+    "Serena hotel health club Mombasa Kisumu Lake Victoria gym [site:serenahotels.com]",
+    "Nairobi hotel gym membership non-residents monthly [extended]",
+    "Nairobi Gymkhana club gym",
+    "Sikh Union Club Nairobi gym fitness",
+    "Limuru Country Club gym squash swimming",
+    "YMCA Nairobi gym fitness centre State House Road",
+    "Aga Khan Sports Centre Nairobi gym",
+    "Kasarani Moi International Sports Centre gym public membership",
+    "Aga Khan University Hospital Nairobi sports and rehabilitation centre gym membership",
+    "Kenya university gym open to the public membership fee",
+    "Nanyuki Sports Club gym",
+    "Nyeri Club gym membership",
+    "nanyukisportsclub.co.ke gym fitness",
+    "Sportsman's Arms Hotel Nanyuki health club gym membership",
+    "Merica Hotel Nakuru gym health club",
+    "Eldoret hotel gym membership health club",
+    "Kisumu hotel gym membership non-residents",
+    "Eldoret Club gym squash temporary membership",
+    "\"Eldoret Club\" gymnasium sauna swimming pool Kenya",
+    "Kenya country club \"gym\" \"squash\" Kisumu OR Kitale OR Kericho club facilities [extended]",
+    "Kericho Club gym squash swimming pool members",
+    "Nakuru Golf Club OR \"Rift Valley Sports Club\" gym fitness facilities",
+    "Thika Sports Club gym",
+    "Kisumu Nyanza Club gym swimming squash",
+    "Naivasha Sports Club gym",
+    "English Point Marina Mombasa health club gym membership",
+    "PrideInn Paradise Mombasa gym health club non-residents",
+    "Tamarind Tree Hotel Nairobi gym health club membership",
+    "Nairobi Safari Club Swiss-Belhotel gym facilities",
+    "Diani Beach hotel gym open to non-guests membership",
+    "\"health club\" membership hotel Kenya individual corporate gym pool sauna rates [extended]",
+    "Mombasa hotel gym monthly membership Nyali Bamburi health club [extended]",
+    "Sportsview Hotel Kasarani health club gym",
+    "Utalii Hotel health club gym membership Nairobi",
+    "Royale Health Club Karen hotel gym",
+    "Silver Springs Hotel Nairobi health club gym membership",
+    "Ole Sereni hotel gym health club membership",
+    "Laico Regency Nairobi health club gym Pan Pacific",
+    "university gymnasium fitness centre students staff Kenya [site:ac.ke]",
+    "gym opening hours students university sports department [site:ac.ke, extended]",
+    "Kenyatta University Staff Recreational Centre gym",
+    "Strathmore University gym students staff fitness [site:strathmore.edu]",
+    "Daystar University gym Athi River fitness centre",
+    "Maseno University gym OR fitness centre students",
+    "Africa Nazarene University gym fitness centre",
+    "\"Eugster\" Fitness Center Daystar University gym",
+    "Public Service Club Nairobi gym fitness",
+    "Kenya Police Sports Club OR \"Railway Club\" Nairobi gym open to public",
+    "KPA Mombasa sports club gym Makande Bandari",
+    "UN Gigiri gym UNON recreation centre fitness Nairobi",
+    "Jaffery Sports Club Lavington gym",
+    "Technical University of Mombasa gym OR Pwani University gym fitness",
+    "Voyager Beach Resort Nyali gym health club",
+    "Tatu City gym clubhouse fitness centre residents public",
+    "Vipingo Ridge gym clubhouse fitness Kilifi",
+    "Two Rivers Sports District gym Nairobi",
+    "Migaa golf estate clubhouse gym OR Thika Greens golf resort gym",
+    "Great Rift Valley Lodge golf resort Naivasha gym health club",
+    "Golf Hotel Kakamega gym health club",
+    "Outspan Hotel Nyeri gym health club",
+    "Enashipai Resort Naivasha gym membership",
+    "Meru town hotel gym health club Three Steers OR Meru Slopes",
+    "Machakos hotel gym health club membership",
+    "golf club Kenya gym members fitness centre opening hours clubhouse [extended]",
+    "Nyali Golf Country Club official site facilities gym squash",
+    "Catholic University of Eastern Africa gym Langata students",
+    "Technical University of Kenya gym OR Multimedia University gym fitness",
+    "Masinde Muliro University gym Kakamega OR Dedan Kimathi University gym Nyeri",
+    "Kabarak University fitness centre gym spa resort",
+    "Zetech University gym OR Riara University gym OR Co-operative University gym",
+    "Nyayo National Stadium gym public fitness centre",
+    "Ruaraka Sports Club gym Nairobi",
+    "Vet Lab Sports Club Kabete gym OR Simba Union club gym Nairobi",
+    "Kenya Railways Golf Club gym OR Ngong Racecourse gym Jockey Club Kenya",
+    "Coast Gymkhana Mombasa gym squash club",
+    "Southern Sun Mayfair Nairobi gym membership health club",
+    "Fairview Hotel Nairobi gym fitness centre membership",
+    "Dusit D2 Nairobi fitness centre gym membership",
+    "Crowne Plaza Nairobi Upper Hill fitness centre gym",
+    "Hilton Garden Inn Nairobi Airport fitness centre OR Four Points Sheraton Nairobi Airport gym",
+    "Mercure Nairobi Upper Hill Uzima fitness wellness centre membership",
+    "Nakuru hotel health club gym membership non-residents Kunste OR Waterbuck OR Merica [extended]",
+    "Eka Hotel Eldoret gym health club membership",
+    "county government opens public gym Kenya residents free fitness centre [extended]",
+    "Sports Kenya Kasarani gym fitness centre public rates",
+    "school sports centre Nairobi gym community membership public Peponi OR Brookhouse OR ISK [extended]",
+    "Kisumu Golf Club OR Kisumu Yacht Club gym fitness",
+    "referral hospital gym open to public Kenya per visit physiotherapy gym county [extended]",
+    "Kenya police OR prisons OR KDF gym opened to members of the public",
+    "Nakuru Athletic Club official website facilities gym swimming [NOT RUN: shared search budget exhausted]"
+  ],
   "candidates": [
     {
       "id": "web:institutions-001",
@@ -12,11 +121,14 @@
       "town": "Nairobi",
       "area": "Karen",
       "address": "Karen Road, PO Box 24816 00502 Nairobi, Kenya",
-      "phones": ["(+254) 733 606950", "(+254) 709 535 000"],
+      "phones": [
+        "(+254) 733 606950",
+        "(+254) 709 535 000"
+      ],
       "website": "https://www.karencountryclub.org",
       "social": [],
-      "hoursText": "Gym & Squash: 6am – 8:30pm (weekdays), 7:30am – 7pm (weekends)",
-      "access": "unknown",
+      "hoursText": "Weekdays: 6.00 am – 9.00 pm; Weekends & Public Holidays: 7.30 am – 7.30 pm (Sports and Recreation page). The club Hours of Operation page instead gives Gym & Squash 6am – 8:30pm weekdays, 7:30am – 7pm weekends.",
+      "access": "members_only",
       "status": "operating",
       "inSeed": true,
       "seedId": "1d936696-b4fc-4e85-b7ad-92d7ebaba855",
@@ -25,16 +137,33 @@
           "url": "https://www.karencountryclub.org",
           "fetched": true,
           "quote": "Our ultra-modern gym is equipped with high end fitness equipment and energizing audio visual equipment.",
-          "supports": ["name", "website", "phone", "address", "status"]
+          "supports": [
+            "name",
+            "website",
+            "phone",
+            "address",
+            "status"
+          ]
         },
         {
           "url": "https://www.karencountryclub.org/Events/Hours_of_Operation",
           "fetched": true,
           "quote": "Gym & Squash: 6am – 8:30pm (weekdays), 7:30am – 7pm (weekends)",
-          "supports": ["hours"]
+          "supports": [
+            "hours"
+          ]
+        },
+        {
+          "url": "https://www.karencountryclub.org/Sports_and_Recreation",
+          "fetched": true,
+          "quote": "offers to its members an ultra-modern gym",
+          "supports": [
+            "hours",
+            "status"
+          ]
         }
       ],
-      "notes": "Seed entry had no phone or website, so this adds both plus hours. Site footer says 'Karen Golf Club' while the header says 'Karen Country Club'; footer copyright is 2026. The membership page (/About/Membership) and the gym page (/Sports.aspx) could not be read because the session limit was hit, so whether non-members or day guests may use the gym is NOT established; access left as unknown (it is a private club, but that is not shown by a page I read). Quotes come from WebFetch's summarised extraction of the page, not the raw HTML."
+      "notes": "Seed entry had no phone or website, so this adds both plus hours. Site footer says 'Karen Golf Club' while the header says 'Karen Country Club'; footer copyright is 2026. The membership page (/About/Membership) and the gym page (/Sports.aspx) could not be read because the session limit was hit, so whether non-members or day guests may use the gym is NOT established; access was first left unknown. Quotes come from WebFetch's summarised extraction of the page, not the raw HTML. Continuation: the Sports and Recreation page says the club 'offers to its members an ultra-modern gym', with certified trainers for group and personal training, so access is now members_only; guest or temporary use is not mentioned. Its gym hours differ from the Hours of Operation page, so both are kept in hoursText."
     },
     {
       "id": "web:institutions-002",
@@ -44,7 +173,10 @@
       "town": "Nairobi",
       "area": "Lang'ata (opposite Wilson Airport)",
       "address": "Langata Road, Opposite Wilson Airport, Nairobi",
-      "phones": ["(+254) 709 995 000/2/3", "(+254) 730 500 000"],
+      "phones": [
+        "(+254) 709 995 000/2/3",
+        "(+254) 730 500 000"
+      ],
       "website": "https://westonhotel.com",
       "social": [],
       "hoursText": null,
@@ -57,19 +189,27 @@
           "url": "https://www.westonhotel.com",
           "fetched": true,
           "quote": "the Health club wing (gym, spa, aerobics studio, spacious steam and sauna with relaxation rooms.)",
-          "supports": ["name"]
+          "supports": [
+            "name"
+          ]
         },
         {
           "url": "https://westonhotel.com/contact-us/",
           "fetched": true,
           "quote": "Langata Road, Opposite Wilson Airport, Nairobi",
-          "supports": ["address", "phone", "website"]
+          "supports": [
+            "address",
+            "phone",
+            "website"
+          ]
         },
         {
           "url": "https://www.westonhotel.com",
           "fetched": true,
           "quote": "© 2026 Weston Hotel. All Rights Reserved.",
-          "supports": ["status"]
+          "supports": [
+            "status"
+          ]
         }
       ],
       "notes": "Seed lists phone +254709995043; the hotel's own pages show 709 995 000/2/3 and 730 500 000 (the seed number does not appear on the pages read, so it may be a different line or a typo). The gym is described as 'Fully equipped with modern exercise machines and personal training services.' No opening hours and no statement on non-guest or membership access were found on the pages read. Quotes come from WebFetch's summarised extraction."
@@ -82,7 +222,11 @@
       "town": "Nairobi",
       "area": "Thika Road",
       "address": "Thika Road, Nairobi (site gives only 'Nairobi, Kenya - Thika Road' and P.O. Box 45038 - 00100)",
-      "phones": ["+254 709 732 000", "+254 20 3633000", "+254798 487 904"],
+      "phones": [
+        "+254 709 732 000",
+        "+254 20 3633000",
+        "+254798 487 904"
+      ],
       "website": "https://www.safaripark-hotel.com",
       "social": [],
       "hoursText": null,
@@ -95,13 +239,20 @@
           "url": "https://www.safaripark-hotel.com/healthandfitness",
           "fetched": true,
           "quote": "The Safari fitness health club is a sanctuary for those seeking tranquility and rejuvenation of mind, body and soul",
-          "supports": ["name", "phone", "website"]
+          "supports": [
+            "name",
+            "phone",
+            "website"
+          ]
         },
         {
           "url": "https://www.safaripark-hotel.com",
           "fetched": true,
           "quote": "© Copyright 2026 . Safari Park Hotel & Casino . All Rights Reserved.",
-          "supports": ["status", "address"]
+          "supports": [
+            "status",
+            "address"
+          ]
         }
       ],
       "notes": "PROBABLE seed match only: seed 'safari fitness club' (Overture, conf 0.43, no phone/website) sits on Thika Road and shares the name, but I did not verify the coordinates against an evidence page. The health-club page lists aerobics, tennis and squash, a jogging track, a gymnasium, swimming pool, steam room and sauna, beauty salon and massage, with separate men's and women's relaxation areas. A 'Fitness Club & Spa Package' exists under Packages (https://www.safaripark-hotel.com/news/fitnessclubspapackage, not opened). Opening hours and who may use the club (guests, members, day visitors) are not stated. Quotes come from WebFetch's summarised extraction."
@@ -114,7 +265,10 @@
       "town": "Nairobi",
       "area": "Nairobi CBD / Kenyatta Avenue",
       "address": "Kenyatta Avenue Nairobi Kenya",
-      "phones": ["+254 732 124000", "+254 727 282200"],
+      "phones": [
+        "+254 732 124000",
+        "+254 727 282200"
+      ],
       "website": "https://www.serenahotels.com/nairobi",
       "social": [],
       "hoursText": null,
@@ -127,13 +281,20 @@
           "url": "https://www.serenahotels.com/nairobi",
           "fetched": true,
           "quote": "Complimentary access is available for all in-house guests.",
-          "supports": ["name", "address", "phone", "website"]
+          "supports": [
+            "name",
+            "address",
+            "phone",
+            "website"
+          ]
         },
         {
           "url": "https://www.serenahotels.com/wellness",
           "fetched": true,
           "quote": "Enjoy daily access to wellness with the Maisha Membership, ideal for residents, diplomats and frequent travellers.",
-          "supports": ["name"]
+          "supports": [
+            "name"
+          ]
         }
       ],
       "notes": "Nairobi page pairs the gym with an aerobics studio, sauna, steam room and juice bar and says spa bookings go to maisha.nairobi@serenahotels.com. Group-wide wellness page advertises a Maisha Membership with 'Unlimited gym and pool access' but does not say whether it is available at the Nairobi hotel or to non-residents, and shows no day-pass or hours. Access therefore unknown: guests have complimentary access; outside membership not confirmed for Nairobi. Phones are the hotel's, not a spa line. Quotes come from WebFetch's summarised extraction."
@@ -146,7 +307,10 @@
       "town": "Nairobi",
       "area": "Mombasa Road (Southern Bypass interchange)",
       "address": "Along Mombasa Road (Southern Bypass Interchange), P.O. Box 27695 - 00506 Nairobi, Kenya",
-      "phones": ["+254 719 045 000", "+254 715 045 001"],
+      "phones": [
+        "+254 719 045 000",
+        "+254 715 045 001"
+      ],
       "website": "https://ekahotel.com",
       "social": [],
       "hoursText": null,
@@ -159,19 +323,27 @@
           "url": "https://www.ekahotel.com",
           "fetched": true,
           "quote": "Guests staying in the Hotel have exclusive access to the gym and swimming pool.",
-          "supports": ["name", "website"]
+          "supports": [
+            "name",
+            "website"
+          ]
         },
         {
           "url": "https://ekahotel.com/contact/",
           "fetched": true,
           "quote": "Along Mombasa Road (Southern Bypass Interchange)",
-          "supports": ["address", "phone"]
+          "supports": [
+            "address",
+            "phone"
+          ]
         },
         {
           "url": "https://www.ekahotel.com",
           "fetched": true,
           "quote": "© 2026 Eka Hotel, Nairobi. All Rights Reserved.",
-          "supports": ["status"]
+          "supports": [
+            "status"
+          ]
         }
       ],
       "notes": "Hotel-guest-only gym per the hotel's own wording, so it is probably not useful as a public listing; record as hotel_guests. Hours not stated. Quotes come from WebFetch's summarised extraction."
@@ -184,7 +356,9 @@
       "town": "Nairobi",
       "area": "Off Thika Road (Exit 7), Kasarani",
       "address": "USIU Road, Off Thika Road (Exit 7), P. O. Box 14634 - 00800, Nairobi, Kenya",
-      "phones": ["+254 730 116 290 / 291 (Reception)"],
+      "phones": [
+        "+254 730 116 290 / 291 (Reception)"
+      ],
       "website": "https://www.usiu.ac.ke/sports-fitness/",
       "social": [],
       "hoursText": null,
@@ -197,33 +371,706 @@
           "url": "https://www.usiu.ac.ke/sports-fitness/",
           "fetched": true,
           "quote": "The university has a state of the art gym located at the Sports Wing of the Student Center.",
-          "supports": ["name", "address", "phone", "website", "status"]
+          "supports": [
+            "name",
+            "address",
+            "phone",
+            "website",
+            "status"
+          ]
         }
       ],
       "notes": "Sports Wing is described as holding a martial arts room, cardio room, main gym, aerobics studio and strength and conditioning room; fitness programmes run Monday to Friday each semester; the campus also has a 25 m pool. The page frames it for students ('we encourage all students to stay active and energized') and says nothing about staff, alumni or public access, so access is unknown (likely students/staff only, but not evidenced). Phone is the university reception, not a gym line. Quotes come from WebFetch's summarised extraction."
+    },
+    {
+      "id": "web:institutions-007",
+      "name": "Mount Kenya University Fitness Centre (student gymnasium and staff fitness centre)",
+      "kind": "university_gym",
+      "county": "Kiambu",
+      "town": "Thika",
+      "area": "MKU main campus, Thika",
+      "address": null,
+      "phones": [
+        "+254 709 153 000",
+        "+254 20 2878 000"
+      ],
+      "website": "https://mku.ac.ke/fitness/",
+      "social": [],
+      "hoursText": null,
+      "access": "students_only",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://mku.ac.ke/fitness/",
+          "fetched": true,
+          "quote": "The student gymnasium is located at the ground floor of the student centre next to the Gaming Centre.",
+          "supports": [
+            "name",
+            "website"
+          ]
+        },
+        {
+          "url": "https://mku.ac.ke/fitness/",
+          "fetched": true,
+          "quote": "The staff fitness centre is located at the roof top of the 12 storey floor Alumni plaza.",
+          "supports": [
+            "name"
+          ]
+        }
+      ],
+      "notes": "Page says the centres exist 'to keep staff and student fit'; no public access, hours or fees are stated, so access recorded as students_only (staff also). Phones are the university's general lines, not a gym line. The page does not name the campus; Thika is inferred from the university's postal address on the same site, not stated as the gym's location. Footer shows no copyright year, so currency is not confirmed. Seed has no MKU entry within 1.5 km of the Thika campus. Quotes come from WebFetch's summarised extraction."
+    },
+    {
+      "id": "web:institutions-008",
+      "name": "Jacaranda Hotel Nairobi - Gym & Health Club",
+      "kind": "hotel_gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Westlands (off Waiyaki Way)",
+      "address": "Woodvale Close, Off Waiyaki Way, Westlands, Nairobi",
+      "phones": [
+        "+254 711 089 000"
+      ],
+      "website": "https://jacarandahotels.com/nairobi/gym-and-spa/",
+      "social": [],
+      "hoursText": "Monday – Friday: 5:00am – 10:00pm; Weekends & Public Holidays: 7:00am – 9:00pm",
+      "access": "public",
+      "status": "operating",
+      "inSeed": true,
+      "seedId": "88b8edd9-dbd4-47c4-8b03-9cbbfa554aff",
+      "evidence": [
+        {
+          "url": "https://jacarandahotels.com/nairobi/gym-and-spa/",
+          "fetched": true,
+          "quote": "Join our competitively priced memberships, available for both corporate clients and individuals",
+          "supports": [
+            "name",
+            "website",
+            "hours",
+            "status"
+          ]
+        },
+        {
+          "url": "https://jacarandahotels.com/nairobi/gym-and-spa/",
+          "fetched": true,
+          "quote": "Off Waiyaki Way, Westlands, Nairobi",
+          "supports": [
+            "address",
+            "phone"
+          ]
+        }
+      ],
+      "notes": "PROBABLE seed match: seed 'Jacaranda Gym and Spa' (phone +254707395315, no website) sits at -1.2625, 36.8014 in Westlands, consistent with the hotel's Woodvale Close address; the seed phone does not appear on the page read. Page adds the hotel phone, website and hours. Access recorded as public because the page offers individual and corporate memberships (outside membership); non-resident day use is only stated for the pool. Footer copyright 2026. Quotes come from WebFetch's summarised extraction."
+    },
+    {
+      "id": "web:institutions-009",
+      "name": "Kitale Club Gym",
+      "kind": "fitness_club",
+      "county": "Trans Nzoia",
+      "town": "Kitale",
+      "area": "Kitale",
+      "address": null,
+      "phones": [
+        "+254 726 610241"
+      ],
+      "website": "https://kitaleclub.com/Facilities/Gym",
+      "social": [],
+      "hoursText": "Monday – Sunday 6:00 AM – 9:00 PM",
+      "access": "members_only",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://kitaleclub.com/Facilities/Gym",
+          "fetched": true,
+          "quote": "Train stronger, move better and stay active in a comfortable fitness environment",
+          "supports": [
+            "name",
+            "website",
+            "phone",
+            "hours"
+          ]
+        },
+        {
+          "url": "https://kitaleclub.com/Facilities/Gym",
+          "fetched": true,
+          "quote": "Contact Kitale Club for membership and fitness enquiries",
+          "supports": [
+            "status"
+          ]
+        },
+        {
+          "url": "https://kitaleclub.com/Facilities/Gym",
+          "fetched": true,
+          "quote": "© 2026 Kitale Club. All Rights Reserved.",
+          "supports": [
+            "status"
+          ]
+        }
+      ],
+      "notes": "Club's own gym page. Address on the page is only 'Kitale Club, Kitale, Kenya', so no street address recorded. Email on page: info@kitaleclub.com. Access set to members_only because the page routes users to club membership; day-visitor use is neither offered nor ruled out. The only seed venue within 3 km of Kitale centre is 'Avenidus Fitness Centre', a different name. Quotes come from WebFetch's summarised extraction."
+    },
+    {
+      "id": "web:institutions-010",
+      "name": "Nanyuki Sports Club gym",
+      "kind": "fitness_club",
+      "county": "Laikipia",
+      "town": "Nanyuki",
+      "area": "Off Nanyuki–Meru Road",
+      "address": "Nanyuki, Off Nanyuki Meru Road, Laikipia East",
+      "phones": [
+        "0721 325 708",
+        "+254 734 440 420"
+      ],
+      "website": "https://nanyukisportsclub.co.ke",
+      "social": [],
+      "hoursText": null,
+      "access": "members_only",
+      "status": "unknown",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://nanyukisportsclub.co.ke",
+          "fetched": true,
+          "quote": "Sporting, Fitness & Recreational Facilities",
+          "supports": [
+            "name",
+            "address",
+            "phone",
+            "website",
+            "status"
+          ]
+        },
+        {
+          "url": "https://www.michezoafrika.com/gym/nanyuki-sports-club/33",
+          "fetched": true,
+          "quote": "The membership gives you access to all facilities.",
+          "supports": [
+            "name",
+            "phone"
+          ]
+        },
+        {
+          "url": "https://www.myjobmag.co.ke/job/91395/gym-instructor-nanyuki-sports-club",
+          "fetched": true,
+          "quote": "Ensure the equipment in the gym and studio are clean and in good working condition",
+          "supports": [
+            "name"
+          ]
+        }
+      ],
+      "notes": "The club's own 2026 site has a 'Sporting, Fitness & Recreational Facilities' heading but the page read does not name a gym. A gym is evidenced only by a 2019 job advert for a Nanyuki Sports Club gym instructor (myjobmag, expired) and a michezoafrika directory page. A Fuzu 'Gym Instructor/Lifeguard' advert also exists but was not opened. So the gym's current existence is likely but not confirmed: status left unknown. The directory lists membership types Full, Periodic, Junior, Military and Daily, and hours 'Monday to Friday and Saturday, 08:00 AM to 08:00 PM'. Those hours are not recorded in hoursText because only a directory shows them. Phone 0721 325 708 appears on the club site; +254 734 440 420 appears only on the directory. The directory page header wrongly says 'Gym in Mombasa'. Not in seed: the nearest seed gyms are 1.2 km and more away and have different names."
+    },
+    {
+      "id": "web:institutions-011",
+      "name": "Sportsview Hotel Kasarani Health Club",
+      "kind": "hotel_gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Kasarani (near Moi International Sports Centre, off Thika Road)",
+      "address": null,
+      "phones": [
+        "+254 111 024 700"
+      ],
+      "website": "https://www.sportsviewhotel.com/health-wellbeing/",
+      "social": [],
+      "hoursText": null,
+      "access": "public",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://www.sportsviewhotel.com/health-wellbeing/",
+          "fetched": true,
+          "quote": "Our club features a fully equipped gym",
+          "supports": [
+            "name",
+            "website",
+            "phone",
+            "status"
+          ]
+        },
+        {
+          "url": "https://www.sportsviewhotel.com/about-us",
+          "fetched": true,
+          "quote": "Located in Kasarani, just off Thika Superhighway and minutes from the iconic Moi International Sports Centre",
+          "supports": [
+            "phone"
+          ]
+        },
+        {
+          "url": "https://africanspicesafaris.com/tour/sportsview-hotel-kasarani-nairobi/",
+          "fetched": true,
+          "quote": "state-of-the-art health club comprising a gym, sauna & steam",
+          "supports": [
+            "name"
+          ]
+        }
+      ],
+      "notes": "Hotel's own site shows a Membership Application Form with packages for Aerobics, Gym, Swimming, Steam Bath/Sauna and Health Club, and weekday group classes (morning 7:00 AM – 8:15 AM, evening 6:30 PM – 7:45 PM). Gym opening hours are not stated, so hoursText is null. Access recorded as public because the hotel sells memberships through a public form. A travel-agent page (African Spice Safaris) also lists Daily, Monthly, Quarterly, Bi-Annual, Annual and Corporate durations, but that page is not the hotel's own. Email on site: info@sportsviewhotel.com. No street address shown. Footer copyright 2026. No seed venue of this name within about 1 km. Quotes come from WebFetch's summarised extraction. Conflict: a search-result summary of a booking listing (Hotelplanner, not opened) said the gym area is only open to hotel guests; the hotel's own membership form is treated as the stronger evidence, but outside access should be confirmed."
+    },
+    {
+      "id": "web:institutions-012",
+      "name": "Kenyatta University main (students) gymnasium",
+      "kind": "university_gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Kenyatta University Main Campus, Kahawa (Thika Road)",
+      "address": null,
+      "phones": [],
+      "website": "https://healthsciences.ku.ac.ke/departments/physical-education-exercise-and-sport-science",
+      "social": [],
+      "hoursText": null,
+      "access": "public",
+      "status": "operating",
+      "inSeed": true,
+      "seedId": "way/627147548",
+      "evidence": [
+        {
+          "url": "https://healthsciences.ku.ac.ke/departments/physical-education-exercise-and-sport-science",
+          "fetched": true,
+          "quote": "The renovated, expanded gymnasium and the fitness programmes have attracted very many students, faculty, non-teaching staff and neighboring community",
+          "supports": [
+            "name",
+            "status"
+          ]
+        },
+        {
+          "url": "https://healthsciences.ku.ac.ke/departments/physical-education-exercise-and-sport-science",
+          "fetched": true,
+          "quote": "Student I.D/ Staff P.F No /National I.D",
+          "supports": [
+            "status"
+          ]
+        },
+        {
+          "url": "https://www.ku.ac.ke/gym-manager-grade-e-f/",
+          "fetched": true,
+          "quote": "all University gym facilities",
+          "supports": [
+            "status"
+          ]
+        },
+        {
+          "url": "https://alumniassociation.ku.ac.ke/membership/",
+          "fetched": true,
+          "quote": "Approved discounted rates at Kenyatta University Gymnasium",
+          "supports": [
+            "name"
+          ]
+        }
+      ],
+      "notes": "Seed has 'Kenyatta University Gymnasium' (OSM way/627147548, no phone or website); nbo-north also recorded it with access unknown. New information: the PE, Exercise and Sport Science department page describes the main students' gym (a former Templer Barracks building) with a gym manager, eight fitness instructors and two attendants. Gym membership is registered with a Student ID, Staff PF number or National ID plus a bank deposit slip and photo, which together with the 'neighboring community' wording suggests outsiders can join. Access is therefore recorded as public, but no page says so in plain words. A current KU job advert for a Gym Manager speaks of 'all University gym facilities' serving students, staff, alumni and external stakeholders. The alumni association advertises discounted gym rates to members. No gym phone or hours are published. University general lines (+254 20 8703000 etc.) are not gym lines, so they are left out of phones. Quotes come from WebFetch's summarised extraction."
+    },
+    {
+      "id": "web:institutions-013",
+      "name": "Jaffery's Sports Club (Nairobi Jaffery Sports Club) gym",
+      "kind": "fitness_club",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Lavington (next to Jaffery's Academy)",
+      "address": null,
+      "phones": [],
+      "website": null,
+      "social": [],
+      "hoursText": null,
+      "access": "public",
+      "status": "unknown",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://www.businessdailyafrica.com/bd/lifestyle/club-where-the-high-and-mighty-exercise-for-free--2006240",
+          "fetched": true,
+          "quote": "an exclusive facility open to members of the public who want to keep fit",
+          "supports": [
+            "name",
+            "status"
+          ]
+        },
+        {
+          "url": "https://www.businessdailyafrica.com/bd/lifestyle/club-where-the-high-and-mighty-exercise-for-free--2006240",
+          "fetched": true,
+          "quote": "the management allows anyone to walk in and use their facility",
+          "supports": [
+            "name"
+          ]
+        }
+      ],
+      "notes": "Evidence is one Business Daily feature, first published 17 May 2012 and updated 24 December 2020. It places the club in Lavington next to Jaffery's Academy on a 15-acre plot owned by the Jaffery community, and says the gym charges a monthly or yearly membership while the walking field is free. Because the only evidence is that old article, current gym status is unknown. No official website, phone or hours were found. Wikipedia has a page on the adjacent 'Jaffery Sports Club Ground' (cricket), which confirms the club grounds exist but was not opened. Airbnb 'things to do' pages also mention a gym but were not used as evidence. Not in seed: no seed venue with this name, and the seed venues within 0.8 km of Lavington are yoga studios and F45."
+    },
+    {
+      "id": "web:institutions-014",
+      "name": "Serena Beach Resort & Spa - Maisha Health Club (gym)",
+      "kind": "hotel_gym",
+      "county": "Mombasa",
+      "town": "Mombasa",
+      "area": "Shanzu",
+      "address": "Shanzu Beach Homes, Serena Rd, Mombasa, Kenya",
+      "phones": [
+        "+254 732 124000",
+        "+254 733 584500",
+        "+254 733 584501"
+      ],
+      "website": "https://www.serenahotels.com/serena-beach",
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://www.serenahotels.com/serena-beach",
+          "fetched": true,
+          "quote": "Maisha Health Club - Gym",
+          "supports": [
+            "name",
+            "address",
+            "phone",
+            "website",
+            "status"
+          ]
+        }
+      ],
+      "notes": "Hotel's own page shows the Maisha Spa & Health Club with gym photos ('Maisha Health Club - Gym', 'Maisha Health Club Equipment'). The page gives no hours and says nothing on non-guest use or membership, so access is unknown. Serena's group wellness page advertises a 'Maisha Membership' (recorded under the Nairobi Serena entry), but it does not say which hotels offer it. The footer gives '+254 732 125000' where the contact section gives '+254 732 124000'; the contact-section number is recorded. Spa bookings go to mombasa@serenahotels.com. The only seed venue within 1.5 km is Step 'n' Step Gym, a different business. Quotes come from WebFetch's summarised extraction."
+    },
+    {
+      "id": "web:institutions-015",
+      "name": "Tatu City outdoor gym (City Park, Sports @ Tatu)",
+      "kind": "other",
+      "county": "Kiambu",
+      "town": "Ruiru",
+      "area": "Tatu City - City Park, near Unity Homes",
+      "address": null,
+      "phones": [],
+      "website": null,
+      "social": [],
+      "hoursText": "Open daily, 6 am to 9 pm",
+      "access": "public",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://capitalfm.africa/tatu-city-unveils-free-outdoor-gym-as-fitness-hub/",
+          "fetched": true,
+          "quote": "Located in City Park near Unity Homes",
+          "supports": [
+            "name",
+            "hours",
+            "status"
+          ]
+        },
+        {
+          "url": "https://capitalfm.africa/tatu-city-unveils-free-outdoor-gym-as-fitness-hub/",
+          "fetched": true,
+          "quote": "open to the public at no cost",
+          "supports": [
+            "status"
+          ]
+        },
+        {
+          "url": "https://hapakenya.com/2024/02/20/sports-tatu-a-health-fitness-facility-opened-in-tatu-city",
+          "fetched": true,
+          "quote": "Whether you reside in Tatu City or our neighbouring community, we invite everyone",
+          "supports": [
+            "name"
+          ]
+        }
+      ],
+      "notes": "Free OUTDOOR gym (sky steppers, health walkers, rowers, plus a children's play area), not an indoor membership gym; kind set to 'other' for that reason. Built by the Tatu City estate developer and reported by Capital FM on 30 October 2024. Hours (daily 6 am to 9 pm) and free public access come from that news article; no developer page with these facts could be read (the tatucity.com post returned empty). The related Sports @ Tatu facility (5-a-side astroturf pitch and basketball court, Hapakenya, 20 Feb 2024) does not itself mention a gym. Town is given as Ruiru because Tatu City lies in Ruiru sub-county; the article itself does not name the sub-county. Not in seed. Quotes come from WebFetch's summarised extraction. The developer's own news page (tatucity.com/news/tatu-city-opens-kenyas-largest-outdoor-gym-playground/) exists but rendered empty to WebFetch; allAfrica republished the Capital FM story."
+    },
+    {
+      "id": "web:institutions-016",
+      "name": "Vipingo Ridge clubhouse gym",
+      "kind": "hotel_gym",
+      "county": "Kilifi",
+      "town": "Vipingo",
+      "area": "Vipingo Ridge estate and golf resort",
+      "address": null,
+      "phones": [],
+      "website": "https://www.vipingoridge.com",
+      "social": [],
+      "hoursText": null,
+      "access": "hotel_guests",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://www.vipingoridge.com/blog/why-vipingo-ridge-is-kenyas-best-luxury-hotel",
+          "fetched": true,
+          "quote": "Guests can also access the Pro-Shop, gym and the scenic rooftop.",
+          "supports": [
+            "name",
+            "website",
+            "status"
+          ]
+        },
+        {
+          "url": "https://www.vipingoridge.com/blog/why-vipingo-ridge-is-kenyas-best-luxury-hotel",
+          "fetched": true,
+          "quote": "With tennis courts, trails, a 25m pool, gym, and driving range, as well as locally led Zumba and yoga classes,",
+          "supports": [
+            "name"
+          ]
+        }
+      ],
+      "notes": "The resort's own blog says guests can use the clubhouse gym. It does not say whether estate residents or day visitors can, so access is recorded as hotel_guests (the narrowest stated group). No phone, street address or hours on the page; emails sales@vipingoridge.com and info@vipingoridge.com. The blog post is dated 'Nov 20' with no year. A golf-travel listing and a directory also mention a clubhouse gym, but were not opened. Not in seed: no seed venue at Vipingo. Quotes come from WebFetch's summarised extraction."
+    },
+    {
+      "id": "web:institutions-017",
+      "name": "Nyali Golf & Country Club gym",
+      "kind": "fitness_club",
+      "county": "Mombasa",
+      "town": "Mombasa",
+      "area": "Nyali",
+      "address": "PO Box 96678, Mombasa, Kenya (postal only)",
+      "phones": [
+        "+254 (726) 414-477"
+      ],
+      "website": null,
+      "social": [],
+      "hoursText": null,
+      "access": "members_only",
+      "status": "unknown",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://www.golfingrecord.com/golf-scorecard/55a26d35-cb7f-4173-b164-1353bc460cd4",
+          "fetched": true,
+          "quote": "The club offers facilities for tennis, squash, swimming, and a fully equipped gym",
+          "supports": [
+            "name"
+          ]
+        },
+        {
+          "url": "https://www.golfpass.com/travel-advisor/courses/29660-nyali-golf-country-club/scorecard-and-layout",
+          "fetched": true,
+          "quote": "Fitness",
+          "supports": [
+            "name",
+            "phone"
+          ]
+        }
+      ],
+      "notes": "Evidence is two independent golf-directory pages that agree the club has a gym or fitness facility (golfingrecord: 'fully equipped gym'; GolfPass lists 'Fitness', 'Tennis', 'Squash' under available sports). Neither is dated and no club-run website was found (golfingrecord gives http://www.nyali-international.com/, not opened; Golfshake wrongly links windsorgolfresort.com), so the gym's current status is unknown. Phone and postal address come from GolfPass only. Access recorded as members_only on the basis that this is a private members' golf and country club; no page read states gym access rules. Not in seed (no seed venue with this name; seed gyms in Nyali are commercial studios)."
+    },
+    {
+      "id": "web:institutions-018",
+      "name": "Nairobi Gymkhana - indoor fitness centre and outdoor gym",
+      "kind": "fitness_club",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Ngara (Wangari Maathai Road, next to KICD)",
+      "address": "Wangari Mathai Road, Ngara, next to KICD",
+      "phones": [
+        "0727 531 457/8",
+        "0733 401 340/1"
+      ],
+      "website": "https://www.nairobigymkhana.com",
+      "social": [],
+      "hoursText": null,
+      "access": "members_only",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://www.nairobigymkhana.com/become-member.html",
+          "fetched": true,
+          "quote": "including the swimming pool, snooker room, badminton courts, indoor fitness centre, and outdoor gym.",
+          "supports": [
+            "name",
+            "address",
+            "phone",
+            "website",
+            "status"
+          ]
+        },
+        {
+          "url": "https://www.nairobigymkhana.com/become-member.html",
+          "fetched": true,
+          "quote": "Members enjoy full access to the Club's sporting and recreational facilities,",
+          "supports": [
+            "name"
+          ]
+        }
+      ],
+      "notes": "Club's own membership page. Access is through club membership (the page lists entrance and subscription fees, not recorded here); guest or day use is not mentioned. Footer copyright 2025. Email info@nairobigymkhana.com. Address spelled 'Wangari Mathai Road' on the page. No hours stated for the fitness centre. Not in seed: the seed venues within 0.6 km are unrelated commercial gyms and an equipment shop. Quotes come from WebFetch's summarised extraction."
+    },
+    {
+      "id": "web:institutions-019",
+      "name": "Public Service Club gym",
+      "kind": "fitness_club",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Upper Hill (Mara Road)",
+      "address": "Mara Rd, North, UPPERHILL, Nairobi",
+      "phones": [
+        "+254 202 105377",
+        "+254 722 383397"
+      ],
+      "website": "https://psc-kenya.com/gym/",
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://psc-kenya.com/",
+          "fetched": true,
+          "quote": "So we have made it simple, affordable, and convenient for you to achieve your personal health goals",
+          "supports": [
+            "name",
+            "phone",
+            "website",
+            "status"
+          ]
+        },
+        {
+          "url": "https://psc-kenya.com/",
+          "fetched": true,
+          "quote": "Well Equipped Gym",
+          "supports": [
+            "name"
+          ]
+        },
+        {
+          "url": "https://psc-kenya.com/contact/",
+          "fetched": true,
+          "quote": "Mara Rd, North, UPPERHILL, Nairobi",
+          "supports": [
+            "address",
+            "phone"
+          ]
+        }
+      ],
+      "notes": "The club's own site has a gym section ('The Best GYM Experience') and a dedicated /gym/ page, but that page rendered only its title and menus, so facilities, access rules and hours are not known. The contact page lists +254 202 105377 under MEMBERSHIP and +254 722 383397 under ORDER FOOD (the latter is the only number on the homepage). Email info@psc-kenya.com. No copyright year shown. Daystar University's own Athi River campus page says its Nairobi campus 'partnered with Public Service Club for Sports recreation', which is consistent with the club taking outside users, but access is left unknown. Not in seed. Quotes come from WebFetch's summarised extraction."
+    },
+    {
+      "id": "web:institutions-020",
+      "name": "JOOTRH Gym (Jaramogi Oginga Odinga Teaching and Referral Hospital)",
+      "kind": "other",
+      "county": "Kisumu",
+      "town": "Kisumu",
+      "area": "Jaramogi Oginga Odinga Teaching and Referral Hospital",
+      "address": null,
+      "phones": [],
+      "website": "https://www.kisumu.go.ke/?p=10020",
+      "social": [],
+      "hoursText": "Monday to Friday from 8am-5pm",
+      "access": "public",
+      "status": "unknown",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://www.kisumu.go.ke/?p=10020",
+          "fetched": true,
+          "quote": "Did you know you can access the facility and services by paying just Ksh 150 per visit?",
+          "supports": [
+            "name",
+            "hours"
+          ]
+        },
+        {
+          "url": "https://www.kisumu.go.ke/?p=10020",
+          "fetched": true,
+          "quote": "open on week days from Monday to Friday from 8am-5pm close of business",
+          "supports": [
+            "hours"
+          ]
+        }
+      ],
+      "notes": "Kisumu County Government article 'KEEP FIT AT THE JOOTRH GYM', dated 6 January 2022. The hospital gym serves physiotherapy patients and 'children above 5 years' (with a separate room for under-5s) and invites readers to pay per visit, which implies walk-in public use but does not say so in plain words. Weekend sessions can be booked with instructors. Kind set to 'other' because it is a hospital physiotherapy/exercise gym, not a commercial fitness gym. Status unknown because the only evidence is from January 2022. No phone or street address given. Not in seed (no seed venue within 1 km of the hospital). The 'website' field points to the county article because the hospital has no gym page that was found. Quotes come from WebFetch's summarised extraction."
     }
   ],
   "unverifiedLeads": [
     {
-      "name": "Impala Club (Nairobi) - possibly the seed's 'Impala Fitness Centre'",
-      "url": "https://www.impalaclub.co.ke",
-      "why": "Site title reads 'Your Home for Sports, Relaxation and Community' but the fetch returned only the title, with no gym, phone, address or hours. Seed has 'Impala Fitness Centre' (id 9bc9fd66-24a1-4bc9-8315-0dc31a70660e) with no phone or website; link between the two is unconfirmed."
+      "name": "Windsor Golf Hotel & Country Club gym and spa (Kigwa Road, Ridgeways, Nairobi)",
+      "url": "https://www.iacworldwide.com/clubs/windsor-golf-hotel-country-club/",
+      "why": "Club-network directory page says 'They also have a gym and spa' and gives Kigwa Road, Ridgeways off Kiambu Road, +254 20 8647000 and hours 6:00am to 10:30pm. The hotel's own site (windsorgolfresort.com) is script-rendered and returned only its title; Frommers returned 403. Only one readable directory, so not promoted to a candidate."
     },
     {
-      "name": "Windsor Golf Hotel & Country Club (Ridgeways, Nairobi)",
-      "url": "https://www.windsorgolfresort.com",
-      "why": "Site loads but the fetch returned only the page title; no gym or spa facts could be read (probably a script-rendered page)."
+      "name": "Daystar University - Jack and Camie Eugster Fitness Center (Athi River campus, Machakos County)",
+      "url": "https://www.mastersportal.com/universities/15622/daystar-university.html",
+      "why": "Mastersportal says Daystar 'launched a new modern and well-equipped fitness facility in March 2021' at the Athi River Campus. Daystar's own pages (athi-river-campus page, blog, council speech PDF) timed out or did not mention the gym. One directory only. Seed entry 'Daystar Gym & Fitness Centre' (e94ef86b) sits in Nairobi at -1.274, 36.845, about 18 km from Athi River, so it is probably not this university gym."
     },
     {
-      "name": "Kenyatta University Gymnasium (seed OSM entry, way/6271...)",
-      "url": "https://sports.ku.ac.ke/",
-      "why": "KU Directorate of Sports page lists a 'Body Building' link under Other Sports and says it serves 'the entire University Community', but no gym page, phone, hours or address for a gym was opened."
+      "name": "Eldoret Club gymnasium (Eldoret, Uasin Gishu)",
+      "url": "https://www.musicinafrica.net/directory/eldoret-club",
+      "why": "Only a 2014 Music in Africa directory profile lists 'swimming pool, gymnasium and sauna' with phones +254532031395 and +254725736066. No club website or second source found."
     },
     {
-      "name": "Daystar University gym (seed: Daystar Gym & Fitness Centre, id e94ef86b-...)",
-      "url": "https://www.daystar.ac.ke",
-      "why": "Fetch timed out; no new information obtained."
+      "name": "Muthaiga Country Club gym (Nairobi)",
+      "url": "https://www.mcc.co.ke",
+      "why": "Club's own homepage (2026) does not mention a gym; only a Discover Kenya directory listing mentions a 'high-end gym facility'. Members-only club; not confirmed."
+    },
+    {
+      "name": "KCA University students' gym (campus not stated)",
+      "url": "https://www.kcau.ac.ke/sports/",
+      "why": "University's own sports page says 'KCA University has a Gym facility that guarantees students wellness and fitness outside the classroom' (copyright 2026, phone 0709 813 800) but does not say which campus, so it cannot be placed on a map."
+    },
+    {
+      "name": "Merica Hotel Nakuru health club",
+      "url": "https://www.mericahotel.co.ke",
+      "why": "Booking sites (Expedia, Trip.com) list a health club with fitness classes; the hotel's own site returned an empty page. No first-party confirmation."
+    },
+    {
+      "name": "Sarova Stanley (Nairobi CBD) and Sarova Woodlands (Nakuru) health clubs",
+      "url": "https://sarovahotels.com/stanley-nairobi/health-club.html",
+      "why": "Search snippets from sarovahotels.com describe a 5th-floor health club at the Stanley (hours 5:00AM to 10:00PM per a 2025 spa menu, 'Health Club Members' mentioned) and a Health Club at Sarova Woodlands, but every sarovahotels.com page returned HTTP 403 to WebFetch, so nothing was read first-hand."
+    },
+    {
+      "name": "Radisson Blu Hotel Nairobi Upper Hill fitness centre",
+      "url": "https://www.radissonhotels.com/en-us/hotels/radisson-blu-nairobi-upper-hill/services",
+      "why": "Official services page returned HTTP 403; only booking-site snippets describe a 24-hour fitness centre."
+    },
+    {
+      "name": "Indigo Health Club / Indigo Gym at Chester Hotel, Nakuru",
+      "url": "https://www.facebook.com/indigoHealthClubNakuru/",
+      "why": "Only a Facebook page (not usable as evidence) and a search snippet mention a hotel health club selling subscriptions; no hotel website or second source opened."
+    },
+    {
+      "name": "Strathmore University gym at the Sports Complex (Madaraka, Nairobi)",
+      "url": "https://strathmore.edu/news-articles/strathmore-universitys-wellness-fair-takes-well-being-to-the-next-level/",
+      "why": "Search snippet from a Strathmore news article says the university has a gym at the Sports Complex, but every strathmore.edu page returned HTTP 503 to WebFetch, so it was not read first-hand."
+    },
+    {
+      "name": "Mercure Nairobi Upper Hill - Uzima fitness and wellness centre",
+      "url": "https://all.accor.com/hotel/C0D5/index.nl.shtml",
+      "why": "Only a search summary of the Accor page mentions the Uzima centre with Technogym equipment; not opened, and non-guest access unknown."
+    },
+    {
+      "name": "Nyayo National Stadium gymnasium (Sports Kenya, Nairobi)",
+      "url": "https://stadiumdb.com/stadiums/ken/nyayo_national_stadium",
+      "why": "Stadium profiles say a gymnasium was built with the stadium complex, but no current source on whether it operates or admits the public."
+    },
+    {
+      "name": "Kericho Golf Club gym (Kericho)",
+      "url": "https://abirikenya.com/counties/kericho-county/kericho-golf-course/",
+      "why": "Only a search-result snippet from an Abiri Kenya county guide says members 'may also enjoy other club facilities like snooker, gym, squash and darts'. Page not opened; no club website found."
+    },
+    {
+      "name": "Thika Greens Golf Resort clubhouse gymnasium (Thika, Kiambu)",
+      "url": "https://www.buyrentkenya.com/listings/3-bedroom-villa-for-sale-thika-road-4022568",
+      "why": "Only real-estate listings (search snippets) mention 'a modern clubhouse with a gymnasium'; likely residents/members only and not confirmed by an estate or club page."
+    },
+    {
+      "name": "Utalii Hotel health club (Thika Road, Nairobi)",
+      "url": "https://www.hotels.com/ho772648960/utalii-hotel-nairobi-kenya/",
+      "why": "Booking listings mention a gym and fitness centre and one guest review says the Health Club was charged extra; no hotel or Kenya Utalii College page was opened."
     }
   ],
-  "coverageNotes": "Search was unavailable (shared WebSearch budget exhausted before this agent ran; no queries ran), and a later account session limit also cut off some fetches. Work was limited to opening institutional sites directly. Covered with evidence: Karen Country Club, Weston Hotel, Safari Park Hotel, Nairobi Serena Hotel, Eka Hotel, USIU-Africa (all Nairobi). Opened but no gym facts: Kabarak University sports page (sports listed, no gym; seed already has a Kabarak fitness centre), Egerton, Riara, CUEA, Panari Hotel, Tribe Hotel (spa only, no gym mentioned). Not reachable or blocked (403/503/DNS/timeout): University of Nairobi, JKUAT, Strathmore, Mount Kenya University, Sarova, Hilton, Radisson Blu, Nairobi Club, Muthaiga Country Club (guessed domains did not resolve), Hemingways, Nakuru Sports Club (guessed domain did not resolve). Not researched at all: country and sports clubs outside Karen/Impala (Mombasa, Nakuru, Kisumu, Eldoret, Nanyuki, Thika, Naivasha clubs), coast and safari resort hotels, county-level university campuses (Moi, Maseno, Egerton, Chuka, Karatina, MMUST etc.), corporate and estate gyms accepting outside members, and every county outside Nairobi. This file should be treated as a small partial result, not a survey of the group; a follow-up run with search available is needed."
+  "coverageNotes": "Two passes. The first pass had no WebSearch (the shared budget was already spent) and found 6 venues by opening large Nairobi institutional sites directly. This continuation ran 107 WebSearch queries before the shared per-turn search budget ran out again (one more query was refused); the last few checks used WebFetch only. Final file: 20 candidates (15 not in seed) and 15 unverified leads. Most search results for this group were hotel-booking or directory pages. Facts were taken only from club, hotel, university or county pages and news articles; where only directories existed, that is stated in the entry.\n\nNAIROBI. Clubs: Karen Country Club (now members_only, with gym hours from two club pages that disagree), Nairobi Gymkhana (indoor fitness centre and outdoor gym, members only), Public Service Club, Upper Hill (gym on own site; access and hours not readable), Jaffery's Sports Club, Lavington (open to the public per a 2012/2020 Business Daily feature; current status unknown). Nairobi Club, Impala Club, Royal Nairobi Golf Club, Parklands Sports Club, UNON Gigiri, The Boma, Villa Rosa Kempinski, Mövenpick, Swiss-Belinn and Best Western Upper Hill were already recorded by the area groups (nbo-*), so they are not repeated here. Muthaiga Country Club's own site does not mention a gym (lead). Sikh Union, Simba Union, Ruaraka, Railway, Vet Lab, Ngong Racecourse and Kenya Police clubs: no online evidence of a gym. Hotels: Jacaranda (sells individual and corporate memberships; seed match), Sportsview Kasarani (membership form on own site), Serena, Eka, Weston and Safari Park from the first pass. Sarova Stanley/Panafric/Woodlands, Radisson Blu and Frommers pages returned 403. Fairmont Norfolk, Crowne Plaza, Fairview, Tamarind Tree, Ole Sereni (its old domain is now parked), Southern Sun Mayfair, Dusit D2, Laico Regency, Nairobi Safari Club, Hilton Garden Inn and Four Points have gyms on booking sites or own pages, but nothing shows non-guest access. They were left out as guest-only, apart from a few leads. Universities: USIU-Africa, Kenyatta University (seed match; registration by Student ID, Staff PF number or National ID suggests outsiders can join) and Mount Kenya University (Thika; students and staff). Strathmore (503 on every page), Daystar Athi River (site timed out) and KCA (campus not stated) are leads. No gym evidence was found for UoN, JKUAT (staff aerobics only), CUEA, TUK, Multimedia, Riara, Zetech, Co-op or ANU. Staff-only gyms (National Treasury at Bima House, KDF Kahawa Garrison, Kiganjo police college) are not listed because they are closed to the public.\n\nKIAMBU / CENTRAL. Tatu City free public outdoor gym (Capital FM, Oct 2024). Limuru Country Club's site lists hours but no gym. Thika Sports Club, Nyeri Club and Outspan Hotel: no gym evidence (Outspan was reported shut and up for sale). Dedan Kimathi and Karatina universities: nothing found.\n\nLAIKIPIA / RIFT. Nanyuki Sports Club (gym shown only by a 2019 job advert and a directory, so status unknown). Kitale Club gym (club page, hours, 2026). Nakuru Athletic Club, Rift Valley Sports Club, Nakuru Golf Club, Naivasha Sports Club, Eldoret Club (lead, 2014 directory only), Kericho Club and Golf Club (lead) and Kabarak: no first-party gym evidence. Hotel gyms at Merica, Sarova Woodlands, Eka Eldoret, Enashipai, Great Rift Valley Lodge and Boma Inn Eldoret (the last is in rift-west) appear only on booking sites or blocked pages. Egerton, Moi, Laikipia, Kibabii and Embu university pages read do not mention a gym.\n\nNYANZA / WESTERN. JOOTRH hospital gym, Kisumu (county article, Jan 2022, pay-per-visit). Nyanza Club, Kisumu Golf Club and Kisumu Yacht Club: no gym evidence. Acacia Premier and Ciala are in nyanza.json. Golf Hotel Kakamega has no gym on any listing seen. Maseno, MMUST, Kisii and Rongo: nothing found.\n\nCOAST. Serena Beach Resort (Shanzu) Maisha Health Club (own page; access unknown), Nyali Golf & Country Club (two golf directories agree it has a gym; no club site; status unknown) and Vipingo Ridge clubhouse gym (resort blog; guests). Mombasa Sports Club lists no gym. Coast Gymkhana (in seed) is documented online only as a cricket ground. The KPA Mbaraki sports club was reported closed for renovation (date unclear). Sarova Whitesands, English Point, PrideInn, Voyager, Diani Reef, Leisure Lodge and Leopard Beach have gyms on booking sites only, and the gyms appear to be guest-only. TUM and Pwani University: nothing found.\n\nEASTERN / NORTH-EASTERN. Only booking-site hotel gyms (Meru Slopes, Gelian Machakos, Maanzoni). No institutional gym with evidence was found in Meru, Embu, Machakos, Kitui, Makueni or any north-eastern county.\n\nGaps: most club and university gyms in Kenya have no readable web presence, so this group is far from complete. A second pass with search budget should target Strathmore, Daystar, Sarova (blocked to WebFetch), and the country clubs' own sites."
 }

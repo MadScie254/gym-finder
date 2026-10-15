@@ -1,6 +1,7 @@
 /**
  * Collapse a cluster of duplicate records into one venue record (brief 5.4).
  *
+ *  - Town is re-derived from the location and the settled county (geo.townFor).
  *  - Location, name and the stable id come from OSM when it is in the cluster (a mapper
  *    surveyed it), else from the highest-confidence Overture record, else web research.
  *  - Contacts and hours are unioned; every field's source is recorded in `provenance`.
@@ -8,6 +9,7 @@
  *  - Web research fills gaps and adds evidence URLs; it counts as an additional
  *    independent source (`sources` gains "web") only when it cites the venue's own page.
  */
+import { townFor } from "./geo.mjs";
 import { whatsappChoice } from "./phones.mjs";
 
 const RANK = { osm: 0, overture: 1, web: 2 };
@@ -94,7 +96,8 @@ export function mergeCluster(members) {
     approxRadiusM: sourced.length ? 0 : Math.max(...members.map((member) => member.approxRadiusM ?? 0)),
     address: address?.address ?? null,
     area: primary.area ?? first((member) => member.area)?.area ?? null,
-    town: primary.town ?? first((member) => member.town)?.town ?? null,
+    // Precise location: the town follows the settled county (geo.townFor). A web-only venue keeps its stated town.
+    town: (sourced.length ? townFor(primary, (hinted ?? primary).county) : null) ?? primary.town ?? first((member) => member.town)?.town ?? null,
     county: (hinted ?? primary).county,
     phones,
     phoneTypes,

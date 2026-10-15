@@ -91,7 +91,9 @@ a { color: inherit; }
   background: var(--line);
 }
 .map-slot { position: relative; min-height: 0; background: #d7ddd8; }
-.map-pane { position: absolute; inset: 0; }
+/* Higher specificity than maplibre-gl.css `.maplibregl-map { position: relative }`,
+   which loads later with the map chunk and otherwise collapses the pane to 0px. */
+.map-slot .map-pane { position: absolute; inset: 0; }
 .map-fallback { margin: 0; padding: 1rem; color: var(--muted); }
 .locate {
   position: absolute;

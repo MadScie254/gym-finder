@@ -36,7 +36,7 @@ export function SearchBox({
       id: place.id,
       label: place.name,
       hint: place.subtitle,
-      href: place.kind === "county" ? `/in/${encodeURIComponent(place.name)}` : `/search?q=${encodeURIComponent(place.name)}`,
+      href: `/in/${encodeURIComponent(place.name)}`,
     }));
     return [...gyms, ...places];
   }, [index, query]);

@@ -2,7 +2,8 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router";
 import { searchVenues } from "../../data/loadVenues";
 import { useVenueContext } from "../../app/venue-context";
-import { applyVenueFilters, sortVenues } from "../../lib/filterVenues";
+import { applyVenueFilters, foldPlace, isKnownPlace, sortVenues, venuesInPlace } from "../../lib/filterVenues";
+import { suggestKenyaPlaces } from "../../lib/kenyaPlaces";
 import { t } from "../../lib/i18n";
 import { loadSavedVenues, saveSavedVenues } from "../../lib/storage";
 import { SearchBox } from "../search/SearchBox";
@@ -17,15 +18,24 @@ export function Explore() {
   const { slug, place } = useParams();
   const [params, setParams] = useSearchParams();
   const [saved, setSaved] = useState<Venue[]>(() => loadSavedVenues());
-  const q = params.get("q") ?? place ?? "";
+  const q = params.get("q") ?? "";
+  const placeName = place ? decodeURIComponent(place) : null;
   const kind = params.get("kind") ?? "";
   const venue = slug ? ctx.index?.bySlug.get(slug) : undefined;
 
   const visible = useMemo(() => {
     if (!ctx.index) return [];
-    const base = q ? searchVenues(ctx.index, q, true) : ctx.index.venues;
+    // Place pages (and a typed query that is exactly a place) filter by place, not fuzzy text.
+    const asPlace = placeName ?? (q && isKnownPlace(ctx.index.venues, q) ? q : null);
+    let base: Venue[];
+    if (asPlace) {
+      const hit = suggestKenyaPlaces(asPlace, 5).find((row) => foldPlace(row.name) === foldPlace(asPlace));
+      base = venuesInPlace(ctx.index.venues, asPlace, hit?.location ?? null);
+    } else {
+      base = q ? searchVenues(ctx.index, q, true) : ctx.index.venues;
+    }
     const filtered = applyVenueFilters(base, {
-      q,
+      q: asPlace ? undefined : q,
       kind: kind || undefined,
       hasPhone: params.get("phone") === "1",
       tier: params.get("tier") ?? undefined,
@@ -35,7 +45,7 @@ export function Explore() {
       maxKm: params.get("km") ? Number(params.get("km")) : null,
     });
     return sortVenues(filtered, ctx.origin);
-  }, [ctx.index, ctx.origin, q, kind, params]);
+  }, [ctx.index, ctx.origin, q, placeName, kind, params]);
 
   useEffect(() => { ctx.setVisible(visible); }, [visible, ctx.setVisible]);
   useEffect(() => { if (venue) ctx.setSelectedId(venue.id); }, [venue, ctx.setSelectedId]);
@@ -66,7 +76,7 @@ export function Explore() {
             <small>{ctx.index ? `${ctx.index.manifest.counts.defaultVisible} gyms · ${built}` : "Kenya"}</small>
           </div>
         </div>
-        <SearchBox index={ctx.index} lang={ctx.lang} initial={q} />
+        <SearchBox index={ctx.index} lang={ctx.lang} initial={q || placeName || ""} />
         <div className="chips" role="group" aria-label={t(ctx.lang, "filters")}>
           {KINDS.map((item) => (
             <button key={item} type="button" className={kind === item ? "chip chip--on" : "chip"} onClick={() => toggle("kind", item)}>{kindLabel(item)}</button>

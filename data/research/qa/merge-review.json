@@ -1,0 +1,1827 @@
+{
+  "generatedAt": "2026-10-13",
+  "catalogue": "public/data/gyms.a78b7d75ae.json",
+  "method": "Normalised OSM and Overture records were rebuilt in memory with the pipeline's own normalize/merge modules and mapped to published venues by id or alias. Checks: all 15 merged clusters; all 59 review-candidate pairs; every pair of published venues sharing a phone, an own-site host, a Facebook or Instagram page, a similar name within 300 m, or an identical squashed name within 30 km; an in-memory dry run with the web-research candidates. Judgements use only the source data and the research candidate files. Online lookups were not possible because the shared web-search budget was used up.",
+  "summary": {
+    "publishedMergedClusters": 15,
+    "publishedFalseMerges": 1,
+    "predictedWebClusters": 32,
+    "predictedFalseWebMerges": 4,
+    "missedMerges": 15,
+    "missedHigh": 4,
+    "reviewCandidates": 59,
+    "verdicts": {
+      "same_venue": 6,
+      "different": 42,
+      "unclear": 11
+    },
+    "examined": 129
+  },
+  "falseMerges": [
+    {
+      "ids": [
+        "gers:041a0281-6410-4182-8b7d-6ba5f8e03b6f",
+        "gers:d9b73558-03a6-4735-968c-d59cc3843f04"
+      ],
+      "status": "published",
+      "confidence": "high",
+      "why": "Bikram Yoga Nairobi (Lavington Green Shopping Centre, 2nd floor above Chandarana, +254737932573, bikramyoganairobi.com) and Delight Hot Yoga (Lavington Mall, 4th floor, Artcaffe wing, +254722524531, delighthotyoga.com) are two operating studios in two different malls. They merged on name+distance (59 m, Jaccard exactly 0.5 from the generic tokens 'bikram', 'yoga', 'nairobi'). The published venue now shows BOTH phone numbers under the Bikram name. The web-research candidates list them as separate venues with separate seedIds (web:nbo-westlands-021 and -022).",
+      "fix": "Split: add the pair to a 'never merge' list (merge.json has no such option today) or make the name rule ignore place words and yoga/gym style words; distinct own phones AND distinct Facebook pages should send a name+distance pair to review instead of merging."
+    },
+    {
+      "ids": [
+        "web:chains-001",
+        "web:chains-003",
+        "gers:4c268103-3ea7-4fc2-a135-bb2e0b46e48a"
+      ],
+      "status": "predicted: in-memory dry run with data/research/candidates/*.json as venues-researched.json",
+      "confidence": "high",
+      "why": "SmartGyms The Hub Karen (web:chains-003) would join the Junction Mall venue: both web records sit on the Nairobi town centroid with an 8 km radius and share the chain head-office line +254205143800 (step 3 of clusterRecords: approxMatch merges on a shared phone). The Hub Karen and Junction are different branches. The Hub Karen web record cannot reach its true twin gers:797034cd (Smart Gyms, The Hub Karen) because that record lists +254712404040 and the names score Jaccard 0 ('SmartGyms' as one token).",
+      "fix": "Web-to-web and web-to-precise contact matches need a tighter location test than radius+1 km when both sides only have a town centroid; a phone shared by 3 or more records (a chain line) should not be a merge key."
+    },
+    {
+      "ids": [
+        "web:chains-012",
+        "web:chains-013",
+        "web:chains-014",
+        "gers:e667ec25-b793-4843-8276-339477080b68"
+      ],
+      "status": "predicted: in-memory dry run with research candidates",
+      "confidence": "high",
+      "why": "Legacy Fitness main gym (Mwembe Tayari), Bamburi branch and Bombolulu branch would be fused into one venue because all three cite pages on sportlegacyfitness.com (/main-gym/, /bamburi-branch/, /bombolulu-branch/). sameWebsiteHost compares hosts only, so branch pages of one chain count as 'the same website'.",
+      "fix": "For web records, compare the full canonical URL (host + path) when the paths differ, or treat a host shared by several records as a chain host."
+    },
+    {
+      "ids": [
+        "web:chains-005",
+        "web:chains-006"
+      ],
+      "status": "predicted: in-memory dry run with research candidates",
+      "confidence": "high",
+      "why": "AFROFIT Delta Chambers (Westlands) and AFROFIT Thika Road Mall would become one web-only venue: same host afrofit.life (paths /delta-chambers vs /thika-road-mall), both placed on the Nairobi centroid, 0 m apart by construction.",
+      "fix": "Same as above: branch pages on one host are not one venue."
+    },
+    {
+      "ids": [
+        "web:institutions-005",
+        "web:institutions-008",
+        "gers:88b8edd9-dbd4-47c4-8b03-9cbbfa554aff"
+      ],
+      "status": "predicted: in-memory dry run with research candidates",
+      "confidence": "high",
+      "why": "'Eka Hotel Nairobi gym' (Mombasa Road) would join 'Jacaranda Hotel Nairobi - Gym & Health Club' (Westlands) and the Overture 'Jacaranda Gym and Spa' by name+area: tokens {eka, hotel, nairobi} vs {jacaranda, hotel, nairobi} give Jaccard 0.5 and both sit on the Nairobi centroid inside the 8 km radius.",
+      "fix": "Add place names (nairobi, kenya, mombasa, kisumu, ...) and venue-type words (hotel, gyms, gymnasium, spa, sports, aerobics, yoga, wellness) to the stop-word list, and require a shared distinctive token for name+area."
+    }
+  ],
+  "missedMerges": [
+    {
+      "ids": [
+        "gers:e50c1e09-8136-4c60-a7da-b2066ffb0d71",
+        "osm:node/5354298522"
+      ],
+      "names": [
+        "Racing Sport Gym",
+        "Racing Sport Gym"
+      ],
+      "metres": 164,
+      "confidence": "high",
+      "why": "Identical name 'Racing Sport Gym', Woodvale Grove (OSM) and Woodvale Road (Overture), Westlands. 164 m apart, 14 m outside the strict 150 m window. In review-candidates as name-near."
+    },
+    {
+      "ids": [
+        "gers:4c268103-3ea7-4fc2-a135-bb2e0b46e48a",
+        "osm:node/5421225050"
+      ],
+      "names": [
+        "Smart Gyms Junction",
+        "Smartgyms"
+      ],
+      "metres": 24,
+      "confidence": "high",
+      "why": "Smart Gyms Junction (Junction Mall) and OSM 'Smartgyms', 24 m apart. Missed because 'Smartgyms' is one token, so Jaccard is 0, and OSM has no phone or site. In review-candidates as proximity-only."
+    },
+    {
+      "ids": [
+        "gers:0b9dc1e8-b789-426e-9116-8e478eb58321",
+        "gers:42cac902-04ba-4c68-b645-0a69b20835e3"
+      ],
+      "names": [
+        "Banana House And Wellness Centre",
+        "Banana House & Wellness Centre"
+      ],
+      "metres": 25923,
+      "confidence": "high",
+      "why": "Banana House (And / &) Wellness Centre: same phone +254721275538, same site bananahouse-lamu.com, same name. The 'PO Box 119' copy is pinned at Mpeketoni, 26 km away, so it fails the 2 km shared-contact cap. One venue on Lamu Island; keep the Lamu Island pin."
+    },
+    {
+      "ids": [
+        "gers:abf05f5b-3308-4832-b113-ce02058fe829",
+        "osm:node/6210199378"
+      ],
+      "names": [
+        "Switch Fitness Centre",
+        "Switch Fitness Center"
+      ],
+      "metres": 270,
+      "confidence": "medium",
+      "why": "Switch Fitness Centre / Center in Mlolongo, 270 m apart. Same name; the Overture copy (confidence 0.5) has no contacts that could conflict."
+    },
+    {
+      "ids": [
+        "gers:6b2dc50e-d3a3-4e6f-99a5-9b854130fb42",
+        "osm:node/12395863211"
+      ],
+      "names": [
+        "Feel Fitness Center",
+        "Feel Fitness Gym"
+      ],
+      "metres": 342,
+      "confidence": "medium",
+      "why": "Feel Fitness Center (Thika Palm Arcade, Garden Estate Rd) and OSM Feel Fitness Gym, 342 m apart in Garden Estate."
+    },
+    {
+      "ids": [
+        "gers:af9ddd4b-db2d-4ad3-95a4-0d0c9bfb119f",
+        "osm:node/5440688256"
+      ],
+      "names": [
+        "Power Vibe Studio",
+        "Power Vibe Studio Westlands/Power Plate Studio"
+      ],
+      "metres": 437,
+      "confidence": "medium",
+      "why": "Power Vibe Studio (Saffron Spa, Muthangari Drive) and OSM 'Power Vibe Studio Westlands/Power Plate Studio' (Muthangari Drive), 437 m apart."
+    },
+    {
+      "ids": [
+        "gers:0a657c55-4176-48d5-8ba3-bd483fa5d1c2",
+        "gers:326b553b-0d57-45cc-9490-595a8fd1587a"
+      ],
+      "names": [
+        "Utawala Gym And Aerobics",
+        "Utawala Gym and Aerobics"
+      ],
+      "metres": 1290,
+      "confidence": "medium",
+      "why": "Two 'Utawala Gym and Aerobics' records 1.3 km apart in Utawala. Their phones differ by one digit (+254795955052 vs +254796955052), which looks like a typo in one record. Not in review-candidates, because the 500 m name-near window misses it."
+    },
+    {
+      "ids": [
+        "osm:node/5356824865",
+        "gers:a559fd00-56e7-41e2-90ba-b35cb8eaf3d1"
+      ],
+      "names": [
+        "Salmer Fitness Centre Salon and Barber Shop",
+        "Salmer Fitness Centre"
+      ],
+      "metres": 233,
+      "confidence": "medium",
+      "why": "The deny-listed OSM node 'Salmer Fitness Centre Salon and Barber Shop' has addr:full 'Second Floor of Karen Plains Arcade', the same premises as the published Overture 'Salmer Fitness Centre' (233 m). The deny-list removed a real gym's OSM record. The venue loses OSM corroboration, and the old slug salmer-fitness-centre-salon-and-barber-shop-2cea from the 58-gym build no longer resolves.",
+      "note": "removed record; fix with data/overrides/allow.json plus merge.json"
+    },
+    {
+      "ids": [
+        "gers:3accf893-96bc-4031-ba65-8f4158e437d9",
+        "osm:node/12943070550"
+      ],
+      "names": [
+        "Dennison Fitness",
+        "Dennison Fitness"
+      ],
+      "metres": 15471,
+      "confidence": "medium",
+      "why": "Dennison Fitness: the Overture record (dennisonfitness.co.ke) gives its address as 'utawala' but is pinned in Chiromo. The OSM node of the same name is in Utawala, 15 km from that pin. Likely one venue with a misplaced Overture pin."
+    },
+    {
+      "ids": [
+        "gers:123e2d98-615a-4846-9e38-d6479da075c6",
+        "gers:423c71f3-1c31-4358-b75c-7588d8f62ee2"
+      ],
+      "names": [
+        "Smart Gyms",
+        "Smart Gyms"
+      ],
+      "metres": 3895,
+      "confidence": "medium",
+      "why": "Both 'Smart Gyms' records give Diamond Plaza / Diamond Plaza 2, 4th Parklands Ave as the address. The second is pinned in Spring Valley, 3.9 km away. The chain's branch page names one Parklands branch, at Diamond Plaza II. Likely the same branch twice. Phones differ: one is the chain line."
+    },
+    {
+      "ids": [
+        "gers:7ab5aace-9e87-469d-865a-89255cd33c97",
+        "gers:adf2128b-909d-4af8-8b7f-3ed789317c93"
+      ],
+      "names": [
+        "Dayah Sports Centre",
+        "Dayah Sports and Fitness Centre"
+      ],
+      "metres": 11181,
+      "confidence": "low",
+      "why": "Dayah Sports (and Fitness) Centre: same phone +254722850244, 11 km apart. One record's Eastleigh address matches the other record's pin, so possibly one venue with a misplaced pin. Could also be two branches."
+    },
+    {
+      "ids": [
+        "gers:b18151d0-301a-4904-8cb1-ac2bbf1ff7d9",
+        "osm:node/11008015607"
+      ],
+      "names": [
+        "Bodyfit Gyms",
+        "Body Fit Gym"
+      ],
+      "metres": 678,
+      "confidence": "low",
+      "why": "'Bodyfit Gyms' (a chain listing Kasarani, Zimmerman, Kayole and Sunton) and OSM 'Body Fit Gym' in Kasarani, 678 m apart. Possibly its Kasarani branch. The OSM node is also 9 m from Elite Fitness Centre (review row 0)."
+    },
+    {
+      "ids": [
+        "gers:3b8a9b44-8954-41be-9da0-d4526c4430a0",
+        "osm:node/1762036821"
+      ],
+      "names": [
+        "Texas Health Fitness Gym",
+        "Texas Gym"
+      ],
+      "metres": 1861,
+      "confidence": "low",
+      "why": "Texas Health Fitness Gym (Fedha) and OSM Texas Gym (Continental/Embakasi), 1.9 km apart. Same distinctive name, nothing else to compare."
+    },
+    {
+      "ids": [
+        "gers:344b2bee-2b11-4526-b040-028a4713e6dc",
+        "osm:node/7611596652"
+      ],
+      "names": [
+        "Olympus fitness center",
+        "Olympus Fitness Center"
+      ],
+      "metres": 3272,
+      "confidence": "low",
+      "why": "Olympus Fitness Center (Overture, Dagoretti Rd, olympusgym.co.ke) and OSM Olympus Fitness Center, 3.3 km apart, both in the Dagoretti/Rhino Park area."
+    },
+    {
+      "ids": [
+        "web:chains-003",
+        "gers:797034cd-4849-430b-be63-fcce3cc903e2"
+      ],
+      "names": [
+        "SmartGyms - The Hub Karen",
+        "Smart Gyms"
+      ],
+      "metres": null,
+      "confidence": "high",
+      "status": "predicted with research candidates",
+      "why": "The research record for the Hub Karen branch should attach to Overture 'Smart Gyms' (address The Hub Karen, Dagoretti Rd). Instead it attaches to the Junction venue through the chain phone (see falseMerges). It needs seedId 797034cd-... in the research file."
+    }
+  ],
+  "reviewCandidatesVerdicts": [
+    {
+      "ids": [
+        "gers:5ba8fda9-e3c0-4435-984f-d7c0d679de42",
+        "osm:node/11008015607"
+      ],
+      "names": [
+        "Elite Fitness Centre",
+        "Body Fit Gym"
+      ],
+      "reason": "proximity-only",
+      "metres": 9,
+      "verdict": "unclear",
+      "why": "Different names (Elite Fitness Centre vs Body Fit Gym), 9 m apart in Kasarani; the OSM node may instead be the Kasarani branch of the Bodyfit Gyms chain listed 678 m away. Needs a phone call."
+    },
+    {
+      "ids": [
+        "osm:node/5341017723",
+        "osm:node/13974623144"
+      ],
+      "names": [
+        "Fitness Mania Gym Parklands",
+        "Rollin Total Fitness-Health and Fitness Consultant & Supplements Store Parklands, Nairobi"
+      ],
+      "reason": "proximity-only",
+      "metres": 10,
+      "removedBy": "denylist",
+      "verdict": "different",
+      "why": "Fitness Mania (gym, own phone and site) vs Rollin Total Fitness supplements store/consultancy (deny-listed). A shop in the same building on City Park Drive, not the gym."
+    },
+    {
+      "ids": [
+        "gers:5f27255b-601f-4ebc-ad20-c4f7338dfebd",
+        "osm:node/6038770497"
+      ],
+      "names": [
+        "Faiz Gym",
+        "Nyali Executive fitness Centre"
+      ],
+      "reason": "proximity-only",
+      "metres": 13,
+      "verdict": "unclear",
+      "why": "Faiz Gym (Jamhuri Rd) vs Nyali Executive Fitness Centre (OSM, addr Mama Ngina Road), 13 m apart in Nyali. No shared contact; could be one premises under two names or neighbours. Needs a call."
+    },
+    {
+      "ids": [
+        "gers:85a9090d-acc0-42fd-a50b-1c8a777ca41c",
+        "osm:node/6763418026"
+      ],
+      "names": [
+        "Health Hub Oasis",
+        "Jeff's Fitness Centre"
+      ],
+      "reason": "proximity-only",
+      "metres": 21,
+      "verdict": "unclear",
+      "why": "Health Hub Oasis (H2O, Cosmopolitan Club, Amoth Owira Rd) vs Jeff's Fitness Centre (OSM, Amoth Owira Road, own Facebook page), 21 m apart in Kisumu. Possibly a renamed/previous operator of the same club gym; no shared contact."
+    },
+    {
+      "ids": [
+        "gers:accd1772-fd55-4cf8-83be-4be7acd86163",
+        "osm:node/12157124485"
+      ],
+      "names": [
+        "Samnick Enterprises",
+        "Fahari Gym and Sports"
+      ],
+      "reason": "proximity-only",
+      "metres": 21,
+      "verdict": "unclear",
+      "why": "Brief fixture: must NOT merge. 'Samnick Enterprises' has no fitness word in its name (likely an operating company or an unrelated business in the building). Not evidence of the same venue; also review whether Samnick should be listed as a gym at all. Web search budget was exhausted, so not confirmed online."
+    },
+    {
+      "ids": [
+        "gers:4c268103-3ea7-4fc2-a135-bb2e0b46e48a",
+        "osm:node/5421225050"
+      ],
+      "names": [
+        "Smart Gyms Junction",
+        "Smartgyms"
+      ],
+      "reason": "proximity-only",
+      "metres": 24,
+      "verdict": "same_venue",
+      "why": "Smart Gyms Junction (Junction Mall, smartgyms.co.ke) and OSM 'Smartgyms' 24 m apart at Junction Mall. Same brand; the rules miss it because 'Smartgyms' is one token (Jaccard 0) and OSM has no contacts."
+    },
+    {
+      "ids": [
+        "gers:fdf62be6-2b11-4a7e-af12-5f806c868aa2",
+        "osm:node/12112874821"
+      ],
+      "names": [
+        "RUAKA GYM&AEROBICS,Spa",
+        "Physiq & Tone Gym"
+      ],
+      "reason": "proximity-only",
+      "metres": 35,
+      "verdict": "different",
+      "why": "Two gyms in Ruaka Square mall: Ruaka Gym & Aerobics (ruakagym.com, +254725771200) vs Physiq & Tone (5th floor, +254708215032). Distinct phones and sites."
+    },
+    {
+      "ids": [
+        "osm:node/12163759213",
+        "gers:92dde2fd-c32b-4cf0-a2ab-a9b014354a34"
+      ],
+      "names": [
+        "Veteran Fitness Center",
+        "Cool Gym Equipment"
+      ],
+      "reason": "proximity-only",
+      "metres": 39,
+      "removedBy": "denylist",
+      "verdict": "different",
+      "why": "Brief fixture: must NOT merge. Cool Gym Equipment is an equipment seller (deny-listed); Veteran Fitness Center is the gym. Correctly kept apart."
+    },
+    {
+      "ids": [
+        "gers:624fb9a1-22d4-44fd-a6fc-e9c5e9822083",
+        "osm:node/5354298522"
+      ],
+      "names": [
+        "Ultra Smart Controls",
+        "Racing Sport Gym"
+      ],
+      "reason": "proximity-only",
+      "metres": 51,
+      "verdict": "different",
+      "why": "Brief fixture: must NOT merge. Ultra Smart Controls (Sound Plaza, website technogym.com) is an equipment/controls vendor, not the gym. The OSM Racing Sport Gym's real twin is Overture 'Racing Sport Gym' 164 m away (see missedMerges). Ultra Smart Controls itself is published as a gym (tier listed) and should be reviewed for removal."
+    },
+    {
+      "ids": [
+        "gers:75271199-3e0b-42ae-b047-18da1dd007de",
+        "osm:node/2511455581"
+      ],
+      "names": [
+        "Flywheel Spinning Gym",
+        "Trojan Health and Fitness Gym;Big Square - Karen Square"
+      ],
+      "reason": "proximity-only",
+      "metres": 54,
+      "verdict": "different",
+      "why": "Flywheel Spinning Gym (Karen Crossroads) vs Trojan Health and Fitness Gym (Karen Square/Shopping Centre): different names and different malls 54 m apart."
+    },
+    {
+      "ids": [
+        "gers:121df143-844b-44f7-9e88-5d70e11caa02",
+        "gers:3436024d-71dd-4ad5-a557-540a2d2ed952"
+      ],
+      "names": [
+        "HIIT Gym",
+        "Zainul Abideen Fitness Centre - ZAFIC"
+      ],
+      "reason": "proximity-only",
+      "metres": 0,
+      "verdict": "different",
+      "why": "both pins sit on the identical point, a city-centroid placement (geocoding artefact), so the co-location says nothing; names, phones and pages all differ (Nairobi centroid -1.28333, 36.8167)."
+    },
+    {
+      "ids": [
+        "gers:121df143-844b-44f7-9e88-5d70e11caa02",
+        "gers:9581f90a-c70e-4720-96c0-72c2d884df68"
+      ],
+      "names": [
+        "HIIT Gym",
+        "Benseth Plus Fitness Center"
+      ],
+      "reason": "proximity-only",
+      "metres": 0,
+      "verdict": "different",
+      "why": "both pins sit on the identical point, a city-centroid placement (geocoding artefact), so the co-location says nothing; names, phones and pages all differ (Nairobi centroid)."
+    },
+    {
+      "ids": [
+        "gers:121df143-844b-44f7-9e88-5d70e11caa02",
+        "gers:a0857bdd-88fe-4428-8300-e67d6abcc081"
+      ],
+      "names": [
+        "HIIT Gym",
+        "Mama Fitness Kenya"
+      ],
+      "reason": "proximity-only",
+      "metres": 0,
+      "verdict": "different",
+      "why": "both pins sit on the identical point, a city-centroid placement (geocoding artefact), so the co-location says nothing; names, phones and pages all differ (Nairobi centroid)."
+    },
+    {
+      "ids": [
+        "gers:1412e051-b7c5-4cca-946c-d361cc6e5abd",
+        "gers:e763d79f-c3d9-43f5-9754-627abf86713e"
+      ],
+      "names": [
+        "Buffet De TORRA Gymnastics",
+        "Max Fitness Health Center"
+      ],
+      "reason": "proximity-only",
+      "metres": 0,
+      "verdict": "different",
+      "why": "both pins sit on the identical point, a city-centroid placement (geocoding artefact), so the co-location says nothing; names, phones and pages all differ (Kakamega centroid 0.2833, 34.75). Max Fitness gives Tuskys Mega Mall as its address."
+    },
+    {
+      "ids": [
+        "gers:3436024d-71dd-4ad5-a557-540a2d2ed952",
+        "gers:9581f90a-c70e-4720-96c0-72c2d884df68"
+      ],
+      "names": [
+        "Zainul Abideen Fitness Centre - ZAFIC",
+        "Benseth Plus Fitness Center"
+      ],
+      "reason": "proximity-only",
+      "metres": 0,
+      "verdict": "different",
+      "why": "both pins sit on the identical point, a city-centroid placement (geocoding artefact), so the co-location says nothing; names, phones and pages all differ (Nairobi centroid)."
+    },
+    {
+      "ids": [
+        "gers:3436024d-71dd-4ad5-a557-540a2d2ed952",
+        "gers:a0857bdd-88fe-4428-8300-e67d6abcc081"
+      ],
+      "names": [
+        "Zainul Abideen Fitness Centre - ZAFIC",
+        "Mama Fitness Kenya"
+      ],
+      "reason": "proximity-only",
+      "metres": 0,
+      "verdict": "different",
+      "why": "both pins sit on the identical point, a city-centroid placement (geocoding artefact), so the co-location says nothing; names, phones and pages all differ (Nairobi centroid)."
+    },
+    {
+      "ids": [
+        "gers:4eb27d98-c0f4-4ca5-83ee-8dcd08405d67",
+        "gers:96351662-31c8-45e1-9923-de3bb8b2a71b"
+      ],
+      "names": [
+        "Gymfiti fitness suppliers hub",
+        "Vorna Value Shopping"
+      ],
+      "reason": "proximity-only",
+      "metres": 0,
+      "verdict": "different",
+      "why": "Same point on Luthuli Ave area: Gymfiti fitness suppliers hub (equipment supplier) vs Vorna Value Shopping (a shop). Different businesses; both look like non-gym listings that should be reviewed for removal."
+    },
+    {
+      "ids": [
+        "gers:831d7fd8-f3ab-4c7a-b0d2-720fe9648b9a",
+        "gers:dddc4835-853c-4e6a-a618-de6bd4a02001"
+      ],
+      "names": [
+        "PRIDE GYM Bamburi",
+        "Bulldog Fitness Factory"
+      ],
+      "reason": "proximity-only",
+      "metres": 0,
+      "verdict": "different",
+      "why": "both pins sit on the identical point, a city-centroid placement (geocoding artefact), so the co-location says nothing; names, phones and pages all differ (Mombasa centroid -4.05, 39.6667): PRIDE GYM is in Bamburi, Bulldog Fitness Factory in Changamwe."
+    },
+    {
+      "ids": [
+        "gers:9581f90a-c70e-4720-96c0-72c2d884df68",
+        "gers:a0857bdd-88fe-4428-8300-e67d6abcc081"
+      ],
+      "names": [
+        "Benseth Plus Fitness Center",
+        "Mama Fitness Kenya"
+      ],
+      "reason": "proximity-only",
+      "metres": 0,
+      "verdict": "different",
+      "why": "both pins sit on the identical point, a city-centroid placement (geocoding artefact), so the co-location says nothing; names, phones and pages all differ (Nairobi centroid)."
+    },
+    {
+      "ids": [
+        "gers:0a657c55-4176-48d5-8ba3-bd483fa5d1c2",
+        "gers:1d8af60b-18ca-462b-9d1a-486c4c389fdb"
+      ],
+      "names": [
+        "Utawala Gym And Aerobics",
+        "Home gym Equipments"
+      ],
+      "reason": "proximity-only",
+      "metres": 2,
+      "removedBy": "denylist",
+      "verdict": "different",
+      "why": "Home gym Equipments is an equipment seller (deny-listed), 2 m from Utawala Gym And Aerobics. Correctly not merged."
+    },
+    {
+      "ids": [
+        "gers:46a6cea0-2846-4ba9-bbc8-8ac7d3c61805",
+        "gers:9b638c69-c143-432f-89d2-0c3b6d4bf506"
+      ],
+      "names": [
+        "Black Heroes Taekwondo Academy",
+        "Premier Fitness Centre"
+      ],
+      "reason": "proximity-only",
+      "metres": 3,
+      "verdict": "different",
+      "why": "Black Heroes Taekwondo Academy (Chester House) vs Premier Fitness Centre (Finance House), Koinange St: different buildings, phones and sites."
+    },
+    {
+      "ids": [
+        "gers:18ccfce3-530f-48f3-948f-6479d18c822e",
+        "gers:65eae32f-089e-481b-84a5-de2813ed2053"
+      ],
+      "names": [
+        "SmashFit Gym Sarit",
+        "Arena Africa"
+      ],
+      "reason": "proximity-only",
+      "metres": 9,
+      "verdict": "different",
+      "why": "SmashFit Gym Sarit vs Arena Africa, both at Sarit Centre: different businesses, phones and pages."
+    },
+    {
+      "ids": [
+        "gers:b8329740-dca1-4cd0-abb4-b3e463718624",
+        "gers:bc289fe0-e884-4b28-af43-5789b3b1ed40"
+      ],
+      "names": [
+        "Star Trac Gym",
+        "Esterina Fitness Gym"
+      ],
+      "reason": "proximity-only",
+      "metres": 10,
+      "verdict": "unclear",
+      "why": "Star Trac Gym (Star Trac is an equipment brand; no phone) vs Esterina Fitness Gym, 10 m apart in Langata. Could be one gym named after its equipment."
+    },
+    {
+      "ids": [
+        "gers:9cd2399c-e97f-4aed-b604-492dc396e936",
+        "gers:d2dda8f5-5bba-4a5e-9c2c-e74cb896ec20"
+      ],
+      "names": [
+        "Shani Active Limited",
+        "Siha Wellness Studios"
+      ],
+      "reason": "proximity-only",
+      "metres": 14,
+      "verdict": "different",
+      "why": "Shani Active Limited (conf 0.36, company name) vs Siha Wellness Studios (ABC Place Block C): different phones; Shani is not shown to be the studio."
+    },
+    {
+      "ids": [
+        "gers:3058edca-6668-4f1a-909b-64c653be322f",
+        "gers:ad35191d-5f66-4c84-9a05-e0cb0d6ba5d0"
+      ],
+      "names": [
+        "Alpha Fit",
+        "Homeboyz Fitness Center"
+      ],
+      "reason": "proximity-only",
+      "metres": 20,
+      "verdict": "different",
+      "why": "Alpha Fit (alphafit-ltd.com) vs Homeboyz Fitness Center (L.G. Ndugo ground), Ngong Rd: different names, phones and pages."
+    },
+    {
+      "ids": [
+        "gers:17b00cc3-d7ab-446c-a3e4-cc68dfdd42cb",
+        "gers:326b553b-0d57-45cc-9490-595a8fd1587a"
+      ],
+      "names": [
+        "Evanex Fitness Centre",
+        "Utawala Gym and Aerobics"
+      ],
+      "reason": "proximity-only",
+      "metres": 25,
+      "verdict": "different",
+      "why": "Evanex Fitness Centre vs Utawala Gym and Aerobics: different names, phones and pages."
+    },
+    {
+      "ids": [
+        "gers:2c0046ce-0188-4629-9547-89ee71f7d50c",
+        "gers:65eae32f-089e-481b-84a5-de2813ed2053"
+      ],
+      "names": [
+        "The Rena and Health Fitness",
+        "Arena Africa"
+      ],
+      "reason": "proximity-only",
+      "metres": 27,
+      "verdict": "unclear",
+      "why": "'The Rena and Health Fitness' (conf 0.04) may be a garbled 'Arena'; Arena Africa is at Sarit Centre 27 m away but phones differ. Low-confidence record; leave apart."
+    },
+    {
+      "ids": [
+        "gers:ea7d3fee-1fbe-45f8-a9bb-d01285805961",
+        "gers:fdf62be6-2b11-4a7e-af12-5f806c868aa2"
+      ],
+      "names": [
+        "Physiq & Tone Gyms",
+        "RUAKA GYM&AEROBICS,Spa"
+      ],
+      "reason": "proximity-only",
+      "metres": 29,
+      "verdict": "different",
+      "why": "Same pair of Ruaka Square gyms as row 6 (Physiq & Tone vs Ruaka Gym & Aerobics)."
+    },
+    {
+      "ids": [
+        "gers:92703c3a-72a1-4d24-a556-ceadeff25b3d",
+        "gers:aeeba381-79bf-4011-9e7e-2cfba658270b"
+      ],
+      "names": [
+        "Tim'S Health & Fitness Centre",
+        "Quest Martial Arts Academy and Fitness Centre"
+      ],
+      "reason": "proximity-only",
+      "metres": 31,
+      "verdict": "different",
+      "why": "Tim's Health & Fitness Centre vs Quest Martial Arts Academy (Shoppers Paradise, Rongai): different businesses and phones."
+    },
+    {
+      "ids": [
+        "gers:18ccfce3-530f-48f3-948f-6479d18c822e",
+        "gers:2c0046ce-0188-4629-9547-89ee71f7d50c"
+      ],
+      "names": [
+        "SmashFit Gym Sarit",
+        "The Rena and Health Fitness"
+      ],
+      "reason": "proximity-only",
+      "metres": 34,
+      "verdict": "different",
+      "why": "SmashFit Gym Sarit vs 'The Rena and Health Fitness': different names and phones."
+    },
+    {
+      "ids": [
+        "gers:797034cd-4849-430b-be63-fcce3cc903e2",
+        "gers:b29028ca-0ce3-491c-8cc1-4c985ef2fabc"
+      ],
+      "names": [
+        "Smart Gyms",
+        "Ursus Fitness Studio"
+      ],
+      "reason": "proximity-only",
+      "metres": 36,
+      "verdict": "different",
+      "why": "Smart Gyms (The Hub Karen) vs Ursus Fitness Studio (Orok Plaza, Ngong Rd): different businesses; one pin is likely misplaced."
+    },
+    {
+      "ids": [
+        "gers:1412e051-b7c5-4cca-946c-d361cc6e5abd",
+        "gers:91a084e9-cd09-4dbb-9140-af5339dd33b8"
+      ],
+      "names": [
+        "Buffet De TORRA Gymnastics",
+        "Flora Health & Fitness Centre"
+      ],
+      "reason": "proximity-only",
+      "metres": 38,
+      "verdict": "different",
+      "why": "Buffet De TORRA Gymnastics vs Flora Health & Fitness Centre: different names, phones and sites."
+    },
+    {
+      "ids": [
+        "gers:91a084e9-cd09-4dbb-9140-af5339dd33b8",
+        "gers:e763d79f-c3d9-43f5-9754-627abf86713e"
+      ],
+      "names": [
+        "Flora Health & Fitness Centre",
+        "Max Fitness Health Center"
+      ],
+      "reason": "proximity-only",
+      "metres": 38,
+      "verdict": "different",
+      "why": "Flora Health & Fitness Centre vs Max Fitness Health Center: different names, phones and sites."
+    },
+    {
+      "ids": [
+        "gers:7354e5c9-37f9-4a84-ba64-a91b0e2f46c0",
+        "gers:df1e47f6-b172-4fe8-8a1f-de17b626487c"
+      ],
+      "names": [
+        "Triple F Fitness",
+        "Giant Golem Strength & Fitness Centre"
+      ],
+      "reason": "proximity-only",
+      "metres": 39,
+      "verdict": "different",
+      "why": "Triple F Fitness vs Giant Golem Strength & Fitness Centre, both at Kimbo (Ruiru): neighbours with different phones and pages."
+    },
+    {
+      "ids": [
+        "gers:5fa191e0-a108-4dcb-8114-9dec1206a910",
+        "gers:8914b9a4-92f0-4c69-9625-17ed2fe0c5e5"
+      ],
+      "names": [
+        "Fitness Forless",
+        "Kenya Taekwondo Forum"
+      ],
+      "reason": "proximity-only",
+      "metres": 40,
+      "verdict": "different",
+      "why": "Fitness Forless (Kenya House, Koinange St) vs Kenya Taekwondo Forum: different organisations."
+    },
+    {
+      "ids": [
+        "gers:060cf3a9-46fc-4b0e-9c24-05c274b1ac8e",
+        "gers:92703c3a-72a1-4d24-a556-ceadeff25b3d"
+      ],
+      "names": [
+        "King Kong Fitness Ongata Rongai",
+        "Tim'S Health & Fitness Centre"
+      ],
+      "reason": "proximity-only",
+      "metres": 48,
+      "verdict": "different",
+      "why": "King Kong Fitness Ongata Rongai vs Tim's Health & Fitness Centre: different names and phones."
+    },
+    {
+      "ids": [
+        "gers:b816d846-3f4f-475b-b4c6-c9afc208fb52",
+        "gers:92dde2fd-c32b-4cf0-a2ab-a9b014354a34"
+      ],
+      "names": [
+        "Toptech Gym",
+        "Cool Gym Equipment"
+      ],
+      "reason": "proximity-only",
+      "metres": 48,
+      "removedBy": "denylist",
+      "verdict": "different",
+      "why": "Toptech Gym vs Cool Gym Equipment (deny-listed seller)."
+    },
+    {
+      "ids": [
+        "gers:c0ffaf47-64b8-4278-9517-c539a8b33a8c",
+        "gers:d0ef4aed-6d9a-40cd-97aa-2d6ce29a154d"
+      ],
+      "names": [
+        "Fitnasium Gym 87",
+        "Firm N Fit Gymnasium"
+      ],
+      "reason": "proximity-only",
+      "metres": 48,
+      "verdict": "different",
+      "why": "Fitnasium Gym 87 vs Firm N Fit Gymnasium (Kikuyu): different names, phones and pages."
+    },
+    {
+      "ids": [
+        "gers:0f6a6303-1f5e-49e1-a5ef-8e5bfc3b3f07",
+        "gers:c89bac18-7365-45bb-b120-27dfd9f9d206"
+      ],
+      "names": [
+        "rentedabs",
+        "The South Fitness Centre"
+      ],
+      "reason": "proximity-only",
+      "metres": 49,
+      "verdict": "unclear",
+      "why": "'rentedabs' (a social handle, South B) vs The South Fitness Centre 49 m away: maybe a trainer brand working out of the gym. No shared contact."
+    },
+    {
+      "ids": [
+        "gers:7693659d-d648-40c1-87f0-dcf67333b8f0",
+        "gers:ccdaed2c-91ea-4831-acda-fc9c89f00a4b"
+      ],
+      "names": [
+        "Lavila Fitness",
+        "Langata Pilates and Fitness Centre"
+      ],
+      "reason": "proximity-only",
+      "metres": 53,
+      "verdict": "different",
+      "why": "Lavila Fitness vs Langata Pilates and Fitness Centre: different names and phones."
+    },
+    {
+      "ids": [
+        "gers:14c13e88-4dde-44ae-85d3-bfbbdb58401d",
+        "gers:c0ffaf47-64b8-4278-9517-c539a8b33a8c"
+      ],
+      "names": [
+        "Active Gym & XFitness",
+        "Fitnasium Gym 87"
+      ],
+      "reason": "proximity-only",
+      "metres": 55,
+      "verdict": "different",
+      "why": "Active Gym & XFitness vs Fitnasium Gym 87: different names, phones and sites."
+    },
+    {
+      "ids": [
+        "gers:4e59d033-56cf-4b40-8f2d-7ad3481f8f20",
+        "gers:6546ea5b-c0ef-49b5-a491-37d0a1e26465"
+      ],
+      "names": [
+        "Fitlife sports and recreation limited",
+        "South gym & Aerobics centre"
+      ],
+      "reason": "proximity-only",
+      "metres": 55,
+      "verdict": "different",
+      "why": "Fitlife sports and recreation limited (teambravofitness.com) vs South gym & Aerobics centre: different names; no shared contact."
+    },
+    {
+      "ids": [
+        "gers:7961ee92-e2d7-4cdf-b398-f40fd4934a2e",
+        "gers:7aba45a3-e14f-4f98-a2d8-61ba960c74bb"
+      ],
+      "names": [
+        "Warriors Playground Fitness Centre",
+        "Morningstar fitness center n spa"
+      ],
+      "reason": "proximity-only",
+      "metres": 56,
+      "verdict": "different",
+      "why": "Warriors Playground Fitness Centre (Twiga Plaza) vs Morningstar fitness center n spa: different businesses."
+    },
+    {
+      "ids": [
+        "gers:e50c1e09-8136-4c60-a7da-b2066ffb0d71",
+        "osm:node/5354298522"
+      ],
+      "names": [
+        "Racing Sport Gym",
+        "Racing Sport Gym"
+      ],
+      "reason": "name-near",
+      "metres": 164,
+      "verdict": "same_venue",
+      "why": "Identical name 'Racing Sport Gym', 164 m apart on Woodvale Grove/Woodvale Rd, Westlands. The OSM node is this gym (not Ultra Smart Controls). Just outside the 150 m window."
+    },
+    {
+      "ids": [
+        "gers:abf05f5b-3308-4832-b113-ce02058fe829",
+        "osm:node/6210199378"
+      ],
+      "names": [
+        "Switch Fitness Centre",
+        "Switch Fitness Center"
+      ],
+      "reason": "name-near",
+      "metres": 270,
+      "verdict": "same_venue",
+      "why": "Switch Fitness Centre / Center, 270 m apart in Mlolongo. Same name, no conflicting contacts (the Overture copy has none)."
+    },
+    {
+      "ids": [
+        "gers:6b2dc50e-d3a3-4e6f-99a5-9b854130fb42",
+        "osm:node/12395863211"
+      ],
+      "names": [
+        "Feel Fitness Center",
+        "Feel Fitness Gym"
+      ],
+      "reason": "name-near",
+      "metres": 342,
+      "verdict": "same_venue",
+      "why": "Feel Fitness Center (Thika Palm Arcade, Garden Estate Rd) vs OSM Feel Fitness Gym, 342 m apart in Garden Estate."
+    },
+    {
+      "ids": [
+        "gers:05ebb766-041c-4622-b4b0-4791d13ec60d",
+        "osm:node/6038770497"
+      ],
+      "names": [
+        "nyali gym & fitness centre",
+        "Nyali Executive fitness Centre"
+      ],
+      "reason": "name-near",
+      "metres": 410,
+      "verdict": "unclear",
+      "why": "'nyali gym & fitness centre' vs 'Nyali Executive fitness Centre', 410 m apart in Nyali. Only the place word 'nyali' agrees; may be two gyms."
+    },
+    {
+      "ids": [
+        "gers:af9ddd4b-db2d-4ad3-95a4-0d0c9bfb119f",
+        "osm:node/5440688256"
+      ],
+      "names": [
+        "Power Vibe Studio",
+        "Power Vibe Studio Westlands/Power Plate Studio"
+      ],
+      "reason": "name-near",
+      "metres": 437,
+      "verdict": "same_venue",
+      "why": "Power Vibe Studio (Saffron Spa, Muthangari Drive) vs OSM 'Power Vibe Studio Westlands/Power Plate Studio' (Muthangari Drive), 437 m apart. Same name and street."
+    },
+    {
+      "ids": [
+        "gers:3c2c32b3-5c35-477a-927f-e87f644fca28",
+        "gers:40e105b1-92fa-4802-b81a-5df419d92a6c"
+      ],
+      "names": [
+        "Muscle Health and Fitness",
+        "xtreme muscle fitness gym"
+      ],
+      "reason": "name-near",
+      "metres": 167,
+      "verdict": "different",
+      "why": "Muscle Health and Fitness (Travel House, General Kago St) vs xtreme muscle fitness gym (Teleposta Towers, Kenyatta Ave): different businesses and phones; only 'muscle' agrees."
+    },
+    {
+      "ids": [
+        "gers:62a47f48-7c41-423f-9374-779679217dd2",
+        "gers:cc77d114-cc80-4ca3-a4ca-7f9e16d9f718"
+      ],
+      "names": [
+        "Fitness & Gym Kenya",
+        "Platinum Fitness Kenya"
+      ],
+      "reason": "name-near",
+      "metres": 176,
+      "verdict": "different",
+      "why": "Fitness & Gym Kenya vs Platinum Fitness Kenya: different phones and sites; only 'kenya' agrees (a place word that should not count)."
+    },
+    {
+      "ids": [
+        "gers:3e1223d6-d5e4-40a3-82f1-e52217710212",
+        "gers:663a2ac6-ab17-4eac-b6a1-688c5d505ffe"
+      ],
+      "names": [
+        "Pent Hse Gymnasium",
+        "Figure 8 & six pack fitness center"
+      ],
+      "reason": "shared-contact-distant",
+      "metres": 230,
+      "verdict": "unclear",
+      "why": "Pent Hse Gymnasium (View Park Towers) and 'Figure 8 & six pack fitness center' (University Way) share +254722784664, 230 m apart. One owner/trainer, or a class brand run from the Penthouse gym. Names differ: do not auto-merge."
+    },
+    {
+      "ids": [
+        "gers:0fee087e-97ee-42a8-b2b7-f36086dc5fa8",
+        "gers:360300f4-8e3d-4aec-b8ab-22974f1c23db"
+      ],
+      "names": [
+        "mda studios tworivers",
+        "MDA Studios"
+      ],
+      "reason": "shared-contact-distant",
+      "metres": 9548,
+      "verdict": "different",
+      "why": "MDA Studios: two branches (Two Rivers Mall and Valley Arcade, 9.5 km) sharing the chain phone and site. Correctly separate."
+    },
+    {
+      "ids": [
+        "gers:7ab5aace-9e87-469d-865a-89255cd33c97",
+        "gers:adf2128b-909d-4af8-8b7f-3ed789317c93"
+      ],
+      "names": [
+        "Dayah Sports Centre",
+        "Dayah Sports and Fitness Centre"
+      ],
+      "reason": "shared-contact-distant",
+      "metres": 11181,
+      "verdict": "unclear",
+      "why": "Dayah Sports Centre / Dayah Sports and Fitness Centre share +254722850244, 11 km apart. The record whose address is Eastleigh 18th Street is pinned near Kasarani, the other sits in Bahati/Eastleigh. Likely one venue with a misplaced pin, possibly two branches."
+    },
+    {
+      "ids": [
+        "gers:1df2ebba-995b-4da0-b005-ab72122faae3",
+        "gers:ed893be4-d770-4a00-9e11-06f563455705"
+      ],
+      "names": [
+        "Focus Fitness Gym And Aerobics",
+        "Powerhouse GYM Garden Estate"
+      ],
+      "reason": "shared-contact-distant",
+      "metres": 11305,
+      "verdict": "different",
+      "why": "Focus Fitness Gym And Aerobics vs Powerhouse GYM Garden Estate share a phone 11 km apart: an owner's number across two differently named gyms. Keep apart."
+    },
+    {
+      "ids": [
+        "gers:123e2d98-615a-4846-9e38-d6479da075c6",
+        "gers:797034cd-4849-430b-be63-fcce3cc903e2"
+      ],
+      "names": [
+        "Smart Gyms",
+        "Smart Gyms"
+      ],
+      "reason": "shared-contact-distant",
+      "metres": 21497,
+      "verdict": "different",
+      "why": "Smart Gyms Diamond Plaza vs Smart Gyms The Hub Karen share the chain line +254712404040, 21 km apart: two branches."
+    },
+    {
+      "ids": [
+        "gers:0b9dc1e8-b789-426e-9116-8e478eb58321",
+        "gers:42cac902-04ba-4c68-b645-0a69b20835e3"
+      ],
+      "names": [
+        "Banana House And Wellness Centre",
+        "Banana House & Wellness Centre"
+      ],
+      "reason": "shared-contact-distant",
+      "metres": 25923,
+      "verdict": "same_venue",
+      "why": "Banana House (& / And) Wellness Centre: same phone, same website bananahouse-lamu.com, same name. One copy ('PO Box 119') is pinned at Mpeketoni, 26 km from Lamu Island. One venue (Shela/Lamu)."
+    },
+    {
+      "ids": [
+        "gers:6b2dc50e-d3a3-4e6f-99a5-9b854130fb42",
+        "gers:6de9fa76-fd4a-4045-abea-c38bde8fdab6"
+      ],
+      "names": [
+        "Feel Fitness Center",
+        "Feel Fitness Center"
+      ],
+      "reason": "shared-contact-distant",
+      "metres": 26980,
+      "verdict": "unclear",
+      "why": "Feel Fitness Center twice (same phone +254780297429): Garden Estate vs a pin near Kitengela 27 km away (address just repeats the name, own site feelfitnesscenter.org). Second branch or misplaced duplicate."
+    },
+    {
+      "ids": [
+        "gers:4c9fc3bd-d8fd-49f3-9e83-cae6aee2775f",
+        "gers:d594cdbd-a098-48bd-9cbd-6fa24eae3698"
+      ],
+      "names": [
+        "RDF Gym and Spa",
+        "Rdf Gym and Spa Rongai"
+      ],
+      "reason": "shared-contact-distant",
+      "metres": 88717,
+      "verdict": "different",
+      "why": "RDF Gym and Spa (Nairobi West) vs Rdf Gym and Spa Rongai share a phone: two branches. The 'Rongai' copy is pinned near Magadi, about 60 km from Rongai."
+    },
+    {
+      "ids": [
+        "gers:59f51063-7eb1-45e9-aed5-236e6ce126cf",
+        "gers:81bdb231-1c0e-4b25-868e-d97e132ec8a9"
+      ],
+      "names": [
+        "Zoezi Health Club At Boma Inn Eldoret",
+        "Zoezi Gym and Spa"
+      ],
+      "reason": "shared-contact-distant",
+      "metres": 266593,
+      "verdict": "different",
+      "why": "Zoezi Health Club at Boma Inn Eldoret vs Zoezi Gym and Spa (The Boma Nairobi), 267 km apart: same hotel group site, two venues."
+    }
+  ],
+  "mergedVenueVerdicts": {
+    "published": [
+      {
+        "venue": "gers:041a0281-6410-4182-8b7d-6ba5f8e03b6f",
+        "ids": [
+          "gers:041a0281-6410-4182-8b7d-6ba5f8e03b6f",
+          "gers:d9b73558-03a6-4735-968c-d59cc3843f04"
+        ],
+        "verdict": "false",
+        "why": "Bikram Yoga Nairobi + Delight Hot Yoga: see falseMerges."
+      },
+      {
+        "venue": "gers:5bd1df1a-6c89-4c28-a2a9-56e512a06c7b",
+        "ids": [
+          "gers:5bd1df1a-6c89-4c28-a2a9-56e512a06c7b",
+          "gers:09b945f7-b999-4ce7-9569-315f6de203df"
+        ],
+        "verdict": "correct",
+        "why": "Jasiri Fitness Hub twice, same phone, 525 m. Data note: the published address is a maps.app.goo.gl URL taken from the primary record."
+      },
+      {
+        "venue": "gers:668e1c9a-103e-45a5-83da-1090b6914c53",
+        "ids": [
+          "gers:668e1c9a-103e-45a5-83da-1090b6914c53",
+          "gers:c9ab04b6-2184-4788-8e3b-918aa70fe306"
+        ],
+        "verdict": "correct",
+        "why": "PowerZone GYM & Fitness + Boost Wellness: same phone, same site powerzonegym254.com, same Facebook page id, same address, 0 m."
+      },
+      {
+        "venue": "gers:a5ba2cc4-3ef5-4428-8f39-8c986e535603",
+        "ids": [
+          "gers:a5ba2cc4-3ef5-4428-8f39-8c986e535603",
+          "gers:e5d04a92-55da-4170-a8a8-7080486679db"
+        ],
+        "verdict": "correct",
+        "why": "NextLevel Fitness Gateway Mall + Next Level Fitness Gym and Spa: same phone, 39 m (Jaccard 0 only because 'NextLevel' is one token). The published name includes the address; the other member's name is cleaner."
+      },
+      {
+        "venue": "gers:cd817afd-e005-42d9-8efb-ef77bb53aefb",
+        "ids": [
+          "gers:cd817afd-e005-42d9-8efb-ef77bb53aefb",
+          "gers:1c1344a4-3267-4bd6-a2af-98354febe6c4"
+        ],
+        "verdict": "correct",
+        "why": "Olympia Gym + Olympia Fitness Center: same phone, same name, 634 m."
+      },
+      {
+        "venue": "gers:dddc4835-853c-4e6a-a618-de6bd4a02001",
+        "ids": [
+          "gers:dddc4835-853c-4e6a-a618-de6bd4a02001",
+          "gers:05ac0d2d-109c-440d-a554-b017a652bfb7"
+        ],
+        "verdict": "correct",
+        "why": "Bulldog fitness center + Bulldog Fitness Factory: same phone, 903 m. The location comes from the higher-confidence member, which sits on the Mombasa centroid; the other member may be the better pin."
+      },
+      {
+        "venue": "osm:node/10048755617",
+        "ids": [
+          "osm:node/10048755617",
+          "gers:780f64df-5dbe-4807-b01e-d7d2cfadbe45"
+        ],
+        "verdict": "correct",
+        "why": "DOJO + Dojo Wellness Club (must-merge fixture): 26 m, same phone and site."
+      },
+      {
+        "venue": "osm:node/12112874821",
+        "ids": [
+          "osm:node/12112874821",
+          "gers:ea7d3fee-1fbe-45f8-a9bb-d01285805961"
+        ],
+        "verdict": "correct",
+        "why": "Physiq & Tone (must-merge fixture): 17 m, same phone."
+      },
+      {
+        "venue": "osm:node/14148174874",
+        "ids": [
+          "osm:node/14148174874",
+          "gers:1fa8ee76-953e-4183-bd6a-62586cd00cf6"
+        ],
+        "verdict": "correct",
+        "why": "Level 24 (must-merge fixture): 44 m."
+      },
+      {
+        "venue": "osm:node/5412286171",
+        "ids": [
+          "osm:node/5412286171",
+          "gers:657cef30-4a91-46d0-9ce8-b2c0dd0455d4"
+        ],
+        "verdict": "correct",
+        "why": "The Colosseum Fitness Centre (must-merge fixture): 12 m, Adams Arcade."
+      },
+      {
+        "venue": "osm:node/5429106186",
+        "ids": [
+          "osm:node/5429106186",
+          "gers:d89d454d-5b8b-49e5-bcb7-1bb6775d5e07"
+        ],
+        "verdict": "correct",
+        "why": "Zeal Fitness + Zeal Fitness Center: 11 m, Jaccard 1 after stop-words. Not in the brief's 7, but correct."
+      },
+      {
+        "venue": "osm:node/6063096715",
+        "ids": [
+          "osm:node/6063096715",
+          "gers:71b40714-bc11-4541-a0a6-53f39d01fc27"
+        ],
+        "verdict": "correct",
+        "why": "Rox Park Gym Diani (must-merge fixture): 46 m, identical name."
+      },
+      {
+        "venue": "osm:node/6501067908",
+        "ids": [
+          "osm:node/6501067908",
+          "gers:d12323ef-7d0c-4b78-b64c-a9821536da72"
+        ],
+        "verdict": "correct",
+        "why": "The Fitness Cocoon (must-merge fixture): 6 m."
+      },
+      {
+        "venue": "osm:node/6956784785",
+        "ids": [
+          "osm:node/6956784785",
+          "gers:2e038d8a-3b5c-413d-a2f5-49c7e9748d13"
+        ],
+        "verdict": "correct",
+        "why": "Mom3mtum (OSM) + MOM3NTUM Fitness: same site mom3ntum.com, 4 m. The published name keeps the OSM misspelling 'Mom3mtum'; the brand is MOM3NTUM."
+      },
+      {
+        "venue": "osm:way/330903781",
+        "ids": [
+          "osm:way/330903781",
+          "gers:9b4349af-d292-4836-80f8-38ab76dae61a"
+        ],
+        "verdict": "correct",
+        "why": "AICAD gym + AICAD Gymnasium (must-merge fixture): 10 m."
+      }
+    ],
+    "predictedWithResearch": [
+      {
+        "venue": "gers:041a0281-6410-4182-8b7d-6ba5f8e03b6f",
+        "name": "Bikram Yoga Nairobi",
+        "ids": [
+          "gers:041a0281-6410-4182-8b7d-6ba5f8e03b6f",
+          "gers:d9b73558-03a6-4735-968c-d59cc3843f04",
+          "web:nbo-westlands-021",
+          "web:nbo-westlands-022"
+        ],
+        "reasons": [
+          "name+distance",
+          "seed-id",
+          "seed-id"
+        ],
+        "verdict": "false (inherits the Bikram/Delight merge; both web records join)"
+      },
+      {
+        "venue": "gers:11f4ceb1-fbfa-402b-87f3-70e415831787",
+        "name": "Heart to Heart Yoga Studio",
+        "ids": [
+          "gers:11f4ceb1-fbfa-402b-87f3-70e415831787",
+          "web:nbo-westlands-023"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:123e2d98-615a-4846-9e38-d6479da075c6",
+        "name": "Smart Gyms",
+        "ids": [
+          "gers:123e2d98-615a-4846-9e38-d6479da075c6",
+          "web:chains-002"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:18ccfce3-530f-48f3-948f-6479d18c822e",
+        "name": "SmashFit Gym Sarit",
+        "ids": [
+          "gers:18ccfce3-530f-48f3-948f-6479d18c822e",
+          "web:nbo-westlands-025"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:1d936696-b4fc-4e85-b7ad-92d7ebaba855",
+        "name": "Karen Country Club Fitness Centre",
+        "ids": [
+          "gers:1d936696-b4fc-4e85-b7ad-92d7ebaba855",
+          "web:institutions-001"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:1fa7249c-49e8-4759-9919-1f109c4f0dc9",
+        "name": "Progressive Park Gym",
+        "ids": [
+          "gers:1fa7249c-49e8-4759-9919-1f109c4f0dc9",
+          "web:nbo-westlands-024"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "osm:node/14148174874",
+        "name": "Level 24",
+        "ids": [
+          "osm:node/14148174874",
+          "gers:1fa8ee76-953e-4183-bd6a-62586cd00cf6",
+          "web:nbo-westlands-018"
+        ],
+        "reasons": [
+          "name+distance",
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:2cb90ac9-a903-44ab-b3c3-36ebb452cffb",
+        "name": "Theburnclubke",
+        "ids": [
+          "gers:2cb90ac9-a903-44ab-b3c3-36ebb452cffb",
+          "web:nbo-westlands-027"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "osm:node/6956784785",
+        "name": "Mom3mtum",
+        "ids": [
+          "osm:node/6956784785",
+          "gers:2e038d8a-3b5c-413d-a2f5-49c7e9748d13",
+          "web:nbo-westlands-019"
+        ],
+        "reasons": [
+          "website",
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:3169f87a-f2b5-490d-95bd-b20ea876d87f",
+        "name": "Ongata Rongai Boxing Club",
+        "ids": [
+          "gers:3169f87a-f2b5-490d-95bd-b20ea876d87f",
+          "web:nbo-southwest-001"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:42cac902-04ba-4c68-b645-0a69b20835e3",
+        "name": "Banana House & Wellness Centre",
+        "ids": [
+          "gers:42cac902-04ba-4c68-b645-0a69b20835e3",
+          "web:coast-rest-002"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:4c268103-3ea7-4fc2-a135-bb2e0b46e48a",
+        "name": "Smart Gyms Junction",
+        "ids": [
+          "gers:4c268103-3ea7-4fc2-a135-bb2e0b46e48a",
+          "web:chains-001",
+          "web:chains-003"
+        ],
+        "reasons": [
+          "seed-id",
+          "phone"
+        ],
+        "verdict": "partly false (chains-001 correct by seed-id; chains-003 Hub Karen wrong, via chain phone)"
+      },
+      {
+        "venue": "gers:59f51063-7eb1-45e9-aed5-236e6ce126cf",
+        "name": "Zoezi Health Club At Boma Inn Eldoret",
+        "ids": [
+          "gers:59f51063-7eb1-45e9-aed5-236e6ce126cf",
+          "web:rift-west-002"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "osm:node/10048755617",
+        "name": "DOJO",
+        "ids": [
+          "osm:node/10048755617",
+          "gers:780f64df-5dbe-4807-b01e-d7d2cfadbe45",
+          "web:nbo-southwest-002"
+        ],
+        "reasons": [
+          "name+distance",
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:7d3b0bb2-3578-49c4-bab1-9623bfa47534",
+        "name": "Nairobi Kenpo Karate, Gym & Fitness Center",
+        "ids": [
+          "gers:7d3b0bb2-3578-49c4-bab1-9623bfa47534",
+          "web:nbo-cbd-south-006"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:81bdb231-1c0e-4b25-868e-d97e132ec8a9",
+        "name": "Zoezi Gym and Spa",
+        "ids": [
+          "gers:81bdb231-1c0e-4b25-868e-d97e132ec8a9",
+          "web:nbo-cbd-south-001"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:82470e38-3672-43d7-8ab2-600f70278ea4",
+        "name": "NextGen Gym",
+        "ids": [
+          "gers:82470e38-3672-43d7-8ab2-600f70278ea4",
+          "web:nbo-cbd-south-002"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:85a9090d-acc0-42fd-a50b-1c8a777ca41c",
+        "name": "Health Hub Oasis",
+        "ids": [
+          "gers:85a9090d-acc0-42fd-a50b-1c8a777ca41c",
+          "web:nyanza-001"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:88b8edd9-dbd4-47c4-8b03-9cbbfa554aff",
+        "name": "Jacaranda Gym and Spa",
+        "ids": [
+          "gers:88b8edd9-dbd4-47c4-8b03-9cbbfa554aff",
+          "web:institutions-005",
+          "web:institutions-008"
+        ],
+        "reasons": [
+          "name+area",
+          "seed-id"
+        ],
+        "verdict": "partly false (institutions-008 correct by seed-id; Eka Hotel wrong, via name+area)"
+      },
+      {
+        "venue": "gers:9bc9fd66-24a1-4bc9-8315-0dc31a70660e",
+        "name": "Impala Fitness Centre",
+        "ids": [
+          "gers:9bc9fd66-24a1-4bc9-8315-0dc31a70660e",
+          "web:nbo-kilimani-006"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:bf90d6b3-96a6-460f-8959-9d3df01f299f",
+        "name": "F45 Training Nairobi Lavington",
+        "ids": [
+          "gers:bf90d6b3-96a6-460f-8959-9d3df01f299f",
+          "web:nbo-westlands-020"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:ca931830-20ec-4aae-b9e3-ac70461192eb",
+        "name": "Reforma Pilates Studio",
+        "ids": [
+          "gers:ca931830-20ec-4aae-b9e3-ac70461192eb",
+          "web:nbo-kilimani-010"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:cba9321b-ab95-4160-8a96-36624fddb2b7",
+        "name": "Zettu Unified Martial Arts",
+        "ids": [
+          "gers:cba9321b-ab95-4160-8a96-36624fddb2b7",
+          "web:nbo-kilimani-009"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:cc77d114-cc80-4ca3-a4ca-7f9e16d9f718",
+        "name": "Platinum Fitness Kenya",
+        "ids": [
+          "gers:cc77d114-cc80-4ca3-a4ca-7f9e16d9f718",
+          "web:nbo-cbd-south-004"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:cccdc76f-60fb-4303-b511-9415ea88ca34",
+        "name": "Nairobi Jiu-Jitsu Academy",
+        "ids": [
+          "gers:cccdc76f-60fb-4303-b511-9415ea88ca34",
+          "web:nbo-westlands-028"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:cd6d51c5-65dc-4ab4-a7a5-871f60703453",
+        "name": "Inshapefitnesskenya",
+        "ids": [
+          "gers:cd6d51c5-65dc-4ab4-a7a5-871f60703453",
+          "web:coast-mombasa-001"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:e07e15e6-a375-4985-b18f-e901593bd555",
+        "name": "Weston GYM & SPA",
+        "ids": [
+          "gers:e07e15e6-a375-4985-b18f-e901593bd555",
+          "web:institutions-002",
+          "web:nbo-cbd-south-003"
+        ],
+        "reasons": [
+          "seed-id",
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:e182b104-41c4-4845-927e-8cdcaa6188a1",
+        "name": "safari fitness club",
+        "ids": [
+          "gers:e182b104-41c4-4845-927e-8cdcaa6188a1",
+          "web:institutions-003"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "gers:e667ec25-b793-4843-8276-339477080b68",
+        "name": "Legacy Fitness Club",
+        "ids": [
+          "gers:e667ec25-b793-4843-8276-339477080b68",
+          "web:chains-012",
+          "web:chains-013",
+          "web:chains-014"
+        ],
+        "reasons": [
+          "seed-id",
+          "website",
+          "website"
+        ],
+        "verdict": "partly false (chains-012 correct; Bamburi and Bombolulu branches wrong, via website host)"
+      },
+      {
+        "venue": "osm:way/627147548",
+        "name": "Kenyatta University Gymnasium",
+        "ids": [
+          "osm:way/627147548",
+          "web:institutions-012"
+        ],
+        "reasons": [
+          "seed-id"
+        ],
+        "verdict": "correct"
+      },
+      {
+        "venue": "web:chains-005",
+        "name": "AFROFIT Gym - Delta Chambers (Westlands)",
+        "ids": [
+          "web:chains-005",
+          "web:chains-006"
+        ],
+        "reasons": [
+          "website"
+        ],
+        "verdict": "false (two branches, website host)"
+      },
+      {
+        "venue": "web:chains-018",
+        "name": "Serena Beach Resort & Spa - Maisha Health Club (gym)",
+        "ids": [
+          "web:chains-018",
+          "web:institutions-014"
+        ],
+        "reasons": [
+          "phone"
+        ],
+        "verdict": "correct"
+      }
+    ]
+  },
+  "fixtureResults": {
+    "mustMerge": [
+      {
+        "label": "AICAD gym",
+        "ids": [
+          "osm:way/330903781",
+          "gers:9b4349af-d292-4836-80f8-38ab76dae61a"
+        ],
+        "metres": 10,
+        "venue": "osm:way/330903781",
+        "pass": true
+      },
+      {
+        "label": "DOJO / Dojo Wellness Club",
+        "ids": [
+          "osm:node/10048755617",
+          "gers:780f64df-5dbe-4807-b01e-d7d2cfadbe45"
+        ],
+        "metres": 26,
+        "venue": "osm:node/10048755617",
+        "pass": true
+      },
+      {
+        "label": "Level 24 / Level 24 Gym and Fitness Centre",
+        "ids": [
+          "osm:node/14148174874",
+          "gers:1fa8ee76-953e-4183-bd6a-62586cd00cf6"
+        ],
+        "metres": 44,
+        "venue": "osm:node/14148174874",
+        "pass": true
+      },
+      {
+        "label": "Physiq & Tone Gym",
+        "ids": [
+          "osm:node/12112874821",
+          "gers:ea7d3fee-1fbe-45f8-a9bb-d01285805961"
+        ],
+        "metres": 17,
+        "venue": "osm:node/12112874821",
+        "pass": true
+      },
+      {
+        "label": "Rox Park Gym Diani True Fitness",
+        "ids": [
+          "osm:node/6063096715",
+          "gers:71b40714-bc11-4541-a0a6-53f39d01fc27"
+        ],
+        "metres": 46,
+        "venue": "osm:node/6063096715",
+        "pass": true
+      },
+      {
+        "label": "The Colosseum Fitness Centre",
+        "ids": [
+          "osm:node/5412286171",
+          "gers:657cef30-4a91-46d0-9ce8-b2c0dd0455d4"
+        ],
+        "metres": 12,
+        "venue": "osm:node/5412286171",
+        "pass": true
+      },
+      {
+        "label": "The Fitness Cocoon",
+        "ids": [
+          "osm:node/6501067908",
+          "gers:d12323ef-7d0c-4b78-b64c-a9821536da72"
+        ],
+        "metres": 6,
+        "venue": "osm:node/6501067908",
+        "pass": true
+      }
+    ],
+    "proximityOnly": [
+      {
+        "label": "Fahari Gym and Sports / Samnick Enterprises",
+        "ids": [
+          "osm:node/12157124485",
+          "gers:accd1772-fd55-4cf8-83be-4be7acd86163"
+        ],
+        "merged": false,
+        "osmVenue": "osm:node/12157124485",
+        "otherVenue": "gers:accd1772-fd55-4cf8-83be-4be7acd86163",
+        "inReviewCandidates": true,
+        "reviewReason": "proximity-only",
+        "metres": 21,
+        "pass": true
+      },
+      {
+        "label": "Racing Sport Gym / Ultra Smart Controls",
+        "ids": [
+          "osm:node/5354298522",
+          "gers:624fb9a1-22d4-44fd-a6fc-e9c5e9822083"
+        ],
+        "merged": false,
+        "osmVenue": "osm:node/5354298522",
+        "otherVenue": "gers:624fb9a1-22d4-44fd-a6fc-e9c5e9822083",
+        "inReviewCandidates": true,
+        "reviewReason": "proximity-only",
+        "metres": 51,
+        "pass": true
+      },
+      {
+        "label": "Veteran Fitness Center / Cool Gym Equipment",
+        "ids": [
+          "osm:node/12163759213",
+          "gers:92dde2fd-c32b-4cf0-a2ab-a9b014354a34"
+        ],
+        "merged": false,
+        "osmVenue": "osm:node/12163759213",
+        "otherVenue": null,
+        "inReviewCandidates": true,
+        "reviewReason": "proximity-only",
+        "metres": 39,
+        "otherRemovedBy": "denylist",
+        "pass": true
+      }
+    ],
+    "diffReportListsPairs": {
+      "pass": false,
+      "detail": "scripts/data/diff-report.mjs prints only the number of review pairs per reason ('Waiting for a human: 59 review pairs (proximity-only 43, name-near 7, shared-contact-distant 9)'). The three fixture pairs are not named. The brief asks for them to be listed in the diff report."
+    },
+    "idsAndSlugs": {
+      "venues": 506,
+      "duplicateIds": 0,
+      "duplicateSlugs": 0,
+      "slugsMatchingSlugifyNameId": 506,
+      "slugChangesVsPreviousBuild": 0,
+      "previousBuildIdsCompared": 505,
+      "aliasIdsForMergedRecords": 15,
+      "mergedClusters": 15,
+      "everyAbsorbedRecordInAliases": true,
+      "aliasCollisions": 0,
+      "oldSlugAliases": 477,
+      "oldSlugAliasesNote": "477 venues each carry one old slug from an intermediate 544-venue build (scratchpad rt/newdata) that used a different slug hash. They resolve correctly, but if that build was never deployed they only add _redirects noise.",
+      "original58BuildSlugsUnreachable": [
+        {
+          "slug": "physiq-tone-gym-62f6",
+          "id": "osm:node/12112874821",
+          "problem": "The venue is live with the same id, but its original slug is in neither slug nor aliases (lost in an intermediate build; carrySlugs only looks one build back). A shared link breaks. Restore it as an alias."
+        },
+        {
+          "slug": "salmer-fitness-centre-salon-and-barber-shop-2cea",
+          "id": "osm:node/5356824865",
+          "problem": "The record was deny-listed, but it is the same premises as the live gers:a559fd00 Salmer Fitness Centre. The slug should redirect there."
+        },
+        {
+          "slug": "rekebisha-primary-gym-2fbe",
+          "id": "osm:node/3868919121",
+          "problem": "Intended removal (a school, exclude.json)."
+        },
+        {
+          "slug": "rollin-total-fitness-health-and-fitness-consulta-8d8e",
+          "id": "osm:node/13974623144",
+          "problem": "Intended removal (supplement store, deny-list)."
+        }
+      ],
+      "previousBuildIdsGone": [
+        "gers:8976495d-5507-49cb-b3f4-a297503943c6 The Gym Shop (exclude.json)",
+        "gers:d66a7d6a-b96f-4668-b848-fdd95b639d66 Karen Blixen Camp (exclude.json)"
+      ]
+    },
+    "researchMerge": {
+      "venuesResearchedJsonPresent": false,
+      "note": "data/research/venues-researched.json did not exist at review time, so no web records are in the published catalogue. Predicted web merges come from an in-memory dry run that treats the 125 candidates in data/research/candidates/*.json as that file (65 importable, 32 clusters with a web record, 1 left ambiguous: Nairobi Club). Nothing was written."
+    },
+    "centroidPins": "4 groups of published venues share identical coordinates: Nairobi -1.28333, 36.8167 (3-4 venues); Kakamega 0.2833, 34.75; Mombasa -4.05, 39.6667; -1.28429, 36.8276. These are city-centroid geocodes. They make up 10 of the 43 proximity-only review pairs as pure noise, and they put pins in the wrong place."
+  },
+  "ruleWeaknesses": [
+    "STOP words lack place names and venue-type words: 'nairobi', 'kenya', 'hotel', 'yoga', 'gyms', 'gymnasium', 'sports', 'spa', 'aerobics' and 'wellness' all count as matching tokens. Results: the Bikram/Delight false merge and the predicted Eka/Jacaranda merge, plus 2 noisy name-near pairs (Fitness & Gym Kenya / Platinum Fitness Kenya).",
+    "Compound brand tokens are not split ('Smartgyms', 'NextLevel'), so obvious twins score Jaccard 0.",
+    "The name+distance rule has no veto for conflicting contacts: when both sides have their own phones and different Facebook pages, it still merges.",
+    "Web records placed on a town centroid get radius 8 km + 1 km in approxMatch, so any shared phone, website host or 0.5-Jaccard name merges them city-wide. sameWebsiteHost ignores the URL path, and chain branch pages (/branches/junction, /bamburi-branch/) share a host.",
+    "Identical names just outside 150 m (164 m, 270 m, 342 m, 437 m) go to review rather than merging. That is by design; the reviewer should settle them in data/overrides/merge.json."
+  ]
+}

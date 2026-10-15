@@ -171,6 +171,26 @@ export function reverseLookup(point) {
   return { area: area?.name ?? null, town: town?.name ?? null };
 }
 
+/**
+ * Town for a venue once its county is settled. Nairobi City County is one city, so every
+ * venue in it is in town "Nairobi": on distance alone, GeoNames "towns" such as Imara Daima
+ * Estate, or the Kiambu and Kajiado towns ringing the city (Ruiru, Ngong, Ongata Rongai),
+ * would label Kasarani, Karen or Utawala gyms. Elsewhere: the nearest town within 30 km,
+ * skipping a town named after a different county (a county seat lies in its own county).
+ */
+export function townFor(point, county) {
+  if (county === "Nairobi") return "Nairobi";
+  let best = null;
+  for (const place of PLACES.places) {
+    if (place.kind !== "town") continue;
+    const seat = countyFromText(place.name);
+    if (seat && seat.name !== county) continue;
+    const km = haversineKm(point, place.location);
+    if (km <= TOWN_MAX_KM && (!best || km < best.km)) best = { name: place.name, km };
+  }
+  return best?.name ?? null;
+}
+
 /** Centre of a named place (suburb preferred, else town), for approximate web-research locations. */
 export function placeCentre(name, kind) {
   const key = `${name ?? ""}`.toLowerCase().trim();

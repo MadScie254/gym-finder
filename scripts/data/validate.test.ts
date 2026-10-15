@@ -85,6 +85,8 @@ describe("validation gates", () => {
     ["manifest counts that disagree with the data", () => build(good(), (c) => { c.manifest.counts.total = 999; }), /manifest total/],
     ["a county missing from the manifest", () => build(good(), (c) => { delete c.manifest.counts.byCounty.Turkana; }), /Turkana missing/],
     ["more than 15% below the previous build", () => build(good(), (c) => { c.manifest.previous = { defaultVisible: 430, total: 450 }; }), /15% below the previous/],
+    ["a total more than 15% below the previous build", () => build(good(), (c) => { c.manifest.previous = { defaultVisible: 400, total: 900 }; }), /total 360 is more than 15% below the previous build \(900\)/],
+    ["a field the Venue type does not have (e.g. a rating)", () => build(withEdit(0, { rating: 4.5 })), /rating|Unrecognized/i],
     ["more than 15% below PREVIOUS_TOTAL", () => build(good(), (c) => { c.env = { PREVIOUS_TOTAL: "500" }; }), /PREVIOUS_TOTAL/],
     ["missing licences in the manifest", () => build(good(), (c) => { c.manifest.licenses = []; }), /no licenses/],
     ["a licence the data needs missing from the manifest", () => build(good(), (c) => { c.manifest.licenses = ["ODbL-1.0"]; }), /CDLA/],

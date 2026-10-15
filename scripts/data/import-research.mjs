@@ -61,7 +61,7 @@ export const ResearchedVenue = z.looseObject({
 export function researchStatus(status) {
   const text = `${status ?? ""}`.toLowerCase().replace(/[\s_-]+/g, " ").trim();
   if (/^(?:permanently )?closed(?: down)?$|^permanently closed$|^defunct$/.test(text)) return "closed";
-  if (/^(?:open|operating|active|trading)\b/.test(text) && !/temporar|unclear|uncertain|not /.test(text)) return "open";
+  if (/^(?:open|operating|active|trading)\b/.test(text) && !/temporar|unclear|uncertain|unverified|unconfirmed|unknown|probabl|possibl|maybe|likely|\?|not /.test(text)) return "open";
   return "uncertain";
 }
 

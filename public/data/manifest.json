@@ -1,23 +1,23 @@
 {
-  "builtAt": "2026-10-13T00:00:00.000Z",
+  "builtAt": "2026-10-15T00:00:00.000Z",
   "overtureRelease": "2026-09-23.1",
   "osmSnapshotAt": "2026-09-17T19:50:44.603Z",
   "osmStale": true,
   "osmStaleReason": "Overpass unavailable: overpass-api.de: HTTP 503 (Error); lz4.overpass-api.de: HTTP 503 (Error); overpass.private.coffee: unreachable (The operation was aborted due to timeout (23)); overpass.kumi.systems: unreachable (The operation was aborted due to timeout (23))",
   "researchAt": null,
   "counts": {
-    "total": 507,
-    "defaultVisible": 439,
-    "withContact": 360,
-    "withPhone": 348,
+    "total": 506,
+    "defaultVisible": 438,
+    "withContact": 359,
+    "withPhone": 347,
     "byTier": {
       "verified": 0,
-      "corroborated": 131,
+      "corroborated": 130,
       "listed": 308,
       "unconfirmed": 68
     },
     "byCounty": {
-      "Nairobi": 306,
+      "Nairobi": 305,
       "Mombasa": 38,
       "Kwale": 4,
       "Kilifi": 4,
@@ -66,7 +66,7 @@
       "Nyamira": 0
     },
     "visibleByCounty": {
-      "Nairobi": 268,
+      "Nairobi": 267,
       "Mombasa": 31,
       "Kwale": 4,
       "Kilifi": 4,
@@ -118,7 +118,7 @@
       "boot_camp": 10,
       "boxing": 6,
       "crossfit": 6,
-      "gym": 436,
+      "gym": 435,
       "gymnastics": 5,
       "martial_arts": 26,
       "pilates": 6,
@@ -127,7 +127,7 @@
     "bySource": {
       "osm": 46,
       "osm+overture": 9,
-      "overture": 452
+      "overture": 451
     },
     "landmarks": {
       "bus_station": 88,
@@ -138,7 +138,7 @@
   },
   "previous": {
     "builtAt": "2026-10-13T00:00:00.000Z",
-    "gymsPath": "/data/gyms.56066790fc.json",
+    "gymsPath": "/data/gyms.8424940012.json",
     "total": 507,
     "defaultVisible": 439
   },
@@ -153,7 +153,7 @@
   "notices": [
     "Overture Places can contain duplicates and incomplete properties. Confidence measures existence, not that a gym is open.",
     "Address is omitted when unknown. We never invent hours, prices or ratings.",
-    "Verified means a Find My Gym reviewer confirmed the listing within the last 12 months. Listed and Corroborated come from open data and web research and are not confirmations."
+    "Verified means a Find My Gym reviewer confirmed the listing within the last 12 months. Listed and Corroborated come from open map and business data (and, where a venue says so, web research); they are not confirmations."
   ],
-  "gymsPath": "/data/gyms.8424940012.json"
+  "gymsPath": "/data/gyms.a78b7d75ae.json"
 }

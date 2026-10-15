@@ -2,7 +2,19 @@ import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
 import { Map as MapLibreMap, NavigationControl, type GeoJSONSource, type MapLayerMouseEvent } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import "./maplibreWorker";
 import type { Venue } from "../../data/types";
+
+function toFeatures(venues: Venue[]) {
+  return {
+    type: "FeatureCollection" as const,
+    features: venues.map((venue) => ({
+      type: "Feature" as const,
+      properties: { id: venue.id, slug: venue.slug, name: venue.name, tier: venue.trust.tier },
+      geometry: { type: "Point" as const, coordinates: [venue.lng, venue.lat] },
+    })),
+  };
+}
 
 const STYLE = "https://tiles.openfreemap.org/styles/liberty";
 
@@ -15,8 +27,16 @@ const TIER_COLOR: Record<string, string> = {
 
 export function MapPane({ venues, selectedId }: { venues: Venue[]; selectedId: string | null }) {
   const ref = useRef<HTMLDivElement>(null);
-    const mapRef = useRef<MapLibreMap | null>(null);
+  const mapRef = useRef<MapLibreMap | null>(null);
+  // The source only exists after "load"; keep the latest props so the load handler can draw them.
+  const venuesRef = useRef(venues);
+  const selectedRef = useRef(selectedId);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    venuesRef.current = venues;
+    selectedRef.current = selectedId;
+  }, [venues, selectedId]);
 
   useEffect(() => {
     if (!ref.current || mapRef.current) return;
@@ -30,7 +50,7 @@ export function MapPane({ venues, selectedId }: { venues: Venue[]; selectedId: s
     map.on("load", () => {
       map.addSource("venues", {
         type: "geojson",
-        data: { type: "FeatureCollection", features: [] },
+        data: toFeatures(venuesRef.current),
         cluster: true,
         clusterRadius: 48,
       });
@@ -46,7 +66,8 @@ export function MapPane({ venues, selectedId }: { venues: Venue[]; selectedId: s
         type: "symbol",
         source: "venues",
         filter: ["has", "point_count"],
-        layout: { "text-field": ["get", "point_count_abbreviated"], "text-size": 12 },
+        // OpenFreeMap only hosts its own font stacks; the MapLibre default ("Open Sans Regular,Arial Unicode MS Regular") 404s.
+        layout: { "text-field": ["get", "point_count_abbreviated"], "text-size": 12, "text-font": ["Noto Sans Regular"] },
         paint: { "text-color": "#ffffff" },
       });
       map.addLayer({
@@ -56,7 +77,7 @@ export function MapPane({ venues, selectedId }: { venues: Venue[]; selectedId: s
         filter: ["!", ["has", "point_count"]],
         paint: {
           "circle-color": ["match", ["get", "tier"], "verified", TIER_COLOR.verified, "corroborated", TIER_COLOR.corroborated, "unconfirmed", TIER_COLOR.unconfirmed, TIER_COLOR.listed],
-          "circle-radius": ["case", ["==", ["get", "id"], selectedId ?? ""], 10, 6],
+          "circle-radius": ["case", ["==", ["get", "id"], selectedRef.current ?? ""], 10, 6],
           "circle-stroke-width": 2,
           "circle-stroke-color": "#ffffff",
         },
@@ -84,14 +105,7 @@ export function MapPane({ venues, selectedId }: { venues: Venue[]; selectedId: s
     const map = mapRef.current;
     const source = map?.getSource("venues") as GeoJSONSource | undefined;
     if (!source) return;
-    source.setData({
-      type: "FeatureCollection",
-      features: venues.map((venue) => ({
-        type: "Feature" as const,
-        properties: { id: venue.id, slug: venue.slug, name: venue.name, tier: venue.trust.tier },
-        geometry: { type: "Point" as const, coordinates: [venue.lng, venue.lat] },
-      })),
-    });
+    source.setData(toFeatures(venues));
   }, [venues]);
 
   useEffect(() => {

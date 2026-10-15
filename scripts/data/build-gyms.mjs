@@ -92,7 +92,7 @@ function licensesFor(venues, hasResearch) {
 const NOTICES = [
   "Overture Places can contain duplicates and incomplete properties. Confidence measures existence, not that a gym is open.",
   "Address is omitted when unknown. We never invent hours, prices or ratings.",
-  "Verified means a Find My Gym reviewer confirmed the listing within the last 12 months. Listed and Corroborated come from open data and web research and are not confirmations.",
+  "Verified means a Find My Gym reviewer confirmed the listing within the last 12 months. Listed and Corroborated come from open map and business data (and, where a venue says so, web research); they are not confirmations.",
 ];
 
 async function main() {
@@ -265,6 +265,7 @@ async function main() {
       skipped: researchInfo.skipped,
       removedByClosedFinding: assembled.researchClosed,
       blockedByRemovedRecord: assembled.researchBlocked,
+      ambiguousMatch: assembled.researchAmbiguous,
     }, null, 2)}\n`);
   }
 
@@ -276,13 +277,18 @@ function summarize(s) {
   const reasons = {};
   for (const merge of assembled.merges) reasons[merge.reason] = (reasons[merge.reason] ?? 0) + 1;
   const hitCount = (prefix) => hits.filter((hit) => hit.rule.startsWith(prefix)).length;
+  const reviewKinds = {};
+  for (const pair of assembled.review) reviewKinds[pair.reason] = (reviewKinds[pair.reason] ?? 0) + 1;
+  const osmIntake = s.intake.filter((record) => record.sources.includes("osm")).length;
+  const osmMatched = gyms.filter((venue) => venue.trust.sources.includes("osm") && venue.trust.sources.includes("overture")).length;
   const nairobi = manifest.counts.visibleByCounty.Nairobi ?? 0;
   const oneLine = (object) => Object.entries(object).map(([k, v]) => `${k} ${v}`).join(", ") || "none";
   const lines = [
     `sources: overture ${s.overtureRows.length} rows (release ${s.meta.release ?? "none"}), osm ${s.osmPayload.venues?.length ?? 0} (${s.osmPayload.osmStale ? "stale" : "live"}), web ${s.researchInfo ? `${s.researchInfo.counts.total} researched` : "no research file"}`,
     `skipped: overture [${oneLine(s.skipped.overture)}], osm [${oneLine(s.skipped.osm)}]`,
-    `removed: category ${hitCount("category:")}, denylist ${hitCount("denylist:")}, exclude.json ${hitCount("exclude.json")}; demoted to unconfirmed by name ${hitCount("non-fitness-name:")}; known-closed ${s.removed.knownClosed.length}, override-closed ${s.removed.overrideClosed.length}; research-closed ${assembled.researchClosed.length}`,
-    `merge: ${s.intake.length} records -> ${gyms.length} venues; links by [${oneLine(reasons)}]; proximity-only review pairs ${assembled.review.length}`,
+    `removed: category ${hitCount("category:")}, denylist ${hitCount("denylist:")}, exclude.json ${hitCount("exclude.json")}; demoted to unconfirmed by name ${hitCount("non-fitness-name:")}; known-closed ${s.removed.knownClosed.length}, override-closed ${s.removed.overrideClosed.length}; research-closed ${assembled.researchClosed.length}, research-ambiguous ${assembled.researchAmbiguous.length}`,
+    `merge: ${s.intake.length} records -> ${gyms.length} venues; links by [${oneLine(reasons)}]; review pairs ${assembled.review.length} [${oneLine(reviewKinds)}]`,
+    `OSM gyms also in Overture: ${osmMatched}/${osmIntake} (${pct(osmMatched, osmIntake)}%)`,
     `phones dropped (invalid or non-Kenyan): ${s.droppedPhones.reduce((n, row) => n + row.dropped.length, 0)} on ${s.droppedPhones.length} records`,
     `tiers: ${oneLine(manifest.counts.byTier)}; sources: ${oneLine(manifest.counts.bySource)}`,
     `catalogue: total ${gyms.length}, visible ${visible}, Nairobi visible ${nairobi}, with contact action ${withContact} (${pct(withContact, visible)}%), with phone ${withPhone} (${pct(withPhone, visible)}%)`,

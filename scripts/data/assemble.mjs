@@ -1,6 +1,7 @@
 /**
  * From normalised records to merged venues: cluster duplicates, merge each cluster,
  * and apply web-research closures. Pure (no I/O) so the rules are unit-testable on fixtures.
+ * Returns researchAmbiguous: web findings left out because two venues matched equally well.
  */
 import { mergeCluster } from "./merge-records.mjs";
 import { approxMatch, clusterRecords } from "./merge-rules.mjs";
@@ -14,7 +15,7 @@ const byId = (a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
  *   tombstones: removed records a web-only find must not resurrect
  */
 export function assemble(records, { forcedPairs = [], ghosts = [], tombstones = [] } = {}) {
-  const { clusters, review, merges } = clusterRecords([...records].sort(byId), { forcedPairs, ghosts });
+  const { clusters, review, merges, ambiguous } = clusterRecords([...records].sort(byId), { forcedPairs, ghosts });
   const venues = [];
   const researchClosed = [];
   const researchBlocked = [];
@@ -40,5 +41,7 @@ export function assemble(records, { forcedPairs = [], ghosts = [], tombstones = 
     }
     venues.push(mergeCluster(members));
   }
-  return { venues, review, merges, researchClosed, researchBlocked };
+  // A web finding that matched two venues equally well is left out (it must not fuse or close both).
+  const researchAmbiguous = ambiguous.map((row) => ({ ...row, closed: Boolean(records.find((r) => r.id === row.id)?.web?.closed) }));
+  return { venues, review, merges, researchClosed, researchBlocked, researchAmbiguous };
 }

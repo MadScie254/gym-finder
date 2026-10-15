@@ -47,6 +47,16 @@ describe("urls", () => {
     }
   });
 
+  it("rejects a host with no top-level domain, keeps real and punycode domains", () => {
+    for (const bad of ["http://www.samnick/", "https://localhost/", "http://192.168.0.1/", "https://gym/"]) {
+      expect(canonicalUrl(bad), bad).toBeNull();
+    }
+    expect(classifyUrls(["http://www.samnick/"]).website).toBeNull();
+    expect(canonicalUrl("https://fit.gym/")?.hostname).toBe("fit.gym");
+    expect(canonicalUrl("https://sites.google.com/view/x")?.hostname).toBe("sites.google.com");
+    expect(canonicalUrl("https://bücher.ke/")?.hostname).toBe("xn--bcher-kva.ke");
+  });
+
   it("separates own website, Facebook and Instagram; other socials and short links are dropped", () => {
     const out = classifyUrls([
       "https://m.facebook.com/examplegym?ref=x",

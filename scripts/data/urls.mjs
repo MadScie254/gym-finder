@@ -31,6 +31,8 @@ export function canonicalUrl(raw) {
   }
   if (!/^https?:$/.test(url.protocol) || !url.hostname.includes(".")) return null;
   url.hostname = url.hostname.toLowerCase().replace(/\.$/, "");
+  // A real domain: at least one dot after "www." and a top-level domain ("http://www.samnick/" is not one).
+  if (!/^(?:[a-z0-9-]+\.)+(?:[a-z]{2,63}|xn--[a-z0-9-]+)$/.test(url.hostname.replace(/^www\./, ""))) return null;
   url.hash = "";
   url.username = "";
   url.password = "";

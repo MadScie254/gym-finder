@@ -1,7 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { assignCounty, countyFromText, inferCounties, isInKenya, placeCentre, reverseLookup } from "./geo.mjs";
+import { COUNTIES as APP_COUNTIES } from "../../src/lib/kenya";
+import { COUNTIES, assignCounty, countyFromText, inferCounties, isInKenya, placeCentre, reverseLookup, townFor } from "./geo.mjs";
 
 describe("county assignment", () => {
+  it("uses the same COUNTIES as the app (src/lib/kenya.ts)", () => {
+    expect(COUNTIES).toEqual(APP_COUNTIES);
+  });
+
   it("reads county names from free text", () => {
     expect(countyFromText("Nairobi City")?.name).toBe("Nairobi");
     expect(countyFromText("Uasin Gishu County")?.name).toBe("Uasin Gishu");
@@ -42,5 +47,21 @@ describe("places and polygon", () => {
     expect(isInKenya({ lat: -1.2921, lng: 36.8219 })).toBe(true);
     expect(isInKenya({ lat: -6.8, lng: 39.2 })).toBe(false); // Dar es Salaam, inside the bounding box
     expect(isInKenya({ lat: 0.3, lng: 32.6 })).toBe(false); // Kampala
+  });
+});
+
+describe("town for a venue", () => {
+  it("is Nairobi for every venue in Nairobi City County, not the nearest GeoNames town", () => {
+    expect(townFor({ lat: -1.3223, lng: 36.7037 }, "Nairobi")).toBe("Nairobi"); // Karen (nearest: Ngong)
+    expect(townFor({ lat: -1.2212, lng: 36.9134 }, "Nairobi")).toBe("Nairobi"); // Kasarani (nearest: Ruiru)
+    expect(townFor({ lat: -1.2823, lng: 36.9609 }, "Nairobi")).toBe("Nairobi"); // Utawala (nearest: Githunguri)
+  });
+
+  it("elsewhere is the nearest town, never a town named after another county", () => {
+    expect(townFor({ lat: -1.3953, lng: 36.764 }, "Kajiado")).toBe("Ongata Rongai");
+    expect(townFor({ lat: -1.2079, lng: 36.7869 }, "Kiambu")).toBe("Karuri"); // Ruaka
+    expect(townFor({ lat: -1.25, lng: 36.80 }, "Kiambu")).not.toBe("Nairobi");
+    expect(townFor({ lat: -0.3031, lng: 36.08 }, "Nakuru")).toBe("Nakuru");
+    expect(townFor({ lat: 3.0, lng: 36.0 }, "Turkana")).toBeNull(); // nothing within 30 km
   });
 });

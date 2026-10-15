@@ -172,11 +172,23 @@ export function reviewReason(left, right) {
   return null;
 }
 
+/** How decisive an approximate (web) match is: an explicit seed link beats a contact, which beats a name. */
+const ATTACH_STRENGTH = { "seed-id": 3, phone: 2, website: 2, "name+area": 1 };
+
 /**
  * Group records into venues by union-find over pairwise decisions.
+ *
+ *  1. Precise records (OSM, Overture) cluster by shouldMerge; forced pairs always join.
+ *  2. Each approximately located record (web research: an area or town centre, or no
+ *     location) joins AT MOST ONE of those venues: the single strongest match (seed link >
+ *     phone/website > name, then name similarity). Two equally strong candidates make it
+ *     `ambiguous`: it is left out and logged, so one web finding can never fuse two real
+ *     venues (e.g. branches of a chain sharing a phone) or close both.
+ *  3. Web records that matched nothing join a web neighbour that did (again only one
+ *     venue), or cluster among themselves.
  * `ghosts` (records already removed by the deny-list or excludes) take part in the
  * review-candidate scan only, so a human sees e.g. an OSM gym next to a deny-listed shop.
- * @returns {{ clusters: object[][], review: object[], merges: { a: string, b: string, reason: string }[] }}
+ * @returns {{ clusters: object[][], review: object[], merges: { a: string, b: string, reason: string }[], ambiguous: object[] }}
  */
 export function clusterRecords(records, { forcedPairs = [], ghosts = [] } = {}) {
   const forced = forcedSet(forcedPairs);
@@ -189,17 +201,94 @@ export function clusterRecords(records, { forcedPairs = [], ghosts = [] } = {}) 
     return i;
   };
   const merges = [];
-  for (let i = 0; i < records.length; i += 1) {
-    for (let j = i + 1; j < records.length; j += 1) {
-      const decision = shouldMerge(records[i], records[j], forced);
-      if (!decision.merge) continue;
-      merges.push({ a: records[i].id, b: records[j].id, reason: decision.reason });
-      const [ri, rj] = [find(i), find(j)];
-      if (ri !== rj) parent[Math.max(ri, rj)] = Math.min(ri, rj);
+  const union = (i, j, reason) => {
+    merges.push({ a: records[i].id, b: records[j].id, reason });
+    const [ri, rj] = [find(i), find(j)];
+    if (ri !== rj) parent[Math.max(ri, rj)] = Math.min(ri, rj);
+  };
+  const precise = [];
+  const approx = [];
+  records.forEach((record, index) => (isPrecise(record) ? precise : approx).push(index));
+
+  // 1. Precise records, and every forced pair.
+  for (let x = 0; x < precise.length; x += 1) {
+    for (let y = x + 1; y < precise.length; y += 1) {
+      const decision = shouldMerge(records[precise[x]], records[precise[y]], forced);
+      if (decision.merge) union(precise[x], precise[y], decision.reason);
     }
   }
+  const pinned = new Set();
+  const approxSet = new Set(approx);
+  for (const i of approx) {
+    for (let j = 0; j < records.length; j += 1) {
+      if (j === i || (approxSet.has(j) && j < i)) continue; // each forced pair once
+      if (forced.has(pairKey(records[i].id, records[j].id))) {
+        union(i, j, "override");
+        pinned.add(i);
+        if (approxSet.has(j)) pinned.add(j);
+      }
+    }
+  }
+
+  // 2. Each approximate record joins at most one venue.
+  const ambiguous = [];
+  const attached = new Set(pinned);
+  const pending = [];
+  const pick = (i, candidates) => {
+    const best = new Map();
+    for (const { j, decision } of candidates) {
+      const root = find(j);
+      const score = [ATTACH_STRENGTH[decision.reason] ?? 0, decision.similarity ?? 0];
+      const held = best.get(root);
+      if (!held || score[0] > held.score[0] || (score[0] === held.score[0] && score[1] > held.score[1])) best.set(root, { j, decision, score });
+    }
+    const ranked = [...best.values()].sort((p, q) => q.score[0] - p.score[0] || q.score[1] - p.score[1]);
+    if (ranked.length > 1 && ranked[0].score[0] === ranked[1].score[0] && ranked[0].score[1] === ranked[1].score[1]) {
+      ambiguous.push({
+        id: records[i].id,
+        name: records[i].name,
+        reason: ranked[0].decision.reason,
+        candidates: ranked.filter((c) => c.score[0] === ranked[0].score[0] && c.score[1] === ranked[0].score[1]).map((c) => records[c.j].id),
+      });
+      return "ambiguous";
+    }
+    return ranked[0] ?? null;
+  };
+  const isAmbiguous = new Set();
+  for (const i of approx) {
+    if (pinned.has(i)) continue;
+    const candidates = precise
+      .map((j) => ({ j, decision: approxMatch(records[i], records[j]) }))
+      .filter(({ decision }) => decision.merge);
+    const choice = candidates.length ? pick(i, candidates) : null;
+    if (choice === "ambiguous") isAmbiguous.add(i);
+    else if (choice) {
+      union(i, choice.j, choice.decision.reason);
+      attached.add(i);
+    } else pending.push(i);
+  }
+
+  // 3. Unmatched web records: through an attached web neighbour (one venue only), else among themselves.
+  const loose = [];
+  for (const i of pending) {
+    const candidates = [...attached]
+      .map((j) => ({ j, decision: approxMatch(records[i], records[j]) }))
+      .filter(({ decision }) => decision.merge);
+    const choice = candidates.length ? pick(i, candidates) : null;
+    if (choice === "ambiguous") isAmbiguous.add(i);
+    else if (choice) union(i, choice.j, choice.decision.reason);
+    else loose.push(i);
+  }
+  for (let x = 0; x < loose.length; x += 1) {
+    for (let y = x + 1; y < loose.length; y += 1) {
+      const decision = approxMatch(records[loose[x]], records[loose[y]]);
+      if (decision.merge) union(loose[x], loose[y], decision.reason);
+    }
+  }
+
   const groups = new Map();
   records.forEach((record, index) => {
+    if (isAmbiguous.has(index)) return;
     const root = find(index);
     if (!groups.has(root)) groups.set(root, []);
     groups.get(root).push(record);
@@ -232,7 +321,7 @@ export function clusterRecords(records, { forcedPairs = [], ghosts = [] } = {}) 
   const order = ["proximity-only", "name-near", "shared-contact-distant"];
   const rank = (pair) => order.indexOf(pair.reason) * 2 + (pair.aSources.includes("osm") || pair.bSources.includes("osm") ? 0 : 1);
   review.sort((p, q) => rank(p) - rank(q) || p.metres - q.metres || (p.a < q.a ? -1 : p.a > q.a ? 1 : 0) || (p.b < q.b ? -1 : p.b > q.b ? 1 : 0));
-  return { clusters: [...groups.values()], review, merges };
+  return { clusters: [...groups.values()], review, merges, ambiguous };
 }
 
 /** Slug = slugify(name) + "-" + 4 hex chars of sha1(id). `extra` lengthens the hash on a collision. */

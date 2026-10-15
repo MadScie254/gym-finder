@@ -11,6 +11,8 @@ export default defineConfig({
       "@data": fileURLToPath(new URL("./data", import.meta.url)),
     },
   },
+  // MapLibre's worker imports a shared ES module chunk; bundle it as an ES module worker.
+  worker: { format: "es" },
   build: {
     target: "es2022",
     sourcemap: true,

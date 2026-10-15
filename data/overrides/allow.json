@@ -2,5 +2,9 @@
   {
     "id": "gers:874dc877-45f2-4de4-b3d5-c27c3c99debe",
     "reason": "Alpha Max Gym: a gym with its own site (alphamax.co.ke) and phone; its SEO-style name mentions 'equipment' so the name deny-list is a false positive"
+  },
+  {
+    "id": "gers:66641f7f-9547-4808-b68f-c4e1aa3b7881",
+    "reason": "Classic Gym and Executive Salon (Zimmerman): name leads with 'Classic Gym' and Meta files it under sports_and_recreation, not beauty_salon; a gym with a salon on the side. Reviewed 2026-10-13 from name and category only"
   }
 ]

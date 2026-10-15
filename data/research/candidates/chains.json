@@ -1,0 +1,1209 @@
+{
+  "groupKey": "chains",
+  "researchedAt": "2026-10-13",
+  "queries": [
+    "gym chain Kenya branches Nairobi Mombasa",
+    "Smart Gyms Kenya branches locations",
+    "Muscle Health and Fitness Kenya branches",
+    "Smart Gyms Southfield Mall Embakasi",
+    "easyGym Nairobi Kenya branches Thika Road",
+    "\"Platinum Fitness\" Kenya branches",
+    "easyGym Kenya Nairobi club address",
+    "Kenya gym \"our branches\" Nairobi fitness centre membership [extended]",
+    "gym opens new branch Nairobi 2025 [extended]",
+    "Afrofit gym Thika Road Mall",
+    "Afrofit gym Kisumu United Mall",
+    "Afrofit Delta Chambers Westlands gym",
+    "Afrofit Malindi gym",
+    "F45 Training Kenya studios Nairobi",
+    "Kenya fitness franchise gym multiple locations Nairobi Kisumu Mombasa Nakuru Eldoret",
+    "F45 Nairobi Westlands Karen Kilimani studio",
+    "Wadi Degla club Nairobi Kenya",
+    "Curves women's gym Kenya Nairobi",
+    "Anytime Fitness OR \"Gold's Gym\" OR \"Snap Fitness\" Kenya Nairobi opening",
+    "Wadi Degla Kenya Runda club gym official website contact",
+    "\"Physiq & Tone\" gyms Nairobi branches",
+    "\"Feel Fitness\" gym Kenya Kitengela Kahawa",
+    "\"Bodyfit\" gyms Nairobi branches Roysambu",
+    "Physiq gyms Ruaka Square Mbuchia House Westlands",
+    "Nairobi gym \"branches\" Kitengela Rongai Ngong Ruaka Juja gym chain",
+    "Kenyan gym chain expands new outlets Business Daily",
+    "\"gym\" \"Kenya\" \"third branch\" OR \"second branch\" fitness opens mall",
+    "Ignite Fitness Kenya Village Market Westgate",
+    "gym Garden City Mall Nairobi",
+    "gym Two Rivers Mall Nairobi fitness",
+    "gym Galleria Mall Langata Road fitness centre",
+    "Two Rivers Mall new gym international operator opens 2026",
+    "\"Kilimani branch\" gym Nairobi",
+    "\"Kasarani branch\" OR \"Ruaka branch\" OR \"Rongai branch\" gym fitness",
+    "\"Nyali branch\" gym Mombasa fitness",
+    "Faiz Gym Mombasa Tudor Nyali branches",
+    "\"Faiz Gym\" Kenya contact",
+    "Sarova Stanley health club gym Nairobi",
+    "Sarova Panafric health club gym membership",
+    "gym Nakuru branches Westside Mall fitness centre",
+    "gym Eldoret Rupa Mall fitness branches",
+    "gym Kisumu Mega Plaza fitness centre branches",
+    "Gracie Barra Kenya Nairobi jiu-jitsu academies",
+    "Boxgirls Kenya boxing training locations Nairobi",
+    "Olympia gym Nairobi Eastleigh Buruburu branches contact",
+    "\"Colosseum Fitness\" Kenya branches Adams Arcade",
+    "\"Flex and Tone\" fitness Umoja branches Nairobi",
+    "largest gym chain in Kenya",
+    "\"gyms\" \"across Nairobi\" locations membership \"all branches\" Kenya",
+    "gym Ruiru Juja Thika branches fitness chain Kiambu",
+    "women only gym Nairobi branches ladies fitness centre Kenya",
+    "gym Kitengela Syokimau Mlolongo branches fitness centre \"branches\"",
+    "yoga studio Nairobi \"two locations\" OR \"both studios\" Westlands Karen",
+    "Flexmasters gym Kitengela branches",
+    "Switch Fitness Centre Mlolongo Machakos branches",
+    "crossfit.com affiliate gym Nairobi Kenya",
+    "Mombasa gym chain branches Nyali Bamburi Mtwapa fitness",
+    "\"Westlands branch\" gym OR fitness OR yoga Nairobi",
+    "\"Karen branch\" OR \"Lavington branch\" gym fitness studio Nairobi",
+    "Wadi Degla Runda club 2025",
+    "fitness club Kenya branches Thika Nyeri Meru Embu gym \"branch\"",
+    "gym Kakamega Bungoma Kisii branches fitness centre \"branches\" western Kenya"
+  ],
+  "candidates": [
+    {
+      "id": "web:chains-001",
+      "name": "SmartGyms - Junction (Junction Mall)",
+      "kind": "gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Ngong Road (The Junction Mall)",
+      "address": "Junction Mall, Ngong Road, Nairobi",
+      "phones": [
+        "+254205143800"
+      ],
+      "website": "https://www.smartgyms.co.ke/branches/junction",
+      "social": [],
+      "hoursText": "5:00 AM – 10:00 PM (single daily range on the branch page)",
+      "access": "public",
+      "status": "operating",
+      "inSeed": true,
+      "seedId": "4c268103-3ea7-4fc2-a135-bb2e0b46e48a",
+      "evidence": [
+        {
+          "url": "https://www.smartgyms.co.ke/branches/junction",
+          "fetched": true,
+          "quote": "OPENING HOURS 5:00 AM – 10:00 PM",
+          "supports": [
+            "name",
+            "hours",
+            "status"
+          ]
+        },
+        {
+          "url": "https://www.smartgyms.co.ke/branches",
+          "fetched": true,
+          "quote": "Junction Mall",
+          "supports": [
+            "name",
+            "address"
+          ]
+        },
+        {
+          "url": "https://www.fitsavanna.co.ke/article/best-gyms-nairobi-equipment-prices-guide-2025",
+          "fetched": true,
+          "quote": "Junction Mall (Ngong Road), Diamond Plaza II (Parklands), Southfield Mall (Mombasa Road), and The Hub (Karen).",
+          "supports": [
+            "address"
+          ]
+        }
+      ],
+      "notes": "Already in seed (also OSM node/5421225050 'Smartgyms'). New info: hours from the official branch page. Phone +254205143800 is the chain-wide footer number, not branch-specific; Run Beyond's directory gives 0712 404040 for Junction (single directory, not verified). access=public means open to anyone who buys a membership. Only blogs claim that memberships transfer across branches."
+    },
+    {
+      "id": "web:chains-002",
+      "name": "SmartGyms - Diamond Plaza (Parklands)",
+      "kind": "gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Parklands (Diamond Plaza II)",
+      "address": "Diamond Plaza II, Parklands, Nairobi",
+      "phones": [
+        "+254205143800"
+      ],
+      "website": "https://www.smartgyms.co.ke/branches/diamond-plaza",
+      "social": [],
+      "hoursText": "5:00 AM – 10:00 PM (single daily range on the branch page)",
+      "access": "public",
+      "status": "operating",
+      "inSeed": true,
+      "seedId": "123e2d98-615a-4846-9e38-d6479da075c6",
+      "evidence": [
+        {
+          "url": "https://www.smartgyms.co.ke/branches/diamond-plaza",
+          "fetched": true,
+          "quote": "Premium Fitness In Parklands",
+          "supports": [
+            "name",
+            "address",
+            "status"
+          ]
+        },
+        {
+          "url": "https://www.smartgyms.co.ke/branches/diamond-plaza",
+          "fetched": true,
+          "quote": "5:00 AM – 10:00 PM",
+          "supports": [
+            "hours"
+          ]
+        },
+        {
+          "url": "https://www.fitsavanna.co.ke/article/best-gyms-nairobi-equipment-prices-guide-2025",
+          "fetched": true,
+          "quote": "Junction Mall (Ngong Road), Diamond Plaza II (Parklands), Southfield Mall (Mombasa Road), and The Hub (Karen).",
+          "supports": [
+            "address"
+          ]
+        }
+      ],
+      "notes": "Seed 123e2d98 (Smart Gyms, Parklands coordinates, website wrongly www.lifefitness.com) is this branch. Seed 423c71f3 (Smart Gyms, +254722128281, coordinates -1.25849,36.78435 in Westlands/Lavington) is probably a misplaced duplicate: Run Beyond's directory lists 'Diamond Plaza - 0722 128281'. Official site gives only the chain-wide number +254205143800."
+    },
+    {
+      "id": "web:chains-003",
+      "name": "SmartGyms - The Hub Karen",
+      "kind": "gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Karen (The Hub Karen mall)",
+      "address": "The Hub Karen, Karen, Nairobi",
+      "phones": [
+        "+254205143800"
+      ],
+      "website": "https://www.smartgyms.co.ke/branches/the-hub",
+      "social": [],
+      "hoursText": "5:00 AM – 10:00 PM (single daily range on the branch page)",
+      "access": "public",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://www.smartgyms.co.ke/branches/the-hub",
+          "fetched": true,
+          "quote": "The Hub Karen",
+          "supports": [
+            "name",
+            "address",
+            "status"
+          ]
+        },
+        {
+          "url": "https://www.smartgyms.co.ke/branches/the-hub",
+          "fetched": true,
+          "quote": "5:00 AM – 10:00 PM",
+          "supports": [
+            "hours"
+          ]
+        },
+        {
+          "url": "https://www.fitsavanna.co.ke/article/best-gyms-nairobi-equipment-prices-guide-2025",
+          "fetched": true,
+          "quote": "Junction Mall (Ngong Road), Diamond Plaza II (Parklands), Southfield Mall (Mombasa Road), and The Hub (Karen).",
+          "supports": [
+            "address"
+          ]
+        }
+      ],
+      "notes": "No seed entry sits at The Hub Karen. Possible match: seed 797034cd 'Smart Gyms' (Kajiado, -1.3617,36.6557, +254712404040), whose coordinates are several km south-west of Karen. It may be this branch placed in the wrong spot; check before merging. The Hub Karen's own homepage store logos do not show Smart Gyms. Branch page lists facilities incl. a yoga studio and an indoor track. No street number or floor is given."
+    },
+    {
+      "id": "web:chains-004",
+      "name": "SmartGyms - Southfield Mall (Mombasa Road)",
+      "kind": "gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Mombasa Road / Embakasi (Southfield Mall)",
+      "address": "Southfield Mall, Mombasa Road, Nairobi",
+      "phones": [
+        "0702 254673"
+      ],
+      "website": null,
+      "social": [],
+      "hoursText": null,
+      "access": "public",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "13038e4b-d3dd-4928-9ede-21ce590c5fb0",
+      "evidence": [
+        {
+          "url": "https://www.fitsavanna.co.ke/article/best-gyms-nairobi-equipment-prices-guide-2025",
+          "fetched": true,
+          "quote": "Junction Mall (Ngong Road), Diamond Plaza II (Parklands), Southfield Mall (Mombasa Road), and The Hub (Karen).",
+          "supports": [
+            "name",
+            "address"
+          ]
+        },
+        {
+          "url": "https://www.runbeyond.co.ke/resource-centre/gym-directory/",
+          "fetched": true,
+          "quote": "Southfield Mall - 0702 254673",
+          "supports": [
+            "name",
+            "phone"
+          ]
+        },
+        {
+          "url": "https://www.smartgyms.co.ke/branches",
+          "fetched": true,
+          "quote": "3 SmartGyms Locations",
+          "supports": [
+            "status"
+          ]
+        }
+      ],
+      "notes": "Kept for status: a FitSavanna guide dated 6 Sep 2025 and Run Beyond's directory list a Southfield Mall branch (the seed phone +254702254673 matches Run Beyond). But the official branches page (fetched 2026-10-13) lists only Junction, The Hub and Diamond Plaza, with no closed label. It may have closed or been dropped. Phone it before publishing. The official page states '3 SmartGyms Locations' / '3 CLUBS' and names only Junction, The Hub and Diamond Plaza."
+    },
+    {
+      "id": "web:chains-005",
+      "name": "AFROFIT Gym - Delta Chambers (Westlands)",
+      "kind": "gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Westlands (Delta Chambers, Waiyaki Way)",
+      "address": "Delta Chambers, Waiyaki Way, Westlands, Nairobi",
+      "phones": [
+        "+254 792 888 000"
+      ],
+      "website": "https://afrofit.life/delta-chambers",
+      "social": [],
+      "hoursText": null,
+      "access": "public",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://afrofit.life/our-clubs",
+          "fetched": true,
+          "quote": "WESTLANDS NAIROBI, KENYA",
+          "supports": [
+            "name",
+            "address",
+            "status"
+          ]
+        },
+        {
+          "url": "https://afrofit.life/delta-chambers",
+          "fetched": true,
+          "quote": "Westlands, Nairobi, Kenya",
+          "supports": [
+            "address"
+          ]
+        },
+        {
+          "url": "https://afrofit.life/delta-chambers",
+          "fetched": true,
+          "quote": "+254 792 888 000",
+          "supports": [
+            "phone"
+          ]
+        },
+        {
+          "url": "https://www.fitsavanna.co.ke/article/best-gyms-nairobi-equipment-prices-guide-2025",
+          "fetched": true,
+          "quote": "In Nairobi, it has two branches: Thika Road Mall (TRM) and Delta Chambers in Westlands along Waiyaki Way.",
+          "supports": [
+            "name",
+            "address"
+          ]
+        }
+      ],
+      "notes": "Official club page gives only 'Westlands'; 'Waiyaki Way' comes from the FitSavanna guide (Sep 2025). Membership email karibu.dc@afrofit.life. No hours on the page. Health Club Management (22 Oct 2024) says the flagship club opened in Nairobi in January 2022 and a second Nairobi club in March 2023. It does not say which is which. Not in seed. Nearby seed gyms are other businesses."
+    },
+    {
+      "id": "web:chains-006",
+      "name": "AFROFIT Gym - Thika Road Mall (TRM)",
+      "kind": "gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Thika Road (Thika Road Mall, Roysambu)",
+      "address": "2nd floor Thika Road Mall, Nairobi",
+      "phones": [
+        "+254 797666999"
+      ],
+      "website": "https://afrofit.life/thika-road-mall",
+      "social": [],
+      "hoursText": "Monday – Friday 5am to 10pm; Weekend 7am – 7pm",
+      "access": "public",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://afrofit.life/thika-road-mall",
+          "fetched": true,
+          "quote": "2nd floor Thika Road Mall",
+          "supports": [
+            "name",
+            "address",
+            "status"
+          ]
+        },
+        {
+          "url": "https://afrofit.life/thika-road-mall",
+          "fetched": true,
+          "quote": "Monday – Friday 5am to 10pm",
+          "supports": [
+            "hours"
+          ]
+        },
+        {
+          "url": "https://afrofit.life/thika-road-mall",
+          "fetched": true,
+          "quote": "+254 797666999",
+          "supports": [
+            "phone"
+          ]
+        },
+        {
+          "url": "https://www.fitsavanna.co.ke/article/best-gyms-nairobi-equipment-prices-guide-2025",
+          "fetched": true,
+          "quote": "In Nairobi, it has two branches: Thika Road Mall (TRM) and Delta Chambers in Westlands along Waiyaki Way.",
+          "supports": [
+            "name"
+          ]
+        }
+      ],
+      "notes": "Membership email karibu.trm@afrofit.life. Not in seed. Seed 5dfd4b6f 'EasyGym Kenya' sits about 0.4 km away, but it is a different brand (see its own entry)."
+    },
+    {
+      "id": "web:chains-007",
+      "name": "AFROFIT Gym - Kisumu (United Mall)",
+      "kind": "gym",
+      "county": "Kisumu",
+      "town": "Kisumu",
+      "area": "Midway (United Mall)",
+      "address": "1st floor, United Mall, Kisumu",
+      "phones": [
+        "+254 727000666"
+      ],
+      "website": "https://afrofit.life/afrofit-kisumu",
+      "social": [],
+      "hoursText": "Monday – Friday 5am to 10pm; Weekend 7am – 7pm",
+      "access": "public",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://afrofit.life/afrofit-kisumu",
+          "fetched": true,
+          "quote": "1ST FLOOR UNITED MALL, KISUMU",
+          "supports": [
+            "name",
+            "address",
+            "status"
+          ]
+        },
+        {
+          "url": "https://afrofit.life/our-clubs",
+          "fetched": true,
+          "quote": "located on the 1st floor of United Mall Kisumu | Midway.",
+          "supports": [
+            "address"
+          ]
+        },
+        {
+          "url": "https://afrofit.life/afrofit-kisumu",
+          "fetched": true,
+          "quote": "Monday – Friday 5am to 10pm, Weekend 7am – 7pm",
+          "supports": [
+            "hours"
+          ]
+        },
+        {
+          "url": "https://www.healthclubmanagement.co.uk/health-club-management-news/Afrofit-founder-Yves-Preissler-says-the-African-market-is-there-for-the-taking/354258",
+          "fetched": true,
+          "quote": "The fourth Afrofit gym will launch at United Mall, in Kisumu, on 1 December.",
+          "supports": [
+            "name",
+            "address"
+          ]
+        }
+      ],
+      "notes": "Page text gives reception +254 727000666, but its tap-to-call link dials +254 797666999 (the TRM number). The page also mixes the email codes KARIBU.KIS and KARIBU.MYD. Health Club Management article dated 22 Oct 2024. Not in seed."
+    },
+    {
+      "id": "web:chains-008",
+      "name": "Natty Gym - Kahawa Sukari (flagship)",
+      "kind": "gym",
+      "county": "Kiambu",
+      "town": "Kahawa Sukari",
+      "area": "Kahawa Sukari / Wendani (Thika Superhighway)",
+      "address": "Kahawa Sukari, Kiambu",
+      "phones": [
+        "+254 793 333 222"
+      ],
+      "website": "https://nattygyms.com/",
+      "social": [],
+      "hoursText": "Working hours: 05:00 - 22:00 (site-wide footer, not branch-specific)",
+      "access": "public",
+      "status": "operating",
+      "inSeed": true,
+      "seedId": "829ac206-fb20-4476-864a-3dcf14b3e1a2",
+      "evidence": [
+        {
+          "url": "https://nattygyms.com/",
+          "fetched": true,
+          "quote": "Kahawa Sukari, KIambu , Kenya",
+          "supports": [
+            "name",
+            "address",
+            "status"
+          ]
+        },
+        {
+          "url": "https://nattygyms.com/",
+          "fetched": true,
+          "quote": "Working hours: 05:00 - 22:00",
+          "supports": [
+            "hours"
+          ]
+        },
+        {
+          "url": "https://nattygyms.com/contact",
+          "fetched": true,
+          "quote": "+254 793 333 222",
+          "supports": [
+            "phone"
+          ]
+        },
+        {
+          "url": "https://nattygyms.com/blog/the-ultimate-guide-to-gyms-on-thika-road-why-natty-gyms-is-the-new-standard",
+          "fetched": true,
+          "quote": "Perfectly situated for residents of Sukari and Wendani.",
+          "supports": [
+            "address"
+          ]
+        }
+      ],
+      "notes": "Already in seed as 'Natty gym kahawa sukari' with phone +254793222111. The official site now gives +254 793 333 222 for all branches, plus a website and hours. Seed county says Nairobi, but the site says Kiambu. FAQ: memberships are branch-specific."
+    },
+    {
+      "id": "web:chains-009",
+      "name": "Natty Gym - Ruiru",
+      "kind": "gym",
+      "county": "Kiambu",
+      "town": "Ruiru",
+      "area": "Eastern Bypass junction, Ruiru",
+      "address": null,
+      "phones": [
+        "+254793333222"
+      ],
+      "website": "https://nattygyms.com/",
+      "social": [],
+      "hoursText": "Working hours: 05:00 - 22:00 (site-wide footer, not branch-specific)",
+      "access": "public",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://nattygyms.com/",
+          "fetched": true,
+          "quote": "The best gym in Ruiru, hands down",
+          "supports": [
+            "name",
+            "status"
+          ]
+        },
+        {
+          "url": "https://nattygyms.com/blog/the-ultimate-guide-to-gyms-on-thika-road-why-natty-gyms-is-the-new-standard",
+          "fetched": true,
+          "quote": "Located at the gateway of the Eastern Bypass, our Ruiru branch is a beast.",
+          "supports": [
+            "name",
+            "address"
+          ]
+        },
+        {
+          "url": "https://nattygyms.com/contact",
+          "fetched": true,
+          "quote": "+254793333222",
+          "supports": [
+            "phone"
+          ]
+        }
+      ],
+      "notes": "No building, road or floor on any Natty page. Locate it only roughly (Ruiru, near the Eastern Bypass). Blog post dated 24 Feb 2026. Not in seed: the only seed gym near central Ruiru is Triple F Fitness, a different business."
+    },
+    {
+      "id": "web:chains-010",
+      "name": "Natty Gym - Membley",
+      "kind": "gym",
+      "county": "Kiambu",
+      "town": "Membley",
+      "area": "Membley estate (off Thika Superhighway)",
+      "address": null,
+      "phones": [
+        "+254 793 333 222"
+      ],
+      "website": "https://nattygyms.com/",
+      "social": [],
+      "hoursText": "Working hours: 05:00 - 22:00 (site-wide footer, not branch-specific)",
+      "access": "public",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://nattygyms.com/",
+          "fetched": true,
+          "quote": "The best gym in Membley, Unrivaled",
+          "supports": [
+            "name",
+            "status"
+          ]
+        },
+        {
+          "url": "https://nattygyms.com/contact",
+          "fetched": true,
+          "quote": "+254 793 333 222",
+          "supports": [
+            "phone"
+          ]
+        },
+        {
+          "url": "https://nattygyms.com/blog/the-best-gyms-along-thika-superhighway-why-membley-and-kahawa-sukari-residents-are-choosing-natty-gyms",
+          "fetched": true,
+          "quote": "right here on the Thika Superhighway.",
+          "supports": [
+            "address"
+          ]
+        }
+      ],
+      "notes": "Only the estate name is given; no building or road. County Kiambu is inferred from the chain footer address, not stated for this branch. A fourth branch, 'Kenyatta Road / Juja Bypass', is advertised as coming soon (see unverifiedLeads). Not in seed."
+    },
+    {
+      "id": "web:chains-011",
+      "name": "Fitness 16 - Juja",
+      "kind": "gym",
+      "county": "Kiambu",
+      "town": "Juja",
+      "area": "Juja South (Juja South Road)",
+      "address": "Juja South Road, Juja",
+      "phones": [
+        "+254 793 466 828",
+        "+254 726 050 613"
+      ],
+      "website": "https://www.fitness16.com/",
+      "social": [],
+      "hoursText": "Open Daily; Monday - Friday: 6AM - 9PM; Saturday: 7AM - 6PM; Sunday: 12PM - 6PM",
+      "access": "public",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://www.fitness16.com/",
+          "fetched": true,
+          "quote": "JUJA OPEN",
+          "supports": [
+            "name",
+            "status"
+          ]
+        },
+        {
+          "url": "https://www.fitness16.com/",
+          "fetched": true,
+          "quote": "Juja South Road, Juja",
+          "supports": [
+            "address"
+          ]
+        },
+        {
+          "url": "https://www.fitness16.com/",
+          "fetched": true,
+          "quote": "Monday - Friday: 6AM - 9PM",
+          "supports": [
+            "hours"
+          ]
+        },
+        {
+          "url": "https://www.fitness16.com/",
+          "fetched": true,
+          "quote": "+254 793 466 828",
+          "supports": [
+            "phone"
+          ]
+        }
+      ],
+      "notes": "Own site, © 2026. Only Juja is open; a Ruaka branch is 'Coming Soon' (see unverifiedLeads). Social handle @fitness16powerhouse (Instagram/TikTok) is shown on the site. Not in seed: the Juja seed gyms nearby (Brom Gym Club, East'80, Senate GYM, AICAD) are other businesses."
+    },
+    {
+      "id": "web:chains-012",
+      "name": "Legacy Fitness - Main Gym (Mwembe Tayari, Naivas)",
+      "kind": "gym",
+      "county": "Mombasa",
+      "town": "Mombasa",
+      "area": "Mwembe Tayari (Mombasa Mall / Naivas)",
+      "address": "Mombasa Mall, Mwembe Tayari (Naivas), Mombasa",
+      "phones": [
+        "0759 348 454"
+      ],
+      "website": "https://sportlegacyfitness.com/main-gym/",
+      "social": [
+        "https://www.facebook.com/legacyfitnessclub001/",
+        "https://www.instagram.com/legacyfitnessclub/"
+      ],
+      "hoursText": "Mon - Sun, 24 Hours",
+      "access": "public",
+      "status": "operating",
+      "inSeed": true,
+      "seedId": "e667ec25-b793-4843-8276-339477080b68",
+      "evidence": [
+        {
+          "url": "https://sportlegacyfitness.com/main-gym/",
+          "fetched": true,
+          "quote": "Our flagship branch at Mwembe Tayari (Naivas)",
+          "supports": [
+            "name",
+            "address",
+            "status"
+          ]
+        },
+        {
+          "url": "https://sportlegacyfitness.com/main-gym/",
+          "fetched": true,
+          "quote": "Mombasa Mall Mwembe Tayari",
+          "supports": [
+            "address"
+          ]
+        },
+        {
+          "url": "https://sportlegacyfitness.com/",
+          "fetched": true,
+          "quote": "Mwembe Tayari, Naivas",
+          "supports": [
+            "address"
+          ]
+        },
+        {
+          "url": "https://sportlegacyfitness.com/main-gym/",
+          "fetched": true,
+          "quote": "24 Hours",
+          "supports": [
+            "hours"
+          ]
+        }
+      ],
+      "notes": "Seed e667ec25 'Legacy Fitness Club' (+254759348454, matching this branch) has a dead website (legacyfitnessclub.com is now for sale; see coast-mombasa leads). New info: new official site sportlegacyfitness.com and 24-hour opening. The site also lists a women-only 'Ladies Gym' at the same Mombasa Mall, Mwembe Tayari location, same phone ('provides a women-only workout environment'). It is a section of this venue, not a separate site. Caution: the site carries unrelated spam (casino/medication), so it may be compromised. Treat it as weaker than a clean official site. A Facebook URL slug hints at a 3rd floor; not stated as text."
+    },
+    {
+      "id": "web:chains-013",
+      "name": "Legacy Fitness - Bamburi Branch (Petrocity, Bamburi Mwisho)",
+      "kind": "gym",
+      "county": "Mombasa",
+      "town": "Mombasa",
+      "area": "Bamburi Mwisho",
+      "address": "Petrocity, Bamburi Mwisho, Mombasa",
+      "phones": [
+        "0700 490 404"
+      ],
+      "website": "https://sportlegacyfitness.com/bamburi-branch/",
+      "social": [],
+      "hoursText": "Mon - Sun, 24 Hours",
+      "access": "public",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://sportlegacyfitness.com/bamburi-branch/",
+          "fetched": true,
+          "quote": "Petrocity Bamburi Mwisho",
+          "supports": [
+            "name",
+            "address",
+            "status"
+          ]
+        },
+        {
+          "url": "https://sportlegacyfitness.com/",
+          "fetched": true,
+          "quote": "Bamburi Mwisho, Petrocity",
+          "supports": [
+            "address"
+          ]
+        },
+        {
+          "url": "https://sportlegacyfitness.com/bamburi-branch/",
+          "fetched": true,
+          "quote": "0700 490 404",
+          "supports": [
+            "phone"
+          ]
+        },
+        {
+          "url": "https://sportlegacyfitness.com/bamburi-branch/",
+          "fetched": true,
+          "quote": "24 Hours",
+          "supports": [
+            "hours"
+          ]
+        }
+      ],
+      "notes": "Sister branch of seed e667ec25. No seed gym is at the Bamburi Mwisho Petrocity station. A different gym, Summit Fitness (G.A.P., thegapmission.com), was described in a search snippet as being at 'Petrocity Bamburi Station, 2nd Floor'. Do not merge the two. Same caution as the main gym about the spam-laden site."
+    },
+    {
+      "id": "web:chains-014",
+      "name": "Legacy Fitness - Bombolulu Branch (Petrocity)",
+      "kind": "gym",
+      "county": "Mombasa",
+      "town": "Mombasa",
+      "area": "Bombolulu",
+      "address": "Petrocity, Bombolulu, Mombasa",
+      "phones": [
+        "0790 802 555"
+      ],
+      "website": "https://sportlegacyfitness.com/bombolulu-branch/",
+      "social": [],
+      "hoursText": "Mon - Sun, 3 am - 12pm (as written; may mean 3 AM to midnight)",
+      "access": "public",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://sportlegacyfitness.com/bombolulu-branch/",
+          "fetched": true,
+          "quote": "Bombolulu Petrocity",
+          "supports": [
+            "name",
+            "address",
+            "status"
+          ]
+        },
+        {
+          "url": "https://sportlegacyfitness.com/bombolulu-branch/",
+          "fetched": true,
+          "quote": "3 am - 12pm",
+          "supports": [
+            "hours"
+          ]
+        },
+        {
+          "url": "https://sportlegacyfitness.com/bombolulu-branch/",
+          "fetched": true,
+          "quote": "0790 802 555",
+          "supports": [
+            "phone"
+          ]
+        }
+      ],
+      "notes": "Hours are given exactly as on the page. They are ambiguous. A search snippet (TikTok, not used as evidence) called this branch recently opened. Not in seed."
+    },
+    {
+      "id": "web:chains-015",
+      "name": "PrideInn Paradise Beach Resort & Spa - Uzima Gym",
+      "kind": "hotel_gym",
+      "county": "Mombasa",
+      "town": "Mombasa",
+      "area": "Shanzu",
+      "address": "Shanzu Beach, Serena Rd, Mombasa",
+      "phones": [
+        "+254 709 532 000"
+      ],
+      "website": "https://www.prideinnhotels.com/hotels-in-mombasa/prideinn-paradise/",
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://www.prideinnhotels.com/hotels-in-mombasa/prideinn-paradise/",
+          "fetched": true,
+          "quote": "keep active at our fully equipped Uzima Gym.",
+          "supports": [
+            "name",
+            "status"
+          ]
+        },
+        {
+          "url": "https://www.prideinnhotels.com/hotels-in-mombasa/prideinn-paradise/",
+          "fetched": true,
+          "quote": "Shanzu Beach, Serena Rd, Mombasa",
+          "supports": [
+            "address"
+          ]
+        },
+        {
+          "url": "https://www.prideinnhotels.com/hotels-in-mombasa/prideinn-paradise/",
+          "fetched": true,
+          "quote": "+254 709 532 000",
+          "supports": [
+            "phone"
+          ]
+        }
+      ],
+      "notes": "PrideInn Hotels is a Kenyan chain (8 properties on prideinnhotels.com). 'Uzima Gym' is its gym brand. Non-guest access is not stated. +254 709 532 000 is the group-wide number shown on every property page. Pages for PrideInn Flamingo, Westlands, Nyali and Diani do not mention a gym, so they are not listed. Not in seed. Seed 831d7fd8 'PRIDE GYM Bamburi' is an unrelated gym."
+    },
+    {
+      "id": "web:chains-016",
+      "name": "PrideInn Azure Hotel Nairobi - Uzima Gym",
+      "kind": "hotel_gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Westlands (Lantana Road)",
+      "address": "Lantana Rd, Westlands, Nairobi",
+      "phones": [
+        "+254 709 532 000"
+      ],
+      "website": "https://www.prideinnhotels.com/hotels-in-nairobi/prideinn-azure/",
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://www.prideinnhotels.com/hotels-in-nairobi/prideinn-azure/",
+          "fetched": true,
+          "quote": "A well-equipped gym with up to date gym facilities for your workout sessions and unwinding time..",
+          "supports": [
+            "name",
+            "status"
+          ]
+        },
+        {
+          "url": "https://www.prideinnhotels.com/hotels-in-nairobi/prideinn-azure/",
+          "fetched": true,
+          "quote": "Lantana Rd, Westlands, Nairobi",
+          "supports": [
+            "address"
+          ]
+        }
+      ],
+      "notes": "The page names the facility 'Uzima Gym'. Non-guest access is not stated. Not in seed. The nearest seed gyms (Jacaranda Gym and Spa, The Rena and Health Fitness) are other businesses."
+    },
+    {
+      "id": "web:chains-017",
+      "name": "PrideInn Plaza Nairobi Airport - fitness center",
+      "kind": "hotel_gym",
+      "county": "Machakos",
+      "town": "Athi River",
+      "area": "Mombasa Road (Signature Mall)",
+      "address": "Signature Mall, Mombasa Rd, Athi River",
+      "phones": [
+        "+254 709 532 000"
+      ],
+      "website": "https://www.prideinnhotels.com/hotels-in-nairobi/prideinn-plaza/",
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://www.prideinnhotels.com/hotels-in-nairobi/prideinn-plaza/",
+          "fetched": true,
+          "quote": "Recharge at our modern fitness center, unwind in well-appointed spaces, or enjoy moments of relaxation in a tranquil setting.",
+          "supports": [
+            "name",
+            "status"
+          ]
+        },
+        {
+          "url": "https://www.prideinnhotels.com/hotels-in-nairobi/prideinn-plaza/",
+          "fetched": true,
+          "quote": "Signature Mall, Mombasa Rd, Athi River",
+          "supports": [
+            "address"
+          ]
+        }
+      ],
+      "notes": "The hotel is branded 'Nairobi Airport', but the page puts it at Signature Mall, Athi River. That is in Machakos County, inferred from the town; the county is not stated on the page. Non-guest access is not stated. Not in seed."
+    },
+    {
+      "id": "web:chains-018",
+      "name": "Serena Beach Resort & Spa - Maisha Health Club (gym)",
+      "kind": "hotel_gym",
+      "county": "Mombasa",
+      "town": "Mombasa",
+      "area": "Shanzu",
+      "address": "Shanzu Beach Homes, Serena Rd, Mombasa, Kenya",
+      "phones": [
+        "+254 732 125000",
+        "+254 733 584500",
+        "+254 733 584501"
+      ],
+      "website": "https://www.serenahotels.com/serena-beach",
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://www.serenahotels.com/serena-beach",
+          "fetched": true,
+          "quote": "Maisha Health Club - Gym",
+          "supports": [
+            "name",
+            "status"
+          ]
+        },
+        {
+          "url": "https://www.serenahotels.com/serena-beach",
+          "fetched": true,
+          "quote": "Shanzu Beach Homes, Serena Rd, Mombasa, Kenya",
+          "supports": [
+            "address"
+          ]
+        },
+        {
+          "url": "https://www.serenahotels.com/serena-beach",
+          "fetched": true,
+          "quote": "+254 732 125000",
+          "supports": [
+            "phone"
+          ]
+        }
+      ],
+      "notes": "Serena's 'Maisha' health clubs are a hotel-chain brand. The Nairobi Serena one is already covered in institutions.json. This Mombasa one is not in seed or in other groups' files. Non-resident access is not stated on this page. Institutions.json notes that a group-wide Maisha Membership exists, so access may be broader than hotel guests."
+    },
+    {
+      "id": "web:chains-019",
+      "name": "Hemingways Nairobi - spa gym",
+      "kind": "hotel_gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Karen",
+      "address": null,
+      "phones": [
+        "+254 (0) 205 006 200"
+      ],
+      "website": "https://www.hemingways-collection.com/nairobi/",
+      "social": [],
+      "hoursText": "Swimming and fitness: 06:00 to 22:00",
+      "access": "unknown",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://www.hemingways-collection.com/nairobi/wellness/",
+          "fetched": true,
+          "quote": "The spa is fully equipped with cardio and strength-training equipment",
+          "supports": [
+            "name",
+            "status"
+          ]
+        },
+        {
+          "url": "https://www.hemingways-collection.com/nairobi/",
+          "fetched": true,
+          "quote": "Located in the leafy suburb of Karen",
+          "supports": [
+            "address"
+          ]
+        },
+        {
+          "url": "https://www.hemingways-collection.com/nairobi/",
+          "fetched": true,
+          "quote": "T: +254 (0) 205 006 200",
+          "supports": [
+            "phone"
+          ]
+        }
+      ],
+      "notes": "Hemingways Collection is a Kenyan hotel group with 5 Kenyan properties. Only Nairobi and Watamu state fitness equipment. No street address is on the page. The phone number may be the central reservations line. The hours on the wellness page apply to swimming and fitness together. Not in seed."
+    },
+    {
+      "id": "web:chains-020",
+      "name": "Hemingways Watamu - fitness centre",
+      "kind": "hotel_gym",
+      "county": "Kilifi",
+      "town": "Watamu",
+      "area": "Garoda Beach",
+      "address": null,
+      "phones": [
+        "+254 (0) 205 006 200"
+      ],
+      "website": "https://www.hemingways-collection.com/watamu/",
+      "social": [],
+      "hoursText": "Gym & Fitness: 06:00 to 19:00",
+      "access": "unknown",
+      "status": "operating",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://www.hemingways-collection.com/watamu/wellness/",
+          "fetched": true,
+          "quote": "Full-service fitness centre",
+          "supports": [
+            "name",
+            "status"
+          ]
+        },
+        {
+          "url": "https://www.hemingways-collection.com/watamu/wellness/",
+          "fetched": true,
+          "quote": "06:00 to 19:00",
+          "supports": [
+            "hours"
+          ]
+        },
+        {
+          "url": "https://www.hemingways-collection.com/watamu/",
+          "fetched": true,
+          "quote": "along the white sands of Garoda Beach, within the protected Watamu Marine National Park",
+          "supports": [
+            "address"
+          ]
+        }
+      ],
+      "notes": "+254 (0) 205 006 200 is labelled 'Central Reservations Contact' for the collection, not the property. No seed venue lies within 3 km of Watamu."
+    },
+    {
+      "id": "web:chains-021",
+      "name": "Wadi Degla Club - Runda (gym within sports club)",
+      "kind": "fitness_club",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "Runda (Kiambu Road)",
+      "address": "Kiambu Road, Runda, Nairobi",
+      "phones": [],
+      "website": null,
+      "social": [],
+      "hoursText": null,
+      "access": "members_only",
+      "status": "unknown",
+      "inSeed": false,
+      "seedId": null,
+      "evidence": [
+        {
+          "url": "https://www.businessdailyafrica.com/bd/lifestyle/wadi-degla-raises-the-bar-for-private-clubs-2127924",
+          "fetched": true,
+          "quote": "sits on a 10-acre piece of land along Kiambu Road.",
+          "supports": [
+            "name",
+            "address"
+          ]
+        },
+        {
+          "url": "https://www.businessdailyafrica.com/bd/lifestyle/wadi-degla-raises-the-bar-for-private-clubs-2127924",
+          "fetched": true,
+          "quote": "hit the gym",
+          "supports": [
+            "name"
+          ]
+        }
+      ],
+      "notes": "Egyptian sports-club chain (Wadi Degla Clubs). The Business Daily article is dated 6 Oct 2016 (updated 24 Dec 2020). A Football Kenya Federation post (Jan 2021, seen only as a search snippet) says Wadi Degla was accredited as a football academy. The parent site wadidegla.com/WDC.html lists no Kenyan club, and no recent evidence of operation was found, so status is unknown. Membership is private and high-priced. County: Runda is in Nairobi, but some listings say Kiambu. A second club planned at Mamba Village, Karen (EastAfrican snippet, 2019) was not confirmed as opened."
+    },
+    {
+      "id": "web:chains-022",
+      "name": "easyGym Kenya (franchise) - status check",
+      "kind": "gym",
+      "county": "Nairobi",
+      "town": "Nairobi",
+      "area": "unknown (seed coordinates near Thika Road Mall)",
+      "address": null,
+      "phones": [
+        "+254793894402"
+      ],
+      "website": null,
+      "social": [],
+      "hoursText": null,
+      "access": "unknown",
+      "status": "unknown",
+      "inSeed": true,
+      "seedId": "5dfd4b6f-47db-4917-a55e-515ba2f9d742",
+      "evidence": [
+        {
+          "url": "http://www.easygym.ke/",
+          "fetched": false,
+          "quote": "",
+          "supports": [
+            "status"
+          ]
+        },
+        {
+          "url": "https://www.sloughobserver.co.uk/news/17916383.slough-gym-manager-spreads-message-afield---nairobi/",
+          "fetched": true,
+          "quote": "easyGym is already planning a second centre in Kenya.",
+          "supports": [
+            "name"
+          ]
+        }
+      ],
+      "notes": "Kept only to flag a possible closure. The seed website http://www.easygym.ke/ (and easygym.co.ke) did not resolve (DNS ENOTFOUND) on 2026-10-13. The Slough Observer article on easyGym's Nairobi franchise is undated and names no mall. No current evidence of operation was found. Phone the seed number before keeping it. Seed phone repeated here, not newly found."
+    }
+  ],
+  "unverifiedLeads": [
+    {
+      "name": "AFROFIT Malindi",
+      "url": "https://www.healthclubmanagement.co.uk/health-club-management-news/Afrofit-founder-Yves-Preissler-says-the-African-market-is-there-for-the-taking/354258",
+      "why": "Health Club Management (22 Oct 2024) quote: 'The third site launched in the coastal town of Malindi, in May 2024.' No address. The current official club list (afrofit.life/our-clubs) shows only Delta Chambers, TRM and Kisumu, so it may have closed."
+    },
+    {
+      "name": "KASA FITNESS (listed in AfroFit's club selector)",
+      "url": "https://afrofit.life/prices-and-plans",
+      "why": "Appears only as an option in the AfroFit plans club selector. No location, and not on the Our Clubs page."
+    },
+    {
+      "name": "Natty Gym - Kenyatta Road / Juja Bypass (coming soon)",
+      "url": "https://nattygyms.com/",
+      "why": "Official site: 'We are bringing a world-class, luxury-finish training center to Kenyatta Road very soon.' Not open yet; opening dates promised for 2026."
+    },
+    {
+      "name": "Fitness 16 - Ruaka (coming soon)",
+      "url": "https://www.fitness16.com/",
+      "why": "Official site labels it 'RUAKA BRANCH Coming Soon'. Not open, no address."
+    },
+    {
+      "name": "Faiz Gym - Nyali branch (Mombasa)",
+      "url": "https://victormatara.com/list-of-best-fitness-centres-in-mombasa/",
+      "why": "Only a blog/directory snippet: '3 prime locations across Mombasa Town, Tudor and Nyali', phones 0727 524 988, 0714 228 899, 0703 713 805. The page returned 403 to WebFetch. Town and Tudor branches are already in seed (5f27255b, 187cd2f6); Nyali has no address."
+    },
+    {
+      "name": "Physiq & Tone Gyms - Mbuchia House, Westlands (and Ruaka Square)",
+      "url": "https://www.localgymsandfitness.com/KE/Nairobi/1091890904313247/Physiq-Gyms",
+      "why": "Single directory snippet: '6th Floor, Ruaka square' and '2nd Floor, Mbuchia House Westlands'. No official site found. The Ruaka/Limuru Road branch is probably seed ea7d3fee-1fbe-45f8-a9bb-d01285805961 / OSM node/12112874821 (Physiq & Tone, Limuru Road)"
+    },
+    {
+      "name": "Racing Sport Gym - Valley View Office Park (Parklands) and Bandari Plaza (Westlands)",
+      "url": "https://www.runbeyond.co.ke/resource-centre/gym-directory/",
+      "why": "Run Beyond directory lists two branches. racingsportgym.com does not resolve. Already handled by the nbo-westlands group (seed e50c1e09, node/5354298522)."
+    },
+    {
+      "name": "Ignite Fitness Kenya - Village Market and Westgate Mall",
+      "url": "https://www.runbeyond.co.ke/resource-centre/gym-directory/",
+      "why": "Run Beyond lists 'Village Market - 0773 979235, Westgate Mall - 0703 214 765'. ignitefitness.com returned 503. Both sites now appear to host other clubs (VMX Fitness at Village Market; W Exclusive at Westgate, found by the nbo-westlands group), so the Ignite brand is likely gone from Kenya. Do not add."
+    },
+    {
+      "name": "Sarova hotels health clubs (Stanley Health Club, Panafric, Whitesands, Woodlands, Imperial)",
+      "url": "https://www.sarovahotels.com/",
+      "why": "sarovahotels.com returned HTTP 403 to WebFetch. Only booking-site snippets mention the Stanley Health Club (5th floor) and a Panafric gym. Seed has 'whitesands fitness/gym center' (5a3d3a25)."
+    },
+    {
+      "name": "Radisson Blu Upper Hill / JW Marriott Nairobi (hotel-chain gyms)",
+      "url": "https://www.radissonhotels.com/en-us/hotels/radisson-blu-nairobi-upper-hill",
+      "why": "Official chain sites returned HTTP 403 (Radisson, Marriott), so gyms could not be confirmed from an evidence page."
+    },
+    {
+      "name": "Two Rivers Mall gym (unnamed international operator)",
+      "url": "https://capitalfm.africa/two-rivers-mall-nairobis-lifestyle-hub-redefining-urban-living/",
+      "why": "Search snippet only (Capital FM, ~Aug 2025): 'a world-class gym is taking shape, run by an international operator'. Operator unnamed, opening unconfirmed."
+    },
+    {
+      "name": "Wadi Degla Club - Karen (Mamba Village)",
+      "url": "https://www.theeastafrican.co.ke/tea/magazine/second-wadi-degla-club-coming-to-karen-1429890",
+      "why": "2019 snippet about a planned second club. Not confirmed to have opened."
+    }
+  ],
+  "coverageNotes": "Chains research (round 1, 2026-10-13). Kenya has very few true multi-branch gym chains, and search engines index them poorly. Small-gym searches mostly returned hotel/Airbnb pages or generic directories. CONFIRMED FROM OFFICIAL SITES: SmartGyms (official list now 3 Nairobi clubs: Junction, Diamond Plaza, The Hub Karen. The Southfield Mall branch appears in 2025 blogs/directories but no longer on the official site, so status unknown). AFROFIT (3 clubs: Delta Chambers Westlands, Thika Road Mall 2nd floor, United Mall Kisumu 1st floor. The Malindi club from 2024 is no longer listed). Natty Gyms (Kahawa Sukari already in seed, plus Ruiru and Membley without street addresses; Kenyatta Road coming soon). Fitness 16 (Juja open; Ruaka coming soon). Legacy Fitness, Mombasa (Mwembe Tayari main gym already in seed with a dead website; Bamburi Mwisho and Bombolulu Petrocity branches are new. The new site carries spam, so treat it with care). Hotel-chain gyms with official pages: PrideInn (Uzima Gym at Paradise Shanzu and Azure Westlands; fitness centre at Plaza, Athi River), Serena Beach Mombasa (Maisha Health Club), Hemingways Nairobi and Watamu. Wadi Degla Runda is included with status unknown (2016 evidence only). easyGym Kenya (seed) is flagged because its website no longer resolves. SINGLE-SITE, NOT CHAINS (checked and skipped): Platinum Fitness (Kenya Cinema Plaza), Muscle Health & Fitness (site lists only Vision Plaza), SmashFit (Sarit only), InShape (Mombasa CBD only), Colosseum, Feel Fitness, Alpha Fit, The Burn Club, F45 (only the Lavington studio in Kenya; covered by nbo-westlands), VMX. NOT FOUND IN KENYA: Curves, Anytime Fitness, Gold's Gym, Snap Fitness, Gracie Barra. UNVERIFIED: Faiz Gym Nyali, Physiq & Tone Westlands, Racing Sport's 2 branches, Ignite Fitness (likely defunct). BLOCKED: sarovahotels.com, radissonhotels.com and marriott.com returned 403, so Sarova, Radisson and Marriott gyms are not recorded. No evidenced multi-branch gym chain was found outside Nairobi/Kiambu, Mombasa and Kisumu (searches covered Nakuru, Eldoret, Kisumu, Thika, Nyeri, Meru, Embu, Kakamega, Bungoma, Kisii, Kitengela, Syokimau and Mlolongo). No branch coordinates were taken from maps, so geocoding is still needed. Queries 1-12 of this list were reconstructed after a shared scratch file was overwritten by another agent; the queries themselves were run."
+}

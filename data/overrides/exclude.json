@@ -2,5 +2,13 @@
   {
     "id": "osm:node/3868919121",
     "reason": "OSM node 'Rekebisha primary/Gym' names a primary school, not a gym business"
+  },
+  {
+    "id": "gers:d66a7d6a-b96f-4668-b848-fdd95b639d66",
+    "reason": "'Karen Blixen Camp, Masai Mara' is a safari camp (its Nairobi contact address in Karen), filed as gym in Microsoft data; not a training venue. Reviewed 2026-10-13"
+  },
+  {
+    "id": "gers:8976495d-5507-49cb-b3f4-a297503943c6",
+    "reason": "'The Gym Shop': a retail stall (Beaver House stalls, shop B18, Tom Mboya St), not a training venue. Reviewed 2026-10-13 from name and address"
   }
 ]

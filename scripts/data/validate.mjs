@@ -44,7 +44,8 @@ const httpUrl = (check = () => true, message = "not an http(s) URL") =>
     }
   }, message);
 
-export const VenueSchema = z.object({
+/** Strict: an unknown key (rating, priceLevel, photoName, reviews, ...) fails the build. */
+export const VenueSchema = z.strictObject({
   id: z.string().regex(/^(?:osm:(?:node|way|relation)\/\d+|gers:[0-9a-f-]{36}|web:.+)$/),
   slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*-[0-9a-f]{4,}$/),
   aliases: z.array(z.string().min(1)),
@@ -141,6 +142,10 @@ export function checkBuild({ manifest, gymsText, gymsFile, landmarksText, otherH
   const previousVisible = manifest.previous?.defaultVisible ?? null;
   if (previousVisible && visible.length < previousVisible * (1 - MAX_DROP)) {
     fail(`default-visible ${visible.length} is more than 15% below the previous build (${previousVisible})`);
+  }
+  const previousTotal = manifest.previous?.total ?? null;
+  if (previousTotal && gyms.length < previousTotal * (1 - MAX_DROP)) {
+    fail(`total ${gyms.length} is more than 15% below the previous build (${previousTotal})`);
   }
   if (env.PREVIOUS_TOTAL && gyms.length < Number(env.PREVIOUS_TOTAL) * (1 - MAX_DROP)) {
     fail(`total ${gyms.length} is more than 15% below PREVIOUS_TOTAL ${env.PREVIOUS_TOTAL}`);

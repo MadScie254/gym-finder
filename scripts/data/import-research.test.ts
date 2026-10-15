@@ -125,6 +125,41 @@ describe("matching an existing OSM/Overture record", () => {
     expect(far.venues).toHaveLength(2);
   });
 
+  describe("one web finding joins at most one venue", () => {
+    // Two branches of a chain, 2.5 km apart, sharing a phone: two venues, never one.
+    const branches = () => [
+      overture("s1", "Smart Gyms Junction", { websites: [] }),
+      overture("s2", "Smart Gyms Westlands", { websites: [], lat: KILIMANI.lat - north(2200) }),
+    ];
+
+    it("a finding that matches two venues equally well is left out and logged, never fusing them", () => {
+      const { venues, assembled } = run([researched({ id: "web:smart", name: "Smart Gyms" })], branches());
+      expect(venues.map((v: any) => v.id)).toEqual(["gers:s1", "gers:s2"]);
+      expect(venues.every((v: any) => v.aliases.length === 0)).toBe(true);
+      expect(assembled.researchAmbiguous).toMatchObject([{ id: "web:smart", reason: "phone", candidates: ["gers:s1", "gers:s2"], closed: false }]);
+    });
+
+    it("joins the one whose name agrees best", () => {
+      const { venues, assembled } = run([researched({ id: "web:smart-w", name: "Smart Gyms Westlands" })], branches());
+      expect(venues).toHaveLength(2);
+      expect(venues.find((v: any) => v.id === "gers:s2").aliases).toEqual(["web:smart-w"]);
+      expect(venues.find((v: any) => v.id === "gers:s1").aliases).toEqual([]);
+      expect(assembled.researchAmbiguous).toEqual([]);
+    });
+
+    it("an ambiguous closed finding closes nothing", () => {
+      const { venues, assembled } = run([researched({ id: "web:smart", name: "Smart Gyms", status: "closed" })], branches());
+      expect(venues).toHaveLength(2);
+      expect(assembled.researchClosed).toEqual([]);
+      expect(assembled.researchAmbiguous[0]).toMatchObject({ id: "web:smart", closed: true });
+    });
+
+    it("a seed link beats a shared phone", () => {
+      const { venues } = run([researched({ id: "web:smart", name: "Smart Gyms", inSeed: true, seedId: "gers:s1" })], branches());
+      expect(venues.find((v: any) => v.id === "gers:s1").aliases).toEqual(["web:smart"]);
+    });
+  });
+
   it("web research fills gaps only: it never overrides OSM/Overture values or adds a second phone from an unofficial page", () => {
     const { venues } = run([researched({ phones: ["0722 000 111", "0733 999 888"], website: "https://other.example.co.ke" })], [overture("a1", "Alpha Fit")]);
     expect(venues[0].phones).toEqual(["+254722000111"]);
@@ -202,12 +237,13 @@ describe("closed, uncertain and invalid findings", () => {
   });
 
   it("uncertain and unrecognised statuses are never imported", () => {
-    for (const status of ["uncertain", "unknown", "temporarily closed", "", null, "maybe open"]) {
+    for (const status of ["uncertain", "unknown", "temporarily closed", "", null, "maybe open", "operating (unverified)", "open?", "likely operating", "moved"]) {
       const result = run([researched({ status })], []);
       expect(result.venues, String(status)).toHaveLength(0);
       expect(result.research.counts.uncertain).toBe(1);
     }
     expect(researchStatus("open")).toBe("open");
+    expect(researchStatus("operating")).toBe("open");
     expect(researchStatus("Open")).toBe("open");
     expect(researchStatus("closed")).toBe("closed");
     expect(researchStatus("permanently closed")).toBe("closed");

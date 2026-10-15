@@ -1,0 +1,862 @@
+{
+  "reviewedAt": "2026-10-13",
+  "catalogue": "public/data/gyms.a78b7d75ae.json",
+  "reviewed": 506,
+  "issues": [
+    {
+      "id": "gers:021bdecf-d4fb-44f7-b5d0-1f2ba15ad1ef",
+      "name": "Fulana Sports",
+      "issue": "not_a_gym",
+      "reason": "Own site's menu is Corporate Wellness Programs, Fitness Center Management, Fitness Equipment Sales, Fitness Equipment Leasing, Fitness Center Design and Tauri Equipment (regional reseller): an equipment and gym-management business, no memberships or classes. The pin is also in the CBD, about 9 km from its stated Two Rivers Mall address.",
+      "evidence": "https://www.fulanasports.co.ke/",
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:624fb9a1-22d4-44fd-a6fc-e9c5e9822083",
+      "name": "Ultra Smart Controls",
+      "issue": "not_a_gym",
+      "reason": "Ultra Equipment Ltd (record email sales@ultraeq.com, website field points at technogym.com) is a distributor of Technogym commercial fitness kit and pro audio, 2nd Floor Sound Plaza, Woodvale Grove. It is not a training venue. Already a review candidate 51 m from OSM Racing Sport Gym.",
+      "evidence": "https://victormatara.com/list-of-best-gym-equipment-suppliers-in-kenya/",
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:5fa191e0-a108-4dcb-8114-9dec1206a910",
+      "name": "Fitness Forless",
+      "issue": "not_a_gym",
+      "reason": "Own site is an equipment store catalogue with prices and 'Shop now', and calls Kenya House Complex Ground Floor G6 its 'showroom'. No memberships or classes.",
+      "evidence": "http://www.fitnessforless.shop/",
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:802bb273-a8a8-414e-9916-a14d052e10a0",
+      "name": "Eccom Fitness",
+      "issue": "not_a_gym",
+      "reason": "Same address as the Fitness For Less equipment showroom (Kenya House Complex G6, Koinange St), a ground-floor retail unit. Its website eccomhub.co.ke (an e-commerce hub) no longer resolves. Nothing indicates a training space.",
+      "evidence": "http://www.fitnessforless.shop/",
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:62a47f48-7c41-423f-9374-779679217dd2",
+      "name": "Fitness & Gym Kenya",
+      "issue": "not_a_gym",
+      "reason": "Own site: 'a fitness equipment store based in Nairobi, Kenya', equipment 'for your gym and domestic use', with delivery and installation; Jamia Mall shop 156. No classes or memberships.",
+      "evidence": "http://www.fitnessgym.co.ke/index.php",
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:cc77d114-cc80-4ca3-a4ca-7f9e16d9f718",
+      "name": "Platinum Fitness Kenya",
+      "issue": "not_a_gym",
+      "reason": "Own site is titled 'Gym Equipment Supplier in Kenya': a shop with add-to-cart products and doorstep delivery at Kenya Cinema Plaza 2nd floor, Shop 2-1. No membership plans or class schedule. Concurrent research found the same and could not confirm a training gym.",
+      "evidence": "https://www.platinumfitness.co.ke/",
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:dc440b70-02e1-409d-80dd-0049795322a3",
+      "name": "Happy Life",
+      "issue": "not_a_gym",
+      "reason": "The record's own website says 'Your trusted dealer in high-quality gym and fitness equipment', at Kenya Cinema 2nd Floor, Shop 1 (record address 'Kenya Cinema 2nd floor Shop 2'); the phone matches. No memberships or classes. Currently corroborated tier, so it shows by default.",
+      "evidence": "https://www.happyfitnesskenya.co.ke/",
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:4eb27d98-c0f4-4ca5-83ee-8dcd08405d67",
+      "name": "Gymfiti fitness suppliers hub",
+      "issue": "not_a_gym",
+      "reason": "The name says it is a 'fitness suppliers hub' and the record email is info@gymfitsupplies.com (domain now parked for sale). Luthuli Avenue is a retail street. It has the same pin as 'Vorna Value Shopping'.",
+      "evidence": null,
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:96351662-31c8-45e1-9923-de3bb8b2a71b",
+      "name": "Vorna Value Shopping",
+      "issue": "not_a_gym",
+      "reason": "The name is a shop name ('Value Shopping'), the website fitnessandhealth.co.ke no longer resolves, and the pin is identical to 'Gymfiti fitness suppliers hub'. It is already soft-denied (unconfirmed).",
+      "evidence": null,
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:8ee73b58-fd29-41c5-bbdb-3404dbb128af",
+      "name": "Wedry Fitness Suppliers",
+      "issue": "not_a_gym",
+      "reason": "The name says it is an equipment supplier ('Fitness Suppliers'). Confidence 0.29, already unconfirmed.",
+      "evidence": null,
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:85ee3737-5ea2-4cfc-b0d3-81e6e13149ea",
+      "name": "Board Games and Cards Kenya",
+      "issue": "not_a_gym",
+      "reason": "A board-game and playing-card shop on Moi Avenue, filed as boot_camp. Its website domain boardgamescards.com now serves an Indonesian online-slot gambling page, so the website link must not be shown either. Currently visible (listed).",
+      "evidence": "https://boardgamescards.com/",
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:acdda761-8ee1-42bb-b8ca-98482c67e0d7",
+      "name": "Flex Fitness Gym Services",
+      "issue": "not_a_gym",
+      "reason": "The record email info@flexfitness.co.ke and website belong to 'Flex fitness services', a corporate-wellness, gym-management and gear company at 143 Mkoma Rd, South B, Nairobi. The site describes no Mombasa gym; the only Mombasa mention is one trainer in Bamburi. Concurrent research reached the same conclusion.",
+      "evidence": "https://flexfitness.co.ke/",
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:3c0e53de-27a6-40cc-b2ed-0b923280373b",
+      "name": "Abu Hureira Academy",
+      "issue": "not_a_gym",
+      "reason": "Abu Hureira Academy is a school in Majengo location, Mvita (a schools portal ranks it among Mombasa's top schools), matching this pin off Dar es Salaam Rd. It is not a fitness venue.",
+      "evidence": "https://educationnewshub.co.ke/10-best-performing-top-schools-in-mombasa-county/",
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:2507885b-6cdb-4a58-9e01-f2c707de3a88",
+      "name": "Pamia",
+      "issue": "not_a_gym",
+      "reason": "PAMIA (Pamoja Arts & Multisports International Academy) describes itself as a 'hub for sports training and creative arts education' for ages 4 to 18: skating, taekwondo, football, swimming, athletics and arts. It is a youth academy, not a gym; the site never mentions a gym or fitness programme.",
+      "evidence": "https://www.pamia.co.ke/",
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:0fee087e-97ee-42a8-b2b7-f36086dc5fa8",
+      "name": "mda studios tworivers",
+      "issue": "not_a_gym",
+      "reason": "MDA Studios (record email dancewithmoses1@gmail.com) is a dance, art and events creative agency per its own site (read by the concurrent research workflow; my own fetch got HTTP 503). It is not a gym, and the site gives no Two Rivers studio. Same phone and website as the other MDA Studios record.",
+      "evidence": "http://www.mda-africa.com/",
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:360300f4-8e3d-4aec-b8ab-22974f1c23db",
+      "name": "MDA Studios",
+      "issue": "not_a_gym",
+      "reason": "The same MDA Studios dance and events agency as gers:0fee087e (same phone and website). It is not a gym or fitness venue.",
+      "evidence": "http://www.mda-africa.com/",
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:8914b9a4-92f0-4c69-9625-17ed2fe0c5e5",
+      "name": "Kenya Taekwondo Forum",
+      "issue": "not_a_gym",
+      "reason": "A sports body, not a club venue: the name is a 'Forum' and the address is the National Olympic Committee offices. The record has no phone and its website kenyataekwondo.co.ke no longer resolves, so there is nothing to train at or contact.",
+      "evidence": null,
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:8fe71c68-0bbe-4d44-ba5b-0db40823e965",
+      "name": "SendMe Ke",
+      "issue": "not_a_gym",
+      "reason": "Judged from the record alone: 'SendMe Ke' has no fitness vocabulary and reads as an errand or delivery service. There is no phone, the website domain no longer resolves, and a web search found nothing tying it to a gym. Currently visible (listed).",
+      "evidence": null,
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:6056cebb-e43e-46a0-b0a5-6b7a4eaa2e1b",
+      "name": "Biofit rehabilitation clinic",
+      "issue": "not_a_gym",
+      "reason": "The name and website domain (biofitphysio) identify a physiotherapy and rehabilitation clinic, a healthcare provider rather than a public gym. The domain no longer resolves.",
+      "evidence": null,
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:9483faf1-04dd-4e0d-86d9-f17b52c9f108",
+      "name": "Nyayo Basketball gym",
+      "issue": "not_a_gym",
+      "reason": "'Nyayo Basketball gym' is the indoor basketball arena at Nyayo National Stadium (a sports hall), not a fitness gym. No phone or website.",
+      "evidence": null,
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:8a6c634e-f655-444f-82e3-045d5e802714",
+      "name": "National Treasury Gym",
+      "issue": "not_a_gym",
+      "reason": "A staff facility inside the National Treasury building on Harambee Avenue (government offices with controlled entry). It is not open to the public, and there is no phone or website.",
+      "evidence": null,
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:dfc3a9d1-e8b7-4597-a4b8-0db6ff137536",
+      "name": "Kapsait Nike Athletics Camp",
+      "issue": "not_a_gym",
+      "reason": "An elite athletes' training camp in Kapsait, not a gym that members of the public can join. No phone or website, confidence 0.42.",
+      "evidence": null,
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:60de3426-ba30-4f54-88d6-a302e4411c44",
+      "name": "Lorna kiplagat stadium",
+      "issue": "not_a_gym",
+      "reason": "A stadium or track (2.5 km from Lornah Kiplagat's HATC, which is listed separately as gers:0a64be67), not a gym. No phone.",
+      "evidence": null,
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:43fc418b-8af7-4624-a5bc-f98f59e7ea9e",
+      "name": "Mariakani Bahari Forwarders",
+      "issue": "not_a_gym",
+      "reason": "A freight forwarder (name). Already soft-denied; no contact details.",
+      "evidence": null,
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:4f9f912d-abca-4cee-99f7-600e49f3d506",
+      "name": "Kitui Showground",
+      "issue": "not_a_gym",
+      "reason": "An agricultural showground, not a gym. Already soft-denied; no contact details.",
+      "evidence": null,
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:54ce8f13-0d70-432b-bc05-d9e3e5dc3127",
+      "name": "Ole Dume Suites",
+      "issue": "not_a_gym",
+      "reason": "Serviced apartments ('Suites'). Any gym would be for residents only. Already soft-denied; no contact details.",
+      "evidence": null,
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:8c55773a-e833-4cef-ac2e-b75f72f28ff3",
+      "name": "Majengo Village Hall",
+      "issue": "not_a_gym",
+      "reason": "A community hall, not a gym. Already soft-denied; no contact details.",
+      "evidence": null,
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:95ce4bab-b721-4517-937f-048761e13d8f",
+      "name": "Bees park hotel",
+      "issue": "not_a_gym",
+      "reason": "A hotel with no gym named or evidenced. Already soft-denied; no contact details.",
+      "evidence": null,
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:aa1092ef-f2c7-4db6-910d-89308c8bca5f",
+      "name": "Brimak Hotel",
+      "issue": "not_a_gym",
+      "reason": "A hotel with no gym named; its website krn.co.ke is unrelated. Already soft-denied.",
+      "evidence": null,
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:c5c25808-bdca-4b52-b0db-68e0c306a325",
+      "name": "Chuckie interiors",
+      "issue": "not_a_gym",
+      "reason": "An interior-design business (name). Already soft-denied.",
+      "evidence": null,
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:f990d289-8d5b-4982-a420-e0621b24ca20",
+      "name": "Crestmed Health Sciences Training College",
+      "issue": "not_a_gym",
+      "reason": "A health-sciences training college. Already soft-denied.",
+      "evidence": null,
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:fdddd653-f75f-497f-90be-b5055ab49f0e",
+      "name": "GBS (Good New Broadcasting System)",
+      "issue": "not_a_gym",
+      "reason": "A broadcaster ('Good New Broadcasting System'). Already soft-denied.",
+      "evidence": null,
+      "suggestedAction": "exclude"
+    },
+    {
+      "id": "gers:42cac902-04ba-4c68-b645-0a69b20835e3",
+      "name": "Banana House & Wellness Centre",
+      "issue": "likely_duplicate_of",
+      "reason": "Same phone (+254721275538) and website as gers:0b9dc1e8 'Banana House And Wellness Centre'. This copy's pin is about 26 km off Lamu Island; the other sits in Lamu town. Note it is a boutique hotel with a yoga offering, so public drop-in is not confirmed.",
+      "evidence": "http://www.bananahouse-lamu.com/",
+      "suggestedAction": "merge",
+      "duplicateOf": "gers:0b9dc1e8-b789-426e-9116-8e478eb58321"
+    },
+    {
+      "id": "gers:6de9fa76-fd4a-4045-abea-c38bde8fdab6",
+      "name": "Feel Fitness Center",
+      "issue": "likely_duplicate_of",
+      "reason": "Same name and same phone (+254780297429) as gers:6b2dc50e (Thika Palm Arcade, Garden Estate), but this pin is about 27 km south near Kitengela with no street address. One business, and this pin is wrong.",
+      "evidence": null,
+      "suggestedAction": "merge",
+      "duplicateOf": "gers:6b2dc50e-d3a3-4e6f-99a5-9b854130fb42"
+    },
+    {
+      "id": "osm:node/12395863211",
+      "name": "Feel Fitness Gym",
+      "issue": "likely_duplicate_of",
+      "reason": "OSM 'Feel Fitness Gym' is 342 m from Overture 'Feel Fitness Center' (gers:6b2dc50e), both in Garden Estate. It missed the 150 m strict merge rule only on distance.",
+      "evidence": null,
+      "suggestedAction": "merge",
+      "duplicateOf": "gers:6b2dc50e-d3a3-4e6f-99a5-9b854130fb42"
+    },
+    {
+      "id": "gers:adf2128b-909d-4af8-8b7f-3ed789317c93",
+      "name": "Dayah Sports and Fitness Centre",
+      "issue": "likely_duplicate_of",
+      "reason": "Same phone (+254722850244) as gers:7ab5aace 'Dayah Sports Centre' (Eastleigh side). This pin is 11 km away near Kasarani, while its address ('18th Street, opposite Nairobi Water') is in Eastleigh.",
+      "evidence": null,
+      "suggestedAction": "merge",
+      "duplicateOf": "gers:7ab5aace-9e87-469d-865a-89255cd33c97"
+    },
+    {
+      "id": "gers:326b553b-0d57-45cc-9490-595a8fd1587a",
+      "name": "Utawala Gym and Aerobics",
+      "issue": "likely_duplicate_of",
+      "reason": "Same name as gers:0a657c55 'Utawala Gym And Aerobics', 1.3 km apart in Utawala. The phones differ by one digit (+254796955052 vs +254795955052), which points to a typo in one listing.",
+      "evidence": null,
+      "suggestedAction": "merge",
+      "duplicateOf": "gers:0a657c55-4176-48d5-8ba3-bd483fa5d1c2"
+    },
+    {
+      "id": "gers:423c71f3-1c31-4358-b75c-7588d8f62ee2",
+      "name": "Smart Gyms",
+      "issue": "likely_duplicate_of",
+      "reason": "SmartGyms' official site lists one Parklands club, Diamond Plaza. This 'Diamond Plaza 2, 4th Parklands Ave' record is pinned 3.9 km west in Spring Valley; gers:123e2d98 is at Diamond Plaza. A directory gives this phone (0722 128281) for the Diamond Plaza branch.",
+      "evidence": "https://www.smartgyms.co.ke/",
+      "suggestedAction": "merge",
+      "duplicateOf": "gers:123e2d98-615a-4846-9e38-d6479da075c6"
+    },
+    {
+      "id": "osm:node/5421225050",
+      "name": "Smartgyms",
+      "issue": "likely_duplicate_of",
+      "reason": "OSM 'Smartgyms' is 24 m from Overture 'Smart Gyms Junction' at Junction Mall.",
+      "evidence": null,
+      "suggestedAction": "merge",
+      "duplicateOf": "gers:4c268103-3ea7-4fc2-a135-bb2e0b46e48a"
+    },
+    {
+      "id": "osm:node/5354298522",
+      "name": "Racing Sport Gym",
+      "issue": "likely_duplicate_of",
+      "reason": "Identical name 164 m apart on Woodvale Grove/Road, Westlands. The OSM node has no contact details.",
+      "evidence": null,
+      "suggestedAction": "merge",
+      "duplicateOf": "gers:e50c1e09-8136-4c60-a7da-b2066ffb0d71"
+    },
+    {
+      "id": "gers:abf05f5b-3308-4832-b113-ce02058fe829",
+      "name": "Switch Fitness Centre",
+      "issue": "likely_duplicate_of",
+      "reason": "Overture 'Switch Fitness Centre' (unconfirmed, no phone) is 270 m from OSM 'Switch Fitness Center', Mombasa Road, Mlolongo.",
+      "evidence": null,
+      "suggestedAction": "merge",
+      "duplicateOf": "osm:node/6210199378"
+    },
+    {
+      "id": "gers:af9ddd4b-db2d-4ad3-95a4-0d0c9bfb119f",
+      "name": "Power Vibe Studio",
+      "issue": "likely_duplicate_of",
+      "reason": "Overture 'Power Vibe Studio' (Saffron Spa, Muthangari Drive) is 437 m from OSM 'Power Vibe Studio Westlands/Power Plate Studio' (Muthangari Drive). The Overture copy holds the phone.",
+      "evidence": null,
+      "suggestedAction": "merge",
+      "duplicateOf": "osm:node/5440688256"
+    },
+    {
+      "id": "gers:3accf893-96bc-4031-ba65-8f4158e437d9",
+      "name": "Dennison Fitness",
+      "issue": "likely_duplicate_of",
+      "reason": "Overture 'Dennison Fitness' says 'utawala' in its address but is pinned in the CBD. OSM 'Dennison Fitness' (osm:node/12943070550) is in Utawala. Keep the OSM location and the Overture phone and website.",
+      "evidence": null,
+      "suggestedAction": "merge",
+      "duplicateOf": "osm:node/12943070550"
+    },
+    {
+      "id": "gers:f7fda656-5de6-4825-b8e9-d72f978291f5",
+      "name": "Gym & Tone Fitness Studio",
+      "issue": "likely_duplicate_of",
+      "reason": "'Gym & Tone Fitness Studio' (Baricho Road, no phone) and 'Gym and Tone It Fitness Studio' (Vinodeep Towers, Baricho Rd) are 829 m apart on the same road with the same name stem. Both are unconfirmed.",
+      "evidence": null,
+      "suggestedAction": "merge",
+      "duplicateOf": "gers:d70cb9e0-291d-47e8-b0e4-3056ed691ae7"
+    },
+    {
+      "id": "gers:3c2c32b3-5c35-477a-927f-e87f644fca28",
+      "name": "Muscle Health and Fitness",
+      "issue": "likely_duplicate_of",
+      "reason": "This record's own website musclehealth.co.ke lists one address, 4th floor Vision Plaza. Vision Plaza (Mombasa Rd) is where gers:8677ea55 'Muscle Health and Fitness' sits; this CBD pin ('Travel House, General Kago St') is not supported by the site. The phones differ, so the evidence is moderate: check before merging.",
+      "evidence": "http://www.musclehealth.co.ke/",
+      "suggestedAction": "merge",
+      "duplicateOf": "gers:8677ea55-d669-480c-8053-dc3cddc438e6"
+    },
+    {
+      "id": "gers:797034cd-4849-430b-be63-fcce3cc903e2",
+      "name": "Smart Gyms",
+      "issue": "wrong_place",
+      "reason": "The address is The Hub Karen, Dagoretti Rd (Nairobi County), a SmartGyms branch per the official site. The pin (-1.3617, 36.6557) is about 7 km south-west near Ngong, so county and town read Kajiado/Ngong. Same phone as the Diamond Plaza record.",
+      "evidence": "https://www.smartgyms.co.ke/",
+      "suggestedAction": "keep",
+      "suggestedCounty": "Nairobi"
+    },
+    {
+      "id": "gers:41389fe2-bc56-4093-ac6f-10d5c1aa33b3",
+      "name": "Alpha Fitnessgym Thindigua",
+      "issue": "wrong_place",
+      "reason": "The name and address put it at K-Mall, Thindigua (Kiambu Road, Kiambu County), but the pin is in Korogocho, Nairobi, about 7 km away.",
+      "evidence": null,
+      "suggestedAction": "keep",
+      "suggestedCounty": "Kiambu"
+    },
+    {
+      "id": "gers:3861faf2-71f1-4e16-b788-ea33bb4b09d0",
+      "name": "Wazito CAMP GYM",
+      "issue": "wrong_place",
+      "reason": "The address is 'Wamakumi Building Wangige' (Kiambu County), but the pin is in east Nairobi about 19 km away. Either the address or the pin is wrong.",
+      "evidence": null,
+      "suggestedAction": "keep",
+      "suggestedCounty": "Kiambu"
+    },
+    {
+      "id": "gers:c67706d9-afa6-434c-9994-72cbd0b3be25",
+      "name": "Maisha Bora Gym Kitengela CBD",
+      "issue": "wrong_place",
+      "reason": "The name says 'Kitengela CBD' and the address is P.O. Box Kitengela (Kajiado County), but the pin is near Langata, Nairobi.",
+      "evidence": null,
+      "suggestedAction": "keep",
+      "suggestedCounty": "Kajiado"
+    },
+    {
+      "id": "gers:ba413570-cf6b-4283-b264-30904f3c9f35",
+      "name": "Ruiru Gym & Aerobics",
+      "issue": "wrong_place",
+      "reason": "The pin (-0.7, 37.1167) is a round placeholder in Murang'a, but Ruiru is in Kiambu County about 50 km south. No address.",
+      "evidence": null,
+      "suggestedAction": "keep",
+      "suggestedCounty": "Kiambu"
+    },
+    {
+      "id": "gers:f4054397-5a9b-4a22-96e2-71ce8135db12",
+      "name": "Tong-Il Moo Do Club Kasarani",
+      "issue": "wrong_place",
+      "reason": "The address is Kasarani Stadium, Thika Super Highway (Nairobi County), but the county is set to Kiambu and the town to Ruiru. The pin is 2.8 km east of the stadium.",
+      "evidence": null,
+      "suggestedAction": "keep",
+      "suggestedCounty": "Nairobi"
+    },
+    {
+      "id": "gers:cc1f8ae1-e5f4-4f16-9cfc-2517ce416160",
+      "name": "Lordz Gym",
+      "issue": "wrong_place",
+      "reason": "The address is 'Ongata Rongai, Behind Tuskys Supermarket' (Kajiado County), but the pin is in Embakasi/Airport North, Nairobi, about 17 km away.",
+      "evidence": null,
+      "suggestedAction": "keep",
+      "suggestedCounty": "Kajiado"
+    },
+    {
+      "id": "gers:b773f5fa-c70a-4da0-83f2-0e33d24d2a14",
+      "name": "Brana Eagles Fitness Center",
+      "issue": "wrong_place",
+      "reason": "The address is 'syokimau' (Machakos County), but the pin is near Ruiru/Kamakis about 20 km north, and the county is set to Nairobi, which matches neither.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:482fe1c4-c0be-40c4-babe-9a2a8257a14f",
+      "name": "Avatar Gym Rongai",
+      "issue": "wrong_place",
+      "reason": "Magadi Road / Gataka Road is in Ongata Rongai (Kajiado County); the name says Rongai. The pin is 0.8 km from King Kong Fitness Ongata Rongai, which is filed as Kajiado, yet this record is filed as Nairobi.",
+      "evidence": null,
+      "suggestedAction": "keep",
+      "suggestedCounty": "Kajiado"
+    },
+    {
+      "id": "gers:1273be3f-f9b9-4fec-b92f-2d69e6845be6",
+      "name": "BB Gym - Mombasa Branch",
+      "issue": "wrong_place",
+      "reason": "The address and town are Mtwapa, which is in Kilifi County (north of Mtwapa Creek); the county is set to Mombasa.",
+      "evidence": null,
+      "suggestedAction": "keep",
+      "suggestedCounty": "Kilifi"
+    },
+    {
+      "id": "gers:9ae3b956-9062-481a-9465-9424974c89d0",
+      "name": "Gymfama Ruaka",
+      "issue": "wrong_place",
+      "reason": "The address is '200M behind Quickmart Ruaka'; Ruaka is in Kiambu County, but the record is filed as Nairobi.",
+      "evidence": null,
+      "suggestedAction": "keep",
+      "suggestedCounty": "Kiambu"
+    },
+    {
+      "id": "gers:fdf62be6-2b11-4a7e-af12-5f806c868aa2",
+      "name": "RUAKA GYM&AEROBICS,Spa",
+      "issue": "wrong_place",
+      "reason": "The address is Ruaka Square Mall; Ruaka is in Kiambu County, but the record is filed as Nairobi. Note: OSM/Overture 'Physiq & Tone Gym' (osm:node/12112874821) is pinned 35 m away, which may be worth a look.",
+      "evidence": null,
+      "suggestedAction": "keep",
+      "suggestedCounty": "Kiambu"
+    },
+    {
+      "id": "gers:6d041bbd-56d2-45d9-9de9-6bc7ab0f909a",
+      "name": "BODY and Spirit GYM",
+      "issue": "wrong_place",
+      "reason": "The address is Kahawa Sukari, a ward of Ruiru in Kiambu County, but the record is filed as Nairobi. Kelco Pro Gym (Kahawa Sukari Estate) is filed as Kiambu.",
+      "evidence": null,
+      "suggestedAction": "keep",
+      "suggestedCounty": "Kiambu"
+    },
+    {
+      "id": "gers:829ac206-fb20-4476-864a-3dcf14b3e1a2",
+      "name": "Natty gym kahawa sukari",
+      "issue": "wrong_place",
+      "reason": "The name and address are Kahawa Sukari (Ruiru, Kiambu County), but the record is filed as Nairobi.",
+      "evidence": null,
+      "suggestedAction": "keep",
+      "suggestedCounty": "Kiambu"
+    },
+    {
+      "id": "gers:87f1a572-32e8-468c-8976-7f8ddf209209",
+      "name": "Jeff's Fitness Centre",
+      "issue": "wrong_place",
+      "reason": "The address is 'The Miale Hotel, Barnabas, off Nakuru-Nairobi dual carriage' (Nakuru town), but the pin (-0.1596, 35.694) is about 45 km west near Molo, so the town reads Molo. The county is right.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:44f45deb-b89c-4be0-89d9-fa2bafe38dd7",
+      "name": "Bish-Hope Gym Westlands",
+      "issue": "wrong_place",
+      "reason": "The name and address put it at the All Africa Conference of Churches, Westlands (Waiyaki Way), but the pin is in the CBD (Jeevanjee), about 4 km away. The county is right.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:121df143-844b-44f7-9e88-5d70e11caa02",
+      "name": "HIIT Gym",
+      "issue": "wrong_place",
+      "reason": "The pin is the generic Nairobi city centroid (-1.28333, 36.8167), shared by 4 records, not the venue. Distance and 'near me' results will be wrong; treat the location as approximate.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:3436024d-71dd-4ad5-a557-540a2d2ed952",
+      "name": "Zainul Abideen Fitness Centre - ZAFIC",
+      "issue": "wrong_place",
+      "reason": "The pin is the generic Nairobi city centroid (-1.28333, 36.8167), shared by 4 records, not the venue. Distance and 'near me' results will be wrong; treat the location as approximate.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:9581f90a-c70e-4720-96c0-72c2d884df68",
+      "name": "Benseth Plus Fitness Center",
+      "issue": "wrong_place",
+      "reason": "The pin is the generic Nairobi city centroid (-1.28333, 36.8167), shared by 4 records, not the venue. Distance and 'near me' results will be wrong; treat the location as approximate.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:a0857bdd-88fe-4428-8300-e67d6abcc081",
+      "name": "Mama Fitness Kenya",
+      "issue": "wrong_place",
+      "reason": "The pin is the generic Nairobi city centroid (-1.28333, 36.8167), shared by 4 records, not the venue. Distance and 'near me' results will be wrong; treat the location as approximate.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:1412e051-b7c5-4cca-946c-d361cc6e5abd",
+      "name": "Buffet De TORRA Gymnastics",
+      "issue": "wrong_place",
+      "reason": "The pin is the Kakamega town centroid (0.283333, 34.75), shared with another record, not the venue's address. Treat the location as approximate.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:e763d79f-c3d9-43f5-9754-627abf86713e",
+      "name": "Max Fitness Health Center",
+      "issue": "wrong_place",
+      "reason": "The pin is the Kakamega town centroid (0.283333, 34.75), shared with another record, not the venue's address. Treat the location as approximate.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:831d7fd8-f3ab-4c7a-b0d2-720fe9648b9a",
+      "name": "PRIDE GYM Bamburi",
+      "issue": "wrong_place",
+      "reason": "The pin is the Mombasa city centroid (-4.05, 39.6667), shared with another record, while the address is Bamburi. Treat the location as approximate.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:dddc4835-853c-4e6a-a618-de6bd4a02001",
+      "name": "Bulldog Fitness Factory",
+      "issue": "wrong_place",
+      "reason": "The pin is the Mombasa city centroid (-4.05, 39.6667), shared with another record, while the address is Changamwe (Ngomo Plaza). Treat the location as approximate.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:b55d83e9-20b8-41a0-bf4b-5ed8253b5764",
+      "name": "Workout Express",
+      "issue": "wrong_place",
+      "reason": "The pin is a round placeholder (-1.25, 36.80) in Parklands, while the address is Twiga Towers, Moi Avenue (CBD). The county is right.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:352abe77-5e31-4407-aaec-1595e6e92d40",
+      "name": "Almico Power Lift Gym",
+      "issue": "wrong_kind",
+      "reason": "'Power Lift Gym' is a gym, not a boot camp; the boot_camp kind comes only from the Meta category.",
+      "evidence": null,
+      "suggestedAction": "recategorize",
+      "suggestedKind": "gym"
+    },
+    {
+      "id": "gers:43d98f61-ee24-407b-953c-82dd15c515a9",
+      "name": "Fit Fam Gym and Fitness Center",
+      "issue": "wrong_kind",
+      "reason": "'Fit Fam Gym and Fitness Center' is a gym by name; the boot_camp kind comes only from the Meta category.",
+      "evidence": null,
+      "suggestedAction": "recategorize",
+      "suggestedKind": "gym"
+    },
+    {
+      "id": "gers:51d44e1a-a9d1-4859-843f-3ebe0390453b",
+      "name": "flex and flex fitness center",
+      "issue": "wrong_kind",
+      "reason": "'flex and flex fitness center' has no gymnastics vocabulary; the kind comes only from the Meta category.",
+      "evidence": null,
+      "suggestedAction": "recategorize",
+      "suggestedKind": "gym"
+    },
+    {
+      "id": "gers:dd7241d6-c3bb-4dd5-9c9e-6ce3e8a8321b",
+      "name": "Khaligraph Gym Fitness and Aerobics",
+      "issue": "wrong_kind",
+      "reason": "'Khaligraph Gym Fitness and Aerobics' is a gym by name; the boot_camp kind comes only from the Meta category.",
+      "evidence": null,
+      "suggestedAction": "recategorize",
+      "suggestedKind": "gym"
+    },
+    {
+      "id": "gers:a65c23c6-f5f8-4d41-844f-2194fc3ee81c",
+      "name": "Nakuru Amateur Boxing Club",
+      "issue": "wrong_kind",
+      "reason": "'Nakuru Amateur Boxing Club' is a boxing club, filed as martial_arts.",
+      "evidence": null,
+      "suggestedAction": "recategorize",
+      "suggestedKind": "boxing"
+    },
+    {
+      "id": "gers:b92c797d-b018-43a2-bb2d-b5c9f9d384fd",
+      "name": "YY Yoga International",
+      "issue": "wrong_kind",
+      "reason": "'YY Yoga International' is a yoga studio, filed as pilates.",
+      "evidence": null,
+      "suggestedAction": "recategorize",
+      "suggestedKind": "yoga"
+    },
+    {
+      "id": "gers:ca931830-20ec-4aae-b9e3-ac70461192eb",
+      "name": "Reforma Pilates Studio",
+      "issue": "ok",
+      "reason": "A real, operating pilates studio. Its own site (2026 footer) gives The GreenHouse Mall, Ngong Road, East Wing, 4th Floor, Suite 22 and the same phone, +254 741 386 069, as the record. It is hidden only because of Meta confidence 0.48.",
+      "evidence": "https://www.reformapilatesstudioke.com/",
+      "suggestedAction": "promote"
+    },
+    {
+      "id": "gers:a3766d6d-c5e2-45ed-a461-3a79ff3c8e40",
+      "name": "Pinpoint Fitness - Nairobi",
+      "issue": "ok",
+      "reason": "A live site lists 'Pinpoint Fitness Nairobi' with the record's phone (+254 118 333 555): structured obstacle-course and parkour classes for children aged 2 to 15. It is a real fitness venue, but kids only, so it is better filed as gymnastics than gym. It is hidden only because of Meta confidence 0.29.",
+      "evidence": "https://kenya.pinpointfitness.net/",
+      "suggestedAction": "promote",
+      "suggestedKind": "gymnastics"
+    },
+    {
+      "id": "gers:3e1223d6-d5e4-40a3-82f1-e52217710212",
+      "name": "Pent Hse Gymnasium",
+      "issue": "bad_name",
+      "reason": "'Pent Hse' is an abbreviation; the record's own website domain is penthousegym.org.",
+      "evidence": null,
+      "suggestedAction": "rename",
+      "suggestedName": "Penthouse Gymnasium"
+    },
+    {
+      "id": "gers:f5d4d068-7017-43c5-a8ff-2a6c6a7f7e49",
+      "name": "Fitness Centre",
+      "issue": "bad_name",
+      "reason": "'Fitness Centre' alone is a generic placeholder; the address and website are Hyatt Place Nairobi Westlands (a hotel gym).",
+      "evidence": null,
+      "suggestedAction": "rename",
+      "suggestedName": "Hyatt Place Nairobi Westlands Fitness Centre"
+    },
+    {
+      "id": "osm:node/2511455581",
+      "name": "Trojan Health and Fitness Gym;Big Square - Karen Square",
+      "issue": "bad_name",
+      "reason": "The OSM name joins two values with ';' ('...;Big Square - Karen Square').",
+      "evidence": null,
+      "suggestedAction": "rename",
+      "suggestedName": "Trojan Health and Fitness Gym"
+    },
+    {
+      "id": "gers:874dc877-45f2-4de4-b3d5-c27c3c99debe",
+      "name": "Alpha Max Gym : Best Gym In Utawala With Modern Gym Equipment And Certified Trainers",
+      "issue": "bad_name",
+      "reason": "The name is an SEO strapline ('Best Gym In Utawala With Modern Gym Equipment And Certified Trainers').",
+      "evidence": null,
+      "suggestedAction": "rename",
+      "suggestedName": "Alpha Max Gym"
+    },
+    {
+      "id": "gers:a5ba2cc4-3ef5-4428-8f39-8c986e535603",
+      "name": "NextLevel Fitness, Gateway Mall, Syokimau, Off Mombasa Rd",
+      "issue": "bad_name",
+      "reason": "The name carries the full address ('Gateway Mall, Syokimau, Off Mombasa Rd').",
+      "evidence": null,
+      "suggestedAction": "rename",
+      "suggestedName": "NextLevel Fitness Gateway Mall"
+    },
+    {
+      "id": "gers:2cb90ac9-a903-44ab-b3c3-36ebb452cffb",
+      "name": "Theburnclubke",
+      "issue": "bad_name",
+      "reason": "A social-media handle; the website is theburnclub.co.ke.",
+      "evidence": null,
+      "suggestedAction": "rename",
+      "suggestedName": "The Burn Club"
+    },
+    {
+      "id": "gers:cd6d51c5-65dc-4ab4-a7a5-871f60703453",
+      "name": "Inshapefitnesskenya",
+      "issue": "bad_name",
+      "reason": "A handle-style concatenation; the website is inshape.co.ke.",
+      "evidence": null,
+      "suggestedAction": "rename",
+      "suggestedName": "Inshape Fitness Kenya"
+    },
+    {
+      "id": "gers:3c588a20-0645-48de-b0dd-b91ef4d66276",
+      "name": "MufasaFitnessGym",
+      "issue": "bad_name",
+      "reason": "A CamelCase concatenation.",
+      "evidence": null,
+      "suggestedAction": "rename",
+      "suggestedName": "Mufasa Fitness Gym"
+    },
+    {
+      "id": "gers:0f6a6303-1f5e-49e1-a5ef-8e5bfc3b3f07",
+      "name": "rentedabs",
+      "issue": "bad_name",
+      "reason": "A lower-case handle-style name.",
+      "evidence": null,
+      "suggestedAction": "rename",
+      "suggestedName": "Rented Abs"
+    },
+    {
+      "id": "gers:f1f81d80-14ea-4732-82b2-6b37ea5b73fe",
+      "name": "raukafitness",
+      "issue": "bad_name",
+      "reason": "A lower-case handle-style name.",
+      "evidence": null,
+      "suggestedAction": "rename",
+      "suggestedName": "Rauka Fitness"
+    },
+    {
+      "id": "gers:554ecd17-53e8-41f3-a88b-28b7443dac7f",
+      "name": "Boxingbutdifferent",
+      "issue": "bad_name",
+      "reason": "A handle-style concatenation.",
+      "evidence": null,
+      "suggestedAction": "rename",
+      "suggestedName": "Boxing But Different"
+    },
+    {
+      "id": "gers:152d98a7-45ce-4846-a5d7-7893e6e3ebae",
+      "name": "RED ROCK GYM-parkvilla restraunt",
+      "issue": "bad_name",
+      "reason": "The name carries the host venue with a typo ('-parkvilla restraunt').",
+      "evidence": null,
+      "suggestedAction": "rename",
+      "suggestedName": "Red Rock Gym"
+    },
+    {
+      "id": "gers:10d01fee-b6dd-4df1-a2a9-2f7ded9d36fd",
+      "name": "Gym",
+      "issue": "bad_name",
+      "reason": "The name is just 'Gym' (a placeholder) with no phone or website, only a Facebook page; it is filed as martial_arts. The real name has to be read from its Facebook page before it can be shown usefully.",
+      "evidence": null,
+      "suggestedAction": "keep",
+      "suggestedName": null
+    },
+    {
+      "id": "gers:16f03b4c-841c-4503-9447-f14c0824435b",
+      "name": "Mayanja",
+      "issue": "bad_name",
+      "reason": "'Mayanja' is only a personal or place name, and the website field is m.youtube.com. It is hidden (unconfirmed); keep it hidden.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:7443c3f9-6d9e-4fa5-b6b4-0ad97968b1ad",
+      "name": "Paramount Plaza",
+      "issue": "bad_name",
+      "reason": "'Paramount Plaza' is a building name (Onchoke Building, Kisii); a gym may be inside, but the business name is unknown. It is hidden; keep it hidden.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:accd1772-fd55-4cf8-83be-4be7acd86163",
+      "name": "Samnick Enterprises",
+      "issue": "bad_name",
+      "reason": "'Samnick Enterprises' is a trading-company name, and its website field (http://www.samnick/) is malformed. It sits 21 m from OSM 'Fahari Gym and Sports' (osm:node/12157124485) and is a known human-review candidate. A web search found nothing, so whether it operates that gym is unconfirmed; do not auto-merge.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:4fd3c37b-b18d-4084-8305-a97db0fb8e8e",
+      "name": "Ultimate fitness gym",
+      "issue": "bad_website",
+      "reason": "The website is http://gmail.com/. Drop the website field; the venue itself is not in question.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:123e2d98-615a-4846-9e38-d6479da075c6",
+      "name": "Smart Gyms",
+      "issue": "bad_website",
+      "reason": "The website is www.lifefitness.com (an equipment maker); the chain's site is smartgyms.co.ke. Drop the website field; the venue itself is not in question.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:b7773e89-07a3-4b25-91e0-fe09f28fa760",
+      "name": "ONE GYM and Aerobics - Kawangware",
+      "issue": "bad_website",
+      "reason": "The website is wijronsecurity.co.ke (a security company). Drop the website field; the venue itself is not in question.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:c02161ea-6f1f-4433-9ed1-74ab847a1918",
+      "name": "Kenspagym Exercise studio",
+      "issue": "bad_website",
+      "reason": "The website is loretoconventmsongari.com (a school). Drop the website field; the venue itself is not in question.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:dd53c992-cd6c-46f2-ad17-ea04da6b3aeb",
+      "name": "Mount Kenya sports",
+      "issue": "bad_website",
+      "reason": "The website is bigstock.com (a stock-photo site). Drop the website field; the venue itself is not in question.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:efa023a1-8459-4741-9bde-24b245e670cd",
+      "name": "Happy's Animation and gym",
+      "issue": "bad_website",
+      "reason": "The website is fb1.com (unrelated). Drop the website field; the venue itself is not in question.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    },
+    {
+      "id": "gers:121df143-844b-44f7-9e88-5d70e11caa02",
+      "name": "HIIT Gym",
+      "issue": "bad_website",
+      "reason": "The website 'http://hiit.or.gym/' is not a valid domain. Drop the website field; the venue itself is not in question.",
+      "evidence": null,
+      "suggestedAction": "keep"
+    }
+  ],
+  "okCount": 406
+}
