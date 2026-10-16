@@ -1,0 +1,131 @@
+{
+  "file": "/home/user/gym-finder/data/research/candidates/nbo-westlands.json",
+  "from": 30,
+  "to": 37,
+  "verifiedAt": "2026-10-15",
+  "verdicts": [
+    {
+      "index": 30,
+      "id": "web:nbo-westlands-031",
+      "name": "Fit 4 Life Gym",
+      "verdict": "uncertain",
+      "reason": "Run Beyond (© 2026), Nairobi Online (1 Mar 2026) and Tannos Health (updated 7 Jun 2025) all give the AMCO Crystal Building, off Limuru Road, Parklands address, but the listicles repeat the same blurb and may share one old source. The gym's own domain fit4lifegym.co.ke no longer resolves (DNS failure), and fresh searches found no first-party page and no dated sign that it is still trading.",
+      "corrections": {
+        "address": "7th Floor, AMCO Crystal Building, off Limuru Road, Parklands",
+        "phones": ["0721120444", "0721120555"]
+      },
+      "evidenceChecked": [
+        { "url": "https://www.runbeyond.co.ke/resource-centre/gym-directory/", "opened": true, "quoteFound": true },
+        { "url": "https://nairobionline.com/articles/top-5-fitness-gyms-in-nairobi/", "opened": true, "quoteFound": true },
+        { "url": "https://www.tannoshealth.com/best-gyms-in-nairobi-to-join-toady/", "opened": true, "quoteFound": true },
+        { "url": "https://fit4lifegym.co.ke/", "opened": false, "quoteFound": false }
+      ]
+    },
+    {
+      "index": 31,
+      "id": "web:nbo-westlands-032",
+      "name": "King's Gym and Spa",
+      "verdict": "confirmed",
+      "reason": "The operator's own Gables Group page names King's Gym & Spa (gym, pool, steam, spa) and gives +254 788 26 11 82 for bookings, plus +254 722 261182 and +254 734 261182. Tannos Health (2025), Nairobi Online (2026) and an older King Post page all place it on Rhapta Road, Westlands, within The King Post apartments. Caveats: the Gables page is © 2014, thekingpost.co.ke returned HTTP 500, and no current hours were found. Nothing suggests it has closed.",
+      "corrections": {
+        "address": "The King Post, Rhapta Road, Westlands",
+        "phones": ["+254 788 26 11 82", "+254 722 261182", "+254 734 261182"],
+        "website": "http://gablesgroup.co.ke/properties/the-king-post-2/kings-gym-spa-3/"
+      },
+      "evidenceChecked": [
+        { "url": "https://nairobionline.com/articles/top-5-fitness-gyms-in-nairobi/", "opened": true, "quoteFound": true },
+        { "url": "https://www.tannoshealth.com/best-gyms-in-nairobi-to-join-toady/", "opened": true, "quoteFound": true },
+        { "url": "https://theexpatmummy.com/where-to-find-gym-nairobi/", "opened": true, "quoteFound": true },
+        { "url": "http://gablesgroup.co.ke/properties/the-king-post-2/kings-gym-spa-3/", "opened": true, "quoteFound": true },
+        { "url": "http://gablesgroup.co.ke/", "opened": true, "quoteFound": true },
+        { "url": "https://africanspicesafaris.com/oldsite/the_king_post_apartments_rhapter_road_westlands_nairobi_kenya.html", "opened": true, "quoteFound": true },
+        { "url": "https://capitalfm.africa/the-kings-post-a-charming-swahili-village-in-nairobi/", "opened": true, "quoteFound": true },
+        { "url": "https://thekingpost.co.ke/", "opened": false, "quoteFound": false }
+      ]
+    },
+    {
+      "index": 32,
+      "id": "web:nbo-westlands-033",
+      "name": "Tuzidi Fitness",
+      "verdict": "uncertain",
+      "reason": "The only page confirmed to give the York Palace, Muthangari Gardens, Lavington address and the phone 0102 111 222 is one listicle (Tannos Health, updated 7 Jun 2025). Nairobi Online does not list it, the gym has no website, and fresh searches found only a victormatara.com snippet naming it. The phone matches the seed, so the address is the only new field, and it rests on a single weak source.",
+      "corrections": {
+        "address": "York Palace, Muthangari Gardens, Lavington",
+        "phones": ["0102 111 222"]
+      },
+      "evidenceChecked": [
+        { "url": "https://www.tannoshealth.com/best-gyms-in-nairobi-to-join-toady/", "opened": true, "quoteFound": true },
+        { "url": "https://victormatara.com/list-of-best-gyms-in-nairobi/", "opened": false, "quoteFound": false }
+      ]
+    },
+    {
+      "index": 33,
+      "id": "web:nbo-westlands-034",
+      "name": "AV Fitness Kenya",
+      "verdict": "uncertain",
+      "reason": "Tannos Health (2025), Nairobi Online (2026) and The Expat Mummy (undated, newest comment 2019) all give Mbaazi Avenue/Road, Lavington and 0715 416 323, but they read like recycled listicle copy. The gym's own domain avfitness.ke no longer resolves (DNS failure). 'Off Kingara Road' appears on no page that was opened and should be dropped from the address.",
+      "corrections": {
+        "address": "Off Mbaazi Avenue, Lavington",
+        "phones": ["0715 416 323"]
+      },
+      "evidenceChecked": [
+        { "url": "https://nairobionline.com/articles/top-5-fitness-gyms-in-nairobi/", "opened": true, "quoteFound": true },
+        { "url": "https://www.tannoshealth.com/best-gyms-in-nairobi-to-join-toady/", "opened": true, "quoteFound": true },
+        { "url": "https://theexpatmummy.com/where-to-find-gym-nairobi/", "opened": true, "quoteFound": true },
+        { "url": "https://www.avfitness.ke/about/", "opened": false, "quoteFound": false }
+      ]
+    },
+    {
+      "index": 34,
+      "id": "web:nbo-westlands-035",
+      "name": "CrossFit Kwetu",
+      "verdict": "confirmed",
+      "reason": "The official CrossFit.com affiliate page (© 2026, 11 years affiliated) lists CrossFit Kwetu at Village Market, 3rd floor, New wing, Gigiri with phone 00254701748786, which matches Run Beyond's 0701 748786. VMX Fitness at Village Market also lists it as a current partner. The candidate's 'Gigiri Lane' (from Run Beyond and Nairobi Online) conflicts with the affiliate address, so the address is corrected. crossfitkwetu.com returned HTTP 503.",
+      "corrections": {
+        "address": "Village Market, 3rd floor, New wing, Gigiri, Nairobi",
+        "phones": ["0701 748786"],
+        "website": "http://crossfitkwetu.com/"
+      },
+      "evidenceChecked": [
+        { "url": "https://www.runbeyond.co.ke/resource-centre/gym-directory/", "opened": true, "quoteFound": true },
+        { "url": "https://nairobionline.com/articles/top-5-fitness-gyms-in-nairobi/", "opened": true, "quoteFound": true },
+        { "url": "https://www.vmx-fitness.com/more-access", "opened": true, "quoteFound": true },
+        { "url": "https://www.crossfit.com/gym/14367/crossfit-kwetu", "opened": true, "quoteFound": true },
+        { "url": "https://www.businessdailyafrica.com/bd/lifestyle/health-fitness/meet-kenya-s-fittest-woman-2168326", "opened": true, "quoteFound": true },
+        { "url": "http://crossfitkwetu.com/", "opened": false, "quoteFound": false }
+      ]
+    },
+    {
+      "index": 35,
+      "id": "web:nbo-westlands-036",
+      "name": "Wentworth Gym (Wentworth Health & Fitness Centre)",
+      "verdict": "uncertain",
+      "reason": "The only source is one directory, KenyaBizList, which lists 'Wentworth Gym' on Githunguri Road, Kileleshwa with phone 0720663941 (the same as the seed); fresh searches found no other page. 'Wentworth Health & Fitness Centre' does not appear on any page that was opened. KenyaBizList's hours (Mon-Fri 6:00AM-9:30PM, Sat 8:00AM-6:00PM, Sun 10:00AM-4:00PM) conflict with an unopened Instagram snippet, so the hours are not recorded.",
+      "corrections": {
+        "address": "Githunguri Road, Kileleshwa, Nairobi",
+        "phones": ["0720663941"]
+      },
+      "evidenceChecked": [
+        { "url": "https://www.kenyabizlist.com/gyms-and-fitness-centers/kileleshwa", "opened": true, "quoteFound": true },
+        { "url": "https://www.kenyabizlist.com/business/7222-wentworth-gym", "opened": true, "quoteFound": true }
+      ]
+    },
+    {
+      "index": 36,
+      "id": "web:nbo-westlands-037",
+      "name": "Parklands Sports Club (gym)",
+      "verdict": "confirmed",
+      "reason": "Jambo Nairobi (© 2023) lists the club on Ojijo Road, Parklands, with Tel 020 3745164, and Run Beyond (© 2026) separately lists 'Parklands Sports Club Gym, Ojijo Road Off Museum Hill' with two mobile numbers. Fresh searches found nothing suggesting closure. The club's own site returned an empty page, so hours are unknown. It is a members' club, and membership is by ballot according to an unopened search snippet, so access should not be shown as public.",
+      "corrections": {
+        "address": "Ojijo Road, Parklands (off Museum Hill)",
+        "phones": ["020 3745164", "0725821886", "0733438164"],
+        "website": "http://www.parklandssportsclub.org"
+      },
+      "evidenceChecked": [
+        { "url": "https://jambonairobi.co.ke/directory/health-fitness/sports-clubs/", "opened": true, "quoteFound": true },
+        { "url": "https://www.runbeyond.co.ke/resource-centre/gym-directory/", "opened": true, "quoteFound": true },
+        { "url": "http://www.parklandssportsclub.org/", "opened": true, "quoteFound": false }
+      ]
+    }
+  ]
+}

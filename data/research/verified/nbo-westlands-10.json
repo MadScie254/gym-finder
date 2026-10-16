@@ -1,0 +1,143 @@
+{
+  "file": "/home/user/gym-finder/data/research/candidates/nbo-westlands.json",
+  "from": 10,
+  "to": 20,
+  "verifiedAt": "2026-10-15",
+  "seedCheck": "Candidates 10-16 have no seed match by name, phone or website. Candidates 17-19 are correctly marked inSeed=true. Level 24 and MOM3NTUM also have OpenStreetMap seed duplicates (osm node/14148174874 'Level 24'; osm node/6956784785 'Mom3mtum') besides the Overture ids recorded. The HIITZone seed 'HIIT Gym' (121df143-...) is a different listing (+254706650385, Hiit.or.gym), so inSeed=false holds.",
+  "verdicts": [
+    {
+      "index": 10,
+      "id": "web:nbo-westlands-011",
+      "name": "Mövenpick Hotel & Residences Nairobi - gym",
+      "verdict": "confirmed",
+      "reason": "The hotel's own Accor/Mövenpick pages are live, describe the gym ('work out in the gym in our 5-star luxury hotel in the Westland District') and give the Mkungu Close address and switchboard, with no closure or rebrand notice. The Capital FM quote checks out, but it dates from 19 Oct 2018, says the gym is on the 22nd floor, and its 6am-10pm hours conflict with '24-hour' claims in booking snippets, so hoursText should be treated as dated or dropped.",
+      "corrections": {
+        "address": "Mkungu Close, Westlands, off Parklands Road, Nairobi",
+        "phones": ["+254709548000"],
+        "website": "https://movenpick.accor.com/en/africa/kenya/nairobi/hotel-residences-nairobi.html"
+      },
+      "evidenceChecked": [
+        { "url": "https://capitalfm.africa/need-some-workout-motivation-get-in-shape-with-a-view/", "opened": true, "quoteFound": true },
+        { "url": "https://movenpick.accor.com/en/africa/kenya/nairobi/hotel-residences-nairobi.html", "opened": true, "quoteFound": true },
+        { "url": "https://movenpick.accor.com/en/africa/kenya/nairobi/hotel-residences-nairobi/facilities/", "opened": true, "quoteFound": true }
+      ]
+    },
+    {
+      "index": 11,
+      "id": "web:nbo-westlands-012",
+      "name": "Swiss-Belinn Nairobi - Fitness Centre",
+      "verdict": "confirmed",
+      "reason": "The official hotel page (© 2026) shows the 1028 Kandara Road, Kileleshwa address and lists 'Fitness center', and a Tourism Update article (13 Oct 2023) independently says the Kileleshwa hotel has a gym. The phone 0207654000 is on the official page's Contact Us section, but the page also carries template text from other Swiss-Belhotel properties and no other page confirmed the number, so treat it with caution. The area is Kileleshwa, not Westlands.",
+      "corrections": {},
+      "evidenceChecked": [
+        { "url": "https://swiss-belhotel.com/en-gb/swiss-belinn-nairobi/", "opened": true, "quoteFound": true },
+        { "url": "https://www.tourismupdate.com/article/international-hotel-management-group-debuts-in-nairobi", "opened": true, "quoteFound": true },
+        { "url": "https://swiss-belhotel.com/en-gb/latest-news/swiss-belinn-nairobi-kenya-opening", "opened": false, "quoteFound": false }
+      ]
+    },
+    {
+      "index": 12,
+      "id": "web:nbo-westlands-013",
+      "name": "Jenga Fit (Westpark Towers gym)",
+      "verdict": "confirmed",
+      "reason": "The operator's own page (Jenga Leo, a serviced-office and coworking provider) shows the name, the Westpark Towers address, the phone and a dated class timetable, and its image uploads run to 2025/08. Fresh searches found no independent listing and no closure notice. Because it sits inside a coworking and office operator, access to non-tenants is not stated and should stay unknown.",
+      "corrections": {},
+      "evidenceChecked": [
+        { "url": "https://www.jengaleo.co.ke/gym/", "opened": true, "quoteFound": true },
+        { "url": "https://www.jengaleo.co.ke/", "opened": true, "quoteFound": true }
+      ]
+    },
+    {
+      "index": 13,
+      "id": "web:nbo-westlands-014",
+      "name": "HIITZone Fitness",
+      "verdict": "confirmed",
+      "reason": "The studio's own live site shows the address '9West, Westlands. Nairobi' and the phone +254743130429, plus a GymMaster membership portal. Its contact page lists current studio hours and shows no closure. The footer still says 2023 and fresh searches found no independent Kenyan listing; the site's map link points to '9 West, Mkungu Cl' (the 'Ring Road' detail came only from a Facebook snippet).",
+      "corrections": {
+        "hoursText": "Sunday 7AM–1PM; Monday–Thursday 5AM–8PM; Friday 5AM–6:30PM; Saturday 6AM–1PM"
+      },
+      "evidenceChecked": [
+        { "url": "https://hiitzonenairobi.com/", "opened": true, "quoteFound": true },
+        { "url": "https://hiitzonenairobi.com/contact/", "opened": true, "quoteFound": true }
+      ]
+    },
+    {
+      "index": 14,
+      "id": "web:nbo-westlands-015",
+      "name": "Africa Yoga Project - Shine Centre",
+      "verdict": "uncertain",
+      "reason": "Both Capital FM quotes are real, but they are dated 23 Jul 2013 and 20 Nov 2017, and come from the same outlet. No page from 2018 onwards confirms the Shine Centre is still running: africayogaproject.org returned 429 on three tries and 404 on /contact, and fresh searches found only older profiles. Diamond Plaza is in Highridge/Parklands rather than Westlands.",
+      "corrections": {},
+      "evidenceChecked": [
+        { "url": "https://capitalfm.africa/community-yoga-centre-opens-in-nairobi/", "opened": true, "quoteFound": true },
+        { "url": "https://capitalfm.africa/africa-yoga-project-celebrates-10-years-open-invitation/", "opened": true, "quoteFound": true },
+        { "url": "https://www.africayogaproject.org/", "opened": false, "quoteFound": false },
+        { "url": "https://www.africayogaproject.org/contact", "opened": false, "quoteFound": false }
+      ]
+    },
+    {
+      "index": 15,
+      "id": "web:nbo-westlands-016",
+      "name": "Fluid Yoga & Wellness",
+      "verdict": "uncertain",
+      "reason": "The only source is one In Nairobi guide (7 Sep 2024). It does say 'Westlands studio' and fluid.ke, but gives no address. The studio's own domain no longer resolves (DNS failure for fluid.ke and www.fluid.ke), which is a possible sign of closure. Fresh searches found no other Nairobi listing, so the website should not be published and the venue needs a current source.",
+      "corrections": {},
+      "evidenceChecked": [
+        { "url": "https://innairobi.com/wellness-in-nairobi/", "opened": true, "quoteFound": true },
+        { "url": "https://fluid.ke", "opened": false, "quoteFound": false },
+        { "url": "https://www.fluid.ke/", "opened": false, "quoteFound": false }
+      ]
+    },
+    {
+      "index": 16,
+      "id": "web:nbo-westlands-017",
+      "name": "Body Equilibrium Studio (Body EQ)",
+      "verdict": "uncertain",
+      "reason": "The studio's own site confirms that it exists as a Nairobi Pilates studio, with phone +254743056829 (footer ©2020). A Facebook-mirror directory agrees on the phone and shows posts into 2026. However, no opened page states a street address or confirms Westlands: the directory says only 'Glam Hotel, Nairobi' and the site's /contact page returns 404. The venue cannot be placed reliably until an address is confirmed.",
+      "corrections": {},
+      "evidenceChecked": [
+        { "url": "https://www.bodyeqstudio.com/", "opened": true, "quoteFound": true },
+        { "url": "https://www.bodyeqstudio.com/contact", "opened": false, "quoteFound": false },
+        { "url": "https://www.localgymsandfitness.com/KE/Nairobi/102993681463749/Body-Equilibrium-Studio", "opened": true, "quoteFound": true }
+      ]
+    },
+    {
+      "index": 17,
+      "id": "web:nbo-westlands-018",
+      "name": "Level 24 Gym and Fitness Centre (24 Fitness)",
+      "verdict": "confirmed",
+      "reason": "The gym's own site (© 2026) shows the Le'Mac 24th-floor address on Church Road, the hours and phone exactly as recorded, and has no closure notice. One adversarial flag: a Kenya Times article (26 Mar 2026) reports that the Le'Mac owner is under administration and its units are up for auction. That article still describes the rooftop Sky Club gym as existing, so status is operating but should be rechecked.",
+      "corrections": {
+        "website": "https://level24.life/"
+      },
+      "evidenceChecked": [
+        { "url": "https://level24.life/", "opened": true, "quoteFound": true },
+        { "url": "https://thekenyatimes.com/latest-kenya-times-news/le-mac-apartments-sale/", "opened": true, "quoteFound": true }
+      ]
+    },
+    {
+      "index": 18,
+      "id": "web:nbo-westlands-019",
+      "name": "MOM3NTUM Fitness",
+      "verdict": "confirmed",
+      "reason": "The own site (© 2025) shows both studios (Rivaan Centre 5th Floor, Muguga Green; Westlands Square 2nd Floor), both phones, the hours as recorded and no closure notice. Fresh searches found no independent page for the Westlands Square studio. The seed also has an OSM duplicate (node/6956784785, 'Mom3mtum', phone 0254731758371).",
+      "corrections": {},
+      "evidenceChecked": [
+        { "url": "https://mom3ntum.com/", "opened": true, "quoteFound": true }
+      ]
+    },
+    {
+      "index": 19,
+      "id": "web:nbo-westlands-020",
+      "name": "F45 Training Lavington",
+      "verdict": "confirmed",
+      "reason": "The official F45 studio page is live and shows 'F45 Lavington', 'Naushad Merali Dr, Nairobi, Kenya' and +254758583067, with no closure or 'coming soon' notice. Its embedded Instagram posts are tagged 'F45 Downtown', which looks like template carry-over. The 'Lavington Curve Mall, 1st floor' detail is not on any opened page and should be dropped from the address.",
+      "corrections": {
+        "address": "Naushad Merali Dr, Nairobi, Kenya"
+      },
+      "evidenceChecked": [
+        { "url": "https://f45training.com/lavington/home", "opened": true, "quoteFound": true }
+      ]
+    }
+  ]
+}

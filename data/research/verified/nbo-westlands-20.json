@@ -1,0 +1,176 @@
+{
+  "file": "/home/user/gym-finder/data/research/candidates/nbo-westlands.json",
+  "from": 20,
+  "to": 30,
+  "verifiedAt": "2026-10-15",
+  "verdicts": [
+    {
+      "index": 20,
+      "id": "web:nbo-westlands-021",
+      "name": "Bikram Yoga Nairobi",
+      "verdict": "confirmed",
+      "reason": "The studio's own site, re-opened, shows the Lavington Green address, the phone 0737932573 and a 2025 copyright, with no closure notice. Older Business Daily coverage also places it at Lavington Green shopping centre. Phone and website were already in the seed; the address is the only new field.",
+      "corrections": {
+        "address": "2nd floor, above Chandarana Lavington Green Shopping Center, Off James Gichuru Road, Nairobi",
+        "phones": ["0737932573"],
+        "website": "http://www.bikramyoganairobi.com/"
+      },
+      "evidenceChecked": [
+        { "url": "http://www.bikramyoganairobi.com/", "opened": true, "quoteFound": true }
+      ]
+    },
+    {
+      "index": 21,
+      "id": "web:nbo-westlands-022",
+      "name": "Delight Hot Yoga",
+      "verdict": "confirmed",
+      "reason": "The studio's own site, re-opened, shows the Lavington Mall 4th-floor address, both phones, class start times and a 2026 copyright, with no closure notice. A fresh search found no independent listing, but the venue's own site is enough. The hours are class start times, not opening hours.",
+      "corrections": {
+        "address": "Lavington Mall, 4th Floor, Artcaffé Restaurant Lavington Wing, James Gichuru Road, Nairobi, Kenya",
+        "phones": ["+254 722 524 531", "+254 726 703 803"],
+        "website": "https://www.delighthotyoga.com/",
+        "hoursText": "Class start times: Monday to Friday 6am, 8am, 10am, 5pm, 7pm; Saturdays 8am, 10am, 4pm; Sundays and holidays 10am, 4pm"
+      },
+      "evidenceChecked": [
+        { "url": "https://www.delighthotyoga.com/", "opened": true, "quoteFound": true }
+      ]
+    },
+    {
+      "index": 22,
+      "id": "web:nbo-westlands-023",
+      "name": "Heart to Heart Yoga Studio",
+      "verdict": "confirmed",
+      "reason": "The studio's own contact page shows the Kenrail Towers Mezzanine 2 address and both phones, and the home page has a 2026 copyright. The In Nairobi guide (7 Sep 2024) independently gives Kenrail Towers, Floor M2. One 'know more' link on the home page points to hearttoheartyogastudio.co.ke, so a second domain may exist.",
+      "corrections": {
+        "address": "Kenrail Towers, Mezzanine 2, Ring Road Westlands, Nairobi",
+        "phones": ["+254 727785053", "+254 745399543"],
+        "website": "https://hearttoheartyogastudio.com"
+      },
+      "evidenceChecked": [
+        { "url": "https://hearttoheartyogastudio.com/contact", "opened": true, "quoteFound": true },
+        { "url": "https://hearttoheartyogastudio.com", "opened": true, "quoteFound": true },
+        { "url": "https://innairobi.com/wellness-in-nairobi/", "opened": true, "quoteFound": true }
+      ]
+    },
+    {
+      "index": 23,
+      "id": "web:nbo-westlands-024",
+      "name": "Progressive Park Gym",
+      "verdict": "confirmed",
+      "reason": "The hotel's own gym page, re-opened, shows the 10 Mwanzi Road address, the gym WhatsApp line 0789656308, opening hours for each day and a 2026 copyright. The page also says the gym is free for hotel guests and mentions memberships. Booking sites found by a fresh search agree the hotel at Mwanzi Road has a gym.",
+      "corrections": {
+        "address": "10 Mwanzi Road, Westlands, Nairobi",
+        "phones": ["0789656308"],
+        "website": "https://progressiveparkhotel.co/gym",
+        "hoursText": "Monday to Friday: 6am - 9pm; Saturday: 7am - 6pm; Sunday: 8am - 3pm"
+      },
+      "evidenceChecked": [
+        { "url": "https://progressiveparkhotel.co/gym", "opened": true, "quoteFound": true }
+      ]
+    },
+    {
+      "index": 24,
+      "id": "web:nbo-westlands-025",
+      "name": "SmashFit Gym Sarit",
+      "verdict": "confirmed",
+      "reason": "The gym's own site (the membership page and the home page) shows 'Sarit Branch: +254704227227', the address '6th Floor Sarit, Karuna Road, Nairobi' and a 2026 copyright, with no closure notice. Only one branch is listed. A fresh search found no independent coverage, but the venue's own site is enough. No hours are shown.",
+      "corrections": {
+        "address": "6th Floor Sarit, Karuna Road, Nairobi",
+        "phones": ["+254704227227"],
+        "website": "https://smashfitgym.com/"
+      },
+      "evidenceChecked": [
+        { "url": "https://smashfitgym.com/become-a-member/", "opened": true, "quoteFound": true },
+        { "url": "https://smashfitgym.com/", "opened": true, "quoteFound": true }
+      ]
+    },
+    {
+      "index": 25,
+      "id": "web:nbo-westlands-026",
+      "name": "Siha Wellness Studio",
+      "verdict": "confirmed",
+      "reason": "The studio's own site, a 'Page Under Construction' holding page, shows the 3rd Floor, Block C, ABC Place address and the phone +254 713 415 262, and links to a live yoactiv booking page named 'Siha Wellness Studio'. A Business Daily feature (18 Jan 2023) independently places Siha Wellness at ABC Place. There is no date or copyright on the site and nothing newer than about 2024 turned up, so the status should stay unknown.",
+      "corrections": {
+        "address": "3rd Floor, Block C, ABC Place, Waiyaki Way, Nairobi",
+        "phones": ["+254 713 415 262"],
+        "website": "http://www.sihawellness.com/",
+        "status": "unknown"
+      },
+      "evidenceChecked": [
+        { "url": "http://www.sihawellness.com/", "opened": true, "quoteFound": true },
+        { "url": "https://www.yoactiv.com/one/sihawellnessstudio", "opened": true, "quoteFound": false },
+        { "url": "https://www.businessdailyafrica.com/bd/lifestyle/health-fitness/duo-seeks-to-africanise-centuries-old-practice--4090530", "opened": true, "quoteFound": true }
+      ]
+    },
+    {
+      "index": 26,
+      "id": "web:nbo-westlands-027",
+      "name": "The Burn Club",
+      "verdict": "confirmed",
+      "reason": "The gym's own site, re-opened, shows 'Azalea Square, General Mathenge Rd, Nairobi', the phone 0713823897, a weekly class schedule and a 2025 copyright, with no closure notice. A fresh search turned up only an unrelated Burn Club in Orem, Utah. The site gives no opening hours.",
+      "corrections": {
+        "address": "Azalea Square, General Mathenge Rd, Nairobi",
+        "phones": ["0713823897"],
+        "website": "https://theburnclub.co.ke/"
+      },
+      "evidenceChecked": [
+        { "url": "https://theburnclub.co.ke/", "opened": true, "quoteFound": true }
+      ]
+    },
+    {
+      "index": 27,
+      "id": "web:nbo-westlands-028",
+      "name": "Nairobi Jiu-Jitsu Academy (new facility at New Muthaiga Mall)",
+      "verdict": "confirmed",
+      "reason": "Two independent news articles agree on the facility: Capital FM (10 Mar 2026) puts it on 'the second floor on New Muthaiga Mall, Thigiri Ridge, Nairobi', and Citizen Digital (28 Feb 2026) reports the opening at New Muthaiga Mall. The academy's own site confirms the phone +254 (0) 798 566 294 but gives no street address. The seed coordinates may be the pre-2026 site, and the venue arguably belongs in a Muthaiga/Gigiri group rather than Westlands.",
+      "corrections": {
+        "address": "Second floor, New Muthaiga Mall, Thigiri Ridge, Nairobi",
+        "phones": ["+254 (0) 798 566 294"],
+        "website": "https://nairobijiujitsuacademy.com/",
+        "status": "operating"
+      },
+      "evidenceChecked": [
+        { "url": "https://capitalfm.africa/nairobi-jiu-jitsu-academy-opens-new-world-class-combat-sports-facility/", "opened": true, "quoteFound": true },
+        { "url": "https://citizen.digital/article/boost-for-combat-sports-as-nairobi-jiu-jitsu-academy-unveils-world-class-mma-facility-n378272", "opened": true, "quoteFound": true },
+        { "url": "https://nairobijiujitsuacademy.com/", "opened": true, "quoteFound": true }
+      ]
+    },
+    {
+      "index": 28,
+      "id": "web:nbo-westlands-029",
+      "name": "Beyond Body (formerly Burn Body), Kitisuru",
+      "verdict": "uncertain",
+      "reason": "Two older articles show the studio existed in Kitisuru: In Nairobi (Sep 2024) calls it a 'Kitisuru boutique fitness studio', and Nation (27 Aug 2023) places 'the Beyond Body studio' in the garden of 3.2B Kitisuru Road. The Mindbody page still shows only a generic title, so the phone +254 780 516777 rests on search snippets alone; there is no own website, no source from 2025 or 2026, and the Burn Body rename is inferred from a Facebook URL. The candidate's seedId is truncated: the seed record for 'Burn Body' is node/7686965502, not node/76869655.",
+      "corrections": {
+        "address": "3.2B Kitisuru Road, Nairobi (studio in the garden of the property, per Nation, Aug 2023)",
+        "seedId": "node/7686965502",
+        "status": "unknown"
+      },
+      "evidenceChecked": [
+        { "url": "https://innairobi.com/wellness-in-nairobi/", "opened": true, "quoteFound": true },
+        { "url": "https://www.mindbodyonline.com/explore/locations/beyond-body", "opened": true, "quoteFound": false },
+        { "url": "https://www.mindbodyonline.com/explore/fitness/classes/mat-pilates-beyond-body", "opened": true, "quoteFound": false },
+        { "url": "https://nation.africa/kenya/life-and-style/lifestyle/learning-about-wellness-chez-mahmadi-4348554", "opened": true, "quoteFound": true },
+        { "url": "https://askannie.tortoisepath.com/hospital/beyond-body/", "opened": true, "quoteFound": false }
+      ]
+    },
+    {
+      "index": 29,
+      "id": "web:nbo-westlands-030",
+      "name": "Racing Sport Gym",
+      "verdict": "uncertain",
+      "reason": "The gym's own site (racingsportgym.com, with and without www) does not resolve (DNS ENOTFOUND), which suggests it may have closed. The directories disagree on location: Valley View Office Park plus Bandari Plaza (Run Beyond), Woodvale Grove (Nairobi Online) and, in search snippets, UAP Towers in Upper Hill. Two directories agree on the phone 0700 464 646, but it conflicts with the seed's +254700474747, and the directory content looks recycled despite 2026 page dates. The other seed record ID is node/5354298522, not node/53542985 as the candidate notes say.",
+      "corrections": {
+        "status": "unknown"
+      },
+      "evidenceChecked": [
+        { "url": "https://www.runbeyond.co.ke/resource-centre/gym-directory/", "opened": true, "quoteFound": true },
+        { "url": "https://nairobionline.com/articles/top-5-fitness-gyms-in-nairobi/", "opened": true, "quoteFound": true },
+        { "url": "http://www.racingsportgym.com/", "opened": false, "quoteFound": false },
+        { "url": "https://racingsportgym.com/", "opened": false, "quoteFound": false },
+        { "url": "https://uzamart.com/listing/racing-sport-gym/", "opened": false, "quoteFound": false },
+        { "url": "https://cityseeker.com/nairobi/263080-racing-sport-gym", "opened": false, "quoteFound": false }
+      ]
+    }
+  ]
+}

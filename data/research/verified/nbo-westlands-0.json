@@ -1,0 +1,150 @@
+{
+  "file": "/home/user/gym-finder/data/research/candidates/nbo-westlands.json",
+  "from": 0,
+  "to": 10,
+  "verifiedAt": "2026-10-15",
+  "seedCheck": "None of candidates 0-9 match a seed venue by name, phone or website in data/research/_seed/known-venues.json; inSeed=false is correct for all ten.",
+  "verdicts": [
+    {
+      "index": 0,
+      "id": "web:nbo-westlands-001",
+      "name": "Zarnash Gym",
+      "verdict": "confirmed",
+      "reason": "The gym's own live site (contact page) shows the Jaffery Club, Merali Drive, Lavington address, the three phone numbers and the hours exactly as recorded, and two directories (kenyabizlist; tannoshealth, updated 7 Jun 2025) agree. No closure notice was found, but the site's footer says 2022 and its newest news item is 5 Nov 2022, so status should stay unknown. Fresh searches found nothing more for the name.",
+      "corrections": {},
+      "evidenceChecked": [
+        { "url": "https://zarnashgym.com/contact-us/index.html", "opened": true, "quoteFound": true },
+        { "url": "https://zarnashgym.com/", "opened": true, "quoteFound": true },
+        { "url": "https://www.kenyabizlist.com/gyms-and-fitness-centers/lavington", "opened": true, "quoteFound": true },
+        { "url": "https://www.tannoshealth.com/best-gyms-in-nairobi-to-join-toady/", "opened": true, "quoteFound": true }
+      ]
+    },
+    {
+      "index": 1,
+      "id": "web:nbo-westlands-002",
+      "name": "Sante Wellness Center (Gramo Suites)",
+      "verdict": "confirmed",
+      "reason": "The hotel's official wellness-center page (title 'Gramo Suites | Sante Wellness Center') shows the Durham Road off Gichugu Road, Kileleshwa address, both phone numbers, a Gym section and a membership enquiry form (Daily/Monthly/Quarterly/Annually). The page has no hours, no copyright year and no dated content, so status should stay unknown. Booking sites also list a fitness centre at Gramo Suites, and no closure notice was found.",
+      "corrections": {},
+      "evidenceChecked": [
+        { "url": "https://www.gramosuites.com/wellness-center/", "opened": true, "quoteFound": true },
+        { "url": "https://www.gramosuites.com/", "opened": true, "quoteFound": true }
+      ]
+    },
+    {
+      "index": 2,
+      "id": "web:nbo-westlands-003",
+      "name": "W Exclusive Wellness and Fitness Club",
+      "verdict": "confirmed",
+      "reason": "Independent news pieces place the club at Westgate Shopping Mall: Capital FM on 19 Jan 2021 ('top floor of Westgate shopping mall') and on 10 Feb 2025, and Citizen Digital on 10 Feb 2025. A 20 Jul 2026 Capital FM piece reports a new spin studio, so it appears to be operating. However, the phone (0791 563144) and hours come only from one Listingster directory page and are unconfirmed. The westgate.co.ke/wexclusive URL now loads only the mall's generic page with no club details, so it should not be used as the website.",
+      "corrections": {
+        "website": null
+      },
+      "evidenceChecked": [
+        { "url": "https://capitalfm.africa/sbm-bank-kenya-partners-with-w-exclusive-gym-to-enhance-customer-wellness/", "opened": true, "quoteFound": true },
+        { "url": "https://citizen.digital/news/sbm-bank-kenya-partners-with-w-exclusive-fitness-and-wellness-to-enhance-customer-well-being-n357440", "opened": true, "quoteFound": true },
+        { "url": "https://capitalfm.africa/w-exclusive-raises-the-bar-with-the-launch-of-nairobis-most-advanced-spin-studio/", "opened": true, "quoteFound": true },
+        { "url": "https://capitalfm.africa/4-cool-experiences-at-westgate-shopping-mall-right-now/", "opened": true, "quoteFound": true },
+        { "url": "https://listingster.com/listing/nairobi,westlands/gyms-and-fitness-centers-in-kenya/w-exclusive-wellness-fitness/", "opened": true, "quoteFound": true },
+        { "url": "https://www.westgate.co.ke/wexclusive/", "opened": true, "quoteFound": false }
+      ]
+    },
+    {
+      "index": 3,
+      "id": "web:nbo-westlands-004",
+      "name": "VMX Fitness",
+      "verdict": "confirmed",
+      "reason": "The gym's own live site shows 'Third floor / Village Market, Limuru road', phone 07 08 000 621 and 'Open 24 hours' on both the home and member-benefits pages, with no closure notice. No copyright year or dated text is visible, so status stays unknown. A fresh search returned only the site itself and unrelated Gigiri listings, with no duplicates or closure reports.",
+      "corrections": {},
+      "evidenceChecked": [
+        { "url": "https://www.vmx-fitness.com/home", "opened": true, "quoteFound": true },
+        { "url": "https://www.vmx-fitness.com/more-access", "opened": true, "quoteFound": true }
+      ]
+    },
+    {
+      "index": 4,
+      "id": "web:nbo-westlands-005",
+      "name": "Reform Cycling and Strength Studio",
+      "verdict": "uncertain",
+      "reason": "Two directories (Run Beyond, 2026 footer; Jambo Nairobi, 2023 footer) agree on Level 5 Western Heights, Karuna Road and 0774 334 578, but neither listing is dated. The studio's own domain (reform.co.ke, with or without www) returns HTTP 404, and every substantive source found is from 2016-2017. A dead own-site plus stale coverage is a possible closure signal, so its existence at that location today is not established.",
+      "corrections": {
+        "website": null
+      },
+      "evidenceChecked": [
+        { "url": "https://www.runbeyond.co.ke/resource-centre/gym-directory/", "opened": true, "quoteFound": true },
+        { "url": "https://jambonairobi.co.ke/directory/health-fitness/sports-clubs/", "opened": true, "quoteFound": true },
+        { "url": "https://reform.co.ke", "opened": false, "quoteFound": false },
+        { "url": "https://www.reform.co.ke/", "opened": false, "quoteFound": false }
+      ]
+    },
+    {
+      "index": 5,
+      "id": "web:nbo-westlands-006",
+      "name": "Kanga Studio Nairobi",
+      "verdict": "confirmed",
+      "reason": "The studio's own /nairobi/ site shows 'Ikigai, Peponi Road, Nairobi, Kenya' and +254 (0) 759956291. Its timetable page carries an October 2026 timetable image and says all sessions must be pre-booked, and its teacher-training dates run to December 2026, so it looks active despite the 2020 copyright footer. Ikigai's own 2026 site still lists its Westlands (Peponi Road) location. Caution: the bare domain kangastudio.co now serves an unrelated Thai lottery spam blog, so link only to the /nairobi/ path and re-check it later. No general opening hours are published.",
+      "corrections": {},
+      "evidenceChecked": [
+        { "url": "https://kangastudio.co/nairobi/", "opened": true, "quoteFound": true },
+        { "url": "https://kangastudio.co/nairobi/timetable/", "opened": true, "quoteFound": true },
+        { "url": "https://ikigai.co.ke/", "opened": true, "quoteFound": true },
+        { "url": "https://kangastudio.co/", "opened": true, "quoteFound": false }
+      ]
+    },
+    {
+      "index": 6,
+      "id": "web:nbo-westlands-007",
+      "name": "Spin Studio at Ikigai Riverside (run by Mom3ntum Fitness)",
+      "verdict": "rejected",
+      "reason": "The only evidence for the studio is Ikigai's announcement of 26 May 2022, and nothing confirms it still runs. Ikigai's 2026 homepage lists the Riverside (Merchant Square) location but does not mention a spin studio, gym or Mom3ntum. The operator's own site (copyright 2025) lists only two studios, Rivaan Centre (5th Floor, Muguga Green) and Westlands Square (2nd Floor), and not Ikigai Riverside. Searches found no later reference. This looks like a discontinued pop-up and should not be listed as a current venue.",
+      "corrections": {},
+      "evidenceChecked": [
+        { "url": "https://ikigai.co.ke/2022/05/26/introducing-the-spin-studio-ikigai-nairobi-and-momentum-fitness-partner-to-launch-spin-studio-at-ikigai-riverside/", "opened": true, "quoteFound": true },
+        { "url": "https://ikigai.co.ke/", "opened": true, "quoteFound": true },
+        { "url": "http://mom3ntum.com/", "opened": true, "quoteFound": false }
+      ]
+    },
+    {
+      "index": 7,
+      "id": "web:nbo-westlands-008",
+      "name": "Calisthens Fitness Centre",
+      "verdict": "uncertain",
+      "reason": "The only source is a photo caption in a Business Daily feature published 29 Oct 2023: 'Calisthens Fitness Centre in Kileleshwa, Nairobi'. It gives no address, phone, website or hours and does not say who runs the centre. Fresh searches found nothing else (a mirror of the same article and no 'Haven cottage' match), so a single weak, three-year-old mention cannot place it on a map.",
+      "corrections": {},
+      "evidenceChecked": [
+        { "url": "https://www.businessdailyafrica.com/bd/lifestyle/health-fitness/calisthenics-i-help-women-get-strong-flexible--4417438", "opened": true, "quoteFound": true }
+      ]
+    },
+    {
+      "index": 8,
+      "id": "web:nbo-westlands-009",
+      "name": "Villa Rosa Kempinski - Spa & Fitness Centre",
+      "verdict": "confirmed",
+      "reason": "Kempinski's official hotel page (copyright 2026) confirms the Spa & Fitness Centre and +254 703 049 000. The official fitness sub-page gives hours 'Mon - Sun 06:00 - 21:00' and says 'Guests and Fitness Centre members have free access'. Two independent travel pages (Five Star Alliance; Easy Travel: 'situated on Chiromo Road, next to Nairobi's Westlands district') agree on Chiromo Road, so the hotel is beside Westlands, not in Kileleshwa.",
+      "corrections": {
+        "address": "Chiromo Road, next to Westlands, Nairobi",
+        "phones": ["+254 703 049 000"],
+        "website": "https://www.kempinski.com/en/hotel-villa-rosa/luxury-spa/fitness-pool/personal-fitness",
+        "hoursText": "Mon - Sun 06:00 - 21:00"
+      },
+      "evidenceChecked": [
+        { "url": "https://www.kempinski.com/en/nairobi/villa-rosa-kempinski", "opened": true, "quoteFound": true },
+        { "url": "https://www.kempinski.com/en/hotel-villa-rosa/luxury-spa/fitness-pool/personal-fitness", "opened": true, "quoteFound": true },
+        { "url": "https://www.kempinski.com/en/hotel-villa-rosa", "opened": true, "quoteFound": true },
+        { "url": "https://www.fivestaralliance.com/luxury-hotels/nairobi/villa-rosa-kempinski", "opened": true, "quoteFound": true },
+        { "url": "https://www.easytravel.co.tz/accommodation/villa-rosa-kempinski-nairobi/", "opened": true, "quoteFound": true }
+      ]
+    },
+    {
+      "index": 9,
+      "id": "web:nbo-westlands-010",
+      "name": "UNON Recreation Centre (Gigiri)",
+      "verdict": "confirmed",
+      "reason": "The UN's official UNON Division of Conference Services page describes 'a recreation centre with state-of-the-art gym' (also pool, tennis and squash courts) at the Gigiri compound, built for employees and conference delegates. It gives no phone, hours, page date or public-access rule. The venue exists, but it is inside the restricted UN compound and is not a public gym, so access must stay members_only or the venue should be excluded from a public directory.",
+      "corrections": {},
+      "evidenceChecked": [
+        { "url": "https://dcs.unon.org/en/site-facilities", "opened": true, "quoteFound": true }
+      ]
+    }
+  ]
+}
