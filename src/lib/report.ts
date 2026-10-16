@@ -8,7 +8,8 @@ export function reportHref(venue: Venue | null, issue: string): string | null {
   const text = [
     `Find My Gym report: ${issue}`,
     venue ? `Venue: ${venue.name} (${venue.id})` : "Missing gym",
-    venue ? `https://findmygym.ke/gym/${venue.slug}` : "",
+    // Link to the gym on whatever host serves the app; never a made-up domain.
+    venue && typeof window !== "undefined" ? `${window.location.origin}/gym/${venue.slug}` : "",
   ].filter(Boolean).join("\n");
   if (SUPPORT) return safeWhatsAppUrl(`+${SUPPORT.replace(/\D/g, "")}`, text);
   if (EMAIL) return `mailto:${EMAIL}?subject=${encodeURIComponent("Find My Gym report")}&body=${encodeURIComponent(text)}`;
