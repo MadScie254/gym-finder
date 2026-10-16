@@ -1,0 +1,13 @@
+// Cloudflare Workers static-assets deployment for the static Vite build.
+// `npm run build` writes dist/ (SPA shell + prerendered /gym/<slug>/ pages);
+// `npm run deploy` uploads it. No Worker script: Cloudflare serves the files,
+// applies public/_headers, and falls back to index.html for client routes.
+{
+  "name": "find-my-gym",
+  "compatibility_date": "2026-10-12",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application",
+    "html_handling": "auto-trailing-slash"
+  }
+}

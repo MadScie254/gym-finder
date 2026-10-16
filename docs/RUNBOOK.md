@@ -68,3 +68,16 @@ Use “Edit on OpenStreetMap” from a venue page so the next extract picks them
 ## Rollback
 
 Revert the data PR. The previous `gyms.<hash>.json` is in git history. Point `manifest.json` back if needed.
+
+## Deploying (Cloudflare)
+
+Live: https://find-my-gym.dmwanjala254.workers.dev (Cloudflare Workers static assets, first deployed 2026-10-16).
+
+```bash
+npm run deploy   # = npm run build && wrangler deploy (config in wrangler.jsonc)
+```
+
+- Needs `CLOUDFLARE_API_TOKEN` (with Workers Scripts edit permission) and `CLOUDFLARE_ACCOUNT_ID` in the environment.
+- There is no Worker script: Cloudflare serves `dist/`, applies `public/_headers`, and serves `index.html` for client-side routes (`not_found_handling: single-page-application`). Prerendered gym pages live at `/gym/<slug>/`.
+- `wrangler pages project create` now delegates to Workers and fails without this config; use `wrangler deploy`, not `wrangler pages deploy`.
+- Each deploy publishes the catalogue in `public/data/` as built. Run `npm run check` first.

@@ -15,7 +15,8 @@
     "fetch-places": "node scripts/fetch-kenya-places.mjs",
     "data:extract": "node scripts/data/extract-overture.mjs && node scripts/data/extract-osm.mjs",
     "data:build": "node scripts/data/build-gyms.mjs",
-    "data:validate": "node scripts/data/validate.mjs"
+    "data:validate": "node scripts/data/validate.mjs",
+    "deploy": "npm run build && npx --yes wrangler@4.151.0 deploy"
   },
   "dependencies": {
     "maplibre-gl": "^6.9.1",
