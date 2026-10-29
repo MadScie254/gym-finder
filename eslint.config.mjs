@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vendored get-shit-done (GSD) tooling for Claude Code.
+    ".claude/**",
   ]),
 ]);
 
