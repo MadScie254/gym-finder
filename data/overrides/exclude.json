@@ -1,1 +1,24 @@
-[]
+[
+  { "id": "gers:60de3426-ba30-4f54-88d6-a302e4411c44", "reason": "Stadium, not a gym listing" },
+  { "id": "gers:aa1092ef-f2c7-4db6-910d-89308c8bca5f", "reason": "Hotel, not a gym listing" },
+  { "id": "gers:42944bfb-8f01-430a-ae56-af52ed5fb264", "reason": "Gym equipment seller" },
+  { "id": "gers:8976495d-5507-49cb-b3f4-a297503943c6", "reason": "Gym equipment shop" },
+  { "id": "gers:1e420a88-a769-41e1-9586-90561dd3e8c7", "reason": "Holiday apartment" },
+  { "id": "gers:b913f3b8-51be-4585-8129-d9d30786941e", "reason": "Holiday apartment" },
+  { "id": "gers:2ae0743a-cf1b-4d4c-9747-eb6b66cd0823", "reason": "Gym installation business" },
+  { "id": "gers:d3c448af-cb6f-4754-a500-9b41b9f3c6bc", "reason": "Gym installation business" },
+  { "id": "gers:2a32d9f6-2da0-499a-a44d-ae7f18d2f7bb", "reason": "Holiday apartment" },
+  { "id": "gers:c5c25808-bdca-4b52-b0db-68e0c306a325", "reason": "Interior design business" },
+  { "id": "gers:92dde2fd-c32b-4cf0-a2ab-a9b014354a34", "reason": "Gym equipment seller" },
+  { "id": "gers:13672ffe-86b7-4a30-9629-e6f0f42d749c", "reason": "Gym equipment seller" },
+  { "id": "gers:6055db50-b186-4cd7-8be0-3b68f1d9f669", "reason": "Gym equipment seller" },
+  { "id": "gers:dda23af7-b021-4148-bcf7-e696c02e51a4", "reason": "Fitness supplies seller" },
+  { "id": "gers:95ce4bab-b721-4517-937f-048761e13d8f", "reason": "Hotel, not a gym listing" },
+  { "id": "gers:efa4ef08-40f8-4618-a67c-47aac620c39f", "reason": "Supplement seller" },
+  { "id": "gers:8c55773a-e833-4cef-ac2e-b75f72f28ff3", "reason": "Village hall, not a gym listing" },
+  { "id": "gers:4eb27d98-c0f4-4ca5-83ee-8dcd08405d67", "reason": "Fitness supplies seller" },
+  { "id": "gers:96351662-31c8-45e1-9923-de3bb8b2a71b", "reason": "Shopping business, not a gym listing" },
+  { "id": "gers:0fc136d4-49c5-42b6-b3b8-854a81b4ed09", "reason": "Gym equipment seller" },
+  { "id": "gers:6c572a2c-012d-4c8c-8bbd-aae5ec282792", "reason": "Gym mats seller" },
+  { "id": "osm:node/13974623144", "reason": "Fitness consultancy and supplement shop" }
+]

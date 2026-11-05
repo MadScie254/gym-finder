@@ -1,20 +1,20 @@
 {
-  "builtAt": "2026-11-05T13:39:05.888Z",
+  "builtAt": "2026-11-05T20:27:41.198Z",
   "overtureRelease": "2026-10-21.0",
   "osmSnapshotAt": "2026-09-17T19:50:44.603Z",
   "osmStale": true,
   "counts": {
-    "total": 588,
-    "defaultVisible": 519,
+    "total": 566,
+    "defaultVisible": 497,
     "byTier": {
       "verified": 0,
-      "corroborated": 150,
-      "listed": 369,
+      "corroborated": 149,
+      "listed": 348,
       "unconfirmed": 69
     },
     "byCounty": {
-      "Nairobi": 346,
-      "Mombasa": 44,
+      "Nairobi": 329,
+      "Mombasa": 42,
       "Kwale": 5,
       "Kilifi": 3,
       "Tana River": 0,
@@ -35,17 +35,17 @@
       "Nyeri": 4,
       "Kirinyaga": 2,
       "Murang'a": 1,
-      "Kiambu": 87,
+      "Kiambu": 86,
       "Turkana": 0,
       "West Pokot": 1,
       "Samburu": 0,
       "Trans Nzoia": 2,
       "Uasin Gishu": 8,
-      "Elgeyo-Marakwet": 3,
+      "Elgeyo-Marakwet": 2,
       "Nandi": 0,
       "Baringo": 0,
       "Laikipia": 3,
-      "Nakuru": 19,
+      "Nakuru": 18,
       "Narok": 3,
       "Kajiado": 4,
       "Kericho": 0,
@@ -62,7 +62,7 @@
       "Nyamira": 0
     },
     "byKind": {
-      "gym": 519,
+      "gym": 497,
       "gymnastics": 5,
       "crossfit": 6,
       "yoga": 14,
@@ -71,7 +71,7 @@
       "boxing": 6,
       "pilates": 4
     },
-    "withContact": 428
+    "withContact": 409
   },
   "licenses": [
     "ODbL-1.0 © OpenStreetMap contributors",
@@ -83,5 +83,5 @@
     "Overture Places can contain duplicates and incomplete properties. Confidence measures existence, not that a gym is open.",
     "Address is omitted when unknown. We never invent hours, prices or ratings."
   ],
-  "gymsPath": "/data/gyms.abc5c96601.json"
+  "gymsPath": "/data/gyms.2559cc2dc7.json"
 }
