@@ -1,33 +1,28 @@
-# KAYA — Kenya Gym Finder
+# Find My Gym
 
-A keyless-first gym discovery PWA for Kenya. It combines a checked-in OpenStreetMap fitness catalog, a local GeoNames town/neighbourhood index, a MapLibre/OpenFreeMap map, and a device-local four-week training and seven-day Kenyan meal guide.
-
-## Run locally
+A static gym finder for Kenya. React + Vite. No database. A Google Maps browser key is optional; the open map works without it.
 
 ```bash
 npm ci
 npm run dev
 ```
 
-Open http://localhost:3000. Run `npm run check` for lint, tests and a production build.
+Open http://localhost:5173. `npm run check` runs lint, types, tests and a production build.
 
-The app starts in Nairobi without requesting precise location. **Near me** asks browser permission and uses coordinates for that lookup only. The training brief, saved gyms and plan progress live in the visitor's browser storage, not a server account.
+## Data
 
-## Data and honest limitations
+`public/data/` is the catalogue the app loads. The current build combines Overture Maps release 2026-10-21.0 with an older OpenStreetMap snapshot. It has 588 sourced candidates, of which 519 are shown by default. OpenStreetMap's Overpass service timed out during this refresh, so the previous 58 OSM records were retained and marked stale. These numbers are not a claim of complete Kenya coverage or verified operation.
 
-- `data/kenya-gyms.json` is a curated OpenStreetMap extract. `npm run fetch-gyms` refreshes it from Overpass; `npm run curate-gyms` re-applies the quality filter offline. The app also filters out non-fitness sports sites and points outside the Kenya boundary at read time. These are community-mapped listings, **not verified businesses**. Missing prices, ratings, hours or contact data are never invented.
-- `data/kenya-places.json` is a filtered [GeoNames Kenya country dump](https://download.geonames.org/export/dump/KE.zip), refreshed with `npm run fetch-places`. It makes town and neighbourhood suggestions and submitted place searches work without a runtime API key. GeoNames is [CC BY 4.0](https://download.geonames.org/export/dump/readme.txt); attribution appears in the app.
-- `data/kenya-boundary.json` is a simplified [geoBoundaries gbOpen Kenya ADM0](https://www.geoboundaries.org/api/current/gbOpen/KEN/ADM0/) polygon (RCMRD GeoPortal, public domain). It prevents a rectangular bounds check from admitting neighbouring countries.
-- The map uses [OpenFreeMap](https://openfreemap.org/) without a token, and the view is limited to Kenya. The app does not proxy slippy-map tiles. OpenFreeMap has no contractual uptime guarantee. The static image fallback uses Esri only in local development, or `ESRI_EXPORT_URL` when that licensed upstream is configured. Map locations are approximate and can be outdated.
-- Local text search returns actual name/address matches, not random gyms near the last search point. A selected place searches a stated area around that place; a small radius is not silently enlarged. A nationwide search lists the currently mapped catalog only.
-- The plan offers adjustable, conservative workouts and Kenyan-style meal ideas. It does not calculate calories, diagnose conditions, guarantee weight change, or replace a trainer or dietitian. Always check allergies and health restrictions.
+`npm run data:extract` then `npm run data:build` rebuilds from Overture and OSM. The Overture extractor can use DuckDB's Node API on Node 26. If all Overpass mirrors fail or return empty responses, the OSM extractor keeps the previous snapshot and marks it stale. `npm run data:validate` checks the generated catalogue before publication.
 
-Map and listing data © OpenStreetMap contributors. Place names © GeoNames, CC BY 4.0. OpenFreeMap and Esri attribution is retained in the map/fallback.
+Addresses, hours, phones and prices are omitted when the source does not have them. The app does not invent ratings or a "Verified" label. Verified only comes from `data/overrides/venues/`.
 
-## Optional production services
+## Map
 
-The checked-in catalog and gazetteer work without runtime credentials. In development only, a public Overpass/Nominatim instance can supplement a submitted search. In production, configure **authorised** `OVERPASS_ENDPOINTS` and `NOMINATIM_URL` only if you operate or contract for a provider. Public Nominatim is never called for autocomplete. The default production behavior is local-first and does not depend on either service.
+The default map shows the independently sourced catalogue with clustered gym pins. To use Google Maps JavaScript instead, create a billed Google Cloud project, enable Maps JavaScript API, create a production map ID, and set `VITE_GOOGLE_MAPS_API_KEY` and `VITE_GOOGLE_MAPS_MAP_ID` as Vite build variables (see `.env.example`). Restrict the browser key to your site domains and Maps JavaScript API. The app uses its own OSM/Overture records; it does not fetch or store Google Places listings. Review the current Google Maps Platform terms for a gym directory before enabling this option in production.
 
-The in-process rate limiter and cache protect a single app instance. The limiter keys a trusted address (a configured `TRUSTED_CLIENT_IP_HEADER`, otherwise the right-most `X-Forwarded-For` hop) and does not put unidentified production traffic in one shared bucket. Overpass calls use the same minimum spacing as the geocoder, and a catalog listing does not trigger another details lookup. Use a shared platform limiter/cache before high-traffic launch. The current app has no accounts, owner verification, lead delivery, payments, or real-time opening-hours guarantee. Those require business onboarding, a durable database, privacy review, and payment credentials. Do not advertise paid placement or "verified" listings until those systems and human checks exist.
+## Privacy
 
-The app does not use Google Places content on a non-Google map. A no-key Google Maps URL is used only to open external turn-by-turn directions.
+Location stays in the browser. There are no cookies and no analytics. By default, map tiles are requested from OpenFreeMap. When the optional Google map is enabled, the browser requests Google Maps content under Google's terms and privacy policy.
+
+Map and listing data © OpenStreetMap contributors. See `LICENSE-DATA.md` and `NOTICE`.

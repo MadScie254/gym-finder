@@ -1,9 +1,14 @@
-<!-- BEGIN:nextjs-agent-rules -->
+# Find My Gym
 
-# This is NOT the Next.js you know
+Static React + Vite app. No Next.js, no database, no runtime API keys.
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+```bash
+npm ci
+npm run dev
+```
 
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+`npm run check` runs lint, types, tests and the production build.
 
-<!-- END:nextjs-agent-rules -->
+Catalogue files live in `public/data/`. Rebuild with `npm run data:extract` (needs DuckDB) then `npm run data:build`. Until Overture is extracted, the committed catalogue is the OpenStreetMap snapshot only — say so; do not invent listings.
+
+Location stays on the device. Do not add Google Places, ratings, prices or hours that are not in the source data.
