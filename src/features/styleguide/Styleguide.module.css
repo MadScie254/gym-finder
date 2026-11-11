@@ -94,11 +94,13 @@
   gap: var(--space-3);
 }
 
+/* A scrolling chip row clips outlines: the padding leaves room for the focus ring. */
 .scroller {
   display: flex;
   gap: var(--space-2);
+  margin: -6px;
+  padding: 6px;
   overflow-x: auto;
-  padding-bottom: var(--space-1);
   scrollbar-width: thin;
 }
 
@@ -150,9 +152,8 @@
 }
 
 .typeSample {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .phone {
