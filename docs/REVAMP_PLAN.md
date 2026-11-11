@@ -33,18 +33,30 @@ Find My Gym helps someone in Kenya pick a real gym, get there, and fuel the sess
 
 ---
 
-## 2. Decisions the owner must make before Phase 2
+## 2. Owner decisions (answered 2026-11-11)
 
-| # | Decision | Recommendation |
+These override anything below that conflicts.
+
+| # | Decision | Answer |
 |---|---|---|
-| D1 | Is "Food Plus" Chandarana Foodplus? Which "other things" are in scope? | Yes. Launch with Glovo + Foodplus + Uber Eats (verify it still operates in Kenya) + one online grocer such as Greenspoon (verify). |
-| D2 | Host: Cloudflare or Vercel? | One only. Cloudflare if a small Worker is wanted for forms (D3). |
-| D3 | Is "no database" still a hard rule? | Keep the catalogue as files in Git. Allow one tiny serverless form endpoint for "claim your gym" and "report a problem", storing submissions as GitHub issues or emails. Without it those features stay WhatsApp/email links. |
-| D4 | Support WhatsApp number and email | Required for report, claim and add-a-gym. |
-| D5 | Glovo and Foodplus partnership outreach | Owner sends it. Until a partner agrees, the app only links out and says so. |
-| D6 | Brand: keep the name, replace the look | Keep "Find My Gym". Replace palette and type per section 3. |
-| D7 | Golden list | 25+ gyms the owner knows are open, plus known closed ones. |
-| D8 | Photos | Only owner-supplied or openly licensed photos. No stock gym photos passed off as a specific gym. |
+| D1 | Food scope | Recommend food, then show a store; tapping the store opens it. **Build as a simulation first** (see 2.1). Real Glovo / Foodplus wiring comes later. |
+| D2 | Host | Executor's choice of the easiest. **Use Vercel**: it is already connected to the GitHub repo, builds a preview for every push, and `master` already has `vercel.json`. Retire the Cloudflare deployment once Vercel production is confirmed. |
+| D3 | Database | No real backend yet. Simulate: claims, reports and added gyms are stored in the browser (localStorage) behind one `src/lib/backend.ts` interface, so a real endpoint can replace it later without touching the UI. |
+| D4 | Support contact | Claims and reports go to the owner's WhatsApp and email. Read both from `VITE_SUPPORT_WHATSAPP` and `VITE_SUPPORT_EMAIL` set in Vercel; never commit them. The WhatsApp number still has to be supplied by the owner. |
+| D5 | Partnerships | Deferred. No outreach, no partner logos, no tracked links yet. |
+| D6 | Design | Owner delegated the choice. **Signwriter** (section 3) is the direction. |
+| D7 | Golden list | Still needed from the owner. |
+| D8 | Photos | Unchanged: owner-supplied or openly licensed only. |
+| — | Git flow | GitHub Actions is locked on the owner's account (plan not paid), so CI does not run. Until that is fixed: merge straight to `master`, and treat a local `npm run check` plus the Vercel preview as the gate. |
+
+### 2.1 What "simulation" means
+
+- A visible "Demo" marker on every simulated screen, and one line on the Fuel home: "Demo stores and sample menus. Ordering is not live yet."
+- Simulated stores use invented names (for example "Demo: Protein Kitchen, Westlands"), sample menu items and sample prices marked "sample". Never put invented menus, prices or delivery times under a real brand name.
+- Real services (Glovo, Chandarana Foodplus) appear only as a plain "Open Glovo" / "Open Foodplus" link to their public site, with the non-affiliation line.
+- The full flow works end to end on demo data: recommendation, store list, store page, basket, "order placed" confirmation stored locally. No payment, no real order, and the confirmation says so.
+- Demo data lives in `data/fuel/demo-stores.json`, loaded only when `VITE_FUEL_MODE=demo` (the default). Switching to live later means adding `services.json` entries and setting `VITE_FUEL_MODE=live`.
+- Gym data is never simulated. The catalogue stays real and sourced.
 
 ---
 
@@ -208,7 +220,7 @@ Each phase ends with: `npm run check` green, the listed gate met, one commit, `d
 
 **Phase 0 — Align (half a day)**
 1. Branch from `master`. Read `docs/DECISIONS.md`, `docs/PROGRESS.md`, this file.
-2. Get answers to D1 to D8. Do not start Phase 2 without D1, D2, D6.
+2. Decisions are in section 2. Still missing from the owner: the WhatsApp number (D4) and the golden list (D7). Neither blocks Phase 2.
 3. Run the app; take mobile and desktop screenshots as the "before" record.
 
 **Phase 1 — Foundation fixes (1 day)**
@@ -228,8 +240,8 @@ Each phase ends with: `npm run check` green, the listed gate met, one commit, `d
 11. Build G7 to G10. Gate: all G "done when" checks pass on mobile and desktop.
 
 **Phase 5 — Fuel and Plan (3 to 4 days)**
-12. Build `services.json` with verified entries (section 6.5).
-13. Build F1 to F5, then F6 if chosen; restore the planner (5.3). Gate: every hand-off link opened and confirmed by hand; disclaimer present.
+12. Build `data/fuel/demo-stores.json` and the `backend.ts` simulation layer (section 2.1).
+13. Build F1 to F4 on demo data: recommendation, store list, store page, basket, local confirmation. Add plain link-outs to Glovo and Foodplus. Restore the planner (5.3). Gate: the whole flow works offline on demo data; every simulated screen shows the Demo marker; real brand links opened and confirmed by hand.
 
 **Phase 6 — Data depth (runs alongside Phases 3 to 5)**
 14. Section 6 steps 1 to 4. Gate: 150 verified profiles, "open now" filter returns real results, coverage table published on the About page.
@@ -237,7 +249,7 @@ Each phase ends with: `npm run check` green, the listed gate met, one commit, `d
 **Phase 7 — Quality and launch (2 days)**
 15. Full e2e, axe on every route, Lighthouse budgets, offline test in airplane mode, Swahili review.
 16. `/code-review` and `/security-review` over the diff; fix findings.
-17. Deploy to the host from D2; smoke-test the live URL in a real browser; update README and RUNBOOK.
+17. Deploy to Vercel production; smoke-test the live URL in a real browser; update README and RUNBOOK.
 
 Rough total: 15 to 18 working days of agent time, more if usage limits interrupt. Phases 4 and 5 can be split across parallel agents by feature folder.
 
