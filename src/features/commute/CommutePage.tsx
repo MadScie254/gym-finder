@@ -23,15 +23,15 @@ export function CommutePage() {
 
   return (
     <section className="page">
-      <h1>Gym on my way</h1>
-      <p className="muted">Straight-line distance to the line between two points. This is not a road detour and not a travel time.</p>
+      <h1>Near your commute line</h1>
+      <p className="muted">Distance to a straight line between two points, not a road route or travel time. {origin ? "Your starting point stays on this device." : "Without your location, the starting point is central Nairobi."}</p>
       <label>Work or landmark
         <input value={work} onChange={(event) => setWork(event.target.value)} />
       </label>
       {!workPoint && <p>Pick a known place name.</p>}
       <ol>
         {ranked.map(({ venue, km }) => (
-          <li key={venue.id}><Link to={`/gym/${venue.slug}`}>{venue.name}</Link> — ≈ {km.toFixed(1)} km from your route, straight-line</li>
+          <li key={venue.id}><Link to={`/gym/${venue.slug}`}>{venue.name}</Link> — ≈ {km.toFixed(1)} km from the straight line</li>
         ))}
       </ol>
     </section>

@@ -1,10 +1,16 @@
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router";
 import { useVenueContext } from "./venue-context";
 import { t } from "../lib/i18n";
 import { isInKenya, NAIROBI } from "../lib/kenya";
 
-const MapPane = lazy(() => import("../features/map/MapPane").then((mod) => ({ default: mod.MapPane })));
+const useGoogleMap = Boolean(import.meta.env.VITE_GOOGLE_MAPS_API_KEY && import.meta.env.VITE_GOOGLE_MAPS_MAP_ID);
+const MapPane = lazy(async () => {
+  const mod = useGoogleMap
+    ? await import("../features/map/GoogleMapPane")
+    : await import("../features/map/MapPane");
+  return { default: mod.MapPane };
+});
 
 function Icon({ d }: { d: string }) {
   return (
@@ -22,12 +28,23 @@ const TABS = [
 ];
 
 export function Shell() {
-  const { lang, offline, index, visible, selectedId, setOrigin, setLocationNote } = useVenueContext();
+  const { lang, offline, index, visible, selectedId, origin, setOrigin, setLocationNote } = useVenueContext();
   const location = useLocation();
   const showMap = location.pathname === "/" || location.pathname === "/search"
     || location.pathname.startsWith("/gym/")
     || location.pathname.startsWith("/in/");
-  const [mode, setMode] = useState<"both" | "list" | "map">("both");
+  const [mode, setMode] = useState<"list" | "map">("list");
+  const [wide, setWide] = useState(() => typeof window !== "undefined" && Boolean(window.matchMedia?.("(min-width: 800px)").matches));
+  useEffect(() => {
+    const media = window.matchMedia?.("(min-width: 800px)");
+    if (!media) return;
+    const update = () => setWide(media.matches);
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+  useEffect(() => {
+    if (location.pathname.startsWith("/gym/")) setMode("list");
+  }, [location.pathname]);
   const date = index?.manifest.builtAt.slice(0, 10);
 
   function locate() {
@@ -65,18 +82,19 @@ export function Shell() {
         </aside>
         {showMap && (
           <div className="map-slot">
-            <Suspense fallback={<p className="map-fallback">List is ready. Map is still loading.</p>}>
-              <MapPane venues={visible} selectedId={selectedId} />
-            </Suspense>
-            <div className="view-toggle" role="group" aria-label="List or map">
-              <button type="button" aria-pressed={mode !== "map"} onClick={() => setMode("list")}>List</button>
-              <button type="button" aria-pressed={mode === "map"} onClick={() => setMode(mode === "map" ? "both" : "map")}>Map</button>
-            </div>
+            {(wide || mode === "map") && <Suspense fallback={<p className="map-fallback">List is ready. Map is still loading.</p>}>
+              <MapPane venues={visible} selectedId={selectedId} origin={origin} />
+            </Suspense>}
+            <span className="map-stamp">{visible.length} mapped gyms</span>
             <button type="button" className="locate" onClick={locate} aria-label={t(lang, "nearMe")}>
-              <Icon d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z M12 10.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+              <Icon d="M12 4v3M12 17v3M4 12h3M17 12h3M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />
             </button>
           </div>
         )}
+        {showMap && <div className="view-toggle" role="group" aria-label="List or map">
+          <button type="button" aria-pressed={mode === "list"} onClick={() => setMode("list")}>List</button>
+          <button type="button" aria-pressed={mode === "map"} onClick={() => setMode("map")}>Map</button>
+        </div>}
       </div>
       <nav className="tabbar" aria-label="Primary">
         {TABS.map((tab) => (

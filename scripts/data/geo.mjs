@@ -96,109 +96,16 @@ export function nearestCounty(point) {
   return best;
 }
 
-const countyKey = (value) => `${value ?? ""}`.toLowerCase().replace(/\b(?:county|city|district)\b/g, "").replace(/[^a-z]/g, "");
-const COUNTY_BY_KEY = new Map(COUNTIES.map((county) => [countyKey(county.name), county]));
-
-/** A COUNTIES entry named by free text ("Nairobi", "Uasin Gishu County", "Taita Taveta"), or null. */
-export function countyFromText(value) {
-  return value ? COUNTY_BY_KEY.get(countyKey(value)) ?? null : null;
-}
-
-/**
- * A county hint is distrusted when its centroid is more than this much further from the
- * point than the nearest county's centroid (large counties have far-away centroids, so a
- * flat cut-off would either reject Kajiado's northern towns or accept Nairobi for Nakuru).
- */
-const HINT_SLACK_KM = 75;
-
-/**
- * County for a point. The nearest-centroid test misplaces the Nairobi/Kiambu and
- * Nairobi/Kajiado fringes (county centroids are not borders), so a source-provided
- * county (Overture `locality`/`region` is usually a county name) wins when it
- * names a county whose centroid is plausibly near (see HINT_SLACK_KM). Otherwise nearest centroid.
- * @returns {{ name: string, by: "hint" | "centroid" }}
- */
-export function assignCounty(point, hints = []) {
-  const nearest = nearestCounty(point);
-  const limit = haversineKm(point, nearest) + HINT_SLACK_KM;
-  for (const hint of hints) {
-    const county = countyFromText(hint);
-    if (county && haversineKm(point, county) <= limit) return { name: county.name, by: "hint" };
-  }
-  return { name: nearest.name, by: "centroid" };
-}
-
-/**
- * A record with no county of its own (OSM, which carries no addr:county here) takes the
- * county of the nearest record that does, when that one is within `radiusM`: Meta's county
- * names beat centroid distance on the Nairobi/Kiambu/Kajiado fringes. Returns new records.
- */
-export function inferCounties(records, radiusM = 1500) {
-  const anchors = records.filter((record) => record.countyBy === "hint" && !record.approxRadiusM);
-  return records.map((record) => {
-    if (record.countyBy !== "centroid" || record.approxRadiusM) return record;
-    let best = null;
-    let bestKm = radiusM / 1000;
-    for (const anchor of anchors) {
-      const km = haversineKm(record, anchor);
-      if (km <= bestKm) {
-        best = anchor;
-        bestKm = km;
-      }
-    }
-    return best && best.county !== record.county ? { ...record, county: best.county, countyBy: "neighbour" } : record;
-  });
-}
-
-const TOWN_MAX_KM = 30;
-const AREA_MAX_KM = 2;
-
-/**
- * Neighbourhood = nearest `suburb` within ~2 km; town = nearest `town` within 30 km
- * (further away it would be a guess). Overture `locality` is never used as area.
- */
 export function reverseLookup(point) {
   let town = null;
   let area = null;
   for (const place of PLACES.places) {
     const km = haversineKm(point, place.location);
     if (place.kind === "town") {
-      if (km <= TOWN_MAX_KM && (!town || km < town.km)) town = { name: place.name, km };
-    } else if (place.kind === "suburb" && km <= AREA_MAX_KM) {
+      if (!town || km < town.km) town = { name: place.name, km };
+    } else if (km <= 2) {
       if (!area || km < area.km) area = { name: place.name, km };
     }
   }
   return { area: area?.name ?? null, town: town?.name ?? null };
 }
-
-/**
- * Town for a venue once its county is settled. Nairobi City County is one city, so every
- * venue in it is in town "Nairobi": on distance alone, GeoNames "towns" such as Imara Daima
- * Estate, or the Kiambu and Kajiado towns ringing the city (Ruiru, Ngong, Ongata Rongai),
- * would label Kasarani, Karen or Utawala gyms. Elsewhere: the nearest town within 30 km,
- * skipping a town named after a different county (a county seat lies in its own county).
- */
-export function townFor(point, county) {
-  if (county === "Nairobi") return "Nairobi";
-  let best = null;
-  for (const place of PLACES.places) {
-    if (place.kind !== "town") continue;
-    const seat = countyFromText(place.name);
-    if (seat && seat.name !== county) continue;
-    const km = haversineKm(point, place.location);
-    if (km <= TOWN_MAX_KM && (!best || km < best.km)) best = { name: place.name, km };
-  }
-  return best?.name ?? null;
-}
-
-/** Centre of a named place (suburb preferred, else town), for approximate web-research locations. */
-export function placeCentre(name, kind) {
-  const key = `${name ?? ""}`.toLowerCase().trim();
-  if (!key) return null;
-  const matches = PLACES.places.filter((place) => place.name.toLowerCase() === key && (!kind || place.kind === kind));
-  if (!matches.length) return null;
-  const best = matches.sort((a, b) => (b.population ?? 0) - (a.population ?? 0) || a.id.localeCompare(b.id))[0];
-  return { lat: best.location.lat, lng: best.location.lng, kind: best.kind, name: best.name };
-}
-
-export { haversineKm };

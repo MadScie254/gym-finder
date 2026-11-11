@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import type { LatLng, Venue, VenueKind } from "../../data/types";
-import { formatDistance, safeTelephoneUrl, safeWhatsAppUrl, walkMinutes } from "../../lib/format";
+import { formatDistance, safeTelephoneUrl, safeWhatsAppUrl } from "../../lib/format";
 import { haversineKm } from "../../lib/kenya";
 import { TrustBadge } from "../../ui/TrustBadge";
 
@@ -25,12 +25,18 @@ export function ResultCard({
   selected,
   saved,
   onSave,
+  compared,
+  onCompare,
+  compareDisabled = false,
 }: {
   venue: Venue;
   origin: LatLng | null;
   selected: boolean;
   saved: boolean;
   onSave: () => void;
+  compared: boolean;
+  onCompare: () => void;
+  compareDisabled?: boolean;
 }) {
   const km = origin ? haversineKm(origin, { lat: venue.lat, lng: venue.lng }) : null;
   const tel = safeTelephoneUrl(venue.phones[0] ?? null);
@@ -44,13 +50,15 @@ export function ResultCard({
           <span className="kind">{kindLabel(venue.kind)}</span>
           {place && <span>{place}</span>}
         </p>
-        {km != null && <p className="tabular">{formatDistance(km)} · ~{walkMinutes(km)} min walk</p>}
+        {km != null && <p className="tabular">{formatDistance(km)} · straight-line</p>}
         <TrustBadge tier={venue.trust.tier} />
+        <span className="result-card__view">View gym <span aria-hidden="true">↗</span></span>
       </Link>
       <div className="result-card__actions">
         {tel && <a className="icon-btn" href={tel}>Call</a>}
         {wa && <a className="icon-btn" href={wa}>Chat</a>}
         <button type="button" className="icon-btn" onClick={onSave} aria-pressed={saved}>{saved ? "Saved" : "Save"}</button>
+        <button type="button" className="icon-btn" onClick={onCompare} aria-pressed={compared} disabled={compareDisabled && !compared}>{compared ? "Added" : "Compare"}</button>
       </div>
     </article>
   );

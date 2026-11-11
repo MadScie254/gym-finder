@@ -11,7 +11,7 @@
     "isolatedModules": true,
     "resolveJsonModule": true,
     "useDefineForClassFields": true,
-    "types": ["vite/client"],
+    "types": ["vite/client", "google.maps"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],

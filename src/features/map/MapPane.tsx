@@ -1,11 +1,21 @@
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
-import { Map as MapLibreMap, NavigationControl, type GeoJSONSource, type MapLayerMouseEvent } from "maplibre-gl";
+import { Map as MapLibreMap, NavigationControl, setWorkerUrl, type GeoJSONSource, type MapLayerMouseEvent } from "maplibre-gl";
+import maplibreWorker from "maplibre-gl/dist/maplibre-gl-worker.mjs?url";
 import "maplibre-gl/dist/maplibre-gl.css";
-import "./maplibreWorker";
-import type { Venue } from "../../data/types";
+import type { LatLng, Venue } from "../../data/types";
 
-function toFeatures(venues: Venue[]) {
+const MAP_STYLE = "https://tiles.openfreemap.org/styles/liberty";
+setWorkerUrl(maplibreWorker);
+
+const TIER_COLOR: Record<string, string> = {
+  verified: "#107a50",
+  corroborated: "#2567a8",
+  listed: "#d24b2a",
+  unconfirmed: "#98652c",
+};
+
+function venueData(venues: Venue[]) {
   return {
     type: "FeatureCollection" as const,
     features: venues.map((venue) => ({
@@ -16,41 +26,38 @@ function toFeatures(venues: Venue[]) {
   };
 }
 
-const STYLE = "https://tiles.openfreemap.org/styles/liberty";
+function focusMap(map: MapLibreMap, venues: Venue[], selectedId: string | null, origin: LatLng | null) {
+  const selected = venues.find((venue) => venue.id === selectedId);
+  const point = selected ?? origin;
+  if (point) map.flyTo({ center: [point.lng, point.lat], zoom: selected ? 14 : 12, essential: true });
+}
 
-const TIER_COLOR: Record<string, string> = {
-  verified: "#0A7A4B",
-  corroborated: "#1F5FBF",
-  listed: "#5B6560",
-  unconfirmed: "#8F5200",
-};
-
-export function MapPane({ venues, selectedId }: { venues: Venue[]; selectedId: string | null }) {
+export function MapPane({ venues, selectedId, origin = null }: { venues: Venue[]; selectedId: string | null; origin?: LatLng | null }) {
   const ref = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
-  // The source only exists after "load"; keep the latest props so the load handler can draw them.
-  const venuesRef = useRef(venues);
-  const selectedRef = useRef(selectedId);
+  const latest = useRef({ venues, selectedId, origin });
+  latest.current = { venues, selectedId, origin };
   const navigate = useNavigate();
-
-  useEffect(() => {
-    venuesRef.current = venues;
-    selectedRef.current = selectedId;
-  }, [venues, selectedId]);
 
   useEffect(() => {
     if (!ref.current || mapRef.current) return;
     const map = new MapLibreMap({
       container: ref.current,
-      style: STYLE,
+      style: MAP_STYLE,
       center: [36.82, -1.29],
       zoom: 11,
+      pixelRatio: 1,
     });
     map.addControl(new NavigationControl({ showCompass: false }), "top-right");
+    const resize = () => map.resize();
+    const observer = new ResizeObserver(resize);
+    observer.observe(ref.current);
+    requestAnimationFrame(resize);
     map.on("load", () => {
+      resize();
       map.addSource("venues", {
         type: "geojson",
-        data: toFeatures(venuesRef.current),
+        data: venueData(latest.current.venues),
         cluster: true,
         clusterRadius: 48,
       });
@@ -59,7 +66,12 @@ export function MapPane({ venues, selectedId }: { venues: Venue[]; selectedId: s
         type: "circle",
         source: "venues",
         filter: ["has", "point_count"],
-        paint: { "circle-color": "#0E1411", "circle-radius": 18 },
+        paint: {
+          "circle-color": "#1d2822",
+          "circle-radius": ["step", ["get", "point_count"], 21, 20, 25, 100, 29],
+          "circle-stroke-color": "#ffffff",
+          "circle-stroke-width": 3,
+        },
       });
       map.addLayer({
         id: "cluster-count",
@@ -77,8 +89,8 @@ export function MapPane({ venues, selectedId }: { venues: Venue[]; selectedId: s
         filter: ["!", ["has", "point_count"]],
         paint: {
           "circle-color": ["match", ["get", "tier"], "verified", TIER_COLOR.verified, "corroborated", TIER_COLOR.corroborated, "unconfirmed", TIER_COLOR.unconfirmed, TIER_COLOR.listed],
-          "circle-radius": ["case", ["==", ["get", "id"], selectedRef.current ?? ""], 10, 6],
-          "circle-stroke-width": 2,
+          "circle-radius": ["case", ["==", ["get", "id"], selectedId ?? ""], 12, 8],
+          "circle-stroke-width": 3,
           "circle-stroke-color": "#ffffff",
         },
       });
@@ -96,23 +108,25 @@ export function MapPane({ venues, selectedId }: { venues: Venue[]; selectedId: s
           if (geometry?.type === "Point") map.easeTo({ center: geometry.coordinates as [number, number], zoom });
         });
       });
+      focusMap(map, latest.current.venues, latest.current.selectedId, latest.current.origin);
     });
     mapRef.current = map;
-    return () => { map.remove(); mapRef.current = null; };
+    return () => { observer.disconnect(); map.remove(); mapRef.current = null; };
   }, [navigate]);
 
   useEffect(() => {
     const map = mapRef.current;
     const source = map?.getSource("venues") as GeoJSONSource | undefined;
     if (!source) return;
-    source.setData(toFeatures(venues));
+    source.setData(venueData(venues));
   }, [venues]);
 
   useEffect(() => {
     const map = mapRef.current;
     if (!map?.getLayer("pins")) return;
-    map.setPaintProperty("pins", "circle-radius", ["case", ["==", ["get", "id"], selectedId ?? ""], 10, 6]);
-  }, [selectedId]);
+    map.setPaintProperty("pins", "circle-radius", ["case", ["==", ["get", "id"], selectedId ?? ""], 12, 8]);
+    focusMap(map, latest.current.venues, selectedId, origin);
+  }, [selectedId, origin]);
 
   return <div ref={ref} className="map-pane" role="region" aria-label="Map of gyms" />;
 }

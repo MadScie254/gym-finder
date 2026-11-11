@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import type { LatLng, Venue } from "../../data/types";
-import { directionsUrl, formatDistance, safeExternalUrl, safeTelephoneUrl, safeWhatsAppUrl, walkMinutes } from "../../lib/format";
+import { directionsUrl, formatDistance, safeExternalUrl, safeTelephoneUrl, safeWhatsAppUrl } from "../../lib/format";
 import { parseHours } from "../../lib/hours";
 import { haversineKm } from "../../lib/kenya";
 import { t, type Lang } from "../../lib/i18n";
@@ -23,7 +23,7 @@ export function Detail({ venue, lang, origin }: { venue: Venue; lang: Lang; orig
       <p className="meta"><span className="kind">{kindLabel(venue.kind)}</span></p>
       <h1>{venue.name}</h1>
       <p className="place">{place || "Area not listed"}</p>
-      {km != null && <p className="tabular">{formatDistance(km)} · ~{walkMinutes(km)} min walk, straight line</p>}
+      {km != null && <p className="tabular">{formatDistance(km)} · straight-line distance</p>}
       <TrustBadge tier={venue.trust.tier} />
       <p className="note">{venue.trust.reasons.join(" ")}</p>
       <dl className="facts">
@@ -57,11 +57,11 @@ export function Detail({ venue, lang, origin }: { venue: Venue; lang: Lang; orig
           {venue.trust.lastSeen && <li>Last seen {venue.trust.lastSeen.slice(0, 10)}</li>}
           {venue.trust.stale && <li>May be outdated</li>}
         </ul>
-        <p>
-          {report ? <a href={report}>{t(lang, "report")}</a> : t(lang, "report")}
+        <p>{report ? <>
+          <a href={report}>{t(lang, "report")}</a>
           {" · "}
           <a href={osmEditUrl(venue)}>Edit on OpenStreetMap</a>
-        </p>
+        </> : <a href={osmEditUrl(venue)}>Suggest a correction on OpenStreetMap</a>}</p>
       </section>
     </article>
   );

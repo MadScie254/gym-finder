@@ -1,38 +1,27 @@
 /**
- * OSM fitness extract (Overpass) with full contact/hours tags.
- *
- * Degrades gracefully: every network call has a timeout, unreachable mirrors are
- * skipped after a short probe, and when all of them fail the run keeps the
- * previous data/source/osm-venues.json (or, if there is none, imports the
- * checked-in legacy catalogue). Either way the snapshot is written with
- * osmStale: true and a staleReason, which build-gyms.mjs puts in the manifest.
- * Exit code is 0 in degraded mode; it is 1 only when no OSM data exists at all.
- *
- * Env: OSM_OFFLINE=1 skips the network (use the stale path); OSM_MIN_VENUES
- * (default 30) is the sanity floor for a live extract; OVERPASS_ENDPOINTS is a
- * comma-separated list of interpreter URLs that replaces the built-in mirrors.
+ * OSM fitness extract with full contact/hours tags. Reuses the previous
+ * snapshot when every Overpass mirror fails (osmStale: true).
  */
-import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { isInKenya } from "./geo.mjs";
-import { importLegacyOsm } from "./import-legacy-osm.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const OUT = path.join(ROOT, "data", "source", "osm-venues.json");
+const OUT = process.env.OSM_OUTPUT_PATH
+  ? path.resolve(process.env.OSM_OUTPUT_PATH)
+  : path.join(ROOT, "data", "source", "osm-venues.json");
+const LEGACY = path.join(ROOT, "data", "kenya-gyms.json");
+const BOUNDARY = JSON.parse(await readFile(path.join(ROOT, "data", "kenya-boundary.json"), "utf8"));
 const USER_AGENT = "FindMyGym/1.0 (https://github.com/MadScie254/gym-finder; catalog-build)";
-const ENDPOINTS = process.env.OVERPASS_ENDPOINTS?.split(",").map((url) => url.trim()).filter(Boolean) ?? [
+const DEFAULT_ENDPOINTS = [
   "https://overpass-api.de/api/interpreter",
   "https://lz4.overpass-api.de/api/interpreter",
   "https://overpass.private.coffee/api/interpreter",
-  "https://overpass.kumi.systems/api/interpreter",
 ];
-/** A reachable server answers any HTTP request quickly; a dead one resets or hangs. */
-const PROBE_TIMEOUT_MS = 8_000;
-/** The query itself carries [timeout:180]; allow a little more before giving up. */
-const QUERY_TIMEOUT_MS = 200_000;
-const MIN_VENUES = Number(process.env.OSM_MIN_VENUES ?? 30);
+const ENDPOINTS = process.env.OVERPASS_ENDPOINTS
+  ? process.env.OVERPASS_ENDPOINTS.split(",").map((item) => item.trim()).filter(Boolean)
+  : DEFAULT_ENDPOINTS;
 
 const QUERY = `
 [out:json][timeout:180];
@@ -49,16 +38,22 @@ const QUERY = `
 out center tags;
 `;
 
-function describe(error) {
-  const code = error?.cause?.code ?? error?.code ?? (["TimeoutError", "AbortError"].includes(error?.name) ? error.name : null);
-  return `${error?.message ?? error}${code && !String(error?.message).includes(code) ? ` (${code})` : ""}`;
-}
-
 function locationOf(element) {
   const lat = element.lat ?? element.center?.lat;
-  const lng = element.lon ?? element.center?.lon;
-  if (lat == null || lng == null || !isInKenya({ lat, lng })) return null;
-  return { lat, lng };
+  const lon = element.lon ?? element.center?.lon;
+  if (lat == null || lon == null) return null;
+  const insideRing = (ring) => {
+    let inside = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const [xi, yi] = ring[i];
+      const [xj, yj] = ring[j];
+      if ((yi > lat) !== (yj > lat) && lon < ((xj - xi) * (lat - yi)) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  };
+  if (!BOUNDARY.polygons.some((polygon) =>
+    insideRing(polygon[0]) && !polygon.slice(1).some(insideRing))) return null;
+  return { lat, lng: lon };
 }
 
 function mapElement(element) {
@@ -78,11 +73,6 @@ function mapElement(element) {
   };
 }
 
-async function probe(endpoint) {
-  const statusUrl = endpoint.replace(/interpreter$/, "status");
-  await fetch(statusUrl, { headers: { "User-Agent": USER_AGENT }, signal: AbortSignal.timeout(PROBE_TIMEOUT_MS) });
-}
-
 async function fetchOverpass(endpoint) {
   const response = await fetch(endpoint, {
     method: "POST",
@@ -92,97 +82,90 @@ async function fetchOverpass(endpoint) {
       "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
     },
     body: `data=${encodeURIComponent(QUERY)}`,
-    signal: AbortSignal.timeout(QUERY_TIMEOUT_MS),
+    signal: AbortSignal.timeout(210_000),
   });
-  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  if (!response.ok) throw new Error(`${endpoint} → ${response.status}`);
   const payload = await response.json();
-  if (!Array.isArray(payload.elements)) throw new Error("response has no elements array");
-  if (/runtime error|timed out|out of memory/i.test(payload.remark ?? "")) {
-    throw new Error(`Overpass remark: ${payload.remark}`);
+  if (!Array.isArray(payload.elements) || payload.elements.length === 0) {
+    throw new Error(`${endpoint} returned no OSM elements`);
   }
   return payload;
 }
 
-function toVenues(payload) {
-  const unique = new Map();
-  for (const element of payload.elements) {
-    const venue = mapElement(element);
-    if (venue) unique.set(venue.id, venue);
+async function previousSnapshot() {
+  if (existsSync(OUT)) {
+    const previous = JSON.parse(await readFile(OUT, "utf8"));
+    if (Array.isArray(previous.venues) && previous.venues.length > 0) return previous;
   }
-  return [...unique.values()].sort((a, b) => a.name.localeCompare(b.name));
-}
-
-/** Try each mirror in turn; returns { venues } or { failures }. */
-async function queryMirrors() {
-  const failures = [];
-  if (process.env.OSM_OFFLINE === "1") return { failures: ["OSM_OFFLINE=1"] };
-  for (const endpoint of ENDPOINTS) {
-    const host = new URL(endpoint).host;
-    try {
-      await probe(endpoint);
-    } catch (error) {
-      console.warn(`${host}: unreachable (${describe(error)})`);
-      failures.push(`${host}: unreachable (${describe(error)})`);
-      continue;
-    }
-    try {
-      console.log(`Querying ${host} ...`);
-      const venues = toVenues(await fetchOverpass(endpoint));
-      if (venues.length < MIN_VENUES) throw new Error(`only ${venues.length} venues (sanity floor ${MIN_VENUES})`);
-      return { venues, endpoint };
-    } catch (error) {
-      console.warn(`${host}: query failed (${describe(error)})`);
-      failures.push(`${host}: ${describe(error)}`);
-    }
-  }
-  return { failures };
-}
-
-async function readSnapshot() {
-  if (!existsSync(OUT)) return null;
-  try {
-    const snapshot = JSON.parse(await readFile(OUT, "utf8"));
-    return Array.isArray(snapshot.venues) ? snapshot : null;
-  } catch {
-    return null;
-  }
-}
-
-async function degrade(failures) {
-  const reason = `Overpass unavailable: ${failures.join("; ")}`.slice(0, 600);
-  const previous = await readSnapshot();
-  if (previous) {
-    previous.osmStale = true;
-    previous.staleReason = reason;
-    previous.staleCheckedAt = new Date().toISOString();
-    const tmp = `${OUT}.tmp`;
-    await writeFile(tmp, JSON.stringify(previous, null, 2));
-    await rename(tmp, OUT);
-    console.warn(`Overpass failed; kept previous OSM snapshot (${previous.venues.length} venues, snapshot ${previous.generatedAt}) and marked osmStale`);
-    return;
-  }
-  console.warn("Overpass failed and there is no previous OSM snapshot; importing the legacy catalogue");
-  await importLegacyOsm({ reason, force: true });
+  if (!existsSync(LEGACY)) return null;
+  const legacy = JSON.parse(await readFile(LEGACY, "utf8"));
+  const venues = (legacy.gyms ?? []).flatMap((gym) => {
+    const match = /^(node|way|relation)\/(\d+)$/.exec(gym.id ?? "");
+    const lat = gym.location?.lat;
+    const lng = gym.location?.lng;
+    if (!match || !Number.isFinite(lat) || !Number.isFinite(lng) || !gym.name) return [];
+    return [{
+      id: `osm:${gym.id}`,
+      osmType: match[1],
+      osmId: Number(match[2]),
+      name: gym.name,
+      lat,
+      lng,
+      tags: {
+        ...(gym.phone ? { phone: gym.phone } : {}),
+        ...(gym.website ? { website: gym.website } : {}),
+      },
+    }];
+  });
+  return venues.length ? {
+    generatedAt: legacy.generatedAt,
+    source: "OpenStreetMap / Overpass (previous snapshot)",
+    count: venues.length,
+    venues,
+  } : null;
 }
 
 async function main() {
   await mkdir(path.dirname(OUT), { recursive: true });
-  const result = await queryMirrors();
-  if (!result.venues) {
-    await degrade(result.failures);
-    return;
+  let payload = null;
+  let lastError = null;
+  for (const endpoint of ENDPOINTS) {
+    try {
+      console.log(`Querying ${endpoint} …`);
+      const candidate = await fetchOverpass(endpoint);
+      const unique = new Map();
+      for (const element of candidate.elements) {
+        const venue = mapElement(element);
+        if (venue) unique.set(venue.id, venue);
+      }
+      if (unique.size === 0) throw new Error(`${endpoint} returned no named venues inside Kenya`);
+      payload = [...unique.values()].sort((a, b) => a.name.localeCompare(b.name));
+      console.log(`Received ${candidate.elements.length} OSM elements; kept ${payload.length} named Kenya venues`);
+      break;
+    } catch (error) {
+      lastError = error;
+      console.warn(String(error));
+    }
   }
-  const tmp = `${OUT}.tmp`;
-  await writeFile(tmp, JSON.stringify({
+  if (!payload) {
+    const previous = await previousSnapshot();
+    if (previous) {
+      previous.osmStale = true;
+      previous.staleReason = String(lastError);
+      await writeFile(OUT, JSON.stringify(previous, null, 2));
+      console.warn("Reusing previous OSM snapshot; marked osmStale");
+      return;
+    }
+    throw lastError ?? new Error("All Overpass endpoints failed");
+  }
+  await writeFile(OUT, JSON.stringify({
     generatedAt: new Date().toISOString(),
     source: "OpenStreetMap / Overpass",
-    endpoint: new URL(result.endpoint).host,
     osmStale: false,
-    count: result.venues.length,
-    venues: result.venues,
+    count: payload.length,
+    venues: payload,
   }, null, 2));
-  await rename(tmp, OUT);
-  console.log(`Wrote ${result.venues.length} OSM venues`);
+  console.log(`Wrote ${payload.length} OSM venues`);
 }
 
 main().catch((error) => {

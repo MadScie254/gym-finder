@@ -80,4 +80,3 @@ export function useVenueContext(): VenueContextValue {
   if (!value) throw new Error("useVenueContext outside provider");
   return value;
 }
-

@@ -15,7 +15,7 @@ Base everything on `master` (commit `2b62141`), not on older branches.
 | Counties with no gyms | 19 of 47 (same caveat) |
 | Current look | Cream `#f5f2ea` + terracotta `#c34722` + dark green ink, one 537-line stylesheet. This is the most common AI-generated palette; it is the main reason the app "tastes of AI". |
 | Maps | MapLibre + an optional Google Maps pane behind `VITE_GOOGLE_*` |
-| Branch `claude/nice-bardeen-y469ws` | Not merged. Has three fixes `master` lacks: place pages filter by place, not fuzzy text (`venuesInPlace` in `src/lib/filterVenues.ts`); cluster label font fix (`Noto Sans Regular`); report links use the real origin instead of the invented `findmygym.ke`. Port these in Phase 1. |
+| Branch `claude/nice-bardeen-y469ws` (PR #5) | Now `master` plus: these docs, the October research files in `data/research/`, and three fixes `master` lacks: place pages filter by place, not fuzzy text (`venuesInPlace` in `src/lib/filterVenues.ts`); cluster label font fix (`Noto Sans Regular`); report links use the real origin instead of the invented `findmygym.ke`. Merge PR #5 first, or port these in Phase 1. |
 | Live copies | Cloudflare: `https://find-my-gym.dmwanjala254.workers.dev` (old build). `master` also has `vercel.json`. Pick one host (decision D2). |
 | CI | GitHub Actions jobs on this repo failed before any step ran in October (no runner assigned). Recheck. |
 
@@ -212,7 +212,7 @@ Each phase ends with: `npm run check` green, the listed gate met, one commit, `d
 3. Run the app; take mobile and desktop screenshots as the "before" record.
 
 **Phase 1 — Foundation fixes (1 day)**
-4. Port the three fixes from `claude/nice-bardeen-y469ws` (section 0) with their tests.
+4. Confirm the three fixes from PR #5 (section 0) are on `master`; port them with their tests if not.
 5. Remove dead code and unused dependencies; settle the map decision.
 6. Add Playwright with one smoke test (search with a typo, open a gym, check Call link). Gate: smoke test green.
 
