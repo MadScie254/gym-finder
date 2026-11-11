@@ -68,7 +68,7 @@ a { color: inherit; }
   border-radius: 99px;
   background: var(--line);
 }
-.map-slot { position: relative; min-height: 0; background: #d7ddd8; }
+.map-slot { position: relative; min-height: 0; background: var(--color-sunk); }
 .map-slot > .map-pane {
   position: absolute;
   inset: 0;
@@ -218,7 +218,7 @@ a { color: inherit; }
 .brand strong { display: block; font-size: 15px; letter-spacing: -0.03em; }
 .brand small { color: var(--color-plate-muted); font-size: 11px; }
 .finder-intro { padding: 9px 0 18px; animation: rise-in .55s both; }
-.finder-intro__eyebrow { color: #f9a77c; font-size: 10px; font-weight: 800; letter-spacing: .16em; }
+.finder-intro__eyebrow { color: var(--color-plate-muted); font-size: 12px; font-weight: 600; }
 .finder-intro h1 {
   max-width: 340px;
   margin: 8px 0 8px;
@@ -227,7 +227,7 @@ a { color: inherit; }
   letter-spacing: -.06em;
   line-height: .99;
 }
-.finder-intro h1 em { color: #fa8455; font-style: normal; }
+.finder-intro h1 em { color: inherit; font-style: normal; }
 .finder-intro p { max-width: 330px; margin: 0; color: #c8d4c8; font-size: 13px; line-height: 1.45; }
 
 .search-box { position: relative; }
