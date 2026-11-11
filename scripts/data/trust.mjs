@@ -1,3 +1,5 @@
+import { verificationReason } from "./overrides.mjs";
+
 const MONTH = 30.44 * 24 * 60 * 60 * 1000;
 
 function monthsAgo(iso, months) {
@@ -23,8 +25,12 @@ export function computeTrust(venue, override) {
   if (verifiedAt && monthsAgo(verifiedAt, 12) && !override?.closed) {
     return {
       tier: "verified",
-      score: 95,
-      reasons: ["Confirmed by a Find My Gym reviewer"],
+      score: override?.verification === "website" ? 90 : 95,
+      reasons: [
+        override?.verification
+          ? verificationReason(override.verification, verifiedAt)
+          : "Confirmed by a Find My Gym reviewer",
+      ],
       sources,
       lastSeen,
       stale,

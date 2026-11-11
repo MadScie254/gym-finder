@@ -11,6 +11,16 @@ describe("trust tiers", () => {
     expect(trust.verifiedAt).toBe("2026-09-01");
   });
 
+  it("labels a website check as a website check, not a visit", () => {
+    const trust = computeTrust(
+      { name: "Test Gym", sources: ["osm"], lastSeen: "2026-01-01", phones: [] },
+      { verifiedAt: "2026-11-01", verification: "website" },
+    );
+    expect(trust.tier).toBe("verified");
+    expect(trust.reasons).toEqual(["Details confirmed on the gym's own website on 1 Nov 2026"]);
+    expect(trust.reasons.join(" ")).not.toMatch(/reviewer|visit/i);
+  });
+
   it("marks dual-source venues corroborated", () => {
     const trust = computeTrust({
       name: "Level 24",

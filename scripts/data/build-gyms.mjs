@@ -5,6 +5,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { COUNTIES, isInKenya, nearestCounty, reverseLookup } from "./geo.mjs";
 import { denyListed, displayName, isProximityOnlyCandidate, shouldMerge, slugify } from "./merge-rules.mjs";
+import { loadVenueOverrides } from "./overrides.mjs";
 import { normalizePhones, whatsappFrom } from "./phones.mjs";
 import { computeTrust } from "./trust.mjs";
 
@@ -232,34 +233,52 @@ function mergePair(a, b) {
 function applyOverride(venue, override) {
   if (!override) return venue;
   const set = override.set ?? {};
+  // `hours` (OSM syntax) drives "open now"; otherwise the verbatim wording is shown as-is.
+  const hoursRaw = set.hours ?? set.hoursText;
   const next = {
     ...venue,
     name: set.name ?? venue.name,
     address: set.address === undefined ? venue.address : set.address,
     website: set.website ?? venue.website,
     instagram: set.instagram ?? venue.instagram,
-    phones: set.phone ? [...new Set([...venue.phones, set.phone])] : venue.phones,
+    phones: set.phone ? [...new Set([set.phone, ...venue.phones])] : venue.phones,
     whatsapp: set.whatsapp ?? venue.whatsapp,
-    hours: set.hours ? { raw: set.hours, source: "override" } : venue.hours,
+    hours: hoursRaw
+      ? { raw: hoursRaw, source: "override", ...(set.hoursText ? { text: set.hoursText } : {}) }
+      : venue.hours,
     fee: set.fee === "free" ? "free" : venue.fee,
     amenities: { ...venue.amenities, ...(set.amenities ?? {}) },
   };
-  if (set.hours) next.provenance = { ...next.provenance, hours: "override" };
+  if (set.prices && Object.keys(set.prices).length) {
+    const sourced = (key) => override.evidence?.[`prices.${key}`]?.url ?? null;
+    next.prices = Object.fromEntries(Object.entries(set.prices).map(([key, price]) => [
+      key,
+      { ...price, sourceUrl: sourced(key) },
+    ]));
+  }
+  if (override.verification && override.verifiedAt) {
+    next.verification = {
+      method: override.verification,
+      checkedAt: override.verifiedAt,
+      evidence: override.evidence ?? {},
+    };
+  }
+  const tag = override.verification ? `override:${override.verification}` : "override";
+  const provenance = { ...next.provenance };
+  for (const key of ["name", "address", "website", "instagram", "phone", "whatsapp", "fee"]) {
+    if (set[key] !== undefined) provenance[key] = tag;
+  }
+  if (hoursRaw) provenance.hours = tag;
+  for (const key of Object.keys(set.amenities ?? {})) provenance[`amenities.${key}`] = tag;
+  for (const key of Object.keys(set.prices ?? {})) provenance[`prices.${key}`] = tag;
+  next.provenance = provenance;
   return next;
 }
 
 async function loadOverrides() {
   const exclude = readJsonMaybe(path.join(OVERRIDES, "exclude.json"), []);
   const merge = readJsonMaybe(path.join(OVERRIDES, "merge.json"), []);
-  const venues = {};
-  const dir = path.join(OVERRIDES, "venues");
-  if (existsSync(dir)) {
-    for (const file of await readdir(dir)) {
-      if (!file.endsWith(".json")) continue;
-      const body = JSON.parse(await readFile(path.join(dir, file), "utf8"));
-      venues[body.id] = body;
-    }
-  }
+  const venues = await loadVenueOverrides(path.join(OVERRIDES, "venues"));
   return { exclude, merge, venues };
 }
 
@@ -332,7 +351,9 @@ async function main() {
       hours: next.hours,
       fee: next.fee,
       amenities: next.amenities,
+      ...(next.prices ? { prices: next.prices } : {}),
       trust,
+      ...(next.verification ? { verification: next.verification } : {}),
       provenance: next.provenance,
       osmUrl: next.osmUrl,
     };

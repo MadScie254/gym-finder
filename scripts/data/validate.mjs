@@ -4,9 +4,20 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
 import { COUNTIES, isInKenya } from "./geo.mjs";
+import { Evidence } from "./overrides.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const PUBLIC_DATA = path.join(ROOT, "public", "data");
+
+const Price = z.object({
+  amount: z.number().positive(),
+  currency: z.literal("KES"),
+  period: z.enum(["day", "month"]),
+  text: z.string().min(1),
+  asOf: z.string().nullable(),
+  note: z.string().optional(),
+  sourceUrl: z.string().url(),
+}).strict();
 
 const Venue = z.object({
   id: z.string(),
@@ -25,9 +36,22 @@ const Venue = z.object({
   website: z.string().url().nullable(),
   instagram: z.string().url().nullable(),
   facebook: z.string().url().nullable(),
-  hours: z.object({ raw: z.string(), source: z.enum(["osm", "override"]) }).nullable(),
+  hours: z.object({
+    raw: z.string(),
+    source: z.enum(["osm", "override"]),
+    text: z.string().optional(),
+  }).strict().nullable(),
   fee: z.enum(["free"]).nullable(),
   amenities: z.record(z.string(), z.literal(true)),
+  prices: z.object({
+    dayPass: Price.optional(),
+    monthly: Price.optional(),
+  }).strict().optional(),
+  verification: z.object({
+    method: z.enum(["website", "phone", "visit"]),
+    checkedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    evidence: z.record(z.string(), Evidence),
+  }).strict().optional(),
   trust: z.object({
     tier: z.enum(["verified", "corroborated", "listed", "unconfirmed"]),
     score: z.number(),
@@ -67,6 +91,14 @@ function main() {
     if (venue.address === "Kenya") fail(`${venue.id} address is Kenya`);
     if (!isInKenya({ lat: venue.lat, lng: venue.lng })) fail(`${venue.id} outside Kenya`);
     if (venue.trust.tier === "verified" && !venue.trust.verifiedAt) fail(`${venue.id} verified without verifiedAt`);
+    if (venue.trust.tier === "verified" && !venue.verification?.evidence?.operating) {
+      fail(`${venue.id} verified without operating evidence`);
+    }
+    if (venue.verification?.method === "website"
+      && !venue.trust.reasons.some((reason) => reason.startsWith("Details confirmed on the gym's own website"))) {
+      fail(`${venue.id} website check must say so in its trust reason`);
+    }
+    if (venue.prices && venue.trust.tier !== "verified") fail(`${venue.id} has prices without a verified source`);
   }
 
   if (gyms.length < 350) fail(`total ${gyms.length} < 350`);

@@ -31,6 +31,18 @@ export type AmenityKey =
   | "wheelchair"
   | "women_only";
 
+export type VenuePrice = {
+  amount: number;
+  currency: "KES";
+  period: "day" | "month";
+  /** The price as written on the source page. */
+  text: string;
+  /** Date read from a page showing current content; null when the page is undated or looks old. */
+  asOf: string | null;
+  note?: string;
+  sourceUrl: string;
+};
+
 export type Venue = {
   id: string;
   slug: string;
@@ -48,9 +60,18 @@ export type Venue = {
   website: string | null;
   instagram: string | null;
   facebook: string | null;
-  hours: { raw: string; source: "osm" | "override" } | null;
+  /** `raw` is OSM opening_hours when it parses; `text` is the wording copied from the gym's own site. */
+  hours: { raw: string; source: "osm" | "override"; text?: string } | null;
   fee: "free" | null;
   amenities: Partial<Record<AmenityKey, true>>;
+  /** Only from a verified override; amounts exactly as the gym's site states them. */
+  prices?: Partial<Record<"dayPass" | "monthly", VenuePrice>>;
+  /** Present when a person checked the venue; `method` says how, so the UI never implies a visit. */
+  verification?: {
+    method: "website" | "phone" | "visit";
+    checkedAt: string;
+    evidence: Record<string, { url: string; quote: string }>;
+  };
   trust: {
     tier: TrustTier;
     score: number;
