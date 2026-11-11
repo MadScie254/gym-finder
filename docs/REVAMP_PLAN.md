@@ -42,7 +42,7 @@ These override anything below that conflicts.
 | D1 | Food scope | Recommend food, then show a store; tapping the store opens it. **Build as a simulation first** (see 2.1). Real Glovo / Foodplus wiring comes later. |
 | D2 | Host | Executor's choice of the easiest. **Use Vercel**: it is already connected to the GitHub repo, builds a preview for every push, and `master` already has `vercel.json`. Retire the Cloudflare deployment once Vercel production is confirmed. |
 | D3 | Database | No real backend yet. Simulate: claims, reports and added gyms are stored in the browser (localStorage) behind one `src/lib/backend.ts` interface, so a real endpoint can replace it later without touching the UI. |
-| D4 | Support contact | Claims and reports go to the owner's WhatsApp and email. Read both from `VITE_SUPPORT_WHATSAPP` and `VITE_SUPPORT_EMAIL` set in Vercel; never commit them. `VITE_SUPPORT_WHATSAPP` was set in the Vercel project on 2026-11-11 (all environments); it takes effect on the next deploy. `VITE_SUPPORT_EMAIL` is not set yet: the owner must say which address. |
+| D4 | Support contact | Claims and reports go to the owner's WhatsApp and email. Read both from `VITE_SUPPORT_WHATSAPP` and `VITE_SUPPORT_EMAIL` set in Vercel; never commit them. `VITE_SUPPORT_WHATSAPP` was set in the Vercel project on 2026-11-11 (all environments); it takes effect on the next deploy. `VITE_SUPPORT_EMAIL` stays unset on purpose: a `VITE_` value ships in the public bundle, so a personal email would be exposed to scrapers, and `src/lib/report.ts` already prefers WhatsApp. Add a role address (for example `support@<domain>`) once the app has its own domain. |
 | D5 | Partnerships | Deferred. No outreach, no partner logos, no tracked links yet. |
 | D6 | Design | Owner delegated the choice. **Signwriter** (section 3) is the direction. |
 | D7 | Golden list | Owner will not supply one and suggested scraping Google Maps. Do not: it breaks Google's terms and the data cannot be republished. Instead build the list from the catalogue: take the 40 strongest venues (corroborated, with phone and own website, spread across counties), open each gym's own website to confirm it is operating, and record the check in `data/overrides/venues/`. Those become the golden set and the first verified profiles. |
@@ -220,7 +220,7 @@ Each phase ends with: `npm run check` green, the listed gate met, one commit, `d
 
 **Phase 0 — Align (half a day)**
 1. Branch from `master`. Read `docs/DECISIONS.md`, `docs/PROGRESS.md`, this file.
-2. Decisions are in section 2. Still missing from the owner: the support email address (D4). It does not block Phase 2.
+2. Decisions are in section 2. Nothing is missing from the owner. Do not stop to ask questions: where this plan leaves a choice open, pick the option a senior engineer would defend, record it in `docs/DECISIONS.md` in one line, and continue.
 3. Run the app; take mobile and desktop screenshots as the "before" record.
 
 **Phase 1 — Foundation fixes (1 day)**
