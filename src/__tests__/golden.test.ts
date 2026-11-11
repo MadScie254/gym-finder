@@ -118,3 +118,63 @@ describe("fuzzy edit budget", () => {
     expect(fuzzyEdits("slaute")).toBe(2);
   });
 });
+
+/** First verified profiles: each venue's own website checked on 2026-11-11 (data/research/site-checks-2026-11-11.json). */
+const WEBSITE_VERIFIED: Array<[id: string, name: string]> = [
+  ["gers:404162cb-e0c1-4858-96aa-5c7c3064c0e7", "Tumaini Fitness Centre"],
+  ["gers:255793dc-5e1e-4566-b242-b2c1bd42d1c6", "Mnarani Gym"],
+  ["gers:85a9090d-acc0-42fd-a50b-1c8a777ca41c", "Health Hub Oasis"],
+  ["gers:0b9dc1e8-b789-426e-9116-8e478eb58321", "Banana House And Wellness Centre"],
+  ["gers:cd6d51c5-65dc-4ab4-a7a5-871f60703453", "InShape Fitness"],
+  ["osm:node/10048755617", "Dojo"],
+  ["osm:node/14148174874", "Level 24"],
+  ["gers:0c504d74-69c6-44aa-bee4-67781a872cf5", "Parklands Sports Club"],
+  ["gers:4c268103-3ea7-4fc2-a135-bb2e0b46e48a", "Smart Gyms Junction"],
+  ["gers:18ccfce3-530f-48f3-948f-6479d18c822e", "SmashFit Gym Sarit"],
+];
+
+describe.skipIf(gyms.length === 0)("website-verified golden profiles", () => {
+  const find = (id: string) => gyms.find((gym) => gym.id === id);
+
+  it("keeps every verified venue in the catalogue, verified, and findable by name", () => {
+    const search = createVenueSearch(gyms);
+    for (const [id, name] of WEBSITE_VERIFIED) {
+      const gym = find(id);
+      expect(gym, name).toBeDefined();
+      expect(gym?.name).toBe(name);
+      expect(gym?.trust.tier, name).toBe("verified");
+      const top = search.search(name).slice(0, 3).map((hit: { name?: string }) => hit.name);
+      expect(top, name).toContain(name);
+    }
+  });
+
+  it("says a website was checked, never that someone visited", () => {
+    for (const [id, name] of WEBSITE_VERIFIED) {
+      const gym = find(id)!;
+      expect(gym.verification?.method, name).toBe("website");
+      expect(gym.trust.reasons, name).toEqual(["Details confirmed on the gym's own website on 11 Nov 2026"]);
+    }
+  });
+
+  it("backs every field the check set with a source URL and a short quote", () => {
+    for (const [id, name] of WEBSITE_VERIFIED) {
+      const gym = find(id)!;
+      const evidence = gym.verification?.evidence ?? {};
+      expect(evidence.operating, name).toBeDefined();
+      for (const [field, source] of Object.entries(gym.provenance)) {
+        if (source !== "override:website") continue;
+        expect(evidence[field], `${name} ${field}`).toBeDefined();
+        expect(evidence[field].quote.length, `${name} ${field}`).toBeLessThan(200);
+      }
+      for (const [key, price] of Object.entries(gym.prices ?? {})) {
+        expect(price.currency, `${name} ${key}`).toBe("KES");
+        expect(price.sourceUrl, `${name} ${key}`).toBe(evidence[`prices.${key}`]?.url);
+      }
+    }
+  });
+
+  it("keeps prices off venues nobody verified", () => {
+    const unverifiedWithPrices = gyms.filter((gym) => gym.prices && gym.trust.tier !== "verified");
+    expect(unverifiedWithPrices.map((gym) => gym.name)).toEqual([]);
+  });
+});
