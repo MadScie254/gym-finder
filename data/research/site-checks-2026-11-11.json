@@ -2,6 +2,7 @@
   "checkedAt": "2026-11-11",
   "method": "Opened each venue's own website (one to four pages) as a reader would; dead domains confirmed with Google and Cloudflare DNS-over-HTTPS; JS-rendered prices read with Firecrawl. No maps, social, directory or review sources used as evidence.",
   "selection": "40 catalogue venues with tier corroborated, a phone and their own (non-social) website; all eligible venues outside Nairobi except one whose 'website' is a YouTube link, plus 14 in Nairobi.",
+  "secondPass": "Every evidence URL of the 10 verified venues was re-fetched fresh and each quote searched verbatim: 71 of 74 found in the page HTML; the 3 remaining (Tumaini day/monthly price, InShape monthly price) render only in the browser and were re-confirmed with a fresh Firecrawl render. smartgyms.co.ke intermittently serves a bot-check page to plain fetches; a retry and the Firecrawl render both showed the quoted text. Fields dropped on review: InShape sauna (FAQ says yes, homepage says spa 'coming soon'), Mnarani classes (undated 'starting September'), all Dojo prices (no currency in the table), all Level 24 prices ('Rates on request').",
   "venues": [
     {
       "id": "gers:668e1c9a-103e-45a5-83da-1090b6914c53",
