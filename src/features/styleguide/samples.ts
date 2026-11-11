@@ -2,10 +2,11 @@ import type { TrustTier } from "../../data/types";
 import { haversineKm, NAIROBI } from "../../lib/kenya";
 
 /**
- * Real rows copied from public/data/gyms.2559cc2dc7.json (built 2026-11-05).
+ * Real rows copied from the catalogue (public/data, checked 2026-11-11).
  * Distances are straight-line from central Nairobi, the app's default origin.
- * No catalogue gym has hours or a Verified tier yet, so the styleguide never
- * pairs "Open now" or "Verified" with a real gym name.
+ * The styleguide never pairs "Open now" with a gym name: it is shown on sample
+ * distances only. Verified is shown on a real gym only when the loaded
+ * catalogue has one (see GymSection).
  */
 export type SampleGym = {
   name: string;

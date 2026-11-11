@@ -1,5 +1,8 @@
 import { useMemo, useState } from "react";
 import { Bookmark, Navigation, Phone, Share2, SlidersHorizontal } from "lucide-react";
+import { useVenueContext } from "../../app/venue-context";
+import { applyVenueFilters } from "../../lib/filterVenues";
+import { NAIROBI } from "../../lib/kenya";
 import { Button } from "../../ui/Button";
 import { Chip } from "../../ui/Chip";
 import { IconButton } from "../../ui/IconButton";
@@ -10,10 +13,23 @@ import { SAMPLE_GYMS, SAMPLE_PLACES } from "./samples";
 
 export function ControlsSection() {
   const [saved, setSaved] = useState(true);
-  const [chips, setChips] = useState<Record<string, boolean>>({ gym: true, open: false, near: false, phone: false });
+  const [chips, setChips] = useState<Record<string, boolean>>({ gym: true, open: false, near: false, phone: false, women: false });
   const [query, setQuery] = useState("umoja");
   const [picked, setPicked] = useState<string | null>(null);
   const toggle = (key: string) => setChips((prev) => ({ ...prev, [key]: !prev[key] }));
+  const { index } = useVenueContext();
+  // Live counts from the loaded catalogue, with the app's default filters.
+  const counts = useMemo(() => {
+    const venues = index?.venues ?? [];
+    const count = (filters: Parameters<typeof applyVenueFilters>[1]) => (index ? applyVenueFilters(venues, filters).length : undefined);
+    return {
+      gym: count({ kind: "gym" }),
+      open: count({ openNow: true }),
+      near: count({ origin: NAIROBI, maxKm: 5 }),
+      phone: count({ hasPhone: true }),
+      women: count({ womenOnly: true }),
+    };
+  }, [index]);
 
   const groups = useMemo<SearchGroup[]>(() => {
     const q = query.trim().toLowerCase();
@@ -46,12 +62,13 @@ export function ControlsSection() {
           <IconButton icon={Phone} label="Call" disabled />
         </div>
       </Specimen>
-      <Specimen title="Chip" caption="Toggle filters with a count. Selected adds a tick and signal fill. Counts are real: all 566 catalogue rows, distance from central Nairobi. No row has hours yet, so Open now is 0 and disabled.">
+      <Specimen title="Chip" caption="Toggle filters with a count. Selected adds a tick and signal fill. Counts come live from the loaded catalogue with the default filters, distance from central Nairobi. A filter with no results is disabled (dashed).">
         <div className={sg.scroller}>
-          <Chip label="Gym" count={497} selected={chips.gym} onToggle={() => toggle("gym")} />
-          <Chip label="Open now" count={0} selected={false} onToggle={() => undefined} disabled />
-          <Chip label="Under 5 km" count={156} selected={chips.near} onToggle={() => toggle("near")} />
-          <Chip label="Has phone" count={441} selected={chips.phone} onToggle={() => toggle("phone")} />
+          <Chip label="Gym" count={counts.gym} selected={chips.gym} onToggle={() => toggle("gym")} />
+          <Chip label="Open now" count={counts.open} selected={chips.open} onToggle={() => toggle("open")} disabled={counts.open === 0} />
+          <Chip label="Under 5 km" count={counts.near} selected={chips.near} onToggle={() => toggle("near")} />
+          <Chip label="Has phone" count={counts.phone} selected={chips.phone} onToggle={() => toggle("phone")} />
+          <Chip label="Women only" count={counts.women} selected={chips.women} onToggle={() => toggle("women")} disabled={counts.women === 0} />
         </div>
       </Specimen>
       <Specimen title="Search field" caption="Combobox with grouped options. Arrow keys move, Enter opens, Escape closes then clears.">

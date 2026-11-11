@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Bookmark, Globe, Navigation, Phone } from "lucide-react";
 import { Link } from "react-router";
-import type { TrustTier } from "../../data/types";
+import { useVenueContext } from "../../app/venue-context";
+import type { TrustTier, Venue } from "../../data/types";
 import { directionsUrl, safeTelephoneUrl } from "../../lib/format";
 import { ActionRow } from "../../ui/ActionRow";
 import type { RowAction } from "../../ui/ActionRow";
@@ -24,14 +25,29 @@ function actionsFor(gym: SampleGym, saved: boolean, onSave: () => void): RowActi
   ];
 }
 
+function toSample(venue: Venue): SampleGym {
+  const place = [...new Set([venue.area, venue.town, venue.county].filter(Boolean))].join(", ");
+  return {
+    name: venue.name, slug: venue.slug, place, tier: venue.trust.tier, lat: venue.lat, lng: venue.lng,
+    phone: venue.phones[0] ?? null, website: venue.website,
+  };
+}
+
 export function GymSection() {
-  const [saved, setSaved] = useState<Record<string, boolean>>({ "lystra-gym-and-spa-4e03": true });
+  const [saved, setSaved] = useState<Record<string, boolean>>({ "salute-gym-179a": true });
   const flip = (slug: string) => setSaved((prev) => ({ ...prev, [slug]: !prev[slug] }));
   const [salute, lystra, hotSports, ogwang] = SAMPLE_GYMS;
+  const { index } = useVenueContext();
+  // A Verified card only when the loaded catalogue really has a verified gym.
+  const verified = useMemo(() => {
+    const venue = index?.venues.find((item) => item.trust.tier === "verified");
+    return venue ? toSample(venue) : null;
+  }, [index]);
+  const cards = [...(verified ? [verified] : []), salute, hotSports, ogwang];
 
   return (
     <Section id="sg-gym" title="Gym pieces" note="Real catalogue rows. Distances are straight-line from central Nairobi.">
-      <Specimen title="Trust badge" caption="Shape, mark and word for each tier, never colour alone. No catalogue gym is Verified yet.">
+      <Specimen title="Trust badge" caption="Shape, mark and word for each tier, never colour alone. Verified comes only from a recorded check in data/overrides.">
         <div className={sg.row}>
           {TIERS.map((tier) => <TrustBadge key={tier} tier={tier} />)}
         </div>
@@ -48,11 +64,11 @@ export function GymSection() {
           <DistanceBlock km={kmFromCentre(lystra)} size="detail" />
           <DistanceBlock km={1.2} size="detail" open />
         </div>
-        <p className={sg.caption}>Open examples use sample distances, not a gym: no row has hours yet.</p>
+        <p className={sg.caption}>The open examples use sample distances and are not tied to a gym.</p>
       </Specimen>
-      <Specimen title="Gym card" caption="Rich, saved, thin data with no contact, and unconfirmed.">
+      <Specimen title="Gym card" caption="Verified (when the catalogue has one), selected and saved, thin data with no contact, and unconfirmed.">
         <div className={sg.stack}>
-          {[salute, lystra, hotSports, ogwang].map((gym) => (
+          {cards.map((gym) => (
             <GymCard
               key={gym.slug}
               name={gym.name}
@@ -67,7 +83,7 @@ export function GymSection() {
             />
           ))}
         </div>
-        <p className={sg.caption}>The first card is selected (cobalt edge), as when its pin is tapped.</p>
+        <p className={sg.caption}>{salute.name} is selected (cobalt edge), as when its pin is tapped.</p>
       </Specimen>
       <Specimen title="Action row" caption="One row, 44 px. The first action is primary. In a narrow card the others shrink to icons and keep their names for screen readers.">
         <ActionRow label={`Contact ${salute.name}`} actions={actionsFor(salute, Boolean(saved[salute.slug]), () => flip(salute.slug))} />

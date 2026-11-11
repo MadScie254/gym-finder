@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { useState } from "react";
+import { act, useState } from "react";
 import { afterEach, expect, it } from "vitest";
 import { Sheet } from "./Sheet";
 import type { SheetStop } from "./Sheet";
@@ -42,4 +42,11 @@ it("cycles stops when the handle is pressed", async () => {
   ui = await mount(<Harness start="full" />);
   await click(handle(ui));
   expect(sheet(ui).dataset.stop).toBe("peek");
+});
+
+it("opens to half when keyboard focus lands in a peeking sheet", async () => {
+  const stops: SheetStop[] = [];
+  ui = await mount(<div style={{ position: "relative", height: "600px" }}><Sheet title="Gyms" stop="peek" onStopChange={(next) => { stops.push(next); }}><a href="/gym/salute-gym-179a">Salute Gym</a></Sheet></div>);
+  await act(async () => { (ui!.container.querySelector("a") as HTMLAnchorElement).focus(); });
+  expect(stops).toEqual(["half"]);
 });

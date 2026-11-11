@@ -116,7 +116,8 @@ export function Sheet({ title, stop, onStopChange, peekHeight = 148, header, chi
         <h2 id={titleId} className={styles.title}>{title}</h2>
         {header}
       </div>
-      <div className={styles.content}>{children}</div>
+      {/* Keyboard focus landing in a peeking sheet opens it to half, so the focused item is not hidden. */}
+      <div className={styles.content} onFocus={() => { if (stop === "peek") onStopChange("half"); }}>{children}</div>
     </section>
   );
 }

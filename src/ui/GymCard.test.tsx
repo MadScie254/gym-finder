@@ -27,6 +27,7 @@ it("names the card by the gym, links the name, and keeps actions outside the lin
   expect(heading.querySelector("a")?.getAttribute("href")).toBe("/gym/salute-gym-179a");
   expect(card.textContent).toContain("Umoja 2, Nairobi, Gym");
   expect(card.hasAttribute("data-selected")).toBe(true);
+  expect(card.getAttribute("aria-current")).toBe("true");
   expect(heading.querySelector("a")!.contains(card.querySelector("a[href^='tel:']"))).toBe(false);
 });
 

@@ -22,23 +22,31 @@ export type GymCardProps = {
   actions?: ReactNode;
   /** Render the name link, for example with a router <Link>. Defaults to <a>. */
   renderLink?: (props: CardLinkProps) => ReactElement;
+  /** Heading level of the name, so the card fits the page outline. */
+  level?: 2 | 3 | 4;
 };
 
 function PlainLink({ href, className, children }: CardLinkProps) {
   return <a href={href} className={className}>{children}</a>;
 }
 
-export function GymCard({ name, href, place, kind, tier, km, open, selected = false, actions, renderLink = PlainLink }: GymCardProps) {
+export function GymCard({ name, href, place, kind, tier, km, open, selected = false, actions, renderLink = PlainLink, level = 3 }: GymCardProps) {
+  const Heading = `h${level}` as const;
   const nameId = useId();
   const where = [place ?? "Area not listed", kind].filter(Boolean).join(", ");
   return (
-    <article className={styles.card} aria-labelledby={nameId} data-selected={selected || undefined}>
+    <article
+      className={styles.card}
+      aria-labelledby={nameId}
+      aria-current={selected ? "true" : undefined}
+      data-selected={selected || undefined}
+    >
       <div className={styles.top}>
         <DistanceBlock km={km} open={open} />
         <div className={styles.body}>
-          <h3 className={styles.name} id={nameId}>
+          <Heading className={styles.name} id={nameId}>
             {renderLink({ href, className: styles.link, children: name })}
-          </h3>
+          </Heading>
           <p className={styles.place}>{where}</p>
           <TrustBadge tier={tier} />
         </div>
