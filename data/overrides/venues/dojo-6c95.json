@@ -1,0 +1,51 @@
+{
+  "id": "osm:node/10048755617",
+  "name": "Dojo",
+  "verifiedAt": "2026-11-11",
+  "verification": "website",
+  "set": {
+    "address": "320 Ngong Road, Karen, Nairobi (next to Talisman Restaurant)",
+    "phone": "+254742834747",
+    "instagram": "https://www.instagram.com/dojokenya/",
+    "hours": "Mo-Fr 07:00-20:30; Sa-Su 08:00-18:30",
+    "hoursText": "Monday to Friday – 7 am to 8.30 pm Saturday – 8 am to 6:30 pm Sunday – 8 am to 6:30 pm",
+    "amenities": {
+      "classes": true,
+      "sauna": true
+    }
+  },
+  "evidence": {
+    "operating": {
+      "url": "https://dojokenya.com/rates/",
+      "quote": "article:modified_time\" content=\"2026-01-25"
+    },
+    "address": {
+      "url": "https://dojokenya.com/contact-2/",
+      "quote": "320 Ngong Road, Karen, Nairobi. Next to Talisman Restaurant"
+    },
+    "phone": {
+      "url": "https://dojokenya.com/",
+      "quote": "Tel: 0742 834 747"
+    },
+    "instagram": {
+      "url": "https://dojokenya.com/",
+      "quote": "href=\"https://www.instagram.com/dojokenya/"
+    },
+    "hours": {
+      "url": "https://dojokenya.com/contact-2/",
+      "quote": "Monday to Friday – 7 am to 8.30 pm Saturday – 8 am to 6:30 pm Sunday – 8 am to 6:30 pm"
+    },
+    "amenities.classes": {
+      "url": "https://dojokenya.com/rates/",
+      "quote": "join over 30 different group classes"
+    },
+    "amenities.sauna": {
+      "url": "https://dojokenya.com/rates/",
+      "quote": "Unlimited use of Zen Zone/ Sauna and Steam"
+    }
+  },
+  "notes": [
+    "Site name is Dojo Wellness Club, Karen. Rates and contact pages were last modified 25 January 2026; no copyright year.",
+    "The rates table gives amounts without a currency (for example Individual 1 month 24,700), so no price is set."
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "gers:0b9dc1e8-b789-426e-9116-8e478eb58321",
+  "name": "Banana House And Wellness Centre",
+  "verifiedAt": "2026-11-11",
+  "verification": "website",
+  "set": {
+    "phone": "+254721275538",
+    "whatsapp": "+254721275538",
+    "instagram": "https://www.instagram.com/bananahouselamu"
+  },
+  "evidence": {
+    "operating": {
+      "url": "https://www.bananahouse-lamu.com/",
+      "quote": "Yoga Teacher Training by Shri Gaia Institute 10th -24th November 2026"
+    },
+    "phone": {
+      "url": "https://www.bananahouse-lamu.com/contact",
+      "quote": "+254 (0) 721275538"
+    },
+    "whatsapp": {
+      "url": "https://www.bananahouse-lamu.com/",
+      "quote": "href=\"https://wa.me/+254721275538\""
+    },
+    "instagram": {
+      "url": "https://www.bananahouse-lamu.com/",
+      "quote": "href=\"https://www.instagram.com/bananahouselamu\""
+    }
+  },
+  "notes": [
+    "Banana House is a boutique hotel in Shela, Lamu, whose site names it 'Banana House And Wellness Centre'. The site lists no gym hours, prices or facilities; pool and daily yoga appear only in guest reviews, which are not used.",
+    "The 8 AM to 8 PM hours on the contact page are for the reservation team, not the wellness centre, so no hours are set."
+  ]
+}

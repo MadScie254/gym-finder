@@ -4,6 +4,12 @@ export function formatDistance(km: number | null): string {
   return `${km.toFixed(km < 10 ? 1 : 0)} km`;
 }
 
+/** Number and unit kept apart so the number can be set large and the unit small. */
+export function formatDistanceParts(km: number): { value: string; unit: "m" | "km" } {
+  if (km < 1) return { value: String(Math.max(10, Math.round((km * 1000) / 10) * 10)), unit: "m" };
+  return { value: km.toFixed(km < 10 ? 1 : 0), unit: "km" };
+}
+
 export function directionsUrl(lat: number, lng: number): string {
   return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${lat},${lng}`)}`;
 }

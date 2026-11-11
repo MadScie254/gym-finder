@@ -1,0 +1,74 @@
+{
+  "id": "gers:4c268103-3ea7-4fc2-a135-bb2e0b46e48a",
+  "name": "Smart Gyms Junction",
+  "verifiedAt": "2026-11-11",
+  "verification": "website",
+  "set": {
+    "address": "Junction Mall, Nairobi",
+    "phone": "+254205143800",
+    "hoursText": "5:00 AM – 10:00 PM",
+    "amenities": {
+      "parking": true,
+      "showers": true,
+      "classes": true
+    },
+    "prices": {
+      "dayPass": {
+        "amount": 1200,
+        "currency": "KES",
+        "period": "day",
+        "text": "KES 1,200 / Day",
+        "asOf": "2026-11-11"
+      },
+      "monthly": {
+        "amount": 7500,
+        "currency": "KES",
+        "period": "month",
+        "text": "KES 7,500 / month",
+        "asOf": "2026-11-11"
+      }
+    }
+  },
+  "evidence": {
+    "operating": {
+      "url": "http://www.smartgyms.co.ke/",
+      "quote": "5 MIN READ 13 AUG 2026"
+    },
+    "address": {
+      "url": "https://www.smartgyms.co.ke/branches/junction",
+      "quote": "Premium Fitness At Junction Mall"
+    },
+    "phone": {
+      "url": "https://www.smartgyms.co.ke/branches/junction",
+      "quote": "+254205143800"
+    },
+    "hours": {
+      "url": "https://www.smartgyms.co.ke/branches/junction",
+      "quote": "OPENING HOURS 5:00 AM – 10:00 PM"
+    },
+    "amenities.parking": {
+      "url": "https://www.smartgyms.co.ke/branches/junction",
+      "quote": "Free Parking"
+    },
+    "amenities.showers": {
+      "url": "https://www.smartgyms.co.ke/branches/junction",
+      "quote": "Luxury Showers"
+    },
+    "amenities.classes": {
+      "url": "https://www.smartgyms.co.ke/branches/junction",
+      "quote": "Group Classes"
+    },
+    "prices.dayPass": {
+      "url": "https://www.smartgyms.co.ke/branches/junction",
+      "quote": "KES 1,200 / Day"
+    },
+    "prices.monthly": {
+      "url": "https://www.smartgyms.co.ke/branches/junction",
+      "quote": "KES 7,500 / month"
+    }
+  },
+  "notes": [
+    "Read from the Junction branch page. The page gives hours without days, so they stay as text.",
+    "Prices render in the browser; they were read from the rendered branch page."
+  ]
+}

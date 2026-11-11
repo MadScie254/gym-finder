@@ -1,0 +1,69 @@
+.frame {
+  container-type: inline-size;
+}
+
+.row {
+  display: flex;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  flex: 1 1 0;
+  min-width: max-content;
+}
+
+.item > * {
+  position: relative;
+  padding-inline: var(--space-3);
+}
+
+/*
+ * When the labels no longer fit on one line, secondary actions drop to
+ * icon-only (their label stays as the accessible name) and the primary
+ * action keeps its word. Thresholds are measured from the widest labels in use.
+ */
+@container (max-width: 470px) {
+  .row[data-count="4"] .item:not(:first-child),
+  .row[data-count="5"] .item:not(:first-child) {
+    flex: 0 0 var(--target-min);
+    min-width: var(--target-min);
+  }
+
+  .row[data-count="4"] .item:not(:first-child) > *,
+  .row[data-count="5"] .item:not(:first-child) > * {
+    padding: 0;
+  }
+
+  .row[data-count="4"] .item:not(:first-child) > * > span,
+  .row[data-count="5"] .item:not(:first-child) > * > span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+}
+
+@container (max-width: 340px) {
+  .row[data-count="3"] .item:not(:first-child) {
+    flex: 0 0 var(--target-min);
+    min-width: var(--target-min);
+  }
+
+  .row[data-count="3"] .item:not(:first-child) > * {
+    padding: 0;
+  }
+
+  .row[data-count="3"] .item:not(:first-child) > * > span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+}

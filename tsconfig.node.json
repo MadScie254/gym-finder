@@ -9,5 +9,5 @@
     "skipLibCheck": true,
     "types": ["node"]
   },
-  "include": ["vite.config.ts", "vitest.config.mts", "scripts"]
+  "include": ["vite.config.ts", "vitest.config.mts", "playwright.config.ts", "scripts", "e2e"]
 }

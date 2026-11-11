@@ -54,3 +54,7 @@ next-env.d.ts
 
 # research seed (derived, regenerable)
 /data/research/_seed/
+
+# playwright
+/test-results/
+/playwright-report/

@@ -1,0 +1,73 @@
+.card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: var(--border-hairline);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.card[data-selected] {
+  border-color: var(--color-action);
+  box-shadow: inset 0 0 0 1px var(--color-action);
+}
+
+.top {
+  position: relative;
+  display: flex;
+  gap: var(--space-3);
+  align-items: stretch;
+}
+
+.body {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.name {
+  font-size: var(--font-size-22);
+  overflow-wrap: anywhere;
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* The whole top row is the link's hit area; actions below stay separate. */
+.link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-tag);
+}
+
+.link:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.link:focus-visible {
+  outline: none;
+}
+
+.link:focus-visible::after {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
+}
+
+.place {
+  margin-bottom: var(--space-1);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-14);
+}
+
+.actions {
+  position: relative;
+}

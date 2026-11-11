@@ -1,0 +1,16 @@
+/* A stencilled tag: dashed border, so it reads as provisional, not as a status colour. */
+.tag {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 7px;
+  border: 1.5px dashed currentColor;
+  border-radius: var(--radius-tag);
+  color: var(--color-text);
+  font-size: var(--font-size-14);
+  font-stretch: var(--font-width-sign);
+  font-weight: var(--font-weight-sign);
+  line-height: 1;
+  white-space: nowrap;
+}

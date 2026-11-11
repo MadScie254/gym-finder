@@ -1,0 +1,171 @@
+/*
+ * Signwriter tokens. Source of truth for colour, type, space, shape and motion.
+ * Contrast for every text and UI pair is checked by scripts/contrast.mjs
+ * (run: npm run contrast). Results live in docs/DESIGN_SYSTEM.md.
+ *
+ * Components use the semantic --color-* names only, never the raw palette.
+ */
+
+:root {
+  /* Raw palette (light). Names follow docs/REVAMP_PLAN.md section 3.2. */
+  --chalk: #f2f4f7;
+  --white-enamel: #ffffff;
+  --plate: #1b2333;
+  --cobalt: #2346d8;
+  --signal: #ffc42e;
+  --court: #0a7a51;
+  --stop: #c43420;
+  --slate: #5a6477;
+
+  /* Semantic colour, light theme */
+  --color-bg: var(--chalk);
+  --color-surface: var(--white-enamel);
+  --color-sunk: #e7eaf0;
+  --color-text: var(--plate);
+  --color-text-muted: var(--slate);
+  --color-action: var(--cobalt);
+  --color-action-hover: #1a37b3;
+  --color-on-action: #ffffff;
+  --color-link: var(--cobalt);
+  --color-highlight: var(--signal);
+  --color-on-highlight: var(--plate);
+  --color-plate: var(--plate);
+  --color-on-plate: var(--chalk);
+  --color-plate-muted: #b5bdcc;
+  --color-plate-edge: var(--plate);
+  --color-inverse: var(--plate);
+  --color-on-inverse: var(--chalk);
+  --color-ok: var(--court);
+  --color-danger: var(--stop);
+  --color-line: rgba(27, 35, 51, 0.1);
+  --color-line-strong: #838c9c;
+  --color-focus: var(--cobalt);
+  --color-tier-verified: var(--court);
+  --color-tier-corroborated: var(--cobalt);
+  --color-tier-listed: var(--slate);
+  --color-tier-unconfirmed: var(--slate);
+  --color-scrim: rgba(27, 35, 51, 0.4);
+
+  /* Type. One family; width does the work a second face would do. */
+  --font-family: "Archivo Signwriter", "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --font-width-sign: 78%;
+  --font-width-numeral: 75%;
+  --font-width-body: 100%;
+  --font-size-12: 0.75rem;
+  --font-size-14: 0.875rem;
+  --font-size-16: 1rem;
+  --font-size-18: 1.125rem;
+  --font-size-22: 1.375rem;
+  --font-size-28: 1.75rem;
+  --font-size-38: 2.375rem;
+  --font-size-52: 3.25rem;
+  --font-weight-body: 400;
+  --font-weight-ui: 560;
+  --font-weight-strong: 640;
+  --font-weight-sign: 760;
+  --font-weight-numeral: 800;
+  --line-height-body: 1.45;
+  --line-height-sign: 1.02;
+  --tracking-sign: -0.012em;
+
+  /* Space (px): 4 8 12 16 20 24 32 40 56 */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-14: 3.5rem;
+
+  /* Shape. Radius by role, not one radius everywhere. */
+  --radius-tag: 4px;
+  --radius-control: 6px;
+  --radius-card: 10px;
+  --radius-sheet: 20px;
+  --border-hairline: 1px solid var(--color-line);
+  --border-control: 1px solid var(--color-line-strong);
+  --target-min: 44px;
+
+  /* Depth. Only sheets and menus cast a shadow. */
+  --shadow-sheet: 0 -6px 24px rgba(27, 35, 51, 0.16);
+  --shadow-menu: 0 8px 24px rgba(27, 35, 51, 0.18);
+
+  /* Motion */
+  --duration-quick: 120ms;
+  --duration-sheet: 180ms;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg: #1b2333;
+    --color-surface: #252e42;
+    --color-sunk: #131a28;
+    --color-text: #f2f4f7;
+    --color-text-muted: #a9b2c3;
+    --color-action: #6f8bff;
+    --color-action-hover: #91a6ff;
+    --color-on-action: #10172a;
+    --color-link: #8ea3ff;
+    --color-highlight: #ffc42e;
+    --color-on-highlight: #1b2333;
+    --color-plate: #0d1220;
+    --color-on-plate: #f2f4f7;
+    --color-plate-muted: #a9b2c3;
+    --color-plate-edge: #7d889d;
+    --color-inverse: #f2f4f7;
+    --color-on-inverse: #1b2333;
+    --color-ok: #3fbf86;
+    --color-danger: #ff7b6b;
+    --color-line: rgba(242, 244, 247, 0.12);
+    --color-line-strong: #7d889d;
+    --color-focus: #8ea3ff;
+    --color-tier-verified: #3fbf86;
+    --color-tier-corroborated: #8ea3ff;
+    --color-tier-listed: #a9b2c3;
+    --color-tier-unconfirmed: #a9b2c3;
+    --color-scrim: rgba(5, 8, 15, 0.6);
+    --shadow-sheet: 0 -6px 24px rgba(0, 0, 0, 0.45);
+    --shadow-menu: 0 8px 24px rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
+  }
+}
+
+/* Same dark values, forced. Lets the styleguide and tests pin a theme. */
+:root[data-theme="dark"],
+[data-theme="dark"] {
+  --color-bg: #1b2333;
+  --color-surface: #252e42;
+  --color-sunk: #131a28;
+  --color-text: #f2f4f7;
+  --color-text-muted: #a9b2c3;
+  --color-action: #6f8bff;
+  --color-action-hover: #91a6ff;
+  --color-on-action: #10172a;
+  --color-link: #8ea3ff;
+  --color-highlight: #ffc42e;
+  --color-on-highlight: #1b2333;
+  --color-plate: #0d1220;
+  --color-on-plate: #f2f4f7;
+  --color-plate-muted: #a9b2c3;
+  --color-plate-edge: #7d889d;
+  --color-inverse: #f2f4f7;
+  --color-on-inverse: #1b2333;
+  --color-ok: #3fbf86;
+  --color-danger: #ff7b6b;
+  --color-line: rgba(242, 244, 247, 0.12);
+  --color-line-strong: #7d889d;
+  --color-focus: #8ea3ff;
+  --color-tier-verified: #3fbf86;
+  --color-tier-corroborated: #8ea3ff;
+  --color-tier-listed: #a9b2c3;
+  --color-tier-unconfirmed: #a9b2c3;
+  --color-scrim: rgba(5, 8, 15, 0.6);
+  --shadow-sheet: 0 -6px 24px rgba(0, 0, 0, 0.45);
+  --shadow-menu: 0 8px 24px rgba(0, 0, 0, 0.5);
+  color-scheme: dark;
+}

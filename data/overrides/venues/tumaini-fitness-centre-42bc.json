@@ -1,0 +1,72 @@
+{
+  "id": "gers:404162cb-e0c1-4858-96aa-5c7c3064c0e7",
+  "name": "Tumaini Fitness Centre",
+  "verifiedAt": "2026-11-11",
+  "verification": "website",
+  "set": {
+    "website": "https://gym.tumainioasisadventures.co.ke/",
+    "address": "Kastemil Business Centre, Kasarani, Nairobi",
+    "phone": "+254721847695",
+    "hours": "Mo-Fr 05:30-21:00; Sa 07:00-20:00",
+    "hoursText": "Operation Time: 5:30AM - 9:00PM (Monday to Friday) Saturday: 7:00AM - 8:00PM",
+    "amenities": {
+      "classes": true
+    },
+    "prices": {
+      "dayPass": {
+        "amount": 300,
+        "currency": "KES",
+        "period": "day",
+        "text": "Ksh 300.00KES for 1 day",
+        "asOf": "2026-11-11",
+        "note": "Site says daily clients are limited to 1hr 30 mins and have no access to a trainer."
+      },
+      "monthly": {
+        "amount": 3500,
+        "currency": "KES",
+        "period": "month",
+        "text": "Ksh 3,500.00KES for 1 month",
+        "asOf": "2026-11-11"
+      }
+    }
+  },
+  "evidence": {
+    "operating": {
+      "url": "https://gym.tumainioasisadventures.co.ke/",
+      "quote": "© 2026 Tumaini Fitness Centre. All rights reserved."
+    },
+    "website": {
+      "url": "https://gym.tumainioasisadventures.co.ke/",
+      "quote": "Tumaini Fitness Centre - Transform Your Fitness Journey"
+    },
+    "address": {
+      "url": "https://gym.tumainioasisadventures.co.ke/",
+      "quote": "Kastemil Business Centre Nairobi (Kasarani), Kenya"
+    },
+    "phone": {
+      "url": "https://gym.tumainioasisadventures.co.ke/",
+      "quote": "Phone +254 721 847 695"
+    },
+    "hours": {
+      "url": "https://gym.tumainioasisadventures.co.ke/",
+      "quote": "Operation Time: 5:30AM - 9:00PM (Monday to Friday) Saturday: 7:00AM - 8:00PM"
+    },
+    "amenities.classes": {
+      "url": "https://gym.tumainioasisadventures.co.ke/",
+      "quote": "Aerobics, Zumba, Insanity, Circuit & Steps workout sessions"
+    },
+    "prices.dayPass": {
+      "url": "https://gym.tumainioasisadventures.co.ke/",
+      "quote": "Ksh 300.00KES for 1 day"
+    },
+    "prices.monthly": {
+      "url": "https://gym.tumainioasisadventures.co.ke/",
+      "quote": "Ksh 3,500.00KES for 1 month"
+    }
+  },
+  "notes": [
+    "The catalogue website (tumainioasisadventures.co.ke) is the owner's hiking business; it links to the gym site on the gym. subdomain, which is the source used here.",
+    "Prices render in the browser; they are not in the page's static HTML.",
+    "Sunday is not listed on the site; the OSM hours therefore show Sunday as closed, matching the site's weekly schedule."
+  ]
+}

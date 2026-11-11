@@ -1,0 +1,71 @@
+{
+  "id": "gers:cd6d51c5-65dc-4ab4-a7a5-871f60703453",
+  "name": "Inshapefitnesskenya",
+  "verifiedAt": "2026-11-11",
+  "verification": "website",
+  "set": {
+    "name": "InShape Fitness",
+    "website": "https://inshape.co.ke/",
+    "address": "Meru Road, behind Posta, Mombasa",
+    "phone": "+254717077775",
+    "amenities": {
+      "classes": true,
+      "showers": true,
+      "women_only": true
+    },
+    "prices": {
+      "monthly": {
+        "amount": 5000,
+        "currency": "KES",
+        "period": "month",
+        "text": "Ksh 5000/month",
+        "asOf": "2026-11-11",
+        "note": "Standard gym membership. Students under 25 with ID: Ksh4000/month."
+      }
+    }
+  },
+  "evidence": {
+    "operating": {
+      "url": "https://inshape.co.ke/",
+      "quote": "Copyright © 2026 - INSHAPE FITNESS"
+    },
+    "name": {
+      "url": "https://inshape.co.ke/",
+      "quote": "InShape Fitness is recognized as one of the Best Gyms in Mombasa"
+    },
+    "website": {
+      "url": "https://inshape.co.ke/",
+      "quote": "Best Gym in Mombasa Where You Feel Safe & Supported"
+    },
+    "address": {
+      "url": "https://inshape.co.ke/",
+      "quote": "Meru road, Behind Posta, Mombasa"
+    },
+    "phone": {
+      "url": "https://inshape.co.ke/",
+      "quote": "0717 077 775"
+    },
+    "amenities.classes": {
+      "url": "https://inshape.co.ke/memberships/",
+      "quote": "Unlimited Group classes"
+    },
+    "amenities.showers": {
+      "url": "https://inshape.co.ke/faq/",
+      "quote": "All our gyms have individual showers, changing areas and lockers for rent."
+    },
+    "amenities.women_only": {
+      "url": "https://inshape.co.ke/",
+      "quote": "offering dedicated ladies-only and men-only spaces designed for comfort, confidence, and focus."
+    },
+    "prices.monthly": {
+      "url": "https://inshape.co.ke/memberships/",
+      "quote": "Ksh 5000/month"
+    }
+  },
+  "notes": [
+    "The catalogue link (inshape.co.ke/schedule/) is a 404; the homepage is used instead.",
+    "The FAQ says there is a steam and sauna in the women's spa, but the homepage says 'Women SPA Coming Soon'. The sauna is omitted.",
+    "The site gives a separate women's line, 0739 077 777. Drop-in prices are not shown. No opening hours on the pages read.",
+    "Prices render in the browser; the monthly figure was read from the rendered page."
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "id": "osm:node/14148174874",
+  "name": "Level 24",
+  "verifiedAt": "2026-11-11",
+  "verification": "website",
+  "set": {
+    "address": "Le'Mac Building, 24th Floor, Church Road, Westlands, Nairobi",
+    "phone": "+254724240000",
+    "whatsapp": "+254724240000",
+    "hours": "Mo-Sa 05:30-22:00; Su 08:00-20:00",
+    "hoursText": "Mon–Sat 05:30 – 22:00 Sun 08:00 – 20:00",
+    "amenities": {
+      "pool": true,
+      "weights": true,
+      "showers": true,
+      "parking": true,
+      "classes": true
+    }
+  },
+  "evidence": {
+    "operating": {
+      "url": "https://level24.life/",
+      "quote": "© 2026 Level 24. All rights reserved."
+    },
+    "address": {
+      "url": "https://level24.life/contact/",
+      "quote": "Le'Mac Building 24th Floor Church Road Westlands Nairobi Kenya"
+    },
+    "phone": {
+      "url": "https://level24.life/",
+      "quote": "+254 724 240000"
+    },
+    "whatsapp": {
+      "url": "https://level24.life/contact/",
+      "quote": "href=\"https://wa.me/254724240000\""
+    },
+    "hours": {
+      "url": "https://level24.life/contact/",
+      "quote": "Hours Mon–Sat 05:30 – 22:00 Sun 08:00 – 20:00"
+    },
+    "amenities.pool": {
+      "url": "https://level24.life/facilities/",
+      "quote": "Rooftop pool 25 m of skyline water on the 24th floor."
+    },
+    "amenities.weights": {
+      "url": "https://level24.life/facilities/",
+      "quote": "Free-weights floor Racks, barbells and dumbbells to 50 kg."
+    },
+    "amenities.showers": {
+      "url": "https://level24.life/facilities/",
+      "quote": "Hot showers and day-use lockers, both sides."
+    },
+    "amenities.parking": {
+      "url": "https://level24.life/facilities/",
+      "quote": "Gated parking off Church Road at Le'Mac."
+    },
+    "amenities.classes": {
+      "url": "https://level24.life/membership/",
+      "quote": "Every plan includes the gym floor, group classes and the swimming pool"
+    }
+  },
+  "notes": [
+    "All membership rates, including the day pass, are 'Rates on request', so no price is set.",
+    "The site lists a steam room; that is not a sauna, so the sauna amenity is not set."
+  ]
+}

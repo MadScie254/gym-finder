@@ -1,0 +1,74 @@
+.sheet {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  height: var(--sheet-peek);
+  max-height: calc(100% - 48px);
+  border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sheet);
+  color: var(--color-text);
+  transition: height var(--duration-sheet) var(--ease-out);
+  overflow: hidden;
+}
+
+.sheet[data-stop="half"] {
+  height: 50%;
+}
+
+.sheet[data-stop="full"] {
+  height: calc(100% - 48px);
+}
+
+.bar {
+  position: relative;
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  padding: 28px var(--space-4) var(--space-3);
+}
+
+.handle {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
+  background: transparent;
+  cursor: grab;
+  touch-action: none;
+}
+
+.handle:active {
+  cursor: grabbing;
+}
+
+.handle:focus-visible {
+  outline-offset: -3px;
+}
+
+.grip {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-line-strong);
+}
+
+.title {
+  font-size: var(--font-size-22);
+}
+
+.content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 var(--space-4) var(--space-4);
+}

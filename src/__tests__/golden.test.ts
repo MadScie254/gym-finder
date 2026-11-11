@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import MiniSearch from "minisearch";
 import { describe, expect, it } from "vitest";
 import type { Venue } from "../data/types";
+import { createVenueSearch, fuzzyEdits } from "../data/loadVenues";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const manifestPath = path.join(ROOT, "public", "data", "manifest.json");
@@ -83,6 +84,12 @@ describe.skipIf(gyms.length === 0)("golden set findability", () => {
     expect(missing).toEqual([]);
   });
 
+  it("ranks Salute Gym first for the transposed query \"slaute gym\"", () => {
+    const search = createVenueSearch(gyms);
+    const top = search.search("slaute gym")[0];
+    expect(top?.name).toBe("Salute Gym");
+  });
+
   it("includes every seed name once Overture is in the build", () => {
     const manifest = existsSync(manifestPath)
       ? JSON.parse(readFileSync(manifestPath, "utf8"))
@@ -101,5 +108,13 @@ describe.skipIf(gyms.length === 0)("golden set findability", () => {
       const ids = new Set(hits.map((gym) => gym.id));
       expect(ids.size, names.join(" / ")).toBe(1);
     }
+  });
+});
+
+describe("fuzzy edit budget", () => {
+  it("keeps short terms strict and lets long terms absorb a swapped pair", () => {
+    expect(fuzzyEdits("gym")).toBe(0);
+    expect(fuzzyEdits("fitt")).toBe(1);
+    expect(fuzzyEdits("slaute")).toBe(2);
   });
 });

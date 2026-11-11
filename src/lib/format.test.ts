@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { directionsUrl, safeExternalUrl, safeTelephoneUrl, safeWhatsAppUrl } from "./format";
+import { directionsUrl, formatDistanceParts, safeExternalUrl, safeTelephoneUrl, safeWhatsAppUrl } from "./format";
 
 describe("external contact helpers", () => {
   it("only permits http and https website URLs", () => {
@@ -28,5 +28,12 @@ describe("external contact helpers", () => {
       "https://wa.me/254700123456?text=Hi",
     );
     expect(safeWhatsAppUrl("not-a-number")).toBeNull();
+  });
+
+  it("splits distance into a number and a unit for the distance block", () => {
+    expect(formatDistanceParts(0.234)).toEqual({ value: "230", unit: "m" });
+    expect(formatDistanceParts(0.001)).toEqual({ value: "10", unit: "m" });
+    expect(formatDistanceParts(1.234)).toEqual({ value: "1.2", unit: "km" });
+    expect(formatDistanceParts(12.6)).toEqual({ value: "13", unit: "km" });
   });
 });

@@ -1,0 +1,462 @@
+{
+  "checkedAt": "2026-11-11",
+  "method": "Opened each venue's own website (one to four pages) as a reader would; dead domains confirmed with Google and Cloudflare DNS-over-HTTPS; JS-rendered prices read with Firecrawl. No maps, social, directory or review sources used as evidence.",
+  "selection": "40 catalogue venues with tier corroborated, a phone and their own (non-social) website; all eligible venues outside Nairobi except one whose 'website' is a YouTube link, plus 14 in Nairobi.",
+  "venues": [
+    {
+      "id": "gers:668e1c9a-103e-45a5-83da-1090b6914c53",
+      "slug": "powerzone-gym-fitness-31d5",
+      "name": "PowerZone GYM & Fitness",
+      "county": "Garissa",
+      "website": "http://www.powerzonegym254.com/",
+      "result": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:3169f87a-f2b5-490d-95bd-b20ea876d87f",
+      "slug": "ongata-rongai-boxing-club-533f",
+      "name": "Ongata Rongai Boxing Club",
+      "county": "Kajiado",
+      "website": "http://www.orbc.co.ke/",
+      "result": "live_no_current_evidence",
+      "finding": "Single-page site is up ('Daily · 6PM – 8PM', 'Magadi Road, Ongata Rongai', phone matches) but shows no date, copyright year or dated content, and has no sitemap. Not verified."
+    },
+    {
+      "id": "gers:91a084e9-cd09-4dbb-9140-af5339dd33b8",
+      "slug": "flora-health-fitness-centre-fa01",
+      "name": "Flora Health & Fitness Centre",
+      "county": "Kakamega",
+      "website": "http://florahealthandfitnessclub.com/",
+      "result": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:fc3efc1a-d09f-43f3-a325-58603c621da1",
+      "slug": "crossfit-boveda-909a",
+      "name": "CrossFit Boveda",
+      "county": "Kiambu",
+      "website": "https://crossfitboveda.co.ke/",
+      "result": "dead",
+      "finding": "Domain has no address record (apex has no A record, www is NXDOMAIN); connection fails."
+    },
+    {
+      "id": "gers:5dfd4b6f-47db-4917-a55e-515ba2f9d742",
+      "slug": "easygym-kenya-1856",
+      "name": "EasyGym Kenya",
+      "county": "Kiambu",
+      "website": "http://www.easygym.ke/",
+      "result": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:1e4c1190-cd1e-453f-9229-8d1191c50788",
+      "slug": "millennium-gyms-and-studios-3d39",
+      "name": "Millennium Gyms and Studios",
+      "county": "Kiambu",
+      "website": "https://www.millenniumgyms.co.ke/",
+      "result": "site_error",
+      "finding": "Domain resolves but the site returns HTTP 500 Internal Server Error to a direct fetch and to Firecrawl."
+    },
+    {
+      "id": "gers:fdf62be6-2b11-4a7e-af12-5f806c868aa2",
+      "slug": "ruaka-gym-aerobics-spa-6f10",
+      "name": "RUAKA GYM&AEROBICS,Spa",
+      "county": "Kiambu",
+      "website": "http://www.ruakagym.com/",
+      "result": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:0d24eb95-a02e-4fbf-a320-85eb39f2dafd",
+      "slug": "sweat-hot-yoga-pilates-studio-208b",
+      "name": "Sweat Hot Yoga & Pilates Studio",
+      "county": "Kiambu",
+      "website": "http://www.hotyoganairobi.com/",
+      "result": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:404162cb-e0c1-4858-96aa-5c7c3064c0e7",
+      "slug": "tumaini-fitness-centre-42bc",
+      "name": "Tumaini Fitness Centre",
+      "county": "Kiambu",
+      "website": "https://tumainioasisadventures.co.ke/",
+      "result": "verified",
+      "fields": [
+        "address",
+        "amenities.classes",
+        "hours",
+        "operating",
+        "phone",
+        "prices.dayPass",
+        "prices.monthly",
+        "website"
+      ],
+      "override": "data/overrides/venues/tumaini-fitness-centre-42bc.json"
+    },
+    {
+      "id": "gers:7961ee92-e2d7-4cdf-b398-f40fd4934a2e",
+      "slug": "warriors-playground-fitness-centre-c655",
+      "name": "Warriors Playground Fitness Centre",
+      "county": "Kiambu",
+      "website": "http://warriorsplayground.co.ke/",
+      "result": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:255793dc-5e1e-4566-b242-b2c1bd42d1c6",
+      "slug": "mnarani-gym-5d3c",
+      "name": "Mnarani Gym",
+      "county": "Kilifi",
+      "website": "http://empowering-nutrition.com/",
+      "result": "verified",
+      "fields": [
+        "address",
+        "hours",
+        "operating",
+        "prices.dayPass",
+        "prices.monthly",
+        "website"
+      ],
+      "override": "data/overrides/venues/mnarani-gym-5d3c.json"
+    },
+    {
+      "id": "gers:33d00c7b-c1a1-4547-a9fb-0ba44986b0f3",
+      "slug": "reshapeme-gym-watamu-5d57",
+      "name": "ReshapeMe Gym Watamu",
+      "county": "Kilifi",
+      "website": "https://reshapemegym.com/",
+      "result": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:85a9090d-acc0-42fd-a50b-1c8a777ca41c",
+      "slug": "health-hub-oasis-605d",
+      "name": "Health Hub Oasis",
+      "county": "Kisumu",
+      "website": "http://www.h2o.co.ke/",
+      "result": "verified",
+      "fields": [
+        "address",
+        "amenities.classes",
+        "instagram",
+        "operating"
+      ],
+      "override": "data/overrides/venues/health-hub-oasis-605d.json"
+    },
+    {
+      "id": "gers:47ab45ac-3362-4011-a160-22a9df30c30a",
+      "slug": "lifestyle-spa-and-fitness-center-3ccb",
+      "name": "Lifestyle Spa and Fitness Center",
+      "county": "Kisumu",
+      "website": "http://www.lifestylespa.co.ke/",
+      "result": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:370ffdd2-5367-4799-90f8-5ecdb6607bf2",
+      "slug": "bold-gym-international-3ebf",
+      "name": "Bold Gym International",
+      "county": "Kwale",
+      "website": "http://www.boldgyminternational.com/",
+      "result": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:1f24007e-3b6f-4549-a4d9-019b3ae66bbc",
+      "slug": "mount-kenya-climbing-gym-6737",
+      "name": "Mount Kenya Climbing Gym",
+      "county": "Laikipia",
+      "website": "https://www.mtkenyaclimbinggym.com/",
+      "result": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:0b9dc1e8-b789-426e-9116-8e478eb58321",
+      "slug": "banana-house-and-wellness-centre-5173",
+      "name": "Banana House And Wellness Centre",
+      "county": "Lamu",
+      "website": "http://www.bananahouse-lamu.com/",
+      "result": "verified",
+      "fields": [
+        "instagram",
+        "operating",
+        "phone",
+        "whatsapp"
+      ],
+      "override": "data/overrides/venues/banana-house-and-wellness-centre-5173.json"
+    },
+    {
+      "id": "gers:f8e1471a-e4ad-41bb-8f3b-4e447df13a65",
+      "slug": "curlture-fitness-4da3",
+      "name": "Curlture fitness",
+      "county": "Meru",
+      "website": "http://curlturefitness.com/",
+      "result": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:cd6d51c5-65dc-4ab4-a7a5-871f60703453",
+      "slug": "inshapefitnesskenya-557b",
+      "name": "Inshapefitnesskenya",
+      "county": "Mombasa",
+      "website": "https://inshape.co.ke/schedule/",
+      "result": "verified",
+      "fields": [
+        "address",
+        "amenities.classes",
+        "amenities.showers",
+        "amenities.women_only",
+        "name",
+        "operating",
+        "phone",
+        "prices.monthly",
+        "website"
+      ],
+      "override": "data/overrides/venues/inshapefitnesskenya-557b.json"
+    },
+    {
+      "id": "gers:e667ec25-b793-4843-8276-339477080b68",
+      "slug": "legacy-fitness-club-1414",
+      "name": "Legacy Fitness Club",
+      "county": "Mombasa",
+      "website": "http://www.legacyfitnessclub.com/",
+      "result": "parked",
+      "finding": "Site redirects to a HugeDomains sale page (hugedomains.com/domain_profile.cfm?d=legacyfitnessclub.com)."
+    },
+    {
+      "id": "gers:3633958f-93a3-4edd-a233-bfdc6dc9ebb2",
+      "slug": "step-n-step-gym-2e14",
+      "name": "Step 'n' Step Gym",
+      "county": "Mombasa",
+      "website": "https://stepin-gym.co.ke/",
+      "result": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:7e0b2ea2-704e-46e9-af93-54df492631b8",
+      "slug": "tiger-fitness-gym-e357",
+      "name": "Tiger Fitness Gym",
+      "county": "Mombasa",
+      "website": "http://www.kenyabodybuilding.com/",
+      "result": "different_business",
+      "finding": "kenyabodybuilding.com is an online supplements shop ('KenyaBodybuilding – Supplements', Copyright © 2018) with no mention of Tiger Fitness Gym."
+    },
+    {
+      "id": "gers:fd1fe3a3-6ded-4c92-982c-1495e1b1d097",
+      "slug": "times-health-fitness-centre-523b",
+      "name": "Times Health & Fitness Centre",
+      "county": "Mombasa",
+      "website": "http://www.thfc.co.ke/",
+      "result": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:ac3984ba-bbe8-4f51-b8be-aac67fcbabab",
+      "slug": "k-fitness-11fd",
+      "name": "K-Fitness",
+      "county": "Nakuru",
+      "website": "http://www.kizigenzafitness.com/",
+      "result": "live_no_current_evidence",
+      "finding": "Site is up but shows '© 2023. K-FITNESS', 2023 uploads, and only 'Test xml' posts in its feed. Membership rates are given without a currency. Not verified."
+    },
+    {
+      "id": "gers:b62328dc-dabd-4c51-87cd-a7769eb91aa8",
+      "slug": "pivot-hotel-and-fitness-centre-2a5e",
+      "name": "Pivot Hotel and Fitness Centre",
+      "county": "Nakuru",
+      "website": "https://www.mangwanani.co.za/",
+      "result": "different_business",
+      "finding": "mangwanani.co.za is Mangwanani African Spa, with 'Locations Across South Africa'; no mention of Pivot Hotel or Nakuru."
+    },
+    {
+      "id": "gers:605887ce-80d4-4a29-983a-95e8a2a7530c",
+      "slug": "alpha-cross-body-fitness-center-5ad8",
+      "name": "Alpha Cross Body Fitness Center",
+      "county": "Nyeri",
+      "website": "http://www.alphacrossfitness.com/",
+      "result": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:1f8ef933-5f74-4a20-b963-ad64048b7ccf",
+      "slug": "crossfit-kwetu-7f59",
+      "name": "CrossFit Kwetu",
+      "county": "Nairobi",
+      "website": "http://crossfitkwetu.com/",
+      "result": "site_error",
+      "finding": "Domain resolves; HTTPS certificate does not match the host and HTTP returns 500 Internal Server Error (direct fetch and Firecrawl)."
+    },
+    {
+      "id": "osm:node/10048755617",
+      "slug": "dojo-6c95",
+      "name": "Dojo",
+      "county": "Nairobi",
+      "website": "https://dojokenya.com/",
+      "result": "verified",
+      "fields": [
+        "address",
+        "amenities.classes",
+        "amenities.sauna",
+        "hours",
+        "instagram",
+        "operating",
+        "phone"
+      ],
+      "override": "data/overrides/venues/dojo-6c95.json"
+    },
+    {
+      "id": "osm:node/12157124485",
+      "slug": "fahari-gym-and-sports-38d4",
+      "name": "Fahari Gym and Sports",
+      "county": "Nairobi",
+      "website": "https://faharifitnessltd.com/",
+      "result": "different_business",
+      "finding": "faharifitnessltd.com is a gym equipment shop ('Gym Equipment Shop in Nairobi, Kenya | Fahari Fitness') at the same Jamia Tower address. It offers no gym membership or sessions. Not verified and not excluded: the site does not show whether a gym also operates there."
+    },
+    {
+      "id": "gers:fcbe4b73-07d7-4c2d-832f-93fee9d009b8",
+      "slug": "firstpower-crossfit-2208",
+      "name": "FirstPower CrossFit",
+      "county": "Nairobi",
+      "website": "http://www.firstpowerfitness.com/",
+      "result": "maintenance",
+      "finding": "Site returns 429 to a direct fetch and 503 'Maintenance Mode: We will be right back!' to Firecrawl."
+    },
+    {
+      "id": "gers:29192b43-88ec-4528-91e3-93c38631ab99",
+      "slug": "fitness-empire-4ec9",
+      "name": "Fitness Empire",
+      "county": "Nairobi",
+      "website": "https://www.fitnessempirekenya.com/home/",
+      "result": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:7c6fdbd7-7e5a-4484-a7ef-41452dd6f7a0",
+      "slug": "hyat-fitness-50e0",
+      "name": "Hyat Fitness",
+      "county": "Nairobi",
+      "website": "http://www.hyatfitness.com/",
+      "result": "live_no_current_evidence",
+      "finding": "hyatfitness.com redirects to hyatfitness.co.ke, which shows '© 2019 Hyat Fitness'; /contact and /register return 403. No current-year content. Not verified."
+    },
+    {
+      "id": "osm:node/14148174874",
+      "slug": "level-24-114c",
+      "name": "Level 24",
+      "county": "Nairobi",
+      "website": "http://www.level24.life/",
+      "result": "verified",
+      "fields": [
+        "address",
+        "amenities.classes",
+        "amenities.parking",
+        "amenities.pool",
+        "amenities.showers",
+        "amenities.weights",
+        "hours",
+        "operating",
+        "phone",
+        "whatsapp"
+      ],
+      "override": "data/overrides/venues/level-24-114c.json"
+    },
+    {
+      "id": "gers:0c504d74-69c6-44aa-bee4-67781a872cf5",
+      "slug": "parklands-sports-club-12e3",
+      "name": "Parklands Sports Club",
+      "county": "Nairobi",
+      "website": "http://www.parklandssportsclub.org/",
+      "result": "verified",
+      "fields": [
+        "address",
+        "amenities.classes",
+        "amenities.pool",
+        "amenities.weights",
+        "hours",
+        "instagram",
+        "operating",
+        "phone"
+      ],
+      "override": "data/overrides/venues/parklands-sports-club-12e3.json"
+    },
+    {
+      "id": "gers:3e1223d6-d5e4-40a3-82f1-e52217710212",
+      "slug": "pent-hse-gymnasium-539b",
+      "name": "Pent Hse Gymnasium",
+      "county": "Nairobi",
+      "website": "http://www.penthousegym.org/",
+      "result": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:e50c1e09-8136-4c60-a7da-b2066ffb0d71",
+      "slug": "racing-sport-gym-15d2",
+      "name": "Racing Sport Gym",
+      "county": "Nairobi",
+      "website": "http://www.racingsportgym.com/",
+      "result": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:4c268103-3ea7-4fc2-a135-bb2e0b46e48a",
+      "slug": "smart-gyms-junction-63b6",
+      "name": "Smart Gyms Junction",
+      "county": "Nairobi",
+      "website": "http://www.smartgyms.co.ke/",
+      "result": "verified",
+      "fields": [
+        "address",
+        "amenities.classes",
+        "amenities.parking",
+        "amenities.showers",
+        "hours",
+        "operating",
+        "phone",
+        "prices.dayPass",
+        "prices.monthly"
+      ],
+      "override": "data/overrides/venues/smart-gyms-junction-63b6.json"
+    },
+    {
+      "id": "gers:18ccfce3-530f-48f3-948f-6479d18c822e",
+      "slug": "smashfit-gym-sarit-b2bf",
+      "name": "SmashFit Gym Sarit",
+      "county": "Nairobi",
+      "website": "https://smashfitgym.com/become-a-member/",
+      "result": "verified",
+      "fields": [
+        "address",
+        "amenities.classes",
+        "amenities.showers",
+        "amenities.weights",
+        "instagram",
+        "operating",
+        "phone",
+        "prices.dayPass",
+        "prices.monthly",
+        "website"
+      ],
+      "override": "data/overrides/venues/smashfit-gym-sarit-b2bf.json"
+    },
+    {
+      "id": "osm:node/5412286171",
+      "slug": "the-colosseum-fitness-centre-4429",
+      "name": "The Colosseum Fitness Centre",
+      "county": "Nairobi",
+      "website": "http://www.colosseumkenya.com/",
+      "result": "live_no_current_evidence",
+      "finding": "Site is up but shows '© 2021 Colosseum Kenya' on WordPress 5.3; hours and prices are listed but nothing dated after 2021. Not verified."
+    },
+    {
+      "id": "osm:node/5429106186",
+      "slug": "zeal-fitness-1c30",
+      "name": "Zeal Fitness",
+      "county": "Nairobi",
+      "website": "http://zealfitnesscentre.co.ke/",
+      "result": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    }
+  ]
+}

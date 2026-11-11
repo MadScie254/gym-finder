@@ -1,0 +1,56 @@
+{
+  "id": "gers:0c504d74-69c6-44aa-bee4-67781a872cf5",
+  "name": "Parklands Sports Club",
+  "verifiedAt": "2026-11-11",
+  "verification": "website",
+  "set": {
+    "address": "Ojijo Road, off Museum Hill, Nairobi",
+    "phone": "+254725821886",
+    "instagram": "https://www.instagram.com/parklandssportsclubnairobi/",
+    "hoursText": "The gym is opened from 4.00am-9.00pm",
+    "amenities": {
+      "weights": true,
+      "classes": true,
+      "pool": true
+    }
+  },
+  "evidence": {
+    "operating": {
+      "url": "https://www.parklandssportsclub.org/supplier-prequalification-notice/",
+      "quote": "SUPPLIER PREQUALIFICATION NOTICE 2025-2027"
+    },
+    "address": {
+      "url": "https://www.parklandssportsclub.org/",
+      "quote": "P.O. Box 40116 – 00100 Ojijo Road Off Museum Hill, Nairobi, Kenya."
+    },
+    "phone": {
+      "url": "https://www.parklandssportsclub.org/",
+      "quote": "Mobile: +254725821886,0733438169"
+    },
+    "instagram": {
+      "url": "https://www.parklandssportsclub.org/",
+      "quote": "href=\"https://www.instagram.com/parklandssportsclubnairobi/\""
+    },
+    "hours": {
+      "url": "https://www.parklandssportsclub.org/sports-fitness-and-health/",
+      "quote": "The gym is opened from 4.00am-9.00pm"
+    },
+    "amenities.weights": {
+      "url": "https://www.parklandssportsclub.org/sports-fitness-and-health/",
+      "quote": "abundance of free weight including dumbbells and kettle bells"
+    },
+    "amenities.classes": {
+      "url": "https://www.parklandssportsclub.org/sports-fitness-and-health/",
+      "quote": "Aerobics classes at the Club have continued to attract"
+    },
+    "amenities.pool": {
+      "url": "https://www.parklandssportsclub.org/sports-fitness-and-health/",
+      "quote": "Our Club has got all weather, modern and temperature modulated swimming pool."
+    }
+  },
+  "notes": [
+    "Members' club. The site footer says Copyright (C)2021; current operation is shown by the supplier notice for 2025-2027.",
+    "Gym hours do not say which days, so they stay as text and do not drive 'open now'.",
+    "Guest fees on the site are for pool guests and reciprocating members, not a gym day pass, so no price is set."
+  ]
+}

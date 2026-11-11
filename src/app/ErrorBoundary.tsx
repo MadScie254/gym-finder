@@ -1,4 +1,7 @@
 import { Component, type ErrorInfo, type ReactNode } from "react";
+import { RefreshCw } from "lucide-react";
+import { Button } from "../ui/Button";
+import { EmptyState } from "../ui/EmptyState";
 
 type Props = { children: ReactNode };
 type State = { error: Error | null };
@@ -17,18 +20,13 @@ export class ErrorBoundary extends Component<Props, State> {
   render(): ReactNode {
     if (!this.state.error) return this.props.children;
     return (
-      <main className="mx-auto max-w-lg px-4 py-16 text-ink">
-        <h1 className="text-2xl font-semibold">Something went wrong</h1>
-        <p className="mt-3 text-muted">
-          Reload the page. Your saved gyms stay on this device.
-        </p>
-        <button
-          type="button"
-          className="mt-6 rounded-xl bg-action px-4 py-3 text-white"
-          onClick={() => window.location.reload()}
+      <main>
+        <EmptyState
+          title="Something went wrong"
+          action={<Button variant="primary" icon={RefreshCw} onClick={() => window.location.reload()}>Reload</Button>}
         >
-          Reload
-        </button>
+          <p>Reload the page. Your saved gyms stay on this device.</p>
+        </EmptyState>
       </main>
     );
   }

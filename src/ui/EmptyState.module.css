@@ -1,0 +1,32 @@
+.empty {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  max-width: 36ch;
+  margin: 0 auto;
+  padding: var(--space-10) var(--space-4);
+  text-align: center;
+}
+
+/* A plate face seen head-on: ring and hub, the same object as the map pins. */
+.mark {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border: 3px solid var(--color-text);
+  border-radius: 50%;
+  color: var(--color-text);
+}
+
+.title {
+  font-size: var(--font-size-28);
+}
+
+.body {
+  color: var(--color-text-muted);
+}
+
+.action {
+  margin-top: var(--space-2);
+}

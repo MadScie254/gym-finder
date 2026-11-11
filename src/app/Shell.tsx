@@ -4,11 +4,8 @@ import { useVenueContext } from "./venue-context";
 import { t } from "../lib/i18n";
 import { isInKenya, NAIROBI } from "../lib/kenya";
 
-const useGoogleMap = Boolean(import.meta.env.VITE_GOOGLE_MAPS_API_KEY && import.meta.env.VITE_GOOGLE_MAPS_MAP_ID);
 const MapPane = lazy(async () => {
-  const mod = useGoogleMap
-    ? await import("../features/map/GoogleMapPane")
-    : await import("../features/map/MapPane");
+  const mod = await import("../features/map/MapPane");
   return { default: mod.MapPane };
 });
 

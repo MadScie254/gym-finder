@@ -1,0 +1,36 @@
+{
+  "id": "gers:85a9090d-acc0-42fd-a50b-1c8a777ca41c",
+  "name": "Health Hub Oasis",
+  "verifiedAt": "2026-11-11",
+  "verification": "website",
+  "set": {
+    "address": "First Floor, Cosmopolitana Club, Amoth Owira Road, opposite State Lodge, Kisumu",
+    "instagram": "https://instagram.com/health.hub.oasis/",
+    "amenities": {
+      "classes": true
+    }
+  },
+  "evidence": {
+    "operating": {
+      "url": "https://h2o.co.ke/",
+      "quote": "Copyright © 2026 H2O - Health Hub Oasis"
+    },
+    "address": {
+      "url": "https://h2o.co.ke/",
+      "quote": "First Floor, Cosmopolitana Club. Amoth Owira Road, Opposite State Lodge in Kisumu."
+    },
+    "instagram": {
+      "url": "https://h2o.co.ke/",
+      "quote": "href=\"https://instagram.com/health.hub.oasis/\""
+    },
+    "amenities.classes": {
+      "url": "https://h2o.co.ke/",
+      "quote": "We have classes such as Cross Fit, HIIT, Zumba, Aerobics, Kata Box, Insanity, Yoga, Tabata and the overly popular POPSTEP too!"
+    }
+  },
+  "notes": [
+    "Site says the gym was known as Jeff's Fitness before 2023.",
+    "The site's WhatsApp link is malformed (wa.me/2540709746442), so no WhatsApp number is set.",
+    "No hours or prices on the site."
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "gers:255793dc-5e1e-4566-b242-b2c1bd42d1c6",
+  "name": "Mnarani Gym",
+  "verifiedAt": "2026-11-11",
+  "verification": "website",
+  "set": {
+    "website": "https://empowering-nutrition.com/empowering-health-gym-fitness-club/",
+    "address": "Mnarani Creek Club Hotel grounds, Kilifi",
+    "hours": "Mo-Fr 06:30-12:00,15:30-19:00; Sa 06:30-12:00",
+    "hoursText": "Opening Hours. 6.30 – 12 pm 3.30 – 7pm Monday to Friday. Saturday 6.30am – 12pm",
+    "prices": {
+      "dayPass": {
+        "amount": 1200,
+        "currency": "KES",
+        "period": "day",
+        "text": "Daily walk in 1200 Ksh per day pass .",
+        "asOf": null,
+        "note": "Page is undated; newest date on it is 14 November 2025."
+      },
+      "monthly": {
+        "amount": 4500,
+        "currency": "KES",
+        "period": "month",
+        "text": "Monthly subscription 4,500 Ksh – payable on the same date every month.",
+        "asOf": null,
+        "note": "Page is undated. Site also lists an initial enrollment/annual membership fee of 2,500 Ksh."
+      }
+    }
+  },
+  "evidence": {
+    "operating": {
+      "url": "https://empowering-nutrition.com/empowering-health-gym-fitness-club/",
+      "quote": "Visit us at our new indoor/outdoor gym offering a wonderful welcome and friendly ambiance."
+    },
+    "website": {
+      "url": "https://empowering-nutrition.com/empowering-health-gym-fitness-club/",
+      "quote": "GYM – Empowering Health & Fitness Gym Ltd. – Empowering Nutrition"
+    },
+    "address": {
+      "url": "https://empowering-nutrition.com/empowering-health-gym-fitness-club/",
+      "quote": "The gym is located within the grounds of Mnarani Creek Club Hotel, Kilifi."
+    },
+    "hours": {
+      "url": "https://empowering-nutrition.com/empowering-health-gym-fitness-club/",
+      "quote": "Opening Hours. 6.30 – 12 pm 3.30 – 7pm Monday to Friday. Saturday 6.30am – 12pm"
+    },
+    "prices.dayPass": {
+      "url": "https://empowering-nutrition.com/empowering-health-gym-fitness-club/",
+      "quote": "Daily walk in 1200 Ksh per day pass ."
+    },
+    "prices.monthly": {
+      "url": "https://empowering-nutrition.com/empowering-health-gym-fitness-club/",
+      "quote": "Monthly subscription 4,500 Ksh – payable on the same date every month."
+    }
+  },
+  "notes": [
+    "The gym is run as Empowering Health & Fitness Gym Ltd.; its page sits on the owner's nutrition site (empowering-nutrition.com).",
+    "The page carries a memorial dated 14th November 2025 for the gym's founder, so it was edited after that date. No copyright year is shown.",
+    "Classes are mentioned only as 'starting September' with no year, so the classes amenity is omitted."
+  ]
+}

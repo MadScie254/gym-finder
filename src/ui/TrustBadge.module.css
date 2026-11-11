@@ -1,0 +1,41 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 24px;
+  padding: 2px 8px 2px 5px;
+  border-radius: var(--radius-tag);
+  background: var(--color-sunk);
+  color: var(--color-text);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-ui);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.mark {
+  flex: none;
+}
+
+.badge[data-tier="verified"] .mark {
+  color: var(--color-tier-verified);
+}
+
+.badge[data-tier="corroborated"] .mark {
+  color: var(--color-tier-corroborated);
+}
+
+.badge[data-tier="listed"] .mark {
+  color: var(--color-tier-listed);
+}
+
+.badge[data-tier="unconfirmed"] .mark {
+  color: var(--color-tier-unconfirmed);
+}
+
+.badge[data-tier="unconfirmed"] {
+  background: transparent;
+  outline: 1px dashed var(--color-line-strong);
+  outline-offset: -1px;
+  color: var(--color-text-muted);
+}

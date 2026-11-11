@@ -1,0 +1,79 @@
+{
+  "id": "gers:18ccfce3-530f-48f3-948f-6479d18c822e",
+  "name": "SmashFit Gym Sarit",
+  "verifiedAt": "2026-11-11",
+  "verification": "website",
+  "set": {
+    "website": "https://www.smashfitgym.com/",
+    "address": "6th Floor, Sarit, Karuna Road, Nairobi",
+    "phone": "+254704227227",
+    "instagram": "https://www.instagram.com/smashfitkenya/",
+    "amenities": {
+      "weights": true,
+      "showers": true,
+      "classes": true
+    },
+    "prices": {
+      "dayPass": {
+        "amount": 1500,
+        "currency": "KES",
+        "period": "day",
+        "text": "Day Pass KSH 1,500",
+        "asOf": "2026-11-11"
+      },
+      "monthly": {
+        "amount": 9500,
+        "currency": "KES",
+        "period": "month",
+        "text": "Bronze Membership Monthly Ksh 9,500",
+        "asOf": "2026-11-11",
+        "note": "Bronze has no classes. Silver (10 classes) is Ksh 10,600 and Gold (unlimited classes) Ksh 11,750 a month."
+      }
+    }
+  },
+  "evidence": {
+    "operating": {
+      "url": "https://www.smashfitgym.com/become-a-member/",
+      "quote": "© 2026 Smash Fit Gym. All rights reserved"
+    },
+    "website": {
+      "url": "https://www.smashfitgym.com/",
+      "quote": "Smash Fit Gym | Smash your Goals | Sarit | Nairobi"
+    },
+    "address": {
+      "url": "https://www.smashfitgym.com/become-a-member/",
+      "quote": "Location: 6th Floor Sarit , Karuna Road, Nairobi"
+    },
+    "phone": {
+      "url": "https://www.smashfitgym.com/become-a-member/",
+      "quote": "Sarit Branch: +254704227227"
+    },
+    "instagram": {
+      "url": "https://www.smashfitgym.com/become-a-member/",
+      "quote": "href=\"https://www.instagram.com/smashfitkenya/\""
+    },
+    "amenities.weights": {
+      "url": "https://www.smashfitgym.com/",
+      "quote": "State-of-the-art cardio and weight machines."
+    },
+    "amenities.showers": {
+      "url": "https://www.smashfitgym.com/",
+      "quote": "High pressured showers."
+    },
+    "amenities.classes": {
+      "url": "https://www.smashfitgym.com/become-a-member/",
+      "quote": "Unlimited Classes"
+    },
+    "prices.dayPass": {
+      "url": "https://www.smashfitgym.com/become-a-member/",
+      "quote": "Day Pass KSH 1,500"
+    },
+    "prices.monthly": {
+      "url": "https://www.smashfitgym.com/become-a-member/",
+      "quote": "Bronze Membership Monthly Ksh 9,500"
+    }
+  },
+  "notes": [
+    "The site lists steam rooms; that is not a sauna, so the sauna amenity is not set. No opening hours on the pages read."
+  ]
+}
