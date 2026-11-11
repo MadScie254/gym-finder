@@ -9,6 +9,12 @@ Keep ≤150 lines. Update at the end of every slice. Resume from this file + git
 - Last commit: uncommitted UI + cutover in the working tree
 - Product name: **Find My Gym**
 
+## Revamp Phases 1 and 3: foundation and Signwriter system (2026-11-11)
+
+- Done: Playwright + axe (`npm run e2e`, 390x844 and 1440x900), smoke test ("slaute gym" opens Salute Gym, `tel:` link). MapLibre only; Google pane, Tailwind and dead Next assets removed. Tokens, self-hosted Archivo (56.4 KiB), contrast check in `npm run check`, 16 components in `src/ui/` with tests, `/styleguide` (dev and e2e builds only). Details: `docs/DESIGN_SYSTEM.md`.
+- Not done: product screens still use legacy `src/styles.css` (aliased to tokens). Figma step (plan 3.7) skipped; the styleguide is the review surface. Map pins not restyled.
+- Next: Phase 4 rebuilds Explore, Detail, Saved, Compare on `src/ui`, one e2e test per feature.
+
 ## Next 3 steps
 
 1. Run Overture extract where DuckDB bindings exist (GitHub Actions, Node 24) and re-validate D1/D3.
