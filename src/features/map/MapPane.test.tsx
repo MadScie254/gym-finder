@@ -73,6 +73,7 @@ it("shows loaded venues when the map style finishes after React effects", async 
   const map = state.maps[0] as TestMap;
   await act(async () => map.emitLoad());
   expect(map.sources.venues.data.features.map((feature) => feature.properties.id)).toEqual(["gym-1"]);
+  expect(container.querySelector(".map-pane")?.getAttribute("data-ready")).toBe("true");
 });
 
 it("focuses the selected gym after it becomes selected", async () => {

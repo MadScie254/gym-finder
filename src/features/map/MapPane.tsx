@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
 import { Map as MapLibreMap, NavigationControl, setWorkerUrl, type GeoJSONSource, type MapLayerMouseEvent } from "maplibre-gl";
-import maplibreWorker from "maplibre-gl/dist/maplibre-gl-worker.mjs?url";
+import maplibreWorker from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { LatLng, Venue } from "../../data/types";
 
@@ -9,10 +9,10 @@ const MAP_STYLE = "https://tiles.openfreemap.org/styles/liberty";
 setWorkerUrl(maplibreWorker);
 
 const TIER_COLOR: Record<string, string> = {
-  verified: "#107a50",
-  corroborated: "#2567a8",
-  listed: "#d24b2a",
-  unconfirmed: "#98652c",
+  verified: "#0a7a51",
+  corroborated: "#2346d8",
+  listed: "#5a6477",
+  unconfirmed: "#5a6477",
 };
 
 function venueData(venues: Venue[]) {
@@ -67,7 +67,7 @@ export function MapPane({ venues, selectedId, origin = null }: { venues: Venue[]
         source: "venues",
         filter: ["has", "point_count"],
         paint: {
-          "circle-color": "#1d2822",
+          "circle-color": "#1b2333",
           "circle-radius": ["step", ["get", "point_count"], 21, 20, 25, 100, 29],
           "circle-stroke-color": "#ffffff",
           "circle-stroke-width": 3,
@@ -108,6 +108,7 @@ export function MapPane({ venues, selectedId, origin = null }: { venues: Venue[]
           if (geometry?.type === "Point") map.easeTo({ center: geometry.coordinates as [number, number], zoom });
         });
       });
+      if (ref.current) ref.current.dataset.ready = "true";
       focusMap(map, latest.current.venues, latest.current.selectedId, latest.current.origin);
     });
     mapRef.current = map;

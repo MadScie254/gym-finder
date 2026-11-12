@@ -1,33 +1,20 @@
+import { Bookmark, GitCompareArrows, MessageCircle, Phone } from "lucide-react";
 import { Link } from "react-router";
 import type { LatLng, Venue, VenueKind } from "../../data/types";
-import { formatDistance, safeTelephoneUrl, safeWhatsAppUrl } from "../../lib/format";
+import { safeTelephoneUrl, safeWhatsAppUrl } from "../../lib/format";
+import { parseHours } from "../../lib/hours";
 import { haversineKm } from "../../lib/kenya";
-import { TrustBadge } from "../../ui/TrustBadge";
+import { ActionRow, GymCard, type RowAction } from "../../ui";
 
 const KIND: Record<VenueKind, string> = {
-  gym: "Gym",
-  crossfit: "CrossFit",
-  yoga: "Yoga",
-  pilates: "Pilates",
-  martial_arts: "Martial arts",
-  boxing: "Boxing",
-  gymnastics: "Gymnastics",
-  boot_camp: "Boot camp",
+  gym: "Gym", crossfit: "CrossFit", yoga: "Yoga", pilates: "Pilates",
+  martial_arts: "Martial arts", boxing: "Boxing", gymnastics: "Gymnastics", boot_camp: "Boot camp",
 };
 
-export function kindLabel(kind: VenueKind): string {
-  return KIND[kind];
-}
+export function kindLabel(kind: VenueKind): string { return KIND[kind]; }
 
 export function ResultCard({
-  venue,
-  origin,
-  selected,
-  saved,
-  onSave,
-  compared,
-  onCompare,
-  compareDisabled = false,
+  venue, origin, selected, saved, onSave, compared, onCompare, compareDisabled = false,
 }: {
   venue: Venue;
   origin: LatLng | null;
@@ -41,25 +28,26 @@ export function ResultCard({
   const km = origin ? haversineKm(origin, { lat: venue.lat, lng: venue.lng }) : null;
   const tel = safeTelephoneUrl(venue.phones[0] ?? null);
   const wa = safeWhatsAppUrl(venue.whatsapp, `Hi, is ${venue.name} open today and what is the day-pass price? Found you on Find My Gym.`);
-  const place = [venue.area, venue.county].filter(Boolean).join(", ");
+  const place = [venue.area ?? venue.town, venue.county].filter(Boolean).join(", ");
+  const actions: RowAction[] = [
+    ...(tel ? [{ id: "call", label: "Call", icon: Phone, href: tel } satisfies RowAction] : []),
+    ...(wa ? [{ id: "chat", label: "Chat", icon: MessageCircle, href: wa, external: true } satisfies RowAction] : []),
+    { id: "save", label: saved ? "Saved" : "Save", icon: Bookmark, onClick: onSave, pressed: saved },
+    { id: "compare", label: compared ? "Added" : "Compare", icon: GitCompareArrows, onClick: onCompare, pressed: compared, disabled: compareDisabled && !compared },
+  ];
   return (
-    <article className={`result-card${selected ? " result-card--selected" : ""}`}>
-      <Link to={`/gym/${venue.slug}`}>
-        <h2>{venue.name}</h2>
-        <p className="meta">
-          <span className="kind">{kindLabel(venue.kind)}</span>
-          {place && <span>{place}</span>}
-        </p>
-        {km != null && <p className="tabular">{formatDistance(km)} · straight-line</p>}
-        <TrustBadge tier={venue.trust.tier} />
-        <span className="result-card__view">View gym <span aria-hidden="true">↗</span></span>
-      </Link>
-      <div className="result-card__actions">
-        {tel && <a className="icon-btn" href={tel}>Call</a>}
-        {wa && <a className="icon-btn" href={wa}>Chat</a>}
-        <button type="button" className="icon-btn" onClick={onSave} aria-pressed={saved}>{saved ? "Saved" : "Save"}</button>
-        <button type="button" className="icon-btn" onClick={onCompare} aria-pressed={compared} disabled={compareDisabled && !compared}>{compared ? "Added" : "Compare"}</button>
-      </div>
-    </article>
+    <GymCard
+      name={venue.name}
+      href={`/gym/${venue.slug}`}
+      place={place || null}
+      kind={kindLabel(venue.kind)}
+      tier={venue.trust.tier}
+      km={km}
+      open={venue.hours?.raw ? parseHours(venue.hours.raw).state === "open" : false}
+      selected={selected}
+      level={2}
+      renderLink={({ href, className, children }) => <Link to={href} className={className}>{children}</Link>}
+      actions={<ActionRow label={`Actions for ${venue.name}`} actions={actions} />}
+    />
   );
 }
