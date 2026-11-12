@@ -94,14 +94,16 @@ export function Explore() {
           <h1>Find your next <em>move.</em></h1>
           <p>Discover gyms across Kenya. See what we know, compare your options, then make your move.</p>
         </div>}
-        <SearchBox index={ctx.index} lang={ctx.lang} initial={q || placeName || ""} />
-        <div className="chips" role="group" aria-label={t(ctx.lang, "filters")}>
-          {KINDS.map((item) => (
-            <button key={item} type="button" className={kind === item ? "chip chip--on" : "chip"} onClick={() => toggle("kind", item)}>{kindLabel(item)}</button>
-          ))}
-          <button type="button" className={params.get("phone") === "1" ? "chip chip--on" : "chip"} onClick={() => toggle("phone", "1")}>Has phone</button>
-          <button type="button" className={params.get("open") === "1" ? "chip chip--on" : "chip"} onClick={() => toggle("open", "1")}>Open now</button>
-        </div>
+        {!venue && <>
+          <SearchBox index={ctx.index} lang={ctx.lang} initial={q || placeName || ""} />
+          <div className="chips" role="group" aria-label={t(ctx.lang, "filters")}>
+            {KINDS.map((item) => (
+              <button key={item} type="button" className={kind === item ? "chip chip--on" : "chip"} onClick={() => toggle("kind", item)}>{kindLabel(item)}</button>
+            ))}
+            <button type="button" className={params.get("phone") === "1" ? "chip chip--on" : "chip"} onClick={() => toggle("phone", "1")}>Has phone</button>
+            <button type="button" className={params.get("open") === "1" ? "chip chip--on" : "chip"} onClick={() => toggle("open", "1")}>Open now</button>
+          </div>
+        </>}
       </header>
       {ctx.locationNote && <p className="count">{ctx.locationNote}</p>}
       {!ctx.origin && !q && !venue && <p className="browse-note">Showing Nairobi first · Search another area or use the map</p>}

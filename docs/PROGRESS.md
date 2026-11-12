@@ -1,83 +1,33 @@
 # Find My Gym — progress ledger
 
-Keep ≤150 lines. Update at the end of every slice. Resume from this file + git log.
+Keep this current and under 150 lines. Resume from here and git log.
 
-## Current
+## Current — 2026-11-12
 
-- Phase: P1 core shipped on the Vite app. Overture extract still blocked on this machine.
-- Branch: `feat/vite-spa`
-- Last commit: uncommitted UI + cutover in the working tree
-- Product name: **Find My Gym**
+- Branch: `master`; React 19 + Vite 8 static site on Vercel.
+- Phase 4 (Gyms rebuild) is underway. The Signwriter tokens and UI kit are in `src/ui/`.
+- G4 gym detail rebuilt with the UI kit: source-backed hours, prices and facilities; distance, trust evidence, contact and share actions. Detail hides search filters.
+- Catalogue: 566 OSM/Overture candidates, 497 default-visible, 10 website-checked profiles, 409 with contact. No claim that every Kenyan gym is listed.
+- Overture release: 2026-10-21.0. OSM snapshot: 2026-09-17 and marked stale. Do not invent listings or listing details.
+- No backend, database, runtime API keys or Google Places. Location stays in the browser.
 
-## Revamp Phases 1 and 3: foundation and Signwriter system (2026-11-11)
+## Checks
 
-- Done: Playwright + axe (`npm run e2e`, 390x844 and 1440x900), smoke test ("slaute gym" opens Salute Gym, `tel:` link). MapLibre only; Google pane, Tailwind and dead Next assets removed. Tokens, self-hosted Archivo (56.4 KiB), contrast check in `npm run check`, 16 components in `src/ui/` with tests, `/styleguide` (dev and e2e builds only). Details: `docs/DESIGN_SYSTEM.md`.
-- Not done: product screens still use legacy `src/styles.css` (aliased to tokens). Figma step (plan 3.7) skipped; the styleguide is the review surface. Map pins not restyled.
-- Next: Phase 4 rebuilds Explore, Detail, Saved, Compare on `src/ui`, one e2e test per feature.
+- `npm run check`: lint, types, contrast, 102 unit tests, production build passed after `npm ci`.
+- `npm run data:validate`: passed (566 venues; 66.7 KB gzipped catalogue).
+- `npm run e2e`: 10 passed on mobile and desktop; 4 optional screenshot tests skipped. Gym search → detail, contact, share and source sections checked.
+- GitHub Actions is unavailable on this account. Pushes to `master` use `[skip ci]`; local checks and the Vercel build are the gate.
 
-## Next 3 steps
+## Next three
 
-1. Run Overture extract where DuckDB bindings exist (GitHub Actions, Node 24) and re-validate D1/D3.
-2. Commit this slice and open a draft PR.
-3. Playwright + Lighthouse once a host is available.
+1. Move Explore result cards, filters and search onto the Signwriter UI kit; keep URL state and typo-tolerant search.
+2. Make map and list respond to the same selected gym and visible area (G1), then verify on mobile and desktop.
+3. Rebuild Compare and Saved (G5–G6), followed by Fuel's explicitly labelled demo flow.
 
-## D1–D8 (measured this session)
+## Decisions and limits
 
-| Gate | Status |
-| --- | --- |
-| D1 Coverage | 58 visible, Nairobi 34. Overture not extracted. Gate ≥400 not met. |
-| D2 Findability | Golden tests pass for names present in the OSM snapshot. |
-| D3 Actionability | 10/58 have a contact (17%). Gate ≥75% not met. |
-| D4 Honesty | No Verified tier. Address is null, not "Kenya". Hours/prices not invented. |
-| D5 Zero server | Next.js removed. `dist/` is static. Vite build + prerender of 58 gym pages. |
-| D6 Speed | Initial JS 119 KB gzip. Map chunk lazy, 275 KB gzip. Lighthouse not run. |
-| D7 Offline | Service worker caches shell + same-origin responses. Not tested in airplane mode. |
-| D8 Quality | eslint, tsc, 28 vitest tests passed. Playwright and axe not run. | (owner override; palette unchanged)
-
-## P0 slice plan
-
-1. F-00 Scaffold: Vite 8 + React 19.2 + Router 7 + Tailwind 4 + Vitest; port kenya/places/planner/storage/URL-safety; Venue type; Next stays until `/` renders.
-2. F-01 Pipeline: Overture DuckDB extract ∪ OSM extract ∪ overrides → gyms.json + manifest + landmarks; Zod gates; licences; RUNBOOK; data-refresh.yml. Report D1/D3.
-3. F-02 Client data: load manifest + hashed gyms once; MiniSearch; useVenues(); index-time note.
-4. F-03 Golden tests from brief seed (+ web-candidates only if in catalog).
-5. Cutover: delete Next/server; `_headers`; rewrite AGENTS/CLAUDE; CI green; draft PR.
-
-## Next 3 steps
-
-1. Run Overture extract on CI (Node 24) or with a local DuckDB CLI in `tools/`.
-2. `npm run data:build && npm run data:validate` and record D1/D3.
-3. Cut over: delete Next, rewrite AGENTS, draft PR.
-
-## Open questions (owner)
-
-- Support WhatsApp/email + who verifies listings
-- Cloudflare account/domain
-- Swahili reviewer
-- Counsel: ODbL/CDLA/Apache/CC mix + Kenya DPA
-- Analytics: none until chosen
-- Known-closed gyms for `known-closed.json`
-
-## Deviations
-
-- Name is Find My Gym, not KAYA — see DECISIONS.md
-- Published data will be committed (data-in-Git); raw `data/source/` gitignored
-- In-app OSRM (commit e4a2169) is abandoned at cutover — F-13 is Maps URL + geo:
-- RESEARCH_FINDINGS.md is not in this clone; do not recreate
-
-## D1–D8 (measured)
-
-| Gate | Status |
-| --- | --- |
-| D1 Coverage | 58 visible (OSM-only fallback). Overture extract not run. Not ≥400. |
-| D2 Findability | golden tests run against OSM-only catalog |
-| D3 Actionability | 10/58 (17%) have a contact. Not ≥75%. |
-| D4 Honesty | address never "Kenya" in new Venue type; Verified only from override |
-| D5 Zero server | Vite `dist/` is static; Next still in repo until cutover |
-| D6 Speed | Vite JS 80 KB gzip (map not yet). Lighthouse not run. |
-| D7 Offline | not built |
-| D8 Quality | src/lib + merge/trust tests 20 passed; `npm run check` not fully green (Next still present; validate fails until Overture) |
-
-## Notes
-
-- Do not load datasets into chat. Query with jq / DuckDB LIMIT.
-- One slice = one commit. Never force-push main/master.
+- Vercel is the active host. The current personal, non-monetized app fits the Hobby plan; a commercial affiliate launch needs permitted hosting.
+- Google Maps listings are not scraped or copied. Data comes from OSM, Overture and evidence from each gym's own site.
+- Driving directions currently open an external map. An in-app road router must respect the location-on-device rule.
+- Fuel is a stub. Demo food stores and prices must be marked as samples; no real order or partnership is implied.
+- Historic progress is in earlier revisions of this file. `docs/REVAMP_PLAN.md` holds the larger roadmap.

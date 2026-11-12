@@ -14,7 +14,12 @@ test("a misspelled search finds Salute Gym and its detail offers a Call link", a
 
   await expect(page).toHaveURL(/\/gym\/salute-gym/);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Salute Gym");
+  await expect(page.getByRole("combobox", { name: /search gyms/i })).toHaveCount(0);
   const call = page.locator('a[href^="tel:"]').first();
   await expect(call).toBeVisible();
   await expect(call).toHaveAttribute("href", /^tel:\+?\d{6,}/);
+  await expect(page.getByRole("heading", { name: "Before you go" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "How we know" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Directions" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Share" })).toBeVisible();
 });
