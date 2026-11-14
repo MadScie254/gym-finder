@@ -46,7 +46,7 @@ export function PlanTools() {
         <h2 id="tools-gym" className={styles.sectionTitle}>{copy.myGym}</h2>
         {plan.savedGyms.length ? (
           <label className={styles.field}>
-            <span>{copy.myGym}</span>
+            <span>{copy.chooseGym}</span>
             <select className={styles.select} value={plan.myGymId ?? ""} onChange={(event) => plan.setMyGymId(event.target.value || null)}>
               <option value="">{copy.noGym}</option>
               {plan.savedGyms.map((gym) => <option key={gym.id} value={gym.id}>{gym.name}{gym.area ? `, ${gym.area}` : ""}</option>)}
@@ -55,7 +55,7 @@ export function PlanTools() {
         ) : (
           <>
             <p className={styles.note}>{copy.noSavedGyms}</p>
-            <Link to="/search" className={buttonClassName("secondary")}>{copy.findGyms}</Link>
+            <div className={styles.actions}><Link to="/search" className={buttonClassName("secondary")}>{copy.findGyms}</Link></div>
           </>
         )}
       </section>
@@ -67,7 +67,7 @@ export function PlanTools() {
             {SESSION_TIMES.map((time) => <option key={time} value={time}>{time}</option>)}
           </select>
         </label>
-        <Button icon={CalendarPlus} onClick={addToCalendar}>{copy.addCalendar}</Button>
+        <div className={styles.actions}><Button icon={CalendarPlus} onClick={addToCalendar}>{copy.addCalendar}</Button></div>
         <p className={styles.note}>{copy.calendarNote}</p>
         <div className={styles.actions}>
           <Button icon={Printer} onClick={() => window.print()}>{copy.print}</Button>

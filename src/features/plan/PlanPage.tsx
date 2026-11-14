@@ -1,14 +1,6 @@
-import { PlanProvider } from "./PlanContext";
-import { TodayPage } from "./TodayPage";
+import PlanRoutes from "./index";
 
-/**
- * Kept for the current shell, which mounts this at the exact path /plan.
- * Once the shell mounts the default export of ./index at /plan/*, this file can go.
- */
+/** Named export the shell mounts at /plan/*. Same as the default export of ./index. */
 export function PlanPage() {
-  return (
-    <PlanProvider>
-      <TodayPage />
-    </PlanProvider>
-  );
+  return <PlanRoutes />;
 }

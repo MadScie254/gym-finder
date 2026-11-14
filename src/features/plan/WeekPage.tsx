@@ -38,7 +38,7 @@ export function WeekPage() {
           </div>
           <section className={styles.section} aria-labelledby="week-title">
             <h2 id="week-title" className={styles.sectionTitle}>{copy.weekOf(week.week, week.theme)}</h2>
-            <p className={styles.note}>{weekDone} / {week.sessions.length} {copy.done.toLowerCase()}</p>
+            <p className={styles.note}>{copy.weekDone(weekDone, week.sessions.length)}</p>
             <ul className={`${styles.panel} ${styles.rows}`} role="list">
               {WEEKDAYS.map((day) => {
                 const items = sessions.filter((s) => s.effectiveDay === day);
@@ -84,7 +84,7 @@ export function WeekPage() {
               <div><dt>{copy.labels.venue}</dt><dd>{copy.venue[plan.settings.venue]}</dd></div>
               <div><dt>{copy.labels.diet}</dt><dd>{copy.diet[plan.settings.diet]}</dd></div>
             </dl>
-            <Link to="/plan/setup" className={buttonClassName("secondary")} data-print="hide">{copy.editPlan}</Link>
+            <div className={styles.actions} data-print="hide"><Link to="/plan/setup" className={buttonClassName("secondary")}>{copy.editPlan}</Link></div>
           </section>
           <PlanTools />
           <SafetyNotes />

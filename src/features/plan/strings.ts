@@ -72,6 +72,8 @@ const en = {
   // Week
   progress: (done: number, total: number) => `of ${total} sessions done`,
   weekPick: "Choose a week",
+  weekDone: (done: number, total: number) => `${done} of ${total} done this week`,
+  chooseGym: "Gym for my sessions",
   weekN: (n: number) => `Week ${n}`,
   done: "Done",
   open: "To do",
@@ -261,6 +263,8 @@ const sw: PlanCopy = {
   restDay: "Siku ya kupumzika",
   progress: (_done, total) => `kati ya mazoezi ${total} yamekamilika`,
   weekPick: "Chagua wiki",
+  weekDone: (done, total) => `${done} kati ya ${total} yamekamilika wiki hii`,
+  chooseGym: "Gym ya mazoezi yangu",
   weekN: (n) => `Wiki ${n}`,
   done: "Imekamilika",
   open: "Bado",

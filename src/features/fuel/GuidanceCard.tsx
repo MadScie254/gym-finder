@@ -42,7 +42,7 @@ export function GuidanceCard({ guidance, settings, today }: { guidance: Guidance
         </div>
       )}
       <p className={styles.fine}>
-        {copy.mealIdeas} <Link to="/plan?view=meals" className={styles.link}>{copy.changePlan}</Link>
+        {copy.mealIdeas} <Link to="/plan/meals" className={styles.link}>{copy.changePlan}</Link>
       </p>
     </section>
   );

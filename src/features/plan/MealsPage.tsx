@@ -79,10 +79,12 @@ export function MealsPage({ now: fixedNow }: { now?: Date }) {
           <section className={`${styles.panel} ${styles.padded}`} aria-labelledby="meals-shopping" data-print="hide">
             <h2 id="meals-shopping" className={styles.sectionTitle}>{copy.shoppingCard}</h2>
             <p className={styles.note}>{copy.shoppingCardBody}</p>
-            <Link to="/plan/shopping" className={buttonClassName("secondary")}>
-              <ListChecks aria-hidden="true" size={20} strokeWidth={2} />
-              <span>{copy.openShopping}</span>
-            </Link>
+            <div className={styles.actions}>
+              <Link to="/plan/shopping" className={buttonClassName("secondary")}>
+                <ListChecks aria-hidden="true" size={20} strokeWidth={2} />
+                <span>{copy.openShopping}</span>
+              </Link>
+            </div>
           </section>
           <section className={local.demo} aria-labelledby="meals-demo" data-print="hide">
             <div className={local.demoHead}>

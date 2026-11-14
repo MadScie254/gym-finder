@@ -3,6 +3,13 @@
   gap: var(--space-8);
 }
 
+/* On phones the send and share actions come first, above the long list. */
+@media (max-width: 959px) {
+  .actions {
+    order: -1;
+  }
+}
+
 @media (min-width: 960px) {
   .layout {
     grid-template-columns: minmax(0, 1fr) 340px;
