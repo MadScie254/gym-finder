@@ -42,7 +42,7 @@ export function Discovery() {
     const save = () => explore.scroll.current.set(scrollKey, node.scrollTop);
     node.addEventListener("scroll", save, { passive: true });
     return () => node.removeEventListener("scroll", save);
-  }, [scrollKey, ready, showList]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [scrollKey, ready, showList]);
   useEffect(() => { setPending(null); }, [scrollKey]);
   useEffect(() => { document.title = `${tr("navFind")}. ${tr("brand")}`; }, [tr]);
 

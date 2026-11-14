@@ -133,11 +133,11 @@ export function MapPane(props: MapPaneProps) {
       });
     });
     return () => { observer.disconnect(); map.remove(); mapRef.current = null; ready.current = false; };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (mapRef.current && ready.current) sync(mapRef.current);
-  }, [venues, selectedId, origin]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [venues, selectedId, origin]);
 
   // A newly selected gym, or a newly shared location, moves the map. The values present at mount do not:
   // coming Back must keep the camera where the visitor left it.
@@ -150,7 +150,7 @@ export function MapPane(props: MapPaneProps) {
     else if (origin && !selectedId && (origin.lat !== before.origin?.lat || origin.lng !== before.origin?.lng)) {
       map.flyTo({ center: [origin.lng, origin.lat], zoom: 13, duration: duration(), essential: true });
     }
-  }, [selectedId, origin]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [selectedId, origin]);
 
   useEffect(() => {
     const map = mapRef.current;

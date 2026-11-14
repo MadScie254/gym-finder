@@ -97,3 +97,42 @@ textarea.input {
 .hint {
   color: var(--color-text-muted);
 }
+
+.reports {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.report {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: var(--border-hairline);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+.reportHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.reportTitle {
+  font-size: var(--font-size-22);
+}
+
+.reportKind {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-14);
+}
+
+.statusLine {
+  padding-left: var(--space-3);
+  border-left: 4px solid var(--color-line-strong);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-strong);
+}

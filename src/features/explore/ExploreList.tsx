@@ -40,12 +40,12 @@ export function ExploreList({ route }: { route: RouteResults }) {
     if (s.kind === "all" && !filters.q && origin) flyTo(origin, 13);
     else if (list.length) fitTo(list);
     else if (s.kind === "place" && s.point) flyTo(s.point, 12);
-  }, [key, results]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [key, results]);
   // A pin picked on the map brings its card into the loaded range.
   useEffect(() => {
     const at = list.findIndex((venue) => venue.id === selectedId);
     if (at >= limit) setPage({ key, limit: Math.ceil((at + 1) / PAGE) * PAGE });
-  }, [selectedId]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [selectedId]);
 
   if (error) {
     return <EmptyState title={tr("loadError")} action={<Button variant="primary" onClick={() => window.location.reload()}>{tr("reload")}</Button>} />;

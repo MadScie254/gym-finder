@@ -11,6 +11,8 @@ type SavedValue = {
   note: (id: string, text: string) => void;
   /** Add entries (import, shared list). Returns how many were new. */
   add: (incoming: SavedEntry[]) => number;
+  /** Put a removed entry back where it was (Undo). */
+  restore: (entry: SavedEntry, at: number) => void;
 };
 
 type CompareValue = {
@@ -56,6 +58,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     move: (id, delta) => setEntries((current) => moveSaved(current, id, delta)),
     note: (id, text) => setEntries((current) => setNote(current, id, text)),
     add,
+    restore: (entry, at) => setEntries((current) => current.some((row) => row.id === entry.id)
+      ? current
+      : [...current.slice(0, at), entry, ...current.slice(at)]),
   }), [entries, add]);
 
   const compare = useMemo<CompareValue>(() => ({

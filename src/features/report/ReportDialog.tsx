@@ -33,11 +33,13 @@ export default function ReportDialog({ initialKind, venue, onClose }: ReportDial
     if (!name.trim()) { setError("reportNeedName"); return; }
     if (NEEDS_MESSAGE.has(kind) && !message.trim()) { setError("reportNeedMessage"); return; }
     setError(null);
-    setSaved(await backend.submit({
+    const row = await backend.submit({
       kind, venueId: adding ? null : venue?.id ?? null, venueName: name, message,
       ...(adding && place.trim() ? { place: place.trim() } : {}),
       ...(contact.trim() ? { contact: contact.trim().slice(0, 120) } : {}),
-    }));
+    });
+    window.dispatchEvent(new Event("fmg-submission"));
+    setSaved(row);
   }
 
   if (saved) {
@@ -77,7 +79,7 @@ export default function ReportDialog({ initialKind, venue, onClose }: ReportDial
           {kinds.map((item) => (
             <label key={item} className={styles.kind}>
               <input type="radio" name={`${id}-kind`} value={item} checked={kind === item} onChange={() => setKind(item)} />
-              <span>{tr(`issue_${item}`)}</span>
+              <span>{tr(`issue_${item}` as const)}</span>
             </label>
           ))}
         </fieldset>

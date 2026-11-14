@@ -51,9 +51,11 @@ export function GymSearch({ label, placeholder }: { label?: string; placeholder?
       groups={groups}
       minChars={0}
       onFocus={warm}
-      onSelect={(option) => {
+      onSelect={(option, group) => {
+        const href = groups.find((row) => row.id === group.id)?.options.find((row) => row.id === option.id)?.href;
+        if (!href) return;
         setValue(option.label);
-        go(option.href, option.label);
+        go(href, option.label);
       }}
       onSubmit={(text) => {
         const keep = onSearch ? parseFilters(params) : NO_FILTERS;

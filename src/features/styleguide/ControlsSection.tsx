@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 import { Bookmark, Navigation, Phone, Share2, SlidersHorizontal } from "lucide-react";
 import { useVenueContext } from "../../app/venue-context";
-import { applyVenueFilters } from "../../lib/filterVenues";
+import { countWith } from "../../lib/results";
+import { NO_FILTERS, type Filters } from "../../lib/urlState";
 import { NAIROBI } from "../../lib/kenya";
 import { Button } from "../../ui/Button";
 import { Chip } from "../../ui/Chip";
@@ -20,14 +21,14 @@ export function ControlsSection() {
   const { index } = useVenueContext();
   // Live counts from the loaded catalogue, with the app's default filters.
   const counts = useMemo(() => {
-    const venues = index?.venues ?? [];
-    const count = (filters: Parameters<typeof applyVenueFilters>[1]) => (index ? applyVenueFilters(venues, filters).length : undefined);
+    const venues = (index?.venues ?? []).filter((venue) => venue.trust.tier !== "unconfirmed");
+    const count = (patch: Partial<Filters>, from: typeof NAIROBI | null = null) => (index ? countWith(venues, NO_FILTERS, patch, from) : undefined);
     return {
       gym: count({ kind: "gym" }),
-      open: count({ openNow: true }),
-      near: count({ origin: NAIROBI, maxKm: 5 }),
-      phone: count({ hasPhone: true }),
-      women: count({ womenOnly: true }),
+      open: count({ open: true }),
+      near: count({ km: 5 }, NAIROBI),
+      phone: count({ phone: true }),
+      women: index ? venues.filter((venue) => venue.amenities.women_only).length : undefined,
     };
   }, [index]);
 

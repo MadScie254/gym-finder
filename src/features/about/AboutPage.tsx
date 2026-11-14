@@ -1,33 +1,60 @@
-import { useVenueContext } from "../../app/venue-context";
-import { t } from "../../lib/i18n";
+import { Page, pageStyles } from "../../app/Page";
+import { useT, useVenueContext } from "../../app/venue-context";
+import type { TrustTier } from "../../data/types";
+import { formatDate } from "../../lib/i18n";
+import { isParsedHours } from "../../lib/hours";
+import { TrustBadge } from "../../ui";
 
+const TIERS: TrustTier[] = ["verified", "corroborated", "listed", "unconfirmed"];
+
+/** Where the list comes from, what each evidence label means, and how thin the details still are. */
 export function AboutPage() {
+  const tr = useT();
   const { index, lang } = useVenueContext();
   const manifest = index?.manifest;
+  const visible = index?.venues.filter((venue) => venue.trust.tier !== "unconfirmed") ?? [];
+  const emptyCounties = manifest ? Object.entries(manifest.counts.byCounty).filter(([, n]) => n === 0).map(([name]) => name) : [];
+  const coverage = [
+    { label: tr("aboutWithContact"), n: visible.filter((venue) => venue.phones.length || venue.whatsapp || venue.website).length },
+    { label: tr("aboutWithHours"), n: visible.filter((venue) => venue.hours?.text || isParsedHours(venue.hours?.raw)).length },
+    { label: tr("aboutWithPrice"), n: visible.filter((venue) => venue.prices).length },
+    { label: tr("aboutWithAmenities"), n: visible.filter((venue) => Object.keys(venue.amenities).length > 0).length },
+  ];
+
   return (
-    <section className="page">
-      <h1>{t(lang, "about")}</h1>
-      {!manifest && <p>Catalogue not loaded.</p>}
-      {manifest && (
-        <>
-          <p>Built {manifest.builtAt.slice(0, 10)}. Overture release: {manifest.overtureRelease ?? "not in this build"}. OSM snapshot: {manifest.osmSnapshotAt ?? "unknown"}{manifest.osmStale ? " (stale)" : ""}.</p>
-          <p>{manifest.counts.defaultVisible} default-visible of {manifest.counts.total} records.</p>
-          <h2>By tier</h2>
-          <ul>
-            {Object.entries(manifest.counts.byTier).map(([tier, count]) => <li key={tier}>{tier}: {count}</li>)}
-          </ul>
-          <h2>What the tiers mean</h2>
-          <ul>
-            <li>Verified — a human override file newer than 12 months. Nothing else may use that word.</li>
-            <li>Corroborated — OpenStreetMap and Overture agree, or a high-confidence Overture listing with a contact.</li>
-            <li>Listed — one source. Call to confirm hours and price.</li>
-            <li>Unconfirmed — hidden from the default list. Exact-name search can still find it.</li>
-          </ul>
-          <h2>Licences</h2>
-          <ul>{manifest.licenses.map((item) => <li key={item}>{item}</li>)}</ul>
-          {manifest.notices.map((item) => <p key={item}>{item}</p>)}
-        </>
-      )}
-    </section>
+    <Page title={tr("menuAbout")} intro={tr("aboutIntro")}>
+      <div className={pageStyles.prose}>
+        {!manifest ? <p>{tr("loadingGyms")}</p> : (
+          <>
+            <p>{tr("aboutBuilt", { date: formatDate(lang, manifest.builtAt), shown: manifest.counts.defaultVisible, total: manifest.counts.total })}</p>
+            <h2>{tr("aboutLabels")}</h2>
+            <table className={pageStyles.table}>
+              <tbody>
+                {TIERS.map((tier) => (
+                  <tr key={tier}>
+                    <th scope="row"><TrustBadge tier={tier} word={tr(`trust_${tier}`)} /></th>
+                    <td>{tr(`tierExplain_${tier}`)}</td>
+                    <td>{manifest.counts.byTier[tier]}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p className={pageStyles.muted}>{tr("aboutUnconfirmedHidden")}</p>
+            <h2>{tr("aboutCoverage")}</h2>
+            <table className={pageStyles.table}>
+              <tbody>
+                {coverage.map((row) => <tr key={row.label}><th scope="row">{row.label}</th><td>{tr("aboutOf", { n: row.n, total: visible.length })}</td></tr>)}
+              </tbody>
+            </table>
+            <p>{tr("aboutEmptyCounties", { n: emptyCounties.length, names: emptyCounties.join(", ") })}</p>
+            <h2>{tr("aboutNever")}</h2>
+            <p>{tr("aboutNeverBody")}</p>
+            <h2>{tr("aboutLicences")}</h2>
+            <ul>{manifest.licenses.map((item) => <li key={item}>{item}</li>)}</ul>
+            {manifest.notices.map((item) => <p key={item} className={pageStyles.muted}>{item}</p>)}
+          </>
+        )}
+      </div>
+    </Page>
   );
 }
