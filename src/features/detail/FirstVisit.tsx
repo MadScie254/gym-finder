@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Copy, MessageCircle } from "lucide-react";
+import { Check, Circle, Copy, MessageCircle } from "lucide-react";
 import type { Venue } from "../../data/types";
 import { safeWhatsAppUrl } from "../../lib/format";
 import { t, type CopyKey, type Lang } from "../../lib/i18n";
@@ -37,7 +37,7 @@ export function FirstVisit({ venue, lang }: { venue: Venue; lang: Lang }) {
       <p role="status" className={styles.note}>{status}</p>
       <div className={styles.marks} role="group" aria-label={t(lang, "yourNotes")}>
         {(["contacted", "visited"] as const).map((mark) => (
-          <Button key={mark} variant="quiet" aria-pressed={Boolean(marks[mark])} onClick={() => setMarks(toggleVisit(venue.id, mark))}>
+          <Button key={mark} variant="secondary" icon={marks[mark] ? Check : Circle} aria-pressed={Boolean(marks[mark])} onClick={() => setMarks(toggleVisit(venue.id, mark))}>
             {t(lang, mark === "contacted" ? "markContacted" : "markVisited")}
           </Button>
         ))}

@@ -24,6 +24,8 @@ function money(amount: number): string {
 
 /** The one most useful fact we really know, so cards differ by what matters. */
 export function cardFact(venue: Venue, lang: Lang = "en"): string {
+  const hours = parseHours(venue.hours?.raw);
+  if (hours.state === "open") return hours.allDay ? t(lang, "hoursAllDay") : t(lang, "hoursOpenCloses", { time: hours.closes ?? "" });
   if (venue.prices?.dayPass) return t(lang, "factDayPass", { amount: money(venue.prices.dayPass.amount) });
   if (venue.prices?.monthly) return t(lang, "factMonthly", { amount: money(venue.prices.monthly.amount) });
   if (venue.hours?.text || venue.hours?.raw) return t(lang, "factHours");

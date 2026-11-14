@@ -46,8 +46,8 @@ export function GymCard({ name, href, place, kind, tier, km, open, fact, tierWor
       data-selected={selected || undefined}
     >
       <div className={styles.top}>
-        {/* No "No location" tile on every card: the block appears once it says something. */}
-        {(km != null || open) && <DistanceBlock km={km} open={open} />}
+        {/* No "No location" tile on every card: the block appears once there is a real distance. */}
+        {km != null && <DistanceBlock km={km} open={open} />}
         <div className={styles.body}>
           <Heading className={styles.name} id={nameId}>
             {renderLink({ href, className: styles.link, children: name })}

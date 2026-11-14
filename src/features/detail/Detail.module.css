@@ -1,4 +1,10 @@
-.detail { display: grid; gap: var(--space-5); max-width: 720px; padding: var(--space-5); color: var(--color-text); }
+.detail { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-5); width: 100%; max-width: 720px; margin: 0 auto; padding: var(--space-5); color: var(--color-text); }
+/* Wide screens: contact and visit stay in view beside the facts; phones keep the owner's reading order. */
+@media (min-width: 1000px) {
+  .detail { max-width: 1120px; grid-template-columns: minmax(0, 1fr) 400px; column-gap: var(--space-8); }
+  .detail > * { grid-column: 1; }
+  .detail > .aside { grid-column: 2; grid-row: 2 / span 8; align-self: start; position: sticky; top: var(--space-5); padding: var(--space-5); border: var(--border-hairline); border-radius: var(--radius-card); background: var(--color-surface); }
+}
 .back, .links a, .facts a { color: var(--color-link); font-weight: var(--font-weight-ui); }
 .back { display: inline-flex; align-items: center; gap: var(--space-1); justify-self: start; min-height: var(--target-min); text-decoration: none; }
 .back:hover { text-decoration: underline; }
@@ -26,7 +32,10 @@
 .note { color: var(--color-text-muted); font-size: var(--font-size-14); }
 .note:empty { display: none; }
 .sources ul { margin: var(--space-3) 0 0; padding-left: var(--space-5); }
-.summaryToggle { display: flex; align-items: center; gap: var(--space-2); min-height: var(--target-min); cursor: pointer; list-style-position: inside; }
+.summaryToggle { display: flex; align-items: center; gap: var(--space-2); min-height: var(--target-min); cursor: pointer; list-style: none; }
+.summaryToggle::-webkit-details-marker { display: none; }
+.chevron { transition: transform var(--duration-quick) var(--ease-out); }
+.sources[open] .chevron { transform: rotate(180deg); }
 .summaryToggle h2 { display: inline; }
 .subheading { margin-top: var(--space-4); font-size: var(--font-size-18); }
 .evidence { display: grid; gap: var(--space-2); margin: var(--space-2) 0 0; }

@@ -69,7 +69,7 @@ export function Detail({ venue, lang, origin }: DetailProps) {
           <p className={styles.place}>{placeOf(venue, lang)}, {kindLabel(venue.kind, lang)}</p>
           <TrustBadge tier={venue.trust.tier} word={tierWord} />
         </div>
-        {(km != null || hours.state === "open") && <DistanceBlock km={km} open={hours.state === "open"} size="detail" />}
+        {km != null && <DistanceBlock km={km} open={hours.state === "open"} size="detail" />}
       </header>
 
       <section className={styles.section} aria-labelledby="detail-trust">
@@ -81,7 +81,7 @@ export function Detail({ venue, lang, origin }: DetailProps) {
       <Facilities venue={venue} lang={lang} />
       <DetailFacts venue={venue} hours={hours} lang={lang} />
 
-      <section className={styles.section} aria-labelledby="detail-contact">
+      <section className={`${styles.section} ${styles.aside}`} aria-labelledby="detail-contact">
         <h2 id="detail-contact">{tr("contactHeading")}</h2>
         <ActionRow actions={actions} label={tr("contactGroup", { name: venue.name })} />
         <p className={styles.note}>{tr("directionsNote")}</p>

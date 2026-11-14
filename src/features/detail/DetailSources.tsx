@@ -1,3 +1,4 @@
+import { ChevronDown } from "lucide-react";
 import type { Venue } from "../../data/types";
 import { safeExternalUrl } from "../../lib/format";
 import { formatDate, t, type CopyKey, type Lang } from "../../lib/i18n";
@@ -27,7 +28,7 @@ export function DetailSources({ venue, lang }: { venue: Venue; lang: Lang }) {
   return (
     <section className={styles.section} aria-labelledby="detail-sources">
       <details className={styles.sources}>
-        <summary className={styles.summaryToggle}><h2 id="detail-sources">{t(lang, "detailSources")}</h2></summary>
+        <summary className={styles.summaryToggle}><h2 id="detail-sources">{t(lang, "detailSources")}</h2><ChevronDown aria-hidden="true" size={20} className={styles.chevron} /></summary>
         <ul>
           {venue.trust.sources.map((source) => <li key={source}>{SOURCE[source] ? t(lang, SOURCE[source]) : source}</li>)}
           {venue.verification && <li>{t(lang, CHECKED[venue.verification.method], { date: formatDate(lang, venue.verification.checkedAt) })}</li>}
