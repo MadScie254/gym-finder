@@ -5,13 +5,16 @@ import { parseHours } from "./hours";
 import { haversineKm } from "./kenya";
 import { gymsNear, NEAR_KM, type Landmark } from "./landmarks";
 import type { Filters, SortOrder } from "./urlState";
+import { filterToBounds, type Bounds } from "./viewport";
 
 /** Which slice of the catalogue a page shows, before filters. */
 export type Scope =
   | { kind: "all" }
   | { kind: "place"; name: string; point: LatLng | null }
   | { kind: "county"; name: string }
-  | { kind: "landmark"; landmark: Landmark };
+  | { kind: "landmark"; landmark: Landmark }
+  /** "Search this area": the map view the visitor chose. */
+  | { kind: "bbox"; bounds: Bounds };
 
 export type Results = {
   /** The scope after search text, before chips: the base every chip count is measured on. */
@@ -35,6 +38,7 @@ export function scopeVenues(index: VenueIndex, scope: Scope, filters: Filters): 
     const needle = foldPlace(scope.name);
     base = index.venues.filter((venue) => venue.county && foldPlace(venue.county) === needle);
   } else if (scope.kind === "landmark") base = gymsNear(index.venues, scope.landmark, NEAR_KM);
+  else if (scope.kind === "bbox") base = filterToBounds(index.venues, scope.bounds);
   else base = q ? searchVenues(index, q, true) : index.venues;
   if (q && scope.kind !== "all") {
     const hits = new Set(searchVenues(index, q, true).map((venue) => venue.id));

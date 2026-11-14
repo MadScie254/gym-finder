@@ -1,29 +1,27 @@
-import { useExplore } from "../../app/explore-context";
 import { useT, useVenueContext } from "../../app/venue-context";
 import { plural } from "../../lib/i18n";
 import type { SortOrder } from "../../lib/urlState";
 import type { RouteResults } from "./useRouteResults";
 import styles from "./ExploreList.module.css";
 
-/** Title, count and order for the list. Once the map moves, the title counts the gyms in view. */
-export function ListHeader({ route, shownCount }: { route: RouteResults; shownCount: number }) {
+/** Title, what distances are measured from, and the order. */
+export function ListHeader({ route }: { route: RouteResults }) {
   const tr = useT();
   const { origin, locationNote } = useVenueContext();
-  const { area, setArea, fitTo } = useExplore();
   const { results, scope, filters, setFilters } = route;
   if (!results || scope.status !== "ready") return null;
   const s = scope.scope;
-  const total = plural(tr, results.list.length, "gymsOne", "gymsMany");
 
   let title: string;
-  if (area) title = plural(tr, shownCount, "areaCountOne", "areaCountMany");
-  else if (s.kind === "place") title = tr("titlePlace", { place: s.name });
+  if (s.kind === "place") title = tr("titlePlace", { place: s.name });
   else if (s.kind === "county") title = tr("titleCounty", { county: s.name });
   else if (s.kind === "landmark") title = tr("titleNear", { landmark: s.landmark.name });
+  else if (s.kind === "bbox") title = tr("titleArea");
   else if (filters.q) title = tr("titleSearch", { q: filters.q });
   else title = tr("titleAll");
 
-  const sub = s.kind === "landmark" ? tr("subNear", { landmark: s.landmark.name }) : total;
+  // Distance is shown only from a real, named point.
+  const reference = s.kind === "landmark" ? tr("subNear", { landmark: s.landmark.name }) : origin ? tr("distanceFromYou") : null;
   const sorts: { value: SortOrder; label: string }[] = [
     { value: "distance", label: tr("sortDistance") },
     { value: "trust", label: tr("sortTrust") },
@@ -32,15 +30,8 @@ export function ListHeader({ route, shownCount }: { route: RouteResults; shownCo
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>{title}</h1>
-      {area ? (
-        <button type="button" className={styles.reset} onClick={() => { setArea(null); fitTo(results.list); }}>
-          {tr("showWholeList")}
-        </button>
-      ) : (
-        <p className={styles.sub}>{sub}</p>
-      )}
+      <p className={styles.sub}>{plural(tr, results.list.length, "gymsOne", "gymsMany")}{reference ? `. ${reference}` : ""}</p>
       {locationNote && locationNote !== "locationShared" && <p className={styles.note}>{tr(locationNote)}</p>}
-      {!origin && !locationNote && s.kind !== "landmark" && <p className={styles.note}>{tr("subNoLocation")}</p>}
       {results.reference && (
         <div className={styles.sort} role="group" aria-label={tr("filterGroupSort")}>
           {sorts.map((row) => (

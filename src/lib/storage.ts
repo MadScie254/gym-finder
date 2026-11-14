@@ -4,6 +4,7 @@ const PLAN_KEY = "fmg-plan-settings-v1";
 const INSTALL_DISMISS_KEY = "fmg-install-dismissed";
 const RECENT_SEARCH_KEY = "fmg-recent-searches-v2";
 const LANG_KEY = "fmg-lang";
+const THEME_KEY = "fmg-theme";
 
 function readJson<T>(key: string, fallback: T): T {
   if (typeof window === "undefined") return fallback;
@@ -65,4 +66,26 @@ export function loadLanguage(): "en" | "sw" {
 
 export function saveLanguage(lang: "en" | "sw"): void {
   writeJson(LANG_KEY, lang);
+}
+
+export type ThemeChoice = "system" | "light" | "dark";
+
+export function loadTheme(): ThemeChoice {
+  const value = readJson<string>(THEME_KEY, "system");
+  return value === "light" || value === "dark" ? value : "system";
+}
+
+/** Applies the choice to <html data-theme>, which tokens.css reads, and remembers it. */
+export function applyTheme(choice: ThemeChoice, persist = true): void {
+  if (typeof document !== "undefined") {
+    if (choice === "system") delete document.documentElement.dataset.theme;
+    else document.documentElement.dataset.theme = choice;
+  }
+  if (persist) writeJson(THEME_KEY, choice);
+}
+
+/** True once the visitor has set up My week on this device. */
+export function hasPlanSettings(): boolean {
+  if (typeof window === "undefined") return false;
+  try { return window.localStorage.getItem(PLAN_KEY) != null; } catch { return false; }
 }

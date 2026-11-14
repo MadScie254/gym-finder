@@ -12,7 +12,7 @@ const TIERS: TrustTier[] = ["verified", "corroborated", "listed", "unconfirmed"]
 it("gives every tier its own word and its own shape", async () => {
   ui = await mount(<>{TIERS.map((tier) => <TrustBadge key={tier} tier={tier} />)}</>);
   const badges = [...ui.container.querySelectorAll("[data-tier]")];
-  expect(badges.map((badge) => badge.textContent)).toEqual(["Verified", "Corroborated", "Listed", "Unconfirmed"]);
+  expect(badges.map((badge) => badge.textContent)).toEqual(["Website checked", "Matched across sources", "Source-listed", "Unconfirmed"]);
   const shapes = badges.map((badge) => badge.querySelector("svg")!.innerHTML);
   expect(new Set(shapes).size).toBe(4);
   expect(badges.every((badge) => badge.querySelector("svg")!.getAttribute("aria-hidden") === "true")).toBe(true);

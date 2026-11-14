@@ -39,32 +39,32 @@ const clustered: FilterSpecification = ["has", "point_count"];
  * cobalt plate with its name. Everything is a map layer, never a DOM marker.
  */
 export function addGymLayers(map: MapLibreMap, initialRadius: number) {
-  map.addSource("gyms", { type: "geojson", data: toFeatures([]), cluster: true, clusterRadius: 44, clusterMaxZoom: 14 });
+  map.addSource("venues", { type: "geojson", data: toFeatures([]), cluster: true, clusterRadius: 44, clusterMaxZoom: 14 });
   map.addSource("selected", { type: "geojson", data: toFeatures([]) });
   map.addSource("you", { type: "geojson", data: pointFeature(null) });
 
   const stackRadius: ExpressionSpecification = ["step", ["get", "point_count"], 15, 10, 18, 50, 22];
   for (const [id, dy] of [["cluster-stack-2", 7], ["cluster-stack-1", 3.5]] as const) {
     map.addLayer({
-      id, type: "circle", source: "gyms", filter: clustered,
+      id, type: "circle", source: "venues", filter: clustered,
       paint: { "circle-color": PLATE_EDGE, "circle-radius": stackRadius, "circle-translate": [0, dy], "circle-stroke-color": WHITE, "circle-stroke-width": 1.5 },
     });
   }
   map.addLayer({
-    id: "cluster-top", type: "circle", source: "gyms", filter: clustered,
+    id: "cluster-top", type: "circle", source: "venues", filter: clustered,
     paint: { "circle-color": PLATE, "circle-radius": stackRadius, "circle-stroke-color": WHITE, "circle-stroke-width": 2 },
   });
   map.addLayer({
-    id: "cluster-count", type: "symbol", source: "gyms", filter: clustered,
+    id: "cluster-count", type: "symbol", source: "venues", filter: clustered,
     layout: { "text-field": ["get", "point_count_abbreviated"], "text-size": 13, "text-font": FONT_BOLD, "text-allow-overlap": true },
     paint: { "text-color": CHALK },
   });
   map.addLayer({
-    id: "pin-ring", type: "circle", source: "gyms", filter: unclustered,
+    id: "pin-ring", type: "circle", source: "venues", filter: unclustered,
     paint: { "circle-color": PLATE, "circle-radius": initialRadius, "circle-radius-transition": { duration: 420, delay: 0 }, "circle-stroke-color": WHITE, "circle-stroke-width": 2 },
   });
   map.addLayer({
-    id: "pin-hub", type: "circle", source: "gyms", filter: unclustered,
+    id: "pin-hub", type: "circle", source: "venues", filter: unclustered,
     paint: { "circle-color": CHALK, "circle-radius": initialRadius === 0 ? 0 : 3, "circle-radius-transition": { duration: 420, delay: 0 } },
   });
   map.addLayer({

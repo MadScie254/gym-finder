@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { useT } from "../../app/venue-context";
+import { isParsedHours } from "../../lib/hours";
 import { plural } from "../../lib/i18n";
 import { DISTANCE_FILTERS, KIND_FILTERS, type TrustFilter } from "../../lib/urlState";
 import { Button } from "../../ui/Button";
@@ -33,6 +34,8 @@ export function FilterDialog({ route, open, onOpenChange }: { route: RouteResult
   const set = (patch: Parameters<typeof setFilters>[0]) => setFilters(patch, true);
   const noReference = !results?.reference;
   const total = results?.list.length ?? 0;
+  const base = results?.base ?? [];
+  const coverage = { hours: base.filter((venue) => isParsedHours(venue.hours?.raw)).length, total: base.length };
   const showLabel = total === 0 ? tr("filtersShowNone") : plural(tr, total, "filtersShowOne", "filtersShowMany");
 
   return (
@@ -63,7 +66,7 @@ export function FilterDialog({ route, open, onOpenChange }: { route: RouteResult
             <Chip key={row.value} label={tr(row.key)} selected={filters.trust === row.value} count={count({ trust: row.value })} onToggle={() => set({ trust: row.value })} />
           ))}
         </Group>
-        <Group title={tr("filterGroupMore")} note={tr("filterOpenNote")}>
+        <Group title={tr("filterGroupMore")} note={tr("filterCoverage", { hours: coverage.hours, total: coverage.total })}>
           <Chip label={tr("filterHasPhone")} selected={filters.phone} count={count({ phone: true })} onToggle={() => set({ phone: !filters.phone })} />
           <Chip label={tr("filterOpenNow")} selected={filters.open} count={count({ open: true })} onToggle={() => set({ open: !filters.open })} />
         </Group>

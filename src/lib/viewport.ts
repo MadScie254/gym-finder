@@ -36,3 +36,16 @@ export function sameBounds(a: Bounds | null, b: Bounds | null): boolean {
   const close = (x: number, y: number) => Math.abs(x - y) < 1e-5;
   return close(a.west, b.west) && close(a.south, b.south) && close(a.east, b.east) && close(a.north, b.north);
 }
+
+/** "36.7000,-1.3500,36.9000,-1.2000" (west, south, east, north) for the URL. */
+export function formatBounds(bounds: Bounds): string {
+  return [bounds.west, bounds.south, bounds.east, bounds.north].map((n) => n.toFixed(4)).join(",");
+}
+
+export function parseBounds(value: string | null): Bounds | null {
+  const parts = (value ?? "").split(",").map(Number);
+  if (parts.length !== 4 || parts.some((n) => !Number.isFinite(n))) return null;
+  const [west, south, east, north] = parts;
+  if (west >= east || south >= north || Math.abs(south) > 90 || Math.abs(north) > 90) return null;
+  return { west, south, east, north };
+}

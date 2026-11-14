@@ -13,8 +13,8 @@ export type FuelScreenProps = {
    * (docs/REVAMP_PLAN.md 2.1); only screens with no demo data may say "real".
    */
   content: "simulated" | "real";
-  /** Show a link back to Fuel home. */
-  back?: boolean;
+  /** Show a link back: true for the demo stores home, "week" for My week's meals. */
+  back?: boolean | "week";
   /** Small text under the title. */
   intro?: ReactNode;
   /** Replaces the plain title, for screens whose header is their bold element. */
@@ -32,9 +32,9 @@ export function FuelScreen({ title, content, back, intro, header, children }: Fu
       <div className={styles.frame}>
         <div className={styles.bar}>
           {back ? (
-            <Link to="/fuel" className={styles.back}>
+            <Link to={back === "week" ? "/plan/meals" : "/fuel"} className={styles.back}>
               <ChevronLeft aria-hidden="true" size={20} strokeWidth={2} />
-              {copy.backToFuel}
+              {back === "week" ? copy.backToWeek : copy.backToFuel}
             </Link>
           ) : <span />}
           {content === "simulated" && (

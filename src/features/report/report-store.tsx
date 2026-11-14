@@ -34,3 +34,7 @@ export function useReport(): ReportValue {
   if (!value) throw new Error("useReport outside ReportProvider");
   return value;
 }
+
+export function useReportMaybe(): ReportValue | null {
+  return useContext(ReportContext);
+}

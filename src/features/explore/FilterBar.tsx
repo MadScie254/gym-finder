@@ -8,7 +8,10 @@ import { FilterDialog } from "./FilterDialog";
 import type { RouteResults } from "./useRouteResults";
 import styles from "./FilterBar.module.css";
 
-/** Quick filters in one sideways-scrolling row, plus the full set in a dialog (plan G3). */
+/**
+ * Main filters in one sideways-scrolling row: contact, distance and training type. Trust, hours
+ * and order live in the dialog with a coverage note, because few gyms list hours (owner proposal).
+ */
 export function FilterBar({ route }: { route: RouteResults }) {
   const tr = useT();
   const [open, setOpen] = useState(false);
@@ -29,7 +32,6 @@ export function FilterBar({ route }: { route: RouteResults }) {
         countNoun={tr("filtersButton").toLowerCase()}
         onToggle={() => setOpen(true)}
       />
-      <Chip label={tr("filterOpenNow")} selected={filters.open} count={count({ open: true })} onToggle={() => setFilters({ open: !filters.open })} />
       <Chip label={tr("filterHasPhone")} selected={filters.phone} count={count({ phone: true })} onToggle={() => setFilters({ phone: !filters.phone })} />
       <Chip
         label={tr("filterWithin", { km: 5 })}
@@ -38,7 +40,6 @@ export function FilterBar({ route }: { route: RouteResults }) {
         count={noReference ? undefined : count({ km: 5 })}
         onToggle={() => setFilters({ km: filters.km === 5 ? null : 5 })}
       />
-      <Chip label={tr("filterTrusted")} selected={filters.trust === "strong"} count={count({ trust: "strong" })} onToggle={() => setFilters({ trust: filters.trust === "strong" ? "any" : "strong" })} />
       {kinds.map((kind) => (
         <Chip key={kind} label={tr(kindLabelKey(kind))} selected={filters.kind === kind} count={count({ kind })} onToggle={() => setFilters({ kind: filters.kind === kind ? null : kind })} />
       ))}

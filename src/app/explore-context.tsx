@@ -1,53 +1,65 @@
-import { createContext, useCallback, useContext, useMemo, useRef, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useMemo, useRef, useState, type ReactNode, type RefObject } from "react";
 import type { LatLng, Venue } from "../data/types";
-import type { SheetStop } from "../ui/Sheet";
-import type { Bounds } from "../lib/viewport";
 
 /** A request for the map to move. `key` changes on every request, so the same target can be asked twice. */
 export type MapFocus =
   | { key: number; kind: "fit"; points: LatLng[] }
   | { key: number; kind: "fly"; point: LatLng; zoom: number };
 
+export type Camera = { center: LatLng; zoom: number };
+
 type ExploreValue = {
-  /** Gyms drawn on the map: the current results before the viewport filter. */
+  /** Gyms drawn on the map: the current results. */
   pins: Venue[];
   setPins: (venues: Venue[]) => void;
-  selected: Venue | null;
-  setSelected: (venue: Venue | null) => void;
-  /** The map view after the visitor panned or zoomed it. Null until they do. */
-  area: Bounds | null;
-  setArea: (bounds: Bounds | null) => void;
+  selectedId: string | null;
+  setSelectedId: (id: string | null) => void;
   focus: MapFocus | null;
   fitTo: (points: LatLng[]) => void;
   flyTo: (point: LatLng, zoom?: number) => void;
-  stop: SheetStop;
-  setStop: (stop: SheetStop) => void;
-  wide: boolean;
+  /** Where the map was left, so Back from a gym puts it back. */
+  camera: Camera | null;
+  setCamera: (camera: Camera) => void;
+  /** The result set the map was last fitted to; a remount with the same key does not refit. */
+  fittedKey: RefObject<string>;
+  /** List scroll position per result set, restored on Back. */
+  scroll: RefObject<Map<string, number>>;
+  /** Mobile: list or map. */
+  mode: "list" | "map";
+  setMode: (mode: "list" | "map") => void;
 };
 
 const ExploreContext = createContext<ExploreValue | null>(null);
 
-/** Shared between the list or detail panel and the map, so they act as one control (plan G1). */
-export function ExploreProvider({ wide, children }: { wide: boolean; children: ReactNode }) {
+/**
+ * Discovery state that outlives the discovery screen: it sits above the routes, so opening a
+ * gym and coming Back keeps the selected gym, map position, list scroll and list/map choice.
+ */
+export function ExploreProvider({ children }: { children: ReactNode }) {
   const [pins, setPins] = useState<Venue[]>([]);
-  const [selected, setSelected] = useState<Venue | null>(null);
-  const [area, setArea] = useState<Bounds | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const [focus, setFocus] = useState<MapFocus | null>(null);
-  const [stop, setStop] = useState<SheetStop>("half");
+  const [mode, setMode] = useState<"list" | "map">("list");
+  const cameraRef = useRef<Camera | null>(null);
+  const fittedKey = useRef("");
+  const scroll = useRef(new Map<string, number>());
   const counter = useRef(0);
 
   const fitTo = useCallback((points: LatLng[]) => {
     counter.current += 1;
-    setFocus({ key: counter.current, kind: "fit", points });
+    setFocus({ key: counter.current, kind: "fit", points: points.map((p) => ({ lat: p.lat, lng: p.lng })) });
   }, []);
   const flyTo = useCallback((point: LatLng, zoom = 15) => {
     counter.current += 1;
-    setFocus({ key: counter.current, kind: "fly", point, zoom });
+    setFocus({ key: counter.current, kind: "fly", point: { lat: point.lat, lng: point.lng }, zoom });
   }, []);
+  const setCamera = useCallback((camera: Camera) => { cameraRef.current = camera; }, []);
 
   const value = useMemo<ExploreValue>(() => ({
-    pins, setPins, selected, setSelected, area, setArea, focus, fitTo, flyTo, stop, setStop, wide,
-  }), [pins, selected, area, focus, fitTo, flyTo, stop, wide]);
+    pins, setPins, selectedId, setSelectedId, focus, fitTo, flyTo,
+    get camera() { return cameraRef.current; },
+    setCamera, fittedKey, scroll, mode, setMode,
+  }), [pins, selectedId, focus, fitTo, flyTo, setCamera, mode]);
 
   return <ExploreContext.Provider value={value}>{children}</ExploreContext.Provider>;
 }

@@ -1,8 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { Pencil, Trash2 } from "lucide-react";
-import { Button, IconButton } from "../../ui";
+import { Button, IconButton } from "../../../ui";
 import type { ListItem } from "./shoppingList";
-import { useFuelCopy } from "./strings";
+import { usePlanCopy } from "../strings";
 import local from "./ShoppingList.module.css";
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export function ListRow({ item, onToggle, onEdit, onRemove }: Props) {
-  const copy = useFuelCopy();
+  const { copy } = usePlanCopy();
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState(item.name);
   const [quantity, setQuantity] = useState(item.quantity);

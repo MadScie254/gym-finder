@@ -1,10 +1,11 @@
 import type { TrustTier } from "../data/types";
 import styles from "./TrustBadge.module.css";
 
+/** Evidence labels (owner proposal, 2026-11-12): say what was done, not a grade. */
 export const TRUST_WORD: Record<TrustTier, string> = {
-  verified: "Verified",
-  corroborated: "Corroborated",
-  listed: "Listed",
+  verified: "Website checked",
+  corroborated: "Matched across sources",
+  listed: "Source-listed",
   unconfirmed: "Unconfirmed",
 };
 
@@ -36,11 +37,11 @@ function Mark({ tier }: { tier: TrustTier }) {
   );
 }
 
-export function TrustBadge({ tier }: { tier: TrustTier }) {
+export function TrustBadge({ tier, word }: { tier: TrustTier; word?: string }) {
   return (
     <span className={styles.badge} data-tier={tier}>
       <Mark tier={tier} />
-      <span>{TRUST_WORD[tier]}</span>
+      <span>{word ?? TRUST_WORD[tier]}</span>
     </span>
   );
 }

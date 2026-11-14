@@ -19,18 +19,6 @@
   font-size: var(--font-size-14);
 }
 
-.reset {
-  justify-self: start;
-  min-height: var(--target-min);
-  padding: 0;
-  border: 0;
-  background: none;
-  color: var(--color-link);
-  font-weight: var(--font-weight-strong);
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
-}
-
 .sort {
   display: inline-flex;
   justify-self: start;
@@ -66,6 +54,16 @@
 .cards {
   display: grid;
   gap: var(--space-3);
+}
+
+.range {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-14);
+  font-variant-numeric: tabular-nums;
+}
+
+.toast:empty {
+  display: none;
 }
 
 .toast {

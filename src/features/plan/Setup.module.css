@@ -1,0 +1,74 @@
+.setup {
+  margin-top: var(--space-6);
+}
+
+.fieldset {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-size: var(--font-size-18);
+  font-stretch: var(--font-width-sign);
+  font-weight: var(--font-weight-sign);
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.option {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--target-min);
+  padding: 0 var(--space-4) 0 var(--space-3);
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  cursor: pointer;
+}
+
+.option input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--color-action);
+}
+
+.option:has(input:checked) {
+  border-color: var(--color-plate-edge);
+  box-shadow: inset 0 0 0 1px var(--color-plate-edge);
+  font-weight: var(--font-weight-strong);
+}
+
+.option:has(input:focus-visible) {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.option input:focus-visible {
+  outline: none;
+}
+
+.effect {
+  padding: var(--space-3) var(--space-4);
+  border: 1.5px dashed var(--color-line-strong);
+  border-radius: var(--radius-control);
+}
+
+.previewRow {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr) auto;
+  gap: var(--space-3);
+  align-items: center;
+  min-height: 48px;
+}

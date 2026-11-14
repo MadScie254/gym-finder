@@ -1,96 +1,77 @@
 import { Check, ExternalLink } from "lucide-react";
-import { useT, useVenueContext } from "../../app/venue-context";
 import type { AmenityKey, Venue, VenuePrice } from "../../data/types";
 import { safeExternalUrl } from "../../lib/format";
 import type { OpenState } from "../../lib/hours";
-import { formatDate, type Translate } from "../../lib/i18n";
-import styles from "./GymDetail.module.css";
+import { formatDate, t, type Lang } from "../../lib/i18n";
+import styles from "./Detail.module.css";
 
 const AMENITIES: AmenityKey[] = ["weights", "classes", "pool", "sauna", "showers", "parking", "wheelchair", "women_only"];
 
-export function hoursLine(hours: OpenState, tr: Translate): string | null {
-  if (hours.state === "open") return hours.allDay ? tr("hoursAllDay") : tr("hoursOpenCloses", { time: hours.closes ?? "" });
-  if (hours.state === "closed") return tr("hoursClosed");
+export function hoursState(hours: OpenState, lang: Lang): string | null {
+  if (hours.state === "open") return hours.allDay ? t(lang, "hoursAllDay") : t(lang, "hoursOpenCloses", { time: hours.closes ?? "" });
+  if (hours.state === "closed") return t(lang, "hoursClosed");
   return null;
 }
 
-/** "KES 1,200" from the amount, so the number reads the same on every gym. */
-function amount(price: VenuePrice): string {
-  return `${price.currency} ${new Intl.NumberFormat("en-KE").format(price.amount)}`;
-}
-
-function PriceRow({ price }: { price: VenuePrice }) {
-  const tr = useT();
-  const { lang } = useVenueContext();
+/** A price as written on the gym's own page, its period, its date, and a link to that page. Never one without the other. */
+function Price({ price, lang }: { price: VenuePrice; lang: Lang }) {
   const source = safeExternalUrl(price.sourceUrl);
-  // A price is never shown without its source (plan G4).
   if (!source) return null;
-  const period = tr(`price${price.period}` as const);
+  const period = t(lang, price.period === "day" ? "priceday" : "pricemonth");
   return (
-    <li className={styles.price}>
-      <span className={styles.priceKind}>{period}</span>
-      <span className={styles.priceAmount}>{amount(price)}</span>
-      <span className={styles.priceMeta}>
-        {price.asOf ? tr("priceAsOf", { date: formatDate(lang, price.asOf) }) : tr("priceUndated")}
-        {price.note ? `. ${price.note}` : ""}
-        {". "}
-        <a href={source} target="_blank" rel="noopener noreferrer" aria-label={tr("priceSourceLabel", { period: period.toLowerCase() })}>
-          {tr("priceSource")}<ExternalLink aria-hidden="true" size={14} className={styles.inlineIcon} />
-        </a>
-      </span>
-    </li>
+    <div>
+      <dt>{period}</dt>
+      <dd>
+        <strong className={styles.amount}>{price.text}</strong>
+        <small>
+          {price.asOf ? t(lang, "priceAsOf", { date: formatDate(lang, price.asOf) }) : t(lang, "priceUndated")}
+          {price.note ? `. ${price.note}` : ""}.{" "}
+          <a href={source} target="_blank" rel="noopener noreferrer" aria-label={t(lang, "priceSourceLabel", { period: period.toLowerCase() })}>
+            {t(lang, "priceSource")}<ExternalLink aria-hidden="true" size={13} className={styles.inline} />
+          </a>
+        </small>
+      </dd>
+    </div>
   );
 }
 
-/** Address, hours, prices and facilities: each shown only as far as the data goes. */
-export function DetailFacts({ venue, hours }: { venue: Venue; hours: OpenState }) {
-  const tr = useT();
-  const state = hoursLine(hours, tr);
-  const hoursText = venue.hours?.text ?? venue.hours?.raw;
-  const prices = [venue.prices?.dayPass, venue.prices?.monthly].filter((price): price is VenuePrice => Boolean(price));
-  const amenities = AMENITIES.filter((key) => venue.amenities[key]);
-
+/** Facilities and access, only those the gym's own page or the map data names. */
+export function Facilities({ venue, lang }: { venue: Venue; lang: Lang }) {
+  const known = AMENITIES.filter((key) => venue.amenities[key]);
+  if (known.length === 0) return null;
   return (
-    <>
+    <section className={styles.section} aria-labelledby="detail-amenities">
+      <h2 id="detail-amenities">{t(lang, "detailAmenities")}</h2>
+      <ul className={styles.amenities} role="list">
+        {known.map((key) => <li key={key}><Check aria-hidden="true" size={18} strokeWidth={2.5} />{t(lang, `amenity_${key}`)}</li>)}
+      </ul>
+    </section>
+  );
+}
+
+/** Hours, price and address: what to know before travelling. Unknown says "Not listed". */
+export function DetailFacts({ venue, hours, lang }: { venue: Venue; hours: OpenState; lang: Lang }) {
+  const state = hoursState(hours, lang);
+  const text = venue.hours?.text || venue.hours?.raw || null;
+  const prices = [venue.prices?.dayPass, venue.prices?.monthly].filter((price): price is VenuePrice => Boolean(price));
+  return (
+    <section className={styles.section} aria-labelledby="detail-facts">
+      <h2 id="detail-facts">{t(lang, "beforeYouGo")}</h2>
       <dl className={styles.facts}>
-        <div className={styles.fact}>
-          <dt>{tr("detailAddress")}</dt>
-          <dd>{venue.address ?? <span className={styles.missing}>{tr("addressMissing")}</span>}</dd>
-        </div>
-        <div className={styles.fact}>
-          <dt>{tr("detailHours")}</dt>
+        <div>
+          <dt>{t(lang, "detailHours")}</dt>
           <dd>
-            {!hoursText && <span className={styles.missing}>{tr("hoursMissing")}</span>}
-            {state && <strong className={styles.openState} data-state={hours.state}>{state}</strong>}
-            {hoursText && <span className={styles.hoursText}>{hoursText}</span>}
-            {hoursText && hours.state === "unknown" && <span className={styles.missing}>{tr("hoursUnparsed")}</span>}
+            {state && <strong className={styles.openState} data-state={hours.state}>{state}. </strong>}
+            {text ?? t(lang, "hoursMissing")}
+            {text && hours.state === "unknown" && <small>{t(lang, "hoursUnparsed")}</small>}
           </dd>
         </div>
-        {venue.fee === "free" && (
-          <div className={styles.fact}>
-            <dt>{tr("detailPrices")}</dt>
-            <dd>{tr("feeFree")}</dd>
-          </div>
-        )}
+        {prices.map((price) => <Price key={price.period} price={price} lang={lang} />)}
+        {prices.length === 0 && venue.fee !== "free" && <div><dt>{t(lang, "priceLabel")}</dt><dd>{t(lang, "notListed")}</dd></div>}
+        {venue.fee === "free" && <div><dt>{t(lang, "priceLabel")}</dt><dd>{t(lang, "feeFree")}</dd></div>}
+        <div><dt>{t(lang, "detailAddress")}</dt><dd>{venue.address ?? t(lang, "addressMissing")}</dd></div>
       </dl>
-      {prices.length > 0 && (
-        <section className={styles.section} aria-labelledby="gym-prices">
-          <h2 id="gym-prices" className={styles.heading}>{tr("detailPrices")}</h2>
-          <ul className={styles.prices} role="list">
-            {prices.map((price) => <PriceRow key={price.period} price={price} />)}
-          </ul>
-        </section>
-      )}
-      {amenities.length > 0 && (
-        <section className={styles.section} aria-labelledby="gym-amenities">
-          <h2 id="gym-amenities" className={styles.heading}>{tr("detailAmenities")}</h2>
-          <ul className={styles.amenities} role="list">
-            {amenities.map((key) => (
-              <li key={key}><Check aria-hidden="true" size={18} strokeWidth={2.5} />{tr(`amenity_${key}` as const)}</li>
-            ))}
-          </ul>
-        </section>
-      )}
-    </>
+      <p className={styles.note}>{t(lang, "confirmBeforeTravel")}</p>
+    </section>
   );
 }

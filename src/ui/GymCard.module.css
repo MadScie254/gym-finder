@@ -68,6 +68,12 @@
   font-size: var(--font-size-14);
 }
 
+.fact {
+  margin-bottom: var(--space-1);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-ui);
+}
+
 .actions {
   position: relative;
 }

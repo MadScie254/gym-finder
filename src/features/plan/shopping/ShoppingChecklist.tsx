@@ -1,13 +1,13 @@
 import { useState, type FormEvent } from "react";
 import { Copy, ListChecks, MessageCircle, Plus, RefreshCw, Share2 } from "lucide-react";
-import { Button, Dialog, EmptyState } from "../../ui";
-import { usePlanSnapshot } from "../plan/usePlanSnapshot";
-import { FuelScreen } from "./FuelScreen";
+import { Button, Dialog, EmptyState } from "../../../ui";
+import { MyWeekScreen } from "../MyWeekScreen";
+import { usePlan } from "../PlanContext";
+import { usePlanCopy } from "../strings";
 import { ListRow } from "./ListRow";
 import { useShoppingList } from "./listStore";
-import { AISLES, buildShoppingList, groupByAisle, listText, mealTexts, whatsAppShareUrl, type Aisle } from "./shoppingList";
-import { useFuelCopy } from "./strings";
-import styles from "./Fuel.module.css";
+import { AISLES, buildShoppingList, groupByAisle, listText, whatsAppShareUrl, type Aisle } from "./shoppingList";
+import styles from "../Plan.module.css";
 import local from "./ShoppingList.module.css";
 
 async function copyText(text: string): Promise<boolean> {
@@ -19,9 +19,9 @@ async function copyText(text: string): Promise<boolean> {
   }
 }
 
-export function ShoppingListPage() {
-  const copy = useFuelCopy();
-  const plan = usePlanSnapshot();
+export function ShoppingChecklist() {
+  const { copy } = usePlanCopy();
+  const plan = usePlan();
   const shopping = useShoppingList();
   const [status, setStatus] = useState("");
   const [fallback, setFallback] = useState<string | null>(null);
@@ -33,18 +33,19 @@ export function ShoppingListPage() {
   const list = shopping.list;
 
   function build() {
-    shopping.replace(plan.settings.diet, buildShoppingList(plan.meals));
+    shopping.replace(plan.settings.diet, buildShoppingList(plan.settings.diet, plan.meals));
     setStatus(copy.built);
     setConfirm(false);
   }
 
   if (!list) {
     return (
-      <FuelScreen title={copy.shoppingList} content="real" back intro={copy.listIntro(diet)}>
+      <MyWeekScreen>
+        <p className={styles.body}>{copy.listIntro(diet)}</p>
         <EmptyState title={copy.makeListTitle} icon={ListChecks} action={<Button variant="primary" onClick={build}>{copy.makeList}</Button>}>
-          <p>{copy.makeListBody(mealTexts(plan.meals).length)}</p>
+          <p>{copy.makeListBody(plan.meals.length * 4)}</p>
         </EmptyState>
-      </FuelScreen>
+      </MyWeekScreen>
     );
   }
 
@@ -81,7 +82,8 @@ export function ShoppingListPage() {
   }
 
   return (
-    <FuelScreen title={copy.shoppingList} content="real" back intro={copy.listIntro(copy.diet[list.diet])}>
+    <MyWeekScreen>
+      <p className={local.intro}>{copy.listIntro(copy.diet[list.diet])} {copy.noClaims}</p>
       <div className={local.layout}>
         <div className={local.main}>
           <p className={local.progress}>
@@ -155,6 +157,6 @@ export function ShoppingListPage() {
       >
         <span />
       </Dialog>
-    </FuelScreen>
+    </MyWeekScreen>
   );
 }

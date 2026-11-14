@@ -17,6 +17,10 @@ export type GymCardProps = {
   tier: TrustTier;
   km: number | null;
   open?: boolean;
+  /** One useful known fact, for example "Day pass KES 1,200" or "Phone listed". */
+  fact?: string;
+  /** Trust word override, for translations. */
+  tierWord?: string;
   selected?: boolean;
   /** Usually an <ActionRow>. Sits outside the link so each action stays its own target. */
   actions?: ReactNode;
@@ -30,7 +34,7 @@ function PlainLink({ href, className, children }: CardLinkProps) {
   return <a href={href} className={className}>{children}</a>;
 }
 
-export function GymCard({ name, href, place, kind, tier, km, open, selected = false, actions, renderLink = PlainLink, level = 3 }: GymCardProps) {
+export function GymCard({ name, href, place, kind, tier, km, open, fact, tierWord, selected = false, actions, renderLink = PlainLink, level = 3 }: GymCardProps) {
   const Heading = `h${level}` as const;
   const nameId = useId();
   const where = [place ?? "Area not listed", kind].filter(Boolean).join(", ");
@@ -42,13 +46,15 @@ export function GymCard({ name, href, place, kind, tier, km, open, selected = fa
       data-selected={selected || undefined}
     >
       <div className={styles.top}>
-        <DistanceBlock km={km} open={open} />
+        {/* No "No location" tile on every card: the block appears once it says something. */}
+        {(km != null || open) && <DistanceBlock km={km} open={open} />}
         <div className={styles.body}>
           <Heading className={styles.name} id={nameId}>
             {renderLink({ href, className: styles.link, children: name })}
           </Heading>
           <p className={styles.place}>{where}</p>
-          <TrustBadge tier={tier} />
+          {fact && <p className={styles.fact}>{fact}</p>}
+          <TrustBadge tier={tier} word={tierWord} />
         </div>
       </div>
       {actions && <div className={styles.actions}>{actions}</div>}

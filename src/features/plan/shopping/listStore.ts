@@ -1,6 +1,6 @@
 // The user's shopping list, saved on this device with their ticks and edits.
 import { useCallback, useState } from "react";
-import type { PlanSettings } from "../../lib/planner";
+import type { PlanSettings } from "../../../lib/planner";
 import { AISLES, type Aisle, type ListItem } from "./shoppingList";
 
 const LIST_KEY = "fmg-fuel-list-v1";

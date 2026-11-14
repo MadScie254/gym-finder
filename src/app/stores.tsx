@@ -88,3 +88,12 @@ export function useCompare(): CompareValue {
   if (!value) throw new Error("useCompare outside StoreProvider");
   return value;
 }
+
+/** For components that also render outside the app shell (tests, prerender): null without a provider. */
+export function useSavedMaybe(): SavedValue | null {
+  return useContext(SavedContext);
+}
+
+export function useCompareMaybe(): CompareValue | null {
+  return useContext(CompareContext);
+}

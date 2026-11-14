@@ -8,7 +8,7 @@ import "../../../ui/tokens.css";
 import "../../../ui/base.css";
 import "../../../styles.css";
 import FuelRoutes from "../index";
-import { PlanPage } from "../../plan/PlanPage";
+import PlanRoutes from "../../plan/index";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -17,7 +17,7 @@ createRoot(document.getElementById("root")!).render(
         <Routes>
           <Route path="/fuel/*" element={<FuelRoutes />} />
           <Route path="/live/*" element={<FuelRoutes mode="live" />} />
-          <Route path="/plan" element={<PlanPage />} />
+          <Route path="/plan/*" element={<PlanRoutes />} />
         </Routes>
       </main>
     </HashRouter>

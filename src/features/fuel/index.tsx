@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from "react-router";
+import { Link, Navigate, Route, Routes } from "react-router";
 import { Store } from "lucide-react";
 import { EmptyState, buttonClassName } from "../../ui";
 import { BasketPage } from "./BasketPage";
@@ -7,7 +7,6 @@ import { FuelHome, FuelTools } from "./FuelHome";
 import { FuelScreen } from "./FuelScreen";
 import { RealServices } from "./HomeSections";
 import { ConfirmationPage, OrdersPage } from "./OrderPages";
-import { ShoppingListPage } from "./ShoppingListPage";
 import { StorePage } from "./StorePage";
 import { useFuelCopy } from "./strings";
 import styles from "./Fuel.module.css";
@@ -16,7 +15,7 @@ import styles from "./Fuel.module.css";
 function LiveHome() {
   const copy = useFuelCopy();
   return (
-    <FuelScreen title={copy.fuel} content="real">
+    <FuelScreen title={copy.fuel} content="real" back="week">
       <div className={styles.homeGrid}>
         <div className={styles.column}>
           <EmptyState title={copy.liveTitle} icon={Store}>
@@ -47,7 +46,7 @@ export default function FuelRoutes({ mode = fuelMode() }: { mode?: "demo" | "liv
     return (
       <Routes>
         <Route index element={<LiveHome />} />
-        <Route path="list" element={<ShoppingListPage />} />
+        <Route path="list" element={<Navigate to="/plan/shopping" replace />} />
         <Route path="*" element={<LiveNotHere />} />
       </Routes>
     );
@@ -59,7 +58,7 @@ export default function FuelRoutes({ mode = fuelMode() }: { mode?: "demo" | "liv
       <Route path="basket" element={<BasketPage />} />
       <Route path="order/:orderId" element={<ConfirmationPage />} />
       <Route path="orders" element={<OrdersPage />} />
-      <Route path="list" element={<ShoppingListPage />} />
+      <Route path="list" element={<Navigate to="/plan/shopping" replace />} />
       <Route path="*" element={<FuelHome />} />
     </Routes>
   );

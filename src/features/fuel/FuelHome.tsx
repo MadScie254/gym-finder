@@ -16,7 +16,7 @@ import local from "./HomeSections.module.css";
 export function FuelTools() {
   const copy = useFuelCopy();
   const tools = [
-    { to: "/fuel/list", icon: ListChecks, name: copy.shoppingList, hint: copy.shoppingListHint },
+    { to: "/plan/shopping", icon: ListChecks, name: copy.shoppingList, hint: copy.shoppingListHint },
     { to: "/fuel/orders", icon: ReceiptText, name: copy.demoOrders, hint: copy.ordersIntro },
   ];
   return (
@@ -56,7 +56,7 @@ export function FuelHome({ now: fixedNow }: { now?: Date }) {
   }), [plan, now, town, origin]);
 
   return (
-    <FuelScreen title={copy.fuel} content="simulated">
+    <FuelScreen title={copy.fuel} content="simulated" back="week">
       <div className={styles.homeGrid}>
         <div className={styles.column}>
           <GuidanceCard guidance={result.guidance} settings={plan.settings} today={today} />
