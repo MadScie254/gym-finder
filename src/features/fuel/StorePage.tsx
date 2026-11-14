@@ -39,7 +39,7 @@ export function StorePage() {
   const focusItem = params.get("item");
 
   useEffect(() => {
-    if (focusItem) document.getElementById(`item-${focusItem}`)?.scrollIntoView({ block: "center" });
+    if (focusItem) document.getElementById(`item-${focusItem}`)?.scrollIntoView?.({ block: "center" });
   }, [focusItem]);
 
   if (!store) {
