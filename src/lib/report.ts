@@ -1,19 +1,42 @@
 import type { Venue } from "../data/types";
+import type { IssueKind, Submission } from "./backend";
 import { safeExternalUrl, safeWhatsAppUrl } from "./format";
 
-const SUPPORT = import.meta.env.VITE_SUPPORT_WHATSAPP as string | undefined;
-const EMAIL = import.meta.env.VITE_SUPPORT_EMAIL as string | undefined;
+/** Set in Vercel (plan D4). Never committed. Unset locally, and the flow says so. */
+const SUPPORT_WHATSAPP = import.meta.env.VITE_SUPPORT_WHATSAPP as string | undefined;
 
-export function reportHref(venue: Venue | null, issue: string): string | null {
-  const text = [
-    `Find My Gym report: ${issue}`,
-    venue ? `Venue: ${venue.name} (${venue.id})` : "Missing gym",
-    // Link to the gym on whatever host serves the app; never a made-up domain.
-    venue && typeof window !== "undefined" ? `${window.location.origin}/gym/${venue.slug}` : "",
+/** Read by the owner, so always English whatever language the visitor uses. */
+const ISSUE_TITLE: Record<IssueKind, string> = {
+  wrong_details: "Wrong details",
+  closed: "Closed for good",
+  duplicate: "Listed twice",
+  add_gym: "Missing gym",
+  claim: "Claim: I run this gym",
+  other: "Other",
+};
+
+export function supportNumber(raw: string | undefined = SUPPORT_WHATSAPP): string | null {
+  const digits = (raw ?? "").replace(/\D/g, "");
+  return digits.length >= 8 ? digits : null;
+}
+
+/** The message the support WhatsApp receives. Links use the host that serves the app, never an invented domain. */
+export function reportMessage(row: Pick<Submission, "kind" | "venueId" | "venueName" | "message" | "place" | "contact" | "id">, venue: Venue | null, origin = typeof window !== "undefined" ? window.location.origin : ""): string {
+  return [
+    `Find My Gym: ${ISSUE_TITLE[row.kind]}`,
+    `Gym: ${row.venueName}${row.venueId ? ` (${row.venueId})` : ""}`,
+    row.place ? `Where: ${row.place}` : "",
+    venue && origin ? `${origin}/gym/${venue.slug}` : "",
+    row.message ? `Note: ${row.message}` : "",
+    row.contact ? `Reply to: ${row.contact}` : "",
+    `Ref: ${row.id}`,
   ].filter(Boolean).join("\n");
-  if (SUPPORT) return safeWhatsAppUrl(`+${SUPPORT.replace(/\D/g, "")}`, text);
-  if (EMAIL) return `mailto:${EMAIL}?subject=${encodeURIComponent("Find My Gym report")}&body=${encodeURIComponent(text)}`;
-  return null;
+}
+
+/** A wa.me link to the support number, or null when this build has no number. Never a dead link. */
+export function supportWhatsAppHref(text: string, raw: string | undefined = SUPPORT_WHATSAPP): string | null {
+  const number = supportNumber(raw);
+  return number ? safeWhatsAppUrl(`+${number}`, text) : null;
 }
 
 export function osmEditUrl(venue: Venue): string {

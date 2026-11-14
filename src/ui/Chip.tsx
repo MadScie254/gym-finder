@@ -12,16 +12,19 @@ export type ChipProps = {
   countNoun?: string;
   icon?: LucideIcon;
   disabled?: boolean;
+  /** Opens a dialog instead of toggling: no pressed state, announced as a popup. */
+  opensDialog?: boolean;
 };
 
 /** A toggle filter. Selected chips turn signal yellow and gain a tick, so state never rests on colour alone. */
-export function Chip({ label, selected, onToggle, count, countNoun = "gyms", icon: Icon, disabled }: ChipProps) {
+export function Chip({ label, selected, onToggle, count, countNoun = "gyms", icon: Icon, disabled, opensDialog = false }: ChipProps) {
   const Lead = selected ? Check : Icon;
   return (
     <button
       type="button"
       className={styles.chip}
-      aria-pressed={selected}
+      aria-pressed={opensDialog ? undefined : selected}
+      aria-haspopup={opensDialog ? "dialog" : undefined}
       disabled={disabled}
       onClick={onToggle}
     >

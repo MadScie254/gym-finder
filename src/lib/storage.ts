@@ -1,11 +1,8 @@
-import type { Venue } from "../data/types";
 import { DEFAULT_PLAN_SETTINGS, type PlanSettings } from "./planner";
 
-const SAVED_KEY = "fmg-saved-venues-v1";
 const PLAN_KEY = "fmg-plan-settings-v1";
-const ONBOARDED_KEY = "fmg-onboarded";
 const INSTALL_DISMISS_KEY = "fmg-install-dismissed";
-const RECENT_SEARCH_KEY = "fmg-recent-searches";
+const RECENT_SEARCH_KEY = "fmg-recent-searches-v2";
 const LANG_KEY = "fmg-lang";
 
 function readJson<T>(key: string, fallback: T): T {
@@ -26,22 +23,6 @@ function writeJson(key: string, value: unknown): void {
   }
 }
 
-function isVenue(value: unknown): value is Venue {
-  if (value == null || typeof value !== "object") return false;
-  const venue = value as Venue;
-  return typeof venue.id === "string" && typeof venue.name === "string"
-    && Number.isFinite(venue.lat) && Number.isFinite(venue.lng);
-}
-
-export function loadSavedVenues(): Venue[] {
-  const stored = readJson<unknown>(SAVED_KEY, []);
-  return Array.isArray(stored) ? stored.filter(isVenue) : [];
-}
-
-export function saveSavedVenues(venues: Venue[]): void {
-  writeJson(SAVED_KEY, venues);
-}
-
 export function loadPlanSettings(): PlanSettings {
   const stored = readJson<Partial<PlanSettings>>(PLAN_KEY, {});
   return { ...DEFAULT_PLAN_SETTINGS, ...stored };
@@ -49,14 +30,6 @@ export function loadPlanSettings(): PlanSettings {
 
 export function savePlanSettings(settings: PlanSettings): void {
   writeJson(PLAN_KEY, settings);
-}
-
-export function hasOnboarded(): boolean {
-  return readJson<boolean>(ONBOARDED_KEY, false);
-}
-
-export function markOnboarded(): void {
-  writeJson(ONBOARDED_KEY, true);
 }
 
 export function hasDismissedInstall(): boolean {
@@ -67,14 +40,23 @@ export function dismissInstall(): void {
   writeJson(INSTALL_DISMISS_KEY, true);
 }
 
-export function loadRecentSearches(): string[] {
+export type RecentSearch = { label: string; href: string };
+
+export function loadRecentSearches(): RecentSearch[] {
   const stored = readJson<unknown>(RECENT_SEARCH_KEY, []);
-  return Array.isArray(stored) ? stored.filter((item): item is string => typeof item === "string") : [];
+  if (!Array.isArray(stored)) return [];
+  return stored.filter((item): item is RecentSearch => Boolean(item) && typeof item === "object"
+    && typeof (item as RecentSearch).label === "string" && typeof (item as RecentSearch).href === "string"
+    && (item as RecentSearch).href.startsWith("/")).slice(0, 5);
 }
 
-export function saveRecentSearch(query: string): void {
-  const next = [query, ...loadRecentSearches().filter((item) => item !== query)].slice(0, 8);
+export function saveRecentSearch(item: RecentSearch): void {
+  const next = [item, ...loadRecentSearches().filter((row) => row.href !== item.href)].slice(0, 5);
   writeJson(RECENT_SEARCH_KEY, next);
+}
+
+export function clearRecentSearches(): void {
+  writeJson(RECENT_SEARCH_KEY, []);
 }
 
 export function loadLanguage(): "en" | "sw" {

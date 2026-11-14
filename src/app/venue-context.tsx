@@ -1,24 +1,23 @@
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { loadVenues, type VenueIndex } from "../data/loadVenues";
-import type { LatLng, Venue } from "../data/types";
+import type { LatLng } from "../data/types";
+import { t, type CopyKey, type Lang, type Translate } from "../lib/i18n";
+import { isInKenya } from "../lib/kenya";
 import { loadLanguage, saveLanguage } from "../lib/storage";
-import type { Lang } from "../lib/i18n";
 
 type VenueContextValue = {
   index: VenueIndex | null;
   error: string | null;
   loading: boolean;
+  /** The visitor's position. Never sent anywhere; null until they share it. */
   origin: LatLng | null;
   setOrigin: (point: LatLng | null) => void;
-  locationNote: string | null;
-  setLocationNote: (note: string | null) => void;
-  selectedId: string | null;
-  setSelectedId: (id: string | null) => void;
+  /** Outcome of the last "Use my location", as a copy key. */
+  locationNote: CopyKey | null;
+  locate: () => void;
   lang: Lang;
   setLang: (lang: Lang) => void;
   offline: boolean;
-  visible: Venue[];
-  setVisible: (venues: Venue[]) => void;
 };
 
 const VenueContext = createContext<VenueContextValue | null>(null);
@@ -27,19 +26,16 @@ export function VenueProvider({ children }: { children: ReactNode }) {
   const [index, setIndex] = useState<VenueIndex | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [origin, setOrigin] = useState<LatLng | null>(null);
-  const [locationNote, setLocationNote] = useState<string | null>(null);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [lang, setLangState] = useState<Lang>("en");
+  const [locationNote, setLocationNote] = useState<CopyKey | null>(null);
+  const [lang, setLangState] = useState<Lang>(() => loadLanguage());
   const [offline, setOffline] = useState(typeof navigator !== "undefined" ? !navigator.onLine : false);
-  const [visible, setVisible] = useState<Venue[]>([]);
 
   useEffect(() => {
-    setLangState(loadLanguage());
     let active = true;
     loadVenues()
       .then((next) => { if (active) setIndex(next); })
       .catch((caught: unknown) => {
-        if (active) setError(caught instanceof Error ? caught.message : "Could not load gyms");
+        if (active) setError(caught instanceof Error ? caught.message : "load failed");
       });
     const on = () => setOffline(false);
     const off = () => setOffline(true);
@@ -52,25 +48,23 @@ export function VenueProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
+  useEffect(() => { document.documentElement.lang = lang; }, [lang]);
+
+  const locate = useCallback(() => {
+    if (!navigator.geolocation) { setLocationNote("locationUnsupported"); return; }
+    navigator.geolocation.getCurrentPosition((position) => {
+      const point = { lat: position.coords.latitude, lng: position.coords.longitude };
+      if (!isInKenya(point)) { setLocationNote("locationOutside"); setOrigin(null); return; }
+      setLocationNote("locationShared");
+      setOrigin(point);
+    }, () => { setLocationNote("locationDenied"); }, { enableHighAccuracy: false, timeout: 15_000, maximumAge: 300_000 });
+  }, []);
+
+  const setLang = useCallback((next: Lang) => { saveLanguage(next); setLangState(next); }, []);
+
   const value = useMemo<VenueContextValue>(() => ({
-    index,
-    error,
-    loading: !index && !error,
-    origin,
-    setOrigin,
-    locationNote,
-    setLocationNote,
-    selectedId,
-    setSelectedId,
-    lang,
-    setLang: (next) => {
-      saveLanguage(next);
-      setLangState(next);
-    },
-    offline,
-    visible,
-    setVisible,
-  }), [index, error, origin, locationNote, selectedId, lang, offline, visible]);
+    index, error, loading: !index && !error, origin, setOrigin, locationNote, locate, lang, setLang, offline,
+  }), [index, error, origin, locationNote, locate, lang, setLang, offline]);
 
   return <VenueContext.Provider value={value}>{children}</VenueContext.Provider>;
 }
@@ -79,4 +73,10 @@ export function useVenueContext(): VenueContextValue {
   const value = useContext(VenueContext);
   if (!value) throw new Error("useVenueContext outside provider");
   return value;
+}
+
+/** The translate function for the visitor's language. */
+export function useT(): Translate {
+  const { lang } = useVenueContext();
+  return useCallback((key, vars) => t(lang, key, vars), [lang]);
 }

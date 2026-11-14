@@ -1,68 +1,29 @@
+import { en, type CopyKey } from "./copy-en";
+import { sw } from "./copy-sw";
+
 export type Lang = "en" | "sw";
+export type { CopyKey };
+export type Vars = Record<string, string | number>;
+export type Translate = (key: CopyKey, vars?: Vars) => string;
 
-export const copy = {
-  en: {
-    brand: "Find My Gym",
-    headline: "Find a real gym in Kenya",
-    honest: "We do not invent hours, prices or ratings.",
-    explore: "Explore",
-    saved: "Saved",
-    plan: "Plan",
-    more: "More",
-    search: "Search gyms, areas, counties",
-    addressMissing: "Address not listed.",
-    hoursMissing: "Hours not listed — call to confirm.",
-    noContact: "No contact listed — report or suggest.",
-    call: "Call",
-    whatsapp: "Message on WhatsApp",
-    directions: "Directions",
-    website: "Website",
-    offline: "Offline — showing saved data.",
-    nearMe: "Near me",
-    filters: "Filters",
-    compare: "Compare",
-    commute: "Near commute line",
-    about: "About our data",
-    legal: "Legal",
-    report: "Is something wrong?",
-    listed: "Listed · call to confirm",
-    corroborated: "Corroborated · 2 sources",
-    verified: "Verified by Find My Gym",
-    unconfirmed: "Unconfirmed",
-  },
-  sw: {
-    brand: "Find My Gym",
-    headline: "Tafuta gym halisi Kenya",
-    honest: "Hatuvumbui saa, bei wala makadirio.",
-    explore: "Gundua",
-    saved: "Zilizohifadhiwa",
-    plan: "Mpango",
-    more: "Zaidi",
-    search: "Tafuta gym, maeneo, kaunti",
-    addressMissing: "Anwani haijaorodheshwa.",
-    hoursMissing: "Saa hazijaorodheshwa — piga simu kuthibitisha.",
-    noContact: "Hakuna mawasiliano — ripoti au pendekeza.",
-    call: "Piga simu",
-    whatsapp: "Tuma ujumbe WhatsApp",
-    directions: "Maelekezo",
-    website: "Tovuti",
-    offline: "Nje ya mtandao — tunaonyesha data iliyohifadhiwa.",
-    nearMe: "Karibu nami",
-    filters: "Vichujio",
-    compare: "Linganisha",
-    commute: "Karibu na njia",
-    about: "Kuhusu data yetu",
-    legal: "Sheria",
-    report: "Kuna kosa?",
-    listed: "Imeorodheshwa · piga simu kuthibitisha",
-    corroborated: "Imethibitishwa na vyanzo 2",
-    verified: "Imethibitishwa na Find My Gym",
-    unconfirmed: "Haijathibitishwa",
-  },
-} as const;
+export const copy: Record<Lang, Record<CopyKey, string>> = { en, sw };
 
-export type CopyKey = keyof typeof copy.en;
+/** Look up a string and fill `{name}` placeholders. A missing value leaves the placeholder visible, so it is caught in review. */
+export function t(lang: Lang, key: CopyKey, vars?: Vars): string {
+  const text = copy[lang][key] ?? copy.en[key];
+  if (!vars) return text;
+  return text.replace(/\{(\w+)\}/g, (match, name: string) => (name in vars ? String(vars[name]) : match));
+}
 
-export function t(lang: Lang, key: CopyKey): string {
-  return copy[lang][key];
+/** Pick the one or many form. Both languages here only need two forms. */
+export function plural(tr: Translate, n: number, one: CopyKey, many: CopyKey): string {
+  return n === 1 ? tr(one, { n }) : tr(many, { n });
+}
+
+/** "11 Nov 2026" in English, "11 Nov 2026" style in Kiswahili, always in Nairobi time. */
+export function formatDate(lang: Lang, iso: string | null | undefined): string {
+  if (!iso) return "";
+  const date = new Date(iso.length === 10 ? `${iso}T12:00:00+03:00` : iso);
+  if (Number.isNaN(date.getTime())) return iso;
+  return new Intl.DateTimeFormat(lang === "sw" ? "sw-KE" : "en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "Africa/Nairobi" }).format(date);
 }

@@ -1,0 +1,97 @@
+.plate {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-5) var(--space-4);
+  border: 1px solid var(--color-plate-edge);
+  border-radius: var(--radius-card);
+  background: var(--color-plate);
+  color: var(--color-on-plate);
+}
+
+.title {
+  font-size: var(--font-size-28);
+  color: var(--color-on-plate);
+}
+
+@media (min-width: 640px) {
+  .title {
+    font-size: var(--font-size-38);
+  }
+}
+
+.session {
+  color: var(--color-plate-muted);
+  font-weight: var(--font-weight-ui);
+}
+
+/* Where today stands: earlier, before, after. A real sequence, so a track. */
+.track {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-1);
+  margin: var(--space-1) 0 var(--space-2);
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  padding-top: var(--space-2);
+  border-top: 3px solid var(--color-plate-muted);
+  color: var(--color-plate-muted);
+  font-size: var(--font-size-14);
+  line-height: 1.25;
+}
+
+.step[aria-current="step"] {
+  border-top-color: var(--color-highlight);
+  color: var(--color-on-plate);
+  font-weight: var(--font-weight-strong);
+}
+
+.body {
+  max-width: 60ch;
+}
+
+.today {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  padding-top: var(--space-4);
+  border-top: 1px solid color-mix(in srgb, var(--color-on-plate) 22%, transparent);
+}
+
+.todayTitle {
+  font-size: var(--font-size-18);
+  color: var(--color-on-plate);
+}
+
+.meals {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.meal {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: var(--space-3);
+}
+
+.meal dt {
+  color: var(--color-plate-muted);
+}
+
+.meal dd {
+  margin: 0;
+}
+
+.fine {
+  margin-top: var(--space-2);
+  color: var(--color-plate-muted);
+  font-size: var(--font-size-14);
+}
+
+.link {
+  color: var(--color-on-plate);
+  font-weight: var(--font-weight-strong);
+}

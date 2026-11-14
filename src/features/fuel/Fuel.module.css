@@ -1,0 +1,197 @@
+/* Fuel screens. Tokens from src/ui/tokens.css only. */
+
+.screen {
+  min-height: 100%;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.frame {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--space-3) var(--space-4) var(--space-14);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: var(--target-min);
+}
+
+.back,
+.basketLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: var(--target-min);
+  padding: 0 var(--space-2);
+  margin-inline: calc(var(--space-2) * -1);
+  border-radius: var(--radius-control);
+  color: var(--color-link);
+  font-weight: var(--font-weight-strong);
+  text-decoration: none;
+}
+
+.back:hover,
+.basketLink:hover {
+  text-decoration: underline;
+}
+
+.count {
+  min-width: 24px;
+  padding: 1px 6px;
+  border-radius: var(--radius-tag);
+  background: var(--color-plate);
+  color: var(--color-on-plate);
+  font-stretch: var(--font-width-numeral);
+  font-weight: var(--font-weight-numeral);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.head {
+  display: grid;
+  gap: var(--space-2);
+  padding-block: var(--space-2) var(--space-6);
+}
+
+.title {
+  font-size: var(--font-size-38);
+}
+
+.intro {
+  max-width: 62ch;
+  color: var(--color-text-muted);
+}
+
+/* Home: one column on phones, two from 960 px. */
+.homeGrid {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.column {
+  display: grid;
+  gap: var(--space-8);
+  align-content: start;
+  min-width: 0;
+}
+
+@media (min-width: 960px) {
+  .homeGrid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: var(--space-10);
+  }
+}
+
+.section {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.sectionTitle {
+  font-size: var(--font-size-22);
+}
+
+.note {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-14);
+}
+
+/* A surface with hairline rows. Rows, not a stack of identical cards. */
+.panel {
+  border: var(--border-hairline);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+.rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rows > li + li {
+  border-top: var(--border-hairline);
+}
+
+.rowLink {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 64px;
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.rowLink:hover .rowName {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.rowLink:focus-visible {
+  outline-offset: -3px;
+}
+
+.rowMain {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.rowName {
+  font-weight: var(--font-weight-strong);
+  line-height: 1.3;
+}
+
+.rowMeta {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-14);
+}
+
+.chevron {
+  color: var(--color-text-muted);
+}
+
+.price {
+  display: grid;
+  justify-items: end;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.priceValue {
+  font-size: var(--font-size-22);
+  font-stretch: var(--font-width-numeral);
+  font-weight: var(--font-weight-numeral);
+  font-variant-numeric: tabular-nums;
+}
+
+.priceNote {
+  margin-top: 4px;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-12);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.fine {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-14);
+}
+
+.status {
+  min-height: 1.45em;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-14);
+}

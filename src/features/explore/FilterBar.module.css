@@ -1,0 +1,48 @@
+/* One row that scrolls sideways. Padding keeps the 3 px focus ring from clipping. */
+.bar {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding: 5px var(--space-4) 7px;
+  margin: 0;
+  scrollbar-width: none;
+}
+
+.bar::-webkit-scrollbar {
+  display: none;
+}
+
+.bar > * {
+  flex: none;
+}
+
+.dialogBody {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-strong);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.note {
+  margin-top: var(--space-2);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-14);
+}

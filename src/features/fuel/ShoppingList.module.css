@@ -1,0 +1,191 @@
+.layout {
+  display: grid;
+  gap: var(--space-8);
+}
+
+@media (min-width: 960px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: var(--space-10);
+    align-items: start;
+  }
+
+  .actions {
+    position: sticky;
+    top: var(--space-4);
+  }
+}
+
+.main {
+  display: grid;
+  gap: var(--space-6);
+  min-width: 0;
+}
+
+.progress {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  color: var(--color-text-muted);
+}
+
+.progressNumber {
+  color: var(--color-text);
+  font-size: var(--font-size-38);
+  font-stretch: var(--font-width-numeral);
+  font-weight: var(--font-weight-numeral);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.notice {
+  padding: var(--space-3) var(--space-4);
+  border: 1.5px dashed var(--color-line-strong);
+  border-radius: var(--radius-control);
+}
+
+.group {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.aisle {
+  font-size: var(--font-size-22);
+}
+
+.rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: var(--border-hairline);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 56px;
+  padding: var(--space-1) var(--space-2) var(--space-1) var(--space-4);
+}
+
+.row + .row {
+  border-top: var(--border-hairline);
+}
+
+.check {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  accent-color: var(--color-action);
+}
+
+.rowLabel {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2px var(--space-3);
+  min-width: 0;
+  padding-block: var(--space-2);
+  cursor: pointer;
+}
+
+.name {
+  font-weight: var(--font-weight-ui);
+}
+
+.quantity {
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.row[data-checked] .name,
+.row[data-checked] .quantity {
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.editForm,
+.addForm {
+  display: grid;
+  flex: 1;
+  gap: var(--space-3);
+  padding-block: var(--space-3);
+}
+
+.addForm {
+  padding: var(--space-4);
+  border: var(--border-hairline);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  justify-items: start;
+}
+
+@media (min-width: 640px) {
+  .addForm {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+    align-items: end;
+  }
+
+  .addForm > h2 {
+    grid-column: 1 / -1;
+  }
+}
+
+.editField {
+  display: grid;
+  gap: var(--space-1);
+  width: 100%;
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-strong);
+}
+
+.input {
+  width: 100%;
+  min-height: var(--target-min);
+  padding: 0 var(--space-3);
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-body);
+}
+
+.editActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.actions {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  padding: var(--space-5);
+  border: var(--border-hairline);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+.pair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.fallback {
+  width: 100%;
+  padding: var(--space-3);
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: var(--font-size-14);
+}

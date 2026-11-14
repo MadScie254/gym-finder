@@ -1,0 +1,85 @@
+.reason {
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-ui);
+}
+
+.storeName {
+  font-size: var(--font-size-18);
+  font-stretch: var(--font-width-sign);
+  font-weight: var(--font-weight-sign);
+  line-height: 1.15;
+}
+
+.fit {
+  max-width: 9rem;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-14);
+  text-align: right;
+  line-height: 1.25;
+}
+
+.picker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--space-3);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 12rem;
+}
+
+.label {
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-strong);
+}
+
+.select {
+  min-height: var(--target-min);
+  padding: 0 var(--space-8) 0 var(--space-3);
+  border: var(--border-control);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.tools {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.toolLink {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 64px;
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.toolLink:hover .toolName {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.toolLink:focus-visible {
+  outline-offset: -3px;
+}
+
+.toolIcon {
+  flex: none;
+  color: var(--color-link);
+}
+
+.toolText {
+  display: grid;
+  flex: 1;
+  gap: 2px;
+}
+
+.toolName {
+  font-weight: var(--font-weight-strong);
+}

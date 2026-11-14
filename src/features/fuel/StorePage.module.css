@@ -1,0 +1,148 @@
+/* The store header is this screen's bold element: a painted signboard. */
+.sign {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2);
+  margin: var(--space-2) 0 var(--space-6);
+  padding: var(--space-5);
+  border: 1px solid var(--color-plate-edge);
+  border-radius: var(--radius-card);
+  background: var(--color-plate);
+  color: var(--color-on-plate);
+}
+
+.sign > span:first-child {
+  color: var(--color-on-plate);
+}
+
+.signName {
+  font-size: var(--font-size-38);
+  color: var(--color-on-plate);
+}
+
+@media (min-width: 960px) {
+  .signName {
+    font-size: var(--font-size-52);
+  }
+}
+
+.signMeta {
+  color: var(--color-plate-muted);
+  font-weight: var(--font-weight-ui);
+}
+
+.layout {
+  display: grid;
+  gap: var(--space-8);
+}
+
+@media (min-width: 960px) {
+  .layout {
+    grid-template-columns: 300px minmax(0, 1fr);
+    gap: var(--space-10);
+    align-items: start;
+  }
+
+  .facts {
+    position: sticky;
+    top: var(--space-4);
+  }
+}
+
+.facts {
+  display: grid;
+  gap: var(--space-6);
+  align-content: start;
+}
+
+.factTitle {
+  font-size: var(--font-size-18);
+}
+
+.hours {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+}
+
+.hoursRow {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-1);
+  border-bottom: var(--border-hairline);
+}
+
+.hoursRow dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.menu {
+  display: grid;
+  gap: var(--space-6);
+  min-width: 0;
+}
+
+.menuSection {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.menuHeading {
+  font-size: var(--font-size-18);
+  color: var(--color-text-muted);
+}
+
+.items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: var(--border-hairline);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: var(--border-hairline);
+  scroll-margin: var(--space-14);
+}
+
+.item[data-focus] {
+  margin-inline: calc(var(--space-3) * -1);
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-control);
+  box-shadow: inset 4px 0 0 var(--color-action);
+  background: var(--color-surface);
+}
+
+.itemMain {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.add {
+  padding-inline: var(--space-3);
+}
+
+.live {
+  min-height: 1.45em;
+  margin-top: var(--space-4);
+  font-size: var(--font-size-14);
+}
+
+.dock {
+  position: sticky;
+  bottom: var(--space-3);
+  z-index: 2;
+  max-width: 560px;
+  margin: var(--space-4) 0 0 auto;
+  padding: var(--space-2);
+  border-radius: var(--radius-card);
+  background: var(--color-bg);
+  box-shadow: var(--shadow-menu);
+}
