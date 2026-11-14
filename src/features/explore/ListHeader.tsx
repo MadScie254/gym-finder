@@ -1,5 +1,4 @@
 import { useT, useVenueContext } from "../../app/venue-context";
-import { plural } from "../../lib/i18n";
 import type { SortOrder } from "../../lib/urlState";
 import type { RouteResults } from "./useRouteResults";
 import styles from "./ExploreList.module.css";
@@ -30,7 +29,7 @@ export function ListHeader({ route }: { route: RouteResults }) {
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>{title}</h1>
-      <p className={styles.sub}>{plural(tr, results.list.length, "gymsOne", "gymsMany")}{reference ? `. ${reference}` : ""}</p>
+      {reference && <p className={styles.sub}>{reference}.</p>}
       {locationNote && locationNote !== "locationShared" && <p className={styles.note}>{tr(locationNote)}</p>}
       {results.reference && (
         <div className={styles.sort} role="group" aria-label={tr("filterGroupSort")}>

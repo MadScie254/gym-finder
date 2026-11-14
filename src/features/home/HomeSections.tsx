@@ -4,7 +4,7 @@ import { useReport } from "../report/report-store";
 import { useT, useVenueContext } from "../../app/venue-context";
 import type { Venue } from "../../data/types";
 import { formatDate, type CopyKey } from "../../lib/i18n";
-import { areaPath } from "../../lib/places";
+import { countyPath } from "../../lib/places";
 import { TrustBadge } from "../../ui";
 import { placeOf } from "../results/ResultCard";
 import styles from "./Home.module.css";
@@ -15,18 +15,16 @@ function visible(venues: readonly Venue[]): Venue[] {
   return venues.filter((venue) => venue.trust.tier !== "unconfirmed");
 }
 
-/** Towns with at least three listed gyms, counted from the records people can see. A compact index, not cards. */
+/** Counties with listed gyms, counted from the records people can see. A compact index, not cards. */
 export function PlaceIndex() {
   const tr = useT();
   const { index } = useVenueContext();
   const towns = useMemo(() => {
     const counts = new Map<string, number>();
     for (const venue of visible(index?.venues ?? [])) {
-      const town = venue.town ?? venue.county;
-      if (town) counts.set(town, (counts.get(town) ?? 0) + 1);
+      if (venue.county) counts.set(venue.county, (counts.get(venue.county) ?? 0) + 1);
     }
     return [...counts.entries()]
-      .filter(([, n]) => n >= 3)
       .sort((a, b) => Number(LEAD.includes(b[0])) - Number(LEAD.includes(a[0])) || b[1] - a[1] || a[0].localeCompare(b[0]));
   }, [index]);
 
@@ -38,7 +36,7 @@ export function PlaceIndex() {
         <ul role="list" className={styles.places}>
           {towns.map(([name, n]) => (
             <li key={name}>
-              <Link to={areaPath(name)} className={styles.place}>
+              <Link to={countyPath(name)} className={styles.place}>
                 <span>{name}</span>
                 <span className={styles.count}>{n}<span className="sr-only"> {tr("groupGyms").toLowerCase()}</span></span>
               </Link>

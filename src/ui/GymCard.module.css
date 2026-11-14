@@ -63,13 +63,18 @@
 }
 
 .place {
-  margin-bottom: var(--space-1);
   color: var(--color-text-muted);
   font-size: var(--font-size-14);
 }
 
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+}
+
 .fact {
-  margin-bottom: var(--space-1);
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-ui);
 }

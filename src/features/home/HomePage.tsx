@@ -30,7 +30,7 @@ export function HomePage() {
         <h1 id="home-title" className={styles.headline}>{tr("homeHeadline")}</h1>
         <p className={styles.lede}>{tr("homeLede")}</p>
         <div className={styles.searchRow}>
-          <GymSearch label={tr("homeSearchLabel")} placeholder={tr("homeSearchPlaceholder")} />
+          <GymSearch label={tr("homeSearchLabel")} placeholder={tr("homeSearchPlaceholder")} withLocate={false} />
         </div>
         <div className={styles.heroActions}>
           <Link to="/search" className={buttonClassName("primary")}>{tr("homeFind")}</Link>

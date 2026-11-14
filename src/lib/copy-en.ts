@@ -333,7 +333,7 @@ export const en = {
   homeAllSaved: "All {n} saved gyms",
   homeContinueWeek: "Continue your week",
   homePlaces: "Explore by location",
-  homePlacesLede: "Towns with at least three listed gyms. Numbers count the gyms you can see in the list.",
+  homePlacesLede: "Counties with listed gyms. Numbers count the gyms you can see in the list.",
   homeShortlistTitle: "Build your shortlist",
   homeShortlistBody: "Save the gyms that fit, keep your own notes on each, and compare up to three side by side.",
   homeWeekTitle: "Plan your first week",

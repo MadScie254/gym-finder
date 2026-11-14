@@ -53,8 +53,10 @@ export function GymCard({ name, href, place, kind, tier, km, open, fact, tierWor
             {renderLink({ href, className: styles.link, children: name })}
           </Heading>
           <p className={styles.place}>{where}</p>
-          {fact && <p className={styles.fact}>{fact}</p>}
-          <TrustBadge tier={tier} word={tierWord} />
+          <div className={styles.facts}>
+            <TrustBadge tier={tier} word={tierWord} />
+            {fact && <p className={styles.fact}>{fact}</p>}
+          </div>
         </div>
       </div>
       {actions && <div className={styles.actions}>{actions}</div>}

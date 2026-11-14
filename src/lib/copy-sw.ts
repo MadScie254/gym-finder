@@ -338,7 +338,7 @@ export const sw: Record<CopyKey, string> = {
   homeAllSaved: "Gym zote {n} ulizohifadhi",
   homeContinueWeek: "Endelea na wiki yako",
   homePlaces: "Gundua kwa mahali",
-  homePlacesLede: "Miji yenye gym tatu au zaidi. Nambari zinahesabu gym unazoweza kuona kwenye orodha.",
+  homePlacesLede: "Kaunti zenye gym zilizoorodheshwa. Nambari zinahesabu gym unazoweza kuona kwenye orodha.",
   homeShortlistTitle: "Tengeneza orodha yako fupi",
   homeShortlistBody: "Hifadhi gym zinazokufaa, weka maelezo yako kwa kila moja, na ulinganishe hadi tatu kando kwa kando.",
   homeWeekTitle: "Panga wiki yako ya kwanza",

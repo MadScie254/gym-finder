@@ -8,7 +8,7 @@ import { NO_FILTERS, parseFilters, queryString, writeFilters } from "../../lib/u
 import { SearchField } from "../../ui/SearchField";
 
 /** The one search box: gyms, areas, landmarks and counties, grouped (plan G2). */
-export function GymSearch({ label, placeholder }: { label?: string; placeholder?: string }) {
+export function GymSearch({ label, placeholder, withLocate = true }: { label?: string; placeholder?: string; withLocate?: boolean }) {
   const tr = useT();
   const { index, locate } = useVenueContext();
   const navigate = useNavigate();
@@ -63,7 +63,7 @@ export function GymSearch({ label, placeholder }: { label?: string; placeholder?
       }}
       emptyText={tr("searchEmpty")}
       countText={(n) => tr("searchSuggestions", { n })}
-      onLocate={locate}
+      onLocate={withLocate ? locate : undefined}
       locateLabel={tr("locate")}
     />
   );
