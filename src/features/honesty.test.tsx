@@ -17,7 +17,7 @@ const venue: Venue = {
 
 it("does not turn straight-line distance into an estimated walk on gym pages", () => {
   const html = renderToStaticMarkup(<MemoryRouter><Detail venue={venue} lang="en" origin={{ lat: -1.29, lng: 36.81 }} /></MemoryRouter>);
-  expect(html).toContain("straight-line");
+  expect(html).toContain("straight line");
   expect(html).not.toContain("min walk");
 });
 

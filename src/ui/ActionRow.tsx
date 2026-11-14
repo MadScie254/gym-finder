@@ -12,6 +12,8 @@ export type RowAction = {
   onClick?: () => void;
   /** Toggle state, for Save. */
   pressed?: boolean;
+  /** Disabled action, for example Compare when three gyms are selected. */
+  disabled?: boolean;
   /** Opens another site or app. Adds rel=noopener. */
   external?: boolean;
 };
@@ -47,7 +49,7 @@ export function ActionRow({ actions, label }: ActionRowProps) {
                   {action.label}
                 </Button>
               ) : (
-                <Button variant={variant} icon={action.icon} onClick={action.onClick} aria-pressed={action.pressed} title={action.label} wide>
+                <Button variant={variant} icon={action.icon} onClick={action.onClick} aria-pressed={action.pressed} disabled={action.disabled} title={action.label} wide>
                   {action.label}
                 </Button>
               )}

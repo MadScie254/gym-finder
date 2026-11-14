@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Map as MapLibreMap, NavigationControl, setWorkerUrl, type GeoJSONSource, type MapLayerMouseEvent, type PaddingOptions } from "maplibre-gl";
-import maplibreWorker from "maplibre-gl/dist/maplibre-gl-worker.mjs?url";
+import maplibreWorker from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { MapFocus } from "../../app/explore-context";
 import { prefersReducedMotion } from "../../app/useMediaQuery";
@@ -75,6 +75,7 @@ export function MapPane(props: MapPaneProps) {
       const reduced = prefersReducedMotion();
       addGymLayers(map, reduced ? PIN_RADIUS : 0);
       ready.current = true;
+      if (ref.current) ref.current.dataset.ready = "true";
       sync(map);
       if (!reduced) requestAnimationFrame(() => dropPinsIn(map));
       const { focus, padding } = latest.current;

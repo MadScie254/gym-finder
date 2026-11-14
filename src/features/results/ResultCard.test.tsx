@@ -46,6 +46,13 @@ it("lets a visitor select a result for comparison without an internal ID", async
 
 it("labels distance as straight-line rather than claiming a walking time", async () => {
   await act(async () => root.render(<Harness />));
-  expect(container.textContent).toContain("straight-line");
+  expect(container.textContent).toContain("straight line");
   expect(container.textContent).not.toContain("min walk");
+});
+
+it("keeps Compare unavailable after three other gyms are selected", async () => {
+  await act(async () => root.render(<MemoryRouter><ResultCard venue={venue} origin={null} selected={false}
+    saved={false} onSave={() => {}} compared={false} onCompare={() => {}} compareDisabled /></MemoryRouter>));
+  const compare = [...container.querySelectorAll("button")].find((item) => item.textContent === "Compare");
+  expect(compare?.disabled).toBe(true);
 });
