@@ -30,7 +30,7 @@ Numbers to start from, taken from the mockup (light theme):
 - Palette: 700 px wide, 7 vh from the top, search row 60 px, result rows 48 px, 540 px list height.
 - Home hero: 66 px condensed, two lines. County tiles use a 34 px condensed numeral.
 - Send button: label swap 0.26 s ease-out. Plane loop 1.5 s: it leaves up and right by 30 px and 26 px while fading out (to 38%), reappears from down and left (39%), settles at the rest position (72% to 100%), and repeats while hovered.
-- Texture: 22 contour levels; minor lines plate at .11, every fourth line cobalt at .26. These opacities are the starting point and are lowered if text on the texture fails contrast (see below).
+- Texture: 22 contour levels; minor lines plate at .11, every fourth line cobalt at .26 in the mockup. Phase 1 uses .08 and .10, the strongest values that keep text on the texture above its minimums (see Contrast).
 
 ## Goals, non-goals, anti-goals
 
@@ -83,7 +83,7 @@ Add to `tokens.css`, light and dark: `--glass-bg`, `--glass-bg-strong`, `--glass
 
 Texture: topographic contour lines as one SVG in `src/ui/texture/`, generated deterministically by `scripts/contours.mjs` and committed. Target at most 60 KB raw (the mockup's was 317 KB: use fewer levels, longer polylines, rounded coordinates). Minor lines plate at about 11%, every fourth line cobalt at about 26%. Dark theme uses lighter lines at lower opacity. The texture sits on `body` only; phones show it at reduced strength under a wash.
 
-Contrast: extend `scripts/contrast.mjs` with glass pairs. For each text and icon colour used on a glass surface, composite the glass over pure black and over pure white and require the usual minimums on both. Every real backdrop (texture, map tiles, list content, scrim) lies between those two, so passing on both covers them all. Surfaces that carry text over content we do not control (compare tray, map controls, dialogs, the palette) use `--glass-bg-strong`. Text drawn straight on the textured page must pass against the darkest texture pixel (a major line over chalk); if it does not, the texture opacity is lowered, not the text colour. The sidebar and top bar sit beside the scroll area, so page content never scrolls under them.
+Contrast: extend `scripts/contrast.mjs` with glass pairs. Sidebar and top bar glass only ever sits on the textured page, so its text, muted text, links, focus ring and control boundary are checked with each texture line composited under the glass, taking the worst. Glass that can sit over anything (palette, dialogs, map controls, compare tray) uses `--color-glass-strong` and the glass text tokens `--color-text-muted-glass` and `--color-link-glass`, and is checked over pure black and pure white, which bound every real backdrop. Text drawn straight on the textured page is checked against the worst texture pixel (the darkest in the light theme, the lightest in the dark theme). When a pair fails, a token changes, never the check: in phase 1 the texture lines were lowered to 8% and 10%, a glass-specific control-boundary token was added, and the dark strong glass became 86% opaque. The sidebar and top bar sit beside the scroll area, so page content never scrolls under them.
 
 ### Shell
 
