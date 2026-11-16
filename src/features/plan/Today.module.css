@@ -1,28 +1,11 @@
-.card {
-  display: grid;
-  border: var(--border-hairline);
-  border-radius: var(--radius-card);
-  background: var(--color-surface);
-  overflow: hidden;
-}
-
-/* The one bold element on Today: the session, painted on iron plate. */
-.plate {
+/* The session's name and where and when it is. The poster around it supplies the picture, the tab and the keyline. */
+.head {
   display: grid;
   gap: var(--space-1);
-  padding: var(--space-5);
-  background: var(--color-plate);
-  color: var(--color-on-plate);
-}
-
-.lead {
-  color: var(--color-plate-muted);
-  font-weight: var(--font-weight-strong);
 }
 
 .sessionTitle {
   margin-bottom: var(--space-2);
-  color: var(--color-on-plate);
   font-size: var(--font-size-38);
 }
 
@@ -33,7 +16,7 @@
 }
 
 .meta {
-  color: var(--color-plate-muted);
+  color: var(--color-text-muted);
   font-variant-numeric: tabular-nums;
 }
 
@@ -45,18 +28,18 @@
   font-weight: var(--font-weight-strong);
 }
 
-.plateLink {
-  color: var(--color-on-plate);
-}
-
-.plateLink:focus-visible {
-  outline-color: var(--color-on-plate);
+.placeLink {
+  color: var(--color-link);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
 }
 
 .body {
   display: grid;
   gap: var(--space-3);
-  padding: var(--space-3) var(--space-5) var(--space-5);
+  margin-top: var(--space-3);
+  padding-top: var(--space-2);
+  border-top: var(--border-hairline);
 }
 
 .toggle {
@@ -127,10 +110,11 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* A set you have done is tinted cobalt and bold, with a tick. It is not a dark block. */
 .setButton[aria-pressed="true"] {
-  border-color: var(--color-plate-edge);
-  background: var(--color-plate);
-  color: var(--color-on-plate);
+  border-color: var(--color-action);
+  background: color-mix(in srgb, var(--color-action) 9%, var(--color-surface));
+  color: var(--color-link);
   font-weight: var(--font-weight-strong);
 }
 

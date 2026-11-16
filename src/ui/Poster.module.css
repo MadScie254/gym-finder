@@ -1,0 +1,130 @@
+/* A painted sign board. The keyline is the plate ink in light mode and its lighter edge colour in dark mode.
+   There is no shadow and no scrim: the picture is shown as it is, and the tab is the only lettering on it. */
+.poster {
+  --keyline: var(--color-plate-edge);
+  --keyline-width: 3px;
+  --picture-ratio: 2 / 1;
+  --tab-height: 34px;
+  display: grid;
+  border: var(--keyline-width) solid var(--keyline);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+@media (min-width: 640px) {
+  .poster {
+    --picture-ratio: 3 / 1;
+  }
+}
+
+/* The hero keeps its picture shorter on a phone, so the search stays high on the screen. */
+.poster[data-layout="side"] {
+  --picture-ratio: 5 / 2;
+}
+
+.picture {
+  position: relative;
+  display: grid;
+}
+
+/* Inside the keyline, so the picture's corners follow the poster's. */
+.frame {
+  position: relative;
+  min-height: 0;
+  aspect-ratio: var(--picture-ratio);
+  overflow: hidden;
+  border-bottom: var(--keyline-width) solid var(--keyline);
+  border-radius: calc(var(--radius-card) - var(--keyline-width)) calc(var(--radius-card) - var(--keyline-width)) 0 0;
+  background: var(--color-sunk);
+}
+
+.frame > * {
+  position: absolute;
+  inset: 0;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tab-height);
+  padding: 0 var(--space-3);
+  border: var(--keyline-width) solid var(--keyline);
+  border-radius: var(--radius-tag);
+  background: var(--color-highlight);
+  color: var(--color-on-highlight);
+  font-size: var(--font-size-18);
+  font-stretch: var(--font-width-sign);
+  font-weight: var(--font-weight-sign);
+  letter-spacing: var(--tracking-sign);
+  line-height: 1.1;
+}
+
+/* Lettered across the seam: half on the picture, half on the board. */
+.picture > .tab {
+  position: absolute;
+  bottom: 0;
+  left: var(--space-4);
+  max-width: calc(100% - 2 * var(--space-4));
+  transform: translateY(50%);
+}
+
+.board {
+  display: grid;
+  gap: var(--space-1);
+  align-content: start;
+  padding: var(--space-5);
+}
+
+/* Clears the lower half of the tab. */
+.poster[data-photo] .board {
+  padding-top: calc(var(--tab-height) / 2 + var(--space-3));
+}
+
+/* With no picture the tab has no seam to sit on, so it heads the text. */
+.board > .tab {
+  justify-self: start;
+  margin-bottom: var(--space-2);
+}
+
+@media (min-width: 760px) {
+  .poster[data-layout="side"][data-photo] {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+  }
+
+  .poster[data-layout="side"] .picture {
+    order: 2;
+  }
+
+  .poster[data-layout="side"] .frame {
+    aspect-ratio: auto;
+    border-bottom: 0;
+    border-left: var(--keyline-width) solid var(--keyline);
+    border-radius: 0 calc(var(--radius-card) - var(--keyline-width)) calc(var(--radius-card) - var(--keyline-width)) 0;
+  }
+
+  .poster[data-layout="side"][data-photo] .board {
+    padding-top: var(--space-5);
+  }
+}
+
+/* On paper the picture is left out and the tab stays, above the text. */
+@media print {
+  .poster {
+    break-inside: avoid;
+  }
+
+  .frame {
+    display: none;
+  }
+
+  .picture > .tab {
+    position: static;
+    justify-self: start;
+    margin: var(--space-3) 0 0 var(--space-4);
+    transform: none;
+  }
+
+  .poster[data-photo] .board {
+    padding-top: var(--space-3);
+  }
+}

@@ -1,23 +1,19 @@
-/* The store header is this screen's bold element: a painted signboard. */
+/* The store header is this screen's bold element: a painted signboard. A chalk face, a thick ink rim and a keyline
+   stamped inside it, like the distance plate. No picture: this store is invented, and a photograph would pass for its. */
 .sign {
   display: grid;
   justify-items: start;
   gap: var(--space-2);
   margin: var(--space-2) 0 var(--space-6);
   padding: var(--space-5);
-  border: 1px solid var(--color-plate-edge);
+  border: 3px solid var(--color-plate-edge);
   border-radius: var(--radius-card);
-  background: var(--color-plate);
-  color: var(--color-on-plate);
-}
-
-.sign > span:first-child {
-  color: var(--color-on-plate);
+  background: var(--color-surface);
+  box-shadow: inset 0 0 0 3px var(--color-surface), inset 0 0 0 4px var(--color-plate-edge);
 }
 
 .signName {
   font-size: var(--font-size-38);
-  color: var(--color-on-plate);
 }
 
 @media (min-width: 960px) {
@@ -27,7 +23,7 @@
 }
 
 .signMeta {
-  color: var(--color-plate-muted);
+  color: var(--color-text-muted);
   font-weight: var(--font-weight-ui);
 }
 

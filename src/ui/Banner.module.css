@@ -10,8 +10,9 @@
 }
 
 .banner[data-kind="offline"] {
-  background: var(--color-inverse);
-  color: var(--color-on-inverse);
+  border-block: 3px solid var(--color-plate-edge);
+  background: var(--color-highlight);
+  color: var(--color-on-highlight);
 }
 
 .banner[data-kind="update"] {

@@ -1,0 +1,66 @@
+[
+  {
+    "slug": "treadmills",
+    "pexelsId": 4716814,
+    "title": "Black and gray exercise equipment",
+    "author": "Denys Gromov",
+    "authorUrl": "https://www.pexels.com/@jdgromov/",
+    "page": "https://www.pexels.com/photo/black-and-gray-exercise-equipment-4716814/",
+    "alt": "Treadmills in a bright gym with a wooden floor and tall windows",
+    "focus": "40% 60%",
+    "uses": "The picture on the Home page. The Today poster for a steady cardio session."
+  },
+  {
+    "slug": "dumbbells",
+    "pexelsId": 40371835,
+    "title": "Dumbbells on Gym Rack for Fitness Training",
+    "author": "大 董",
+    "page": "https://www.pexels.com/photo/dumbbells-on-gym-rack-for-fitness-training-40371835/",
+    "alt": "Rows of black dumbbells on a rack in a gym",
+    "focus": "60% 45%",
+    "uses": "The Today poster for Full body A. The empty state when every session is done."
+  },
+  {
+    "slug": "boxing-room",
+    "pexelsId": 5750886,
+    "title": "Hanging punching bags in a gym",
+    "author": "Tima Miroshnichenko",
+    "page": "https://www.pexels.com/photo/hanging-punching-bags-in-a-gym-5750886/",
+    "alt": "A gym room with hanging punching bags, wall bars and a blue and red mat",
+    "focus": "62% 35%",
+    "uses": "The Today poster for a mobility and recovery session. The empty states for Compare and for a paused plan."
+  },
+  {
+    "slug": "functional-floor",
+    "pexelsId": 9545914,
+    "title": "Gym equipment inside the fitness gym",
+    "author": "TUBARONES PHOTOGRAPHY",
+    "page": "https://www.pexels.com/photo/gym-equipment-inside-the-fitness-gym-9545914/",
+    "alt": "A gym with ski machines, shelves of weights and a rope hanging from the ceiling",
+    "focus": "45% 55%",
+    "uses": "The Today poster for Full body B. The empty state on Saved."
+  },
+  {
+    "slug": "ugali-plates",
+    "pexelsId": 37100094,
+    "title": "Traditional Burundian Meal with Ugali and Beans",
+    "author": "Lionel Ntasano",
+    "page": "https://www.pexels.com/photo/traditional-burundian-meal-with-ugali-and-beans-37100094/",
+    "alt": "Plates of ugali, beans and stew on a patterned cloth",
+    "focus": "50% 50%",
+    "quality": 60,
+    "widths": [480, 800],
+    "uses": "The poster on Order food. The empty state for the shopping list."
+  },
+  {
+    "slug": "meal-bowl",
+    "pexelsId": 26587857,
+    "title": "Baked meat and rice in bowl",
+    "author": "Luiz Henrique Mendes",
+    "page": "https://www.pexels.com/photo/baked-meat-and-rice-in-bowl-26587857/",
+    "alt": "A clay bowl with grilled meat, greens and cornmeal",
+    "focus": "50% 55%",
+    "crop": [0, 0.2333, 1, 0.8167],
+    "uses": "Today's menu on Meals."
+  }
+]

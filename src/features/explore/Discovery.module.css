@@ -54,9 +54,11 @@
   border-left: var(--border-control);
 }
 
+/* The chosen view is tinted cobalt and underlined, not filled dark. */
 .switch button[aria-pressed="true"] {
-  background: var(--color-plate);
-  color: var(--color-on-plate);
+  background: color-mix(in srgb, var(--color-action) 9%, var(--color-surface));
+  box-shadow: inset 0 -3px 0 var(--color-action);
+  color: var(--color-link);
   font-weight: var(--font-weight-sign);
 }
 

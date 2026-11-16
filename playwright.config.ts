@@ -1,6 +1,7 @@
 import { defineConfig } from "@playwright/test";
 
-const PORT = 4173;
+// Parallel checkouts each set their own, so two runs never share a server.
+const PORT = Number(process.env.E2E_PORT ?? 4173);
 
 // Headless WebGL for MapLibre: SwiftShader through ANGLE.
 const CHROMIUM_ARGS = [

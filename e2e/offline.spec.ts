@@ -32,3 +32,16 @@ test("after one visit a gym page and the list open offline, and say so", async (
   await expect(page.getByRole("article").first()).toBeVisible();
   await expect(page.getByText(/^Offline\. Showing the gym list from /)).toBeVisible();
 });
+
+test("a picture is kept after it has been shown, so it is still there offline", async ({ page, context }) => {
+  await page.goto("/", { waitUntil: "load" });
+  await page.evaluate(async () => { await navigator.serviceWorker.ready; });
+  // The first load happened before the worker took control, so reload: now the picture goes through the worker.
+  await page.reload({ waitUntil: "load" });
+  const image = page.locator("section[data-photo] img").first();
+  await expect.poll(() => image.evaluate(async (element: HTMLImageElement) => element.complete && element.naturalWidth > 0 && Boolean(await caches.match(element.currentSrc))), { timeout: 30_000 }).toBe(true);
+
+  await context.setOffline(true);
+  await page.reload({ waitUntil: "load" });
+  await expect.poll(() => image.evaluate((element: HTMLImageElement) => element.complete && element.naturalWidth > 0)).toBe(true);
+});

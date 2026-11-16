@@ -51,13 +51,13 @@ export function TodayPage({ now: fixedNow }: { now?: Date }) {
   let main;
   if (plan.paused) {
     main = (
-      <EmptyState title={copy.pausedTitle} icon={Pause} action={<Button variant="primary" icon={Play} onClick={() => plan.setPaused(false)}>{copy.resume}</Button>}>
+      <EmptyState title={copy.pausedTitle} photo="boxing-room" action={<Button variant="primary" icon={Play} onClick={() => plan.setPaused(false)}>{copy.resume}</Button>}>
         <p>{copy.pausedBody}</p>
       </EmptyState>
     );
   } else if (!session) {
     main = (
-      <EmptyState title={copy.allDoneTitle} icon={CalendarClock} action={<Button variant="primary" icon={RotateCcw} onClick={plan.resetProgress}>{copy.restart}</Button>}>
+      <EmptyState title={copy.allDoneTitle} photo="dumbbells" action={<Button variant="primary" icon={RotateCcw} onClick={plan.resetProgress}>{copy.restart}</Button>}>
         <p>{copy.allDoneBody}</p>
       </EmptyState>
     );

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import { ExternalLink, ListChecks, Store } from "lucide-react";
-import { DemoTag, buttonClassName } from "../../ui";
+import { DemoTag, Poster, buttonClassName } from "../../ui";
 import { nairobiNow } from "../../lib/nairobi";
 import type { PlanSettings } from "../../lib/planner";
 import { MyWeekScreen } from "./MyWeekScreen";
@@ -38,31 +38,41 @@ export function MealsPage({ now: fixedNow }: { now?: Date }) {
           <section className={styles.section} aria-labelledby="meals-title">
             <h2 id="meals-title" className={styles.sectionTitle}>{copy.mealsTitle}</h2>
             <ol className={local.days} role="list">
-              {plan.meals.map((day) => (
-                <li key={day.day} className={local.day} data-today={day.day === today || undefined}>
-                  <h3 className={local.dayName}>
-                    {copy.weekday[day.day]}
-                    {day.day === today && <span className={local.todayTag}>{copy.todayTag}</span>}
-                  </h3>
-                  <dl className={local.slots}>
-                    {MEAL_SLOTS.map((slot) => {
-                      const entry = mealEntry(diet, day.day, slot);
-                      const swaps = entry ? swapKeys(entry).map((key) => SWAPS[lang][key]).filter(Boolean) : [];
-                      return (
-                        <div key={slot} className={local.slot}>
-                          <dt>{copy.slot[slot]}</dt>
-                          <dd>
-                            <span>{day[slot]}</span>
-                            {swaps.length > 0 && (
-                              <span className={local.swaps}>{copy.swapTitle}: {swaps.join(". ")}.</span>
-                            )}
-                          </dd>
-                        </div>
-                      );
-                    })}
-                  </dl>
-                </li>
-              ))}
+              {plan.meals.map((day) => {
+                const isToday = day.day === today;
+                const menu = (
+                  <>
+                    <h3 className={local.dayName}>{copy.weekday[day.day]}</h3>
+                    <dl className={local.slots}>
+                      {MEAL_SLOTS.map((slot) => {
+                        const entry = mealEntry(diet, day.day, slot);
+                        const swaps = entry ? swapKeys(entry).map((key) => SWAPS[lang][key]).filter(Boolean) : [];
+                        return (
+                          <div key={slot} className={local.slot}>
+                            <dt>{copy.slot[slot]}</dt>
+                            <dd>
+                              <span>{day[slot]}</span>
+                              {swaps.length > 0 && (
+                                <span className={local.swaps}>{copy.swapTitle}: {swaps.join(". ")}.</span>
+                              )}
+                            </dd>
+                          </div>
+                        );
+                      })}
+                    </dl>
+                  </>
+                );
+                // Today is the one bold element on Meals: its menu is a poster, the other days are plain cards.
+                return isToday ? (
+                  <li key={day.day} className={local.today} aria-current="date">
+                    <Poster as="div" photo="meal-bowl" tab={copy.todayTag} sizes="(min-width: 1100px) 520px, (min-width: 640px) 90vw, 100vw">
+                      {menu}
+                    </Poster>
+                  </li>
+                ) : (
+                  <li key={day.day} className={local.day}>{menu}</li>
+                );
+              })}
             </ol>
           </section>
         </div>

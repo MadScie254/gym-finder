@@ -1,10 +1,11 @@
 import { useId, useState } from "react";
 import { Link } from "react-router";
 import { Check, ChevronDown, MapPin } from "lucide-react";
-import { Button } from "../../ui";
+import { Button, Poster } from "../../ui";
 import { usePlan } from "./PlanContext";
 import { splitExercise } from "./exercise";
 import { setCount, type DaySession, type Focus } from "./schedule";
+import { sessionPhoto } from "./sessionPhoto";
 import { usePlanCopy } from "./strings";
 import styles from "./Today.module.css";
 
@@ -39,7 +40,10 @@ function Exercise({ session, index, text }: { session: DaySession; index: number
   );
 }
 
-/** Today's bold element: the session on an iron-plate panel. */
+/**
+ * Today's bold element: the session as a painted poster. The picture follows the kind of session, and the tab says
+ * when it is. At home there is no gym to picture, so the poster is a board with its tab above the text.
+ */
 export function SessionCard({ focus }: { focus: Focus & { session: DaySession } }) {
   const { copy } = usePlanCopy();
   const plan = usePlan();
@@ -50,9 +54,13 @@ export function SessionCard({ focus }: { focus: Focus & { session: DaySession } 
   const lead = focus.when === "today" ? copy.today : focus.when === "later" ? copy.nextOn(day) : copy.stillOpen(day);
 
   return (
-    <section className={styles.card} aria-labelledby={`${listId}-title`}>
-      <div className={styles.plate}>
-        <p className={styles.lead}>{lead}</p>
+    <Poster
+      photo={plan.settings.venue === "gym" ? sessionPhoto(session) : undefined}
+      tab={lead}
+      sizes="(min-width: 1100px) 640px, (min-width: 640px) 90vw, 100vw"
+      aria-labelledby={`${listId}-title`}
+    >
+      <div className={styles.head}>
         <h2 id={`${listId}-title`} className={styles.sessionTitle}>{session.title}</h2>
         <p className={styles.meta}>{session.duration}, {copy.at(plan.sessionTime)}</p>
         <p className={styles.meta}>{copy.weekOf(focus.week.week, focus.week.theme)}</p>
@@ -62,7 +70,7 @@ export function SessionCard({ focus }: { focus: Focus & { session: DaySession } 
           <span className="sr-only">{copy.place}: </span>
           {plan.settings.venue === "home"
             ? copy.home
-            : plan.myGym ? plan.myGym.name : <Link to="/plan/week#my-gym" className={styles.plateLink}>{copy.pickGym}</Link>}
+            : plan.myGym ? plan.myGym.name : <Link to="/plan/week#my-gym" className={styles.placeLink}>{copy.pickGym}</Link>}
         </p>
       </div>
       <div className={styles.body}>
@@ -78,6 +86,6 @@ export function SessionCard({ focus }: { focus: Focus & { session: DaySession } 
           <Button variant="primary" icon={Check} onClick={() => plan.toggleDone(session.id)}>{copy.markDone}</Button>
         </div>
       </div>
-    </section>
+    </Poster>
   );
 }

@@ -3,6 +3,7 @@ import { useT, useVenueContext } from "../../app/venue-context";
 import type { TrustTier } from "../../data/types";
 import { formatDate } from "../../lib/i18n";
 import { isParsedHours } from "../../lib/hours";
+import { PHOTOS, PHOTO_IDS } from "../../assets/photos";
 import { TrustBadge } from "../../ui";
 
 const TIERS: TrustTier[] = ["verified", "corroborated", "listed", "unconfirmed"];
@@ -54,6 +55,24 @@ export function AboutPage() {
             {manifest.notices.map((item) => <p key={item} className={pageStyles.muted}>{item}</p>)}
           </>
         )}
+        <h2>{tr("aboutPictures")}</h2>
+        <p>{tr("aboutPicturesBody")}</p>
+        <ul>
+          {PHOTO_IDS.map((id) => {
+            const { credit } = PHOTOS[id];
+            return (
+              <li key={id}>
+                <a href={credit.page} target="_blank" rel="noopener noreferrer">
+                  {tr("aboutPictureCredit", { title: credit.title, author: credit.author })}
+                  <span className="sr-only"> {tr("aboutOpensNewTab")}</span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+        <p className={pageStyles.muted}>
+          <a href="https://www.pexels.com/license/" target="_blank" rel="noopener noreferrer">{PHOTOS[PHOTO_IDS[0]].credit.licence}<span className="sr-only"> {tr("aboutOpensNewTab")}</span></a>
+        </p>
       </div>
     </Page>
   );

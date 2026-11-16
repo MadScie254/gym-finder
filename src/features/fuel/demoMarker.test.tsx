@@ -89,7 +89,12 @@ describe("demo honesty", () => {
       [expect.stringContaining("Open Glovo"), "https://glovoapp.com/en/ke", "_blank"],
       [expect.stringContaining("Open Chandarana Foodplus"), "https://foodplus.co.ke/", "_blank"],
     ]));
-    expect(view.container.querySelector("img")).toBeNull();
+    // No logos or pictures of the real services or of any store. The only pictures are this app's own credited
+    // illustrations (src/assets/photos.ts), which are decoration and say nothing about a store.
+    for (const image of view.container.querySelectorAll("img")) {
+      expect(image.getAttribute("src")).toMatch(/^\/photos\/[a-z-]+-\d+-[0-9a-f]{8}\.webp$/);
+      expect(image.getAttribute("alt")).toBe("");
+    }
   });
 
   it("shows store pages as sample locations", async () => {

@@ -71,6 +71,10 @@ function ratio(a, b) {
 
 const MIN = { text: 4.5, large: 3, ui: 3 };
 
+// A pair names semantic tokens (--color-*). A name that starts with "=" is a base palette token as it is, for the
+// objects that look the same in both themes, such as the number plate.
+const tokenOf = (name) => (name.startsWith("=") ? name.slice(1) : `color-${name}`);
+
 // Every foreground/background pair a component in src/ui actually draws.
 const PAIRS = [
   ["text", "text", "bg", "Body text on page"],
@@ -83,10 +87,13 @@ const PAIRS = [
   ["text", "link", "surface", "Links and quiet buttons on cards"],
   ["text", "on-action", "action", "Primary button label"],
   ["text", "on-action", "action-hover", "Primary button label, hover"],
-  ["text", "on-highlight", "highlight", "Open distance block, active chip"],
-  ["text", "on-plate", "plate", "Distance numerals on plate"],
-  ["text", "plate-muted", "plate", "Unit and caption on plate"],
-  ["text", "on-inverse", "inverse", "Offline banner"],
+  ["text", "on-highlight", "highlight", "Poster tab, offline banner, active chip"],
+  ["text", "on-plate", "plate", "Count chip on plate"],
+  ["text", "plate-muted", "plate", "Muted text on plate"],
+  ["text", "on-inverse", "inverse", "Toast"],
+  ["text", "=plate", "=chalk", "Number plate numerals"],
+  ["text", "=slate", "=chalk", "Number plate unit and caption"],
+  ["text", "=plate", "=signal", "Number plate numerals when open"],
   ["text", "ok", "surface", "Open and verified wording on cards"],
   ["text", "ok", "bg", "Open and verified wording on page"],
   ["text", "danger", "surface", "Closed and error wording on cards"],
@@ -97,8 +104,8 @@ const PAIRS = [
   ["ui", "focus", "surface", "Focus ring on cards"],
   ["ui", "action", "surface", "Primary button edge on cards"],
   ["ui", "action", "bg", "Primary button edge on page"],
-  ["ui", "plate-edge", "surface", "Distance block edge on cards"],
-  ["ui", "plate-edge", "bg", "Distance block edge on page"],
+  ["ui", "plate-edge", "surface", "Poster keyline on cards"],
+  ["ui", "plate-edge", "bg", "Poster keyline on page"],
   ["ui", "on-highlight", "highlight", "Active chip border on signal"],
   ["ui", "tier-verified", "surface", "Verified roundel"],
   ["ui", "tier-corroborated", "surface", "Corroborated rings"],
@@ -121,12 +128,12 @@ for (const key of Object.keys(systemDark)) {
 }
 
 for (const [kind, fg, bg, use] of PAIRS) {
-  const row = { kind, fg, bg, use };
+  const row = { kind, fg, bg, use, fgToken: tokenOf(fg), bgToken: tokenOf(bg) };
   for (const [theme, vars] of Object.entries(themes)) {
-    const back = resolve(vars, `color-${bg}`);
+    const back = resolve(vars, tokenOf(bg));
     const pageBg = resolve(vars, "color-bg");
     const solidBack = back[3] < 1 ? over(back, pageBg) : back;
-    const front = over(resolve(vars, `color-${fg}`), solidBack);
+    const front = over(resolve(vars, tokenOf(fg)), solidBack);
     const value = ratio(front, solidBack);
     row[theme] = value;
     if (value < MIN[kind]) failed = true;
@@ -154,6 +161,8 @@ const tinted = (glassName, tintName, alpha, backs) => (vars) =>
 const onCurrentSidebarPage = tinted("glass", "action", 0.09, textureBacks);
 const onTopBarWidget = tinted("glass", "surface", 0.72, textureBacks);
 const onSelectedPaletteRow = tinted("glass-strong", "action", 0.1, () => [BLACK, WHITE]);
+// A chosen toggle, sort option, diet option or set: action at 9% over the card it sits on.
+const onSelectedControl = tinted("surface", "action", 0.09, (vars) => [resolve(vars, "color-bg")]);
 const GLASS_PAIRS = [
   ["text", "text", "glass over the textured page", onGlassOverTexture, "Sidebar and top bar text on glass"],
   ["text", "text-muted-glass", "glass over the textured page", onGlassOverTexture, "Sidebar and top bar muted text on glass"],
@@ -167,12 +176,13 @@ const GLASS_PAIRS = [
   ["text", "link-glass", "strong glass over black and white", onGlassOverContent, "Links on glass over content"],
   ["text", "text", "the selected row's tint on strong glass over black and white", onSelectedPaletteRow, "Text on the selected palette row"],
   ["ui", "focus", "strong glass over black and white", onGlassOverContent, "Focus ring on glass over content"],
+  ["text", "link", "a chosen control's cobalt tint on a card", onSelectedControl, "Chosen toggle, sort, diet option and set"],
   ["text", "text", "the textured page", onTexturedPage, "Text on the textured page"],
   ["text", "text-muted", "the textured page", onTexturedPage, "Muted text on the textured page"],
   ["text", "link", "the textured page", onTexturedPage, "Links on the textured page"],
 ];
 for (const [kind, fg, bgText, backs, use] of GLASS_PAIRS) {
-  const row = { kind, fg, bg: bgText, bgText, use };
+  const row = { kind, fg, bg: bgText, bgText, use, fgToken: `color-${fg}` };
   for (const [theme, vars] of Object.entries(themes)) {
     const front = resolve(vars, `color-${fg}`);
     const value = Math.min(...backs(vars).map((back) => ratio(over(front, back), back)));
@@ -187,7 +197,7 @@ if (process.argv.includes("--markdown")) {
   console.log("| Use | Foreground | Background | Min | Light | Dark |");
   console.log("|---|---|---|---|---|---|");
   for (const r of rows) {
-    console.log(`| ${r.use} | \`--color-${r.fg}\` | ${r.bgText ?? `\`--color-${r.bg}\``} | ${MIN[r.kind]}:1 | ${fmt(r.light)} | ${fmt(r.dark)} |`);
+    console.log(`| ${r.use} | \`--${r.fgToken ?? `color-${r.fg}`}\` | ${r.bgText ?? `\`--${r.bgToken}\``} | ${MIN[r.kind]}:1 | ${fmt(r.light)} | ${fmt(r.dark)} |`);
   }
 } else {
   for (const r of rows) {
