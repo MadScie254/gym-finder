@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-11T14:19:21.136Z",
+  "builtAt": "2026-11-16T04:08:37.835Z",
   "overtureRelease": "2026-10-21.0",
   "osmSnapshotAt": "2026-09-17T19:50:44.603Z",
   "osmStale": true,
@@ -83,5 +83,5 @@
     "Overture Places can contain duplicates and incomplete properties. Confidence measures existence, not that a gym is open.",
     "Address is omitted when unknown. We never invent hours, prices or ratings."
   ],
-  "gymsPath": "/data/gyms.ec98b84269.json"
+  "gymsPath": "/data/gyms.67e35cdfe6.json"
 }

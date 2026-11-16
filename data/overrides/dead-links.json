@@ -1,0 +1,212 @@
+{
+  "note": "Website links found dead, parked or belonging to another business when each gym's own site was opened (data/research/site-checks-2026-11-11.json). The build drops the field only while the venue still carries exactly this URL.",
+  "links": [
+    {
+      "id": "gers:605887ce-80d4-4a29-983a-95e8a2a7530c",
+      "name": "Alpha Cross Body Fitness Center",
+      "field": "website",
+      "url": "http://www.alphacrossfitness.com/",
+      "checkedAt": "2026-11-11",
+      "reason": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:370ffdd2-5367-4799-90f8-5ecdb6607bf2",
+      "name": "Bold Gym International",
+      "field": "website",
+      "url": "http://www.boldgyminternational.com/",
+      "checkedAt": "2026-11-11",
+      "reason": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:fc3efc1a-d09f-43f3-a325-58603c621da1",
+      "name": "CrossFit Boveda",
+      "field": "website",
+      "url": "https://crossfitboveda.co.ke/",
+      "checkedAt": "2026-11-11",
+      "reason": "dead",
+      "finding": "Domain has no address record (apex has no A record, www is NXDOMAIN); connection fails."
+    },
+    {
+      "id": "gers:f8e1471a-e4ad-41bb-8f3b-4e447df13a65",
+      "name": "Curlture fitness",
+      "field": "website",
+      "url": "http://curlturefitness.com/",
+      "checkedAt": "2026-11-11",
+      "reason": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:5dfd4b6f-47db-4917-a55e-515ba2f9d742",
+      "name": "EasyGym Kenya",
+      "field": "website",
+      "url": "http://www.easygym.ke/",
+      "checkedAt": "2026-11-11",
+      "reason": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "osm:node/12157124485",
+      "name": "Fahari Gym and Sports",
+      "field": "website",
+      "url": "https://faharifitnessltd.com/",
+      "checkedAt": "2026-11-11",
+      "reason": "different_business",
+      "finding": "faharifitnessltd.com is a gym equipment shop ('Gym Equipment Shop in Nairobi, Kenya | Fahari Fitness') at the same Jamia Tower address. It offers no gym membership or sessions. Not verified and not excluded: the site does not show whether a gym also operates there."
+    },
+    {
+      "id": "gers:29192b43-88ec-4528-91e3-93c38631ab99",
+      "name": "Fitness Empire",
+      "field": "website",
+      "url": "https://www.fitnessempirekenya.com/home/",
+      "checkedAt": "2026-11-11",
+      "reason": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:91a084e9-cd09-4dbb-9140-af5339dd33b8",
+      "name": "Flora Health & Fitness Centre",
+      "field": "website",
+      "url": "http://florahealthandfitnessclub.com/",
+      "checkedAt": "2026-11-11",
+      "reason": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:e667ec25-b793-4843-8276-339477080b68",
+      "name": "Legacy Fitness Club",
+      "field": "website",
+      "url": "http://www.legacyfitnessclub.com/",
+      "checkedAt": "2026-11-11",
+      "reason": "parked",
+      "finding": "Site redirects to a HugeDomains sale page (hugedomains.com/domain_profile.cfm?d=legacyfitnessclub.com)."
+    },
+    {
+      "id": "gers:47ab45ac-3362-4011-a160-22a9df30c30a",
+      "name": "Lifestyle Spa and Fitness Center",
+      "field": "website",
+      "url": "http://www.lifestylespa.co.ke/",
+      "checkedAt": "2026-11-11",
+      "reason": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:1f24007e-3b6f-4549-a4d9-019b3ae66bbc",
+      "name": "Mount Kenya Climbing Gym",
+      "field": "website",
+      "url": "https://www.mtkenyaclimbinggym.com/",
+      "checkedAt": "2026-11-11",
+      "reason": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:3e1223d6-d5e4-40a3-82f1-e52217710212",
+      "name": "Pent Hse Gymnasium",
+      "field": "website",
+      "url": "http://www.penthousegym.org/",
+      "checkedAt": "2026-11-11",
+      "reason": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:b62328dc-dabd-4c51-87cd-a7769eb91aa8",
+      "name": "Pivot Hotel and Fitness Centre",
+      "field": "website",
+      "url": "https://www.mangwanani.co.za/",
+      "checkedAt": "2026-11-11",
+      "reason": "different_business",
+      "finding": "mangwanani.co.za is Mangwanani African Spa, with 'Locations Across South Africa'; no mention of Pivot Hotel or Nakuru."
+    },
+    {
+      "id": "gers:668e1c9a-103e-45a5-83da-1090b6914c53",
+      "name": "PowerZone GYM & Fitness",
+      "field": "website",
+      "url": "http://www.powerzonegym254.com/",
+      "checkedAt": "2026-11-11",
+      "reason": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:e50c1e09-8136-4c60-a7da-b2066ffb0d71",
+      "name": "Racing Sport Gym",
+      "field": "website",
+      "url": "http://www.racingsportgym.com/",
+      "checkedAt": "2026-11-11",
+      "reason": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:33d00c7b-c1a1-4547-a9fb-0ba44986b0f3",
+      "name": "ReshapeMe Gym Watamu",
+      "field": "website",
+      "url": "https://reshapemegym.com/",
+      "checkedAt": "2026-11-11",
+      "reason": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:fdf62be6-2b11-4a7e-af12-5f806c868aa2",
+      "name": "RUAKA GYM&AEROBICS,Spa",
+      "field": "website",
+      "url": "http://www.ruakagym.com/",
+      "checkedAt": "2026-11-11",
+      "reason": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:3633958f-93a3-4edd-a233-bfdc6dc9ebb2",
+      "name": "Step 'n' Step Gym",
+      "field": "website",
+      "url": "https://stepin-gym.co.ke/",
+      "checkedAt": "2026-11-11",
+      "reason": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:0d24eb95-a02e-4fbf-a320-85eb39f2dafd",
+      "name": "Sweat Hot Yoga & Pilates Studio",
+      "field": "website",
+      "url": "http://www.hotyoganairobi.com/",
+      "checkedAt": "2026-11-11",
+      "reason": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:7e0b2ea2-704e-46e9-af93-54df492631b8",
+      "name": "Tiger Fitness Gym",
+      "field": "website",
+      "url": "http://www.kenyabodybuilding.com/",
+      "checkedAt": "2026-11-11",
+      "reason": "different_business",
+      "finding": "kenyabodybuilding.com is an online supplements shop ('KenyaBodybuilding – Supplements', Copyright © 2018) with no mention of Tiger Fitness Gym."
+    },
+    {
+      "id": "gers:fd1fe3a3-6ded-4c92-982c-1495e1b1d097",
+      "name": "Times Health & Fitness Centre",
+      "field": "website",
+      "url": "http://www.thfc.co.ke/",
+      "checkedAt": "2026-11-11",
+      "reason": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "gers:7961ee92-e2d7-4cdf-b398-f40fd4934a2e",
+      "name": "Warriors Playground Fitness Centre",
+      "field": "website",
+      "url": "http://warriorsplayground.co.ke/",
+      "checkedAt": "2026-11-11",
+      "reason": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    },
+    {
+      "id": "osm:node/5429106186",
+      "name": "Zeal Fitness",
+      "field": "website",
+      "url": "http://zealfitnesscentre.co.ke/",
+      "checkedAt": "2026-11-11",
+      "reason": "dead",
+      "finding": "Domain does not resolve (NXDOMAIN on Google and Cloudflare DNS)."
+    }
+  ]
+}
