@@ -9,6 +9,61 @@
   overflow: hidden;
 }
 
+/* Header, notices and the page. The same wrapper in every mode, so resizing across a breakpoint keeps the page. */
+.column {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* From 1100 px: a glass sidebar and top bar beside the page, inset 12 px from the window. The page scrolls in
+   its own area under the top bar, so the glass is only ever drawn over the page background. */
+.app[data-mode="sidebar"] {
+  --sidebar-width: 272px;
+  display: grid;
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  gap: 12px;
+  height: 100dvh;
+  min-height: 0;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.app[data-mode="sidebar"][data-collapsed] {
+  --sidebar-width: 72px;
+}
+
+.app[data-mode="sidebar"] .column {
+  gap: 12px;
+}
+
+.app[data-mode="sidebar"] .main {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Discovery scrolls its own list and map. */
+.app[data-mode="sidebar"][data-discovery] .main {
+  overflow: hidden;
+}
+
+/* Paper has no window: let the page run to as many sheets as it needs, without the sidebar or top bar. */
+@media print {
+  .app[data-mode="sidebar"] {
+    display: block;
+    height: auto;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .app[data-mode="sidebar"] .main {
+    overflow: visible;
+  }
+}
+
 .skip {
   position: absolute;
   left: var(--space-2);
@@ -58,6 +113,12 @@
 
 .header > :last-child {
   margin-left: auto;
+}
+
+.actions {
+  display: flex;
+  flex: none;
+  align-items: center;
 }
 
 .main {

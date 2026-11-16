@@ -3,6 +3,12 @@ import { useSyncExternalStore } from "react";
 /** Desktop layout (420 px rail plus map) from this width. */
 export const WIDE_QUERY = "(min-width: 900px)";
 
+/** The left sidebar and the top bar replace the header from this width. */
+export const SIDEBAR_QUERY = "(min-width: 1100px)";
+
+/** The sidebar opens to its full width from here. Between SIDEBAR_QUERY and this it starts as a rail. */
+export const SIDEBAR_EXPANDED_QUERY = "(min-width: 1280px)";
+
 export function useMediaQuery(query: string): boolean {
   return useSyncExternalStore(
     (notify) => {
