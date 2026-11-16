@@ -1,24 +1,24 @@
 {
-  "builtAt": "2026-11-16T04:08:37.835Z",
+  "builtAt": "2026-11-16T04:12:53.606Z",
   "overtureRelease": "2026-10-21.0",
   "osmSnapshotAt": "2026-09-17T19:50:44.603Z",
   "osmStale": true,
   "counts": {
-    "total": 566,
-    "defaultVisible": 497,
+    "total": 563,
+    "defaultVisible": 495,
     "byTier": {
       "verified": 10,
-      "corroborated": 139,
-      "listed": 348,
-      "unconfirmed": 69
+      "corroborated": 140,
+      "listed": 345,
+      "unconfirmed": 68
     },
     "byCounty": {
-      "Nairobi": 329,
+      "Nairobi": 327,
       "Mombasa": 42,
       "Kwale": 5,
       "Kilifi": 3,
       "Tana River": 0,
-      "Lamu": 3,
+      "Lamu": 2,
       "Taita-Taveta": 2,
       "Garissa": 2,
       "Wajir": 0,
@@ -62,7 +62,7 @@
       "Nyamira": 0
     },
     "byKind": {
-      "gym": 497,
+      "gym": 494,
       "gymnastics": 5,
       "crossfit": 6,
       "yoga": 14,
@@ -83,5 +83,5 @@
     "Overture Places can contain duplicates and incomplete properties. Confidence measures existence, not that a gym is open.",
     "Address is omitted when unknown. We never invent hours, prices or ratings."
   ],
-  "gymsPath": "/data/gyms.67e35cdfe6.json"
+  "gymsPath": "/data/gyms.46b5318946.json"
 }

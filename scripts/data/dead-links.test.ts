@@ -66,6 +66,12 @@ describe("dropping dead links", () => {
     expect(matched.size).toBe(0);
   });
 
+  it("still matches after two records merge and the entry's id became an alias", () => {
+    const merged = { ...venue, id: "osm:node/1", aliases: ["gers:one", "One Gym"] };
+    expect(dropDeadLinks(merged, [link]).website).toBeNull();
+    expect(dropDeadLinks({ ...merged, website: "https://new.example.test/" }, [link]).website).toBe("https://new.example.test/");
+  });
+
   it("ignores entries for other venues", () => {
     expect(dropDeadLinks({ ...venue, id: "gers:two" }, [link]).website).toBe(venue.website);
   });

@@ -25,9 +25,10 @@ If Overpass is down, keep `data/source/osm-venues.json` and re-run build. Do not
 
 Edit files in `data/overrides/` via the GitHub web UI, then open a PR.
 
-- `venues/<slug>.json` — set fields, `verifiedAt` (ISO date), `verification`: `phone|visit|owner`. `closed: true` tombstones the listing.
+- `venues/<slug>.json` — set fields, `verifiedAt` (ISO date), `verification`: `website|phone|visit`, and `evidence` (a source URL and quote) for every field it sets. `closed: true` tombstones the listing.
 - `exclude.json` — `{ "id": "gers:…", "reason": "supplements shop" }`
 - `merge.json` — `{ "a": "osm:node/1", "b": "gers:…" }` for forced pairs. Never merge on proximity alone.
+- `keep-apart.json` — `{ "a": "gers:…", "b": "gers:…", "reason": "…" }` for two real venues the rules would merge. It wins over `merge.json`. A merged venue keeps the id of its OpenStreetMap record, so a forced merge or a dead-link entry for the other record still applies through the alias.
 - `known-closed.json` — names the owner says are closed; CI asserts they are absent.
 
 Verified is only produced by a `verifiedAt` ≤ 12 months. Nothing else may use that word.
