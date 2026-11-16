@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import { COUNTIES, isInKenya, nearestCounty, reverseLookup } from "./geo.mjs";
 import { denyListed, displayName, isProximityOnlyCandidate, shouldMerge, slugify } from "./merge-rules.mjs";
 import { loadVenueOverrides } from "./overrides.mjs";
+import { deadLinkKey, dropDeadLinks, loadDeadLinks } from "./dead-links.mjs";
 import { normalizePhones, whatsappFrom } from "./phones.mjs";
 import { computeTrust } from "./trust.mjs";
 
@@ -279,11 +280,12 @@ async function loadOverrides() {
   const exclude = readJsonMaybe(path.join(OVERRIDES, "exclude.json"), []);
   const merge = readJsonMaybe(path.join(OVERRIDES, "merge.json"), []);
   const venues = await loadVenueOverrides(path.join(OVERRIDES, "venues"));
-  return { exclude, merge, venues };
+  const deadLinks = await loadDeadLinks(path.join(OVERRIDES, "dead-links.json"));
+  return { exclude, merge, venues, deadLinks };
 }
 
 async function main() {
-  const { exclude, merge: forced, venues: overrideById } = await loadOverrides();
+  const { exclude, merge: forced, venues: overrideById, deadLinks } = await loadOverrides();
   const excludeIds = new Set((exclude ?? []).map((row) => row.id));
   const forcedPairs = (forced ?? []).map((pair) => [pair.a, pair.b].sort().join("|"));
 
@@ -322,13 +324,14 @@ async function main() {
   }
 
   const closed = new Set();
+  const droppedLinks = new Set();
   const venues = merged.map((venue) => {
     const override = overrideById[venue.id] ?? Object.values(overrideById).find((item) => item.id === venue.id);
     if (override?.closed) {
       closed.add(venue.id);
       return null;
     }
-    const next = applyOverride(venue, override);
+    const next = dropDeadLinks(applyOverride(venue, override), deadLinks, droppedLinks);
     const trust = computeTrust(next, override);
     const slug = slugify(next.name, next.id);
     return {
@@ -418,6 +421,8 @@ async function main() {
   }
 
   console.log(`venues=${venues.length} visible=${defaultVisible} contact=${withContact} hash=${hash} review=${review.length}`);
+  const staleLinks = deadLinks.filter((link) => !droppedLinks.has(deadLinkKey(link)));
+  console.log(`dead-links: ${droppedLinks.size} dropped, ${staleLinks.length} no longer match${staleLinks.length ? ` (${staleLinks.map((link) => link.id).join(", ")})` : ""}`);
 }
 
 main().catch((error) => {

@@ -17,12 +17,12 @@ Keep this current and under 150 lines. Resume from here and git log.
 ## Catalogue (build of 2026-11-11)
 
 - 566 records, 497 shown by default. Trust: 10 verified from each gym's own website, 139 corroborated, 348 listed, 69 unconfirmed (hidden by default).
-- 92% of shown records have at least one contact route. 32 of 47 counties have a record; 15 have none. Nairobi 329, Kiambu 86, Mombasa 42.
+- 409 of 497 shown records (82%) have a phone, WhatsApp or website. 23 dead, parked or wrong-business website links are dropped (`data/overrides/dead-links.json`). 32 of 47 counties have a record; 15 have none. Nairobi 329, Kiambu 86, Mombasa 42.
 - Overture release 2026-10-21.0. OSM snapshot 2026-09-17, marked stale. No claim that every Kenyan gym is listed.
 
 ## Checks (2026-11-16)
 
-- `npm run check`: lint, types, contrast (34 pairs), 242 unit tests in 49 files, production build with 497 gym pages and 190 county and place pages prerendered. All pass.
+- `npm run check`: lint, types, contrast (34 pairs), 251 unit tests in 50 files, production build with 497 gym pages and 190 county and place pages prerendered. All pass.
 - `npm run e2e`: 38 passed on mobile and desktop, 4 optional screenshot tests skipped. Journeys: search → profile, Save and Compare, production map readiness, My week, demo food flow, styleguide, axe on the real app.
 - `npm run data:validate`: 566 venues, 66.7 KB gzipped catalogue.
 - GitHub Actions does not run on this account (billing). Local checks and the Vercel build are the gate.
@@ -30,7 +30,7 @@ Keep this current and under 150 lines. Resume from here and git log.
 ## Not done
 
 - 15 counties have no record. Closing that needs a source, not invention.
-- About 30 gyms list a website that no longer resolves; an override cannot clear a field yet.
+- Three checked websites are broken for now (two return HTTP 500, one is in maintenance mode) and stay listed until a recheck. Four more are up but show nothing dated. Only 40 websites have been opened; the other 174 listed ones are unchecked.
 - Human spot-check of the 10 verified profiles. Swahili copy needs a native reviewer.
 - Lighthouse and offline checks have not been run on the production URL.
 - `VITE_SUPPORT_EMAIL` is unset on purpose until the owner picks a role address.

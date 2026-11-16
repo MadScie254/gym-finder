@@ -32,6 +32,10 @@ Edit files in `data/overrides/` via the GitHub web UI, then open a PR.
 
 Verified is only produced by a `verifiedAt` ≤ 12 months. Nothing else may use that word.
 
+## Dead links
+
+`data/overrides/dead-links.json` lists website links that were opened and found dead, parked or belonging to another business. `npm run data:build` drops each one only while the venue still carries exactly that URL, and logs entries that no longer match. To add one: open the link, write what you saw in `finding`, add the entry, rebuild. Do not add a link because it was slow once; a site that errors or is in maintenance stays listed until a recheck.
+
 ## Corrections that belong upstream
 
 Use “Edit on OpenStreetMap” from a venue page so the next extract picks them up.
