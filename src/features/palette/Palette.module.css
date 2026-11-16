@@ -112,10 +112,15 @@
   cursor: pointer;
 }
 
-/* The highlighted row: a tint and a bar, so it reads without colour. */
+/* The highlighted row: a tint and a bar, so it reads without colour. The tint takes muted text under 4.5:1 over a
+   dark backdrop, so its icon and hint use the full text colour (checked as "Text on the selected palette row"). */
 .row[aria-selected="true"] {
   background: color-mix(in srgb, var(--color-action) 10%, transparent);
-  box-shadow: inset 3px 0 0 var(--color-action);
+  box-shadow: inset 3px 0 0 var(--color-link-glass);
+}
+
+.row[aria-selected="true"] :is(.rowIcon, .rowHint, .rowEnter) {
+  color: var(--color-text);
 }
 
 .rowIcon {

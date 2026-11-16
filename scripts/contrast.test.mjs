@@ -10,6 +10,10 @@ it("checks the glass and texture pairs, and every pair passes", () => {
   for (const use of [
     "Sidebar and top bar text on glass",
     "Sidebar and top bar muted text on glass",
+    "Sidebar and top bar links on glass",
+    "Current page in the sidebar",
+    "Muted text in the top bar widget",
+    "Text on the selected palette row",
     "Text on glass over content",
     "Muted text on glass over content",
     "Links on glass over content",

@@ -147,15 +147,25 @@ const throughGlass = (name, backs) => (vars) => backs(vars).map((back) => over(r
 const onTexturedPage = textureBacks;
 const onGlassOverTexture = throughGlass("glass", textureBacks);
 const onGlassOverContent = throughGlass("glass-strong", () => [BLACK, WHITE]);
+// A tint drawn over the glass: the current page in the sidebar (action 9%), the top bar widget's own fill
+// (surface 72%) and the selected palette row (action 10%).
+const tinted = (glassName, tintName, alpha, backs) => (vars) =>
+  backs(vars).map((back) => over([...resolve(vars, `color-${tintName}`).slice(0, 3), alpha], over(resolve(vars, `color-${glassName}`), back)));
+const onCurrentSidebarPage = tinted("glass", "action", 0.09, textureBacks);
+const onTopBarWidget = tinted("glass", "surface", 0.72, textureBacks);
+const onSelectedPaletteRow = tinted("glass-strong", "action", 0.1, () => [BLACK, WHITE]);
 const GLASS_PAIRS = [
   ["text", "text", "glass over the textured page", onGlassOverTexture, "Sidebar and top bar text on glass"],
-  ["text", "text-muted", "glass over the textured page", onGlassOverTexture, "Sidebar and top bar muted text on glass"],
-  ["text", "link", "glass over the textured page", onGlassOverTexture, "Sidebar and top bar links on glass"],
+  ["text", "text-muted-glass", "glass over the textured page", onGlassOverTexture, "Sidebar and top bar muted text on glass"],
+  ["text", "link-glass", "glass over the textured page", onGlassOverTexture, "Sidebar and top bar links on glass"],
+  ["text", "link-glass", "the current page's tint on sidebar glass", onCurrentSidebarPage, "Current page in the sidebar"],
+  ["text", "text-muted-glass", "the top bar widget fill on glass", onTopBarWidget, "Muted text in the top bar widget"],
   ["ui", "focus", "glass over the textured page", onGlassOverTexture, "Focus ring on sidebar and top bar glass"],
   ["ui", "line-strong-glass", "glass over the textured page", onGlassOverTexture, "Control boundary on sidebar and top bar glass"],
   ["text", "text", "strong glass over black and white", onGlassOverContent, "Text on glass over content"],
   ["text", "text-muted-glass", "strong glass over black and white", onGlassOverContent, "Muted text on glass over content"],
   ["text", "link-glass", "strong glass over black and white", onGlassOverContent, "Links on glass over content"],
+  ["text", "text", "the selected row's tint on strong glass over black and white", onSelectedPaletteRow, "Text on the selected palette row"],
   ["ui", "focus", "strong glass over black and white", onGlassOverContent, "Focus ring on glass over content"],
   ["text", "text", "the textured page", onTexturedPage, "Text on the textured page"],
   ["text", "text-muted", "the textured page", onTexturedPage, "Muted text on the textured page"],
