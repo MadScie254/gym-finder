@@ -20,6 +20,7 @@ export const sw: Record<CopyKey, string> = {
   langEnglish: "English",
   langSwahili: "Kiswahili",
   swahiliDraft: "Kiswahili hiki ni rasimu na bado kinahitaji kukaguliwa na mzawa wa lugha.",
+  swahiliDraftTag: "Rasimu",
 
   offlineBanner: "Huna mtandao. Tunaonyesha orodha ya gym ya tarehe {date}.",
   offlineNoData: "Huna mtandao, na kifaa hiki bado hakina nakala ya orodha. Unganisha mara moja ili kuipakua.",
@@ -311,6 +312,7 @@ export const sw: Record<CopyKey, string> = {
   navHome: "Mwanzo",
   navFind: "Tafuta gym",
   navWeek: "Wiki yangu",
+  navPrimary: "Mkuu",
   navGroupExplore: "Gundua",
   navGroupPlan: "Panga",
   navGroupHelp: "Msaada",

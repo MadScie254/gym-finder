@@ -5,13 +5,14 @@ import { CornerDownLeft, Dumbbell, History, Landmark as LandmarkIcon, Map as Map
 import { useLocation, useNavigate } from "react-router";
 import { usePwa } from "../../app/pwa";
 import { useSaved } from "../../app/stores";
+import { useTheme } from "../../app/useTheme";
 import { useMediaQuery, WIDE_QUERY } from "../../app/useMediaQuery";
 import { useT, useVenueContext } from "../../app/venue-context";
 import { foldPlace } from "../../lib/filterVenues";
 import type { CopyKey } from "../../lib/i18n";
 import { loadLandmarks, type Landmark } from "../../lib/landmarks";
 import { buildSuggestions, type SuggestionKind } from "../../lib/searchModel";
-import { applyTheme, loadRecentSearches, loadTheme, nextTheme, saveRecentSearch } from "../../lib/storage";
+import { loadRecentSearches, nextTheme, saveRecentSearch } from "../../lib/storage";
 import { NO_FILTERS, queryString, writeFilters } from "../../lib/urlState";
 import { DemoTag } from "../../ui/DemoTag";
 import { IconButton } from "../../ui/IconButton";
@@ -56,7 +57,7 @@ export default function CommandPalette({ onClose }: { onClose: () => void }) {
   const [active, setActive] = useState(0);
   const [landmarks, setLandmarks] = useState<Landmark[] | null>(null);
   const [recent] = useState(() => loadRecentSearches());
-  const [theme, setTheme] = useState(() => loadTheme());
+  const [theme, setTheme] = useTheme();
   // Radix hands focus back to its trigger, and this dialog has none, so keep the opener here. Read before
   // Radix moves focus into the field.
   const [opener] = useState(() => (document.activeElement instanceof HTMLElement ? document.activeElement : null));
@@ -88,11 +89,7 @@ export default function CommandPalette({ onClose }: { onClose: () => void }) {
     go: (to) => navigate(to),
     locate,
     setLang,
-    cycleTheme: () => {
-      const next = nextTheme(theme);
-      applyTheme(next);
-      setTheme(next);
-    },
+    cycleTheme: () => setTheme(nextTheme(theme)),
     install: () => { void install(); },
     openReport: (kind, target) => {
       handoff.current = true;

@@ -15,6 +15,7 @@ export const en = {
   langEnglish: "English",
   langSwahili: "Kiswahili",
   swahiliDraft: "Kiswahili is a draft and still needs a review by a native speaker.",
+  swahiliDraftTag: "Draft",
 
   offlineBanner: "Offline. Showing the gym list from {date}.",
   offlineNoData: "Offline, and this device has no copy of the gym list yet. Connect once to load it.",
@@ -306,6 +307,7 @@ export const en = {
   navHome: "Home",
   navFind: "Find gyms",
   navWeek: "My week",
+  navPrimary: "Primary",
   navGroupExplore: "Explore",
   navGroupPlan: "Plan",
   navGroupHelp: "Help",

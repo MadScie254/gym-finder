@@ -32,10 +32,13 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
   const active = currentEntry(pathname);
   const savedCount = saved.entries.length;
   const date = index ? formatDate(lang, index.manifest.builtAt) : "";
-  const status = offlineReady ? tr("offlineReady") : offline ? tr("offlineBanner", { date }) : null;
+  // "Works offline" is good news and gets the green dot. A connection that is down gets the plain wording and no colour.
+  const status = offlineReady
+    ? { text: tr("offlineReady"), ready: true }
+    : offline ? { text: index ? tr("offlineBanner", { date }) : tr("offlineNoData"), ready: false } : null;
 
   return (
-    <aside className={`${styles.side} glass`} data-collapsed={collapsed || undefined}>
+    <aside className={`${styles.side} glass`} data-chrome="" data-collapsed={collapsed || undefined}>
       <div className={styles.head}>
         <Link to="/" className={styles.brand}>
           <span className={styles.mark} aria-hidden="true" />
@@ -50,7 +53,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
         />
       </div>
 
-      <nav aria-label="Primary" className={styles.nav}>
+      <nav aria-label={tr("navPrimary")} className={styles.nav}>
         {NAV_GROUPS.map((group) => (
           <div key={group.id} className={styles.group}>
             <p id={`${base}-${group.id}`} className={styles.groupLabel}>{tr(group.labelKey)}</p>
@@ -86,8 +89,8 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
       <div className={styles.foot}>
         {status && (
           <p className={styles.status}>
-            <span className={styles.dot} aria-hidden="true" />
-            <span className={styles.statusText}>{status}</span>
+            <span className={styles.dot} data-ready={status.ready || undefined} aria-hidden="true" />
+            <span className={styles.statusText}>{status.text}</span>
           </p>
         )}
         {date && <p className={styles.listDate}>{tr("gymListFrom", { date })}</p>}

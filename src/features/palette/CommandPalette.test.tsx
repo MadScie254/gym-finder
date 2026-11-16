@@ -11,6 +11,7 @@ import { t } from "../../lib/i18n";
 import { loadSaved } from "../../lib/saved";
 import { loadRecentSearches } from "../../lib/storage";
 import { Dialog } from "../../ui/Dialog";
+import { Popover } from "../../ui/Popover";
 import { click, mount, press, type, type Mounted } from "../../ui/test-utils";
 import { PaletteProvider, usePalette } from "./palette-context";
 
@@ -140,6 +141,20 @@ it("leaves the shortcut alone while another dialog is open", async () => {
   expect(await chord({ ctrlKey: true })).toBe(true);
   await act(async () => { await new Promise((resolve) => setTimeout(resolve, 50)); });
   expect(palette()).toBeNull();
+});
+
+it("is not blocked by an open popover such as the menu, only by a modal dialog", async () => {
+  ui = await mount(
+    <StoreProvider>
+      <PaletteProvider>
+        <Page />
+        <Popover label="Menu" open onOpenChange={() => undefined} trigger={<button type="button">Menu</button>}>Menu body</Popover>
+      </PaletteProvider>
+    </StoreProvider>,
+  );
+  await waitFor(() => document.querySelector("[role='dialog'][data-state='open']"), "the popover");
+  expect(await chord({ ctrlKey: true })).toBe(false);
+  await waitFor(palette, "the palette to open over the popover");
 });
 
 it("is a full-height sheet below 900 px and a centred modal from 900 px", async () => {

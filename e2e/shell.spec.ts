@@ -76,6 +76,66 @@ test.describe("desktop shell", () => {
     await expect(widget).toBeFocused();
   });
 
+  test("scroll keys move the page on a fresh load and after a click in the sidebar", async ({ page }) => {
+    await page.goto("/about/data", { waitUntil: "load" });
+    const top = () => page.locator("#main").evaluate((node) => node.scrollTop);
+    // The page loads on demand: wait until there is something to scroll.
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+    await expect.poll(() => page.locator("#main").evaluate((node) => node.scrollHeight - node.clientHeight)).toBeGreaterThan(200);
+    expect(await top()).toBe(0);
+
+    await page.keyboard.press("PageDown");
+    await expect.poll(top).toBeGreaterThan(0);
+    await page.keyboard.press("Home");
+    await expect.poll(top).toBe(0);
+
+    // Focus is on the sidebar link after a click, outside the page area. The page must still scroll.
+    await page.getByRole("navigation", { name: "Primary" }).getByRole("link", { name: "Home" }).click();
+    await expect(page).toHaveURL(/\/$/);
+    await page.keyboard.press("PageDown");
+    await expect.poll(top).toBeGreaterThan(0);
+    const afterPageDown = await top();
+    await page.keyboard.press("End");
+    await expect.poll(top).toBeGreaterThan(afterPageDown);
+    await page.keyboard.press("ArrowUp");
+    await expect.poll(top).toBeLessThan((await top()) + 1);
+
+    // Space on a focused sidebar link or button must keep its own meaning, not scroll.
+    await page.getByRole("button", { name: "Collapse the sidebar" }).focus();
+    await page.keyboard.press("Space");
+    await expect(page.locator("aside")).toHaveAttribute("data-collapsed", "true");
+  });
+
+  test("Back returns the page to where it was left, and a new page starts at the top", async ({ page }) => {
+    await page.goto("/", { waitUntil: "load" });
+    const top = () => page.locator("#main").evaluate((node) => node.scrollTop);
+    await page.locator("#main").evaluate((node) => { node.scrollTop = 600; });
+    await expect.poll(top).toBe(600);
+
+    await page.getByRole("navigation", { name: "Primary" }).getByRole("link", { name: "Help and about the data" }).click();
+    await expect(page).toHaveURL(/\/about\/data$/);
+    await expect.poll(top).toBe(0);
+
+    await page.goBack();
+    await expect(page).toHaveURL(/\/$/);
+    await expect.poll(top).toBeGreaterThan(500);
+
+    await page.goForward();
+    await expect(page).toHaveURL(/\/about\/data$/);
+    await expect.poll(top).toBe(0);
+  });
+
+  test("the appearance chosen in the quick actions shows on the top bar button", async ({ page }) => {
+    await page.goto("/", { waitUntil: "load" });
+    await expect(page.getByRole("button", { name: "Appearance: Match device" })).toBeVisible();
+    await page.keyboard.press("Control+k");
+    await page.getByRole("option", { name: /Appearance: Match device/ }).click();
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+    await expect(page.getByRole("button", { name: "Appearance: Light" })).toBeVisible();
+    await page.getByRole("button", { name: "Appearance: Light" }).click();
+    await expect(page.getByRole("button", { name: "Appearance: Dark" })).toBeVisible();
+  });
+
   test("typing an action and pressing Enter does the action, not a fuzzy-matched gym", async ({ page }) => {
     await page.goto("/search", { waitUntil: "load" });
     await page.keyboard.press("Control+k");
@@ -141,6 +201,8 @@ test.describe("Kiswahili", () => {
     } else {
       await page.getByRole("button", { name: /switch to kiswahili/i }).click();
       await expect(page.locator("aside")).toContainText("Gundua");
+      // Kiswahili stays marked as a draft: the sidebar layout has no menu to carry the note.
+      await expect(page.getByRole("banner").getByText("Rasimu", { exact: true })).toBeVisible();
       expect(await truncated(page)).toEqual([]);
     }
 

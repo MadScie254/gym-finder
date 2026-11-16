@@ -54,7 +54,7 @@
   width: 9px;
   height: 4px;
   border-radius: 1px;
-  background: var(--signal);
+  background: var(--color-highlight);
 }
 
 .nav {
@@ -128,7 +128,7 @@
   left: 0;
   width: 3px;
   border-radius: 2px;
-  background: var(--color-action);
+  background: var(--color-link-glass);
 }
 
 .count {
@@ -171,6 +171,10 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
+  background: var(--color-text-muted-glass);
+}
+
+.dot[data-ready] {
   background: var(--color-ok);
 }
 

@@ -6,9 +6,10 @@ import { Sidebar } from "./Sidebar";
 import { TopBar } from "./TopBar";
 import { usePwa } from "./pwa";
 import { SIDEBAR_EXPANDED_QUERY, SIDEBAR_QUERY, useMediaQuery, WIDE_QUERY } from "./useMediaQuery";
+import { usePageScroll } from "./usePageScroll";
 import { useT, useVenueContext } from "./venue-context";
 import { formatDate } from "../lib/i18n";
-import { applyTheme, loadSidebarCollapsed, loadTheme, saveSidebarCollapsed } from "../lib/storage";
+import { loadSidebarCollapsed, saveSidebarCollapsed } from "../lib/storage";
 import { CompareTray } from "../features/compare/CompareTray";
 import { preloadPalette, usePalette } from "../features/palette/palette-context";
 import { Banner, IconButton, NavBar, PRIMARY_NAV, type NavItem } from "../ui";
@@ -37,10 +38,8 @@ export function Shell() {
   const discovery = DISCOVERY.test(pathname);
   const items: NavItem[] = PRIMARY_NAV.map((item, i) => ({ ...item, label: tr(LABELS[i]) }));
 
-  useEffect(() => { applyTheme(loadTheme(), false); }, []);
   useEffect(() => { if (!discovery && !pathname.startsWith("/gym/")) document.title = tr("brand"); }, [pathname, discovery, tr]);
-  // In sidebar mode the page scrolls inside the window, not the document, so a new page starts at its top here.
-  useEffect(() => { main.current?.scrollTo?.(0, 0); }, [pathname]);
+  usePageScroll(main, sidebarMode);
 
   function toggleSidebar() {
     setChoice(!collapsed);
@@ -62,7 +61,7 @@ export function Shell() {
         ) : (
           <header className={styles.header}>
             <Link to="/" className={styles.brand}>{tr("brand")}</Link>
-            {wide && <NavBar items={items} placement="top" />}
+            {wide && <NavBar items={items} placement="top" label={tr("navPrimary")} />}
             <div className={styles.actions}>
               <IconButton icon={Search} label={tr("searchOpen")} variant="quiet" onClick={palette.show} onPointerEnter={preloadPalette} />
               <AppMenu onInstall={pwa.canInstall ? pwa.install : undefined} />
@@ -83,7 +82,7 @@ export function Shell() {
       {!wide && (
         <div className={styles.bottom}>
           <CompareTray wide={false} />
-          <NavBar items={items} placement="bottom" />
+          <NavBar items={items} placement="bottom" label={tr("navPrimary")} />
         </div>
       )}
     </div>

@@ -8,10 +8,10 @@ import { NAV_GROUPS } from "./nav";
 import { Sidebar } from "./Sidebar";
 import { StoreProvider } from "./stores";
 
-const mocks = vi.hoisted(() => ({ canInstall: false, install: vi.fn(), offline: false }));
+const mocks = vi.hoisted(() => ({ canInstall: false, install: vi.fn(), offline: false, hasIndex: true }));
 
 vi.mock("./venue-context", () => ({
-  useVenueContext: () => ({ lang: "en", offline: mocks.offline, index: { manifest: { builtAt: "2026-11-11T14:19:21.136Z" } } }),
+  useVenueContext: () => ({ lang: "en", offline: mocks.offline, index: mocks.hasIndex ? { manifest: { builtAt: "2026-11-11T14:19:21.136Z" } } : null }),
   useT: () => (key: Parameters<typeof t>[1], vars?: Parameters<typeof t>[2]) => t("en", key, vars),
 }));
 vi.mock("./pwa", () => ({ usePwa: () => ({ canInstall: mocks.canInstall, install: mocks.install, updateReady: false, applyUpdate: vi.fn() }) }));
@@ -23,6 +23,7 @@ beforeEach(() => {
   localStorage.clear();
   mocks.canInstall = false;
   mocks.offline = false;
+  mocks.hasIndex = true;
   mocks.install.mockClear();
 });
 
@@ -129,4 +130,32 @@ it("offers Install only when the browser can install the app", async () => {
   const install = [...ui!.container.querySelectorAll("button")].find((button) => button.textContent?.includes("Install the app"))!;
   await click(install);
   expect(mocks.install).toHaveBeenCalledOnce();
+});
+
+it("says it is offline in plain words, with no green dot, when no service worker controls the page yet", async () => {
+  mocks.offline = true;
+  await render();
+  expect(ui!.container.textContent).toContain("Offline. Showing the gym list from 11 Nov 2026.");
+  expect(ui!.container.querySelector("aside [data-ready]")).toBeNull();
+});
+
+it("does not name a date it does not have when it is offline with no gym list", async () => {
+  mocks.offline = true;
+  mocks.hasIndex = false;
+  await render();
+  expect(ui!.container.textContent).toContain(t("en", "offlineNoData"));
+  expect(ui!.container.textContent).not.toContain("from .");
+  expect(ui!.container.textContent).not.toContain("Gym list from");
+});
+
+it("shows the green dot only for Works offline", async () => {
+  Object.defineProperty(navigator, "serviceWorker", { configurable: true, value: { controller: {}, addEventListener() {}, removeEventListener() {} } });
+  await render();
+  expect(ui!.container.textContent).toContain("Works offline");
+  expect(ui!.container.querySelector("aside [data-ready]")).not.toBeNull();
+});
+
+it("names the navigation landmark in the visitor's language", async () => {
+  await render();
+  expect(nav().getAttribute("aria-label")).toBe("Primary");
 });
