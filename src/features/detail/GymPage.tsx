@@ -24,7 +24,7 @@ export function GymPage() {
   if (!index) return <SkeletonList count={1} label={tr("loadingGyms")} />;
   if (!venue) {
     return (
-      <EmptyState icon={SearchX} title={tr("detailNotFoundTitle")} action={<Link to="/search">{tr("goHome")}</Link>}>
+      <EmptyState icon={SearchX} level={1} title={tr("detailNotFoundTitle")} action={<Link to="/search">{tr("goHome")}</Link>}>
         {tr("detailNotFoundBody")}
       </EmptyState>
     );
