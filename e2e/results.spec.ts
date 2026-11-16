@@ -1,8 +1,8 @@
 import { expect, test } from "@playwright/test";
 
 test("a gym card can be saved and added to comparison", async ({ page }) => {
-  await page.goto("/", { waitUntil: "load" });
-  const card = page.locator(".result-list article").first();
+  await page.goto("/search", { waitUntil: "load" });
+  const card = page.getByRole("article").first();
   await expect(card.getByRole("heading", { level: 2 })).toBeVisible();
   const name = await card.getByRole("heading", { level: 2 }).innerText();
 
