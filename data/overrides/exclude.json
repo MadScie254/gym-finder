@@ -20,5 +20,7 @@
   { "id": "gers:96351662-31c8-45e1-9923-de3bb8b2a71b", "reason": "Shopping business, not a gym listing" },
   { "id": "gers:0fc136d4-49c5-42b6-b3b8-854a81b4ed09", "reason": "Gym equipment seller" },
   { "id": "gers:6c572a2c-012d-4c8c-8bbd-aae5ec282792", "reason": "Gym mats seller" },
-  { "id": "osm:node/13974623144", "reason": "Fitness consultancy and supplement shop" }
+  { "id": "osm:node/13974623144", "reason": "Fitness consultancy and supplement shop" },
+  { "id": "gers:42cac902-04ba-4c68-b645-0a69b20835e3", "reason": "Duplicate of Banana House And Wellness Centre (same phone and site), pinned 26 km away on the mainland. The Lamu Island record is the right one." },
+  { "id": "osm:node/5421225050", "reason": "Duplicate of Smart Gyms Junction, 24 m away. 'Smartgyms' is the same branch written as one word." }
 ]

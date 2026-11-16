@@ -280,14 +280,16 @@ async function loadOverrides() {
   const exclude = readJsonMaybe(path.join(OVERRIDES, "exclude.json"), []);
   const merge = readJsonMaybe(path.join(OVERRIDES, "merge.json"), []);
   const venues = await loadVenueOverrides(path.join(OVERRIDES, "venues"));
+  const apart = readJsonMaybe(path.join(OVERRIDES, "keep-apart.json"), []);
   const deadLinks = await loadDeadLinks(path.join(OVERRIDES, "dead-links.json"));
-  return { exclude, merge, venues, deadLinks };
+  return { exclude, merge, apart, venues, deadLinks };
 }
 
 async function main() {
-  const { exclude, merge: forced, venues: overrideById, deadLinks } = await loadOverrides();
+  const { exclude, merge: forced, apart, venues: overrideById, deadLinks } = await loadOverrides();
   const excludeIds = new Set((exclude ?? []).map((row) => row.id));
   const forcedPairs = (forced ?? []).map((pair) => [pair.a, pair.b].sort().join("|"));
+  const apartPairs = (apart ?? []).map((pair) => [pair.a, pair.b].sort().join("|"));
 
   const overtureRows = await loadJsonRecords(path.join(SOURCE, "overture-venues.json"));
   const osmPayload = existsSync(path.join(SOURCE, "osm-venues.json"))
@@ -312,7 +314,7 @@ async function main() {
     let current = normalized[i];
     for (let j = i + 1; j < normalized.length; j += 1) {
       if (used.has(j)) continue;
-      const decision = shouldMerge(current, normalized[j], forcedPairs);
+      const decision = shouldMerge(current, normalized[j], forcedPairs, apartPairs);
       if (decision.merge) {
         current = mergePair(current, normalized[j]);
         used.add(j);

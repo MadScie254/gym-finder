@@ -57,8 +57,13 @@ export function haversineM(a, b) {
   return 2 * 6371000 * Math.asin(Math.min(1, Math.sqrt(sine)));
 }
 
-export function shouldMerge(left, right, forcedPairs = []) {
+/**
+ * `forcedPairs` and `apartPairs` hold "idA|idB" keys with the two ids sorted. A pair kept apart
+ * never merges, whatever the rules say, and wins over a forced pair.
+ */
+export function shouldMerge(left, right, forcedPairs = [], apartPairs = []) {
   const pairKey = [left.id, right.id].sort().join("|");
+  if (apartPairs.includes(pairKey)) return { merge: false, reason: "keep-apart" };
   if (forcedPairs.includes(pairKey)) return { merge: true, reason: "override" };
   const metres = haversineM(
     { lat: left.lat, lng: left.lng },

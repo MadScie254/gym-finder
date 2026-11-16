@@ -17,6 +17,17 @@ describe("merge rules", () => {
     expect(isProximityOnlyCandidate(fahari, samnick)).toBe(true);
   });
 
+  it("keeps a listed pair apart even when the rules would merge it, and that beats a forced pair", () => {
+    const key = [aicadOsm.id, aicadOv.id].sort().join("|");
+    expect(shouldMerge(aicadOsm, aicadOv, [], [key])).toEqual({ merge: false, reason: "keep-apart" });
+    expect(shouldMerge(aicadOsm, aicadOv, [key], [key]).merge).toBe(false);
+    expect(shouldMerge(aicadOsm, aicadOv, [], []).merge).toBe(true);
+  });
+  it("merges a forced pair that is too far apart for the rules", () => {
+    const far = { ...aicadOv, lat: -1.3025, lng: 36.8025 };
+    expect(shouldMerge(aicadOsm, far).merge).toBe(false);
+    expect(shouldMerge(aicadOsm, far, [[aicadOsm.id, far.id].sort().join("|")])).toEqual({ merge: true, reason: "override" });
+  });
   it("merges a shared phone only for nearby records", () => {
     expect(shouldMerge(
       { ...aicadOsm, phones: ["+254700000001"] },

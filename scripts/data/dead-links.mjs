@@ -47,7 +47,9 @@ export const deadLinkKey = (link) => `${link.id}|${link.field}`;
  * `matched` to learn which entries applied; entries left out of it no longer match any venue.
  */
 export function dropDeadLinks(venue, links, matched = new Set()) {
-  const hits = links.filter((link) => link.id === venue.id && venue[link.field] === link.url);
+  // A merged venue keeps the id of its OpenStreetMap record and lists the other record's id as an alias.
+  const ids = new Set([venue.id, ...(venue.aliases ?? [])]);
+  const hits = links.filter((link) => ids.has(link.id) && venue[link.field] === link.url);
   if (hits.length === 0) return venue;
   const next = { ...venue, provenance: { ...venue.provenance } };
   for (const link of hits) {

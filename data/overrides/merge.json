@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "a": "osm:node/5354298522",
+    "b": "gers:e50c1e09-8136-4c60-a7da-b2066ffb0d71",
+    "reason": "Racing Sport Gym, listed in both sources 164 m apart, just outside the 150 m rule. Overture has the phone."
+  },
+  {
+    "a": "osm:node/6210199378",
+    "b": "gers:abf05f5b-3308-4832-b113-ce02058fe829",
+    "reason": "Switch Fitness Centre and Switch Fitness Center, both in Mlolongo, 270 m apart."
+  }
+]
