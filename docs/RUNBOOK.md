@@ -2,13 +2,16 @@
 
 ## Monthly refresh
 
-1. GitHub Action `.github/workflows/data-refresh.yml` runs on cron or `workflow_dispatch`.
-2. It extracts the latest Overture Places release (STAC `latest`) and OSM Overpass (or reuses the last OSM snapshot if Overpass fails, marking `osmStale`).
-3. `build-gyms.mjs` merges, tiers, and writes `public/data/gyms.<hash>.json`, `manifest.json`, `landmarks.json`.
-4. `validate.mjs` must pass. `diff-report.mjs` summarises adds/removes/renames.
-5. The Action opens a PR. A human skims the diff and merges. Deploy publishes the static files.
+There is no scheduled workflow yet (GitHub Actions is restricted on this account). Refresh by hand, about once a month:
 
-Local:
+1. `npm run data:extract` pulls the latest Overture Places release over HTTPS and OSM Overpass (or reuses the last OSM snapshot if Overpass fails, marking `osmStale`).
+2. `npm run data:build` merges, tiers, and writes `public/data/gyms.<hash>.json`, `manifest.json`, `landmarks.json`.
+3. `npm run data:validate` must pass.
+4. Skim the diff, run `npm run check`, commit, push. Vercel publishes the static files.
+
+When Actions works again, add a `data-refresh.yml` that runs these three commands and opens a PR.
+
+Commands:
 
 ```bash
 npm run data:extract

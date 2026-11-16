@@ -7,11 +7,17 @@ npm ci
 npm run dev
 ```
 
-Open http://localhost:5173. `npm run check` runs lint, types, tests and a production build.
+Open http://localhost:5173. `npm run check` runs lint, types, colour contrast, unit tests and a production build. `npm run e2e` runs the Playwright journeys (mobile and desktop, with axe) against a production build.
+
+## What is in the app
+
+- Home, Find gyms (search, place, county and landmark pages), gym profile, Saved, Compare, Reports.
+- My week (`/plan`): a workout and meal planner that keeps everything in the browser.
+- Food stores (`/fuel`): a simulation. Every screen is marked Demo; stores, prices and orders are invented samples. Nothing is ordered and no real service is implied.
 
 ## Data
 
-`public/data/` is the catalogue the app loads. The current build combines Overture Maps release 2026-10-21.0 with an older OpenStreetMap snapshot. It has 588 sourced candidates, of which 519 are shown by default. OpenStreetMap's Overpass service timed out during this refresh, so the previous 58 OSM records were retained and marked stale. These numbers are not a claim of complete Kenya coverage or verified operation.
+`public/data/` is the catalogue the app loads. The current build (11 Nov 2026) combines Overture Maps release 2026-10-21.0 with an OpenStreetMap snapshot from 17 Sep 2026, marked stale because Overpass timed out during the refresh. It has 566 sourced records and shows 497 by default: 10 Verified from each gym's own website, 139 corroborated by two sources, 348 listed from one source, and 69 unconfirmed (hidden by default). 32 of 47 counties have at least one record; 15 have none. About 92% of the shown records have at least one contact route. These numbers are not a claim of complete Kenya coverage or verified operation. `public/data/manifest.json` is the source of truth.
 
 `npm run data:extract` then `npm run data:build` rebuilds from Overture and OSM. The Overture extractor can use DuckDB's Node API on Node 26. If all Overpass mirrors fail or return empty responses, the OSM extractor keeps the previous snapshot and marks it stale. `npm run data:validate` checks the generated catalogue before publication.
 
@@ -20,6 +26,10 @@ Addresses, hours, phones and prices are omitted when the source does not have th
 ## Map
 
 The map shows the independently sourced catalogue with clustered gym pins. It is MapLibre only; the optional Google Maps pane was removed on 2026-11-11 (see `docs/DECISIONS.md`). Directions still open Google Maps as a plain link, which needs no key.
+
+## Deploy
+
+Vercel builds every push (`vercel.json` sends extensionless paths to `index.html`; prerendered `/gym/<slug>/` pages are real files). Optional build-time settings are listed in `.env.example`: `VITE_SUPPORT_WHATSAPP` and `VITE_SUPPORT_EMAIL` decide where reports and claims go. GitHub Actions is not the gate while the account is restricted; run `npm run check` and `npm run e2e` locally.
 
 ## Privacy
 

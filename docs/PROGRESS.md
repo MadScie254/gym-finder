@@ -2,34 +2,43 @@
 
 Keep this current and under 150 lines. Resume from here and git log.
 
-## Current — 2026-11-12
+## Current — 2026-11-16
 
-- Branch: `master`; React 19 + Vite 8 static site on Vercel.
-- Phase 4 (Gyms rebuild) is underway. The Signwriter tokens and UI kit are in `src/ui/`.
-- G4 gym detail rebuilt with the UI kit: source-backed hours, prices and facilities; distance, trust evidence, contact and share actions. Detail hides search filters.
-- Explore results now use the Signwriter GymCard, distance block and action row. Save, Compare, Call and Chat stay functional.
-- Fixed the production MapLibre worker bundle; the map now reaches its loaded state and draws tiles and gym clusters. Pin colours follow the trust palette.
-- Catalogue: 566 OSM/Overture candidates, 497 default-visible, 10 website-checked profiles, 409 with contact. No claim that every Kenyan gym is listed.
-- Overture release: 2026-10-21.0. OSM snapshot: 2026-09-17 and marked stale. Do not invent listings or listing details.
-- No backend, database, runtime API keys or Google Places. Location stays in the browser.
+- React 19 + Vite 8 static site on Vercel. No backend, database, runtime API keys or Google Places. Location stays in the browser.
+- The full revamp is built on the Signwriter UI kit (`src/ui/`): shell and nav (Home, Find gyms, Saved, My week), Home, discovery, gym profile, Saved, Compare, Reports, My week, and the Demo food stores.
+- Discovery: `/search`, `/in/:place`, `/county/:county`, `/near/:landmark`. Typo-tolerant search, filters with counts held in the URL, list and map driven by the same selection, "Search this area", Load more, Back restores the scroll position.
+- Gym profile follows the owner's order, with a sticky contact panel on wide screens. Hours, prices and amenities appear only when a source has them.
+- Saved keeps notes, order and a "my gym" pick, with Undo, export, import and a share link. Compare is a side-by-side table with a tray in the shell. Reports go to WhatsApp or email from `VITE_SUPPORT_WHATSAPP` and `VITE_SUPPORT_EMAIL`; a link that is not configured is hidden, not dead.
+- My week (`/plan`): week-by-week workout plan, 7-day meal plan, shopping list, `.ics` download, backup and restore, all in the browser.
+- Food stores (`/fuel`) are a simulation. Every screen carries a Demo marker (a test enforces it), stores and prices are invented, nothing is ordered. Real Glovo or Foodplus links wait for a partnership decision.
 
-## Checks
+## Catalogue (build of 2026-11-11)
 
-- `npm run check`: lint, types, contrast, 103 unit tests and production build pass after `npm ci`.
-- `npm run data:validate`: passed (566 venues; 66.7 KB gzipped catalogue).
-- `npm run e2e`: 14 passed on mobile and desktop, 4 optional screenshot tests skipped. Journeys cover gym search → detail, Save/Compare, contact and source sections, and production map readiness.
-- GitHub Actions is unavailable on this account. Pushes to `master` use `[skip ci]`; local checks and the Vercel build are the gate.
+- 566 records, 497 shown by default. Trust: 10 verified from each gym's own website, 139 corroborated, 348 listed, 69 unconfirmed (hidden by default).
+- 92% of shown records have at least one contact route. 32 of 47 counties have a record; 15 have none. Nairobi 329, Kiambu 86, Mombasa 42.
+- Overture release 2026-10-21.0. OSM snapshot 2026-09-17, marked stale. No claim that every Kenyan gym is listed.
 
-## Next three
+## Checks (2026-11-16)
 
-1. Move Explore filters and search onto the Signwriter UI kit; keep URL state and typo-tolerant search.
-2. Make map and list respond to the same selected gym and visible area (G1), then verify on mobile and desktop.
-3. Rebuild Compare and Saved (G5–G6), followed by Fuel's explicitly labelled demo flow.
+- `npm run check`: lint, types, contrast (34 pairs), 235 unit tests in 48 files, production build, 497 gym pages prerendered. All pass.
+- `npm run e2e`: 38 passed on mobile and desktop, 4 optional screenshot tests skipped. Journeys: search → profile, Save and Compare, production map readiness, My week, demo food flow, styleguide, axe on the real app.
+- `npm run data:validate`: 566 venues, 66.7 KB gzipped catalogue.
+- GitHub Actions does not run on this account (billing). Local checks and the Vercel build are the gate.
+
+## Not done
+
+- G8: place and county pages are not prerendered for search engines; only `/gym/<slug>/` is. They render client-side.
+- 15 counties have no record. Closing that needs a source, not invention.
+- About 30 gyms list a website that no longer resolves; an override cannot clear a field yet.
+- Human spot-check of the 10 verified profiles. Swahili copy needs a native reviewer.
+- Lighthouse and offline checks have not been run on the production URL.
+- `VITE_SUPPORT_EMAIL` is unset on purpose until the owner picks a role address.
+- The old Cloudflare Workers copy still serves an older build. Retire it after the Vercel production URL is confirmed.
 
 ## Decisions and limits
 
 - Vercel is the active host. The current personal, non-monetized app fits the Hobby plan; a commercial affiliate launch needs permitted hosting.
 - Google Maps listings are not scraped or copied. Data comes from OSM, Overture and evidence from each gym's own site.
-- Driving directions currently open an external map. An in-app road router must respect the location-on-device rule.
-- Fuel is a stub. Demo food stores and prices must be marked as samples; no real order or partnership is implied.
-- Historic progress is in earlier revisions of this file. `docs/REVAMP_PLAN.md` holds the larger roadmap.
+- Driving directions open an external map. An in-app road router must respect the location-on-device rule.
+- Demo food stores and prices are samples; no real order or partnership is implied.
+- `docs/REVAMP_PLAN.md` holds the larger roadmap. `docs/DECISIONS.md` holds dated decisions.
