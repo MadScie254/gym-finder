@@ -1,4 +1,9 @@
-const CACHE = "fmg-shell-v2";
+// scripts/precache.mjs fills in BUILD and PRECACHE after the build: the hashed script, style and font
+// files, so the app also starts offline after one visit. Without them a first visit caches only the
+// page, because the worker takes control after the page's own files have loaded.
+const BUILD = "dev";
+const PRECACHE = [];
+const CACHE = `fmg-shell-${BUILD}`;
 const SHELL = ["/", "/index.html", "/data/manifest.json", "/manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {
@@ -10,6 +15,8 @@ self.addEventListener("install", (event) => {
       throw new Error("Invalid catalogue path");
     }
     await cache.add(manifest.gymsPath);
+    // Best effort: one missing file must not stop the worker installing.
+    await Promise.allSettled(PRECACHE.map((url) => cache.add(url)));
     await self.skipWaiting();
   })());
 });
@@ -35,9 +42,10 @@ self.addEventListener("fetch", (event) => {
         return response;
       })
       .catch(async () => {
-        const cached = await caches.match(event.request);
+        // ignoreVary: some hosts send "Vary: Origin", and a script request carries an Origin the precache request did not.
+        const cached = await caches.match(event.request, { ignoreVary: true });
         if (cached) return cached;
-        if (event.request.mode === "navigate") return await caches.match("/") || new Response("Offline", { status: 503 });
+        if (event.request.mode === "navigate") return await caches.match("/", { ignoreVary: true }) || new Response("Offline", { status: 503 });
         if (url.pathname.startsWith("/data/")) {
           return Response.json({ error: "Catalogue unavailable offline" }, { status: 503 });
         }
