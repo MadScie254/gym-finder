@@ -3,11 +3,17 @@ import { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { MemoryRouter, Route, Routes, useLocation } from "react-router";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
+import { createVenueSearch } from "../../data/loadVenues";
 import type { Venue } from "../../data/types";
+import { t } from "../../lib/i18n";
+import { StoreProvider } from "../../app/stores";
 import { ComparePage } from "./ComparePage";
 
 const state = vi.hoisted(() => ({ index: null as unknown }));
-vi.mock("../../app/venue-context", () => ({ useVenueContext: () => ({ index: state.index }) }));
+vi.mock("../../app/venue-context", () => ({
+  useVenueContext: () => ({ index: state.index, origin: null, lang: "en" }),
+  useT: () => (key: Parameters<typeof t>[1], vars?: Parameters<typeof t>[2]) => t("en", key, vars),
+}));
 
 const first: Venue = {
   id: "one", slug: "one", aliases: [], name: "Gym One", kind: "gym", lat: -1.28, lng: 36.82,
@@ -23,12 +29,18 @@ function LocationProbe() {
   return <output data-testid="search-params">{location.search}</output>;
 }
 
+function indexOf(venues: Venue[]) {
+  return { venues, byId: new Map(venues.map((venue) => [venue.id, venue])), search: createVenueSearch(venues) };
+}
+
 let container: HTMLDivElement;
 let root: Root;
 
 beforeEach(() => {
-  state.index = { venues: [first, second], byId: new Map([[first.id, first], [second.id, second]]) };
+  state.index = indexOf([first, second]);
   vi.stubGlobal("IS_REACT_ACT_ENVIRONMENT", true);
+  vi.stubGlobal("matchMedia", (query: string) => ({ matches: true, media: query, addEventListener() {}, removeEventListener() {} }));
+  window.localStorage.clear();
   container = document.createElement("div");
   document.body.append(container);
   root = createRoot(container);
@@ -40,34 +52,49 @@ afterEach(async () => {
   vi.unstubAllGlobals();
 });
 
-it("ignores invalid and duplicate URL IDs and lets people add a gym by name", async () => {
+function columns() {
+  return [...container.querySelectorAll("thead th")].map((cell) => cell.textContent);
+}
+
+it("ignores invalid and duplicate URL ids and lets people add a gym by name", async () => {
   await act(async () => root.render(
-    <MemoryRouter initialEntries={["/compare?ids=missing,one,one"]}>
+    <StoreProvider><MemoryRouter initialEntries={["/compare?ids=missing,one,one"]}>
       <Routes><Route path="/compare" element={<><ComparePage /><LocationProbe /></>} /></Routes>
-    </MemoryRouter>,
+    </MemoryRouter></StoreProvider>,
   ));
-  expect(container.querySelectorAll(".compare-grid article")).toHaveLength(1);
-  expect(container.textContent).not.toContain("paste ids");
-  const select = container.querySelector("select")!;
+  expect(columns()).toEqual(["Gym One"]);
+  expect(container.textContent).not.toContain("paste");
+  const input = container.querySelector<HTMLInputElement>("input[role='combobox']")!;
   await act(async () => {
-    select.value = "two";
-    select.dispatchEvent(new Event("change", { bubbles: true }));
+    const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value")!.set!;
+    setter.call(input, "Gym Two");
+    input.dispatchEvent(new Event("input", { bubbles: true }));
   });
-  const addButton = [...container.querySelectorAll("button")].find((button) => button.textContent === "Add gym")!;
-  await act(async () => addButton.click());
-  expect(container.querySelectorAll(".compare-grid article")).toHaveLength(2);
+  const option = [...container.querySelectorAll("[role='option']")].find((item) => item.textContent?.includes("Gym Two"))!;
+  await act(async () => (option as HTMLElement).click());
+  expect(columns()).toEqual(["Gym One", "Gym Two"]);
   expect(container.querySelector('[data-testid="search-params"]')?.textContent).toContain("ids=one%2Ctwo");
 });
 
-it("does not allow a fourth gym in the comparison", async () => {
+it("does not offer a fourth gym", async () => {
   const third = { ...first, id: "three", slug: "three", name: "Gym Three" };
   const fourth = { ...first, id: "four", slug: "four", name: "Gym Four" };
-  state.index = { venues: [first, second, third, fourth], byId: new Map([first, second, third, fourth].map((venue) => [venue.id, venue])) };
+  state.index = indexOf([first, second, third, fourth]);
   await act(async () => root.render(
-    <MemoryRouter initialEntries={["/compare?ids=one,two,three"]}>
+    <StoreProvider><MemoryRouter initialEntries={["/compare?ids=one,two,three,four"]}>
       <Routes><Route path="/compare" element={<ComparePage />} /></Routes>
-    </MemoryRouter>,
+    </MemoryRouter></StoreProvider>,
   ));
-  expect(container.querySelectorAll(".compare-grid article")).toHaveLength(3);
-  expect(container.querySelector("select")).toBeNull();
+  expect(columns()).toEqual(["Gym One", "Gym Two", "Gym Three"]);
+  expect(container.querySelector("input[role='combobox']")).toBeNull();
+});
+
+it("shows missing facts as Not listed, never a score", async () => {
+  await act(async () => root.render(
+    <StoreProvider><MemoryRouter initialEntries={["/compare?ids=one,two"]}>
+      <Routes><Route path="/compare" element={<ComparePage />} /></Routes>
+    </MemoryRouter></StoreProvider>,
+  ));
+  expect(container.textContent).toContain("Not listed");
+  expect(container.textContent).not.toMatch(/score|best match/i);
 });

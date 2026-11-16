@@ -9,13 +9,13 @@ export type EmptyStateProps = {
   icon?: LucideIcon;
   /** Usually one Button. */
   action?: ReactNode;
-  /** Heading level, so it fits the page outline. */
-  level?: 2 | 3;
+  /** Heading level, so it fits the page outline. Use 1 when the empty state is the whole page. */
+  level?: 1 | 2 | 3;
 };
 
 /** The only centred layout in the system. */
 export function EmptyState({ title, children, icon: Icon, action, level = 2 }: EmptyStateProps) {
-  const Heading = level === 2 ? "h2" : "h3";
+  const Heading = level === 1 ? "h1" : level === 2 ? "h2" : "h3";
   return (
     <section className={styles.empty}>
       {Icon && (

@@ -1,0 +1,1457 @@
+{
+  "note": "Simulated stores for the Fuel demo (docs/REVAMP_PLAN.md 2.1). Every store name, item, price, opening time and location is invented. No real business is described. Locations sit near area centres from data/kenya-places.json; no store is there.",
+  "stores": [
+    {
+      "id": "demo-protein-kitchen-westlands",
+      "name": "Demo: Protein Kitchen, Westlands",
+      "kind": "meal-prep",
+      "area": "Westlands",
+      "town": "Nairobi",
+      "location": {
+        "lat": -1.2651,
+        "lng": 36.8102
+      },
+      "placeId": "geonames/178147",
+      "hours": [
+        {
+          "days": "Monday to Friday",
+          "open": "06:30",
+          "close": "21:00"
+        },
+        {
+          "days": "Saturday",
+          "open": "08:00",
+          "close": "20:00"
+        }
+      ],
+      "items": [
+        {
+          "id": "pk-chicken-rice",
+          "name": "Grilled chicken, brown rice and sukuma wiki",
+          "section": "Bowls",
+          "unit": "1 bowl",
+          "priceKes": 650,
+          "proteinG": 38,
+          "kcal": 620,
+          "tags": [
+            "high-protein",
+            "post-workout"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "pk-beef-ugali",
+          "name": "Beef stew, ugali and greens",
+          "section": "Bowls",
+          "unit": "1 plate",
+          "priceKes": 600,
+          "proteinG": 34,
+          "kcal": 700,
+          "tags": [
+            "high-protein",
+            "post-workout"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "pk-tilapia",
+          "name": "Pan-fried tilapia, sweet potato and kachumbari",
+          "section": "Bowls",
+          "unit": "1 plate",
+          "priceKes": 780,
+          "proteinG": 36,
+          "kcal": 590,
+          "tags": [
+            "high-protein",
+            "post-workout"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "pk-ndengu-chapati",
+          "name": "Ndengu and two chapati",
+          "section": "Bowls",
+          "unit": "1 plate",
+          "priceKes": 350,
+          "proteinG": 18,
+          "kcal": 560,
+          "tags": [
+            "vegetarian",
+            "budget"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "pk-githeri-avocado",
+          "name": "Githeri with avocado",
+          "section": "Bowls",
+          "unit": "1 bowl",
+          "priceKes": 300,
+          "proteinG": 16,
+          "kcal": 520,
+          "tags": [
+            "vegetarian",
+            "budget",
+            "post-workout"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "pk-egg-wrap",
+          "name": "Egg and spinach chapati wrap",
+          "section": "Breakfast",
+          "unit": "1 wrap",
+          "priceKes": 250,
+          "proteinG": 14,
+          "kcal": 380,
+          "tags": [
+            "vegetarian",
+            "breakfast"
+          ],
+          "meal": "breakfast"
+        },
+        {
+          "id": "pk-uji",
+          "name": "Millet uji",
+          "section": "Breakfast",
+          "unit": "1 cup",
+          "priceKes": 120,
+          "proteinG": 5,
+          "kcal": 220,
+          "tags": [
+            "vegetarian",
+            "budget",
+            "breakfast",
+            "pre-workout"
+          ],
+          "meal": "breakfast"
+        },
+        {
+          "id": "pk-boiled-eggs",
+          "name": "Two boiled eggs",
+          "section": "Snacks",
+          "unit": "2 eggs",
+          "priceKes": 80,
+          "proteinG": 12,
+          "kcal": 150,
+          "tags": [
+            "vegetarian",
+            "budget"
+          ],
+          "meal": "snack"
+        },
+        {
+          "id": "pk-mala",
+          "name": "Mala (fermented milk)",
+          "section": "Drinks",
+          "unit": "500 ml",
+          "priceKes": 90,
+          "proteinG": 16,
+          "kcal": 300,
+          "tags": [
+            "vegetarian",
+            "post-workout"
+          ],
+          "meal": "drink"
+        }
+      ]
+    },
+    {
+      "id": "demo-green-cup-kilimani",
+      "name": "Demo: Green Cup Smoothies, Kilimani",
+      "kind": "smoothie-bar",
+      "area": "Kilimani",
+      "town": "Nairobi",
+      "location": {
+        "lat": -1.2962,
+        "lng": 36.7859
+      },
+      "placeId": "geonames/8477699",
+      "hours": [
+        {
+          "days": "Every day",
+          "open": "07:00",
+          "close": "19:00"
+        }
+      ],
+      "items": [
+        {
+          "id": "gc-protein-shake",
+          "name": "Milk, banana and yoghurt shake",
+          "section": "Smoothies",
+          "unit": "500 ml",
+          "priceKes": 450,
+          "proteinG": 24,
+          "kcal": 520,
+          "tags": [
+            "vegetarian",
+            "high-protein",
+            "post-workout"
+          ],
+          "meal": "drink"
+        },
+        {
+          "id": "gc-banana-pb",
+          "name": "Banana, oat and peanut butter smoothie",
+          "section": "Smoothies",
+          "unit": "400 ml",
+          "priceKes": 380,
+          "proteinG": 14,
+          "kcal": 480,
+          "tags": [
+            "vegetarian",
+            "post-workout"
+          ],
+          "meal": "drink"
+        },
+        {
+          "id": "gc-mango-yoghurt",
+          "name": "Mango and yoghurt smoothie",
+          "section": "Smoothies",
+          "unit": "400 ml",
+          "priceKes": 330,
+          "proteinG": 10,
+          "kcal": 300,
+          "tags": [
+            "vegetarian",
+            "pre-workout"
+          ],
+          "meal": "drink"
+        },
+        {
+          "id": "gc-greens",
+          "name": "Spinach, pineapple and ginger juice",
+          "section": "Smoothies",
+          "unit": "400 ml",
+          "priceKes": 300,
+          "proteinG": 2,
+          "kcal": 160,
+          "tags": [
+            "vegetarian",
+            "pre-workout"
+          ],
+          "meal": "drink"
+        },
+        {
+          "id": "gc-oats-bowl",
+          "name": "Oats, yoghurt and pawpaw bowl",
+          "section": "Bowls",
+          "unit": "1 bowl",
+          "priceKes": 350,
+          "proteinG": 15,
+          "kcal": 420,
+          "tags": [
+            "vegetarian",
+            "breakfast"
+          ],
+          "meal": "breakfast"
+        },
+        {
+          "id": "gc-avocado-toast",
+          "name": "Avocado and egg on whole-wheat toast",
+          "section": "Bowls",
+          "unit": "1 plate",
+          "priceKes": 400,
+          "proteinG": 15,
+          "kcal": 450,
+          "tags": [
+            "vegetarian",
+            "breakfast"
+          ],
+          "meal": "breakfast"
+        },
+        {
+          "id": "gc-bananas",
+          "name": "Two bananas",
+          "section": "Snacks",
+          "unit": "2 bananas",
+          "priceKes": 40,
+          "proteinG": 2,
+          "kcal": 210,
+          "tags": [
+            "vegetarian",
+            "budget",
+            "pre-workout"
+          ],
+          "meal": "snack"
+        },
+        {
+          "id": "gc-groundnuts",
+          "name": "Roasted groundnuts",
+          "section": "Snacks",
+          "unit": "100 g",
+          "priceKes": 80,
+          "proteinG": 26,
+          "kcal": 580,
+          "tags": [
+            "vegetarian",
+            "budget",
+            "high-protein"
+          ],
+          "meal": "snack"
+        }
+      ]
+    },
+    {
+      "id": "demo-shamba-fresh-karen",
+      "name": "Demo: Shamba Fresh Grocers, Karen",
+      "kind": "grocery",
+      "area": "Karen",
+      "town": "Nairobi",
+      "location": {
+        "lat": -1.3349,
+        "lng": 36.7181
+      },
+      "placeId": "geonames/8477691",
+      "hours": [
+        {
+          "days": "Monday to Saturday",
+          "open": "07:00",
+          "close": "20:00"
+        },
+        {
+          "days": "Sunday",
+          "open": "09:00",
+          "close": "17:00"
+        }
+      ],
+      "items": [
+        {
+          "id": "sf-sukuma",
+          "name": "Sukuma wiki",
+          "section": "Produce",
+          "unit": "1 bunch",
+          "priceKes": 30,
+          "tags": [
+            "vegetarian",
+            "budget"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "sf-sweet-potato",
+          "name": "Sweet potatoes",
+          "section": "Produce",
+          "unit": "1 kg",
+          "priceKes": 120,
+          "tags": [
+            "vegetarian",
+            "budget"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "sf-bananas",
+          "name": "Bananas",
+          "section": "Produce",
+          "unit": "6 bananas",
+          "priceKes": 100,
+          "tags": [
+            "vegetarian",
+            "budget",
+            "pre-workout"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "sf-avocado",
+          "name": "Avocados",
+          "section": "Produce",
+          "unit": "3 avocados",
+          "priceKes": 90,
+          "tags": [
+            "vegetarian"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "sf-ndengu",
+          "name": "Ndengu (green grams)",
+          "section": "Grains and legumes",
+          "unit": "1 kg",
+          "priceKes": 260,
+          "tags": [
+            "vegetarian",
+            "high-protein"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "sf-beans",
+          "name": "Rosecoco beans",
+          "section": "Grains and legumes",
+          "unit": "1 kg",
+          "priceKes": 220,
+          "tags": [
+            "vegetarian",
+            "budget",
+            "high-protein"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "sf-maize-flour",
+          "name": "Maize flour",
+          "section": "Grains and legumes",
+          "unit": "2 kg",
+          "priceKes": 190,
+          "tags": [
+            "vegetarian",
+            "budget"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "sf-oats",
+          "name": "Rolled oats",
+          "section": "Grains and legumes",
+          "unit": "500 g",
+          "priceKes": 320,
+          "tags": [
+            "vegetarian",
+            "breakfast"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "sf-eggs",
+          "name": "Eggs",
+          "section": "Dairy and eggs",
+          "unit": "1 tray of 30",
+          "priceKes": 480,
+          "tags": [
+            "vegetarian",
+            "high-protein"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "sf-milk",
+          "name": "Fresh milk",
+          "section": "Dairy and eggs",
+          "unit": "1 litre",
+          "priceKes": 130,
+          "tags": [
+            "vegetarian"
+          ],
+          "meal": "grocery"
+        }
+      ]
+    },
+    {
+      "id": "demo-choma-cuts-kileleshwa",
+      "name": "Demo: Choma Cuts Butchery, Kileleshwa",
+      "kind": "butchery",
+      "area": "Kileleshwa",
+      "town": "Nairobi",
+      "location": {
+        "lat": -1.2819,
+        "lng": 36.787
+      },
+      "placeId": "geonames/192093",
+      "hours": [
+        {
+          "days": "Monday to Saturday",
+          "open": "08:00",
+          "close": "21:00"
+        },
+        {
+          "days": "Sunday",
+          "open": "10:00",
+          "close": "20:00"
+        }
+      ],
+      "items": [
+        {
+          "id": "cc-goat-choma",
+          "name": "Goat nyama choma",
+          "section": "Grill",
+          "unit": "250 g",
+          "priceKes": 480,
+          "proteinG": 65,
+          "kcal": 400,
+          "tags": [
+            "high-protein",
+            "post-workout"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "cc-chicken-quarter",
+          "name": "Grilled chicken quarter with kachumbari",
+          "section": "Grill",
+          "unit": "1 quarter",
+          "priceKes": 450,
+          "proteinG": 30,
+          "kcal": 380,
+          "tags": [
+            "high-protein",
+            "post-workout"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "cc-beef-mince",
+          "name": "Lean beef mince",
+          "section": "Raw cuts",
+          "unit": "500 g",
+          "priceKes": 450,
+          "tags": [
+            "high-protein"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "cc-beef-steak",
+          "name": "Beef steak",
+          "section": "Raw cuts",
+          "unit": "1 kg",
+          "priceKes": 800,
+          "tags": [
+            "high-protein"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "cc-chicken-breast",
+          "name": "Chicken breast",
+          "section": "Raw cuts",
+          "unit": "1 kg",
+          "priceKes": 750,
+          "tags": [
+            "high-protein"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "cc-liver",
+          "name": "Beef liver",
+          "section": "Raw cuts",
+          "unit": "500 g",
+          "priceKes": 350,
+          "tags": [
+            "high-protein",
+            "budget"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "cc-ugali",
+          "name": "Ugali",
+          "section": "Sides",
+          "unit": "1 portion",
+          "priceKes": 60,
+          "proteinG": 7,
+          "kcal": 350,
+          "tags": [
+            "vegetarian",
+            "budget"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "cc-kachumbari",
+          "name": "Kachumbari",
+          "section": "Sides",
+          "unit": "1 portion",
+          "priceKes": 50,
+          "proteinG": 1,
+          "kcal": 40,
+          "tags": [
+            "vegetarian",
+            "budget"
+          ],
+          "meal": "snack"
+        }
+      ]
+    },
+    {
+      "id": "demo-mama-fit-embakasi",
+      "name": "Demo: Mama Fit Kitchen, Embakasi",
+      "kind": "meal-prep",
+      "area": "Embakasi",
+      "town": "Nairobi",
+      "location": {
+        "lat": -1.3091,
+        "lng": 36.9038
+      },
+      "placeId": "geonames/198442",
+      "hours": [
+        {
+          "days": "Monday to Saturday",
+          "open": "06:00",
+          "close": "20:00"
+        }
+      ],
+      "items": [
+        {
+          "id": "mf-githeri",
+          "name": "Githeri plate",
+          "section": "Plates",
+          "unit": "1 plate",
+          "priceKes": 200,
+          "proteinG": 15,
+          "kcal": 480,
+          "tags": [
+            "vegetarian",
+            "budget",
+            "post-workout"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "mf-beans-chapati",
+          "name": "Bean stew and two chapati",
+          "section": "Plates",
+          "unit": "1 plate",
+          "priceKes": 250,
+          "proteinG": 17,
+          "kcal": 600,
+          "tags": [
+            "vegetarian",
+            "budget"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "mf-pilau",
+          "name": "Beef pilau with kachumbari",
+          "section": "Plates",
+          "unit": "1 plate",
+          "priceKes": 350,
+          "proteinG": 26,
+          "kcal": 680,
+          "tags": [
+            "high-protein",
+            "post-workout"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "mf-chicken-rice",
+          "name": "Chicken stew and rice",
+          "section": "Plates",
+          "unit": "1 plate",
+          "priceKes": 400,
+          "proteinG": 30,
+          "kcal": 650,
+          "tags": [
+            "high-protein",
+            "post-workout"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "mf-uji",
+          "name": "Wimbi uji (finger millet porridge)",
+          "section": "Breakfast",
+          "unit": "1 cup",
+          "priceKes": 80,
+          "proteinG": 4,
+          "kcal": 200,
+          "tags": [
+            "vegetarian",
+            "budget",
+            "breakfast",
+            "pre-workout"
+          ],
+          "meal": "breakfast"
+        },
+        {
+          "id": "mf-sweet-potato",
+          "name": "Sweet potato and tea",
+          "section": "Breakfast",
+          "unit": "1 plate",
+          "priceKes": 150,
+          "proteinG": 4,
+          "kcal": 330,
+          "tags": [
+            "vegetarian",
+            "budget",
+            "breakfast",
+            "pre-workout"
+          ],
+          "meal": "breakfast"
+        },
+        {
+          "id": "mf-eggs",
+          "name": "Two boiled eggs",
+          "section": "Snacks",
+          "unit": "2 eggs",
+          "priceKes": 60,
+          "proteinG": 12,
+          "kcal": 150,
+          "tags": [
+            "vegetarian",
+            "budget"
+          ],
+          "meal": "snack"
+        },
+        {
+          "id": "mf-mala",
+          "name": "Mala (fermented milk)",
+          "section": "Drinks",
+          "unit": "500 ml",
+          "priceKes": 70,
+          "proteinG": 16,
+          "kcal": 300,
+          "tags": [
+            "vegetarian",
+            "post-workout"
+          ],
+          "meal": "drink"
+        }
+      ]
+    },
+    {
+      "id": "demo-pwani-plates-nyali",
+      "name": "Demo: Pwani Plates, Nyali",
+      "kind": "meal-prep",
+      "area": "Nyali",
+      "town": "Mombasa",
+      "location": {
+        "lat": -4.0507,
+        "lng": 39.6971
+      },
+      "placeId": "geonames/182954",
+      "hours": [
+        {
+          "days": "Every day",
+          "open": "07:00",
+          "close": "22:00"
+        }
+      ],
+      "items": [
+        {
+          "id": "pp-fish-coconut",
+          "name": "Fish in coconut sauce with rice",
+          "section": "Plates",
+          "unit": "1 plate",
+          "priceKes": 750,
+          "proteinG": 35,
+          "kcal": 720,
+          "tags": [
+            "high-protein",
+            "post-workout"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "pp-kingfish",
+          "name": "Grilled kingfish, ugali and sukuma wiki",
+          "section": "Plates",
+          "unit": "1 plate",
+          "priceKes": 800,
+          "proteinG": 40,
+          "kcal": 650,
+          "tags": [
+            "high-protein",
+            "post-workout"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "pp-biryani",
+          "name": "Chicken biryani",
+          "section": "Plates",
+          "unit": "1 plate",
+          "priceKes": 550,
+          "proteinG": 30,
+          "kcal": 780,
+          "tags": [
+            "high-protein"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "pp-mbaazi",
+          "name": "Mbaazi wa nazi and chapati",
+          "section": "Plates",
+          "unit": "1 plate",
+          "priceKes": 300,
+          "proteinG": 15,
+          "kcal": 620,
+          "tags": [
+            "vegetarian",
+            "budget"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "pp-maharagwe",
+          "name": "Maharagwe ya nazi and rice",
+          "section": "Plates",
+          "unit": "1 plate",
+          "priceKes": 280,
+          "proteinG": 16,
+          "kcal": 640,
+          "tags": [
+            "vegetarian",
+            "budget",
+            "post-workout"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "pp-mahamri",
+          "name": "Mahamri and chai",
+          "section": "Breakfast",
+          "unit": "1 plate",
+          "priceKes": 150,
+          "proteinG": 6,
+          "kcal": 420,
+          "tags": [
+            "vegetarian",
+            "breakfast"
+          ],
+          "meal": "breakfast"
+        },
+        {
+          "id": "pp-madafu",
+          "name": "Madafu (fresh coconut water)",
+          "section": "Drinks",
+          "unit": "1 coconut",
+          "priceKes": 80,
+          "proteinG": 1,
+          "kcal": 60,
+          "tags": [
+            "vegetarian",
+            "budget",
+            "pre-workout"
+          ],
+          "meal": "drink"
+        },
+        {
+          "id": "pp-passion-mango",
+          "name": "Passion and mango juice",
+          "section": "Drinks",
+          "unit": "400 ml",
+          "priceKes": 200,
+          "proteinG": 1,
+          "kcal": 180,
+          "tags": [
+            "vegetarian",
+            "pre-workout"
+          ],
+          "meal": "drink"
+        }
+      ]
+    },
+    {
+      "id": "demo-bahari-greens-tudor",
+      "name": "Demo: Bahari Greens, Tudor",
+      "kind": "grocery",
+      "area": "Tudor",
+      "town": "Mombasa",
+      "location": {
+        "lat": -4.0391,
+        "lng": 39.6659
+      },
+      "placeId": "geonames/10344570",
+      "hours": [
+        {
+          "days": "Monday to Saturday",
+          "open": "07:30",
+          "close": "20:30"
+        }
+      ],
+      "items": [
+        {
+          "id": "bg-mchicha",
+          "name": "Mchicha (amaranth greens)",
+          "section": "Produce",
+          "unit": "1 bunch",
+          "priceKes": 30,
+          "tags": [
+            "vegetarian",
+            "budget"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "bg-cassava",
+          "name": "Cassava",
+          "section": "Produce",
+          "unit": "1 kg",
+          "priceKes": 100,
+          "tags": [
+            "vegetarian",
+            "budget"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "bg-mangoes",
+          "name": "Mangoes",
+          "section": "Produce",
+          "unit": "3 mangoes",
+          "priceKes": 120,
+          "tags": [
+            "vegetarian",
+            "pre-workout"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "bg-mbaazi",
+          "name": "Mbaazi (pigeon peas)",
+          "section": "Grains and legumes",
+          "unit": "1 kg",
+          "priceKes": 240,
+          "tags": [
+            "vegetarian",
+            "budget",
+            "high-protein"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "bg-rice",
+          "name": "Pishori rice",
+          "section": "Grains and legumes",
+          "unit": "2 kg",
+          "priceKes": 420,
+          "tags": [
+            "vegetarian"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "bg-coconut-milk",
+          "name": "Coconut milk",
+          "section": "Pantry",
+          "unit": "400 ml",
+          "priceKes": 180,
+          "tags": [
+            "vegetarian"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "bg-eggs",
+          "name": "Eggs",
+          "section": "Dairy and eggs",
+          "unit": "1 tray of 30",
+          "priceKes": 500,
+          "tags": [
+            "vegetarian",
+            "high-protein"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "bg-yoghurt",
+          "name": "Plain yoghurt",
+          "section": "Dairy and eggs",
+          "unit": "500 ml",
+          "priceKes": 180,
+          "tags": [
+            "vegetarian",
+            "breakfast"
+          ],
+          "meal": "grocery"
+        }
+      ]
+    },
+    {
+      "id": "demo-lakeside-fit-kisumu",
+      "name": "Demo: Lakeside Fit Meals, Kisumu",
+      "kind": "meal-prep",
+      "area": "Kisumu",
+      "town": "Kisumu",
+      "location": {
+        "lat": -0.1004,
+        "lng": 34.7599
+      },
+      "placeId": "geonames/191245",
+      "hours": [
+        {
+          "days": "Every day",
+          "open": "08:00",
+          "close": "21:00"
+        }
+      ],
+      "items": [
+        {
+          "id": "lf-tilapia",
+          "name": "Whole tilapia, ugali and sukuma wiki",
+          "section": "Plates",
+          "unit": "1 plate",
+          "priceKes": 650,
+          "proteinG": 45,
+          "kcal": 750,
+          "tags": [
+            "high-protein",
+            "post-workout"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "lf-omena",
+          "name": "Omena, ugali and greens",
+          "section": "Plates",
+          "unit": "1 plate",
+          "priceKes": 250,
+          "proteinG": 28,
+          "kcal": 600,
+          "tags": [
+            "high-protein",
+            "budget",
+            "post-workout"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "lf-chicken",
+          "name": "Kienyeji chicken stew and brown ugali",
+          "section": "Plates",
+          "unit": "1 plate",
+          "priceKes": 600,
+          "proteinG": 35,
+          "kcal": 680,
+          "tags": [
+            "high-protein",
+            "post-workout"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "lf-beans",
+          "name": "Bean stew, rice and cabbage",
+          "section": "Plates",
+          "unit": "1 plate",
+          "priceKes": 250,
+          "proteinG": 15,
+          "kcal": 590,
+          "tags": [
+            "vegetarian",
+            "budget"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "lf-ndengu",
+          "name": "Ndengu and chapati",
+          "section": "Plates",
+          "unit": "1 plate",
+          "priceKes": 250,
+          "proteinG": 18,
+          "kcal": 560,
+          "tags": [
+            "vegetarian",
+            "budget",
+            "post-workout"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "lf-sweet-potato",
+          "name": "Sweet potato and tea",
+          "section": "Breakfast",
+          "unit": "1 plate",
+          "priceKes": 150,
+          "proteinG": 4,
+          "kcal": 330,
+          "tags": [
+            "vegetarian",
+            "budget",
+            "breakfast",
+            "pre-workout"
+          ],
+          "meal": "breakfast"
+        },
+        {
+          "id": "lf-mala",
+          "name": "Mala (fermented milk)",
+          "section": "Drinks",
+          "unit": "500 ml",
+          "priceKes": 80,
+          "proteinG": 16,
+          "kcal": 300,
+          "tags": [
+            "vegetarian",
+            "post-workout"
+          ],
+          "meal": "drink"
+        },
+        {
+          "id": "lf-fruit",
+          "name": "Seasonal fruit cup",
+          "section": "Snacks",
+          "unit": "1 cup",
+          "priceKes": 120,
+          "proteinG": 1,
+          "kcal": 120,
+          "tags": [
+            "vegetarian",
+            "budget",
+            "pre-workout"
+          ],
+          "meal": "snack"
+        }
+      ]
+    },
+    {
+      "id": "demo-rift-smoothies-nakuru",
+      "name": "Demo: Rift Smoothies, Nakuru",
+      "kind": "smoothie-bar",
+      "area": "Nakuru",
+      "town": "Nakuru",
+      "location": {
+        "lat": -0.3054,
+        "lng": 36.0741
+      },
+      "placeId": "geonames/184622",
+      "hours": [
+        {
+          "days": "Monday to Saturday",
+          "open": "07:00",
+          "close": "19:00"
+        }
+      ],
+      "items": [
+        {
+          "id": "rs-protein",
+          "name": "Yoghurt, oats and groundnut shake",
+          "section": "Smoothies",
+          "unit": "500 ml",
+          "priceKes": 380,
+          "proteinG": 22,
+          "kcal": 560,
+          "tags": [
+            "vegetarian",
+            "high-protein",
+            "post-workout"
+          ],
+          "meal": "drink"
+        },
+        {
+          "id": "rs-banana-milk",
+          "name": "Banana and milk smoothie",
+          "section": "Smoothies",
+          "unit": "400 ml",
+          "priceKes": 250,
+          "proteinG": 12,
+          "kcal": 360,
+          "tags": [
+            "vegetarian",
+            "pre-workout"
+          ],
+          "meal": "drink"
+        },
+        {
+          "id": "rs-beetroot",
+          "name": "Beetroot, carrot and orange juice",
+          "section": "Smoothies",
+          "unit": "400 ml",
+          "priceKes": 250,
+          "proteinG": 2,
+          "kcal": 150,
+          "tags": [
+            "vegetarian",
+            "pre-workout"
+          ],
+          "meal": "drink"
+        },
+        {
+          "id": "rs-avocado",
+          "name": "Avocado and banana smoothie",
+          "section": "Smoothies",
+          "unit": "400 ml",
+          "priceKes": 300,
+          "proteinG": 6,
+          "kcal": 420,
+          "tags": [
+            "vegetarian"
+          ],
+          "meal": "drink"
+        },
+        {
+          "id": "rs-oats",
+          "name": "Overnight oats with mango",
+          "section": "Bowls",
+          "unit": "1 jar",
+          "priceKes": 280,
+          "proteinG": 13,
+          "kcal": 410,
+          "tags": [
+            "vegetarian",
+            "breakfast",
+            "pre-workout"
+          ],
+          "meal": "breakfast"
+        },
+        {
+          "id": "rs-eggs",
+          "name": "Two boiled eggs and an orange",
+          "section": "Snacks",
+          "unit": "1 pack",
+          "priceKes": 120,
+          "proteinG": 12,
+          "kcal": 210,
+          "tags": [
+            "vegetarian",
+            "budget"
+          ],
+          "meal": "snack"
+        },
+        {
+          "id": "rs-groundnuts",
+          "name": "Roasted groundnuts",
+          "section": "Snacks",
+          "unit": "100 g",
+          "priceKes": 80,
+          "proteinG": 26,
+          "kcal": 580,
+          "tags": [
+            "vegetarian",
+            "budget",
+            "high-protein"
+          ],
+          "meal": "snack"
+        }
+      ]
+    },
+    {
+      "id": "demo-menengai-cuts-nakuru",
+      "name": "Demo: Menengai Cuts Butchery, Nakuru",
+      "kind": "butchery",
+      "area": "Nakuru",
+      "town": "Nakuru",
+      "location": {
+        "lat": -0.3089,
+        "lng": 36.0704
+      },
+      "placeId": "geonames/184622",
+      "hours": [
+        {
+          "days": "Every day",
+          "open": "08:00",
+          "close": "21:00"
+        }
+      ],
+      "items": [
+        {
+          "id": "mc-goat",
+          "name": "Goat nyama choma",
+          "section": "Grill",
+          "unit": "250 g",
+          "priceKes": 450,
+          "proteinG": 65,
+          "kcal": 400,
+          "tags": [
+            "high-protein",
+            "post-workout"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "mc-beef-choma",
+          "name": "Beef nyama choma",
+          "section": "Grill",
+          "unit": "250 g",
+          "priceKes": 420,
+          "proteinG": 62,
+          "kcal": 450,
+          "tags": [
+            "high-protein",
+            "post-workout"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "mc-chicken-breast",
+          "name": "Chicken breast",
+          "section": "Raw cuts",
+          "unit": "1 kg",
+          "priceKes": 720,
+          "tags": [
+            "high-protein"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "mc-beef",
+          "name": "Beef, bone-in",
+          "section": "Raw cuts",
+          "unit": "1 kg",
+          "priceKes": 700,
+          "tags": [
+            "high-protein",
+            "budget"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "mc-liver",
+          "name": "Beef liver",
+          "section": "Raw cuts",
+          "unit": "500 g",
+          "priceKes": 320,
+          "tags": [
+            "high-protein",
+            "budget"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "mc-ugali",
+          "name": "Ugali",
+          "section": "Sides",
+          "unit": "1 portion",
+          "priceKes": 50,
+          "proteinG": 7,
+          "kcal": 350,
+          "tags": [
+            "vegetarian",
+            "budget"
+          ],
+          "meal": "main"
+        },
+        {
+          "id": "mc-kachumbari",
+          "name": "Kachumbari",
+          "section": "Sides",
+          "unit": "1 portion",
+          "priceKes": 50,
+          "proteinG": 1,
+          "kcal": 40,
+          "tags": [
+            "vegetarian",
+            "budget"
+          ],
+          "meal": "snack"
+        }
+      ]
+    },
+    {
+      "id": "demo-highland-grains-eldoret",
+      "name": "Demo: Highland Grains, Eldoret",
+      "kind": "grocery",
+      "area": "Eldoret",
+      "town": "Eldoret",
+      "location": {
+        "lat": 0.5221,
+        "lng": 35.2681
+      },
+      "placeId": "geonames/198629",
+      "hours": [
+        {
+          "days": "Monday to Saturday",
+          "open": "07:00",
+          "close": "20:00"
+        }
+      ],
+      "items": [
+        {
+          "id": "hg-potatoes",
+          "name": "Potatoes",
+          "section": "Produce",
+          "unit": "2 kg",
+          "priceKes": 200,
+          "tags": [
+            "vegetarian",
+            "budget"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "hg-cabbage",
+          "name": "Cabbage",
+          "section": "Produce",
+          "unit": "1 head",
+          "priceKes": 60,
+          "tags": [
+            "vegetarian",
+            "budget"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "hg-wimbi",
+          "name": "Wimbi (finger millet) flour",
+          "section": "Grains and legumes",
+          "unit": "1 kg",
+          "priceKes": 220,
+          "tags": [
+            "vegetarian",
+            "breakfast"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "hg-maize",
+          "name": "Maize flour",
+          "section": "Grains and legumes",
+          "unit": "2 kg",
+          "priceKes": 180,
+          "tags": [
+            "vegetarian",
+            "budget"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "hg-beans",
+          "name": "Nyayo beans",
+          "section": "Grains and legumes",
+          "unit": "1 kg",
+          "priceKes": 200,
+          "tags": [
+            "vegetarian",
+            "budget",
+            "high-protein"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "hg-ndengu",
+          "name": "Ndengu (green grams)",
+          "section": "Grains and legumes",
+          "unit": "1 kg",
+          "priceKes": 250,
+          "tags": [
+            "vegetarian",
+            "high-protein"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "hg-milk",
+          "name": "Fresh milk",
+          "section": "Dairy and eggs",
+          "unit": "1 litre",
+          "priceKes": 110,
+          "tags": [
+            "vegetarian"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "hg-mala",
+          "name": "Mala (fermented milk)",
+          "section": "Dairy and eggs",
+          "unit": "500 ml",
+          "priceKes": 70,
+          "tags": [
+            "vegetarian",
+            "post-workout"
+          ],
+          "meal": "grocery"
+        },
+        {
+          "id": "hg-eggs",
+          "name": "Eggs",
+          "section": "Dairy and eggs",
+          "unit": "1 tray of 30",
+          "priceKes": 450,
+          "tags": [
+            "vegetarian",
+            "high-protein"
+          ],
+          "meal": "grocery"
+        }
+      ]
+    }
+  ]
+}

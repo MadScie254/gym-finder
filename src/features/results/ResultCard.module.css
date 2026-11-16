@@ -1,0 +1,25 @@
+/* View gym leads; Save and Compare shrink to icons in a narrow card and keep their names for screen readers. */
+.actions {
+  display: flex;
+  gap: var(--space-2);
+  container-type: inline-size;
+}
+
+.view {
+  flex: 1 1 auto;
+}
+
+@container (max-width: 380px) {
+  .actions > button {
+    padding-inline: var(--space-3);
+  }
+
+  .actions > button > span:last-child {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+}

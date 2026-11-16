@@ -1,53 +1,89 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router";
-import { useVenueContext } from "../../app/venue-context";
+import { Columns3, Share2 } from "lucide-react";
+import { Page } from "../../app/Page";
+import { useCompare } from "../../app/stores";
+import { useMediaQuery, WIDE_QUERY } from "../../app/useMediaQuery";
+import { useT, useVenueContext } from "../../app/venue-context";
+import { searchVenues } from "../../data/loadVenues";
+import type { Venue } from "../../data/types";
+import { comparePath, parseCompareIds } from "../../lib/compare";
+import { absoluteUrl, shareLink } from "../../lib/share";
+import { Button, buttonClassName, EmptyState, SearchField } from "../../ui";
+import { CompareTable } from "./CompareTable";
+import styles from "./Compare.module.css";
 
+/** Up to three gyms side by side (G5). The link carries the choice; nobody types ids. */
 export function ComparePage() {
+  const tr = useT();
   const { index } = useVenueContext();
+  const compare = useCompare();
+  const wide = useMediaQuery(WIDE_QUERY);
   const [params, setParams] = useSearchParams();
-  const [candidateId, setCandidateId] = useState("");
-  const ids = [...new Set((params.get("ids") ?? "").split(","))]
-    .filter((id) => index?.byId.has(id)).slice(0, 3);
-  const venues = ids.map((id) => index?.byId.get(id)).filter((venue) => venue != null);
-  const available = index?.venues.filter((venue) => !ids.includes(venue.id)) ?? [];
+  const [query, setQuery] = useState("");
+  const [status, setStatus] = useState("");
+  const fromUrl = params.has("ids") ? parseCompareIds(params.get("ids")) : null;
+  const ids = fromUrl ?? compare.ids;
+  const venues = useMemo(() => ids.map((id) => index?.byId.get(id)).filter((venue): venue is Venue => venue != null), [ids, index]);
+  const missing = index ? ids.length - venues.length : 0;
+  const [pair, setPair] = useState<[number, number]>([0, 1]);
 
-  function updateIds(nextIds: string[]) {
-    const next = new URLSearchParams(params);
-    if (nextIds.length) next.set("ids", nextIds.join(","));
-    else next.delete("ids");
-    setParams(next);
+  // A shared link becomes this device's compare list, and the URL always reflects the list.
+  useEffect(() => {
+    if (fromUrl && fromUrl.join(",") !== compare.ids.join(",")) compare.set(fromUrl);
+    else if (!fromUrl && compare.ids.length) setParams({ ids: compare.ids.join(",") }, { replace: true });
+  }, [params.get("ids")]);
+
+  function update(next: string[]) {
+    compare.set(next);
+    setParams(next.length ? { ids: next.join(",") } : {}, { replace: true });
   }
 
+  const options = useMemo(() => (index && query.trim().length >= 2
+    ? searchVenues(index, query).filter((venue) => !ids.includes(venue.id)).slice(0, 6).map((venue) => ({ id: venue.id, label: venue.name, hint: [venue.area, venue.county].filter(Boolean).join(", ") }))
+    : []), [index, query, ids]);
+
+  const shown = wide ? venues : [venues[pair[0]], venues[pair[1]]].filter((venue): venue is Venue => Boolean(venue));
+
   return (
-    <section className="page">
-      <h1>Compare</h1>
-      <p className="muted">Compare up to three gyms. The page link keeps your selection.</p>
-      {ids.length < 3 && available.length > 0 && <div className="compare-picker">
-        <label>Choose a gym
-          <select value={candidateId} onChange={(event) => setCandidateId(event.target.value)}>
-            <option value="">Select a gym</option>
-            {available.map((venue) => <option key={venue.id} value={venue.id}>{venue.name} · {venue.county ?? "Area unknown"}</option>)}
-          </select>
-        </label>
-        <button type="button" className="btn" disabled={!candidateId} onClick={() => {
-          if (!candidateId || !index?.byId.has(candidateId)) return;
-          updateIds([...ids, candidateId]);
-          setCandidateId("");
-        }}>Add gym</button>
-      </div>}
-      {venues.length === 0 && <p>Choose a gym above, or <Link to="/">browse the list</Link>.</p>}
-      <div className="compare-grid">
-        {venues.map((venue) => (
-          <article key={venue.id}>
-            <h2><Link to={`/gym/${venue.slug}`}>{venue.name}</Link></h2>
-            <p>{venue.trust.tier}</p>
-            <p>{venue.phones[0] ?? "No phone"}</p>
-            <p>{venue.hours?.raw ?? "Hours not listed — call to confirm."}</p>
-            <p>{venue.address ?? "Address not listed."}</p>
-            <button type="button" className="btn btn--ghost" onClick={() => updateIds(ids.filter((id) => id !== venue.id))}>Remove {venue.name}</button>
-          </article>
-        ))}
-      </div>
-    </section>
+    <Page title={tr("compareTitle")} intro={tr("compareIntro")} wide
+      actions={venues.length > 0 ? (
+        <Button variant="secondary" icon={Share2} onClick={async () => {
+          const outcome = await shareLink({ title: tr("compareTitle"), url: absoluteUrl(comparePath(ids)) });
+          setStatus(outcome === "copied" ? tr("shareCopied") : outcome === "failed" ? tr("shareFailed") : "");
+        }}>{tr("compareShare")}</Button>
+      ) : undefined}>
+      <p role="status" className={styles.status}>{status}</p>
+      {missing > 0 && <p className={styles.status}>{tr("compareMissing")}</p>}
+      {ids.length < 3 && (
+        <div className={styles.add}>
+          <SearchField label={tr("compareAddLabel")} placeholder={tr("compareAddPlaceholder")} value={query} onValueChange={setQuery}
+            groups={[{ id: "gyms", label: tr("groupGyms"), options }]} emptyText={tr("searchEmpty")}
+            countText={(n) => tr("searchSuggestions", { n })}
+            onSelect={(option) => { update([...venues.map((venue) => venue.id), option.id].slice(0, 3)); setQuery(""); }} />
+        </div>
+      )}
+      {venues.length === 0 ? (
+        <EmptyState icon={Columns3} level={2} title={tr("compareEmptyTitle")} action={<Link to="/search" className={buttonClassName("primary")}>{tr("compareBrowse")}</Link>}>
+          {tr("compareEmptyBody")}
+        </EmptyState>
+      ) : (
+        <>
+          {!wide && venues.length > 2 && (
+            <div className={styles.pickers}>
+              {[0, 1].map((slot) => (
+                <label key={slot} className={styles.picker}>
+                  <span className="sr-only">{tr("compareColumn", { n: slot + 1 })}</span>
+                  <select value={pair[slot]} onChange={(event) => setPair((old) => (slot === 0 ? [Number(event.target.value), old[1]] : [old[0], Number(event.target.value)]))}>
+                    {venues.map((venue, at) => <option key={venue.id} value={at} disabled={at === pair[1 - slot]}>{venue.name}</option>)}
+                  </select>
+                </label>
+              ))}
+            </div>
+          )}
+          <CompareTable venues={shown} onRemove={(venue) => { update(venues.map((item) => item.id).filter((id) => id !== venue.id)); setPair([0, 1]); }} />
+        </>
+      )}
+    </Page>
   );
 }

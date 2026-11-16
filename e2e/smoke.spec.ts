@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 // Map tiles stream for as long as the page is open, so never wait for networkidle.
 test("a misspelled search finds Salute Gym and its detail offers a Call link", async ({ page }) => {
   await page.goto("/", { waitUntil: "load" });
-  const search = page.getByRole("combobox", { name: /search gyms/i });
+  const search = page.getByRole("combobox", { name: /search a gym/i });
   await expect(search).toBeVisible();
   await search.fill("slaute gym");
 
@@ -14,7 +14,7 @@ test("a misspelled search finds Salute Gym and its detail offers a Call link", a
 
   await expect(page).toHaveURL(/\/gym\/salute-gym/);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Salute Gym");
-  await expect(page.getByRole("combobox", { name: /search gyms/i })).toHaveCount(0);
+  await expect(page.getByRole("combobox")).toHaveCount(0);
   const call = page.locator('a[href^="tel:"]').first();
   await expect(call).toBeVisible();
   await expect(call).toHaveAttribute("href", /^tel:\+?\d{6,}/);

@@ -1,0 +1,31 @@
+.map {
+  position: absolute;
+  inset: 0;
+  background: var(--color-sunk);
+}
+
+.failed {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--space-6);
+  background: var(--color-sunk);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+/* MapLibre's own controls, in the system's shape. */
+.map :global(.maplibregl-ctrl-group) {
+  border-radius: var(--radius-control);
+  box-shadow: var(--shadow-menu);
+}
+
+.map :global(.maplibregl-ctrl-group button) {
+  width: var(--target-min);
+  height: var(--target-min);
+}
+
+.map :global(.maplibregl-ctrl-attrib) {
+  font-size: var(--font-size-12);
+}

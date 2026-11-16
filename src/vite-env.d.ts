@@ -25,3 +25,4 @@ declare module "@data/kenya-places.json" {
   };
   export default value;
 }
+interface ImportMetaEnv { readonly VITE_FUEL_MODE?: "demo" | "live" }

@@ -22,12 +22,18 @@ export type SearchFieldProps = {
   locateLabel?: string;
   /** Start with the list open, for previews and tests. */
   defaultOpen?: boolean;
+  /** Enter with no suggestion list open, for a free-text search. */
+  onSubmit?: (value: string) => void;
+  /** Spoken count of suggestions, for translations. */
+  countText?: (count: number) => string;
+  onFocus?: () => void;
 };
 
 /** ARIA 1.2 combobox: input with a grouped listbox popup and aria-activedescendant focus. */
 export function SearchField({
   label, value, onValueChange, groups, onSelect, placeholder, minChars = 2,
   emptyText = "No gyms or places match that.", onLocate, locateLabel = "Use my location", defaultOpen = false,
+  onSubmit, countText = (count) => `${count} suggestions`, onFocus,
 }: SearchFieldProps) {
   const base = useId();
   const listId = `${base}-list`;
@@ -35,6 +41,8 @@ export function SearchField({
   const [active, setActive] = useState(0);
   const flat = useMemo(() => groups.flatMap((group) => group.options.map((option) => ({ option, group }))), [groups]);
   const ready = value.trim().length >= minChars;
+  // With minChars 0 an empty field can list recent searches, but "no matches" needs typed text.
+  const typed = value.trim().length >= Math.max(1, minChars);
   const expanded = open && ready && flat.length > 0;
   const optionId = (groupId: string, id: string) => `${base}-opt-${groupId}-${id}`;
   const current = expanded ? flat[Math.min(active, flat.length - 1)] : undefined;
@@ -55,6 +63,10 @@ export function SearchField({
     } else if (event.key === "Enter" && expanded) {
       event.preventDefault();
       choose(active);
+    } else if (event.key === "Enter" && onSubmit && value.trim()) {
+      event.preventDefault();
+      setOpen(false);
+      onSubmit(value.trim());
     } else if (event.key === "Escape") {
       if (expanded) setOpen(false);
       else onValueChange("");
@@ -81,7 +93,7 @@ export function SearchField({
           placeholder={placeholder}
           value={value}
           onChange={(event) => { onValueChange(event.target.value); setOpen(true); setActive(0); }}
-          onFocus={() => setOpen(true)}
+          onFocus={() => { setOpen(true); onFocus?.(); }}
           onBlur={() => setOpen(false)}
           onKeyDown={onKeyDown}
         />
@@ -114,8 +126,8 @@ export function SearchField({
           </div>
         ))}
       </div>
-      <p className={ready && open && flat.length === 0 ? styles.empty : "sr-only"} role="status">
-        {ready && open ? (flat.length === 0 ? emptyText : `${flat.length} suggestions`) : ""}
+      <p className={typed && open && flat.length === 0 ? styles.empty : "sr-only"} role="status">
+        {open && typed && flat.length === 0 ? emptyText : expanded ? countText(flat.length) : ""}
       </p>
     </div>
   );

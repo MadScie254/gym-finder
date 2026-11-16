@@ -9,6 +9,6 @@ npm run dev
 
 `npm run check` runs lint, types, tests and the production build.
 
-Catalogue files live in `public/data/`. Rebuild with `npm run data:extract` (needs DuckDB) then `npm run data:build`. Until Overture is extracted, the committed catalogue is the OpenStreetMap snapshot only — say so; do not invent listings.
+Catalogue files live in `public/data/`. Rebuild with `npm run data:extract` (needs DuckDB) then `npm run data:build`. The committed catalogue combines the Overture release and the OpenStreetMap snapshot named in `public/data/manifest.json`; say which, and do not invent listings.
 
 Location stays on the device. Do not add Google Places, ratings, prices or hours that are not in the source data.

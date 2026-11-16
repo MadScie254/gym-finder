@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test("the production map finishes loading and draws gym layers", async ({ page }, testInfo) => {
-  await page.goto("/", { waitUntil: "load" });
+  await page.goto("/search", { waitUntil: "load" });
   if (testInfo.project.name === "mobile") {
     await page.getByRole("button", { name: "Map", exact: true }).click();
   }
