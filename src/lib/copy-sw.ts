@@ -313,6 +313,7 @@ export const sw: Record<CopyKey, string> = {
   navFind: "Tafuta gym",
   navWeek: "Wiki yangu",
   navPrimary: "Mkuu",
+  navMore: "Zaidi",
   navGroupExplore: "Gundua",
   navGroupPlan: "Panga",
   navGroupHelp: "Msaada",

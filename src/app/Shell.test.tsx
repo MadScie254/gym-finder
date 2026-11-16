@@ -93,6 +93,50 @@ it("on a phone keeps the bottom tabs and adds a Search button to the header", as
   expect(state.show).toHaveBeenCalledOnce();
 });
 
+it("on a phone ends the bottom tabs with a More tab that opens every page, so Meals and Order food are one tap away", async () => {
+  await render("/");
+  expect(container.querySelector("header button[aria-label='Menu']")).toBeNull();
+  const nav = primaryNavs()[0];
+  expect(nav.querySelectorAll("a")).toHaveLength(4);
+  const more = [...nav.querySelectorAll("button")].find((button) => button.textContent === "More")!;
+  expect(more).toBeDefined();
+  expect(more.hasAttribute("data-current")).toBe(false);
+
+  await press(more);
+  const sheet = document.querySelector("[role='dialog']")!;
+  expect(sheet).not.toBeNull();
+  const hrefs = [...sheet.querySelectorAll("nav a")].map((link) => link.getAttribute("href"));
+  expect(hrefs).toEqual(["/", "/search", "/saved", "/plan", "/plan/meals", "/plan/shopping", "/fuel", "/reports", "/about/data", "/legal"]);
+  for (const name of ["Meals", "Shopping list", "Order food"]) {
+    expect([...sheet.querySelectorAll("nav a")].some((link) => link.textContent?.includes(name)), name).toBe(true);
+  }
+
+  await press([...sheet.querySelectorAll("nav a")].find((link) => link.getAttribute("href") === "/plan/meals")!);
+  expect(document.querySelector("[role='dialog']")).toBeNull();
+});
+
+it("marks More as the current tab when the page is not one of the four", async () => {
+  await render("/reports");
+  const more = [...primaryNavs()[0].querySelectorAll("button")].find((button) => button.textContent === "More")!;
+  expect(more.getAttribute("data-current")).toBe("true");
+  await act(async () => root.unmount());
+  root = createRoot(container);
+
+  await render("/plan/meals");
+  const again = [...primaryNavs()[0].querySelectorAll("button")].find((button) => button.textContent === "More")!;
+  expect(again.hasAttribute("data-current")).toBe(false);
+});
+
+it("from 900 to 1099 px the header menu lists every page too", async () => {
+  viewport(1000);
+  await render("/");
+  expect([...primaryNavs()[0].querySelectorAll("button")].some((button) => button.textContent === "More")).toBe(false);
+  await press(container.querySelector("header button[aria-label='Menu']"));
+  const menu = document.querySelector("[role='dialog']")!;
+  expect([...menu.querySelectorAll("nav a")].map((link) => link.getAttribute("href"))).toHaveLength(10);
+  expect([...menu.querySelectorAll("nav a")].some((link) => link.textContent?.includes("Meals"))).toBe(true);
+});
+
 it("from 900 to 1099 px keeps today's top navigation and adds a Search button", async () => {
   viewport(1000);
   await render("/");
