@@ -1,5 +1,5 @@
 import { useId, useState, type FormEvent } from "react";
-import { MessageCircle } from "lucide-react";
+import { Send } from "lucide-react";
 import { useT } from "../../app/venue-context";
 import type { Venue } from "../../data/types";
 import { backend, ISSUE_KINDS, type IssueKind, type Submission } from "../../lib/backend";
@@ -49,7 +49,7 @@ export default function ReportDialog({ initialKind, venue, onClose }: ReportDial
         footer={href ? (
           <>
             <Button variant="secondary" onClick={onClose}>{tr("reportDone")}</Button>
-            <Button variant="primary" icon={MessageCircle} href={href} target="_blank" rel="noopener noreferrer">{tr("reportSendWhatsApp")}</Button>
+            <Button variant="primary" icon={Send} iconEnd motion="fly" winLabel={tr("reportSendWin")} href={href} target="_blank" rel="noopener noreferrer">{tr("reportSendWhatsApp")}</Button>
           </>
         ) : <Button variant="primary" onClick={onClose}>{tr("reportDone")}</Button>}>
         <div className={styles.done} data-testid="report-saved">

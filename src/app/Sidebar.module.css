@@ -1,0 +1,237 @@
+/* The sidebar is a glass layer beside the page, never over it. Muted text and the current page use the glass
+   text tokens that scripts/contrast.mjs checks against the page background and its darkest texture. */
+
+.side {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
+  padding: 10px 10px 12px;
+  color: var(--color-text);
+}
+
+.head {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  padding-left: 8px;
+}
+
+.brand {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  color: inherit;
+  font-size: var(--font-size-22);
+  font-stretch: var(--font-width-sign);
+  font-weight: var(--font-weight-numeral);
+  letter-spacing: var(--tracking-sign);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* The app icon in small: a plate with a signal bar. The edge keeps the plate visible on dark glass. */
+.mark {
+  position: relative;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: var(--color-plate);
+  box-shadow: 0 0 0 1px var(--color-plate-edge);
+}
+
+.mark::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  width: 9px;
+  height: 4px;
+  border-radius: 1px;
+  background: var(--color-highlight);
+}
+
+.nav {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.groupLabel {
+  margin: 0;
+  padding: 16px 10px 6px;
+  color: var(--color-text-muted-glass);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-strong);
+}
+
+.list {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 40px;
+  padding: 0 10px;
+  border-radius: 8px;
+  color: var(--color-text);
+  font-weight: var(--font-weight-ui);
+  text-decoration: none;
+}
+
+.item:hover {
+  background: color-mix(in srgb, var(--color-text) 6%, transparent);
+}
+
+.icon {
+  flex: none;
+  color: var(--color-text-muted-glass);
+}
+
+.label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* The page you are on: a tint, a bar and a heavier label, so it reads without colour. */
+.item[aria-current="page"] {
+  background: color-mix(in srgb, var(--color-action) 9%, transparent);
+  color: var(--color-link-glass);
+  font-weight: var(--font-weight-strong);
+}
+
+.item[aria-current="page"] .icon {
+  color: var(--color-link-glass);
+}
+
+.item[aria-current="page"]::before {
+  content: "";
+  position: absolute;
+  top: 9px;
+  bottom: 9px;
+  left: 0;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--color-link-glass);
+}
+
+.count {
+  margin-left: auto;
+  padding: 0 7px;
+  border-radius: var(--radius-tag);
+  background: var(--color-plate);
+  color: var(--color-on-plate);
+  font-size: var(--font-size-14);
+  font-stretch: var(--font-width-numeral);
+  font-weight: var(--font-weight-numeral);
+  line-height: 20px;
+}
+
+.tag {
+  margin-left: auto;
+  line-height: 1;
+}
+
+.foot {
+  display: grid;
+  flex: none;
+  gap: 6px;
+  margin-top: var(--space-2);
+  padding-top: 12px;
+  border-top: 1px solid var(--color-line);
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-ui);
+}
+
+.dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-text-muted-glass);
+}
+
+.dot[data-ready] {
+  background: var(--color-ok);
+}
+
+.listDate {
+  margin: 0;
+  color: var(--color-text-muted-glass);
+  font-size: var(--font-size-14);
+}
+
+/* Rail: icons only. Labels stay in the page for screen readers and as the title. */
+.side[data-collapsed] {
+  padding-inline: 8px;
+}
+
+.side[data-collapsed] .head {
+  flex-direction: column;
+  min-height: 0;
+  padding: 6px 0 4px;
+}
+
+.side[data-collapsed] .brand {
+  flex: none;
+}
+
+.side[data-collapsed] :is(.wordmark, .label, .count, .tag, .statusText, .listDate, .groupLabel) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.side[data-collapsed] .item {
+  justify-content: center;
+  padding: 0;
+}
+
+.side[data-collapsed] .group + .group {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-line);
+}
+
+.side[data-collapsed] .group:first-child .list {
+  margin-top: 8px;
+}
+
+.side[data-collapsed] .foot {
+  justify-items: center;
+}
+
+@media print {
+  .side {
+    display: none;
+  }
+}

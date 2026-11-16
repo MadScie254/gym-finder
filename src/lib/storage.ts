@@ -5,6 +5,7 @@ const INSTALL_DISMISS_KEY = "fmg-install-dismissed";
 const RECENT_SEARCH_KEY = "fmg-recent-searches-v2";
 const LANG_KEY = "fmg-lang";
 const THEME_KEY = "fmg-theme";
+const SIDEBAR_KEY = "fmg-sidebar-collapsed";
 
 function readJson<T>(key: string, fallback: T): T {
   if (typeof window === "undefined") return fallback;
@@ -75,6 +76,13 @@ export function loadTheme(): ThemeChoice {
   return value === "light" || value === "dark" ? value : "system";
 }
 
+const THEME_ORDER: readonly ThemeChoice[] = ["system", "light", "dark"];
+
+/** The choice after this one when cycling: match device, light, dark, and round again. */
+export function nextTheme(choice: ThemeChoice): ThemeChoice {
+  return THEME_ORDER[(THEME_ORDER.indexOf(choice) + 1) % THEME_ORDER.length];
+}
+
 /** Applies the choice to <html data-theme>, which tokens.css reads, and remembers it. */
 export function applyTheme(choice: ThemeChoice, persist = true): void {
   if (typeof document !== "undefined") {
@@ -82,6 +90,16 @@ export function applyTheme(choice: ThemeChoice, persist = true): void {
     else document.documentElement.dataset.theme = choice;
   }
   if (persist) writeJson(THEME_KEY, choice);
+}
+
+/** The person's own choice of rail or full sidebar. Null until they choose, so the window width decides. */
+export function loadSidebarCollapsed(): boolean | null {
+  const stored = readJson<unknown>(SIDEBAR_KEY, null);
+  return typeof stored === "boolean" ? stored : null;
+}
+
+export function saveSidebarCollapsed(collapsed: boolean): void {
+  writeJson(SIDEBAR_KEY, collapsed);
 }
 
 /** True once the visitor has set up My week on this device. */

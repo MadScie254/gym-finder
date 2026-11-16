@@ -92,6 +92,21 @@
   --shadow-sheet: 0 -6px 24px rgba(27, 35, 51, 0.16);
   --shadow-menu: 0 8px 24px rgba(27, 35, 51, 0.18);
 
+  /* Frosted layers (wide screens only, see base.css) and the page texture. Checked by scripts/contrast.mjs. */
+  --color-glass: rgba(255, 255, 255, 0.56);
+  --color-glass-strong: rgba(255, 255, 255, 0.74);
+  --color-glass-edge: rgba(255, 255, 255, 0.92);
+  --color-text-muted-glass: #454d5e;
+  --color-link-glass: #1a37b3;
+  --color-line-strong-glass: #767e8f;
+  --color-texture-minor: rgba(27, 35, 51, 0.08);
+  --color-texture-major: rgba(35, 70, 216, 0.1);
+  --glass-blur: blur(22px) saturate(1.7);
+  --glass-blur-modal: blur(30px) saturate(1.8);
+  --shadow-float: 0 12px 32px rgba(27, 35, 51, 0.12);
+  --shadow-modal: 0 28px 70px rgba(27, 35, 51, 0.3);
+  --radius-float: 16px;
+
   /* Motion */
   --duration-quick: 120ms;
   --duration-sheet: 180ms;
@@ -131,6 +146,16 @@
     --color-scrim: rgba(5, 8, 15, 0.6);
     --shadow-sheet: 0 -6px 24px rgba(0, 0, 0, 0.45);
     --shadow-menu: 0 8px 24px rgba(0, 0, 0, 0.5);
+    --color-glass: rgba(37, 46, 66, 0.58);
+    --color-glass-strong: rgba(37, 46, 66, 0.86);
+    --color-glass-edge: rgba(242, 244, 247, 0.14);
+    --color-text-muted-glass: #d3d9e5;
+    --color-link-glass: #c9d3ff;
+    --color-line-strong-glass: #7d889d;
+    --color-texture-minor: rgba(242, 244, 247, 0.07);
+    --color-texture-major: rgba(142, 163, 255, 0.16);
+    --shadow-float: 0 12px 32px rgba(0, 0, 0, 0.4);
+    --shadow-modal: 0 28px 70px rgba(0, 0, 0, 0.55);
     color-scheme: dark;
   }
 }
@@ -167,5 +192,15 @@
   --color-scrim: rgba(5, 8, 15, 0.6);
   --shadow-sheet: 0 -6px 24px rgba(0, 0, 0, 0.45);
   --shadow-menu: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --color-glass: rgba(37, 46, 66, 0.58);
+  --color-glass-strong: rgba(37, 46, 66, 0.86);
+  --color-glass-edge: rgba(242, 244, 247, 0.14);
+  --color-text-muted-glass: #d3d9e5;
+  --color-link-glass: #c9d3ff;
+  --color-line-strong-glass: #7d889d;
+  --color-texture-minor: rgba(242, 244, 247, 0.07);
+  --color-texture-major: rgba(142, 163, 255, 0.16);
+  --shadow-float: 0 12px 32px rgba(0, 0, 0, 0.4);
+  --shadow-modal: 0 28px 70px rgba(0, 0, 0, 0.55);
   color-scheme: dark;
 }

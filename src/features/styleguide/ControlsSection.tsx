@@ -1,9 +1,10 @@
 import { useMemo, useState } from "react";
-import { Bookmark, Navigation, Phone, Share2, SlidersHorizontal } from "lucide-react";
+import { Bookmark, Info, Navigation, Phone, Share2, ShieldCheck, SlidersHorizontal } from "lucide-react";
 import { useVenueContext } from "../../app/venue-context";
 import { countWith } from "../../lib/results";
 import { NO_FILTERS, type Filters } from "../../lib/urlState";
 import { NAIROBI } from "../../lib/kenya";
+import { Accordion, AccordionItem } from "../../ui/Accordion";
 import { Button } from "../../ui/Button";
 import { Chip } from "../../ui/Chip";
 import { IconButton } from "../../ui/IconButton";
@@ -54,6 +55,12 @@ export function ControlsSection() {
           <Button variant="secondary" href="#sg-controls">Link styled as a button</Button>
         </div>
         <p className={sg.caption}>Pressed (Saved), disabled, and a link. Tab through to see focus.</p>
+      </Specimen>
+      <Specimen title="Accordion" caption="Folds what people need less often. The first item is open by default; each opens on its own. Native details, so it works without JavaScript.">
+        <Accordion>
+          <AccordionItem title="What the badges mean" icon={Info} defaultOpen>Verified means we checked the gym's own website on a date we show. Corroborated means two sources list it. Listed means one source does.</AccordionItem>
+          <AccordionItem title="How we check gym details" icon={ShieldCheck}>We open each gym's own website and write down only what it says.</AccordionItem>
+        </Accordion>
       </Specimen>
       <Specimen title="Icon button" caption="Always has a name for screen readers; the name also shows on hover.">
         <div className={sg.row}>

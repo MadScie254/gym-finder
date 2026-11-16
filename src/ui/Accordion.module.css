@@ -1,0 +1,58 @@
+.group {
+  overflow: hidden;
+  border: var(--border-hairline);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+.item + .item {
+  border-top: var(--border-hairline);
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 52px;
+  padding: 0 var(--space-4);
+  font-weight: var(--font-weight-strong);
+  list-style: none;
+  cursor: pointer;
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.summary:hover {
+  background: var(--color-sunk);
+}
+
+/* The group clips its corners, so draw the focus ring inside. */
+.summary:focus-visible {
+  outline-offset: -3px;
+}
+
+.icon,
+.chevron {
+  color: var(--color-text-muted);
+}
+
+.title {
+  flex: 1;
+}
+
+.chevron {
+  transition: transform var(--duration-quick) var(--ease-out);
+}
+
+.item[open] > .summary .chevron {
+  transform: rotate(180deg);
+}
+
+/* Lines up under the title: padding, icon width, gap. */
+.body {
+  max-width: 62ch;
+  padding: 0 var(--space-4) var(--space-4) calc(var(--space-4) + 18px + var(--space-3));
+  color: var(--color-text-muted);
+}

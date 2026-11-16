@@ -3,9 +3,10 @@ import { Link } from "react-router";
 import { Download, Menu } from "lucide-react";
 import { useT, useVenueContext } from "./venue-context";
 import { useReport } from "../features/report/report-store";
-import { applyTheme, loadTheme, type ThemeChoice } from "../lib/storage";
+import type { ThemeChoice } from "../lib/storage";
 import type { Lang } from "../lib/i18n";
 import { IconButton, Popover } from "../ui";
+import { useTheme } from "./useTheme";
 import styles from "./Shell.module.css";
 
 const THEMES: ThemeChoice[] = ["system", "light", "dark"];
@@ -17,7 +18,7 @@ export function AppMenu({ onInstall }: { onInstall?: () => void }) {
   const { lang, setLang } = useVenueContext();
   const report = useReport();
   const [open, setOpen] = useState(false);
-  const [theme, setTheme] = useState<ThemeChoice>(() => loadTheme());
+  const [theme, setTheme] = useTheme();
   const close = () => setOpen(false);
 
   return (
@@ -48,7 +49,7 @@ export function AppMenu({ onInstall }: { onInstall?: () => void }) {
         <div className={styles.menuGroup} role="group" aria-label={tr("menuAppearance")}>
           <span className={styles.menuLabel} aria-hidden="true">{tr("menuAppearance")}</span>
           {THEMES.map((item) => (
-            <button key={item} type="button" className={styles.menuToggle} aria-pressed={theme === item} onClick={() => { setTheme(item); applyTheme(item); }}>
+            <button key={item} type="button" className={styles.menuToggle} aria-pressed={theme === item} onClick={() => setTheme(item)}>
               {tr(`theme_${item}`)}
             </button>
           ))}

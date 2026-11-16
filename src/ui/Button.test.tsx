@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { Phone } from "lucide-react";
+import { Phone, Send } from "lucide-react";
 import { afterEach, expect, it, vi } from "vitest";
 import { Button, buttonClassName } from "./Button";
 import { IconButton } from "./IconButton";
@@ -46,4 +46,41 @@ it("icon button always carries an accessible name", async () => {
   expect(button.getAttribute("aria-label")).toBe("Call Salute Gym");
   expect(button.getAttribute("aria-pressed")).toBe("false");
   expect(button.textContent).toBe("");
+});
+
+it("keeps the stable label as the name and hides the win label from assistive tech", async () => {
+  ui = await mount(<Button variant="primary" icon={Send} iconEnd motion="fly" winLabel="Off it goes!">Send on WhatsApp</Button>);
+  const button = ui.container.querySelector("button")!;
+  const spans = [...button.querySelectorAll("span")];
+  const rest = spans.find((span) => span.textContent === "Send on WhatsApp")!;
+  const win = spans.find((span) => span.textContent === "Off it goes!")!;
+  expect(rest.hasAttribute("aria-hidden")).toBe(false);
+  expect(win.getAttribute("aria-hidden")).toBe("true");
+  expect(button.getAttribute("data-motion")).toBe("fly");
+});
+
+it("draws the icon after the label with iconEnd and before it otherwise", async () => {
+  ui = await mount(<><Button icon={Send} iconEnd>After</Button><Button icon={Send}>Before</Button></>);
+  const [after, before] = [...ui.container.querySelectorAll("button")];
+  expect(after.firstElementChild?.tagName).toBe("SPAN");
+  expect(after.lastElementChild?.tagName).toBe("svg");
+  expect(before.firstElementChild?.tagName).toBe("svg");
+  expect(before.lastElementChild?.tagName).toBe("SPAN");
+});
+
+it("swaps the label on the link variant too, keeping the link attributes", async () => {
+  ui = await mount(<Button href="https://wa.me/254700000000" icon={Send} iconEnd motion="fly" winLabel="Off it goes!" target="_blank" rel="noopener noreferrer">Send on WhatsApp</Button>);
+  const link = ui.container.querySelector("a")!;
+  expect(link.getAttribute("href")).toBe("https://wa.me/254700000000");
+  expect(link.getAttribute("rel")).toBe("noopener noreferrer");
+  expect(link.textContent).toContain("Send on WhatsApp");
+  expect(link.querySelector('[aria-hidden="true"]:not(svg)')?.textContent).toBe("Off it goes!");
+  expect(link.getAttribute("data-motion")).toBe("fly");
+});
+
+it("adds no extra elements or attributes without a win label", async () => {
+  ui = await mount(<Button>Plain</Button>);
+  const button = ui.container.querySelector("button")!;
+  expect(button.querySelectorAll("span").length).toBe(1);
+  expect(button.hasAttribute("data-motion")).toBe(false);
 });

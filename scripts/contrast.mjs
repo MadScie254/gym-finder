@@ -134,12 +134,60 @@ for (const [kind, fg, bg, use] of PAIRS) {
   rows.push(row);
 }
 
+// Frosted layers and the page texture. A pair passes when it passes on the worst backdrop it can sit on.
+// Sidebar and top bar glass only ever sits on the textured page. Glass over content (palette, dialogs, map
+// controls, compare tray) can sit on anything, so it is checked over pure black and pure white.
+const BLACK = [0, 0, 0, 1];
+const WHITE = [255, 255, 255, 1];
+function textureBacks(vars) {
+  const bg = resolve(vars, "color-bg");
+  return [bg, over(resolve(vars, "color-texture-minor"), bg), over(resolve(vars, "color-texture-major"), bg)];
+}
+const throughGlass = (name, backs) => (vars) => backs(vars).map((back) => over(resolve(vars, `color-${name}`), back));
+const onTexturedPage = textureBacks;
+const onGlassOverTexture = throughGlass("glass", textureBacks);
+const onGlassOverContent = throughGlass("glass-strong", () => [BLACK, WHITE]);
+// A tint drawn over the glass: the current page in the sidebar (action 9%), the top bar widget's own fill
+// (surface 72%) and the selected palette row (action 10%).
+const tinted = (glassName, tintName, alpha, backs) => (vars) =>
+  backs(vars).map((back) => over([...resolve(vars, `color-${tintName}`).slice(0, 3), alpha], over(resolve(vars, `color-${glassName}`), back)));
+const onCurrentSidebarPage = tinted("glass", "action", 0.09, textureBacks);
+const onTopBarWidget = tinted("glass", "surface", 0.72, textureBacks);
+const onSelectedPaletteRow = tinted("glass-strong", "action", 0.1, () => [BLACK, WHITE]);
+const GLASS_PAIRS = [
+  ["text", "text", "glass over the textured page", onGlassOverTexture, "Sidebar and top bar text on glass"],
+  ["text", "text-muted-glass", "glass over the textured page", onGlassOverTexture, "Sidebar and top bar muted text on glass"],
+  ["text", "link-glass", "glass over the textured page", onGlassOverTexture, "Sidebar and top bar links on glass"],
+  ["text", "link-glass", "the current page's tint on sidebar glass", onCurrentSidebarPage, "Current page in the sidebar"],
+  ["text", "text-muted-glass", "the top bar widget fill on glass", onTopBarWidget, "Muted text in the top bar widget"],
+  ["ui", "focus", "glass over the textured page", onGlassOverTexture, "Focus ring on sidebar and top bar glass"],
+  ["ui", "line-strong-glass", "glass over the textured page", onGlassOverTexture, "Control boundary on sidebar and top bar glass"],
+  ["text", "text", "strong glass over black and white", onGlassOverContent, "Text on glass over content"],
+  ["text", "text-muted-glass", "strong glass over black and white", onGlassOverContent, "Muted text on glass over content"],
+  ["text", "link-glass", "strong glass over black and white", onGlassOverContent, "Links on glass over content"],
+  ["text", "text", "the selected row's tint on strong glass over black and white", onSelectedPaletteRow, "Text on the selected palette row"],
+  ["ui", "focus", "strong glass over black and white", onGlassOverContent, "Focus ring on glass over content"],
+  ["text", "text", "the textured page", onTexturedPage, "Text on the textured page"],
+  ["text", "text-muted", "the textured page", onTexturedPage, "Muted text on the textured page"],
+  ["text", "link", "the textured page", onTexturedPage, "Links on the textured page"],
+];
+for (const [kind, fg, bgText, backs, use] of GLASS_PAIRS) {
+  const row = { kind, fg, bg: bgText, bgText, use };
+  for (const [theme, vars] of Object.entries(themes)) {
+    const front = resolve(vars, `color-${fg}`);
+    const value = Math.min(...backs(vars).map((back) => ratio(over(front, back), back)));
+    row[theme] = value;
+    if (value < MIN[kind]) failed = true;
+  }
+  rows.push(row);
+}
+
 const fmt = (n) => `${n.toFixed(2)}:1`;
 if (process.argv.includes("--markdown")) {
   console.log("| Use | Foreground | Background | Min | Light | Dark |");
   console.log("|---|---|---|---|---|---|");
   for (const r of rows) {
-    console.log(`| ${r.use} | \`--color-${r.fg}\` | \`--color-${r.bg}\` | ${MIN[r.kind]}:1 | ${fmt(r.light)} | ${fmt(r.dark)} |`);
+    console.log(`| ${r.use} | \`--color-${r.fg}\` | ${r.bgText ?? `\`--color-${r.bg}\``} | ${MIN[r.kind]}:1 | ${fmt(r.light)} | ${fmt(r.dark)} |`);
   }
 } else {
   for (const r of rows) {

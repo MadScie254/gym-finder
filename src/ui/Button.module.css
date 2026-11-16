@@ -87,3 +87,102 @@
   padding: 0;
   width: var(--target-min);
 }
+
+/*
+ * The Send button: a second label that shows on hover, and an icon that flies off the end and comes
+ * back. Both labels sit in one grid cell so the width never changes. Hover only where hover exists.
+ */
+.swap {
+  display: grid;
+  justify-items: center;
+}
+
+.swap > span {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+}
+
+.win {
+  opacity: 0;
+  transform: translateY(70%);
+}
+
+.button[data-motion="fly"] {
+  overflow: hidden;
+}
+
+.plane {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes fly {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+
+  38% {
+    transform: translate(30px, -26px) rotate(8deg);
+    opacity: 0;
+  }
+
+  39% {
+    transform: translate(-30px, 26px);
+    opacity: 0;
+  }
+
+  72% {
+    transform: translate(-5px, 4px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@media (hover: hover) {
+  .swap > span {
+    transition:
+      transform 260ms var(--ease-out),
+      opacity 200ms var(--ease-out);
+  }
+
+  .button:hover .rest {
+    opacity: 0;
+    transform: translateY(-70%);
+  }
+
+  .button:hover .win {
+    opacity: 1;
+    transform: none;
+  }
+
+  .button[data-motion="fly"]:hover .plane svg {
+    animation: fly 1.5s cubic-bezier(0.5, 0, 0.3, 1) infinite;
+  }
+}
+
+/* No hover on touch: the plane flies while the button is pressed. A tap is short and opens the app it sends to,
+   so there is nothing longer to replay. */
+@media (hover: none) {
+  .button[data-motion="fly"]:active .plane svg {
+    animation: fly 1.5s cubic-bezier(0.5, 0, 0.3, 1) 1;
+    animation-iteration-count: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swap > span {
+    transition: none;
+  }
+
+  .button[data-motion="fly"]:hover .plane svg,
+  .button[data-motion="fly"]:active .plane svg {
+    animation: none;
+  }
+}

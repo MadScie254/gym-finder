@@ -1,3 +1,5 @@
+export { Accordion, AccordionItem } from "./Accordion";
+export type { AccordionItemProps } from "./Accordion";
 export { ActionRow } from "./ActionRow";
 export type { ActionRowProps, RowAction } from "./ActionRow";
 export { Banner } from "./Banner";

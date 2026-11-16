@@ -23,6 +23,8 @@ export type NavBarProps = {
   items?: readonly NavItem[];
   /** "bottom" for the mobile tab bar, "top" for the desktop header. */
   placement?: "bottom" | "top";
+  /** Name of the navigation landmark, translated by the app. */
+  label?: string;
 };
 
 export function isCurrent(item: NavItem, pathname: string): boolean {
@@ -32,10 +34,10 @@ export function isCurrent(item: NavItem, pathname: string): boolean {
 }
 
 /** Primary navigation. The current item gets a plate bar and heavier label, not just a colour change. */
-export function NavBar({ items = PRIMARY_NAV, placement = "bottom" }: NavBarProps) {
+export function NavBar({ items = PRIMARY_NAV, placement = "bottom", label = "Primary" }: NavBarProps) {
   const { pathname } = useLocation();
   return (
-    <nav className={styles.nav} data-placement={placement} aria-label="Primary">
+    <nav className={styles.nav} data-placement={placement} aria-label={label}>
       <ul className={styles.list} role="list">
         {items.map((item) => (
           <li key={item.to} className={styles.item}>

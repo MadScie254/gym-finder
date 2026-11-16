@@ -1,0 +1,110 @@
+/* A glass layer above the page, never over it. Muted text and control edges use the glass tokens that
+   scripts/contrast.mjs checks against the page background and its darkest texture. */
+
+.bar {
+  display: grid;
+  flex: none;
+  grid-template-columns: minmax(120px, 1fr) minmax(0, 380px) minmax(120px, 1fr);
+  align-items: center;
+  gap: 14px;
+  min-height: 56px;
+  padding: 0 10px 0 20px;
+  color: var(--color-text);
+}
+
+.title {
+  margin: 0;
+  overflow: hidden;
+  font-size: var(--font-size-22);
+  font-stretch: var(--font-width-sign);
+  font-weight: var(--font-weight-numeral);
+  letter-spacing: var(--tracking-sign);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.widget {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  height: 38px;
+  padding: 0 8px 0 12px;
+  border: 1px solid var(--color-line-strong-glass);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--color-surface) 72%, transparent);
+  color: var(--color-text-muted-glass);
+  font-size: var(--font-size-14);
+  text-align: left;
+  cursor: pointer;
+}
+
+.widget:hover {
+  border-color: var(--color-text);
+}
+
+.widgetText {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kbd {
+  flex: none;
+  padding: 1px 7px;
+  border: 1px solid var(--color-line-strong-glass);
+  border-radius: var(--radius-tag);
+  font: inherit;
+  font-size: var(--font-size-12);
+}
+
+.tools {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-1);
+}
+
+.lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 10px;
+  border: 1px solid var(--color-line-strong-glass);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--color-text);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-strong);
+  cursor: pointer;
+}
+
+.lang:hover {
+  border-color: var(--color-text);
+}
+
+/* A stencilled tag, like the Demo tag: dashed, so it reads as provisional. */
+.draft {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  margin-left: var(--space-1);
+  padding: 0 7px;
+  border: 1.5px dashed currentColor;
+  border-radius: var(--radius-tag);
+  color: var(--color-text);
+  font-size: var(--font-size-14);
+  font-stretch: var(--font-width-sign);
+  font-weight: var(--font-weight-sign);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+@media print {
+  .bar {
+    display: none;
+  }
+}
