@@ -1,0 +1,226 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Find gyms</title><style>
+@font-face{font-family:"Archivo Signwriter";font-weight:400 800;font-stretch:75% 100%;src:url(archivo-signwriter.woff2) format("woff2")}
+:root{--chalk:#f2f4f7;--enamel:#fff;--plate:#1b2333;--cobalt:#2346d8;--cobalt-h:#1a37b3;--signal:#ffc42e;--court:#0a7a51;--stop:#c43420;--slate:#5a6477;--sunk:#e7eaf0;
+--line:rgba(27,35,51,.10);--line-strong:rgba(27,35,51,.20);
+--glass:rgba(255,255,255,.56);--glass-strong:rgba(255,255,255,.74);--glass-edge:rgba(255,255,255,.92);--blur:blur(22px) saturate(1.7);
+--shadow-float:0 12px 32px rgba(27,35,51,.12);--ease:cubic-bezier(.2,.8,.2,1);--ff:"Archivo Signwriter",Archivo,system-ui,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font:400 15px/1.45 "Archivo Signwriter",Archivo,system-ui,sans-serif;color:var(--plate);background:#f2f4f7 url(contours.svg) center/cover fixed;-webkit-font-smoothing:antialiased;overflow:hidden}
+.sign{font-stretch:76%;font-weight:780;letter-spacing:-.004em}
+.ic{flex:none;stroke:currentColor}
+.muted{color:var(--slate)}
+.glass{background:var(--glass);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border:1px solid var(--glass-edge);box-shadow:0 0 0 1px var(--line),var(--shadow-float)}
+/* shell */
+.app{display:grid;grid-template-columns:272px 1fr;grid-template-rows:minmax(0,1fr);height:100vh}
+.side{margin:12px 0 12px 12px;border-radius:16px;display:flex;flex-direction:column;padding:10px 10px 12px;min-height:0;overflow:hidden}
+.brand{display:flex;align-items:center;gap:10px;height:48px;padding:0 8px;font-size:23px}
+.mark{width:24px;height:24px;border-radius:6px;background:var(--plate);position:relative}
+.mark::after{content:"";position:absolute;left:5px;bottom:5px;width:9px;height:4px;border-radius:1px;background:var(--signal)}
+.brand .collapse{margin-left:auto;color:var(--slate);display:grid;place-items:center;width:32px;height:32px;border-radius:6px}
+.glabel{font-size:13px;font-weight:640;color:var(--slate);padding:16px 10px 6px}
+.nav{position:relative;display:flex;align-items:center;gap:12px;height:40px;padding:0 10px;border-radius:8px;color:var(--plate);font-weight:560;text-decoration:none}
+.nav .ic{color:var(--slate)}
+.nav.on{background:rgba(35,70,216,.09);color:var(--cobalt);font-weight:640}
+.nav.on .ic{color:var(--cobalt)}
+.nav.on::before{content:"";position:absolute;left:0;top:9px;bottom:9px;width:3px;border-radius:2px;background:var(--cobalt)}
+.nav .tag{margin-left:auto;font-size:11px;font-weight:640;border:1px dashed var(--slate);border-radius:4px;padding:1px 5px;color:var(--slate)}
+.nav .count{margin-left:auto;font-stretch:75%;font-weight:800;font-size:14px;background:var(--plate);color:#fff;padding:0 7px;border-radius:4px;line-height:20px}
+.sfoot{margin-top:auto;border-top:1px solid var(--line);padding:12px 8px 0;display:grid;gap:8px}
+.status{display:flex;align-items:center;gap:8px;font-weight:560;font-size:13px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--court)}
+.small{font-size:13px}
+.main{display:flex;flex-direction:column;min-width:0;min-height:0;padding:12px 12px 0}
+.top{height:56px;border-radius:16px;display:flex;align-items:center;gap:14px;padding:0 10px 0 20px;flex:none}
+.top .ptitle{font-size:23px;min-width:150px}
+.top .sp{flex:1}
+.widget{display:flex;align-items:center;gap:10px;width:380px;height:38px;padding:0 8px 0 12px;border-radius:10px;background:rgba(255,255,255,.72);border:1px solid var(--line-strong);color:var(--slate);font:inherit;font-size:14px;cursor:pointer}
+.widget span{flex:1;text-align:left}
+kbd{font:640 12px/1 var(--ff);color:var(--slate);border:1px solid var(--line-strong);border-bottom-width:2px;border-radius:5px;padding:4px 6px;background:#fff}
+.ibtn{display:grid;place-items:center;width:38px;height:38px;border-radius:8px;color:var(--plate);border:0;background:none}
+.chip{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 12px;border-radius:8px;font-weight:640;font-size:14px;background:rgba(255,255,255,.7);border:1px solid var(--line-strong)}
+.page{flex:1;min-height:0;overflow:auto;padding:26px 6px 36px}
+.wrap{max-width:1120px;margin:0 auto}
+h1,h2,h3{margin:0}
+.btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:6px;font:640 15px/1 var(--ff);border:1px solid var(--line-strong);background:#fff;color:var(--plate);text-decoration:none;cursor:pointer}
+.btn.primary{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+.btn.primary:hover{background:var(--cobalt-h)}
+.btn.quiet{border-color:transparent;background:transparent;color:var(--cobalt)}
+.btn.sm{height:36px;padding:0 12px;font-size:14px}
+.card{background:var(--enamel);border:1px solid var(--line);border-radius:10px}
+/* accordion */
+.acc{background:var(--enamel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.acc>div{border-top:1px solid var(--line)}
+.acc>div:first-child{border-top:0}
+.acc .row{display:flex;align-items:center;gap:12px;min-height:52px;padding:0 16px;font-weight:640}
+.acc .row .ic:last-child{margin-left:auto;color:var(--slate)}
+.acc .row .ic:first-child{color:var(--slate)}
+.acc .body{padding:0 16px 16px 48px;color:var(--slate);max-width:62ch}
+.acc .open .row .ic:last-child{transform:rotate(180deg)}
+/* home */
+.hero h1{font-size:66px;line-height:1;font-stretch:76%;font-weight:800;letter-spacing:-.01em}
+.hero p{font-size:19px;max-width:34em;margin:16px 0 22px}
+.actions{display:flex;gap:12px;align-items:center}
+.hint{display:flex;align-items:center;gap:8px;margin-left:8px;color:var(--slate);font-size:14px}
+.cols{display:grid;grid-template-columns:2fr 1fr;gap:22px;margin-top:34px}
+.sec{display:flex;align-items:baseline;gap:12px;margin-bottom:12px}
+.sec h2{font-size:28px;font-stretch:76%;font-weight:780}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.tile{padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.tile b{font-weight:560;font-size:15px}
+.tile .n{font-stretch:75%;font-weight:800;font-size:34px;line-height:1}
+.tile .n small{font:560 13px/1 var(--ff);font-stretch:100%;color:var(--slate);margin-left:4px}
+.side-col{display:grid;gap:12px;align-content:start}
+.pad{padding:16px}
+.stack{display:grid;gap:12px}
+/* find */
+.ftitle{display:flex;align-items:baseline;gap:14px}
+.ftitle h1{font-size:40px;font-stretch:76%;font-weight:800}
+.fbar{display:flex;gap:8px;align-items:center;margin:14px 0}
+.fbar .chip.on{background:rgba(35,70,216,.1);border-color:rgba(35,70,216,.5);color:var(--cobalt)}
+.split{display:grid;grid-template-columns:minmax(440px,540px) 1fr;gap:16px;height:calc(100vh - 56px - 12px - 26px - 36px - 118px)}
+.list{display:grid;gap:12px;align-content:start;overflow:hidden}
+.gym{display:grid;grid-template-columns:96px 1fr;gap:16px;padding:14px;align-items:stretch}
+.dist{background:var(--plate);color:#fff;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-stretch:75%;font-weight:800;line-height:1}
+.dist b{font-size:34px;font-weight:800}
+.dist small{font:640 13px/1 var(--ff);font-stretch:100%;margin-top:4px;opacity:.85}
+.dist.open{background:var(--signal);color:var(--plate)}
+.gym h3{font-size:25px;font-stretch:76%;font-weight:780;line-height:1.05}
+.gym .meta{color:var(--slate);margin:3px 0 8px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:640;background:var(--sunk);border-radius:4px;padding:3px 8px}
+.badge .ic{color:var(--court)}
+.grow{display:flex;gap:8px;align-items:center;margin-top:12px}
+.mapbox{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#dde3ea url(map.png) center/cover}
+.mapbox .gl{position:absolute}
+.zoom{right:14px;top:14px;display:grid;border-radius:10px;overflow:hidden}
+.zoom .ibtn{border-radius:0}
+.zoom .ibtn+.ibtn{border-top:1px solid var(--line)}
+.area{left:50%;top:14px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;font-weight:640}
+.legend{left:14px;bottom:14px;padding:8px 14px;border-radius:10px;font-size:13px;font-weight:560}
+/* palette */
+.scrim{position:fixed;inset:0;background:rgba(27,35,51,.24);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.pal{position:fixed;left:50%;top:7vh;transform:translateX(-50%);width:700px;border-radius:20px;overflow:hidden;background:var(--glass-strong);-webkit-backdrop-filter:blur(30px) saturate(1.8);backdrop-filter:blur(30px) saturate(1.8);border:1px solid var(--glass-edge);box-shadow:0 0 0 1px var(--line),0 28px 70px rgba(27,35,51,.30)}
+.pin{display:flex;align-items:center;gap:12px;height:60px;padding:0 18px;border-bottom:1px solid var(--line)}
+.pin .q{flex:1;font-size:19px;font-weight:560}
+.pin .q i{font-style:normal;color:var(--slate);font-weight:400}
+.caret{display:inline-block;width:2px;height:22px;background:var(--cobalt);vertical-align:-4px;margin-left:1px}
+.plist{padding:6px 8px 8px;max-height:540px;overflow:hidden}
+.pgl{font-size:13px;font-weight:640;color:var(--slate);padding:12px 10px 6px}
+.prow{position:relative;display:flex;align-items:center;gap:12px;height:48px;padding:0 10px;border-radius:10px;font-weight:560}
+.prow .tilei{display:grid;place-items:center;width:30px;height:30px;border-radius:7px;background:rgba(27,35,51,.07);color:var(--plate)}
+.prow .r{margin-left:auto;color:var(--slate);font-size:13px;font-weight:400;display:flex;gap:8px;align-items:center}
+.prow.on{background:rgba(35,70,216,.11)}
+.prow.on .tilei{background:var(--cobalt);color:#fff}
+.prow.on::before{content:"";position:absolute;left:0;top:11px;bottom:11px;width:3px;border-radius:2px;background:var(--cobalt)}
+.pfoot{display:flex;gap:16px;align-items:center;height:44px;padding:0 18px;border-top:1px solid var(--line);color:var(--slate);font-size:13px}
+.pfoot span{display:flex;gap:6px;align-items:center}
+/* my week */
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:14px 0 20px}
+.tabs a{padding:10px 14px;font-weight:640;color:var(--slate);position:relative}
+.tabs a.on{color:var(--plate)}
+.tabs a.on::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--cobalt)}
+.today{background:var(--plate);color:#fff;border-radius:10px;padding:22px 24px}
+.today small{color:#b5bdcc;font-size:14px}
+.today h2{font-size:58px;font-stretch:75%;font-weight:800;line-height:1;margin:6px 0 8px}
+.today .acts{display:flex;gap:10px;margin-top:18px}
+.btn.signal{background:var(--signal);border-color:var(--signal);color:var(--plate)}
+.btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+.today .acc{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16);margin-top:18px;color:#fff}
+.today .acc .row .ic{color:#b5bdcc!important}
+.todo .rowi{display:flex;align-items:center;gap:14px;padding:12px 16px;border-top:1px solid var(--line)}
+.todo .rowi:first-child{border-top:0}
+.todo .rowi span:last-child{margin-left:auto;color:var(--slate);font-size:14px}
+/* win button */
+.win{position:relative;overflow:hidden;min-width:226px;justify-content:center}
+.win .lbl{display:grid;justify-items:center}
+.win .lbl>span{grid-area:1/1;transition:transform .26s var(--ease),opacity .2s;white-space:nowrap}
+.win .l2{opacity:0;transform:translateY(70%)}
+.win .plane{display:grid;place-items:center;width:20px;height:20px;overflow:visible}
+.win:hover .l1,.win.is-hover .l1{opacity:0;transform:translateY(-70%)}
+.win:hover .l2,.win.is-hover .l2{opacity:1;transform:none}
+.win:hover .plane svg{animation:fly 1.5s cubic-bezier(.5,0,.3,1) infinite}
+.win.f1 .plane svg{transform:translate(13px,-11px) rotate(6deg);opacity:.75}
+.win.f2 .plane svg{transform:translate(-11px,9px);opacity:.75}
+@keyframes fly{0%{transform:translate(0,0);opacity:1}38%{transform:translate(30px,-26px) rotate(8deg);opacity:0}39%{transform:translate(-30px,26px);opacity:0}72%{transform:translate(-5px,4px);opacity:1}100%{transform:translate(0,0);opacity:1}}
+@media (prefers-reduced-motion:reduce){.win:hover .plane svg{animation:none}.win .lbl>span{transition:none}}
+.dlg{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:560px;border-radius:20px;padding:26px}
+.dlg h2{font-size:34px;font-stretch:76%;font-weight:800;margin-bottom:6px}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:8px 12px;margin:16px 0;padding:14px;border-radius:10px;background:rgba(255,255,255,.6);border:1px solid var(--line)}
+.kv b{font-weight:640;color:var(--slate)}
+.states{position:fixed;right:40px;top:50%;transform:translateY(-50%);width:420px;border-radius:20px;padding:22px;display:grid;gap:16px}
+.states .cap{font-size:13px;font-weight:640;color:var(--slate);margin-bottom:6px}
+</style></head><body>
+<div class="app">
+  <aside class="side glass" aria-label="Primary">
+    <div class="brand"><span class="mark"></span><span class="sign">Find My Gym</span><span class="collapse"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-left lucide-sidebar" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg></span></div>
+    <div class="glabel">Explore</div>
+    <a class="nav "><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house lucide-home" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>Home</a>
+    <a class="nav on"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>Find gyms</a>
+    <a class="nav "><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark" aria-hidden="true"><path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z"></path></svg>Saved<span class="count">2</span></a>
+    <div class="glabel">Plan</div>
+    <a class="nav "><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-days" aria-hidden="true"><path d="M8 2v3"></path><path d="M16 2v3"></path><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path><path d="M8 13h.01"></path><path d="M12 13h.01"></path><path d="M16 13h.01"></path><path d="M8 17h.01"></path><path d="M12 17h.01"></path><path d="M16 17h.01"></path></svg>My week</a>
+    <a class="nav"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-utensils lucide-fork-knife" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>Meals</a>
+    <a class="nav"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list-checks" aria-hidden="true"><path d="M13 5h8"></path><path d="M13 12h8"></path><path d="M13 19h8"></path><path d="m3 17 2 2 4-4"></path><path d="m3 7 2 2 4-4"></path></svg>Shopping list</a>
+    <a class="nav"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-basket" aria-hidden="true"><path d="m15 11-1 9"></path><path d="m19 11-4-7"></path><path d="M2 11h20"></path><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"></path><path d="M4.5 15.5h15"></path><path d="m5 11 4-7"></path><path d="m9 11 1 9"></path></svg>Order food<span class="tag">Demo</span></a>
+    <div class="glabel">Help</div>
+    <a class="nav"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flag" aria-hidden="true"><path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528"></path></svg>My reports</a>
+    <a class="nav"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>About the data</a>
+    <a class="nav"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>Data and privacy</a>
+    <div class="sfoot">
+      <div class="status"><i class="dot"></i>Works offline</div>
+      <div class="small muted">Gym list from 11 Nov 2026</div>
+      <a class="btn sm"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download" aria-hidden="true"><path d="M12 15V3"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path></svg>Install the app</a>
+    </div>
+  </aside>
+  <div class="main">
+    <header class="top glass">
+      <span class="ptitle sign">Find gyms</span>
+      <span class="sp"></span>
+      <button class="widget"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg><span>Search gyms, places, actions</span><kbd>⌘K</kbd></button>
+      <span class="sp"></span>
+      <span class="chip"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>EN</span>
+      <button class="ibtn" aria-label="Appearance"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></button>
+      <button class="ibtn" aria-label="Use my location"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-locate-fixed" aria-hidden="true"><line x1="2" x2="5" y1="12" y2="12"></line><line x1="19" x2="22" y1="12" y2="12"></line><line x1="12" x2="12" y1="2" y2="5"></line><line x1="12" x2="12" y1="19" y2="22"></line><circle cx="12" cy="12" r="7"></circle><circle cx="12" cy="12" r="3"></circle></svg></button>
+    </header>
+    <main class="page" style="overflow:hidden"><div class="wrap" style="max-width:none">
+  <div class="ftitle"><h1>Gyms in Kenya</h1><span class="muted">Showing 1 to 40 of 495</span></div>
+  <div class="fbar">
+    <span class="chip"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sliders-horizontal" aria-hidden="true"><path d="M10 5H3"></path><path d="M12 19H3"></path><path d="M14 3v4"></path><path d="M16 17v4"></path><path d="M21 12h-9"></path><path d="M21 19h-5"></path><path d="M21 5h-7"></path><path d="M8 10v4"></path><path d="M8 12H3"></path></svg>Filters<span class="badge" style="background:var(--plate);color:#fff">2</span><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></span>
+    <span class="chip on">Has phone</span><span class="chip on">Within 5 km</span><span class="chip">Open now</span>
+    <span class="sp" style="flex:1"></span>
+    <span class="chip">Nearest first<svg class="ic " xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></span>
+  </div>
+  <div class="split">
+    <div class="list">
+      <article class="card gym"><div class="dist "><b>2.4</b><small>km</small></div>
+        <div><h3>Banana House And Wellness Centre</h3><div class="meta">Lamu, Yoga</div><span class="badge"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Website checked</span>
+        <div class="grow"><a class="btn sm primary">View gym</a><button class="ibtn card" style="width:36px;height:36px"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark" aria-hidden="true"><path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z"></path></svg></button><button class="ibtn card" style="width:36px;height:36px"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-columns-3 lucide-panels-left-right" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path><path d="M15 3v18"></path></svg></button></div></div></article>
+      <article class="card gym"><div class="dist open"><b>3.1</b><small>open now</small></div>
+        <div><h3>Dojo</h3><div class="meta">Saint Francis, Ngong, Martial arts</div><span class="badge"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Website checked</span>
+        <div class="grow"><a class="btn sm primary">View gym</a><button class="ibtn card" style="width:36px;height:36px"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark" aria-hidden="true"><path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z"></path></svg></button><button class="ibtn card" style="width:36px;height:36px"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-columns-3 lucide-panels-left-right" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path><path d="M15 3v18"></path></svg></button></div></div></article>
+      <article class="card gym"><div class="dist "><b>4.8</b><small>km</small></div>
+        <div><h3>Health Hub Oasis</h3><div class="meta">Kisumu, Gym</div><span class="badge"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Website checked</span>
+        <div class="grow"><a class="btn sm primary">View gym</a><button class="ibtn card" style="width:36px;height:36px"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark" aria-hidden="true"><path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z"></path></svg></button><button class="ibtn card" style="width:36px;height:36px"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-columns-3 lucide-panels-left-right" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path><path d="M15 3v18"></path></svg></button></div></div></article>
+    </div>
+    <div class="mapbox">
+      <div class="gl area glass"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>Search this area</div>
+      <div class="gl zoom glass"><button class="ibtn"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></button><button class="ibtn" style="font-size:22px">−</button></div>
+      <div class="gl legend glass">495 gyms. Numbers show how many are grouped.</div>
+    </div>
+  </div>
+</div></main>
+  </div>
+</div><div class="scrim"></div>
+  <div class="dlg glass" style="background:var(--glass-strong);left:34%">
+    <h2>Report a problem</h2>
+    <div class="muted">Saved on this device. Next, send it to us on WhatsApp.</div>
+    <div class="kv"><b>Gym</b><span>Level 24, Upper Parklands Estate</span><b>Problem</b><span>Wrong details</span><b>Note</b><span>The phone number no longer works.</span></div>
+    <div class="muted small" style="margin-bottom:16px">Opens WhatsApp with the report written out. You press send.</div>
+    <div style="display:flex;gap:10px;justify-content:flex-end"><a class="btn">Close</a><a class="btn primary win is-hover f1"><span class="lbl"><span class="l1">Send on WhatsApp</span><span class="l2" aria-hidden="true">Off it goes!</span></span><span class="plane"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg></span></a></div>
+  </div>
+  <div class="states glass" style="background:var(--glass-strong)">
+    <div><div class="cap">At rest</div><a class="btn primary win "><span class="lbl"><span class="l1">Send on WhatsApp</span><span class="l2" aria-hidden="true">Off it goes!</span></span><span class="plane"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg></span></a></div>
+    <div><div class="cap">Hover: text swaps, plane leaves</div><a class="btn primary win is-hover f1"><span class="lbl"><span class="l1">Send on WhatsApp</span><span class="l2" aria-hidden="true">Off it goes!</span></span><span class="plane"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg></span></a></div>
+    <div><div class="cap">Hover: plane comes back in, then repeats</div><a class="btn primary win is-hover f2"><span class="lbl"><span class="l1">Send on WhatsApp</span><span class="l2" aria-hidden="true">Off it goes!</span></span><span class="plane"><svg class="ic " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg></span></a></div>
+    <div class="muted small">Loops only while the pointer is on the button. On phones the same motion plays once on press. Reduced motion: text swap only.</div>
+  </div></body></html>

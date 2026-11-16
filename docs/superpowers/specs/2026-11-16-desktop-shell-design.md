@@ -18,6 +18,20 @@ A reference redesign supplied the moves to apply here: a grouped left nav with l
 - Real-app touches: PC title bar, app shortcuts, install help (including iPhone), a richer install card.
 - Delivery: mockup first (done), then phases, each merged and live.
 
+## Visual reference
+
+The approved mockup lives in `docs/design/desktop-shell-mockup/` (screenshots in `shots/`, source beside them). It is the reference for look and feel. Where it differs from this document, this document wins: no key chords, a texture of at most 60 KB, and the real labels and actions on each screen (the mockup's "Start session" and its sample distances and Saved count are placeholders).
+
+Numbers to start from, taken from the mockup (light theme):
+
+- Glass: fill `rgba(255,255,255,.56)`; strong fill `rgba(255,255,255,.74)`; edge `rgba(255,255,255,.92)`; blur `blur(22px) saturate(1.7)`; the modal uses `blur(30px) saturate(1.8)`. Hairline `0 0 0 1px rgba(27,35,51,.10)`; float shadow `0 12px 32px rgba(27,35,51,.12)`; modal shadow `0 28px 70px rgba(27,35,51,.30)`.
+- Shape: floating layers 16 px, the palette 20 px, cards 10 px, controls 6 px.
+- Sidebar 272 px and top bar 56 px, both inset 12 px from the window edge. Nav rows 40 px. Group labels 13 px, weight 640, slate, sentence case. Active row: 9% cobalt fill and a 3 px cobalt bar. Count chip: plate background.
+- Palette: 700 px wide, 7 vh from the top, search row 60 px, result rows 48 px, 540 px list height.
+- Home hero: 66 px condensed, two lines. County tiles use a 34 px condensed numeral.
+- Send button: label swap 0.26 s ease-out. Plane loop 1.5 s: it leaves up and right by 30 px and 26 px while fading out (to 38%), reappears from down and left (39%), settles at the rest position (72% to 100%), and repeats while hovered.
+- Texture: 22 contour levels; minor lines plate at .11, every fourth line cobalt at .26. These opacities are the starting point and are lowered if text on the texture fails contrast (see below).
+
 ## Goals, non-goals, anti-goals
 
 Goals
@@ -69,7 +83,7 @@ Add to `tokens.css`, light and dark: `--glass-bg`, `--glass-bg-strong`, `--glass
 
 Texture: topographic contour lines as one SVG in `src/ui/texture/`, generated deterministically by `scripts/contours.mjs` and committed. Target at most 60 KB raw (the mockup's was 317 KB: use fewer levels, longer polylines, rounded coordinates). Minor lines plate at about 11%, every fourth line cobalt at about 26%. Dark theme uses lighter lines at lower opacity. The texture sits on `body` only; phones show it at reduced strength under a wash.
 
-Contrast: extend `scripts/contrast.mjs` with glass pairs. For each text and icon colour used on a glass surface, composite the glass over the worst-case backdrop (chalk with a plate line, chalk with a cobalt line, and the dark equivalents) and require the same minimums as other pairs.
+Contrast: extend `scripts/contrast.mjs` with glass pairs. For each text and icon colour used on a glass surface, composite the glass over pure black and over pure white and require the usual minimums on both. Every real backdrop (texture, map tiles, list content, scrim) lies between those two, so passing on both covers them all. Surfaces that carry text over content we do not control (compare tray, map controls, dialogs, the palette) use `--glass-bg-strong`. Text drawn straight on the textured page must pass against the darkest texture pixel (a major line over chalk); if it does not, the texture opacity is lowered, not the text colour. The sidebar and top bar sit beside the scroll area, so page content never scrolls under them.
 
 ### Shell
 
@@ -101,8 +115,8 @@ A small `Accordion` built on `<details>`, so it works without JavaScript and is 
 
 - Home: hero with two actions and the ⌘K hint, county tiles (top eight, the rest folded), Today and Saved cards, "Good to know" accordions.
 - Find gyms: title, a filter bar (one Filters button with a count plus the main chips), a compact search field above the list, list beside map with glass map controls.
-- Gym profile: name and trust, the contact actions, key facts, then fold sources, first-visit questions, facilities and reporting.
-- My week: today's session with Start session as the primary action and exercises folded, the food link, what is still to do; set up, safety notes and the WHO link folded.
+- Gym profile: the owner's order stays (name and place, evidence, facilities, hours and price, contact and visit, first-visit questions, then sources and corrections; adopted 2026-11-14), with the sticky contact panel. Phase 3 restyles it with the new surfaces and keeps sources and corrections as a disclosure. "Not listed" stays visible for missing facts, as the honesty rule requires.
+- My week: today's session card keeps its real behaviour: exercises are open for today and ticked per set, and the primary action stays "Mark session done". There is no new in-session mode. Then the food link and what is still to do. Set up, safety notes and the WHO link are folded.
 - Order food: lead with suggestions; fold the plan text; the town picker folds under "Change town".
 - Saved, Compare, Reports: same rules, done in phase 3.
 
@@ -112,6 +126,8 @@ A small `Accordion` built on `<details>`, so it works without JavaScript and is 
 
 ### Real-app touches
 
+- App icon: the icons today (`public/icons/`) are the old black and red barbell, not Signwriter. The owner decides whether to keep that artwork (and cut a proper maskable version from it) or redraw the icon in Signwriter colours. Open until the owner answers; it only affects phase 5.
+- "Richer install card" means the browser's own install dialog, fed by manifest screenshots and a maskable icon. There is no in-app card. The unused install strings and helpers in `copy-en.ts`, `copy-sw.ts` and `storage.ts` are removed in phase 5.
 - Manifest: `id`, `display_override: ["window-controls-overlay", "standalone"]`, `shortcuts` (Find gyms near me, Saved, My week), `categories`, `screenshots` (one wide, one narrow, generated from the live site and committed), a separate maskable icon with a safe zone, a theme colour per scheme.
 - Install help: the sidebar and ⌘K install action use `usePwa().install`. On iPhone, where there is no prompt, a short dialog shows Share then Add to Home Screen.
 - Title-bar CSS uses `env(titlebar-area-*)`.
@@ -144,4 +160,4 @@ Each phase is one pull request, merged to `master`, deployed, and checked on the
 
 ## Left to the builder
 
-Icon choices, exact pixel values, animation timing and easing, texture density, the collapse animation, and the order of rows inside each palette group, as long as they match the approved mockup.
+Icon choices, exact pixel values, animation timing and easing, texture density, the collapse animation, and the order of rows inside each palette group, as long as they match the visual reference. "Compared with the mockup" means the owner reviews screenshots at 1440 and 390 px, light and dark, beside `docs/design/desktop-shell-mockup/shots/`. Pass means the same structure, spacing rhythm, visible glass and hierarchy; each deviation is listed in the pull request.
