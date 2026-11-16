@@ -98,7 +98,7 @@ Meals and Shopping list duplicate tabs inside My week. They stay as entry points
 
 Sidebar footer: offline status, "Gym list from <date>", Install the app (hidden once installed).
 
-Top bar: page title, the ⌘K widget, language, appearance, "Use my location". With the title-bar overlay, the bar sits in the title-bar area: empty space is a drag region, controls are not.
+Top bar: page title, the ⌘K widget, language, appearance, "Use my location". While Kiswahili is on, a dashed Draft tag (Rasimu) sits beside the language button, with the draft sentence as its tooltip and screen-reader text, because this layout has no menu to carry the note. With the title-bar overlay, the bar sits in the title-bar area: empty space is a drag region, controls are not.
 
 ### Command palette
 
@@ -123,7 +123,7 @@ A small `Accordion` built on `<details>`, so it works without JavaScript and is 
 
 ### The Send button
 
-`Button` gains `winLabel`, `iconEnd` and a `motion="fly"` option. Both labels sit in one grid cell so the width never changes. On hover (only where hover exists) the label swaps and the plane flies off the end, returns from the start and repeats until the pointer leaves. On touch the same motion plays once on press. The accessible name stays the stable label; the win label is `aria-hidden`. Reduced motion: text swap only, no loop. First use: "Send on WhatsApp" with the plane icon in the Report dialog. English hover text "Off it goes!". The app only opens WhatsApp and the person presses send there, so no label says "Sent".
+`Button` gains `winLabel`, `iconEnd` and a `motion="fly"` option. Both labels sit in one grid cell so the width never changes. On hover (only where hover exists) the label swaps and the plane flies off the end, returns from the start and repeats until the pointer leaves. On touch there is no hover, so the plane flies only while the button is pressed, which is about a tenth of a second on a tap. Pressing the Report button opens WhatsApp straight away, so a longer replay would play to nobody and is not built. The accessible name stays the stable label; the win label is `aria-hidden`. Reduced motion: text swap only, no loop. First use: "Send on WhatsApp" with the plane icon in the Report dialog. English hover text "Off it goes!". The app only opens WhatsApp and the person presses send there, so no label says "Sent".
 
 ### Real-app touches
 
