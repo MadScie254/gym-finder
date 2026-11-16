@@ -4,6 +4,19 @@ import { describe, expect, it } from "vitest";
 const css = readFileSync(new URL("./base.css", import.meta.url), "utf8");
 const GATE = "@media (min-width: 1100px) and (hover: hover) and (pointer: fine)";
 
+/** The text of the first block that starts with `head`, braces balanced. */
+function block(head: string): string {
+  const start = css.indexOf(head);
+  expect(start, `missing ${head}`).toBeGreaterThan(-1);
+  let depth = 0;
+  for (let i = css.indexOf("{", start); i < css.length; i += 1) {
+    if (css[i] === "{") depth += 1;
+    if (css[i] === "}") depth -= 1;
+    if (depth === 0) return css.slice(start, i + 1);
+  }
+  throw new Error(`unbalanced block ${head}`);
+}
+
 describe("base.css glass and texture contract", () => {
   it("draws the texture from the committed mask files", () => {
     for (const name of ["contours-minor.svg", "contours-major.svg"]) {
@@ -12,12 +25,14 @@ describe("base.css glass and texture contract", () => {
     }
   });
 
-  it("keeps every backdrop-filter inside the wide, fine-pointer gate", () => {
-    const gate = css.indexOf(GATE);
-    expect(gate).toBeGreaterThan(-1);
-    const uses = [...css.matchAll(/backdrop-filter/g)].map((match) => match.index ?? -1);
-    expect(uses.length).toBeGreaterThan(0);
-    for (const at of uses) expect(at).toBeGreaterThan(gate);
+  it("keeps every backdrop-filter inside the wide, fine-pointer gate, and outside it only turns blur off", () => {
+    const gate = block(GATE);
+    expect([...gate.matchAll(/backdrop-filter:/g)].length).toBeGreaterThan(0);
+    const outside = css.replace(gate, "");
+    const values = [...outside.matchAll(/backdrop-filter:\s*([^;]+);/g)].map((match) => match[1].trim());
+    // The overrides for reduced transparency and the kill switch are the only ones outside the gate.
+    expect(values.length).toBeGreaterThan(0);
+    for (const value of values) expect(value).toBe("none");
   });
 
   it("turns glass off for reduced transparency and through a switch on the root", () => {

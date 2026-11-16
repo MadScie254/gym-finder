@@ -25,7 +25,7 @@ describe("Send button motion contract", () => {
     expect(css.replace(hover, "")).not.toMatch(/infinite/);
   });
 
-  it("plays the plane once on press where there is no hover", () => {
+  it("flies the plane while pressed, once through, where there is no hover", () => {
     const touch = block("@media (hover: none)");
     expect(touch).toContain(":active");
     expect(touch).toMatch(/animation-iteration-count:\s*1/);

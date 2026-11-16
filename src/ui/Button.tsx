@@ -11,12 +11,12 @@ type Common = {
   /** Draw the icon after the label. */
   iconEnd?: boolean;
   /**
-   * Text that replaces the label while the pointer is on the button (once on press where there is no hover).
+   * Text that replaces the label while the pointer is on the button. Only where hover exists: on touch the label does not change.
    * Decorative and hidden from assistive technology: the label stays the name. Never promise an outcome
    * that has not happened yet.
    */
   winLabel?: string;
-  /** "fly": the icon flies off the end of the button and comes back from the start while hovered. */
+  /** "fly": the icon flies off the end of the button and comes back from the start while hovered, or while pressed where there is no hover. */
   motion?: "fly";
   /** Stretch to the width of the container. */
   wide?: boolean;
