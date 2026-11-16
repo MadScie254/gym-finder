@@ -191,8 +191,10 @@ export default function CommandPalette({ onClose }: { onClose: () => void }) {
         onClick={() => choose(i)}
       >
         <Icon className={styles.rowIcon} aria-hidden="true" size={20} strokeWidth={2} />
-        <span className={styles.rowLabel}>{row.label}</span>
-        {row.hint && <span className={styles.rowHint}>{row.hint}</span>}
+        <span className={styles.rowText}>
+          <span className={styles.rowLabel}>{row.label}</span>
+          {row.hint && <span className={styles.rowHint}>{row.hint}</span>}
+        </span>
         {row.tag === "demo" && <DemoTag />}
         <CornerDownLeft className={styles.rowEnter} aria-hidden="true" size={16} strokeWidth={2} />
       </div>

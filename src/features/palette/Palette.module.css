@@ -123,6 +123,14 @@
   color: var(--color-text-muted-glass);
 }
 
+.rowText {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
 .rowLabel {
   flex: 1;
   min-width: 0;
@@ -156,6 +164,25 @@
 /* No Enter key to point at on a phone. */
 .panel[data-variant="sheet"] .rowEnter {
   display: none;
+}
+
+/* On a phone the name and its hint stack and wrap: place names are long, and a cut-off name is not a name. */
+.panel[data-variant="sheet"] .row {
+  padding-block: var(--space-2);
+}
+
+.panel[data-variant="sheet"] .rowText {
+  display: grid;
+  align-content: center;
+  gap: 2px;
+}
+
+.panel[data-variant="sheet"] :is(.rowLabel, .rowHint) {
+  max-width: none;
+  overflow: visible;
+  overflow-wrap: anywhere;
+  text-overflow: clip;
+  white-space: normal;
 }
 
 .empty {
