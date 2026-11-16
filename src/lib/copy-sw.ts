@@ -274,7 +274,7 @@ export const sw: Record<CopyKey, string> = {
   notFoundBody: "Kiungo hicho hakilingani na ukurasa wa Find My Gym.",
   goHome: "Nenda kwenye orodha ya gym",
   viewGym: "Tazama gym",
-  viewGymNamed: "Tazama {name}",
+  viewGymNamed: "Tazama gym, {name}",
   factDayPass: "Pasi ya siku {amount}",
   factMonthly: "Kila mwezi {amount}",
   factHours: "Saa zimeorodheshwa",

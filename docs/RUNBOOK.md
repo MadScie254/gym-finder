@@ -44,3 +44,7 @@ Use “Edit on OpenStreetMap” from a venue page so the next extract picks them
 ## Rollback
 
 Revert the data PR. The previous `gyms.<hash>.json` is in git history. Point `manifest.json` back if needed.
+
+## Offline
+
+`public/sw.js` precaches the HTML shell and the current catalogue. After each build `scripts/precache.mjs` writes into `dist/sw.js` the list of built scripts, styles and fonts (not source maps) and a build id that also covers the catalogue, so a new catalogue gives browsers a new worker. If a build step adds files under `dist/` that the app needs offline, list them in `scripts/precache.mjs`. `e2e/offline.spec.ts` goes offline after one visit and opens a gym page that was never visited.

@@ -269,7 +269,7 @@ export const en = {
   notFoundBody: "That link does not match a Find My Gym page.",
   goHome: "Go to the gym list",
   viewGym: "View gym",
-  viewGymNamed: "View {name}",
+  viewGymNamed: "View gym, {name}",
   factDayPass: "Day pass {amount}",
   factMonthly: "Monthly {amount}",
   factHours: "Hours listed",

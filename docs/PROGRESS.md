@@ -22,8 +22,10 @@ Keep this current and under 150 lines. Resume from here and git log.
 
 ## Checks (2026-11-16)
 
-- `npm run check`: lint, types, contrast (34 pairs), 254 unit tests in 50 files, production build with 495 gym pages and 189 county and place pages prerendered. All pass.
-- `npm run e2e`: 38 passed on mobile and desktop, 4 optional screenshot tests skipped. Journeys: search → profile, Save and Compare, production map readiness, My week, demo food flow, styleguide, axe on the real app.
+- `npm run check`: lint, types, contrast (34 pairs), 260 unit tests in 51 files, production build with 495 gym pages and 189 county and place pages prerendered. All pass.
+- `npm run e2e`: 40 passed on mobile and desktop, 4 optional screenshot tests skipped. Journeys: search → profile, Save and Compare, production map readiness, offline after one visit, My week, demo food flow, styleguide, axe on the real app.
+- Lighthouse on the live site (mobile, simulated throttling, 2026-11-16): Home 97 performance, 96 accessibility, 100 best practices, 100 SEO. Find gyms 96, 100, 100, 100. Level 24 profile 100, 100, 100, 100. LCP 0.8 s on Home and profile, 2.3 s on Find gyms.
+- Offline after one visit: the worker now precaches every built script, style and font (`scripts/precache.mjs`). Before, a first visit cached only the page, so an offline reload was blank. `e2e/offline.spec.ts` opens a never-visited gym page offline.
 - `npm run data:validate`: 563 venues, 66.3 KB gzipped catalogue.
 - GitHub Actions does not run on this account (billing). Local checks and the Vercel build are the gate.
 
@@ -32,7 +34,8 @@ Keep this current and under 150 lines. Resume from here and git log.
 - 15 counties have no record. Closing that needs a source, not invention.
 - Three checked websites are broken for now (two return HTTP 500, one is in maintenance mode) and stay listed until a recheck. Four more are up but show nothing dated. Only 40 websites have been opened; the other 174 listed ones are unchecked.
 - Human spot-check of the 10 verified profiles. Swahili copy needs a native reviewer.
-- Lighthouse and offline checks have not been run on the production URL.
+- Offline, the list and profiles work but map tiles are not cached, so the map has no background.
+- Lighthouse flags one touch target on Home: a county link at the bottom of the first screen sits partly under the fixed bottom bar.
 - `VITE_SUPPORT_EMAIL` is unset on purpose until the owner picks a role address.
 - The old Cloudflare Workers copy still serves an older build. Retire it after the Vercel production URL is confirmed.
 

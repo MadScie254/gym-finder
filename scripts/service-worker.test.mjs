@@ -3,9 +3,10 @@ import { fileURLToPath } from "node:url";
 import vm from "node:vm";
 import { expect, it } from "vitest";
 
-const source = readFileSync(fileURLToPath(new URL("../public/sw.js", import.meta.url)), "utf8");
+const rawSource = readFileSync(fileURLToPath(new URL("../public/sw.js", import.meta.url)), "utf8");
 
-function harness(fetcher = async () => { throw new Error("offline"); }) {
+function harness(fetcher = async () => { throw new Error("offline"); }, { precache = [], missing = [] } = {}) {
+  const source = rawSource.replace(/const PRECACHE = \[[^\]]*\];/, () => `const PRECACHE = ${JSON.stringify(precache)};`);
   const handlers = {};
   const stores = new Map();
   const key = (request) => typeof request === "string" ? request : request.url;
@@ -17,7 +18,10 @@ function harness(fetcher = async () => { throw new Error("offline"); }) {
         addAll: async (urls) => { for (const url of urls) store.set(url, url === "/data/manifest.json"
           ? Response.json({ gymsPath: "/data/gyms.json" })
           : new Response("shell", { headers: { "Content-Type": "text/html" } })); },
-        add: async (url) => { store.set(url, Response.json({ gyms: [] })); },
+        add: async (url) => {
+          if (missing.includes(url)) throw new TypeError(`Request failed: ${url}`);
+          store.set(url, url.startsWith("/assets/") ? new Response("asset") : Response.json({ gyms: [] }));
+        },
         match: async (request) => store.get(key(request)),
         put: async (request, response) => { store.set(key(request), response); },
       };
@@ -82,4 +86,22 @@ it("pre-caches the current catalogue during installation for the first offline v
   const response = await sw.caches.match("/data/gyms.json");
   expect(response).toBeDefined();
   expect(await response.json()).toEqual({ gyms: [] });
+});
+
+it("pre-caches the built files so the app starts offline after one visit, even if one file is missing", async () => {
+  const sw = harness(undefined, { precache: ["/assets/index-1.js", "/assets/gone-2.js", "/assets/app-3.css"], missing: ["/assets/gone-2.js"] });
+  await sw.dispatch("install");
+  expect(await sw.caches.match("/assets/index-1.js")).toBeDefined();
+  expect(await sw.caches.match("/assets/app-3.css")).toBeDefined();
+  expect(await sw.caches.match("/assets/gone-2.js")).toBeUndefined();
+  expect(await sw.caches.match("/data/gyms.json")).toBeDefined();
+});
+
+it("serves the cached home page for any page that was never visited while offline", async () => {
+  const sw = harness();
+  await sw.dispatch("install");
+  // A Request cannot be built in navigate mode, so give the worker the fields it reads.
+  const response = await sw.dispatch("fetch", { url: "https://example.test/gym/never-visited", method: "GET", mode: "navigate" });
+  expect(response.status).toBe(200);
+  expect(await response.text()).toBe("shell");
 });
