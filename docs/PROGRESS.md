@@ -13,6 +13,7 @@ Keep this current and under 150 lines. Resume from here and git log.
 - Saved keeps notes, order and a "my gym" pick, with Undo, export, import and a share link. Compare is a side-by-side table with a tray in the shell. Reports go to WhatsApp or email from `VITE_SUPPORT_WHATSAPP` and `VITE_SUPPORT_EMAIL`; a link that is not configured is hidden, not dead.
 - My week (`/plan`): week-by-week workout plan, 7-day meal plan, shopping list, `.ics` download, backup and restore, all in the browser.
 - Food stores (`/fuel`) are a simulation. Every screen carries a Demo marker (a test enforces it), stores and prices are invented, nothing is ordered. Real Glovo or Foodplus links wait for a partnership decision.
+- Desktop shell, phase 1 of 5 (pull request 12, waiting for the owner to see the live preview before it merges). From 1100 px a glass sidebar (Explore, Plan, Help, 72 px rail from 1100 to 1279 px until you choose) and a top bar with a ⌘K quick-actions widget, language, appearance and location. From 900 px the header keeps the top navigation; below that, the bottom tabs. Both gain a Search button. The palette (Ctrl K or ⌘K, `src/features/palette/`) finds gyms and places, runs actions, opens pages and changes settings; on phones it is a full-height sheet. Glass is drawn only on wide screens with a fine pointer and over the contour texture, solid elsewhere. Also built: the `Accordion` and the Send button's hover text and plane. Not yet used on screens: the Accordion and the redesigned Home, Find gyms and profile layouts (phases 2 to 4). Phase 5 is install polish and the new app icon, which the owner sees before it ships.
 
 ## Catalogue (build of 2026-11-11)
 
@@ -22,8 +23,9 @@ Keep this current and under 150 lines. Resume from here and git log.
 
 ## Checks (2026-11-16)
 
-- `npm run check`: lint, types, contrast (34 pairs), 260 unit tests in 51 files, production build with 495 gym pages and 189 county and place pages prerendered. All pass.
-- `npm run e2e`: 40 passed on mobile and desktop, 4 optional screenshot tests skipped. Journeys: search → profile, Save and Compare, production map readiness, offline after one visit, My week, demo food flow, styleguide, axe on the real app.
+- `npm run check` on the phase 1 branch: lint, types, contrast (46 pairs, 12 of them for glass and texture), 350 unit tests in 63 files, production build with 495 gym pages and 189 county and place pages prerendered. All pass.
+- `npm run e2e` on the phase 1 branch: 51 passed on mobile and desktop, 13 skipped (screenshot tests and journeys that belong to the other project). New: `e2e/shell.spec.ts` covers the sidebar, the rail, the palette by keyboard and by widget, focus returning to the widget, an action typed in words, the phone sheet, axe with the palette open, and Kiswahili rows that must not be cut off. No older spec needed a change.
+- Entry script grew from 140,087 to 144,789 bytes gzipped (4.6 KB, budget 10 KB); the palette is a separate 5 KB chunk, precached for offline.
 - Lighthouse on the live site (mobile, simulated throttling, 2026-11-16): Home 97 performance, 96 accessibility, 100 best practices, 100 SEO. Find gyms 96, 100, 100, 100. Level 24 profile 100, 100, 100, 100. LCP 0.8 s on Home and profile, 2.3 s on Find gyms.
 - Offline after one visit: the worker now precaches every built script, style and font (`scripts/precache.mjs`). Before, a first visit cached only the page, so an offline reload was blank. `e2e/offline.spec.ts` opens a never-visited gym page offline.
 - `npm run data:validate`: 563 venues, 66.3 KB gzipped catalogue.
@@ -33,7 +35,8 @@ Keep this current and under 150 lines. Resume from here and git log.
 
 - 15 counties have no record. Closing that needs a source, not invention.
 - Three checked websites are broken for now (two return HTTP 500, one is in maintenance mode) and stay listed until a recheck. Four more are up but show nothing dated. Only 40 websites have been opened; the other 174 listed ones are unchecked.
-- Human spot-check of the 10 verified profiles. Swahili copy needs a native reviewer.
+- Human spot-check of the 10 verified profiles. Swahili copy needs a native reviewer, the new shell and palette strings included.
+- Desktop shell phases 2 to 5 (page layouts, then install polish and the app icon). "Add a missing gym" is only in the palette and the phone menu until phase 2 puts it on Find gyms. A palette "Compare" action is left out until a later phase.
 - Offline, the list and profiles work but map tiles are not cached, so the map has no background.
 - Lighthouse flags one touch target on Home: a county link at the bottom of the first screen sits partly under the fixed bottom bar.
 - `VITE_SUPPORT_EMAIL` is unset on purpose until the owner picks a role address.
