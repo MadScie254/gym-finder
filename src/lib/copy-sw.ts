@@ -259,6 +259,7 @@ export const sw: Record<CopyKey, string> = {
   reportSavedTitle: "Ripoti imehifadhiwa",
   reportStatusLocal: "Imehifadhiwa kwenye kifaa hiki. Bado haijatumwa kwa seva.",
   reportSendWhatsApp: "Tuma kwa WhatsApp",
+  reportSendWin: "Inaenda!",
   reportSendHint: "Inafungua WhatsApp ikiwa na ripoti imeandikwa. Wewe ndiye unabonyeza tuma.",
   reportNoWhatsApp: "Toleo hili halina nambari ya WhatsApp ya msaada, kwa hivyo ripoti inabaki kwenye kifaa hiki kwa sasa.",
   reportNeedName: "Ongeza jina la gym.",

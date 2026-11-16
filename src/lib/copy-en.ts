@@ -254,6 +254,7 @@ export const en = {
   reportSavedTitle: "Report saved",
   reportStatusLocal: "Saved on this device. Not sent to a server yet.",
   reportSendWhatsApp: "Send on WhatsApp",
+  reportSendWin: "Off it goes!",
   reportSendHint: "Opens WhatsApp with the report written out. You press send.",
   reportNoWhatsApp: "This version has no support WhatsApp number set, so the report stays on this device for now.",
   reportNeedName: "Add the gym's name.",
