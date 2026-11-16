@@ -42,15 +42,12 @@ export function TopBar() {
       </button>
 
       <div className={styles.tools}>
-        {/* The visible text is the current language code; the name carries the language and the action. */}
-        <button
-          type="button"
-          className={styles.lang}
-          aria-label={`${name(lang)}. ${tr("paletteSwitchLang", { language: name(other) })}`}
-          onClick={() => setLang(other)}
-        >
+        {/* The visible text is the current language code. The name starts with it and then says what a press does,
+            so the visible label is part of the name (WCAG 2.5.3). */}
+        <button type="button" className={styles.lang} onClick={() => setLang(other)}>
           <Languages aria-hidden="true" size={18} strokeWidth={2} />
-          <span aria-hidden="true">{lang.toUpperCase()}</span>
+          <span>{lang.toUpperCase()}</span>
+          <span className="sr-only">: {tr("paletteSwitchLang", { language: name(other) })}</span>
         </button>
         <IconButton
           icon={THEME_ICON[theme]}
