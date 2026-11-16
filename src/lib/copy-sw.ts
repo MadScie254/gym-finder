@@ -376,4 +376,5 @@ export const sw: Record<CopyKey, string> = {
   legalReports: "Ripoti huhifadhiwa kwenye kifaa hiki kwanza. Ukichagua Tuma kwa WhatsApp, inakuwa ujumbe wako mwenyewe kwa nambari ya msaada.",
   legalData: "Data ya orodha inatokana na OpenStreetMap chini ya ODbL, pamoja na Overture Maps (CDLA-Permissive-2.0), Foursquare kupitia Overture (Apache-2.0) na GeoNames (CC BY 4.0). Ukurasa huu haujakaguliwa na wakili.",
   legalTiles: "Picha za ramani zinatoka OpenFreeMap. Utambuzi wao hubaki kwenye ramani.",
+  compareColumn: "Gym katika safu {n}",
 };

@@ -60,7 +60,7 @@ export function FuelHome({ now: fixedNow }: { now?: Date }) {
       <div className={styles.homeGrid}>
         <div className={styles.column}>
           <GuidanceCard guidance={result.guidance} settings={plan.settings} today={today} />
-          <FuelTools />
+          <div className={styles.toolsSlot}><FuelTools /></div>
         </div>
         <div className={styles.column}>
           <PickList picks={result.picks} sessionTitle={result.guidance.session?.title ?? null} />

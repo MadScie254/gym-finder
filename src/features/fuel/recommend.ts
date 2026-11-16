@@ -146,6 +146,11 @@ function selectPicks(scored: Pick[]): Pick[] {
     }
     if (out.length >= 3) break;
   }
+  // Variety: keep one vegetarian option in a mixed list when the town has a good one.
+  if (out.length >= 3 && !out.some((p) => p.item.tags.includes("vegetarian"))) {
+    const veg = scored.find((p) => p.item.tags.includes("vegetarian") && p.item.meal !== "grocery" && p.score >= 3 && !out.includes(p));
+    if (veg) out[out.length - 1] = veg;
+  }
   return out;
 }
 

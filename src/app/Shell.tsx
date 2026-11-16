@@ -6,6 +6,7 @@ import { useMediaQuery, WIDE_QUERY } from "./useMediaQuery";
 import { useT, useVenueContext } from "./venue-context";
 import { formatDate } from "../lib/i18n";
 import { applyTheme, loadTheme } from "../lib/storage";
+import { CompareTray } from "../features/compare/CompareTray";
 import { Banner, NavBar, PRIMARY_NAV, type NavItem } from "../ui";
 import styles from "./Shell.module.css";
 
@@ -42,7 +43,13 @@ export function Shell() {
       <main id="main" className={styles.main} tabIndex={-1}>
         <Outlet />
       </main>
-      {!wide && <div className={styles.bottom}><NavBar items={items} placement="bottom" /></div>}
+      {wide && <CompareTray wide />}
+      {!wide && (
+        <div className={styles.bottom}>
+          <CompareTray wide={false} />
+          <NavBar items={items} placement="bottom" />
+        </div>
+      )}
     </div>
   );
 }

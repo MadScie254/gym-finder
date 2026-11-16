@@ -66,6 +66,11 @@ describe("recommend", () => {
     expect(picks.slice(0, 3).every((p) => p.item.tags.includes("pre-workout") || p.item.meal === "breakfast")).toBe(true);
   });
 
+  it("keeps one vegetarian option in a mixed list", () => {
+    const { picks } = run(DEFAULT_PLAN_SETTINGS, MONDAY_2000);
+    expect(picks.some((p) => p.item.tags.includes("vegetarian"))).toBe(true);
+  });
+
   it("never gives meat or a butchery to vegetarians", () => {
     const settings = { ...DEFAULT_PLAN_SETTINGS, diet: "vegetarian" as const, goal: "strength" as const };
     for (const now of [MONDAY_0700, MONDAY_2000, TUESDAY_1300]) {

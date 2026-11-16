@@ -371,6 +371,7 @@ export const en = {
   legalReports: "A report is saved on this device first. If you choose Send on WhatsApp, it becomes your own message to the support number.",
   legalData: "Listing data is an ODbL derivative of OpenStreetMap, combined with Overture Maps (CDLA-Permissive-2.0), Foursquare through Overture (Apache-2.0) and GeoNames (CC BY 4.0). This page has not been reviewed by a lawyer.",
   legalTiles: "Map tiles come from OpenFreeMap. Their attribution stays on the map.",
+  compareColumn: "Gym in column {n}",
 } as const satisfies Record<string, string>;
 
 export type CopyKey = keyof typeof en;

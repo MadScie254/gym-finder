@@ -75,8 +75,8 @@ export function StoreList({ town, stores, onTown, onLocate, status }: StoreListP
                   <span className={local.storeName}>{store.name}</span>
                   <span className={styles.rowMeta}>{copy.kind[store.kind]}, {store.area}</span>
                   {distanceKm != null && <span className={styles.rowMeta}>{copy.away(formatDistance(distanceKm))}</span>}
+                  <span className={local.fit}>{copy.fits(fit)}</span>
                 </span>
-                <span className={local.fit}>{copy.fits(fit)}</span>
                 <ChevronRight className={styles.chevron} aria-hidden="true" size={20} />
               </Link>
             </li>

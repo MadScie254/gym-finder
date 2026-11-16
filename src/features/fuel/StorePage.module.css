@@ -146,3 +146,11 @@
   background: var(--color-bg);
   box-shadow: var(--shadow-menu);
 }
+
+/* Under 900 px the shell's bottom bar (56 px plus the safe area) sits at the
+   bottom of the page, so the dock rests above it. */
+@media (max-width: 899px) {
+  .dock {
+    bottom: calc(56px + env(safe-area-inset-bottom, 0px) + var(--space-3));
+  }
+}

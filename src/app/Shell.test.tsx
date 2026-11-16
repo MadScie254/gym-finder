@@ -5,6 +5,7 @@ import { MemoryRouter, Route, Routes } from "react-router";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import { t } from "../lib/i18n";
 import { Shell } from "./Shell";
+import { StoreProvider } from "./stores";
 
 const venueState = vi.hoisted(() => ({ offline: false }));
 
@@ -34,9 +35,11 @@ afterEach(async () => {
 
 async function render(path: string) {
   await act(async () => root.render(
-    <MemoryRouter initialEntries={[path]}>
-      <Routes><Route element={<Shell />}><Route path="*" element={<p>Page body</p>} /></Route></Routes>
-    </MemoryRouter>,
+    <StoreProvider>
+      <MemoryRouter initialEntries={[path]}>
+        <Routes><Route element={<Shell />}><Route path="*" element={<p>Page body</p>} /></Route></Routes>
+      </MemoryRouter>
+    </StoreProvider>,
   ));
 }
 
