@@ -40,8 +40,6 @@ export type CommandContext = {
   toggleSaved: (venue: Venue) => void;
 };
 
-const GROUP_ORDER: readonly CommandGroup[] = ["actions", "go", "settings"];
-
 const THEME_KEY: Record<ThemeChoice, CopyKey> = { system: "theme_system", light: "theme_light", dark: "theme_dark" };
 
 /** Synonyms for the Go to commands. Typed on NavId, so a new page cannot be added without them. */
@@ -161,26 +159,32 @@ export function buildCommands(ctx: CommandContext): Command[] {
   return [...actions, ...go, ...settings];
 }
 
-/** 3: the label starts with the query. 2: a word in the label does. 1: the label contains it, or a keyword does. 0: no match. */
+/**
+ * 4: the label starts with the query. 3: a word in the label does. 2: the label contains it.
+ * 1: only a keyword does. 0: no match.
+ */
 function score(command: Command, query: string): number {
   const label = foldPlace(command.label);
-  if (label.startsWith(query)) return 3;
-  if (label.includes(` ${query}`)) return 2;
-  if (label.includes(query) || command.keywords.some((word) => foldPlace(word).includes(query))) return 1;
+  if (label.startsWith(query)) return 4;
+  if (label.includes(` ${query}`)) return 3;
+  if (label.includes(query)) return 2;
+  if (command.keywords.some((word) => foldPlace(word).includes(query))) return 1;
   return 0;
 }
 
 /**
- * The commands to show for what was typed. Groups keep their fixed order; inside a group the better matches
- * come first and ties keep their registry order. Case, accents and extra spaces do not matter. A blank query
- * keeps everything. At most `perGroup` commands are kept for each group.
+ * The commands to show for what was typed. A blank query keeps everything in registry order, which is
+ * group order. With a query the best match comes first whatever its group, so typing a page name opens the
+ * page and not an action that shares a word with it. Ties go to the shorter label (the closer match), then
+ * to registry order. Case, accents and extra spaces do not matter. At most `perGroup` commands are kept for
+ * each group.
  */
 export function rankCommands(commands: readonly Command[], query: string, perGroup = 8): Command[] {
   const q = foldPlace(query);
   const ranked = commands
     .map((command, index) => ({ command, index, score: q ? score(command, q) : 1 }))
-    .filter((item) => item.score > 0)
-    .sort((a, b) => GROUP_ORDER.indexOf(a.command.group) - GROUP_ORDER.indexOf(b.command.group) || b.score - a.score || a.index - b.index);
+    .filter((item) => item.score > 0);
+  if (q) ranked.sort((a, b) => b.score - a.score || a.command.label.length - b.command.label.length || a.index - b.index);
 
   const taken = new Map<CommandGroup, number>();
   const result: Command[] = [];

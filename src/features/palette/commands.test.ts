@@ -153,8 +153,8 @@ describe("rankCommands", () => {
     expect(labels(rankCommands(all, "KÍSWÁ"))).toEqual(["Switch to Kiswahili"]);
   });
 
-  it("finds both week commands, actions before pages", () => {
-    expect(labels(rankCommands(all, "week"))).toEqual(["Set up my week", "My week"]);
+  it("puts the closer match first whatever its group, so a page name opens the page", () => {
+    expect(labels(rankCommands(all, "week"))).toEqual(["My week", "Set up my week"]);
   });
 
   it("matches words the label does not hold through keywords", () => {
