@@ -7,6 +7,8 @@ Keep this current and under 150 lines. Resume from here and git log.
 - React 19 + Vite 8 static site on Vercel. No backend, database, runtime API keys or Google Places. Location stays in the browser.
 - The full revamp is built on the Signwriter UI kit (`src/ui/`): shell and nav (Home, Find gyms, Saved, My week), Home, discovery, gym profile, Saved, Compare, Reports, My week, and the Demo food stores.
 - Discovery: `/search`, `/in/:place`, `/county/:county`, `/near/:landmark`. Typo-tolerant search, filters with counts held in the URL, list and map driven by the same selection, "Search this area", Load more, Back restores the scroll position.
+- Live: https://gym-finder-sepia.vercel.app (Vercel production, public). The other `*.vercel.app` aliases sit behind Vercel Authentication.
+- Search engines get real HTML for each shown gym (`/gym/<slug>/`), each county with a gym (`/county/<slug>/`) and each town or area with one (`/in/<place>/`), all in `sitemap.xml`. Canonical links use `SITE_URL` or Vercel's production domain. They used to point at `findmygym.ke`, which this project does not own.
 - Gym profile follows the owner's order, with a sticky contact panel on wide screens. Hours, prices and amenities appear only when a source has them.
 - Saved keeps notes, order and a "my gym" pick, with Undo, export, import and a share link. Compare is a side-by-side table with a tray in the shell. Reports go to WhatsApp or email from `VITE_SUPPORT_WHATSAPP` and `VITE_SUPPORT_EMAIL`; a link that is not configured is hidden, not dead.
 - My week (`/plan`): week-by-week workout plan, 7-day meal plan, shopping list, `.ics` download, backup and restore, all in the browser.
@@ -20,14 +22,13 @@ Keep this current and under 150 lines. Resume from here and git log.
 
 ## Checks (2026-11-16)
 
-- `npm run check`: lint, types, contrast (34 pairs), 235 unit tests in 48 files, production build, 497 gym pages prerendered. All pass.
+- `npm run check`: lint, types, contrast (34 pairs), 242 unit tests in 49 files, production build with 497 gym pages and 190 county and place pages prerendered. All pass.
 - `npm run e2e`: 38 passed on mobile and desktop, 4 optional screenshot tests skipped. Journeys: search → profile, Save and Compare, production map readiness, My week, demo food flow, styleguide, axe on the real app.
 - `npm run data:validate`: 566 venues, 66.7 KB gzipped catalogue.
 - GitHub Actions does not run on this account (billing). Local checks and the Vercel build are the gate.
 
 ## Not done
 
-- G8: place and county pages are not prerendered for search engines; only `/gym/<slug>/` is. They render client-side.
 - 15 counties have no record. Closing that needs a source, not invention.
 - About 30 gyms list a website that no longer resolves; an override cannot clear a field yet.
 - Human spot-check of the 10 verified profiles. Swahili copy needs a native reviewer.

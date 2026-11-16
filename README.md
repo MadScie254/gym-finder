@@ -29,7 +29,7 @@ The map shows the independently sourced catalogue with clustered gym pins. It is
 
 ## Deploy
 
-Vercel builds every push (`vercel.json` sends extensionless paths to `index.html`; prerendered `/gym/<slug>/` pages are real files). Optional build-time settings are listed in `.env.example`: `VITE_SUPPORT_WHATSAPP` and `VITE_SUPPORT_EMAIL` decide where reports and claims go. GitHub Actions is not the gate while the account is restricted; run `npm run check` and `npm run e2e` locally.
+Vercel builds every push (`vercel.json` sends extensionless paths to `index.html`). The build also writes real HTML files for every shown gym (`/gym/<slug>/`), every county with a gym (`/county/<slug>/`) and every town or area with one (`/in/<place>/`), plus `sitemap.xml` and `robots.txt`. Canonical links use `SITE_URL` when set, otherwise Vercel's production domain. Optional build-time settings are listed in `.env.example`: `VITE_SUPPORT_WHATSAPP` and `VITE_SUPPORT_EMAIL` decide where reports and claims go. GitHub Actions is not the gate while the account is restricted; run `npm run check` and `npm run e2e` locally.
 
 ## Privacy
 
