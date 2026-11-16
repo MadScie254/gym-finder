@@ -96,7 +96,7 @@ export function SavedPage() {
         ) : <p>{status}</p>)}
       </div>
       {saved.entries.length === 0 ? (
-        <EmptyState icon={Bookmark} level={2} title={tr("savedEmptyTitle")} action={<Link to="/search" className={buttonClassName("primary")}>{tr("homeFind")}</Link>}>
+        <EmptyState photo="functional-floor" level={2} title={tr("savedEmptyTitle")} action={<Link to="/search" className={buttonClassName("primary")}>{tr("homeFind")}</Link>}>
           {tr("savedEmptyBody")}
         </EmptyState>
       ) : (

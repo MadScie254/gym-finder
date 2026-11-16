@@ -1,24 +1,28 @@
+/* A number plate: a chalk face, a thick ink rim, a thin keyline stamped inside it, and condensed numerals.
+   It turns signal yellow when the gym is open, as a rear plate is yellow. The colours are the fixed palette, not
+   the theme's, so it is the same object in light and dark mode. */
 .block {
   position: relative;
   display: inline-flex;
   flex: none;
   flex-direction: column;
   justify-content: center;
+  align-self: flex-start;
   gap: 2px;
   width: 88px;
-  min-height: 64px;
+  min-height: 60px;
   padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--color-plate-edge);
-  border-radius: var(--radius-tag);
-  background: var(--color-plate);
-  color: var(--color-on-plate);
+  border: 3px solid var(--plate);
+  border-radius: var(--radius-control);
+  background: var(--chalk);
+  box-shadow: inset 0 0 0 2px var(--chalk), inset 0 0 0 3px var(--plate);
+  color: var(--plate);
   font-variant-numeric: tabular-nums lining-nums;
 }
 
 .block[data-open] {
-  border-color: var(--color-on-highlight);
-  background: var(--color-highlight);
-  color: var(--color-on-highlight);
+  background: var(--signal);
+  box-shadow: inset 0 0 0 2px var(--signal), inset 0 0 0 3px var(--plate);
 }
 
 .reading {
@@ -36,7 +40,7 @@
 }
 
 .unit {
-  color: var(--color-plate-muted);
+  color: var(--slate);
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-strong);
   line-height: 1;
@@ -44,16 +48,17 @@
 
 .unknown {
   max-width: 7ch;
-  color: var(--color-plate-muted);
+  color: var(--slate);
   font-size: var(--font-size-14);
   font-stretch: var(--font-width-sign);
   font-weight: var(--font-weight-strong);
   line-height: 1.1;
 }
 
+/* Slate is too light on yellow, so an open plate is all ink. */
 .block[data-open] .unit,
 .block[data-open] .unknown {
-  color: var(--color-on-highlight);
+  color: var(--plate);
 }
 
 .caption {
@@ -63,7 +68,7 @@
 }
 
 .block:not([data-open]) .caption {
-  color: var(--color-plate-muted);
+  color: var(--slate);
 }
 
 .block[data-size="detail"] {

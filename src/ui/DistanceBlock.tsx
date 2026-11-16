@@ -10,8 +10,8 @@ export type DistanceBlockProps = {
 };
 
 /**
- * The signature element: a plate-coloured block with large condensed numerals,
- * read like the markings on an iron plate. It turns signal yellow when open.
+ * The signature element: a number plate with large condensed numerals. A chalk face with a thick ink rim and a
+ * stamped keyline, and signal yellow when open.
  */
 export function DistanceBlock({ km, open = false, size = "card" }: DistanceBlockProps) {
   const parts = km == null ? null : formatDistanceParts(km);

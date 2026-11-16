@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router";
-import { Columns3, Share2 } from "lucide-react";
+import { Share2 } from "lucide-react";
 import { Page } from "../../app/Page";
 import { useCompare } from "../../app/stores";
 import { useMediaQuery, WIDE_QUERY } from "../../app/useMediaQuery";
@@ -64,7 +64,7 @@ export function ComparePage() {
         </div>
       )}
       {venues.length === 0 ? (
-        <EmptyState icon={Columns3} level={2} title={tr("compareEmptyTitle")} action={<Link to="/search" className={buttonClassName("primary")}>{tr("compareBrowse")}</Link>}>
+        <EmptyState photo="boxing-room" level={2} title={tr("compareEmptyTitle")} action={<Link to="/search" className={buttonClassName("primary")}>{tr("compareBrowse")}</Link>}>
           {tr("compareEmptyBody")}
         </EmptyState>
       ) : (

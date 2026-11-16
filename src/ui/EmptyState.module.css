@@ -8,6 +8,32 @@
   text-align: center;
 }
 
+/* With a picture there is room for a wider frame, and the words keep a readable measure. */
+.empty[data-photo] {
+  max-width: 28rem;
+}
+
+.empty[data-photo] .title,
+.empty[data-photo] .body {
+  max-width: 36ch;
+}
+
+.picture {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5 / 2;
+  margin-bottom: var(--space-2);
+  overflow: hidden;
+  border: 3px solid var(--color-plate-edge);
+  border-radius: var(--radius-card);
+  background: var(--color-sunk);
+}
+
+.picture > * {
+  position: absolute;
+  inset: 0;
+}
+
 /* A plate face seen head-on: ring and hub, the same object as the map pins. */
 .mark {
   display: grid;

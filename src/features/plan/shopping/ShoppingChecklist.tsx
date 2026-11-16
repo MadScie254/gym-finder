@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { Copy, ListChecks, MessageCircle, Plus, RefreshCw, Share2 } from "lucide-react";
+import { Copy, MessageCircle, Plus, RefreshCw, Share2 } from "lucide-react";
 import { Button, Dialog, EmptyState } from "../../../ui";
 import { MyWeekScreen } from "../MyWeekScreen";
 import { usePlan } from "../PlanContext";
@@ -42,7 +42,7 @@ export function ShoppingChecklist() {
     return (
       <MyWeekScreen>
         <p className={styles.body}>{copy.listIntro(diet)}</p>
-        <EmptyState title={copy.makeListTitle} icon={ListChecks} action={<Button variant="primary" onClick={build}>{copy.makeList}</Button>}>
+        <EmptyState title={copy.makeListTitle} photo="ugali-plates" action={<Button variant="primary" onClick={build}>{copy.makeList}</Button>}>
           <p>{copy.makeListBody(plan.meals.length * 4)}</p>
         </EmptyState>
       </MyWeekScreen>

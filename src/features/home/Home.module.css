@@ -8,11 +8,11 @@
   padding: var(--space-6) var(--space-4) var(--space-8);
 }
 
+/* The text on the hero poster's board. */
 .hero {
   display: grid;
   justify-items: start;
   gap: var(--space-4);
-  max-width: 640px;
 }
 
 .headline {

@@ -4,7 +4,7 @@ import { LocateFixed } from "lucide-react";
 import { useSaved } from "../../app/stores";
 import { useT, useVenueContext } from "../../app/venue-context";
 import { hasPlanSettings } from "../../lib/storage";
-import { Button, buttonClassName } from "../../ui";
+import { Button, Poster, buttonClassName } from "../../ui";
 import { GymSearch } from "../search/GymSearch";
 import { CheckedProfiles, FirstVisitGuide, HomeFooter, PlaceIndex, ShortlistAndWeek } from "./HomeSections";
 import styles from "./Home.module.css";
@@ -26,18 +26,20 @@ export function HomePage() {
 
   return (
     <div className={styles.home}>
-      <section className={styles.hero} aria-labelledby="home-title">
-        <h1 id="home-title" className={styles.headline}>{tr("homeHeadline")}</h1>
-        <p className={styles.lede}>{tr("homeLede")}</p>
-        <div className={styles.searchRow}>
-          <GymSearch label={tr("homeSearchLabel")} placeholder={tr("homeSearchPlaceholder")} withLocate={false} />
+      <Poster photo="treadmills" layout="side" priority sizes="(min-width: 1100px) 460px, (min-width: 760px) 40vw, 100vw" aria-labelledby="home-title">
+        <div className={styles.hero}>
+          <h1 id="home-title" className={styles.headline}>{tr("homeHeadline")}</h1>
+          <p className={styles.lede}>{tr("homeLede")}</p>
+          <div className={styles.searchRow}>
+            <GymSearch label={tr("homeSearchLabel")} placeholder={tr("homeSearchPlaceholder")} withLocate={false} />
+          </div>
+          <div className={styles.heroActions}>
+            <Link to="/search" className={buttonClassName("primary")}>{tr("homeFind")}</Link>
+            <Button variant="secondary" icon={LocateFixed} onClick={() => { waitingForLocation.current = true; locate(); }}>{tr("locate")}</Button>
+          </div>
+          <p className={styles.note}>{tr("homeNote")}</p>
         </div>
-        <div className={styles.heroActions}>
-          <Link to="/search" className={buttonClassName("primary")}>{tr("homeFind")}</Link>
-          <Button variant="secondary" icon={LocateFixed} onClick={() => { waitingForLocation.current = true; locate(); }}>{tr("locate")}</Button>
-        </div>
-        <p className={styles.note}>{tr("homeNote")}</p>
-      </section>
+      </Poster>
 
       {returning && (
         <section className={styles.section} aria-labelledby="home-continue">

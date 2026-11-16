@@ -42,9 +42,12 @@
   border-left: var(--border-control);
 }
 
+/* The chosen sort is tinted cobalt, bold and underlined, not filled dark. */
 .sortOption[aria-pressed="true"] {
-  background: var(--color-plate);
-  color: var(--color-on-plate);
+  background: color-mix(in srgb, var(--color-action) 9%, var(--color-surface));
+  box-shadow: inset 0 -3px 0 var(--color-action);
+  color: var(--color-link);
+  font-weight: var(--font-weight-strong);
 }
 
 .sortOption:focus-visible {
