@@ -126,7 +126,7 @@ A small `Accordion` built on `<details>`, so it works without JavaScript and is 
 
 ### Real-app touches
 
-- App icon: the icons today (`public/icons/`) are the old black and red barbell, not Signwriter. The owner decides whether to keep that artwork (and cut a proper maskable version from it) or redraw the icon in Signwriter colours. Open until the owner answers; it only affects phase 5.
+- App icon: the icons today (`public/icons/`) are the old black and red barbell, not Signwriter. The owner chose a new Signwriter icon (a plate-dark rounded square with a signal-yellow bar, as in the mockup's sidebar logo) with a proper maskable version. It is a visible brand change, so the owner sees the icon before it ships. Phase 5.
 - "Richer install card" means the browser's own install dialog, fed by manifest screenshots and a maskable icon. There is no in-app card. The unused install strings and helpers in `copy-en.ts`, `copy-sw.ts` and `storage.ts` are removed in phase 5.
 - Manifest: `id`, `display_override: ["window-controls-overlay", "standalone"]`, `shortcuts` (Find gyms near me, Saved, My week), `categories`, `screenshots` (one wide, one narrow, generated from the live site and committed), a separate maskable icon with a safe zone, a theme colour per scheme.
 - Install help: the sidebar and ⌘K install action use `usePwa().install`. On iPhone, where there is no prompt, a short dialog shows Share then Add to Home Screen.
