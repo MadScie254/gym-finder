@@ -107,7 +107,8 @@ Top bar: page title, the ⌘K widget, language, appearance, "Use my location". W
 - Desktop: centred glass panel. Phones: full-height solid sheet, no key hints.
 - A command is `{ id, group, label, hint?, icon, keywords, when?(ctx), run(ctx) }` in a registry. Groups: Gyms and places (from `buildSuggestions`, including recents), Actions, Go to, Settings.
 - Actions: Use my location, Add a missing gym, Set up my week, and on a gym page Report a problem, Save or unsave, Compare. Settings: switch language, appearance, Install the app.
-- Empty query shows recents, then Actions, Go to, Settings. A query shows gyms and places first, then matching commands, at most eight per group.
+- Empty query shows recents, then Actions, Go to, Settings. A query shows gyms and places first, then matching commands, at most eight per group. One exception: when a command matches the query strictly better than every gym or place (label starts with it, or a word in the label does, where the gym matches only loosely), the commands come first. Without it, typing an action in words such as "add a missing gym" fuzzy-matches gym names through its short words and Enter would open one. A tie keeps gyms first, so a plain "gym" still lists gyms.
+- With a query the commands are ranked by match quality across groups, so typing "week" puts the My week page ahead of the Set up my week action. A blank query lists them by group.
 
 ### Hierarchy and accordions
 

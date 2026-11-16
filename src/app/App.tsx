@@ -10,6 +10,7 @@ import { SkeletonList } from "../ui";
 import { GymPage } from "../features/detail/GymPage";
 import { Discovery } from "../features/explore/Discovery";
 import { HomePage } from "../features/home/HomePage";
+import { PaletteProvider } from "../features/palette/palette-context";
 import { ReportProvider } from "../features/report/report-store";
 
 // Secondary pages load on demand, so the first load stays under the 200 KB budget.
@@ -39,28 +40,30 @@ export function App() {
           <BrowserRouter>
             <ExploreProvider>
               <ReportProvider>
-                <Routes>
-                  {Styleguide && (
-                    <Route path="/styleguide" element={<Suspense fallback={null}><Styleguide /></Suspense>} />
-                  )}
-                  <Route element={<Shell />}>
-                    <Route index element={<HomePage />} />
-                    <Route path="search" element={<Discovery />} />
-                    <Route path="in/:place" element={<Discovery />} />
-                    <Route path="county/:county" element={<Discovery />} />
-                    <Route path="near/:landmark" element={<Discovery />} />
-                    <Route path="gym/:slug" element={<GymPage />} />
-                    <Route path="saved" element={<Lazy><SavedPage /></Lazy>} />
-                    <Route path="compare" element={<Lazy><ComparePage /></Lazy>} />
-                    <Route path="reports" element={<Lazy><ReportsPage /></Lazy>} />
-                    <Route path="about/data" element={<Lazy><AboutPage /></Lazy>} />
-                    <Route path="legal" element={<Lazy><LegalPage /></Lazy>} />
-                    <Route path="commute" element={<Lazy><CommutePage /></Lazy>} />
-                    <Route path="plan/*" element={<Lazy><PlanPage /></Lazy>} />
-                    <Route path="fuel/*" element={<Lazy><FuelRoutes /></Lazy>} />
-                    <Route path="*" element={<NotFound />} />
-                  </Route>
-                </Routes>
+                <PaletteProvider>
+                  <Routes>
+                    {Styleguide && (
+                      <Route path="/styleguide" element={<Suspense fallback={null}><Styleguide /></Suspense>} />
+                    )}
+                    <Route element={<Shell />}>
+                      <Route index element={<HomePage />} />
+                      <Route path="search" element={<Discovery />} />
+                      <Route path="in/:place" element={<Discovery />} />
+                      <Route path="county/:county" element={<Discovery />} />
+                      <Route path="near/:landmark" element={<Discovery />} />
+                      <Route path="gym/:slug" element={<GymPage />} />
+                      <Route path="saved" element={<Lazy><SavedPage /></Lazy>} />
+                      <Route path="compare" element={<Lazy><ComparePage /></Lazy>} />
+                      <Route path="reports" element={<Lazy><ReportsPage /></Lazy>} />
+                      <Route path="about/data" element={<Lazy><AboutPage /></Lazy>} />
+                      <Route path="legal" element={<Lazy><LegalPage /></Lazy>} />
+                      <Route path="commute" element={<Lazy><CommutePage /></Lazy>} />
+                      <Route path="plan/*" element={<Lazy><PlanPage /></Lazy>} />
+                      <Route path="fuel/*" element={<Lazy><FuelRoutes /></Lazy>} />
+                      <Route path="*" element={<NotFound />} />
+                    </Route>
+                  </Routes>
+                </PaletteProvider>
               </ReportProvider>
             </ExploreProvider>
           </BrowserRouter>

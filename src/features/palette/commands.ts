@@ -160,15 +160,15 @@ export function buildCommands(ctx: CommandContext): Command[] {
 }
 
 /**
- * 4: the label starts with the query. 3: a word in the label does. 2: the label contains it.
- * 1: only a keyword does. 0: no match.
+ * How well a label matches what was typed. 4: the label starts with it. 3: a word in the label does. 2: the label
+ * contains it. 1: only a keyword does. 0: no match. `query` must already be folded with `foldPlace`.
  */
-function score(command: Command, query: string): number {
-  const label = foldPlace(command.label);
-  if (label.startsWith(query)) return 4;
-  if (label.includes(` ${query}`)) return 3;
-  if (label.includes(query)) return 2;
-  if (command.keywords.some((word) => foldPlace(word).includes(query))) return 1;
+export function matchScore(label: string, keywords: readonly string[], query: string): number {
+  const folded = foldPlace(label);
+  if (folded.startsWith(query)) return 4;
+  if (folded.includes(` ${query}`)) return 3;
+  if (folded.includes(query)) return 2;
+  if (keywords.some((word) => foldPlace(word).includes(query))) return 1;
   return 0;
 }
 
@@ -182,7 +182,7 @@ function score(command: Command, query: string): number {
 export function rankCommands(commands: readonly Command[], query: string, perGroup = 8): Command[] {
   const q = foldPlace(query);
   const ranked = commands
-    .map((command, index) => ({ command, index, score: q ? score(command, q) : 1 }))
+    .map((command, index) => ({ command, index, score: q ? matchScore(command.label, command.keywords, q) : 1 }))
     .filter((item) => item.score > 0);
   if (q) ranked.sort((a, b) => b.score - a.score || a.command.label.length - b.command.label.length || a.index - b.index);
 

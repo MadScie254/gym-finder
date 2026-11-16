@@ -75,6 +75,13 @@ export function loadTheme(): ThemeChoice {
   return value === "light" || value === "dark" ? value : "system";
 }
 
+const THEME_ORDER: readonly ThemeChoice[] = ["system", "light", "dark"];
+
+/** The choice after this one when cycling: match device, light, dark, and round again. */
+export function nextTheme(choice: ThemeChoice): ThemeChoice {
+  return THEME_ORDER[(THEME_ORDER.indexOf(choice) + 1) % THEME_ORDER.length];
+}
+
 /** Applies the choice to <html data-theme>, which tokens.css reads, and remembers it. */
 export function applyTheme(choice: ThemeChoice, persist = true): void {
   if (typeof document !== "undefined") {
