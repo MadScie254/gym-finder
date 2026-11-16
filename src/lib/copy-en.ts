@@ -308,6 +308,7 @@ export const en = {
   navFind: "Find gyms",
   navWeek: "My week",
   navPrimary: "Primary",
+  navMore: "More",
   navGroupExplore: "Explore",
   navGroupPlan: "Plan",
   navGroupHelp: "Help",

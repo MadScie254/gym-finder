@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router";
-import { Search } from "lucide-react";
+import { LayoutGrid, Search } from "lucide-react";
 import { AppMenu } from "./AppMenu";
+import { MenuContent } from "./MenuContent";
 import { Sidebar } from "./Sidebar";
 import { TopBar } from "./TopBar";
 import { usePwa } from "./pwa";
@@ -12,7 +13,8 @@ import { formatDate } from "../lib/i18n";
 import { loadSidebarCollapsed, saveSidebarCollapsed } from "../lib/storage";
 import { CompareTray } from "../features/compare/CompareTray";
 import { preloadPalette, usePalette } from "../features/palette/palette-context";
-import { Banner, IconButton, NavBar, PRIMARY_NAV, type NavItem } from "../ui";
+import { Banner, Dialog, IconButton, NavBar, PRIMARY_NAV, type NavItem } from "../ui";
+import { isCurrent } from "../ui/NavBar";
 import styles from "./Shell.module.css";
 
 const LABELS = ["navHome", "navFind", "navSaved", "navWeek"] as const;
@@ -35,8 +37,15 @@ export function Shell() {
   const palette = usePalette();
   const pwa = usePwa();
   const main = useRef<HTMLElement>(null);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const moreButton = useRef<HTMLButtonElement>(null);
+  // Where focus goes when the More sheet closes: onto the page after a page was chosen, back on the tab after it was dismissed.
+  const chose = useRef(false);
   const discovery = DISCOVERY.test(pathname);
   const items: NavItem[] = PRIMARY_NAV.map((item, i) => ({ ...item, label: tr(LABELS[i]) }));
+  // The four tabs cannot hold every page, so More is where you are when none of them is.
+  const moreIsCurrent = !items.some((item) => isCurrent(item, pathname));
+  const install = pwa.canInstall ? () => { void pwa.install(); } : undefined;
 
   useEffect(() => { if (!discovery && !pathname.startsWith("/gym/")) document.title = tr("brand"); }, [pathname, discovery, tr]);
   usePageScroll(main, sidebarMode);
@@ -64,7 +73,7 @@ export function Shell() {
             {wide && <NavBar items={items} placement="top" label={tr("navPrimary")} />}
             <div className={styles.actions}>
               <IconButton icon={Search} label={tr("searchOpen")} variant="quiet" onClick={palette.show} onPointerEnter={preloadPalette} />
-              <AppMenu onInstall={pwa.canInstall ? pwa.install : undefined} />
+              {wide && <AppMenu onInstall={install} />}
             </div>
           </header>
         )}
@@ -82,8 +91,23 @@ export function Shell() {
       {!wide && (
         <div className={styles.bottom}>
           <CompareTray wide={false} />
-          <NavBar items={items} placement="bottom" label={tr("navPrimary")} />
+          <NavBar
+            items={items}
+            placement="bottom"
+            label={tr("navPrimary")}
+            extra={{ label: tr("navMore"), icon: LayoutGrid, onSelect: () => setMoreOpen(true), current: moreIsCurrent, buttonRef: moreButton }}
+          />
         </div>
+      )}
+      {!wide && (
+        <Dialog
+          title={tr("menu")}
+          open={moreOpen}
+          onOpenChange={(next) => { if (next) chose.current = false; setMoreOpen(next); }}
+          returnFocus={() => (chose.current ? main.current : moreButton.current)}
+        >
+          <MenuContent onNavigate={() => { chose.current = true; setMoreOpen(false); }} onInstall={install} />
+        </Dialog>
       )}
     </div>
   );

@@ -65,6 +65,8 @@
 .popover {
   z-index: 40;
   max-width: min(320px, calc(100vw - 32px));
+  max-height: var(--radix-popover-content-available-height, 80dvh);
+  overflow-y: auto;
   padding: var(--space-3) var(--space-4);
   border: var(--border-hairline);
   border-radius: var(--radius-control);

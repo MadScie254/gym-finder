@@ -182,6 +182,46 @@ test.describe("phone shell", () => {
     await expect(sheet).toHaveCount(0);
   });
 
+  test("More opens every page: Meals, Shopping list and Order food are one tap away", async ({ page }) => {
+    await page.goto("/", { waitUntil: "load" });
+    const tabs = page.locator("nav[aria-label='Primary'][data-placement='bottom']");
+    await expect(page.getByRole("banner").getByRole("button", { name: "Menu" })).toHaveCount(0);
+
+    await tabs.getByRole("button", { name: "More" }).click();
+    const sheet = page.getByRole("dialog", { name: "Menu" });
+    await expect(sheet).toBeVisible();
+    for (const name of ["Home", "Find gyms", "Saved", "My week", "Meals", "Shopping list", "Order food", "My reports", "Help and about the data", "Data and privacy"]) {
+      await expect(sheet.getByRole("link", { name })).toBeVisible();
+    }
+
+    await sheet.getByRole("link", { name: "Meals" }).click();
+    await expect(page).toHaveURL(/\/plan\/meals$/);
+    await expect(sheet).toHaveCount(0);
+    await expect(page.locator("#main")).toBeFocused();
+
+    await tabs.getByRole("button", { name: "More" }).click();
+    await page.getByRole("dialog", { name: "Menu" }).getByRole("link", { name: /^Order food/ }).click();
+    await expect(page).toHaveURL(/\/fuel$/);
+  });
+
+  test("More marks the page you are on, is the current tab on pages outside the four, and takes focus back when dismissed", async ({ page }) => {
+    await page.goto("/reports", { waitUntil: "load" });
+    const more = page.locator("nav[aria-label='Primary'][data-placement='bottom']").getByRole("button", { name: "More" });
+    await expect(more).toHaveAttribute("data-current", "true");
+    await more.click();
+    await expect(page.getByRole("dialog", { name: "Menu" }).getByRole("link", { name: "My reports" })).toHaveAttribute("aria-current", "page");
+    await page.keyboard.press("Escape");
+    await expect(page.getByRole("dialog", { name: "Menu" })).toHaveCount(0);
+    await expect(more).toBeFocused();
+  });
+
+  test("has no serious accessibility issues with More open", async ({ page }) => {
+    await page.goto("/", { waitUntil: "load" });
+    await page.locator("nav[aria-label='Primary'][data-placement='bottom']").getByRole("button", { name: "More" }).click();
+    await expect(page.getByRole("dialog", { name: "Menu" })).toBeVisible();
+    expect(await blockingAxeIssues(page)).toEqual([]);
+  });
+
   test("a typed search opens a gym from the sheet", async ({ page }) => {
     await page.goto("/", { waitUntil: "load" });
     await page.getByRole("banner").getByRole("button", { name: "Search" }).click();
@@ -195,7 +235,7 @@ test.describe("Kiswahili", () => {
   test("no sidebar entry or quick-action row is cut off", async ({ page, isMobile }) => {
     await page.goto("/", { waitUntil: "load" });
     if (isMobile) {
-      await page.getByRole("button", { name: "Menu" }).click();
+      await page.getByRole("button", { name: "More" }).click();
       await page.getByRole("button", { name: "Kiswahili" }).click();
       await page.keyboard.press("Escape");
     } else {

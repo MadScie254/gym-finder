@@ -15,16 +15,22 @@ export type DialogProps = {
   children: ReactNode;
   /** Buttons along the bottom edge. */
   footer?: ReactNode;
+  /** Where focus goes when it closes, for a dialog opened without a trigger. Default: back to the trigger. */
+  returnFocus?: () => HTMLElement | null;
 };
 
 /** Modal dialog on Radix: focus trap, Escape to close, focus returns to the trigger. */
-export function Dialog({ title, description, trigger, open, onOpenChange, children, footer }: DialogProps) {
+export function Dialog({ title, description, trigger, open, onOpenChange, children, footer, returnFocus }: DialogProps) {
   return (
     <RadixDialog.Root open={open} onOpenChange={onOpenChange}>
       {trigger && <RadixDialog.Trigger asChild>{trigger}</RadixDialog.Trigger>}
       <RadixDialog.Portal>
         <RadixDialog.Overlay className={styles.scrim} />
-        <RadixDialog.Content className={styles.dialog} {...(description ? {} : { "aria-describedby": undefined })}>
+        <RadixDialog.Content
+          className={styles.dialog}
+          {...(description ? {} : { "aria-describedby": undefined })}
+          onCloseAutoFocus={returnFocus ? (event) => { event.preventDefault(); returnFocus()?.focus({ preventScroll: true }); } : undefined}
+        >
           <div className={styles.head}>
             <RadixDialog.Title className={styles.title}>{title}</RadixDialog.Title>
             <RadixDialog.Close asChild>
