@@ -101,8 +101,10 @@ function scrollParent(node: HTMLElement): HTMLElement | null {
  * IntersectionObserver reports which one is on it. Without IntersectionObserver the film shows as a plain
  * sequence of scenes (the same layout as reduced motion).
  */
-function useScene(film: React.RefObject<HTMLElement | null>): { scene: number; fallback: boolean } {
+function useScene(film: React.RefObject<HTMLElement | null>): { scene: number; reach: number; fallback: boolean } {
   const [scene, setScene] = useState(0);
+  // How far the film has got: -1 until it comes near the screen, so its pictures do not compete with the hero's.
+  const [reach, setReach] = useState(-1);
   const [fallback, setFallback] = useState(false);
   useEffect(() => {
     const node = film.current;
@@ -120,12 +122,21 @@ function useScene(film: React.RefObject<HTMLElement | null>): { scene: number; f
     resize?.observe(root ?? document.documentElement);
     const markers = [...node.querySelectorAll<HTMLElement>("[data-step]")];
     const io = new IntersectionObserver((entries) => {
-      for (const entry of entries) if (entry.isIntersecting) setScene(Number((entry.target as HTMLElement).dataset.step));
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const step = Number((entry.target as HTMLElement).dataset.step);
+        setScene(step);
+        setReach((r) => Math.max(r, step));
+      }
     }, { root, rootMargin: "-50% 0px -50% 0px", threshold: 0 });
     markers.forEach((marker) => io.observe(marker));
-    return () => { io.disconnect(); resize?.disconnect(); };
+    const near = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) { setReach((r) => Math.max(r, 0)); near.disconnect(); }
+    }, { root, rootMargin: "0px 0px 50% 0px" });
+    near.observe(node);
+    return () => { io.disconnect(); near.disconnect(); resize?.disconnect(); };
   }, [film]);
-  return { scene, fallback };
+  return { scene, reach, fallback };
 }
 
 /**
@@ -137,7 +148,7 @@ export function Film() {
   const tr = useT();
   const facts = useFacts();
   const ref = useRef<HTMLElement>(null);
-  const { scene, fallback } = useScene(ref);
+  const { scene, reach, fallback } = useScene(ref);
   const days = tr("filmDays").split(" ");
   const fmt = (n: number | undefined) => (n == null ? "–" : String(n));
 
@@ -165,7 +176,9 @@ export function Film() {
         <div className={styles.frame}>
           {SCENES.map((s, i) => (
             <figure key={s.id} className={styles.shot} data-on={i === scene || undefined}>
-              <Photo id={s.photo} sizes="(min-width: 1100px) 520px, (min-width: 760px) 45vw, 100vw" className={styles.shotImg} />
+              {i <= reach + 1 && reach >= 0 && (
+                <Photo id={s.photo} sizes="(min-width: 1100px) 520px, (min-width: 760px) 45vw, 100vw" className={styles.shotImg} />
+              )}
             </figure>
           ))}
           <p className={styles.photoNote}>{tr("filmPhotoNote")}</p>
