@@ -48,26 +48,6 @@ export function PlaceIndex() {
   );
 }
 
-export function ShortlistAndWeek() {
-  const tr = useT();
-  const blocks: { id: string; title: CopyKey; body: CopyKey; to: string; link: CopyKey }[] = [
-    { id: "shortlist", title: "homeShortlistTitle", body: "homeShortlistBody", to: "/search", link: "homeFind" },
-    { id: "week", title: "homeWeekTitle", body: "homeWeekBody", to: "/plan", link: "homeOpenWeek" },
-  ];
-  return (
-    <div className={styles.pair}>
-      {blocks.map((block) => (
-        <section key={block.id} className={styles.editorial} aria-labelledby={`home-${block.id}`}>
-          <h2 id={`home-${block.id}`} className={styles.heading}>{tr(block.title)}</h2>
-          <p>{tr(block.body)}</p>
-          <Link to={block.to}>{tr(block.link)}</Link>
-        </section>
-      ))}
-    </div>
-  );
-}
-
-/** The website-checked gyms. Never called "best" or "top rated": they are the ones with checked details. */
 export function CheckedProfiles() {
   const tr = useT();
   const { index, lang } = useVenueContext();

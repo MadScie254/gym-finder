@@ -9,8 +9,8 @@
 :root {
   /* Raw palette. Jioni is the brand: an ultramarine pushed towards violet, the sky over Nairobi at dusk,
      the hour most people train. Ember is the one accent, kept for the things that move or are on. */
-  --paper: #ffffff;
-  --ink: #0c0a24;
+  --jioni-paper: #ffffff;
+  --jioni-ink: #0c0a24;
   --jioni: #3a1fe6;
   --jioni-deep: #2a12bd;
   --ember: #fa5a1a;
@@ -19,11 +19,11 @@
   --graphite: #5d5b73;
 
   /* Semantic colour, light theme. The page and its surfaces are both white: lines do the dividing, not grey. */
-  --color-bg: var(--paper);
-  --color-surface: var(--paper);
-  --color-raised: var(--paper);
+  --color-bg: var(--jioni-paper);
+  --color-surface: var(--jioni-paper);
+  --color-raised: var(--jioni-paper);
   --color-sunk: #f1f0fb;
-  --color-text: var(--ink);
+  --color-text: var(--jioni-ink);
   --color-text-muted: var(--graphite);
   --color-action: var(--jioni);
   --color-action-hover: var(--jioni-deep);
@@ -31,13 +31,14 @@
   --color-link: var(--jioni);
   --color-brand: var(--jioni);
   --color-brand-soft: rgba(58, 31, 230, 0.08);
+  --color-glow: rgba(58, 31, 230, 0);
   --color-highlight: var(--ember);
   --color-on-highlight: #160a03;
-  --color-plate: var(--ink);
+  --color-plate: var(--jioni-ink);
   --color-on-plate: #ffffff;
   --color-plate-muted: #b9b7cf;
-  --color-plate-edge: var(--ink);
-  --color-inverse: var(--ink);
+  --color-plate-edge: var(--jioni-ink);
+  --color-inverse: var(--jioni-ink);
   --color-on-inverse: #ffffff;
   --color-ok: var(--court);
   --color-danger: var(--stop);
@@ -138,6 +139,7 @@
     --color-link: #9d91ff;
     --color-brand: #7c6bff;
     --color-brand-soft: rgba(124, 107, 255, 0.16);
+    --color-glow: rgba(124, 107, 255, 0.5);
     --color-highlight: #ff6a2b;
     --color-on-highlight: #160a03;
     --color-plate: #17171f;
@@ -185,6 +187,7 @@
   --color-link: #9d91ff;
   --color-brand: #7c6bff;
   --color-brand-soft: rgba(124, 107, 255, 0.16);
+  --color-glow: rgba(124, 107, 255, 0.5);
   --color-highlight: #ff6a2b;
   --color-on-highlight: #160a03;
   --color-plate: #17171f;

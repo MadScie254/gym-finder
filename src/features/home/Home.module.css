@@ -188,3 +188,105 @@
   text-decoration: underline;
   text-underline-offset: 0.18em;
 }
+
+/*
+ * The thread: a line down the left of everything after the hero, through the film's rail to the last section.
+ * Each section after the film hangs a node on it. Where scroll-driven animation exists the brand colour runs down
+ * the line as you scroll; elsewhere the line stays quiet.
+ */
+.flow {
+  --disc: 40px;
+  --thread-col: calc(var(--disc) + var(--space-3));
+  position: relative;
+  display: grid;
+  gap: var(--space-14);
+}
+
+.flow::before,
+.flow::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--disc) / 2 - 1px);
+  width: 2px;
+  border-radius: 2px;
+  background: var(--color-line);
+}
+
+.flow::after {
+  background: var(--color-brand);
+  transform-origin: top;
+  opacity: 0;
+}
+
+.flow > section:not(:first-child) {
+  position: relative;
+  padding-left: var(--thread-col);
+}
+
+.node {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: var(--disc);
+  height: var(--disc);
+  border-radius: 50%;
+  background: var(--color-action);
+  color: var(--color-on-action);
+  box-shadow: 0 0 0 6px var(--color-brand-soft), 0 0 28px var(--color-glow, transparent);
+}
+
+.flow > section:not(:first-child, .go)::before {
+  content: "";
+  position: absolute;
+  top: 0.35em;
+  left: calc(var(--disc) / 2 - 7px);
+  z-index: 1;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--color-brand);
+  border-radius: 50%;
+  background: var(--color-bg);
+}
+
+.go { display: grid; justify-items: start; gap: var(--space-4); }
+
+.goTitle {
+  font-family: var(--font-display);
+  font-size: clamp(var(--font-size-28), 6vw, var(--font-size-52));
+  font-weight: var(--font-weight-numeral);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 900px) {
+  .flow { --disc: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow::before, .flow::after { display: none; }
+  .flow > section:not(:first-child) { padding-left: 0; }
+  .flow > section:not(:first-child, .go)::before { display: none; }
+  .node { position: static; }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .flow { view-timeline: --flow block; }
+    .flow::after {
+      opacity: 1;
+      animation: thread-run linear both;
+      animation-timeline: --flow;
+      animation-range: cover 0% contain 100%;
+    }
+  }
+}
+
+@keyframes thread-run {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
