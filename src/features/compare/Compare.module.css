@@ -46,7 +46,7 @@
 
 .table thead th {
   font-size: var(--font-size-22);
-  font-stretch: var(--font-width-sign);
+  font-family: var(--font-display);
   font-weight: var(--font-weight-sign);
   line-height: var(--line-height-sign);
 }

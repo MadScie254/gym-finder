@@ -9,7 +9,7 @@
 .progressNumber {
   color: var(--color-text);
   font-size: var(--font-size-52);
-  font-stretch: var(--font-width-numeral);
+  font-family: var(--font-display);
   font-weight: var(--font-weight-numeral);
   font-variant-numeric: tabular-nums;
   line-height: 1;

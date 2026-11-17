@@ -79,7 +79,7 @@
   background: var(--color-sunk);
   color: var(--color-text);
   font-size: var(--font-size-14);
-  font-stretch: var(--font-width-numeral);
+  font-family: var(--font-display);
   font-weight: var(--font-weight-numeral);
   line-height: 22px;
 }

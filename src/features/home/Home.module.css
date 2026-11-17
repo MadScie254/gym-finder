@@ -17,7 +17,7 @@
 
 .headline {
   font-size: clamp(var(--font-size-38), 9vw, 4.5rem);
-  font-stretch: 75%;
+  font-family: var(--font-display);
   font-weight: var(--font-weight-numeral);
   line-height: 0.95;
   letter-spacing: -0.02em;
@@ -85,7 +85,7 @@
 
 .count {
   font-size: var(--font-size-22);
-  font-stretch: var(--font-width-numeral);
+  font-family: var(--font-display);
   font-weight: var(--font-weight-numeral);
   font-variant-numeric: tabular-nums;
 }
@@ -133,7 +133,7 @@
 
 .rowName {
   font-size: var(--font-size-18);
-  font-stretch: var(--font-width-sign);
+  font-family: var(--font-display);
   font-weight: var(--font-weight-sign);
 }
 

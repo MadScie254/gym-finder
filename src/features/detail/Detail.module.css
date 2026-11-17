@@ -21,7 +21,7 @@
 .facts dt { color: var(--color-text-muted); }
 .facts dd { margin: 0; overflow-wrap: anywhere; }
 .facts small { display: block; margin-top: 2px; color: var(--color-text-muted); font-size: var(--font-size-14); }
-.amount { font-stretch: var(--font-width-numeral); font-weight: var(--font-weight-numeral); font-size: var(--font-size-22); font-variant-numeric: tabular-nums; }
+.amount { font-family: var(--font-display); font-weight: var(--font-weight-numeral); font-size: var(--font-size-22); font-variant-numeric: tabular-nums; }
 .inline { display: inline; margin-left: 2px; vertical-align: -1px; }
 .openState[data-state="open"] { color: var(--color-ok); }
 .amenities { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); }

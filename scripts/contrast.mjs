@@ -1,4 +1,4 @@
-// WCAG 2.2 contrast check for the Signwriter tokens in src/ui/tokens.css.
+// WCAG 2.2 contrast check for the Jioni tokens in src/ui/tokens.css.
 // Fails (exit 1) when a pair is under its minimum:
 //   text 4.5:1, large text (24 px, or 18.7 px bold) 3:1, UI boundaries and icons 3:1.
 // Also fails when the system dark block and the forced dark block disagree.
@@ -89,11 +89,16 @@ const PAIRS = [
   ["text", "on-action", "action-hover", "Primary button label, hover"],
   ["text", "on-highlight", "highlight", "Poster tab, offline banner, active chip"],
   ["text", "on-plate", "plate", "Count chip on plate"],
+  ["text", "brand", "bg", "Brand-coloured numerals and icons on page"],
+  ["text", "brand", "surface", "Brand-coloured numerals and icons on cards"],
+  ["text", "text", "raised", "Text on raised surfaces (film card)"],
+  ["text", "text-muted", "raised", "Secondary text on raised surfaces"],
+  ["ui", "highlight", "bg", "Ember bead and markers on page"],
   ["text", "plate-muted", "plate", "Muted text on plate"],
   ["text", "on-inverse", "inverse", "Toast"],
-  ["text", "=plate", "=chalk", "Number plate numerals"],
-  ["text", "=slate", "=chalk", "Number plate unit and caption"],
-  ["text", "=plate", "=signal", "Number plate numerals when open"],
+  ["text", "=ink", "=paper", "Number plate numerals"],
+  ["text", "=graphite", "=paper", "Number plate unit and caption"],
+  ["text", "=ink", "=ember", "Number plate numerals when open"],
   ["text", "ok", "surface", "Open and verified wording on cards"],
   ["text", "ok", "bg", "Open and verified wording on page"],
   ["text", "danger", "surface", "Closed and error wording on cards"],
@@ -106,7 +111,7 @@ const PAIRS = [
   ["ui", "action", "bg", "Primary button edge on page"],
   ["ui", "plate-edge", "surface", "Poster keyline on cards"],
   ["ui", "plate-edge", "bg", "Poster keyline on page"],
-  ["ui", "on-highlight", "highlight", "Active chip border on signal"],
+  ["ui", "on-highlight", "highlight", "Active chip border on ember"],
   ["ui", "tier-verified", "surface", "Verified roundel"],
   ["ui", "tier-corroborated", "surface", "Corroborated rings"],
   ["ui", "tier-listed", "surface", "Listed ring"],
@@ -141,14 +146,14 @@ for (const [kind, fg, bg, use] of PAIRS) {
   rows.push(row);
 }
 
-// Frosted layers and the page texture. A pair passes when it passes on the worst backdrop it can sit on.
-// Sidebar and top bar glass only ever sits on the textured page. Glass over content (palette, dialogs, map
+// Frosted layers. The page behind them is plain, so its only backdrop is the page colour. A pair passes when it passes on the worst backdrop it can sit on.
+// Sidebar and top bar glass only ever sits on the page behind glass. Glass over content (palette, dialogs, map
 // controls, compare tray) can sit on anything, so it is checked over pure black and pure white.
 const BLACK = [0, 0, 0, 1];
 const WHITE = [255, 255, 255, 1];
 function textureBacks(vars) {
   const bg = resolve(vars, "color-bg");
-  return [bg, over(resolve(vars, "color-texture-minor"), bg), over(resolve(vars, "color-texture-major"), bg)];
+  return [bg];
 }
 const throughGlass = (name, backs) => (vars) => backs(vars).map((back) => over(resolve(vars, `color-${name}`), back));
 const onTexturedPage = textureBacks;
@@ -164,22 +169,22 @@ const onSelectedPaletteRow = tinted("glass-strong", "action", 0.1, () => [BLACK,
 // A chosen toggle, sort option, diet option or set: action at 9% over the card it sits on.
 const onSelectedControl = tinted("surface", "action", 0.09, (vars) => [resolve(vars, "color-bg")]);
 const GLASS_PAIRS = [
-  ["text", "text", "glass over the textured page", onGlassOverTexture, "Sidebar and top bar text on glass"],
-  ["text", "text-muted-glass", "glass over the textured page", onGlassOverTexture, "Sidebar and top bar muted text on glass"],
-  ["text", "link-glass", "glass over the textured page", onGlassOverTexture, "Sidebar and top bar links on glass"],
+  ["text", "text", "glass over the page", onGlassOverTexture, "Sidebar and top bar text on glass"],
+  ["text", "text-muted-glass", "glass over the page", onGlassOverTexture, "Sidebar and top bar muted text on glass"],
+  ["text", "link-glass", "glass over the page", onGlassOverTexture, "Sidebar and top bar links on glass"],
   ["text", "link-glass", "the current page's tint on sidebar glass", onCurrentSidebarPage, "Current page in the sidebar"],
   ["text", "text-muted-glass", "the top bar widget fill on glass", onTopBarWidget, "Muted text in the top bar widget"],
-  ["ui", "focus", "glass over the textured page", onGlassOverTexture, "Focus ring on sidebar and top bar glass"],
-  ["ui", "line-strong-glass", "glass over the textured page", onGlassOverTexture, "Control boundary on sidebar and top bar glass"],
+  ["ui", "focus", "glass over the page", onGlassOverTexture, "Focus ring on sidebar and top bar glass"],
+  ["ui", "line-strong-glass", "glass over the page", onGlassOverTexture, "Control boundary on sidebar and top bar glass"],
   ["text", "text", "strong glass over black and white", onGlassOverContent, "Text on glass over content"],
   ["text", "text-muted-glass", "strong glass over black and white", onGlassOverContent, "Muted text on glass over content"],
   ["text", "link-glass", "strong glass over black and white", onGlassOverContent, "Links on glass over content"],
   ["text", "text", "the selected row's tint on strong glass over black and white", onSelectedPaletteRow, "Text on the selected palette row"],
   ["ui", "focus", "strong glass over black and white", onGlassOverContent, "Focus ring on glass over content"],
-  ["text", "link", "a chosen control's cobalt tint on a card", onSelectedControl, "Chosen toggle, sort, diet option and set"],
-  ["text", "text", "the textured page", onTexturedPage, "Text on the textured page"],
-  ["text", "text-muted", "the textured page", onTexturedPage, "Muted text on the textured page"],
-  ["text", "link", "the textured page", onTexturedPage, "Links on the textured page"],
+  ["text", "link", "a chosen control's brand tint on a card", onSelectedControl, "Chosen toggle, sort, diet option and set"],
+  ["text", "text", "the page, as a glass backdrop", onTexturedPage, "Text on the page behind glass"],
+  ["text", "text-muted", "the page, as a glass backdrop", onTexturedPage, "Muted text on the page behind glass"],
+  ["text", "link", "the page, as a glass backdrop", onTexturedPage, "Links on the page behind glass"],
 ];
 for (const [kind, fg, bgText, backs, use] of GLASS_PAIRS) {
   const row = { kind, fg, bg: bgText, bgText, use, fgToken: `color-${fg}` };
