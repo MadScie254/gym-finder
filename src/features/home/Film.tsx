@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ComponentType } from "react";
 import {
-  CalendarDays, Clock, MapPin, Navigation, Phone, Search, ShieldCheck, Tag, UtensilsCrossed, type LucideProps,
+  CalendarDays, Clock, ListChecks, MapPin, Navigation, Phone, Search, ShieldCheck, Tag, UtensilsCrossed, type LucideProps,
 } from "lucide-react";
 import { useT, useVenueContext } from "../../app/venue-context";
 import type { PhotoId } from "../../assets/photos";
@@ -271,5 +271,10 @@ function SceneRows({ id, facts, days }: { id: SceneId; facts: Facts | null; days
       ))}
     </ol>
   );
-  return null;
+  return (
+    <ul role="list" className={styles.rows}>
+      <Row icon={UtensilsCrossed} label={tr("filmRowMeals")} note={tr("filmRowMealsNote")} order={0} />
+      <Row icon={ListChecks} label={tr("filmRowShopping")} note={tr("filmRowShoppingNote")} order={1} />
+    </ul>
+  );
 }
