@@ -42,10 +42,10 @@
 .count {
   min-width: 24px;
   padding: 1px 6px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--jioni-ink);
   border-radius: var(--radius-tag);
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--jioni-paper);
+  color: var(--jioni-ink);
   font-family: var(--font-display);
   font-weight: var(--font-weight-numeral);
   font-variant-numeric: tabular-nums;

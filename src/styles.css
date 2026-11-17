@@ -83,7 +83,7 @@ a { color: inherit; }
   height: 25px;
   border: 3px solid #fff;
   border-radius: 50%;
-  background: var(--ink);
+  background: var(--jioni-ink);
   color: transparent;
   box-shadow: 0 2px 10px rgba(16, 23, 20, .4);
   transition: transform .18s ease, box-shadow .18s ease;

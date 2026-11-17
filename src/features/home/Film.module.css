@@ -8,6 +8,9 @@
   --film-h: calc(100svh - 72px);
   --disc: 40px;
   position: relative;
+  /* Pieces fly in from outside the board; clip (not hidden) keeps them from widening the page and keeps sticky. */
+  overflow-x: clip;
+  overflow-clip-margin: var(--space-4);
 }
 
 .scenes {
@@ -363,6 +366,8 @@
       transform: translate(calc((var(--order) - 1) * 22px), 22px) scale(0.94);
       transition: opacity 300ms, transform 600ms var(--ease-out);
     }
+
+    & .day { transform: translateY(calc(10px + var(--order) * 4px)) scale(0.8); }
 
     & .scene[data-on] .row,
     & .scene[data-on] .day {
