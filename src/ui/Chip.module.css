@@ -42,7 +42,7 @@
 .count {
   font-variant-numeric: tabular-nums;
   font-weight: var(--font-weight-strong);
-  font-stretch: var(--font-width-numeral);
+  font-family: var(--font-display);
   font-size: var(--font-size-16);
   padding-left: 2px;
 }

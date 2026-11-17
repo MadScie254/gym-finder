@@ -43,7 +43,7 @@
 
 .qty {
   min-width: 2ch;
-  font-stretch: var(--font-width-numeral);
+  font-family: var(--font-display);
   font-weight: var(--font-weight-numeral);
   font-size: var(--font-size-18);
   font-variant-numeric: tabular-nums;
@@ -52,7 +52,7 @@
 
 .lineTotal,
 .numeral {
-  font-stretch: var(--font-width-numeral);
+  font-family: var(--font-display);
   font-weight: var(--font-weight-numeral);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
@@ -80,7 +80,7 @@
 
 .total {
   font-size: var(--font-size-52);
-  font-stretch: var(--font-width-numeral);
+  font-family: var(--font-display);
   font-weight: var(--font-weight-numeral);
   font-variant-numeric: tabular-nums;
   line-height: 1;

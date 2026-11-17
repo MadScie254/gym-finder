@@ -1,123 +1,57 @@
-# Signwriter design system
+# Jioni design system
 
-The look of Find My Gym, from `docs/REVAMP_PLAN.md` section 3. Kenyan gyms announce
-themselves with hand-painted signs: enamel blue, road-marking yellow, white block
-letters. Inside there are iron plates and kilogram numerals. The system borrows
-that, and nothing from the wellness-app look.
+The look of Find My Gym. *Jioni* is Kiswahili for evening: the blue-violet sky over Nairobi at dusk, the hour
+most people train. One brand colour, pushed far enough towards violet to be ownable, on a white light theme and a
+true-black dark theme. Everything else is quiet so the colour, the numerals and the home film carry the brand.
 
-- Tokens: `src/ui/tokens.css` (light, dark by `prefers-color-scheme`, and a forced
-  `data-theme="dark"` / `"light"` on `<html>`).
-- Font, reset, focus ring: `src/ui/base.css`.
-- Components: `src/ui/*.tsx`, one CSS module each, one test file each.
-- Review page: `/styleguide`, in `npm run dev` and in the e2e build only
-  (`vite build --mode e2e`). Production builds drop it.
+Tokens live in `src/ui/tokens.css`. Components use the semantic `--color-*` names only. Contrast for every pair is
+checked by `npm run contrast` (`scripts/contrast.mjs`).
 
 ## Colour
 
-Components use the semantic `--color-*` names only. Raw names follow the plan.
+Raw palette (fixed, theme-independent; the number plates use these directly so a plate is the same object in both
+themes):
 
-| Token | Light | Dark | Use |
-|---|---|---|---|
-| `--color-bg` | `#F2F4F7` chalk | `#1B2333` | Page |
-| `--color-surface` | `#FFFFFF` white enamel | `#252E42` | Cards, sheets, menus |
-| `--color-sunk` | `#E7EAF0` | `#131A28` | Badge wells, skeletons, pressed toggles |
-| `--color-text` | `#1B2333` plate | `#F2F4F7` | Text |
-| `--color-text-muted` | `#5A6477` slate | `#A9B2C3` | Secondary text |
-| `--color-action` | `#2346D8` cobalt | `#6F8BFF` | Primary buttons |
-| `--color-action-hover` | `#1A37B3` | `#91A6FF` | Primary hover |
-| `--color-on-action` | `#FFFFFF` | `#10172A` | Label on primary |
-| `--color-link` | `#2346D8` | `#8EA3FF` | Links, quiet buttons |
-| `--color-highlight` | `#FFC42E` signal | `#FFC42E` | Open now, active filter. One per screen. |
-| `--color-on-highlight` | `#1B2333` | `#1B2333` | Always plate on signal |
-| `--color-plate` | `#1B2333` | `#0D1220` | Distance block |
-| `--color-on-plate` | `#F2F4F7` | `#F2F4F7` | Numerals on the block |
-| `--color-plate-muted` | `#B5BDCC` | `#A9B2C3` | Unit and caption on the block |
-| `--color-plate-edge` | `#1B2333` | `#7D889D` | Block edge (needed in dark) |
-| `--color-inverse` / `--color-on-inverse` | plate / chalk | chalk / plate | Offline banner |
-| `--color-ok` | `#0A7A51` court | `#3FBF86` | Verified, open |
-| `--color-danger` | `#C43420` stop | `#FF7B6B` | Closed, errors. Never decoration. |
-| `--color-line` | plate 10% | chalk 12% | Card hairlines (decorative) |
-| `--color-line-strong` | `#838C9C` | `#7D889D` | Chip, field and button edges |
-| `--color-focus` | `#2346D8` | `#8EA3FF` | Focus ring, 3 px, 2 px offset |
+| Name | Hex | Role |
+| --- | --- | --- |
+| Jioni | `#3a1fe6` | Brand and primary action, light theme |
+| Jioni deep | `#2a12bd` | Hover, links on glass |
+| Ember | `#fa5a1a` | The one accent: things that are open or on. Used sparingly |
+| Court | `#0a7a4f` | OK / verified |
+| Stop | `#c4271f` | Danger |
+| Graphite | `#5d5b73` | Muted text |
+| Jioni ink | `#0c0a24` | Text, plate rims |
+| Jioni paper | `#ffffff` | Page, surfaces, plate faces |
 
-### Changes from the plan's starting values
+Light theme: page and surfaces are both white; lines (`rgba(12,10,36,.12)`) do the dividing, not grey fills. The
+only tinted fill is `--color-sunk` `#f1f0fb`.
 
-Measured with `scripts/contrast.mjs` (WCAG 2.2 relative luminance).
+Dark theme: page `#050507`, surface `#0f0f15`, raised `#17171f`, sunk `#1a1a23` (small lightness steps, a faint
+violet tint, no navy). Text `#f3f2fa`, muted `#a5a3ba`. The brand is re-tuned to glow: action `#5b45ff`, brand
+`#7c6bff`, link and focus `#9d91ff`, plus `--color-glow` (`rgba(124,107,255,.5)`), used only on the lit stop of the
+home rail and the thread's nodes. Ember `#ff6a2b`, ok `#3ddc97`, danger `#ff8078`.
 
-| Token | Plan | Final | Why |
-|---|---|---|---|
-| `court` | `#0C8558` | `#0A7A51` | 4.22:1 on chalk, under 4.5:1 for "Open" and "Verified" words |
-| `stop` | `#D23A2A` | `#C43420` | 4.35:1 on chalk, under 4.5:1 for error text |
-| dark distance block | plate on plate | `#0D1220` with a `#7D889D` edge | The block vanished on dark cards (1.38:1) |
-
-Slate `#5A6477`, cobalt `#2346D8`, signal `#FFC42E`, chalk and plate pass as given.
-`--color-line` is decorative (cards are identified by their content), so it is not
-held to 3:1; every control boundary uses `--color-line-strong`, which is.
-
-### Contrast table
-
-`npm run contrast` checks every pair below and fails the build (`npm run check`)
-if any drops under its minimum. Regenerate this table with
-`node scripts/contrast.mjs --markdown`.
-
-| Use | Foreground | Background | Min | Light | Dark |
-|---|---|---|---|---|---|
-| Body text on page | `--color-text` | `--color-bg` | 4.5:1 | 14.28:1 | 14.28:1 |
-| Body text on cards and sheets | `--color-text` | `--color-surface` | 4.5:1 | 15.73:1 | 12.31:1 |
-| Text on sunk wells (badges, skeleton) | `--color-text` | `--color-sunk` | 4.5:1 | 13.05:1 | 15.80:1 |
-| Secondary text on page | `--color-text-muted` | `--color-bg` | 4.5:1 | 5.41:1 | 7.37:1 |
-| Secondary text on cards | `--color-text-muted` | `--color-surface` | 4.5:1 | 5.96:1 | 6.36:1 |
-| Secondary text on sunk wells | `--color-text-muted` | `--color-sunk` | 4.5:1 | 4.94:1 | 8.16:1 |
-| Links on page | `--color-link` | `--color-bg` | 4.5:1 | 6.48:1 | 6.62:1 |
-| Links and quiet buttons on cards | `--color-link` | `--color-surface` | 4.5:1 | 7.15:1 | 5.71:1 |
-| Primary button label | `--color-on-action` | `--color-action` | 4.5:1 | 7.15:1 | 5.78:1 |
-| Primary button label, hover | `--color-on-action` | `--color-action-hover` | 4.5:1 | 9.37:1 | 7.73:1 |
-| Open distance block, active chip | `--color-on-highlight` | `--color-highlight` | 4.5:1 | 9.88:1 | 9.88:1 |
-| Distance numerals on plate | `--color-on-plate` | `--color-plate` | 4.5:1 | 14.28:1 | 16.95:1 |
-| Unit and caption on plate | `--color-plate-muted` | `--color-plate` | 4.5:1 | 8.33:1 | 8.75:1 |
-| Offline banner | `--color-on-inverse` | `--color-inverse` | 4.5:1 | 14.28:1 | 14.28:1 |
-| Open and verified wording on cards | `--color-ok` | `--color-surface` | 4.5:1 | 5.36:1 | 5.82:1 |
-| Open and verified wording on page | `--color-ok` | `--color-bg` | 4.5:1 | 4.87:1 | 6.75:1 |
-| Closed and error wording on cards | `--color-danger` | `--color-surface` | 4.5:1 | 5.44:1 | 5.36:1 |
-| Error wording on page | `--color-danger` | `--color-bg` | 4.5:1 | 4.94:1 | 6.22:1 |
-| Control boundary on page (chips, inputs) | `--color-line-strong` | `--color-bg` | 3:1 | 3.08:1 | 4.41:1 |
-| Control boundary on cards | `--color-line-strong` | `--color-surface` | 3:1 | 3.39:1 | 3.80:1 |
-| Focus ring on page | `--color-focus` | `--color-bg` | 3:1 | 6.48:1 | 6.62:1 |
-| Focus ring on cards | `--color-focus` | `--color-surface` | 3:1 | 7.15:1 | 5.71:1 |
-| Primary button edge on cards | `--color-action` | `--color-surface` | 3:1 | 7.15:1 | 4.40:1 |
-| Primary button edge on page | `--color-action` | `--color-bg` | 3:1 | 6.48:1 | 5.10:1 |
-| Distance block edge on cards | `--color-plate-edge` | `--color-surface` | 3:1 | 15.73:1 | 3.80:1 |
-| Distance block edge on page | `--color-plate-edge` | `--color-bg` | 3:1 | 14.28:1 | 4.41:1 |
-| Active chip border on signal | `--color-on-highlight` | `--color-highlight` | 3:1 | 9.88:1 | 9.88:1 |
-| Verified roundel | `--color-tier-verified` | `--color-surface` | 3:1 | 5.36:1 | 5.82:1 |
-| Corroborated rings | `--color-tier-corroborated` | `--color-surface` | 3:1 | 7.15:1 | 5.71:1 |
-| Listed ring | `--color-tier-listed` | `--color-surface` | 3:1 | 5.96:1 | 6.36:1 |
-| Unconfirmed dashed ring | `--color-tier-unconfirmed` | `--color-surface` | 3:1 | 5.96:1 | 6.36:1 |
-| Verified roundel on sunk well | `--color-tier-verified` | `--color-sunk` | 3:1 | 4.45:1 | 7.47:1 |
-| Corroborated rings on sunk well | `--color-tier-corroborated` | `--color-sunk` | 3:1 | 5.93:1 | 7.32:1 |
-| Listed ring on sunk well | `--color-tier-listed` | `--color-sunk` | 3:1 | 4.94:1 | 8.16:1 |
+Raw names are prefixed (`--jioni-paper`, `--jioni-ink`) because `src/styles.css` still owns the legacy aliases
+`--paper` and `--ink`; sharing the names made a cycle that blanked the light theme's tokens.
 
 ## Type
 
-One family, Archivo, one variable file with width and weight axes.
+- Display: **Unbounded** (variable, OFL 1.1), latin subset, 50 KB WOFF2, preloaded. Headlines, the counter, number
+  plates. Wide and round: reads as signage at 390 px without shouting.
+- Text and UI: **Instrument Sans** (variable, OFL 1.1), latin subset, 30 KB WOFF2.
+- Both `font-display: swap`, self-hosted in `src/ui/fonts/` (CSP `font-src 'self'`). 80 KB total.
+- Scale (rem): 0.75, 0.875, 1, 1.125, 1.375, 1.75, 2.375, 3.25. Weights: body 400, UI 550, strong 650, display 600,
+  numerals 700. Display line-height 0.95 to 1.1 with slight negative tracking; body 1.5.
 
-- Source: `@fontsource-variable/archivo` 5.3.0 (`wdth.css`, latin subset). The
-  package does ship the width axis: `font-stretch: 62% 125%`, `wght` 100 to 900.
-- That latin file is 90,104 bytes. The system only uses width 75 to 100 and weight
-  400 to 800, so `scripts/instance-font.mjs` limits the axes with fontTools.
-  Result: `src/ui/fonts/archivo-signwriter.woff2`, **57,776 bytes (56.4 KiB)**,
-  the whole font payload. Tabular figures (`tnum`) survive. Regenerate with
-  `pip install fonttools brotli && node scripts/instance-font.mjs`.
-- `font-display: swap`, latin `unicode-range`, self-hosted (CSP `font-src 'self'`).
+## The home film ("the dossier")
 
-| Role | Width | Weight | Notes |
-|---|---|---|---|
-| Headings, gym names (`--font-width-sign`) | 78% | 760 | Tight tracking, `text-wrap: balance` |
-| Numerals (`--font-width-numeral`) | 75% | 800 | `tabular-nums`; distance, time, price |
-| Body and UI | 100% | 400 to 640 | 16 px minimum on mobile |
-
-Scale (px): 12, 14, 16, 18, 22, 28, 38, 52, as `--font-size-*` in rem.
-Sentence case everywhere. No all-caps labels, no eyebrow text, no monospace.
+`src/features/home/Film.tsx`. A 400svh section whose stage is sticky inside the scroller (`<main>` on desktop,
+the document on phones). Five scenes (find, check, known, plan, eat): the photograph cross-fades, the headline and
+rows change, a number plate counts real catalogue numbers, and six icon slots (name, distance, evidence, hours,
+contact, price) fill in as the profile assembles. The rail down the left is the page's thread and continues past
+the film to the Go section and the county index. Scene changes come from an IntersectionObserver on step markers;
+where `animation-timeline` exists the rail fill, the thread and the picture drift are scrubbed by scroll. Reduced
+motion, or no IntersectionObserver, gives a still sequence of the five scenes, each with its picture and numbers.
 
 ## Shape, depth, motion
 

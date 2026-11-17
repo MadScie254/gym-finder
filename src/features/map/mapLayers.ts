@@ -2,10 +2,10 @@ import type { ExpressionSpecification, FilterSpecification, Map as MapLibreMap }
 import type { LatLng, Venue } from "../../data/types";
 
 /** Map paint cannot read CSS variables, so the Signwriter values are repeated here (see src/ui/tokens.css). */
-const PLATE = "#1b2333";
+const PLATE = "#0c0a24";
 const PLATE_EDGE = "#3a4357";
-const COBALT = "#2346d8";
-const CHALK = "#f2f4f7";
+const COBALT = "#3a1fe6";
+const CHALK = "#ffffff";
 const WHITE = "#ffffff";
 /** OpenFreeMap serves only its own font stacks; the MapLibre default 404s. */
 const FONT_BOLD = ["Noto Sans Bold"];

@@ -4,7 +4,7 @@ import { expect, it } from "vitest";
 
 const SCRIPT = fileURLToPath(new URL("./contrast.mjs", import.meta.url));
 
-it("checks the glass and texture pairs, and every pair passes", () => {
+it("checks the glass pairs, and every pair passes", () => {
   const run = spawnSync(process.execPath, [SCRIPT, "--markdown"], { encoding: "utf8" });
   expect(run.status, run.stderr).toBe(0);
   for (const use of [
@@ -18,9 +18,9 @@ it("checks the glass and texture pairs, and every pair passes", () => {
     "Muted text on glass over content",
     "Links on glass over content",
     "Focus ring on glass over content",
-    "Text on the textured page",
-    "Muted text on the textured page",
-    "Links on the textured page",
+    "Text on the page behind glass",
+    "Muted text on the page behind glass",
+    "Links on the page behind glass",
   ]) {
     expect(run.stdout, use).toContain(use);
   }

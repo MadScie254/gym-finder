@@ -28,7 +28,7 @@
   min-width: 0;
   color: inherit;
   font-size: var(--font-size-22);
-  font-stretch: var(--font-width-sign);
+  font-family: var(--font-display);
   font-weight: var(--font-weight-numeral);
   letter-spacing: var(--tracking-sign);
   text-decoration: none;
@@ -138,7 +138,7 @@
   background: var(--color-plate);
   color: var(--color-on-plate);
   font-size: var(--font-size-14);
-  font-stretch: var(--font-width-numeral);
+  font-family: var(--font-display);
   font-weight: var(--font-weight-numeral);
   line-height: 20px;
 }

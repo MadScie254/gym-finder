@@ -95,7 +95,7 @@
   flex: none;
   color: var(--color-text);
   font-size: var(--font-size-22);
-  font-stretch: var(--font-width-sign);
+  font-family: var(--font-display);
   font-weight: var(--font-weight-numeral);
   letter-spacing: var(--tracking-sign);
   text-decoration: none;

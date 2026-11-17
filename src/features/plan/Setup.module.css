@@ -15,7 +15,7 @@
   padding: 0;
   margin-bottom: var(--space-2);
   font-size: var(--font-size-18);
-  font-stretch: var(--font-width-sign);
+  font-family: var(--font-display);
   font-weight: var(--font-weight-sign);
 }
 

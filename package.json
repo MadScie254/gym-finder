@@ -17,7 +17,6 @@
     "data:build": "node scripts/data/build-gyms.mjs",
     "data:validate": "node scripts/data/validate.mjs",
     "contrast": "node scripts/contrast.mjs",
-    "texture": "node scripts/contours.mjs",
     "build:e2e": "vite build --mode e2e && node scripts/prerender.mjs && node scripts/precache.mjs",
     "e2e": "npm run build:e2e && playwright test"
   },
