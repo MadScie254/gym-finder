@@ -17,12 +17,11 @@ function block(head: string): string {
   throw new Error(`unbalanced block ${head}`);
 }
 
-describe("base.css glass and texture contract", () => {
-  it("draws the texture from the committed mask files", () => {
-    for (const name of ["contours-minor.svg", "contours-major.svg"]) {
-      expect(css).toContain(`./texture/${name}`);
-      expect(existsSync(new URL(`./texture/${name}`, import.meta.url))).toBe(true);
-    }
+describe("base.css glass contract", () => {
+  it("draws nothing behind the page: the background is the plain token colour", () => {
+    expect(css).not.toMatch(/body::(before|after)/);
+    expect(css).not.toContain("mask-image");
+    expect(existsSync(new URL("./texture", import.meta.url))).toBe(false);
   });
 
   it("keeps every backdrop-filter inside the wide, fine-pointer gate, and outside it only turns blur off", () => {
@@ -44,9 +43,5 @@ describe("base.css glass and texture contract", () => {
   it("gives .glass a solid surface outside the gate", () => {
     const outside = css.slice(0, css.indexOf(GATE));
     expect(outside).toMatch(/\.glass\s*\{[^}]*background:\s*var\(--color-surface\)/);
-  });
-
-  it("hides the texture in print", () => {
-    expect(css).toMatch(/@media print\s*\{[^}]*body::before/);
   });
 });

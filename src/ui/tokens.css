@@ -1,5 +1,5 @@
 /*
- * Signwriter tokens. Source of truth for colour, type, space, shape and motion.
+ * Jioni tokens. Source of truth for colour, type, space, shape and motion.
  * Contrast for every text and UI pair is checked by scripts/contrast.mjs
  * (run: npm run contrast). Results live in docs/DESIGN_SYSTEM.md.
  *
@@ -7,50 +7,53 @@
  */
 
 :root {
-  /* Raw palette (light). Names follow docs/REVAMP_PLAN.md section 3.2. */
-  --chalk: #f2f4f7;
-  --white-enamel: #ffffff;
-  --plate: #1b2333;
-  --cobalt: #2346d8;
-  --signal: #ffc42e;
-  --court: #0a7a51;
-  --stop: #c43420;
-  --slate: #5a6477;
+  /* Raw palette. Jioni is the brand: an ultramarine pushed towards violet, the sky over Nairobi at dusk,
+     the hour most people train. Ember is the one accent, kept for the things that move or are on. */
+  --jioni-paper: #ffffff;
+  --jioni-ink: #0c0a24;
+  --jioni: #3a1fe6;
+  --jioni-deep: #2a12bd;
+  --ember: #fa5a1a;
+  --court: #0a7a4f;
+  --stop: #c4271f;
+  --graphite: #5d5b73;
 
-  /* Semantic colour, light theme */
-  --color-bg: var(--chalk);
-  --color-surface: var(--white-enamel);
-  --color-sunk: #e7eaf0;
-  --color-text: var(--plate);
-  --color-text-muted: var(--slate);
-  --color-action: var(--cobalt);
-  --color-action-hover: #1a37b3;
+  /* Semantic colour, light theme. The page and its surfaces are both white: lines do the dividing, not grey. */
+  --color-bg: var(--jioni-paper);
+  --color-surface: var(--jioni-paper);
+  --color-raised: var(--jioni-paper);
+  --color-sunk: #f1f0fb;
+  --color-text: var(--jioni-ink);
+  --color-text-muted: var(--graphite);
+  --color-action: var(--jioni);
+  --color-action-hover: var(--jioni-deep);
   --color-on-action: #ffffff;
-  --color-link: var(--cobalt);
-  --color-highlight: var(--signal);
-  --color-on-highlight: var(--plate);
-  --color-plate: var(--plate);
-  --color-on-plate: var(--chalk);
-  --color-plate-muted: #b5bdcc;
-  --color-plate-edge: var(--plate);
-  --color-inverse: var(--plate);
-  --color-on-inverse: var(--chalk);
+  --color-link: var(--jioni);
+  --color-brand: var(--jioni);
+  --color-brand-soft: rgba(58, 31, 230, 0.08);
+  --color-glow: rgba(58, 31, 230, 0);
+  --color-highlight: var(--ember);
+  --color-on-highlight: #160a03;
+  --color-plate: var(--jioni-ink);
+  --color-on-plate: #ffffff;
+  --color-plate-muted: #b9b7cf;
+  --color-plate-edge: var(--jioni-ink);
+  --color-inverse: var(--jioni-ink);
+  --color-on-inverse: #ffffff;
   --color-ok: var(--court);
   --color-danger: var(--stop);
-  --color-line: rgba(27, 35, 51, 0.1);
-  --color-line-strong: #838c9c;
-  --color-focus: var(--cobalt);
+  --color-line: rgba(12, 10, 36, 0.12);
+  --color-line-strong: #77758c;
+  --color-focus: var(--jioni);
   --color-tier-verified: var(--court);
-  --color-tier-corroborated: var(--cobalt);
-  --color-tier-listed: var(--slate);
-  --color-tier-unconfirmed: var(--slate);
-  --color-scrim: rgba(27, 35, 51, 0.4);
+  --color-tier-corroborated: var(--jioni);
+  --color-tier-listed: var(--graphite);
+  --color-tier-unconfirmed: var(--graphite);
+  --color-scrim: rgba(12, 10, 36, 0.45);
 
-  /* Type. One family; width does the work a second face would do. */
-  --font-family: "Archivo Signwriter", "Archivo", "Arial Narrow", system-ui, sans-serif;
-  --font-width-sign: 78%;
-  --font-width-numeral: 75%;
-  --font-width-body: 100%;
+  /* Type. Unbounded letters the signs and numerals; Instrument Sans reads. */
+  --font-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Unbounded", "Instrument Sans", system-ui, sans-serif;
   --font-size-12: 0.75rem;
   --font-size-14: 0.875rem;
   --font-size-16: 1rem;
@@ -59,14 +62,21 @@
   --font-size-28: 1.75rem;
   --font-size-38: 2.375rem;
   --font-size-52: 3.25rem;
+  /* Display steps for Unbounded, which is wide: a 1.25 scale from 15 px. */
+  --display-15: 0.9375rem;
+  --display-19: 1.1875rem;
+  --display-23: 1.4375rem;
+  --display-29: 1.8125rem;
+  --display-37: 2.3125rem;
+  --display-46: 2.875rem;
   --font-weight-body: 400;
-  --font-weight-ui: 560;
-  --font-weight-strong: 640;
-  --font-weight-sign: 760;
-  --font-weight-numeral: 800;
-  --line-height-body: 1.45;
-  --line-height-sign: 1.02;
-  --tracking-sign: -0.012em;
+  --font-weight-ui: 550;
+  --font-weight-strong: 650;
+  --font-weight-sign: 600;
+  --font-weight-numeral: 700;
+  --line-height-body: 1.5;
+  --line-height-sign: 1.12;
+  --tracking-sign: -0.025em;
 
   /* Space (px): 4 8 12 16 20 24 32 40 56 */
   --space-1: 0.25rem;
@@ -80,32 +90,30 @@
   --space-14: 3.5rem;
 
   /* Shape. Radius by role, not one radius everywhere. */
-  --radius-tag: 4px;
-  --radius-control: 6px;
-  --radius-card: 10px;
-  --radius-sheet: 20px;
+  --radius-tag: 6px;
+  --radius-control: 12px;
+  --radius-card: 18px;
+  --radius-sheet: 26px;
   --border-hairline: 1px solid var(--color-line);
   --border-control: 1px solid var(--color-line-strong);
   --target-min: 44px;
 
   /* Depth. Only sheets and menus cast a shadow. */
-  --shadow-sheet: 0 -6px 24px rgba(27, 35, 51, 0.16);
-  --shadow-menu: 0 8px 24px rgba(27, 35, 51, 0.18);
+  --shadow-sheet: 0 -6px 24px rgba(12, 10, 36, 0.14);
+  --shadow-menu: 0 8px 24px rgba(12, 10, 36, 0.16);
 
-  /* Frosted layers (wide screens only, see base.css) and the page texture. Checked by scripts/contrast.mjs. */
-  --color-glass: rgba(255, 255, 255, 0.56);
-  --color-glass-strong: rgba(255, 255, 255, 0.74);
-  --color-glass-edge: rgba(255, 255, 255, 0.92);
-  --color-text-muted-glass: #454d5e;
-  --color-link-glass: #1a37b3;
-  --color-line-strong-glass: #767e8f;
-  --color-texture-minor: rgba(27, 35, 51, 0.08);
-  --color-texture-major: rgba(35, 70, 216, 0.1);
+  /* Frosted layers (wide screens only, see base.css). Checked by scripts/contrast.mjs. */
+  --color-glass: rgba(255, 255, 255, 0.78);
+  --color-glass-strong: rgba(255, 255, 255, 0.88);
+  --color-glass-edge: rgba(255, 255, 255, 0.9);
+  --color-text-muted-glass: #4a4860;
+  --color-link-glass: #2a12bd;
+  --color-line-strong-glass: #6f6d85;
   --glass-blur: blur(22px) saturate(1.7);
   --glass-blur-modal: blur(30px) saturate(1.8);
-  --shadow-float: 0 12px 32px rgba(27, 35, 51, 0.12);
-  --shadow-modal: 0 28px 70px rgba(27, 35, 51, 0.3);
-  --radius-float: 16px;
+  --shadow-float: 0 0 0 rgba(12, 10, 36, 0);
+  --shadow-modal: 0 28px 70px rgba(12, 10, 36, 0.28);
+  --radius-float: 20px;
 
   /* Motion */
   --duration-quick: 120ms;
@@ -115,47 +123,51 @@
   color-scheme: light;
 }
 
+/* Dark is black, not navy: the page sits at #050507 and surfaces step up a little at a time. Jioni is lifted
+   and kept saturated so it glows. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --color-bg: #1b2333;
-    --color-surface: #252e42;
-    --color-sunk: #131a28;
-    --color-text: #f2f4f7;
-    --color-text-muted: #a9b2c3;
-    --color-action: #6f8bff;
-    --color-action-hover: #91a6ff;
-    --color-on-action: #10172a;
-    --color-link: #8ea3ff;
-    --color-highlight: #ffc42e;
-    --color-on-highlight: #1b2333;
-    --color-plate: #0d1220;
-    --color-on-plate: #f2f4f7;
-    --color-plate-muted: #a9b2c3;
-    --color-plate-edge: #7d889d;
-    --color-inverse: #f2f4f7;
-    --color-on-inverse: #1b2333;
-    --color-ok: #3fbf86;
-    --color-danger: #ff7b6b;
-    --color-line: rgba(242, 244, 247, 0.12);
-    --color-line-strong: #7d889d;
-    --color-focus: #8ea3ff;
-    --color-tier-verified: #3fbf86;
-    --color-tier-corroborated: #8ea3ff;
-    --color-tier-listed: #a9b2c3;
-    --color-tier-unconfirmed: #a9b2c3;
-    --color-scrim: rgba(5, 8, 15, 0.6);
-    --shadow-sheet: 0 -6px 24px rgba(0, 0, 0, 0.45);
-    --shadow-menu: 0 8px 24px rgba(0, 0, 0, 0.5);
-    --color-glass: rgba(37, 46, 66, 0.58);
-    --color-glass-strong: rgba(37, 46, 66, 0.86);
-    --color-glass-edge: rgba(242, 244, 247, 0.14);
-    --color-text-muted-glass: #d3d9e5;
-    --color-link-glass: #c9d3ff;
-    --color-line-strong-glass: #7d889d;
-    --color-texture-minor: rgba(242, 244, 247, 0.07);
-    --color-texture-major: rgba(142, 163, 255, 0.16);
-    --shadow-float: 0 12px 32px rgba(0, 0, 0, 0.4);
-    --shadow-modal: 0 28px 70px rgba(0, 0, 0, 0.55);
+    --color-bg: #050507;
+    --color-surface: #0f0f15;
+    --color-raised: #17171f;
+    --color-sunk: #1a1a23;
+    --color-text: #f3f2fa;
+    --color-text-muted: #a5a3ba;
+    --color-action: #5b45ff;
+    --color-action-hover: #6a56ff;
+    --color-on-action: #ffffff;
+    --color-link: #9d91ff;
+    --color-brand: #7c6bff;
+    --color-brand-soft: rgba(124, 107, 255, 0.16);
+    --color-glow: rgba(124, 107, 255, 0.5);
+    --color-highlight: #ff6a2b;
+    --color-on-highlight: #160a03;
+    --color-plate: #17171f;
+    --color-on-plate: #f3f2fa;
+    --color-plate-muted: #a5a3ba;
+    --color-plate-edge: #6f6d85;
+    --color-inverse: #f3f2fa;
+    --color-on-inverse: #0c0a24;
+    --color-ok: #3ddc97;
+    --color-danger: #ff8078;
+    --color-line: rgba(243, 242, 250, 0.13);
+    --color-line-strong: #77758c;
+    --color-focus: #9d91ff;
+    --color-tier-verified: #3ddc97;
+    --color-tier-corroborated: #9d91ff;
+    --color-tier-listed: #a5a3ba;
+    --color-tier-unconfirmed: #a5a3ba;
+    --color-scrim: rgba(0, 0, 0, 0.7);
+    --shadow-sheet: 0 -6px 24px rgba(0, 0, 0, 0.6);
+    --shadow-menu: 0 8px 24px rgba(0, 0, 0, 0.6);
+    --color-glass: rgba(15, 15, 21, 0.72);
+    --color-glass-strong: rgba(15, 15, 21, 0.9);
+    --color-glass-edge: rgba(243, 242, 250, 0.1);
+    --color-text-muted-glass: #d2d0e0;
+    --color-link-glass: #c9c2ff;
+    --color-line-strong-glass: #8684a0;
+    --shadow-float: 0 0 0 rgba(0, 0, 0, 0);
+    --shadow-modal: 0 28px 70px rgba(0, 0, 0, 0.7);
     color-scheme: dark;
   }
 }
@@ -163,44 +175,46 @@
 /* Same dark values, forced. Lets the styleguide and tests pin a theme. */
 :root[data-theme="dark"],
 [data-theme="dark"] {
-  --color-bg: #1b2333;
-  --color-surface: #252e42;
-  --color-sunk: #131a28;
-  --color-text: #f2f4f7;
-  --color-text-muted: #a9b2c3;
-  --color-action: #6f8bff;
-  --color-action-hover: #91a6ff;
-  --color-on-action: #10172a;
-  --color-link: #8ea3ff;
-  --color-highlight: #ffc42e;
-  --color-on-highlight: #1b2333;
-  --color-plate: #0d1220;
-  --color-on-plate: #f2f4f7;
-  --color-plate-muted: #a9b2c3;
-  --color-plate-edge: #7d889d;
-  --color-inverse: #f2f4f7;
-  --color-on-inverse: #1b2333;
-  --color-ok: #3fbf86;
-  --color-danger: #ff7b6b;
-  --color-line: rgba(242, 244, 247, 0.12);
-  --color-line-strong: #7d889d;
-  --color-focus: #8ea3ff;
-  --color-tier-verified: #3fbf86;
-  --color-tier-corroborated: #8ea3ff;
-  --color-tier-listed: #a9b2c3;
-  --color-tier-unconfirmed: #a9b2c3;
-  --color-scrim: rgba(5, 8, 15, 0.6);
-  --shadow-sheet: 0 -6px 24px rgba(0, 0, 0, 0.45);
-  --shadow-menu: 0 8px 24px rgba(0, 0, 0, 0.5);
-  --color-glass: rgba(37, 46, 66, 0.58);
-  --color-glass-strong: rgba(37, 46, 66, 0.86);
-  --color-glass-edge: rgba(242, 244, 247, 0.14);
-  --color-text-muted-glass: #d3d9e5;
-  --color-link-glass: #c9d3ff;
-  --color-line-strong-glass: #7d889d;
-  --color-texture-minor: rgba(242, 244, 247, 0.07);
-  --color-texture-major: rgba(142, 163, 255, 0.16);
-  --shadow-float: 0 12px 32px rgba(0, 0, 0, 0.4);
-  --shadow-modal: 0 28px 70px rgba(0, 0, 0, 0.55);
+  --color-bg: #050507;
+  --color-surface: #0f0f15;
+  --color-raised: #17171f;
+  --color-sunk: #1a1a23;
+  --color-text: #f3f2fa;
+  --color-text-muted: #a5a3ba;
+  --color-action: #5b45ff;
+  --color-action-hover: #6a56ff;
+  --color-on-action: #ffffff;
+  --color-link: #9d91ff;
+  --color-brand: #7c6bff;
+  --color-brand-soft: rgba(124, 107, 255, 0.16);
+  --color-glow: rgba(124, 107, 255, 0.5);
+  --color-highlight: #ff6a2b;
+  --color-on-highlight: #160a03;
+  --color-plate: #17171f;
+  --color-on-plate: #f3f2fa;
+  --color-plate-muted: #a5a3ba;
+  --color-plate-edge: #6f6d85;
+  --color-inverse: #f3f2fa;
+  --color-on-inverse: #0c0a24;
+  --color-ok: #3ddc97;
+  --color-danger: #ff8078;
+  --color-line: rgba(243, 242, 250, 0.13);
+  --color-line-strong: #77758c;
+  --color-focus: #9d91ff;
+  --color-tier-verified: #3ddc97;
+  --color-tier-corroborated: #9d91ff;
+  --color-tier-listed: #a5a3ba;
+  --color-tier-unconfirmed: #a5a3ba;
+  --color-scrim: rgba(0, 0, 0, 0.7);
+  --shadow-sheet: 0 -6px 24px rgba(0, 0, 0, 0.6);
+  --shadow-menu: 0 8px 24px rgba(0, 0, 0, 0.6);
+  --color-glass: rgba(15, 15, 21, 0.72);
+  --color-glass-strong: rgba(15, 15, 21, 0.9);
+  --color-glass-edge: rgba(243, 242, 250, 0.1);
+  --color-text-muted-glass: #d2d0e0;
+  --color-link-glass: #c9c2ff;
+  --color-line-strong-glass: #8684a0;
+  --shadow-float: 0 0 0 rgba(0, 0, 0, 0);
+  --shadow-modal: 0 28px 70px rgba(0, 0, 0, 0.7);
   color-scheme: dark;
 }

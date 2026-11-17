@@ -6,7 +6,9 @@ import { useT, useVenueContext } from "../../app/venue-context";
 import { hasPlanSettings } from "../../lib/storage";
 import { Button, Poster, buttonClassName } from "../../ui";
 import { GymSearch } from "../search/GymSearch";
-import { CheckedProfiles, FirstVisitGuide, HomeFooter, PlaceIndex, ShortlistAndWeek } from "./HomeSections";
+import { Navigation } from "lucide-react";
+import { Film } from "./Film";
+import { CheckedProfiles, FirstVisitGuide, HomeFooter, PlaceIndex } from "./HomeSections";
 import styles from "./Home.module.css";
 
 /** `/`: a real homepage, not the map. Search and location sit in the first phone screen. */
@@ -64,10 +66,22 @@ export function HomePage() {
         </section>
       )}
 
-      <PlaceIndex />
-      <ShortlistAndWeek />
-      <CheckedProfiles />
-      {!returning && <FirstVisitGuide />}
+      {/* The thread: one line from the first scene of the film down to the last section. */}
+      <div className={styles.flow}>
+        <Film />
+        <section className={`${styles.section} ${styles.go}`} aria-labelledby="home-go">
+          <span className={styles.node} aria-hidden="true"><Navigation size={18} strokeWidth={1.75} /></span>
+          <h2 id="home-go" className={styles.goTitle}>{tr("filmGoTitle")}</h2>
+          <p className={styles.sectionLede}>{tr("filmGoBody")}</p>
+          <div className={styles.heroActions}>
+            <Link to="/search" className={buttonClassName("primary")}>{tr("homeFind")}</Link>
+            <Button variant="secondary" icon={LocateFixed} onClick={() => { waitingForLocation.current = true; locate(); }}>{tr("locate")}</Button>
+          </div>
+        </section>
+        <PlaceIndex />
+        <CheckedProfiles />
+        {!returning && <FirstVisitGuide />}
+      </div>
       <HomeFooter />
     </div>
   );

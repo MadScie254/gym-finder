@@ -22,7 +22,8 @@ test("Today is a poster: a picture, a tab that says when, and the session on a b
   await page.goto("/plan", { waitUntil: "load" });
   const poster = page.locator("section[data-photo]").first();
   await expect(poster.getByRole("heading", { level: 2 })).toHaveText(/Full body A|Full body B|Steady cardio/);
-  await expect(poster.getByText("Today", { exact: true })).toBeVisible();
+  // The tab says when the session is: Today on a training day, otherwise the next or the still-open one.
+  await expect(poster.getByText(/^(Today|Next: \w+|Still open from \w+)$/)).toBeVisible();
   await loaded(poster.locator("img"));
   // The tab is the only lettering across the picture: the heading is on the board below it.
   const picture = await poster.locator("img").boundingBox();

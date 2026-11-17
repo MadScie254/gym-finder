@@ -5,7 +5,7 @@
 
 .storeName {
   font-size: var(--font-size-18);
-  font-stretch: var(--font-width-sign);
+  font-family: var(--font-display);
   font-weight: var(--font-weight-sign);
   line-height: 1.15;
 }

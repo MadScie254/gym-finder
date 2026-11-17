@@ -89,7 +89,7 @@ export function Shell() {
       </div>
       {wide && <CompareTray wide />}
       {!wide && (
-        <div className={styles.bottom}>
+        <div className={styles.bottom} data-bottom-bar>
           <CompareTray wide={false} />
           <NavBar
             items={items}

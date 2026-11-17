@@ -38,7 +38,7 @@ export function FoundationSection() {
           ))}
         </ul>
       </Specimen>
-      <Specimen title="Type" caption="Archivo, one variable file. Width 75 to 78 for signs and numerals, 100 for reading.">
+      <Specimen title="Type" caption="Unbounded for signs and numerals, Instrument Sans for reading.">
         <div>
           {SIZES.map((size) => (
             <div key={size.px} className={sg.typeRow}>
@@ -47,7 +47,7 @@ export function FoundationSection() {
                 className={sg.typeSample}
                 style={{
                   fontSize: `${size.px / 16}rem`,
-                  fontStretch: size.sign ? "var(--font-width-sign)" : "100%",
+                  fontFamily: size.sign ? "var(--font-display)" : "var(--font-family)",
                   fontWeight: size.sign ? "var(--font-weight-sign)" : "var(--font-weight-body)",
                   lineHeight: size.sign ? 1.05 : 1.35,
                   fontVariantNumeric: "tabular-nums",
